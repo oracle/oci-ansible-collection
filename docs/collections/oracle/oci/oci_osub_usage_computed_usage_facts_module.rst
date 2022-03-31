@@ -30,7 +30,7 @@ oracle.oci.oci_osub_usage_computed_usage_facts -- Fetches details about one or m
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -451,11 +451,11 @@ Examples
         time_to: 2013-10-20T19:20:30+01:00
 
         # optional
-        x_one_origin_region: us-phoenix-1
         parent_product: parent_product_example
         computed_product: computed_product_example
         sort_order: ASC
         sort_by: timeCreated
+        x_one_origin_region: us-phoenix-1
 
 
 

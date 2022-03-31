@@ -31,12 +31,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    integration_instance_id:
-        description:
-            - Unique Integration Instance identifier.
-        type: str
-        aliases: ["id"]
-        required: true
     compartment_id:
         description:
             - Compartment Identifier.
@@ -80,6 +74,12 @@ options:
                 description:
                     - The Integration service's VCN is allow-listed to allow integrations to call back into other integrations
                 type: bool
+    integration_instance_id:
+        description:
+            - Unique Integration Instance identifier.
+        type: str
+        aliases: ["id"]
+        required: true
     action:
         description:
             - The action to perform on the IntegrationInstance.
@@ -522,7 +522,6 @@ def main():
     )
     module_args.update(
         dict(
-            integration_instance_id=dict(aliases=["id"], type="str", required=True),
             compartment_id=dict(type="str"),
             network_endpoint_details=dict(
                 type="dict",
@@ -542,6 +541,7 @@ def main():
                     is_integration_vcn_allowlisted=dict(type="bool"),
                 ),
             ),
+            integration_instance_id=dict(aliases=["id"], type="str", required=True),
             action=dict(
                 type="str",
                 required=True,

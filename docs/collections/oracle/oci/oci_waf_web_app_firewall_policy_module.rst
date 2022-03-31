@@ -30,7 +30,7 @@ oracle.oci.oci_waf_web_app_firewall_policy -- Manage a WebAppFirewallPolicy reso
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -2037,9 +2037,9 @@ Examples
         display_name: display_name_example
         actions:
         - # required
+          code: 56
           type: RETURN_HTTP_RESPONSE
           name: name_example
-          code: 56
 
           # optional
           headers:
@@ -2176,9 +2176,9 @@ Examples
         display_name: display_name_example
         actions:
         - # required
+          code: 56
           type: RETURN_HTTP_RESPONSE
           name: name_example
-          code: 56
 
           # optional
           headers:
@@ -2309,15 +2309,15 @@ Examples
     - name: Update web_app_firewall_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_waf_web_app_firewall_policy:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
 
         # optional
         actions:
         - # required
+          code: 56
           type: RETURN_HTTP_RESPONSE
           name: name_example
-          code: 56
 
           # optional
           headers:
@@ -2454,8 +2454,8 @@ Examples
     - name: Delete web_app_firewall_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_waf_web_app_firewall_policy:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
         state: absent
 
 

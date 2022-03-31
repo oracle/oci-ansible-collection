@@ -63,11 +63,6 @@ options:
             - Required for I(action=bulk_delete).
         type: list
         elements: str
-    compartment_id:
-        description:
-            - The OCID of the compartment where the bulk tag edit request is submitted.
-            - Required for I(action=bulk_edit), I(action=import_standard_tags).
-        type: str
     resources:
         description:
             - The resources to be updated.
@@ -120,6 +115,11 @@ options:
                       Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
                 type: dict
                 required: true
+    compartment_id:
+        description:
+            - The OCID of the compartment where the bulk tag edit request is submitted.
+            - Required for I(action=bulk_edit), I(action=import_standard_tags).
+        type: str
     standard_tag_namespace_name:
         description:
             - The name of standard tag namespace that will be imported in bulk
@@ -147,7 +147,6 @@ EXAMPLES = """
 - name: Perform action bulk_edit on tag
   oci_identity_tag_actions:
     # required
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     resources:
     - # required
       id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -159,6 +158,7 @@ EXAMPLES = """
     - # required
       operation_type: ADD_WHERE_ABSENT
       defined_tags: {'Operations': {'CostCenter': 'US'}}
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: bulk_edit
 
 - name: Perform action import_standard_tags on tag
@@ -279,7 +279,6 @@ def main():
     module_args.update(
         dict(
             tag_definition_ids=dict(type="list", elements="str"),
-            compartment_id=dict(type="str"),
             resources=dict(
                 type="list",
                 elements="dict",
@@ -306,6 +305,7 @@ def main():
                     defined_tags=dict(type="dict", required=True),
                 ),
             ),
+            compartment_id=dict(type="str"),
             standard_tag_namespace_name=dict(type="str"),
             action=dict(
                 type="str",

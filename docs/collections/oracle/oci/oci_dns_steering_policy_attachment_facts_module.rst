@@ -30,7 +30,7 @@ oracle.oci.oci_dns_steering_policy_attachment_facts -- Fetches details about one
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -500,7 +500,6 @@ Examples
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        scope: GLOBAL
         display_name: display_name_example
         steering_policy_id: "ocid1.steeringpolicy.oc1..xxxxxxEXAMPLExxxxxx"
         zone_id: "ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx"
@@ -511,6 +510,7 @@ Examples
         lifecycle_state: CREATING
         sort_by: displayName
         sort_order: ASC
+        scope: GLOBAL
 
 
 

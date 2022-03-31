@@ -29,6 +29,11 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The OCID of the compartment where the log analytics entity should be moved.
+            - Required for I(action=change_compartment).
+        type: str
     namespace_name:
         description:
             - The Logging Analytics namespace used for the request.
@@ -46,11 +51,6 @@ options:
             - Required for I(action=add_entity_association), I(action=remove_entity_associations).
         type: list
         elements: str
-    compartment_id:
-        description:
-            - The OCID of the compartment where the log analytics entity should be moved.
-            - Required for I(action=change_compartment).
-        type: str
     action:
         description:
             - The action to perform on the LogAnalyticsEntity.
@@ -75,9 +75,9 @@ EXAMPLES = """
 - name: Perform action change_compartment on log_analytics_entity
   oci_log_analytics_entity_actions:
     # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     namespace_name: namespace_name_example
     log_analytics_entity_id: "ocid1.loganalyticsentity.oc1..xxxxxxEXAMPLExxxxxx"
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action remove_entity_associations on log_analytics_entity
@@ -413,10 +413,10 @@ def main():
     )
     module_args.update(
         dict(
+            compartment_id=dict(type="str"),
             namespace_name=dict(type="str", required=True),
             log_analytics_entity_id=dict(aliases=["id"], type="str", required=True),
             association_entities=dict(type="list", elements="str"),
-            compartment_id=dict(type="str"),
             action=dict(
                 type="str",
                 required=True,

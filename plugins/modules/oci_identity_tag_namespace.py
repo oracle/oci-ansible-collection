@@ -57,6 +57,12 @@ options:
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
+    is_retired:
+        description:
+            - Whether the tag namespace is retired.
+              See L(Retiring Key Definitions and Namespace Definitions,https://docs.cloud.oracle.com/Content/Identity/Concepts/taggingoverview.htm#Retiring).
+            - This parameter is updatable.
+        type: bool
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -78,12 +84,6 @@ options:
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["id"]
-    is_retired:
-        description:
-            - Whether the tag namespace is retired.
-              See L(Retiring Key Definitions and Namespace Definitions,https://docs.cloud.oracle.com/Content/Identity/Concepts/taggingoverview.htm#Retiring).
-            - This parameter is updatable.
-        type: bool
     state:
         description:
             - The state of the TagNamespace.
@@ -115,9 +115,9 @@ EXAMPLES = """
 
     # optional
     description: description_example
+    is_retired: true
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    is_retired: true
 
 - name: Update tag_namespace using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_tag_namespace:
@@ -127,9 +127,9 @@ EXAMPLES = """
 
     # optional
     description: description_example
+    is_retired: true
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    is_retired: true
 
 - name: Delete tag_namespace
   oci_identity_tag_namespace:
@@ -375,10 +375,10 @@ def main():
             compartment_id=dict(type="str"),
             name=dict(type="str"),
             description=dict(type="str"),
+            is_retired=dict(type="bool"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             tag_namespace_id=dict(aliases=["id"], type="str"),
-            is_retired=dict(type="bool"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

@@ -30,7 +30,7 @@ oracle.oci.oci_golden_gate_deployment_actions -- Perform actions on a Deployment
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -365,8 +365,8 @@ Examples
     - name: Perform action change_compartment on deployment
       oci_golden_gate_deployment_actions:
         # required
-        deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
         action: change_compartment
 
     - name: Perform action start on deployment with type = DEFAULT
@@ -434,7 +434,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Deployment resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cpu_core_count&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deployment_backup_id&#x27;: &#x27;ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deployment_type&#x27;: &#x27;OGG&#x27;, &#x27;deployment_url&#x27;: &#x27;deployment_url_example&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;fqdn&#x27;: &#x27;fqdn_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_auto_scaling_enabled&#x27;: True, &#x27;is_healthy&#x27;: True, &#x27;is_latest_version&#x27;: True, &#x27;is_public&#x27;: True, &#x27;license_model&#x27;: &#x27;LICENSE_INCLUDED&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;lifecycle_sub_state&#x27;: &#x27;RECOVERING&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;ogg_data&#x27;: {&#x27;admin_username&#x27;: &#x27;admin_username_example&#x27;, &#x27;certificate&#x27;: &#x27;-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----&#x27;, &#x27;deployment_name&#x27;: &#x27;deployment_name_example&#x27;, &#x27;ogg_version&#x27;: &#x27;ogg_version_example&#x27;}, &#x27;private_ip_address&#x27;: &#x27;private_ip_address_example&#x27;, &#x27;public_ip_address&#x27;: &#x27;public_ip_address_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_upgrade_required&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cpu_core_count&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deployment_backup_id&#x27;: &#x27;ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deployment_type&#x27;: &#x27;OGG&#x27;, &#x27;deployment_url&#x27;: &#x27;deployment_url_example&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;fqdn&#x27;: &#x27;fqdn_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_auto_scaling_enabled&#x27;: True, &#x27;is_healthy&#x27;: True, &#x27;is_latest_version&#x27;: True, &#x27;is_public&#x27;: True, &#x27;is_storage_utilization_limit_exceeded&#x27;: True, &#x27;license_model&#x27;: &#x27;LICENSE_INCLUDED&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;lifecycle_sub_state&#x27;: &#x27;RECOVERING&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;ogg_data&#x27;: {&#x27;admin_username&#x27;: &#x27;admin_username_example&#x27;, &#x27;certificate&#x27;: &#x27;-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----&#x27;, &#x27;deployment_name&#x27;: &#x27;deployment_name_example&#x27;, &#x27;ogg_version&#x27;: &#x27;ogg_version_example&#x27;}, &#x27;private_ip_address&#x27;: &#x27;private_ip_address_example&#x27;, &#x27;public_ip_address&#x27;: &#x27;public_ip_address_example&#x27;, &#x27;storage_utilization_in_bytes&#x27;: 56, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_upgrade_required&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -521,7 +521,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The type of deployment, the value determines the exact &#x27;type&#x27; of service executed in the Deployment. NOTE: Use of the value OGG is maintained for backward compatibility purposes.  Its use is discouraged in favor of the equivalent DATABASE_ORACLE value.</div>
+                                            <div>The deployment type.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">OGG</div>
@@ -702,6 +702,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>True if this object is publicly available.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deployment/is_storage_utilization_limit_exceeded"></div>
+                    <b>is_storage_utilization_limit_exceeded</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/is_storage_utilization_limit_exceeded" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Indicator will be true if the amount of storage being utilized exceeds the allowable storage utilization limit.  Exceeding the limit may be an indication of a misconfiguration of the deployment&#x27;s GoldenGate service.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -922,6 +940,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">public_ip_address_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deployment/storage_utilization_in_bytes"></div>
+                    <b>storage_utilization_in_bytes</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/storage_utilization_in_bytes" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The amount of storage being utilized (in bytes)</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                                 <tr>

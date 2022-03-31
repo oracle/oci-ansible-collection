@@ -30,7 +30,7 @@ oracle.oci.oci_budget_alert_rule_facts -- Fetches details about one or multiple 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -362,8 +362,8 @@ Examples
     - name: Get a specific budget_alert_rule
       oci_budget_alert_rule_facts:
         # required
-        budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
         alert_rule_id: "ocid1.alertrule.oc1..xxxxxxEXAMPLExxxxxx"
+        budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: List budget_alert_rules
       oci_budget_alert_rule_facts:

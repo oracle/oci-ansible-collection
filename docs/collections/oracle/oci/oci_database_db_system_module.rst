@@ -30,7 +30,7 @@ oracle.oci.oci_database_db_system -- Manage a DbSystem resource in Oracle Cloud 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -1811,10 +1811,7 @@ Examples
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         availability_domain: Uocm:PHX-AD-1
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-        shape: shape_example
-        ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
         hostname: hostname_example
-        cpu_core_count: 56
         db_home:
           # required
           database:
@@ -1822,14 +1819,13 @@ Examples
             admin_password: example-password
 
             # optional
-            db_name: db_name_example
-            db_unique_name: db_unique_name_example
             database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
             pdb_name: pdb_name_example
             tde_wallet_password: example-password
             character_set: character_set_example
             ncharacter_set: ncharacter_set_example
             db_workload: OLTP
+            db_domain: db_domain_example
             db_backup_config:
               # optional
               auto_backup_enabled: true
@@ -1846,27 +1842,29 @@ Examples
                 internet_proxy: internet_proxy_example
             freeform_tags: {'Department': 'Finance'}
             defined_tags: {'Operations': {'CostCenter': 'US'}}
-            sid_prefix: sid_prefix_example
-            db_domain: db_domain_example
             database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-            backup_tde_password: example-password
             time_stamp_for_point_in_time_recovery: time_stamp_for_point_in_time_recovery_example
             backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
+            backup_tde_password: example-password
+            db_unique_name: db_unique_name_example
+            db_name: db_name_example
+            sid_prefix: sid_prefix_example
 
                 # optional
-          display_name: display_name_example
           db_version: db_version_example
-          database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
           freeform_tags: {'Department': 'Finance'}
           defined_tags: {'Operations': {'CostCenter': 'US'}}
+          display_name: display_name_example
+          database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
         database_edition: STANDARD_EDITION
+        cpu_core_count: 56
+        ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
+        shape: shape_example
 
         # optional
         fault_domains: [ "fault_domains_example" ]
         display_name: display_name_example
         backup_subnet_id: "ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx"
-        nsg_ids: [ "nsg_ids_example" ]
-        backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
         time_zone: time_zone_example
         db_system_options:
           # optional
@@ -1875,15 +1873,17 @@ Examples
         domain: domain_example
         cluster_name: cluster_name_example
         data_storage_percentage: 56
-        data_storage_size_in_gbs: 56
         kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
         node_count: 56
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
         source: NONE
         private_ip: private_ip_example
         disk_redundancy: HIGH
+        data_storage_size_in_gbs: 56
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        nsg_ids: [ "nsg_ids_example" ]
+        backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
         license_model: LICENSE_INCLUDED
         maintenance_window_details:
           # required
@@ -1903,13 +1903,11 @@ Examples
     - name: Create db_system with source = DB_SYSTEM
       oci_database_db_system:
         # required
+        source_db_system_id: "ocid1.sourcedbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         availability_domain: Uocm:PHX-AD-1
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-        shape: shape_example
-        ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
         hostname: hostname_example
-        cpu_core_count: 56
         source: DB_SYSTEM
         db_home:
           # required
@@ -1918,14 +1916,13 @@ Examples
             admin_password: example-password
 
             # optional
-            db_name: db_name_example
-            db_unique_name: db_unique_name_example
             database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
             pdb_name: pdb_name_example
             tde_wallet_password: example-password
             character_set: character_set_example
             ncharacter_set: ncharacter_set_example
             db_workload: OLTP
+            db_domain: db_domain_example
             db_backup_config:
               # optional
               auto_backup_enabled: true
@@ -1942,27 +1939,28 @@ Examples
                 internet_proxy: internet_proxy_example
             freeform_tags: {'Department': 'Finance'}
             defined_tags: {'Operations': {'CostCenter': 'US'}}
-            sid_prefix: sid_prefix_example
-            db_domain: db_domain_example
             database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-            backup_tde_password: example-password
             time_stamp_for_point_in_time_recovery: time_stamp_for_point_in_time_recovery_example
             backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
+            backup_tde_password: example-password
+            db_unique_name: db_unique_name_example
+            db_name: db_name_example
+            sid_prefix: sid_prefix_example
 
                 # optional
-          display_name: display_name_example
           db_version: db_version_example
-          database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
           freeform_tags: {'Department': 'Finance'}
           defined_tags: {'Operations': {'CostCenter': 'US'}}
-        source_db_system_id: "ocid1.sourcedbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+          display_name: display_name_example
+          database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+        cpu_core_count: 56
+        ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
+        shape: shape_example
 
         # optional
         fault_domains: [ "fault_domains_example" ]
         display_name: display_name_example
         backup_subnet_id: "ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx"
-        nsg_ids: [ "nsg_ids_example" ]
-        backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
         time_zone: time_zone_example
         db_system_options:
           # optional
@@ -1971,13 +1969,15 @@ Examples
         domain: domain_example
         cluster_name: cluster_name_example
         data_storage_percentage: 56
-        data_storage_size_in_gbs: 56
         kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
         node_count: 56
+        private_ip: private_ip_example
+        data_storage_size_in_gbs: 56
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        private_ip: private_ip_example
+        nsg_ids: [ "nsg_ids_example" ]
+        backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
         license_model: LICENSE_INCLUDED
 
     - name: Create db_system with source = DATABASE
@@ -1986,10 +1986,7 @@ Examples
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         availability_domain: Uocm:PHX-AD-1
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-        shape: shape_example
-        ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
         hostname: hostname_example
-        cpu_core_count: 56
         source: DATABASE
         db_home:
           # required
@@ -1998,14 +1995,13 @@ Examples
             admin_password: example-password
 
             # optional
-            db_name: db_name_example
-            db_unique_name: db_unique_name_example
             database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
             pdb_name: pdb_name_example
             tde_wallet_password: example-password
             character_set: character_set_example
             ncharacter_set: ncharacter_set_example
             db_workload: OLTP
+            db_domain: db_domain_example
             db_backup_config:
               # optional
               auto_backup_enabled: true
@@ -2022,27 +2018,29 @@ Examples
                 internet_proxy: internet_proxy_example
             freeform_tags: {'Department': 'Finance'}
             defined_tags: {'Operations': {'CostCenter': 'US'}}
-            sid_prefix: sid_prefix_example
-            db_domain: db_domain_example
             database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-            backup_tde_password: example-password
             time_stamp_for_point_in_time_recovery: time_stamp_for_point_in_time_recovery_example
             backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
+            backup_tde_password: example-password
+            db_unique_name: db_unique_name_example
+            db_name: db_name_example
+            sid_prefix: sid_prefix_example
 
                 # optional
-          display_name: display_name_example
           db_version: db_version_example
-          database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
           freeform_tags: {'Department': 'Finance'}
           defined_tags: {'Operations': {'CostCenter': 'US'}}
+          display_name: display_name_example
+          database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
         database_edition: STANDARD_EDITION
+        cpu_core_count: 56
+        ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
+        shape: shape_example
 
         # optional
         fault_domains: [ "fault_domains_example" ]
         display_name: display_name_example
         backup_subnet_id: "ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx"
-        nsg_ids: [ "nsg_ids_example" ]
-        backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
         time_zone: time_zone_example
         db_system_options:
           # optional
@@ -2051,14 +2049,16 @@ Examples
         domain: domain_example
         cluster_name: cluster_name_example
         data_storage_percentage: 56
-        data_storage_size_in_gbs: 56
         kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
         node_count: 56
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
         private_ip: private_ip_example
         disk_redundancy: HIGH
+        data_storage_size_in_gbs: 56
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        nsg_ids: [ "nsg_ids_example" ]
+        backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
         license_model: LICENSE_INCLUDED
 
     - name: Create db_system with source = DB_BACKUP
@@ -2067,10 +2067,7 @@ Examples
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         availability_domain: Uocm:PHX-AD-1
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-        shape: shape_example
-        ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
         hostname: hostname_example
-        cpu_core_count: 56
         source: DB_BACKUP
         db_home:
           # required
@@ -2079,14 +2076,13 @@ Examples
             admin_password: example-password
 
             # optional
-            db_name: db_name_example
-            db_unique_name: db_unique_name_example
             database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
             pdb_name: pdb_name_example
             tde_wallet_password: example-password
             character_set: character_set_example
             ncharacter_set: ncharacter_set_example
             db_workload: OLTP
+            db_domain: db_domain_example
             db_backup_config:
               # optional
               auto_backup_enabled: true
@@ -2103,27 +2099,29 @@ Examples
                 internet_proxy: internet_proxy_example
             freeform_tags: {'Department': 'Finance'}
             defined_tags: {'Operations': {'CostCenter': 'US'}}
-            sid_prefix: sid_prefix_example
-            db_domain: db_domain_example
             database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-            backup_tde_password: example-password
             time_stamp_for_point_in_time_recovery: time_stamp_for_point_in_time_recovery_example
             backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
+            backup_tde_password: example-password
+            db_unique_name: db_unique_name_example
+            db_name: db_name_example
+            sid_prefix: sid_prefix_example
 
                 # optional
-          display_name: display_name_example
           db_version: db_version_example
-          database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
           freeform_tags: {'Department': 'Finance'}
           defined_tags: {'Operations': {'CostCenter': 'US'}}
+          display_name: display_name_example
+          database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
         database_edition: STANDARD_EDITION
+        cpu_core_count: 56
+        ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
+        shape: shape_example
 
         # optional
         fault_domains: [ "fault_domains_example" ]
         display_name: display_name_example
         backup_subnet_id: "ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx"
-        nsg_ids: [ "nsg_ids_example" ]
-        backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
         time_zone: time_zone_example
         db_system_options:
           # optional
@@ -2132,14 +2130,16 @@ Examples
         domain: domain_example
         cluster_name: cluster_name_example
         data_storage_percentage: 56
-        data_storage_size_in_gbs: 56
         kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
         node_count: 56
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
         private_ip: private_ip_example
         disk_redundancy: HIGH
+        data_storage_size_in_gbs: 56
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        nsg_ids: [ "nsg_ids_example" ]
+        backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
         license_model: LICENSE_INCLUDED
 
     - name: Update db_system
@@ -2148,14 +2148,19 @@ Examples
         db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        nsg_ids: [ "nsg_ids_example" ]
-        backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
-        shape: shape_example
-        ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
         cpu_core_count: 56
+        version:
+          # optional
+          patch_id: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
+          database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+          action: APPLY
+        ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
         data_storage_size_in_gbs: 56
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
+        shape: shape_example
+        nsg_ids: [ "nsg_ids_example" ]
+        backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
         license_model: LICENSE_INCLUDED
         maintenance_window_details:
           # required
@@ -2171,11 +2176,6 @@ Examples
             name: MONDAY
           hours_of_day: [ "hours_of_day_example" ]
           lead_time_in_weeks: 56
-        version:
-          # optional
-          patch_id: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
-          database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
-          action: APPLY
 
     - name: Update db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_db_system:
@@ -2184,14 +2184,19 @@ Examples
         display_name: display_name_example
 
         # optional
-        nsg_ids: [ "nsg_ids_example" ]
-        backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
-        shape: shape_example
-        ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
         cpu_core_count: 56
+        version:
+          # optional
+          patch_id: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
+          database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+          action: APPLY
+        ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
         data_storage_size_in_gbs: 56
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
+        shape: shape_example
+        nsg_ids: [ "nsg_ids_example" ]
+        backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
         license_model: LICENSE_INCLUDED
         maintenance_window_details:
           # required
@@ -2207,11 +2212,6 @@ Examples
             name: MONDAY
           hours_of_day: [ "hours_of_day_example" ]
           lead_time_in_weeks: 56
-        version:
-          # optional
-          patch_id: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
-          database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
-          action: APPLY
 
     - name: Delete db_system
       oci_database_db_system:

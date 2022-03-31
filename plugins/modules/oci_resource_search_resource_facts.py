@@ -29,6 +29,11 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    query:
+        description:
+            - The structured query describing which resources to search for.
+            - Required when type is 'Structured'
+        type: str
     type:
         description:
             - The type of SearchDetails, whether `FreeText` or `Structured`.
@@ -45,11 +50,6 @@ options:
         choices:
             - "NONE"
             - "HIGHLIGHTS"
-    query:
-        description:
-            - The structured query describing which resources to search for.
-            - Required when type is 'Structured'
-        type: str
     text:
         description:
             - The text to search for.
@@ -67,8 +67,8 @@ EXAMPLES = """
 - name: List resources with type = Structured
   oci_resource_search_resource_facts:
     # required
-    type: Structured
     query: query_example
+    type: Structured
 
     # optional
     matching_context_type: NONE
@@ -180,6 +180,18 @@ resources:
             returned: on success
             type: dict
             sample: {}
+        additional_details:
+            description:
+                - "Additional resource attribute fields of this resource that match queries with a return clause, if any.
+                  For example, if you ran a query to find the private IP addresses, public IP addresses, and isPrimary field of
+                  the VNIC attachment on instance resources, that field would be included in the ResourceSummary object as:
+                  {\\"additionalDetails\\": {\\"attachedVnic\\": [{\\"publicIP\\" : \\"172.110.110.110\\",\\"privateIP\\" : \\"10.10.10.10\\",\\"isPrimary\\" :
+                  true},
+                  {\\"publicIP\\" : \\"172.110.110.111\\",\\"privateIP\\" : \\"10.10.10.11\\",\\"isPrimary\\" : false}]}.
+                  The structure of the additional details attribute fields depends on the matching resource."
+            returned: on success
+            type: dict
+            sample: {}
     sample: [{
         "resource_type": "resource_type_example",
         "identifier": "identifier_example",
@@ -194,7 +206,8 @@ resources:
         "search_context": {
             "highlights": {}
         },
-        "identity_context": {}
+        "identity_context": {},
+        "additional_details": {}
     }]
 """
 
@@ -252,9 +265,9 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
+            query=dict(type="str"),
             type=dict(type="str", required=True, choices=["Structured", "FreeText"]),
             matching_context_type=dict(type="str", choices=["NONE", "HIGHLIGHTS"]),
-            query=dict(type="str"),
             text=dict(type="str"),
             tenant_id=dict(type="str"),
             display_name=dict(type="str"),

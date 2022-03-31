@@ -30,7 +30,7 @@ oracle.oci.oci_apm_synthetics_script -- Manage a Script resource in Oracle Cloud
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -517,10 +517,10 @@ Examples
     - name: Create script
       oci_apm_synthetics_script:
         # required
-        apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         content_type: SIDE
         content: content_example
+        apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         content_file_name: content_file_name_example
@@ -558,8 +558,8 @@ Examples
     - name: Update script using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_apm_synthetics_script:
         # required
-        apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
+        apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         content_type: SIDE
@@ -585,8 +585,8 @@ Examples
     - name: Delete script using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_apm_synthetics_script:
         # required
-        apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
+        apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

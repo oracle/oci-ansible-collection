@@ -63,6 +63,7 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_database_tools_custom_helpers,
     oci_data_safe_custom_helpers,
     oci_data_catalog_custom_helpers,
+    oci_data_connectivity_custom_helpers,
     oci_oda_custom_helpers,
     oci_mysql_custom_helpers,
     oci_bigdata_custom_helpers,
@@ -92,6 +93,7 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_budget_custom_helpers,
     oci_identity_data_plane_custom_helpers,
     oci_visual_builder_custom_helpers,
+    oci_ai_vision_custom_helpers,
 )  # noqa
 
 custom_helper_mapping = get_custom_class_mapping(
@@ -105,6 +107,7 @@ custom_helper_mapping = get_custom_class_mapping(
         oci_audit_custom_helpers,
         oci_object_storage_custom_helpers,
         oci_key_management_custom_helpers,
+        oci_data_connectivity_custom_helpers,
         oci_file_storage_custom_helpers,
         oci_container_engine_custom_helpers,
         oci_loadbalancer_custom_helpers,
@@ -158,5 +161,6 @@ custom_helper_mapping = get_custom_class_mapping(
         oci_budget_custom_helpers,
         oci_identity_data_plane_custom_helpers,
         oci_visual_builder_custom_helpers,
+        oci_ai_vision_custom_helpers,
     ]
 )

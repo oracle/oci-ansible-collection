@@ -36,6 +36,11 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    vcn_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN the LPG belongs to.
+            - Required for create using I(state=present).
+        type: str
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
@@ -68,11 +73,6 @@ options:
             - "For information about why you would associate a route table with an LPG, see
               L(Transit Routing: Access to Multiple VCNs in Same Region,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitrouting.htm)."
             - This parameter is updatable.
-        type: str
-    vcn_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN the LPG belongs to.
-            - Required for create using I(state=present).
         type: str
     local_peering_gateway_id:
         description:
@@ -435,11 +435,11 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
+            vcn_id=dict(type="str"),
             defined_tags=dict(type="dict"),
             display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
             route_table_id=dict(type="str"),
-            vcn_id=dict(type="str"),
             local_peering_gateway_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

@@ -30,7 +30,7 @@ oracle.oci.oci_network_vcn -- Manage a Vcn resource in Oracle Cloud Infrastructu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -515,11 +515,11 @@ Examples
         # optional
         cidr_block: cidr_block_example
         cidr_blocks: [ "cidr_blocks_example" ]
+        dns_label: dns_label_example
+        is_ipv6_enabled: true
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
-        dns_label: dns_label_example
         freeform_tags: {'Department': 'Finance'}
-        is_ipv6_enabled: true
 
     - name: Update vcn
       oci_network_vcn:

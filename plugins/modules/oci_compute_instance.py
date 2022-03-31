@@ -70,13 +70,6 @@ options:
             - "Example: `Uocm:PHX-AD-1`"
             - Required for create using I(state=present).
         type: str
-    capacity_reservation_id:
-        description:
-            - The OCID of the compute capacity reservation this instance is launched under.
-              You can opt out of all default reservations by specifying an empty string as input for this field.
-              For more information, see L(Capacity Reservations,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/reserve-capacity.htm#default).
-            - This parameter is updatable.
-        type: str
     compartment_id:
         description:
             - The OCID of the compartment.
@@ -219,53 +212,6 @@ options:
         description:
             - The OCID of the dedicated VM host.
         type: str
-    defined_tags:
-        description:
-            - Defined tags for this resource. Each key is predefined and scoped to a
-              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-            - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-            - This parameter is updatable.
-        type: dict
-    display_name:
-        description:
-            - A user-friendly name. Does not have to be unique, and it's changeable.
-              Avoid entering confidential information.
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
-    extended_metadata:
-        description:
-            - Additional metadata key/value pairs that you provide. They serve the same purpose and
-              functionality as fields in the `metadata` object.
-            - They are distinguished from `metadata` fields in that these can be nested JSON objects
-              (whereas `metadata` fields are string/string maps only).
-            - The combined size of the `metadata` and `extendedMetadata` objects can be a maximum of
-              32,000 bytes.
-            - This parameter is updatable.
-        type: dict
-    fault_domain:
-        description:
-            - A fault domain is a grouping of hardware and infrastructure within an availability domain.
-              Each availability domain contains three fault domains. Fault domains let you distribute your
-              instances so that they are not on the same physical hardware within a single availability domain.
-              A hardware failure or Compute hardware maintenance that affects one fault domain does not affect
-              instances in other fault domains.
-            - If you do not specify the fault domain, the system selects one for you.
-            - To get a list of fault domains, use the
-              L(ListFaultDomains,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/FaultDomain/ListFaultDomains) operation in the
-              Identity and Access Management Service API.
-            - "Example: `FAULT-DOMAIN-1`"
-            - This parameter is updatable.
-        type: str
-    freeform_tags:
-        description:
-            - Free-form tags for this resource. Each tag is a simple key-value pair with no
-              predefined name, type, or namespace. For more information, see L(Resource
-              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-            - "Example: `{\\"Department\\": \\"Finance\\"}`"
-            - This parameter is updatable.
-        type: dict
     hostname_label:
         description:
             - Deprecated. Instead use `hostnameLabel` in
@@ -305,117 +251,6 @@ options:
               L(Bring Your Own Image,https://docs.cloud.oracle.com/iaas/Content/Compute/References/bringyourownimage.htm).
             - For more information about iPXE, see http://ipxe.org.
         type: str
-    launch_options:
-        description:
-            - ""
-            - This parameter is updatable.
-        type: dict
-        suboptions:
-            boot_volume_type:
-                description:
-                    - "Emulation type for the boot volume.
-                      * `ISCSI` - ISCSI attached block storage device.
-                      * `SCSI` - Emulated SCSI disk.
-                      * `IDE` - Emulated IDE disk.
-                      * `VFIO` - Direct attached Virtual Function storage. This is the default option for local data
-                      volumes on platform images.
-                      * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
-                      storage volumes on platform images."
-                    - This parameter is updatable.
-                type: str
-                choices:
-                    - "ISCSI"
-                    - "SCSI"
-                    - "IDE"
-                    - "VFIO"
-                    - "PARAVIRTUALIZED"
-            firmware:
-                description:
-                    - "Firmware used to boot VM. Select the option that matches your operating system.
-                      * `BIOS` - Boot VM using BIOS style firmware. This is compatible with both 32 bit and 64 bit operating
-                      systems that boot using MBR style bootloaders.
-                      * `UEFI_64` - Boot VM using UEFI style firmware compatible with 64 bit operating systems. This is the
-                      default for platform images."
-                type: str
-                choices:
-                    - "BIOS"
-                    - "UEFI_64"
-            network_type:
-                description:
-                    - "Emulation type for the physical network interface card (NIC).
-                      * `E1000` - Emulated Gigabit ethernet controller. Compatible with Linux e1000 network driver.
-                      * `VFIO` - Direct attached Virtual Function network controller. This is the networking type
-                      when you launch an instance using hardware-assisted (SR-IOV) networking.
-                      * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using VirtIO drivers."
-                    - This parameter is updatable.
-                type: str
-                choices:
-                    - "E1000"
-                    - "VFIO"
-                    - "PARAVIRTUALIZED"
-            remote_data_volume_type:
-                description:
-                    - "Emulation type for volume.
-                      * `ISCSI` - ISCSI attached block storage device.
-                      * `SCSI` - Emulated SCSI disk.
-                      * `IDE` - Emulated IDE disk.
-                      * `VFIO` - Direct attached Virtual Function storage. This is the default option for local data
-                      volumes on platform images.
-                      * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
-                      storage volumes on platform images."
-                type: str
-                choices:
-                    - "ISCSI"
-                    - "SCSI"
-                    - "IDE"
-                    - "VFIO"
-                    - "PARAVIRTUALIZED"
-            is_pv_encryption_in_transit_enabled:
-                description:
-                    - Deprecated. Instead use `isPvEncryptionInTransitEnabled` in
-                      L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/datatypes/LaunchInstanceDetails).
-                    - This parameter is updatable.
-                type: bool
-            is_consistent_volume_naming_enabled:
-                description:
-                    - Whether to enable consistent volume naming feature. Defaults to false.
-                type: bool
-    instance_options:
-        description:
-            - ""
-            - This parameter is updatable.
-        type: dict
-        suboptions:
-            are_legacy_imds_endpoints_disabled:
-                description:
-                    - Whether to disable the legacy (/v1) instance metadata service endpoints.
-                      Customers who have migrated to /v2 should set this to true for added security.
-                      Default is false.
-                type: bool
-    availability_config:
-        description:
-            - ""
-            - This parameter is updatable.
-        type: dict
-        suboptions:
-            is_live_migration_preferred:
-                description:
-                    - Whether to live migrate supported VM instances to a healthy physical VM host without
-                      disrupting running instances during infrastructure maintenance events. If null, Oracle
-                      chooses the best option for migrating the VM during infrastructure maintenance events.
-                    - This parameter is updatable.
-                type: bool
-            recovery_action:
-                description:
-                    - "The lifecycle state for an instance when it is recovered after infrastructure maintenance.
-                      * `RESTORE_INSTANCE` - The instance is restored to the lifecycle state it was in before the maintenance event.
-                      If the instance was running, it is automatically rebooted. This is the default action when a value is not set.
-                      * `STOP_INSTANCE` - The instance is recovered in the stopped state."
-                    - This parameter is updatable.
-                type: str
-                choices:
-                    - "RESTORE_INSTANCE"
-                    - "STOP_INSTANCE"
     preemptible_instance_config:
         description:
             - ""
@@ -439,43 +274,118 @@ options:
                             - Whether to preserve the boot volume that was used to launch the preemptible instance when the instance is terminated. Defaults to
                               false if not specified.
                         type: bool
-    metadata:
+    source_details:
         description:
-            - Custom metadata key/value pairs that you provide, such as the SSH public key
-              required to connect to the instance.
-            - "A metadata service runs on every launched instance. The service is an HTTP
-              endpoint listening on 169.254.169.254. You can use the service to:"
-            - "* Provide information to L(Cloud-Init,https://cloudinit.readthedocs.org/en/latest/)
-                to be used for various system initialization tasks."
-            - "* Get information about the instance, including the custom metadata that you
-                provide when you launch the instance."
-            - "**Providing Cloud-Init Metadata**"
-            - "You can use the following metadata key names to provide information to
-               Cloud-Init:"
-            - "**\\"ssh_authorized_keys\\"** - Provide one or more public SSH keys to be
-               included in the `~/.ssh/authorized_keys` file for the default user on the
-               instance. Use a newline character to separate multiple keys. The SSH
-               keys must be in the format necessary for the `authorized_keys` file, as shown
-               in the example below."
-            - "**\\"user_data\\"** - Provide your own base64-encoded data to be used by
-               Cloud-Init to run custom scripts or provide custom Cloud-Init configuration. For
-               information about how to take advantage of user data, see the
-               L(Cloud-Init Documentation,http://cloudinit.readthedocs.org/en/latest/topics/format.html)."
-            - "**Metadata Example**"
-            - "     \\"metadata\\" : {
-                       \\"quake_bot_level\\" : \\"Severe\\",
-                       \\"ssh_authorized_keys\\" : \\"ssh-rsa <your_public_SSH_key>== rsa-key-20160227\\",
-                       \\"user_data\\" : \\"<your_public_SSH_key>==\\"
-                    }
-               **Getting Metadata on the Instance**"
-            - "To get information about your instance, connect to the instance using SSH and issue any of the
-               following GET requests:"
-            - "    curl -H \\"Authorization: Bearer Oracle\\" http://169.254.169.254/opc/v2/instance/
-                   curl -H \\"Authorization: Bearer Oracle\\" http://169.254.169.254/opc/v2/instance/metadata/
-                   curl -H \\"Authorization: Bearer Oracle\\" http://169.254.169.254/opc/v2/instance/metadata/<any-key-name>"
-            -  You'll get back a response that includes all the instance information; only the metadata information; or
-               the metadata information for the specified key name, respectively.
-            -  The combined size of the `metadata` and `extendedMetadata` objects can be a maximum of 32,000 bytes.
+            - ""
+        type: dict
+        suboptions:
+            boot_volume_size_in_gbs:
+                description:
+                    - The size of the boot volume in GBs. Minimum value is 50 GB and maximum value is 32,768 GB (32 TB).
+                    - Applicable when source_type is 'image'
+                type: int
+            image_id:
+                description:
+                    - The OCID of the image used to boot the instance.
+                    - Required when source_type is 'image'
+                type: str
+            kms_key_id:
+                description:
+                    - The OCID of the Key Management key to assign as the master encryption key for the boot volume.
+                    - Applicable when source_type is 'image'
+                type: str
+            source_type:
+                description:
+                    - The source type for the instance.
+                      Use `image` when specifying the image OCID. Use `bootVolume` when specifying
+                      the boot volume OCID.
+                type: str
+                choices:
+                    - "image"
+                    - "bootVolume"
+                required: true
+            boot_volume_id:
+                description:
+                    - The OCID of the boot volume used to boot the instance.
+                    - Required when source_type is 'bootVolume'
+                type: str
+    subnet_id:
+        description:
+            - Deprecated. Instead use `subnetId` in
+              L(CreateVnicDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/CreateVnicDetails/).
+              At least one of them is required; if you provide both, the values must match.
+        type: str
+    is_pv_encryption_in_transit_enabled:
+        description:
+            - Whether to enable in-transit encryption for the data volume's paravirtualized attachment. This field applies to both block volumes and boot
+              volumes. The default value is false.
+        type: bool
+    platform_config:
+        description:
+            - ""
+        type: dict
+        suboptions:
+            type:
+                description:
+                    - The type of platform being configured.
+                type: str
+                choices:
+                    - "AMD_ROME_BM"
+                    - "AMD_VM"
+                    - "INTEL_VM"
+                    - "INTEL_SKYLAKE_BM"
+                    - "AMD_MILAN_BM"
+                required: true
+            is_secure_boot_enabled:
+                description:
+                    - Whether Secure Boot is enabled on the instance.
+                type: bool
+            is_trusted_platform_module_enabled:
+                description:
+                    - Whether the Trusted Platform Module (TPM) is enabled on the instance.
+                type: bool
+            is_measured_boot_enabled:
+                description:
+                    - Whether the Measured Boot feature is enabled on the instance.
+                type: bool
+            numa_nodes_per_socket:
+                description:
+                    - The number of NUMA nodes per socket (NPS).
+                    - Applicable when type is 'AMD_MILAN_BM'
+                type: str
+                choices:
+                    - "NPS0"
+                    - "NPS1"
+                    - "NPS2"
+                    - "NPS4"
+    capacity_reservation_id:
+        description:
+            - The OCID of the compute capacity reservation this instance is launched under.
+              You can opt out of all default reservations by specifying an empty string as input for this field.
+              For more information, see L(Capacity Reservations,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/reserve-capacity.htm#default).
+            - This parameter is updatable.
+        type: str
+    defined_tags:
+        description:
+            - Defined tags for this resource. Each key is predefined and scoped to a
+              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
+        type: dict
+    display_name:
+        description:
+            - A user-friendly name. Does not have to be unique, and it's changeable.
+              Avoid entering confidential information.
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
+    freeform_tags:
+        description:
+            - Free-form tags for this resource. Each tag is a simple key-value pair with no
+              predefined name, type, or namespace. For more information, see L(Resource
+              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
     agent_config:
@@ -550,6 +460,55 @@ options:
                             - "ENABLED"
                             - "DISABLED"
                         required: true
+    metadata:
+        description:
+            - Custom metadata key/value pairs that you provide, such as the SSH public key
+              required to connect to the instance.
+            - "A metadata service runs on every launched instance. The service is an HTTP
+              endpoint listening on 169.254.169.254. You can use the service to:"
+            - "* Provide information to L(Cloud-Init,https://cloudinit.readthedocs.org/en/latest/)
+                to be used for various system initialization tasks."
+            - "* Get information about the instance, including the custom metadata that you
+                provide when you launch the instance."
+            - "**Providing Cloud-Init Metadata**"
+            - "You can use the following metadata key names to provide information to
+               Cloud-Init:"
+            - "**\\"ssh_authorized_keys\\"** - Provide one or more public SSH keys to be
+               included in the `~/.ssh/authorized_keys` file for the default user on the
+               instance. Use a newline character to separate multiple keys. The SSH
+               keys must be in the format necessary for the `authorized_keys` file, as shown
+               in the example below."
+            - "**\\"user_data\\"** - Provide your own base64-encoded data to be used by
+               Cloud-Init to run custom scripts or provide custom Cloud-Init configuration. For
+               information about how to take advantage of user data, see the
+               L(Cloud-Init Documentation,http://cloudinit.readthedocs.org/en/latest/topics/format.html)."
+            - "**Metadata Example**"
+            - "     \\"metadata\\" : {
+                       \\"quake_bot_level\\" : \\"Severe\\",
+                       \\"ssh_authorized_keys\\" : \\"ssh-rsa <your_public_SSH_key>== rsa-key-20160227\\",
+                       \\"user_data\\" : \\"<your_public_SSH_key>==\\"
+                    }
+               **Getting Metadata on the Instance**"
+            - "To get information about your instance, connect to the instance using SSH and issue any of the
+               following GET requests:"
+            - "    curl -H \\"Authorization: Bearer Oracle\\" http://169.254.169.254/opc/v2/instance/
+                   curl -H \\"Authorization: Bearer Oracle\\" http://169.254.169.254/opc/v2/instance/metadata/
+                   curl -H \\"Authorization: Bearer Oracle\\" http://169.254.169.254/opc/v2/instance/metadata/<any-key-name>"
+            -  You'll get back a response that includes all the instance information; only the metadata information; or
+               the metadata information for the specified key name, respectively.
+            -  The combined size of the `metadata` and `extendedMetadata` objects can be a maximum of 32,000 bytes.
+            - This parameter is updatable.
+        type: dict
+    extended_metadata:
+        description:
+            - Additional metadata key/value pairs that you provide. They serve the same purpose and
+              functionality as fields in the `metadata` object.
+            - They are distinguished from `metadata` fields in that these can be nested JSON objects
+              (whereas `metadata` fields are string/string maps only).
+            - The combined size of the `metadata` and `extendedMetadata` objects can be a maximum of
+              32,000 bytes.
+            - This parameter is updatable.
+        type: dict
     shape:
         description:
             - The shape of an instance. The shape determines the number of CPUs, amount of memory,
@@ -588,90 +547,131 @@ options:
                     - "BASELINE_1_8"
                     - "BASELINE_1_2"
                     - "BASELINE_1_1"
-    source_details:
+    instance_options:
         description:
             - ""
+            - This parameter is updatable.
         type: dict
         suboptions:
-            source_type:
+            are_legacy_imds_endpoints_disabled:
                 description:
-                    - The source type for the instance.
-                      Use `image` when specifying the image OCID. Use `bootVolume` when specifying
-                      the boot volume OCID.
-                type: str
-                choices:
-                    - "image"
-                    - "bootVolume"
-                required: true
-            boot_volume_size_in_gbs:
-                description:
-                    - The size of the boot volume in GBs. Minimum value is 50 GB and maximum value is 32,768 GB (32 TB).
-                    - Applicable when source_type is 'image'
-                type: int
-            image_id:
-                description:
-                    - The OCID of the image used to boot the instance.
-                    - Required when source_type is 'image'
-                type: str
-            kms_key_id:
-                description:
-                    - The OCID of the Key Management key to assign as the master encryption key for the boot volume.
-                    - Applicable when source_type is 'image'
-                type: str
-            boot_volume_id:
-                description:
-                    - The OCID of the boot volume used to boot the instance.
-                    - Required when source_type is 'bootVolume'
-                type: str
-    subnet_id:
+                    - Whether to disable the legacy (/v1) instance metadata service endpoints.
+                      Customers who have migrated to /v2 should set this to true for added security.
+                      Default is false.
+                type: bool
+    fault_domain:
         description:
-            - Deprecated. Instead use `subnetId` in
-              L(CreateVnicDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/CreateVnicDetails/).
-              At least one of them is required; if you provide both, the values must match.
+            - A fault domain is a grouping of hardware and infrastructure within an availability domain.
+              Each availability domain contains three fault domains. Fault domains let you distribute your
+              instances so that they are not on the same physical hardware within a single availability domain.
+              A hardware failure or Compute hardware maintenance that affects one fault domain does not affect
+              instances in other fault domains.
+            - If you do not specify the fault domain, the system selects one for you.
+            - To get a list of fault domains, use the
+              L(ListFaultDomains,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/FaultDomain/ListFaultDomains) operation in the
+              Identity and Access Management Service API.
+            - "Example: `FAULT-DOMAIN-1`"
+            - This parameter is updatable.
         type: str
-    is_pv_encryption_in_transit_enabled:
-        description:
-            - Whether to enable in-transit encryption for the data volume's paravirtualized attachment. This field applies to both block volumes and boot
-              volumes. The default value is false.
-        type: bool
-    platform_config:
+    launch_options:
         description:
             - ""
+            - This parameter is updatable.
         type: dict
         suboptions:
-            type:
+            firmware:
                 description:
-                    - The type of platform being configured.
+                    - "Firmware used to boot VM. Select the option that matches your operating system.
+                      * `BIOS` - Boot VM using BIOS style firmware. This is compatible with both 32 bit and 64 bit operating
+                      systems that boot using MBR style bootloaders.
+                      * `UEFI_64` - Boot VM using UEFI style firmware compatible with 64 bit operating systems. This is the
+                      default for platform images."
                 type: str
                 choices:
-                    - "AMD_ROME_BM"
-                    - "AMD_VM"
-                    - "INTEL_VM"
-                    - "INTEL_SKYLAKE_BM"
-                    - "AMD_MILAN_BM"
-                required: true
-            is_secure_boot_enabled:
+                    - "BIOS"
+                    - "UEFI_64"
+            remote_data_volume_type:
                 description:
-                    - Whether Secure Boot is enabled on the instance.
-                type: bool
-            is_trusted_platform_module_enabled:
-                description:
-                    - Whether the Trusted Platform Module (TPM) is enabled on the instance.
-                type: bool
-            is_measured_boot_enabled:
-                description:
-                    - Whether the Measured Boot feature is enabled on the instance.
-                type: bool
-            numa_nodes_per_socket:
-                description:
-                    - The number of NUMA nodes per socket (NPS).
-                    - Applicable when type is 'AMD_MILAN_BM'
+                    - "Emulation type for volume.
+                      * `ISCSI` - ISCSI attached block storage device.
+                      * `SCSI` - Emulated SCSI disk.
+                      * `IDE` - Emulated IDE disk.
+                      * `VFIO` - Direct attached Virtual Function storage. This is the default option for local data
+                      volumes on platform images.
+                      * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
+                      storage volumes on platform images."
                 type: str
                 choices:
-                    - "NPS0"
-                    - "NPS1"
-                    - "NPS2"
-                    - "NPS4"
+                    - "ISCSI"
+                    - "SCSI"
+                    - "IDE"
+                    - "VFIO"
+                    - "PARAVIRTUALIZED"
+            is_consistent_volume_naming_enabled:
+                description:
+                    - Whether to enable consistent volume naming feature. Defaults to false.
+                type: bool
+            boot_volume_type:
+                description:
+                    - "Emulation type for the boot volume.
+                      * `ISCSI` - ISCSI attached block storage device.
+                      * `SCSI` - Emulated SCSI disk.
+                      * `IDE` - Emulated IDE disk.
+                      * `VFIO` - Direct attached Virtual Function storage. This is the default option for local data
+                      volumes on platform images.
+                      * `PARAVIRTUALIZED` - Paravirtualized disk. This is the default for boot volumes and remote block
+                      storage volumes on platform images."
+                    - This parameter is updatable.
+                type: str
+                choices:
+                    - "ISCSI"
+                    - "SCSI"
+                    - "IDE"
+                    - "VFIO"
+                    - "PARAVIRTUALIZED"
+            network_type:
+                description:
+                    - "Emulation type for the physical network interface card (NIC).
+                      * `E1000` - Emulated Gigabit ethernet controller. Compatible with Linux e1000 network driver.
+                      * `VFIO` - Direct attached Virtual Function network controller. This is the networking type
+                      when you launch an instance using hardware-assisted (SR-IOV) networking.
+                      * `PARAVIRTUALIZED` - VM instances launch with paravirtualized devices using VirtIO drivers."
+                    - This parameter is updatable.
+                type: str
+                choices:
+                    - "E1000"
+                    - "VFIO"
+                    - "PARAVIRTUALIZED"
+            is_pv_encryption_in_transit_enabled:
+                description:
+                    - Deprecated. Instead use `isPvEncryptionInTransitEnabled` in
+                      L(LaunchInstanceDetails,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/datatypes/LaunchInstanceDetails).
+                    - This parameter is updatable.
+                type: bool
+    availability_config:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            is_live_migration_preferred:
+                description:
+                    - Whether to live migrate supported VM instances to a healthy physical VM host without
+                      disrupting running instances during infrastructure maintenance events. If null, Oracle
+                      chooses the best option for migrating the VM during infrastructure maintenance events.
+                    - This parameter is updatable.
+                type: bool
+            recovery_action:
+                description:
+                    - "The lifecycle state for an instance when it is recovered after infrastructure maintenance.
+                      * `RESTORE_INSTANCE` - The instance is restored to the lifecycle state it was in before the maintenance event.
+                      If the instance was running, it is automatically rebooted. This is the default action when a value is not set.
+                      * `STOP_INSTANCE` - The instance is recovered in the stopped state."
+                    - This parameter is updatable.
+                type: str
+                choices:
+                    - "RESTORE_INSTANCE"
+                    - "STOP_INSTANCE"
     instance_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance.
@@ -710,7 +710,6 @@ EXAMPLES = """
     shape: shape_example
 
     # optional
-    capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
     create_vnic_details:
       # optional
       assign_public_ip: true
@@ -725,29 +724,9 @@ EXAMPLES = """
       subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
       vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
     dedicated_vm_host_id: "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx"
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: display_name_example
-    extended_metadata: null
-    fault_domain: FAULT-DOMAIN-1
-    freeform_tags: {'Department': 'Finance'}
     hostname_label: hostname_label_example
     image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
     ipxe_script: ipxe_script_example
-    launch_options:
-      # optional
-      boot_volume_type: ISCSI
-      firmware: BIOS
-      network_type: E1000
-      remote_data_volume_type: ISCSI
-      is_pv_encryption_in_transit_enabled: true
-      is_consistent_volume_naming_enabled: true
-    instance_options:
-      # optional
-      are_legacy_imds_endpoints_disabled: true
-    availability_config:
-      # optional
-      is_live_migration_preferred: true
-      recovery_action: RESTORE_INSTANCE
     preemptible_instance_config:
       # required
       preemption_action:
@@ -756,25 +735,10 @@ EXAMPLES = """
 
         # optional
         preserve_boot_volume: true
-    metadata: null
-    agent_config:
-      # optional
-      is_monitoring_disabled: true
-      is_management_disabled: true
-      are_all_plugins_disabled: true
-      plugins_config:
-      - # required
-        name: name_example
-        desired_state: ENABLED
-    shape_config:
-      # optional
-      ocpus: 3.4
-      memory_in_gbs: 3.4
-      baseline_ocpu_utilization: BASELINE_1_8
     source_details:
       # required
-      source_type: image
       image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
+      source_type: image
 
       # optional
       boot_volume_size_in_gbs: 56
@@ -789,6 +753,42 @@ EXAMPLES = """
       is_secure_boot_enabled: true
       is_trusted_platform_module_enabled: true
       is_measured_boot_enabled: true
+    capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    agent_config:
+      # optional
+      is_monitoring_disabled: true
+      is_management_disabled: true
+      are_all_plugins_disabled: true
+      plugins_config:
+      - # required
+        name: name_example
+        desired_state: ENABLED
+    metadata: null
+    extended_metadata: null
+    shape_config:
+      # optional
+      ocpus: 3.4
+      memory_in_gbs: 3.4
+      baseline_ocpu_utilization: BASELINE_1_8
+    instance_options:
+      # optional
+      are_legacy_imds_endpoints_disabled: true
+    fault_domain: FAULT-DOMAIN-1
+    launch_options:
+      # optional
+      firmware: BIOS
+      remote_data_volume_type: ISCSI
+      is_consistent_volume_naming_enabled: true
+      boot_volume_type: ISCSI
+      network_type: E1000
+      is_pv_encryption_in_transit_enabled: true
+    availability_config:
+      # optional
+      is_live_migration_preferred: true
+      recovery_action: RESTORE_INSTANCE
 
 - name: Update instance
   oci_compute_instance:
@@ -799,25 +799,7 @@ EXAMPLES = """
     capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
-    extended_metadata: null
-    fault_domain: FAULT-DOMAIN-1
     freeform_tags: {'Department': 'Finance'}
-    launch_options:
-      # optional
-      boot_volume_type: ISCSI
-      firmware: BIOS
-      network_type: E1000
-      remote_data_volume_type: ISCSI
-      is_pv_encryption_in_transit_enabled: true
-      is_consistent_volume_naming_enabled: true
-    instance_options:
-      # optional
-      are_legacy_imds_endpoints_disabled: true
-    availability_config:
-      # optional
-      is_live_migration_preferred: true
-      recovery_action: RESTORE_INSTANCE
-    metadata: null
     agent_config:
       # optional
       is_monitoring_disabled: true
@@ -827,12 +809,30 @@ EXAMPLES = """
       - # required
         name: name_example
         desired_state: ENABLED
+    metadata: null
+    extended_metadata: null
     shape: shape_example
     shape_config:
       # optional
       ocpus: 3.4
       memory_in_gbs: 3.4
       baseline_ocpu_utilization: BASELINE_1_8
+    instance_options:
+      # optional
+      are_legacy_imds_endpoints_disabled: true
+    fault_domain: FAULT-DOMAIN-1
+    launch_options:
+      # optional
+      firmware: BIOS
+      remote_data_volume_type: ISCSI
+      is_consistent_volume_naming_enabled: true
+      boot_volume_type: ISCSI
+      network_type: E1000
+      is_pv_encryption_in_transit_enabled: true
+    availability_config:
+      # optional
+      is_live_migration_preferred: true
+      recovery_action: RESTORE_INSTANCE
 
 - name: Update instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_instance:
@@ -843,25 +843,7 @@ EXAMPLES = """
     # optional
     capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    extended_metadata: null
-    fault_domain: FAULT-DOMAIN-1
     freeform_tags: {'Department': 'Finance'}
-    launch_options:
-      # optional
-      boot_volume_type: ISCSI
-      firmware: BIOS
-      network_type: E1000
-      remote_data_volume_type: ISCSI
-      is_pv_encryption_in_transit_enabled: true
-      is_consistent_volume_naming_enabled: true
-    instance_options:
-      # optional
-      are_legacy_imds_endpoints_disabled: true
-    availability_config:
-      # optional
-      is_live_migration_preferred: true
-      recovery_action: RESTORE_INSTANCE
-    metadata: null
     agent_config:
       # optional
       is_monitoring_disabled: true
@@ -871,12 +853,30 @@ EXAMPLES = """
       - # required
         name: name_example
         desired_state: ENABLED
+    metadata: null
+    extended_metadata: null
     shape: shape_example
     shape_config:
       # optional
       ocpus: 3.4
       memory_in_gbs: 3.4
       baseline_ocpu_utilization: BASELINE_1_8
+    instance_options:
+      # optional
+      are_legacy_imds_endpoints_disabled: true
+    fault_domain: FAULT-DOMAIN-1
+    launch_options:
+      # optional
+      firmware: BIOS
+      remote_data_volume_type: ISCSI
+      is_consistent_volume_naming_enabled: true
+      boot_volume_type: ISCSI
+      network_type: E1000
+      is_pv_encryption_in_transit_enabled: true
+    availability_config:
+      # optional
+      is_live_migration_preferred: true
+      recovery_action: RESTORE_INSTANCE
 
 - name: Delete instance
   oci_compute_instance:
@@ -1692,7 +1692,6 @@ def main():
     module_args.update(
         dict(
             availability_domain=dict(type="str"),
-            capacity_reservation_id=dict(type="str"),
             compartment_id=dict(type="str"),
             create_vnic_details=dict(
                 type="dict",
@@ -1711,46 +1710,9 @@ def main():
                 ),
             ),
             dedicated_vm_host_id=dict(type="str"),
-            defined_tags=dict(type="dict"),
-            display_name=dict(aliases=["name"], type="str"),
-            extended_metadata=dict(type="dict"),
-            fault_domain=dict(type="str"),
-            freeform_tags=dict(type="dict"),
             hostname_label=dict(type="str"),
             image_id=dict(type="str"),
             ipxe_script=dict(type="str"),
-            launch_options=dict(
-                type="dict",
-                options=dict(
-                    boot_volume_type=dict(
-                        type="str",
-                        choices=["ISCSI", "SCSI", "IDE", "VFIO", "PARAVIRTUALIZED"],
-                    ),
-                    firmware=dict(type="str", choices=["BIOS", "UEFI_64"]),
-                    network_type=dict(
-                        type="str", choices=["E1000", "VFIO", "PARAVIRTUALIZED"]
-                    ),
-                    remote_data_volume_type=dict(
-                        type="str",
-                        choices=["ISCSI", "SCSI", "IDE", "VFIO", "PARAVIRTUALIZED"],
-                    ),
-                    is_pv_encryption_in_transit_enabled=dict(type="bool"),
-                    is_consistent_volume_naming_enabled=dict(type="bool"),
-                ),
-            ),
-            instance_options=dict(
-                type="dict",
-                options=dict(are_legacy_imds_endpoints_disabled=dict(type="bool")),
-            ),
-            availability_config=dict(
-                type="dict",
-                options=dict(
-                    is_live_migration_preferred=dict(type="bool"),
-                    recovery_action=dict(
-                        type="str", choices=["RESTORE_INSTANCE", "STOP_INSTANCE"]
-                    ),
-                ),
-            ),
             preemptible_instance_config=dict(
                 type="dict",
                 options=dict(
@@ -1764,48 +1726,15 @@ def main():
                     )
                 ),
             ),
-            metadata=dict(type="dict"),
-            agent_config=dict(
-                type="dict",
-                options=dict(
-                    is_monitoring_disabled=dict(type="bool"),
-                    is_management_disabled=dict(type="bool"),
-                    are_all_plugins_disabled=dict(type="bool"),
-                    plugins_config=dict(
-                        type="list",
-                        elements="dict",
-                        options=dict(
-                            name=dict(type="str", required=True),
-                            desired_state=dict(
-                                type="str",
-                                required=True,
-                                choices=["ENABLED", "DISABLED"],
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-            shape=dict(type="str"),
-            shape_config=dict(
-                type="dict",
-                options=dict(
-                    ocpus=dict(type="float"),
-                    memory_in_gbs=dict(type="float"),
-                    baseline_ocpu_utilization=dict(
-                        type="str",
-                        choices=["BASELINE_1_8", "BASELINE_1_2", "BASELINE_1_1"],
-                    ),
-                ),
-            ),
             source_details=dict(
                 type="dict",
                 options=dict(
-                    source_type=dict(
-                        type="str", required=True, choices=["image", "bootVolume"]
-                    ),
                     boot_volume_size_in_gbs=dict(type="int"),
                     image_id=dict(type="str"),
                     kms_key_id=dict(type="str"),
+                    source_type=dict(
+                        type="str", required=True, choices=["image", "bootVolume"]
+                    ),
                     boot_volume_id=dict(type="str"),
                 ),
             ),
@@ -1830,6 +1759,77 @@ def main():
                     is_measured_boot_enabled=dict(type="bool"),
                     numa_nodes_per_socket=dict(
                         type="str", choices=["NPS0", "NPS1", "NPS2", "NPS4"]
+                    ),
+                ),
+            ),
+            capacity_reservation_id=dict(type="str"),
+            defined_tags=dict(type="dict"),
+            display_name=dict(aliases=["name"], type="str"),
+            freeform_tags=dict(type="dict"),
+            agent_config=dict(
+                type="dict",
+                options=dict(
+                    is_monitoring_disabled=dict(type="bool"),
+                    is_management_disabled=dict(type="bool"),
+                    are_all_plugins_disabled=dict(type="bool"),
+                    plugins_config=dict(
+                        type="list",
+                        elements="dict",
+                        options=dict(
+                            name=dict(type="str", required=True),
+                            desired_state=dict(
+                                type="str",
+                                required=True,
+                                choices=["ENABLED", "DISABLED"],
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+            metadata=dict(type="dict"),
+            extended_metadata=dict(type="dict"),
+            shape=dict(type="str"),
+            shape_config=dict(
+                type="dict",
+                options=dict(
+                    ocpus=dict(type="float"),
+                    memory_in_gbs=dict(type="float"),
+                    baseline_ocpu_utilization=dict(
+                        type="str",
+                        choices=["BASELINE_1_8", "BASELINE_1_2", "BASELINE_1_1"],
+                    ),
+                ),
+            ),
+            instance_options=dict(
+                type="dict",
+                options=dict(are_legacy_imds_endpoints_disabled=dict(type="bool")),
+            ),
+            fault_domain=dict(type="str"),
+            launch_options=dict(
+                type="dict",
+                options=dict(
+                    firmware=dict(type="str", choices=["BIOS", "UEFI_64"]),
+                    remote_data_volume_type=dict(
+                        type="str",
+                        choices=["ISCSI", "SCSI", "IDE", "VFIO", "PARAVIRTUALIZED"],
+                    ),
+                    is_consistent_volume_naming_enabled=dict(type="bool"),
+                    boot_volume_type=dict(
+                        type="str",
+                        choices=["ISCSI", "SCSI", "IDE", "VFIO", "PARAVIRTUALIZED"],
+                    ),
+                    network_type=dict(
+                        type="str", choices=["E1000", "VFIO", "PARAVIRTUALIZED"]
+                    ),
+                    is_pv_encryption_in_transit_enabled=dict(type="bool"),
+                ),
+            ),
+            availability_config=dict(
+                type="dict",
+                options=dict(
+                    is_live_migration_preferred=dict(type="bool"),
+                    recovery_action=dict(
+                        type="str", choices=["RESTORE_INSTANCE", "STOP_INSTANCE"]
                     ),
                 ),
             ),

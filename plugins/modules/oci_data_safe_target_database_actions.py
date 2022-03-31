@@ -46,15 +46,15 @@ options:
                     - The password of the database user.
                 type: str
                 required: true
-    target_database_id:
-        description:
-            - The OCID of the Data Safe target database.
-            - Required for I(action=activate), I(action=change_compartment), I(action=deactivate).
-        type: str
     compartment_id:
         description:
             - The OCID of the new compartment to where you want to move the Data Safe target database.
             - Required for I(action=change_compartment).
+        type: str
+    target_database_id:
+        description:
+            - The OCID of the Data Safe target database.
+            - Required for I(action=activate), I(action=change_compartment), I(action=deactivate).
         type: str
     dest:
         description:
@@ -89,8 +89,8 @@ EXAMPLES = """
 - name: Perform action change_compartment on target_database
   oci_data_safe_target_database_actions:
     # required
-    target_database_id: "ocid1.targetdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    target_database_id: "ocid1.targetdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action deactivate on target_database
@@ -522,8 +522,8 @@ def main():
                     password=dict(type="str", required=True, no_log=True),
                 ),
             ),
-            target_database_id=dict(type="str"),
             compartment_id=dict(type="str"),
+            target_database_id=dict(type="str"),
             dest=dict(type="str"),
             action=dict(
                 type="str",

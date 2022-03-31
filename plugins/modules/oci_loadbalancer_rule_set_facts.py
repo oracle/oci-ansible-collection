@@ -28,11 +28,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    load_balancer_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the specified load balancer.
-        type: str
-        required: true
     rule_set_name:
         description:
             - The name of the rule set to retrieve.
@@ -40,6 +35,11 @@ options:
             - Required to get a specific rule_set.
         type: str
         aliases: ["name"]
+    load_balancer_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the specified load balancer.
+        type: str
+        required: true
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -47,8 +47,8 @@ EXAMPLES = """
 - name: Get a specific rule_set
   oci_loadbalancer_rule_set_facts:
     # required
-    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     rule_set_name: rule_set_name_example
+    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List rule_sets
   oci_loadbalancer_rule_set_facts:
@@ -403,8 +403,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            load_balancer_id=dict(type="str", required=True),
             rule_set_name=dict(aliases=["name"], type="str"),
+            load_balancer_id=dict(type="str", required=True),
         )
     )
 

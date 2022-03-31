@@ -39,6 +39,53 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    managed_instances:
+        description:
+            - The list of managed instances this scheduled job operates on
+              (mutually exclusive with managedInstanceGroups). Either this or the
+              managedInstanceGroups must be supplied.
+        type: list
+        elements: dict
+        suboptions:
+            id:
+                description:
+                    - unique identifier that is immutable on creation
+                type: str
+                required: true
+            display_name:
+                description:
+                    - User friendly name
+                type: str
+                aliases: ["name"]
+                required: true
+    managed_instance_groups:
+        description:
+            - The list of managed instance groups this scheduled job operates on
+              (mutually exclusive with managedInstances). Either this or
+              managedInstances must be supplied.
+        type: list
+        elements: dict
+        suboptions:
+            id:
+                description:
+                    - unique identifier that is immutable on creation
+                type: str
+                required: true
+            display_name:
+                description:
+                    - User friendly name
+                type: str
+                aliases: ["name"]
+                required: true
+    os_family:
+        description:
+            - The Operating System type of the managed instance(s) on which this scheduled job will operate.
+              If not specified, this defaults to Linux.
+        type: str
+        choices:
+            - "LINUX"
+            - "WINDOWS"
+            - "ALL"
     display_name:
         description:
             - Scheduled Job name
@@ -82,44 +129,6 @@ options:
             - the value for the interval period for a recurring Scheduled Job (only if schedule type is RECURRING)
             - This parameter is updatable.
         type: str
-    managed_instances:
-        description:
-            - The list of managed instances this scheduled job operates on
-              (mutually exclusive with managedInstanceGroups). Either this or the
-              managedInstanceGroups must be supplied.
-        type: list
-        elements: dict
-        suboptions:
-            id:
-                description:
-                    - unique identifier that is immutable on creation
-                type: str
-                required: true
-            display_name:
-                description:
-                    - User friendly name
-                type: str
-                aliases: ["name"]
-                required: true
-    managed_instance_groups:
-        description:
-            - The list of managed instance groups this scheduled job operates on
-              (mutually exclusive with managedInstances). Either this or
-              managedInstances must be supplied.
-        type: list
-        elements: dict
-        suboptions:
-            id:
-                description:
-                    - unique identifier that is immutable on creation
-                type: str
-                required: true
-            display_name:
-                description:
-                    - User friendly name
-                type: str
-                aliases: ["name"]
-                required: true
     operation_type:
         description:
             - the type of operation this Scheduled Job performs
@@ -155,6 +164,13 @@ options:
                     - package identifier
                 type: str
                 required: true
+    update_names:
+        description:
+            - The unique names of the Windows Updates (only if operation type is INSTALL).
+              This is only applicable when the osFamily is for Windows managed instances.
+            - This parameter is updatable.
+        type: list
+        elements: str
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -167,22 +183,6 @@ options:
               Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             - This parameter is updatable.
         type: dict
-    update_names:
-        description:
-            - The unique names of the Windows Updates (only if operation type is INSTALL).
-              This is only applicable when the osFamily is for Windows managed instances.
-            - This parameter is updatable.
-        type: list
-        elements: str
-    os_family:
-        description:
-            - The Operating System type of the managed instance(s) on which this scheduled job will operate.
-              If not specified, this defaults to Linux.
-        type: str
-        choices:
-            - "LINUX"
-            - "WINDOWS"
-            - "ALL"
     scheduled_job_id:
         description:
             - The ID of the scheduled job.
@@ -213,9 +213,6 @@ EXAMPLES = """
     operation_type: INSTALL
 
     # optional
-    description: description_example
-    interval_type: HOUR
-    interval_value: interval_value_example
     managed_instances:
     - # required
       id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -224,14 +221,17 @@ EXAMPLES = """
     - # required
       id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
       display_name: display_name_example
+    os_family: LINUX
+    description: description_example
+    interval_type: HOUR
+    interval_value: interval_value_example
     update_type: SECURITY
     package_names:
     - # required
       name: name_example
+    update_names: [ "update_names_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    update_names: [ "update_names_example" ]
-    os_family: LINUX
 
 - name: Update scheduled_job
   oci_os_management_scheduled_job:
@@ -250,9 +250,9 @@ EXAMPLES = """
     package_names:
     - # required
       name: name_example
+    update_names: [ "update_names_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    update_names: [ "update_names_example" ]
 
 - name: Update scheduled_job using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_os_management_scheduled_job:
@@ -271,9 +271,9 @@ EXAMPLES = """
     package_names:
     - # required
       name: name_example
+    update_names: [ "update_names_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    update_names: [ "update_names_example" ]
 
 - name: Delete scheduled_job
   oci_os_management_scheduled_job:
@@ -666,12 +666,6 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
-            display_name=dict(aliases=["name"], type="str"),
-            description=dict(type="str"),
-            schedule_type=dict(type="str", choices=["ONETIME", "RECURRING"]),
-            time_next_execution=dict(type="str"),
-            interval_type=dict(type="str", choices=["HOUR", "DAY", "WEEK", "MONTH"]),
-            interval_value=dict(type="str"),
             managed_instances=dict(
                 type="list",
                 elements="dict",
@@ -688,6 +682,13 @@ def main():
                     display_name=dict(aliases=["name"], type="str", required=True),
                 ),
             ),
+            os_family=dict(type="str", choices=["LINUX", "WINDOWS", "ALL"]),
+            display_name=dict(aliases=["name"], type="str"),
+            description=dict(type="str"),
+            schedule_type=dict(type="str", choices=["ONETIME", "RECURRING"]),
+            time_next_execution=dict(type="str"),
+            interval_type=dict(type="str", choices=["HOUR", "DAY", "WEEK", "MONTH"]),
+            interval_value=dict(type="str"),
             operation_type=dict(
                 type="str", choices=["INSTALL", "UPDATE", "REMOVE", "UPDATEALL"]
             ),
@@ -707,10 +708,9 @@ def main():
                 elements="dict",
                 options=dict(name=dict(type="str", required=True)),
             ),
+            update_names=dict(type="list", elements="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
-            update_names=dict(type="list", elements="str"),
-            os_family=dict(type="str", choices=["LINUX", "WINDOWS", "ALL"]),
             scheduled_job_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

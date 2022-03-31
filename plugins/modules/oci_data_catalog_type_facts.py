@@ -28,34 +28,16 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    catalog_id:
-        description:
-            - Unique catalog identifier.
-        type: str
-        required: true
     type_key:
         description:
             - Unique type key.
             - Required to get a specific type.
         type: str
-    fields:
+    catalog_id:
         description:
-            - Specifies the fields to return in a type response.
-        type: list
-        elements: str
-        choices:
-            - "key"
-            - "description"
-            - "name"
-            - "catalogId"
-            - "properties"
-            - "isInternal"
-            - "isTag"
-            - "isApproved"
-            - "typeCategory"
-            - "externalTypeName"
-            - "lifecycleState"
-            - "uri"
+            - Unique catalog identifier.
+        type: str
+        required: true
     name:
         description:
             - Immutable resource name.
@@ -93,6 +75,24 @@ options:
         description:
             - Indicates the category of this type . For example, data assets or connections.
         type: str
+    fields:
+        description:
+            - Specifies the fields to return in a type response.
+        type: list
+        elements: str
+        choices:
+            - "key"
+            - "description"
+            - "name"
+            - "catalogId"
+            - "properties"
+            - "isInternal"
+            - "isTag"
+            - "isApproved"
+            - "typeCategory"
+            - "externalTypeName"
+            - "lifecycleState"
+            - "uri"
     sort_by:
         description:
             - The field to sort by. Only one sort order may be provided. Default order for TIMECREATED is descending. Default order for DISPLAYNAME is
@@ -115,8 +115,8 @@ EXAMPLES = """
 - name: Get a specific type
   oci_data_catalog_type_facts:
     # required
-    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     type_key: type_key_example
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     fields: [ "key" ]
@@ -127,7 +127,6 @@ EXAMPLES = """
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    fields: [ "key" ]
     name: name_example
     lifecycle_state: CREATING
     is_internal: is_internal_example
@@ -135,6 +134,7 @@ EXAMPLES = """
     is_approved: is_approved_example
     external_type_name: external_type_name_example
     type_category: type_category_example
+    fields: [ "key" ]
     sort_by: TIMECREATED
     sort_order: ASC
 
@@ -623,26 +623,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            catalog_id=dict(type="str", required=True),
             type_key=dict(type="str", no_log=True),
-            fields=dict(
-                type="list",
-                elements="str",
-                choices=[
-                    "key",
-                    "description",
-                    "name",
-                    "catalogId",
-                    "properties",
-                    "isInternal",
-                    "isTag",
-                    "isApproved",
-                    "typeCategory",
-                    "externalTypeName",
-                    "lifecycleState",
-                    "uri",
-                ],
-            ),
+            catalog_id=dict(type="str", required=True),
             name=dict(type="str"),
             lifecycle_state=dict(
                 type="str",
@@ -662,6 +644,24 @@ def main():
             is_approved=dict(type="str"),
             external_type_name=dict(type="str"),
             type_category=dict(type="str"),
+            fields=dict(
+                type="list",
+                elements="str",
+                choices=[
+                    "key",
+                    "description",
+                    "name",
+                    "catalogId",
+                    "properties",
+                    "isInternal",
+                    "isTag",
+                    "isApproved",
+                    "typeCategory",
+                    "externalTypeName",
+                    "lifecycleState",
+                    "uri",
+                ],
+            ),
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
         )

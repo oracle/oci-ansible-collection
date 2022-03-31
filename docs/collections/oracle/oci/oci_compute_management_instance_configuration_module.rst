@@ -30,7 +30,7 @@ oracle.oci.oci_compute_management_instance_configuration -- Manage an InstanceCo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -2501,7 +2501,6 @@ Examples
     - name: Create instance_configuration with source = NONE
       oci_compute_management_instance_configuration:
         # required
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         instance_details:
           # required
           instance_type: compute
@@ -2514,11 +2513,11 @@ Examples
               type: iscsi
 
               # optional
+              use_chap: true
               display_name: display_name_example
               is_read_only: true
               device: device_example
               is_shareable: true
-              use_chap: true
             create_details:
               # optional
               availability_domain: Uocm:PHX-AD-1
@@ -2571,10 +2570,10 @@ Examples
               type: AMD_MILAN_BM
 
               # optional
+              numa_nodes_per_socket: NPS0
               is_secure_boot_enabled: true
               is_trusted_platform_module_enabled: true
               is_measured_boot_enabled: true
-              numa_nodes_per_socket: NPS0
             source_details:
               # required
               source_type: image
@@ -2634,12 +2633,13 @@ Examples
               subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
             display_name: display_name_example
             nic_index: 56
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
+        source: NONE
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
-        source: NONE
 
     - name: Create instance_configuration with source = INSTANCE
       oci_compute_management_instance_configuration:

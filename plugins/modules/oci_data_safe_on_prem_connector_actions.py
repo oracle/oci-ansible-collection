@@ -28,12 +28,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    on_prem_connector_id:
-        description:
-            - The OCID of the on-premises connector.
-        type: str
-        aliases: ["id"]
-        required: true
     compartment_id:
         description:
             - The OCID of the new compartment where you want to move the on-premises connector.
@@ -51,6 +45,12 @@ options:
               and must contain atleast 1 uppercase, 1 lowercase, 1 numeric, and 1 special character.
             - Required for I(action=generate_on_prem_connector_configuration).
         type: str
+    on_prem_connector_id:
+        description:
+            - The OCID of the on-premises connector.
+        type: str
+        aliases: ["id"]
+        required: true
     action:
         description:
             - The action to perform on the OnPremConnector.
@@ -66,16 +66,16 @@ EXAMPLES = """
 - name: Perform action change_compartment on on_prem_connector
   oci_data_safe_on_prem_connector_actions:
     # required
-    on_prem_connector_id: "ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    on_prem_connector_id: "ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action generate_on_prem_connector_configuration on on_prem_connector
   oci_data_safe_on_prem_connector_actions:
     # required
-    on_prem_connector_id: "ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx"
     dest: /tmp/myfile
     password: example-password
+    on_prem_connector_id: "ocid1.onpremconnector.oc1..xxxxxxEXAMPLExxxxxx"
     action: generate_on_prem_connector_configuration
 
 """
@@ -294,10 +294,10 @@ def main():
     )
     module_args.update(
         dict(
-            on_prem_connector_id=dict(aliases=["id"], type="str", required=True),
             compartment_id=dict(type="str"),
             dest=dict(type="str"),
             password=dict(type="str", no_log=True),
+            on_prem_connector_id=dict(aliases=["id"], type="str", required=True),
             action=dict(
                 type="str",
                 required=True,

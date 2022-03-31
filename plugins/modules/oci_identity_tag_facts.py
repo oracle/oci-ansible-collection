@@ -28,16 +28,16 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    tag_namespace_id:
-        description:
-            - The OCID of the tag namespace.
-        type: str
-        required: true
     tag_name:
         description:
             - The name of the tag.
             - Required to get a specific tag.
         type: str
+    tag_namespace_id:
+        description:
+            - The OCID of the tag namespace.
+        type: str
+        required: true
     lifecycle_state:
         description:
             - A filter to only return resources that match the given lifecycle state.  The state value is case-insensitive.
@@ -54,8 +54,8 @@ EXAMPLES = """
 - name: Get a specific tag
   oci_identity_tag_facts:
     # required
-    tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
     tag_name: tag_name_example
+    tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List tags
   oci_identity_tag_facts:
@@ -260,8 +260,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            tag_namespace_id=dict(type="str", required=True),
             tag_name=dict(type="str"),
+            tag_namespace_id=dict(type="str", required=True),
             lifecycle_state=dict(
                 type="str", choices=["ACTIVE", "INACTIVE", "DELETING", "DELETED"]
             ),

@@ -36,12 +36,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    user_assessment_id:
-        description:
-            - The OCID of the user assessment.
-        type: str
-        aliases: ["id"]
-        required: true
     compartment_id:
         description:
             - The OCID of the compartment where you want to move the user assessment.
@@ -53,6 +47,12 @@ options:
             - Applicable only for I(action=set_user_assessment_baseline).
         type: list
         elements: str
+    user_assessment_id:
+        description:
+            - The OCID of the user assessment.
+        type: str
+        aliases: ["id"]
+        required: true
     action:
         description:
             - The action to perform on the UserAssessment.
@@ -69,8 +69,8 @@ EXAMPLES = """
 - name: Perform action change_compartment on user_assessment
   oci_data_safe_user_assessment_actions:
     # required
-    user_assessment_id: "ocid1.userassessment.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    user_assessment_id: "ocid1.userassessment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action set_user_assessment_baseline on user_assessment
@@ -406,9 +406,9 @@ def main():
     )
     module_args.update(
         dict(
-            user_assessment_id=dict(aliases=["id"], type="str", required=True),
             compartment_id=dict(type="str"),
             assessment_ids=dict(type="list", elements="str"),
+            user_assessment_id=dict(aliases=["id"], type="str", required=True),
             action=dict(
                 type="str",
                 required=True,

@@ -36,18 +36,18 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    local_peering_gateway_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the local peering gateway.
-        type: str
-        aliases: ["id"]
-        required: true
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the
               local peering gateway to.
             - Required for I(action=change_compartment).
         type: str
+    local_peering_gateway_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the local peering gateway.
+        type: str
+        aliases: ["id"]
+        required: true
     peer_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the LPG you want to peer with.
@@ -68,8 +68,8 @@ EXAMPLES = """
 - name: Perform action change_compartment on local_peering_gateway
   oci_network_local_peering_gateway_actions:
     # required
-    local_peering_gateway_id: "ocid1.localpeeringgateway.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    local_peering_gateway_id: "ocid1.localpeeringgateway.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action connect on local_peering_gateway
@@ -327,8 +327,8 @@ def main():
     )
     module_args.update(
         dict(
-            local_peering_gateway_id=dict(aliases=["id"], type="str", required=True),
             compartment_id=dict(type="str"),
+            local_peering_gateway_id=dict(aliases=["id"], type="str", required=True),
             peer_id=dict(type="str"),
             action=dict(
                 type="str", required=True, choices=["change_compartment", "connect"]

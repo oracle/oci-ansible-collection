@@ -27,12 +27,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    db_system_id:
-        description:
-            - The DB System L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-        type: str
-        aliases: ["id"]
-        required: true
     shape_name:
         description:
             - A change to the shape of the nodes in the HeatWave cluster will
@@ -51,6 +45,12 @@ options:
               re-provisioned.
             - This parameter is updatable.
         type: int
+    db_system_id:
+        description:
+            - The DB System L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+        type: str
+        aliases: ["id"]
+        required: true
     state:
         description:
             - The state of the HeatWaveCluster.
@@ -283,9 +283,9 @@ def main():
     )
     module_args.update(
         dict(
-            db_system_id=dict(aliases=["id"], type="str", required=True),
             shape_name=dict(type="str"),
             cluster_size=dict(type="int"),
+            db_system_id=dict(aliases=["id"], type="str", required=True),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

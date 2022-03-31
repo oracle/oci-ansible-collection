@@ -36,6 +36,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    drg_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DRG.
+            - Required for create using I(state=present).
+        type: str
+    vcn_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN.
+              This field is deprecated. Instead, use the `networkDetails` field to specify the
+              L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the attached resource.
+        type: str
     display_name:
         description:
             - A user-friendly name. Does not have to be unique, and it's changeable.
@@ -44,11 +55,6 @@ options:
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
-    drg_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DRG.
-            - Required for create using I(state=present).
-        type: str
     drg_route_table_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DRG route table that is assigned to this attachment.
@@ -61,6 +67,10 @@ options:
             - This parameter is updatable.
         type: dict
         suboptions:
+            id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network attached to the DRG.
+                type: str
             type:
                 description:
                     - ""
@@ -69,10 +79,6 @@ options:
                 choices:
                     - "VCN"
                 required: true
-            id:
-                description:
-                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network attached to the DRG.
-                type: str
             route_table_id:
                 description:
                     - This is the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the route table that is used to route the
@@ -106,6 +112,14 @@ options:
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
+    export_drg_route_distribution_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the export route distribution used to specify how
+              routes in the assigned DRG route table
+              are advertised out through the attachment.
+              If this value is null, no routes are advertised through this attachment.
+            - This parameter is updatable.
+        type: str
     route_table_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the route table used by the DRG attachment.
@@ -119,12 +133,6 @@ options:
               This field is deprecated. Instead, use the networkDetails field to specify the VCN route table for this attachment."
             - This parameter is updatable.
         type: str
-    vcn_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN.
-              This field is deprecated. Instead, use the `networkDetails` field to specify the
-              L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the attached resource.
-        type: str
     drg_attachment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the DRG attachment.
@@ -132,14 +140,6 @@ options:
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["id"]
-    export_drg_route_distribution_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the export route distribution used to specify how
-              routes in the assigned DRG route table
-              are advertised out through the attachment.
-              If this value is null, no routes are advertised through this attachment.
-            - This parameter is updatable.
-        type: str
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
@@ -166,12 +166,13 @@ EXAMPLES = """
     drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     drg_route_table_id: "ocid1.drgroutetable.oc1..xxxxxxEXAMPLExxxxxx"
     network_details:
       # required
-      type: VCN
       id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+      type: VCN
 
       # optional
       route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
@@ -179,7 +180,6 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
     route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
-    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update drg_attachment
   oci_network_drg_attachment:
@@ -191,16 +191,16 @@ EXAMPLES = """
     drg_route_table_id: "ocid1.drgroutetable.oc1..xxxxxxEXAMPLExxxxxx"
     network_details:
       # required
-      type: VCN
       id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+      type: VCN
 
       # optional
       route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
       vcn_route_type: vcn_route_type_example
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
-    route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
     export_drg_route_distribution_id: "ocid1.exportdrgroutedistribution.oc1..xxxxxxEXAMPLExxxxxx"
+    route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update drg_attachment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_drg_attachment:
@@ -212,16 +212,16 @@ EXAMPLES = """
     drg_route_table_id: "ocid1.drgroutetable.oc1..xxxxxxEXAMPLExxxxxx"
     network_details:
       # required
-      type: VCN
       id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+      type: VCN
 
       # optional
       route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
       vcn_route_type: vcn_route_type_example
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
-    route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
     export_drg_route_distribution_id: "ocid1.exportdrgroutedistribution.oc1..xxxxxxEXAMPLExxxxxx"
+    route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete drg_attachment
   oci_network_drg_attachment:
@@ -566,24 +566,24 @@ def main():
     )
     module_args.update(
         dict(
-            display_name=dict(aliases=["name"], type="str"),
             drg_id=dict(type="str"),
+            vcn_id=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
             drg_route_table_id=dict(type="str"),
             network_details=dict(
                 type="dict",
                 options=dict(
-                    type=dict(type="str", required=True, choices=["VCN"]),
                     id=dict(type="str"),
+                    type=dict(type="str", required=True, choices=["VCN"]),
                     route_table_id=dict(type="str"),
                     vcn_route_type=dict(type="str"),
                 ),
             ),
             defined_tags=dict(type="dict"),
             freeform_tags=dict(type="dict"),
-            route_table_id=dict(type="str"),
-            vcn_id=dict(type="str"),
-            drg_attachment_id=dict(aliases=["id"], type="str"),
             export_drg_route_distribution_id=dict(type="str"),
+            route_table_id=dict(type="str"),
+            drg_attachment_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

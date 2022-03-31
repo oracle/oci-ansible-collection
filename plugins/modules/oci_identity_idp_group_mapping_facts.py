@@ -29,17 +29,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    identity_provider_id:
-        description:
-            - The OCID of the identity provider.
-        type: str
-        required: true
     mapping_id:
         description:
             - The OCID of the group mapping.
             - Required to get a specific idp_group_mapping.
         type: str
         aliases: ["id"]
+    identity_provider_id:
+        description:
+            - The OCID of the identity provider.
+        type: str
+        required: true
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -47,8 +47,8 @@ EXAMPLES = """
 - name: Get a specific idp_group_mapping
   oci_identity_idp_group_mapping_facts:
     # required
-    identity_provider_id: "ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx"
     mapping_id: "ocid1.mapping.oc1..xxxxxxEXAMPLExxxxxx"
+    identity_provider_id: "ocid1.identityprovider.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List idp_group_mappings
   oci_identity_idp_group_mapping_facts:
@@ -189,8 +189,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            identity_provider_id=dict(type="str", required=True),
             mapping_id=dict(aliases=["id"], type="str"),
+            identity_provider_id=dict(type="str", required=True),
         )
     )
 

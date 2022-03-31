@@ -30,7 +30,7 @@ oracle.oci.oci_oce_instance -- Manage an OceInstance resource in Oracle Cloud In
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -675,16 +675,16 @@ Examples
         admin_email: admin_email_example
 
         # optional
-        description: description_example
         identity_stripe:
           # required
           service_name: service_name_example
           tenancy: tenancy_example
-        instance_usage_type: PRIMARY
         upgrade_schedule: upgrade_schedule_example
-        waf_primary_domain: waf_primary_domain_example
         instance_access_type: PUBLIC
+        description: description_example
+        waf_primary_domain: waf_primary_domain_example
         instance_license_type: NEW
+        instance_usage_type: PRIMARY
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -695,9 +695,9 @@ Examples
 
         # optional
         description: description_example
-        instance_usage_type: PRIMARY
         waf_primary_domain: waf_primary_domain_example
         instance_license_type: NEW
+        instance_usage_type: PRIMARY
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -709,9 +709,9 @@ Examples
 
         # optional
         description: description_example
-        instance_usage_type: PRIMARY
         waf_primary_domain: waf_primary_domain_example
         instance_license_type: NEW
+        instance_usage_type: PRIMARY
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 

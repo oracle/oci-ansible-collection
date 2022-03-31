@@ -27,19 +27,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    network_load_balancer_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network load balancer to update.
-        type: str
-        aliases: ["id"]
-        required: true
-    name:
-        description:
-            - "Optional unique name identifying the backend within the backend set. If not specified, then one will be generated.
-              Example: `webServer1`"
-            - Required for update using I(state=present).
-            - Required for delete using I(state=absent).
-        type: str
     ip_address:
         description:
             - "The IP address of the backend server.
@@ -66,17 +53,17 @@ options:
             - "Example: `3`"
             - This parameter is updatable.
         type: int
-    is_drain:
-        description:
-            - "Whether the network load balancer should drain this server. Servers marked \\"isDrain\\" receive no
-              incoming traffic."
-            - "Example: `false`"
-            - This parameter is updatable.
-        type: bool
     is_backup:
         description:
             - "Whether the network load balancer should treat this server as a backup unit. If `true`, then the network load balancer forwards no ingress
               traffic to this backend server unless all other backend servers not marked as \\"isBackup\\" fail the health check policy."
+            - "Example: `false`"
+            - This parameter is updatable.
+        type: bool
+    is_drain:
+        description:
+            - "Whether the network load balancer should drain this server. Servers marked \\"isDrain\\" receive no
+              incoming traffic."
             - "Example: `false`"
             - This parameter is updatable.
         type: bool
@@ -87,12 +74,25 @@ options:
             - "Example: `false`"
             - This parameter is updatable.
         type: bool
+    network_load_balancer_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network load balancer to update.
+        type: str
+        aliases: ["id"]
+        required: true
     backend_set_name:
         description:
             - The name of the backend set to which to add the backend server.
             - "Example: `example_backend_set`"
         type: str
         required: true
+    name:
+        description:
+            - "Optional unique name identifying the backend within the backend set. If not specified, then one will be generated.
+              Example: `webServer1`"
+            - Required for update using I(state=present).
+            - Required for delete using I(state=absent).
+        type: str
     state:
         description:
             - The state of the Backend.
@@ -109,38 +109,38 @@ EXAMPLES = """
 - name: Create backend
   oci_network_load_balancer_backend:
     # required
-    network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     port: 56
+    network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     backend_set_name: backend_set_name_example
 
     # optional
-    name: name_example
     ip_address: ip_address_example
     target_id: "ocid1.target.oc1..xxxxxxEXAMPLExxxxxx"
     weight: 56
-    is_drain: true
     is_backup: true
+    is_drain: true
     is_offline: true
+    name: name_example
 
 - name: Update backend
   oci_network_load_balancer_backend:
     # required
     network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-    name: name_example
     backend_set_name: backend_set_name_example
+    name: name_example
 
     # optional
     weight: 56
-    is_drain: true
     is_backup: true
+    is_drain: true
     is_offline: true
 
 - name: Delete backend
   oci_network_load_balancer_backend:
     # required
     network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-    name: name_example
     backend_set_name: backend_set_name_example
+    name: name_example
     state: absent
 
 """
@@ -401,16 +401,16 @@ def main():
     )
     module_args.update(
         dict(
-            network_load_balancer_id=dict(aliases=["id"], type="str", required=True),
-            name=dict(type="str"),
             ip_address=dict(type="str"),
             target_id=dict(type="str"),
             port=dict(type="int"),
             weight=dict(type="int"),
-            is_drain=dict(type="bool"),
             is_backup=dict(type="bool"),
+            is_drain=dict(type="bool"),
             is_offline=dict(type="bool"),
+            network_load_balancer_id=dict(aliases=["id"], type="str", required=True),
             backend_set_name=dict(type="str", required=True),
+            name=dict(type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

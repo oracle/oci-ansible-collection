@@ -30,7 +30,7 @@ oracle.oci.oci_network_load_balancer_backend -- Manage a Backend resource in Ora
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -520,38 +520,38 @@ Examples
     - name: Create backend
       oci_network_load_balancer_backend:
         # required
-        network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
         port: 56
+        network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
         backend_set_name: backend_set_name_example
 
         # optional
-        name: name_example
         ip_address: ip_address_example
         target_id: "ocid1.target.oc1..xxxxxxEXAMPLExxxxxx"
         weight: 56
-        is_drain: true
         is_backup: true
+        is_drain: true
         is_offline: true
+        name: name_example
 
     - name: Update backend
       oci_network_load_balancer_backend:
         # required
         network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-        name: name_example
         backend_set_name: backend_set_name_example
+        name: name_example
 
         # optional
         weight: 56
-        is_drain: true
         is_backup: true
+        is_drain: true
         is_offline: true
 
     - name: Delete backend
       oci_network_load_balancer_backend:
         # required
         network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-        name: name_example
         backend_set_name: backend_set_name_example
+        name: name_example
         state: absent
 
 

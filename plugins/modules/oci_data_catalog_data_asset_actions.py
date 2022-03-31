@@ -33,6 +33,77 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    import_file_contents:
+        description:
+            - The file contents to be imported. File size not to exceed 10 MB.
+            - Required for I(action=import_data_asset).
+        type: str
+    import_type:
+        description:
+            - Type of import.
+            - Required for I(action=import_data_asset).
+        type: list
+        elements: str
+        choices:
+            - "CUSTOM_PROPERTY_VALUES"
+            - "ALL"
+    is_missing_value_ignored:
+        description:
+            - Specify whether to ignore the missing values in the import file.
+            - Applicable only for I(action=import_data_asset).
+        type: bool
+    wallet_secret_id:
+        description:
+            - OCID of the OCI Vault secret holding the Oracle wallet to parse.
+            - Applicable only for I(action=parse_connection).
+        type: str
+    wallet_secret_name:
+        description:
+            - Name of the OCI Vault secret holding the Oracle wallet to parse.
+            - Applicable only for I(action=parse_connection).
+        type: str
+    connection_key:
+        description:
+            - Unique connection key.
+            - Applicable only for I(action=parse_connection).
+        type: str
+    items:
+        description:
+            - Collection of pattern Ids.
+            - Required for I(action=add_data_selector_patterns), I(action=remove_data_selector_patterns).
+        type: list
+        elements: str
+    dest:
+        description:
+            - The destination file path to write the output. The file will be created if it does not exist. If the file already exists, the content will be
+              overwritten.
+            - Required for I(action=synchronous_export).
+        type: str
+    export_scope:
+        description:
+            - Array of objects and their child types to be selected for export.
+            - Applicable only for I(action=synchronous_export).
+        type: list
+        elements: dict
+        suboptions:
+            object_key:
+                description:
+                    - Unique key of the object selected for export.
+                type: str
+            export_type_ids:
+                description:
+                    - Array of type keys selected for export.
+                type: list
+                elements: str
+    export_type:
+        description:
+            - Type of export.
+            - Required for I(action=synchronous_export).
+        type: list
+        elements: str
+        choices:
+            - "CUSTOM_PROPERTY_VALUES"
+            - "ALL"
     catalog_id:
         description:
             - Unique catalog identifier.
@@ -43,18 +114,27 @@ options:
             - Unique data asset key.
         type: str
         required: true
-    items:
-        description:
-            - Collection of pattern Ids.
-            - Required for I(action=add_data_selector_patterns), I(action=remove_data_selector_patterns).
-        type: list
-        elements: str
     connection_detail:
         description:
             - ""
             - Applicable only for I(action=import_connection)I(action=parse_connection)I(action=validate_connection).
         type: dict
         suboptions:
+            enc_properties:
+                description:
+                    - "A map of maps that contains the encrypted values for sensitive properties which are specific to the
+                      connection type. Each connection type definition defines it's set of required and optional properties.
+                      The map keys are category names and the values are maps of property name to property value. Every property is
+                      contained inside of a category. Most connections have required properties within the \\"default\\" category.
+                      To determine the set of optional and required properties for a connection type, a query can be done
+                      on '/types?type=connection' that returns a collection of all connection types. The appropriate connection
+                      type, which will include definitions of all of it's properties, can be identified from this collection.
+                      Example: `{\\"encProperties\\": { \\"default\\": { \\"password\\": \\"example-password\\"}}}`"
+                type: dict
+            key:
+                description:
+                    - Unique connection key that is immutable.
+                type: str
             description:
                 description:
                     - A description of the connection.
@@ -65,9 +145,22 @@ options:
                       Avoid entering confidential information.
                 type: str
                 aliases: ["name"]
-            type_key:
+            time_created:
                 description:
-                    - The key of the object type. Type key's can be found via the '/types' endpoint.
+                    - "The date and time the connection was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
+                      Example: `2019-03-25T21:10:29.600Z`"
+                type: str
+            time_updated:
+                description:
+                    - The last time that any change was made to the connection. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime string.
+                type: str
+            created_by_id:
+                description:
+                    - OCID of the user who created the connection.
+                type: str
+            updated_by_id:
+                description:
+                    - OCID of the user who modified the connection.
                 type: str
             custom_property_members:
                 description:
@@ -84,17 +177,13 @@ options:
                             - Name of the custom property
                         type: str
                         aliases: ["name"]
-                    value:
-                        description:
-                            - The custom property value
-                        type: str
-                    namespace_name:
-                        description:
-                            - Namespace name of the custom property
-                        type: str
                     description:
                         description:
                             - Description of the custom property
+                        type: str
+                    value:
+                        description:
+                            - The custom property value
                         type: str
                     data_type:
                         description:
@@ -106,6 +195,10 @@ options:
                             - "BOOLEAN"
                             - "NUMBER"
                             - "DATE"
+                    namespace_name:
+                        description:
+                            - Namespace name of the custom property
+                        type: str
                     namespace_key:
                         description:
                             - Unique namespace key that is immutable
@@ -150,45 +243,6 @@ options:
                       of it's properties, can be identified from this collection.
                       Example: `{\\"properties\\": { \\"default\\": { \\"username\\": \\"user1\\"}}}`"
                 type: dict
-            enc_properties:
-                description:
-                    - "A map of maps that contains the encrypted values for sensitive properties which are specific to the
-                      connection type. Each connection type definition defines it's set of required and optional properties.
-                      The map keys are category names and the values are maps of property name to property value. Every property is
-                      contained inside of a category. Most connections have required properties within the \\"default\\" category.
-                      To determine the set of optional and required properties for a connection type, a query can be done
-                      on '/types?type=connection' that returns a collection of all connection types. The appropriate connection
-                      type, which will include definitions of all of it's properties, can be identified from this collection.
-                      Example: `{\\"encProperties\\": { \\"default\\": { \\"password\\": \\"example-password\\"}}}`"
-                type: dict
-            is_default:
-                description:
-                    - Indicates whether this connection is the default connection. The first connection of a data asset defaults
-                      to being the default, subsequent connections default to not being the default. If a default connection already
-                      exists, then trying to create a connection as the default will fail. In this case the default connection would
-                      need to be updated not to be the default and then the new connection can then be created as the default.
-                type: bool
-            key:
-                description:
-                    - Unique connection key that is immutable.
-                type: str
-            time_created:
-                description:
-                    - "The date and time the connection was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
-                      Example: `2019-03-25T21:10:29.600Z`"
-                type: str
-            time_updated:
-                description:
-                    - The last time that any change was made to the connection. An L(RFC3339,https://tools.ietf.org/html/rfc3339) formatted datetime string.
-                type: str
-            created_by_id:
-                description:
-                    - OCID of the user who created the connection.
-                type: str
-            updated_by_id:
-                description:
-                    - OCID of the user who modified the connection.
-                type: str
             external_key:
                 description:
                     - Unique external key of this object from the source system.
@@ -210,9 +264,20 @@ options:
                     - "DELETED"
                     - "FAILED"
                     - "MOVING"
+            is_default:
+                description:
+                    - Indicates whether this connection is the default connection. The first connection of a data asset defaults
+                      to being the default, subsequent connections default to not being the default. If a default connection already
+                      exists, then trying to create a connection as the default will fail. In this case the default connection would
+                      need to be updated not to be the default and then the new connection can then be created as the default.
+                type: bool
             data_asset_key:
                 description:
                     - Unique key of the parent data asset.
+                type: str
+            type_key:
+                description:
+                    - The key of the object type. Type key's can be found via the '/types' endpoint.
                 type: str
             uri:
                 description:
@@ -223,71 +288,6 @@ options:
             - The information used to import the connection.
             - Required for I(action=import_connection).
         type: str
-    import_file_contents:
-        description:
-            - The file contents to be imported. File size not to exceed 10 MB.
-            - Required for I(action=import_data_asset).
-        type: str
-    import_type:
-        description:
-            - Type of import.
-            - Required for I(action=import_data_asset).
-        type: list
-        elements: str
-        choices:
-            - "CUSTOM_PROPERTY_VALUES"
-            - "ALL"
-    is_missing_value_ignored:
-        description:
-            - Specify whether to ignore the missing values in the import file.
-            - Applicable only for I(action=import_data_asset).
-        type: bool
-    wallet_secret_id:
-        description:
-            - OCID of the OCI Vault secret holding the Oracle wallet to parse.
-            - Applicable only for I(action=parse_connection).
-        type: str
-    wallet_secret_name:
-        description:
-            - Name of the OCI Vault secret holding the Oracle wallet to parse.
-            - Applicable only for I(action=parse_connection).
-        type: str
-    connection_key:
-        description:
-            - Unique connection key.
-            - Applicable only for I(action=parse_connection).
-        type: str
-    dest:
-        description:
-            - The destination file path to write the output. The file will be created if it does not exist. If the file already exists, the content will be
-              overwritten.
-            - Required for I(action=synchronous_export).
-        type: str
-    export_scope:
-        description:
-            - Array of objects and their child types to be selected for export.
-            - Applicable only for I(action=synchronous_export).
-        type: list
-        elements: dict
-        suboptions:
-            object_key:
-                description:
-                    - Unique key of the object selected for export.
-                type: str
-            export_type_ids:
-                description:
-                    - Array of type keys selected for export.
-                type: list
-                elements: str
-    export_type:
-        description:
-            - Type of export.
-            - Required for I(action=synchronous_export).
-        type: list
-        elements: str
-        choices:
-            - "CUSTOM_PROPERTY_VALUES"
-            - "ALL"
     action:
         description:
             - The action to perform on the DataAsset.
@@ -308,9 +308,9 @@ EXAMPLES = """
 - name: Perform action add_data_selector_patterns on data_asset
   oci_data_catalog_data_asset_actions:
     # required
+    items: [ "items_example" ]
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     data_asset_key: data_asset_key_example
-    items: [ "items_example" ]
     action: add_data_selector_patterns
 
 - name: Perform action import_connection on data_asset
@@ -324,17 +324,22 @@ EXAMPLES = """
     # optional
     connection_detail:
       # optional
+      enc_properties: null
+      key: key_example
       description: description_example
       display_name: display_name_example
-      type_key: type_key_example
+      time_created: time_created_example
+      time_updated: time_updated_example
+      created_by_id: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
+      updated_by_id: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
       custom_property_members:
       - # optional
         key: key_example
         display_name: display_name_example
-        value: value_example
-        namespace_name: namespace_name_example
         description: description_example
+        value: value_example
         data_type: TEXT
+        namespace_name: namespace_name_example
         namespace_key: namespace_key_example
         is_multi_valued: true
         is_hidden: true
@@ -344,26 +349,21 @@ EXAMPLES = """
         is_list_type: true
         allowed_values: [ "allowed_values_example" ]
       properties: null
-      enc_properties: null
-      is_default: true
-      key: key_example
-      time_created: time_created_example
-      time_updated: time_updated_example
-      created_by_id: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
-      updated_by_id: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
       external_key: external_key_example
       time_status_updated: time_status_updated_example
       lifecycle_state: CREATING
+      is_default: true
       data_asset_key: data_asset_key_example
+      type_key: type_key_example
       uri: uri_example
 
 - name: Perform action import_data_asset on data_asset
   oci_data_catalog_data_asset_actions:
     # required
-    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
-    data_asset_key: data_asset_key_example
     import_file_contents: import_file_contents_example
     import_type: [ "CUSTOM_PROPERTY_VALUES" ]
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
+    data_asset_key: data_asset_key_example
     action: import_data_asset
 
     # optional
@@ -377,19 +377,27 @@ EXAMPLES = """
     action: parse_connection
 
     # optional
+    wallet_secret_id: "ocid1.walletsecret.oc1..xxxxxxEXAMPLExxxxxx"
+    wallet_secret_name: wallet_secret_name_example
+    connection_key: connection_key_example
     connection_detail:
       # optional
+      enc_properties: null
+      key: key_example
       description: description_example
       display_name: display_name_example
-      type_key: type_key_example
+      time_created: time_created_example
+      time_updated: time_updated_example
+      created_by_id: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
+      updated_by_id: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
       custom_property_members:
       - # optional
         key: key_example
         display_name: display_name_example
-        value: value_example
-        namespace_name: namespace_name_example
         description: description_example
+        value: value_example
         data_type: TEXT
+        namespace_name: namespace_name_example
         namespace_key: namespace_key_example
         is_multi_valued: true
         is_hidden: true
@@ -399,38 +407,30 @@ EXAMPLES = """
         is_list_type: true
         allowed_values: [ "allowed_values_example" ]
       properties: null
-      enc_properties: null
-      is_default: true
-      key: key_example
-      time_created: time_created_example
-      time_updated: time_updated_example
-      created_by_id: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
-      updated_by_id: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
       external_key: external_key_example
       time_status_updated: time_status_updated_example
       lifecycle_state: CREATING
+      is_default: true
       data_asset_key: data_asset_key_example
+      type_key: type_key_example
       uri: uri_example
     connection_payload: connection_payload_example
-    wallet_secret_id: "ocid1.walletsecret.oc1..xxxxxxEXAMPLExxxxxx"
-    wallet_secret_name: wallet_secret_name_example
-    connection_key: connection_key_example
 
 - name: Perform action remove_data_selector_patterns on data_asset
   oci_data_catalog_data_asset_actions:
     # required
+    items: [ "items_example" ]
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     data_asset_key: data_asset_key_example
-    items: [ "items_example" ]
     action: remove_data_selector_patterns
 
 - name: Perform action synchronous_export on data_asset
   oci_data_catalog_data_asset_actions:
     # required
-    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
-    data_asset_key: data_asset_key_example
     dest: /tmp/myfile
     export_type: [ "CUSTOM_PROPERTY_VALUES" ]
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
+    data_asset_key: data_asset_key_example
     action: synchronous_export
 
     # optional
@@ -449,17 +449,22 @@ EXAMPLES = """
     # optional
     connection_detail:
       # optional
+      enc_properties: null
+      key: key_example
       description: description_example
       display_name: display_name_example
-      type_key: type_key_example
+      time_created: time_created_example
+      time_updated: time_updated_example
+      created_by_id: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
+      updated_by_id: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
       custom_property_members:
       - # optional
         key: key_example
         display_name: display_name_example
-        value: value_example
-        namespace_name: namespace_name_example
         description: description_example
+        value: value_example
         data_type: TEXT
+        namespace_name: namespace_name_example
         namespace_key: namespace_key_example
         is_multi_valued: true
         is_hidden: true
@@ -469,17 +474,12 @@ EXAMPLES = """
         is_list_type: true
         allowed_values: [ "allowed_values_example" ]
       properties: null
-      enc_properties: null
-      is_default: true
-      key: key_example
-      time_created: time_created_example
-      time_updated: time_updated_example
-      created_by_id: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
-      updated_by_id: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
       external_key: external_key_example
       time_status_updated: time_status_updated_example
       lifecycle_state: CREATING
+      is_default: true
       data_asset_key: data_asset_key_example
+      type_key: type_key_example
       uri: uri_example
     connection_payload: connection_payload_example
 
@@ -1028,24 +1028,48 @@ def main():
     )
     module_args.update(
         dict(
+            import_file_contents=dict(type="str"),
+            import_type=dict(
+                type="list", elements="str", choices=["CUSTOM_PROPERTY_VALUES", "ALL"]
+            ),
+            is_missing_value_ignored=dict(type="bool"),
+            wallet_secret_id=dict(type="str"),
+            wallet_secret_name=dict(type="str"),
+            connection_key=dict(type="str", no_log=True),
+            items=dict(type="list", elements="str"),
+            dest=dict(type="str"),
+            export_scope=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    object_key=dict(type="str", no_log=True),
+                    export_type_ids=dict(type="list", elements="str"),
+                ),
+            ),
+            export_type=dict(
+                type="list", elements="str", choices=["CUSTOM_PROPERTY_VALUES", "ALL"]
+            ),
             catalog_id=dict(type="str", required=True),
             data_asset_key=dict(type="str", required=True, no_log=True),
-            items=dict(type="list", elements="str"),
             connection_detail=dict(
                 type="dict",
                 options=dict(
+                    enc_properties=dict(type="dict"),
+                    key=dict(type="str", no_log=True),
                     description=dict(type="str"),
                     display_name=dict(aliases=["name"], type="str"),
-                    type_key=dict(type="str", no_log=True),
+                    time_created=dict(type="str"),
+                    time_updated=dict(type="str"),
+                    created_by_id=dict(type="str"),
+                    updated_by_id=dict(type="str"),
                     custom_property_members=dict(
                         type="list",
                         elements="dict",
                         options=dict(
                             key=dict(type="str", no_log=True),
                             display_name=dict(aliases=["name"], type="str"),
-                            value=dict(type="str"),
-                            namespace_name=dict(type="str"),
                             description=dict(type="str"),
+                            value=dict(type="str"),
                             data_type=dict(
                                 type="str",
                                 choices=[
@@ -1056,6 +1080,7 @@ def main():
                                     "DATE",
                                 ],
                             ),
+                            namespace_name=dict(type="str"),
                             namespace_key=dict(type="str", no_log=True),
                             is_multi_valued=dict(type="bool"),
                             is_hidden=dict(type="bool"),
@@ -1067,13 +1092,6 @@ def main():
                         ),
                     ),
                     properties=dict(type="dict"),
-                    enc_properties=dict(type="dict"),
-                    is_default=dict(type="bool"),
-                    key=dict(type="str", no_log=True),
-                    time_created=dict(type="str"),
-                    time_updated=dict(type="str"),
-                    created_by_id=dict(type="str"),
-                    updated_by_id=dict(type="str"),
                     external_key=dict(type="str", no_log=True),
                     time_status_updated=dict(type="str"),
                     lifecycle_state=dict(
@@ -1089,31 +1107,13 @@ def main():
                             "MOVING",
                         ],
                     ),
+                    is_default=dict(type="bool"),
                     data_asset_key=dict(type="str", no_log=True),
+                    type_key=dict(type="str", no_log=True),
                     uri=dict(type="str"),
                 ),
             ),
             connection_payload=dict(type="str"),
-            import_file_contents=dict(type="str"),
-            import_type=dict(
-                type="list", elements="str", choices=["CUSTOM_PROPERTY_VALUES", "ALL"]
-            ),
-            is_missing_value_ignored=dict(type="bool"),
-            wallet_secret_id=dict(type="str"),
-            wallet_secret_name=dict(type="str"),
-            connection_key=dict(type="str", no_log=True),
-            dest=dict(type="str"),
-            export_scope=dict(
-                type="list",
-                elements="dict",
-                options=dict(
-                    object_key=dict(type="str", no_log=True),
-                    export_type_ids=dict(type="list", elements="str"),
-                ),
-            ),
-            export_type=dict(
-                type="list", elements="str", choices=["CUSTOM_PROPERTY_VALUES", "ALL"]
-            ),
             action=dict(
                 type="str",
                 required=True,

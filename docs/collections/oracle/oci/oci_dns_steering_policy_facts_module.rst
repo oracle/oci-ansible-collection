@@ -30,7 +30,7 @@ oracle.oci.oci_dns_steering_policy_facts -- Fetches details about one or multipl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -486,7 +486,6 @@ Examples
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        scope: GLOBAL
         display_name: display_name_example
         display_name_contains: display_name_contains_example
         health_check_monitor_id: "ocid1.healthcheckmonitor.oc1..xxxxxxEXAMPLExxxxxx"
@@ -496,6 +495,7 @@ Examples
         lifecycle_state: ACTIVE
         sort_by: displayName
         sort_order: ASC
+        scope: GLOBAL
 
 
 

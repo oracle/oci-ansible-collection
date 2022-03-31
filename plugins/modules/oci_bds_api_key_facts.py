@@ -28,17 +28,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    bds_instance_id:
-        description:
-            - The OCID of the cluster.
-        type: str
-        required: true
     api_key_id:
         description:
             - The API key identifier.
             - Required to get a specific bds_api_key.
         type: str
         aliases: ["id"]
+    bds_instance_id:
+        description:
+            - The OCID of the cluster.
+        type: str
+        required: true
     lifecycle_state:
         description:
             - The state of the API key.
@@ -80,8 +80,8 @@ EXAMPLES = """
 - name: Get a specific bds_api_key
   oci_bds_api_key_facts:
     # required
-    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     api_key_id: "ocid1.apikey.oc1..xxxxxxEXAMPLExxxxxx"
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List bds_api_keys
   oci_bds_api_key_facts:
@@ -244,8 +244,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            bds_instance_id=dict(type="str", required=True),
             api_key_id=dict(aliases=["id"], type="str"),
+            bds_instance_id=dict(type="str", required=True),
             lifecycle_state=dict(
                 type="str",
                 choices=["CREATING", "ACTIVE", "DELETING", "DELETED", "FAILED"],

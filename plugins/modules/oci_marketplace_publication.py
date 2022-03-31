@@ -39,48 +39,6 @@ options:
             - "COMMUNITY"
             - "PARTNER"
             - "PRIVATE"
-    name:
-        description:
-            - The name of the publication, which is also used in the listing.
-            - Required for create using I(state=present).
-            - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-    short_description:
-        description:
-            - A short description of the publication to use in the listing.
-            - Required for create using I(state=present).
-            - This parameter is updatable.
-        type: str
-    long_description:
-        description:
-            - A long description of the publication to use in the listing.
-            - This parameter is updatable.
-        type: str
-    support_contacts:
-        description:
-            - Contact information for getting support from the publisher for the listing.
-            - Required for create using I(state=present).
-            - This parameter is updatable.
-        type: list
-        elements: dict
-        suboptions:
-            name:
-                description:
-                    - The name of the contact.
-                type: str
-            phone:
-                description:
-                    - The phone number of the contact.
-                type: str
-            email:
-                description:
-                    - The email of the contact.
-                type: str
-            subject:
-                description:
-                    - The email subject line to use when contacting support.
-                type: str
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment where you want to create the publication.
@@ -144,6 +102,48 @@ options:
               Oracle terms of use agreements required to create a publication.
             - Required for create using I(state=present).
         type: bool
+    name:
+        description:
+            - The name of the publication, which is also used in the listing.
+            - Required for create using I(state=present).
+            - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+    short_description:
+        description:
+            - A short description of the publication to use in the listing.
+            - Required for create using I(state=present).
+            - This parameter is updatable.
+        type: str
+    long_description:
+        description:
+            - A long description of the publication to use in the listing.
+            - This parameter is updatable.
+        type: str
+    support_contacts:
+        description:
+            - Contact information for getting support from the publisher for the listing.
+            - Required for create using I(state=present).
+            - This parameter is updatable.
+        type: list
+        elements: dict
+        suboptions:
+            name:
+                description:
+                    - The name of the contact.
+                type: str
+            phone:
+                description:
+                    - The phone number of the contact.
+                type: str
+            email:
+                description:
+                    - The email of the contact.
+                type: str
+            subject:
+                description:
+                    - The email subject line to use when contacting support.
+                type: str
     defined_tags:
         description:
             - "The defined tags associated with this resource, if any. Each key is predefined and scoped to namespaces.
@@ -183,14 +183,6 @@ EXAMPLES = """
   oci_marketplace_publication:
     # required
     listing_type: COMMUNITY
-    name: name_example
-    short_description: short_description_example
-    support_contacts:
-    - # optional
-      name: name_example
-      phone: phone_example
-      email: email_example
-      subject: subject_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     package_details:
       # required
@@ -209,6 +201,14 @@ EXAMPLES = """
         # optional
       image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
     is_agreement_acknowledged: true
+    name: name_example
+    short_description: short_description_example
+    support_contacts:
+    - # optional
+      name: name_example
+      phone: phone_example
+      email: email_example
+      subject: subject_example
 
     # optional
     long_description: long_description_example
@@ -237,8 +237,8 @@ EXAMPLES = """
   oci_marketplace_publication:
     # required
     listing_type: COMMUNITY
-    name: name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
 
     # optional
     short_description: short_description_example
@@ -262,8 +262,8 @@ EXAMPLES = """
   oci_marketplace_publication:
     # required
     listing_type: COMMUNITY
-    name: name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
     state: absent
 
 """
@@ -612,19 +612,6 @@ def main():
     module_args.update(
         dict(
             listing_type=dict(type="str", choices=["COMMUNITY", "PARTNER", "PRIVATE"]),
-            name=dict(type="str"),
-            short_description=dict(type="str"),
-            long_description=dict(type="str"),
-            support_contacts=dict(
-                type="list",
-                elements="dict",
-                options=dict(
-                    name=dict(type="str"),
-                    phone=dict(type="str"),
-                    email=dict(type="str"),
-                    subject=dict(type="str"),
-                ),
-            ),
             compartment_id=dict(type="str"),
             package_details=dict(
                 type="dict",
@@ -647,6 +634,19 @@ def main():
                 ),
             ),
             is_agreement_acknowledged=dict(type="bool"),
+            name=dict(type="str"),
+            short_description=dict(type="str"),
+            long_description=dict(type="str"),
+            support_contacts=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    name=dict(type="str"),
+                    phone=dict(type="str"),
+                    email=dict(type="str"),
+                    subject=dict(type="str"),
+                ),
+            ),
             defined_tags=dict(type="dict"),
             freeform_tags=dict(type="dict"),
             publication_id=dict(aliases=["id"], type="str"),

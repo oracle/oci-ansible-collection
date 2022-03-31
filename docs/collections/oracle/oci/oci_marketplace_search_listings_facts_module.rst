@@ -30,7 +30,7 @@ oracle.oci.oci_marketplace_search_listings_facts -- Fetches details about one or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -340,8 +340,8 @@ Examples
     - name: List search_listings with type = Structured
       oci_marketplace_search_listings_facts:
         # required
-        type: Structured
         query: query_example
+        type: Structured
 
         # optional
         matching_context_type: NONE

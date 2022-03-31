@@ -29,19 +29,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    display_name:
-        description:
-            - "A user-friendly display name for the resource. Does not have to be unique, and can be modified. Avoid entering confidential information.
-              Example: `My ModelDeployment`"
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
-    description:
-        description:
-            - A short description of the model deployment.
-            - This parameter is updatable.
-        type: str
     project_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the project to associate with the model deployment.
@@ -54,6 +41,19 @@ options:
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+        type: str
+    display_name:
+        description:
+            - "A user-friendly display name for the resource. Does not have to be unique, and can be modified. Avoid entering confidential information.
+              Example: `My ModelDeployment`"
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
+    description:
+        description:
+            - A short description of the model deployment.
+            - This parameter is updatable.
         type: str
     model_deployment_configuration_details:
         description:
@@ -264,8 +264,8 @@ EXAMPLES = """
 - name: Update model_deployment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_science_model_deployment:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     description: description_example
@@ -307,8 +307,8 @@ EXAMPLES = """
 - name: Delete model_deployment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_science_model_deployment:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -697,10 +697,10 @@ def main():
     )
     module_args.update(
         dict(
-            display_name=dict(aliases=["name"], type="str"),
-            description=dict(type="str"),
             project_id=dict(type="str"),
             compartment_id=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
+            description=dict(type="str"),
             model_deployment_configuration_details=dict(
                 type="dict",
                 options=dict(

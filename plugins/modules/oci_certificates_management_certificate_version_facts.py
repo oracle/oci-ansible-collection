@@ -30,16 +30,16 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    certificate_id:
-        description:
-            - The OCID of the certificate.
-        type: str
-        required: true
     certificate_version_number:
         description:
             - The version number of the certificate.
             - Required to get a specific certificate_version.
         type: int
+    certificate_id:
+        description:
+            - The OCID of the certificate.
+        type: str
+        required: true
     version_number:
         description:
             - A filter that returns only resources that match the specified version number. The default value is 0, which means that this filter is not applied.
@@ -64,8 +64,8 @@ EXAMPLES = """
 - name: Get a specific certificate_version
   oci_certificates_management_certificate_version_facts:
     # required
-    certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
     certificate_version_number: 56
+    certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List certificate_versions
   oci_certificates_management_certificate_version_facts:
@@ -293,8 +293,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            certificate_id=dict(type="str", required=True),
             certificate_version_number=dict(type="int"),
+            certificate_id=dict(type="str", required=True),
             version_number=dict(type="int"),
             sort_by=dict(type="str", choices=["VERSION_NUMBER"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),

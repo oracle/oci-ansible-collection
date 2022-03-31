@@ -63,6 +63,12 @@ options:
             - "Example: `example_path_route_set`"
             - This parameter is updatable.
         type: str
+    routing_policy_name:
+        description:
+            - The name of the routing policy applied to this listener's traffic.
+            - "Example: `example_routing_policy`"
+            - This parameter is updatable.
+        type: str
     ssl_configuration:
         description:
             - ""
@@ -173,19 +179,6 @@ options:
                     - The backend TCP Proxy Protocol version.
                     - "Example: `1`"
                 type: int
-    name:
-        description:
-            - A friendly name for the listener. It must be unique and it cannot be changed.
-              Avoid entering confidential information.
-            - "Example: `example_listener`"
-        type: str
-        required: true
-    routing_policy_name:
-        description:
-            - The name of the routing policy applied to this listener's traffic.
-            - "Example: `example_routing_policy`"
-            - This parameter is updatable.
-        type: str
     rule_set_names:
         description:
             - The names of the L(rule sets,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/loadbalancer/20170115/RuleSet/) to apply to the listener.
@@ -196,6 +189,13 @@ options:
     load_balancer_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the load balancer on which to add a listener.
+        type: str
+        required: true
+    name:
+        description:
+            - A friendly name for the listener. It must be unique and it cannot be changed.
+              Avoid entering confidential information.
+            - "Example: `example_listener`"
         type: str
         required: true
     state:
@@ -217,12 +217,13 @@ EXAMPLES = """
     default_backend_set_name: default_backend_set_name_example
     port: 56
     protocol: protocol_example
-    name: name_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
 
     # optional
     hostname_names: [ "hostname_names_example" ]
     path_route_set_name: path_route_set_name_example
+    routing_policy_name: routing_policy_name_example
     ssl_configuration:
       # optional
       verify_depth: 56
@@ -239,7 +240,6 @@ EXAMPLES = """
 
       # optional
       backend_tcp_proxy_protocol_version: 56
-    routing_policy_name: routing_policy_name_example
     rule_set_names: [ "rule_set_names_example" ]
 
 - name: Update listener
@@ -248,12 +248,13 @@ EXAMPLES = """
     default_backend_set_name: default_backend_set_name_example
     port: 56
     protocol: protocol_example
-    name: name_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
 
     # optional
     hostname_names: [ "hostname_names_example" ]
     path_route_set_name: path_route_set_name_example
+    routing_policy_name: routing_policy_name_example
     ssl_configuration:
       # optional
       verify_depth: 56
@@ -270,14 +271,13 @@ EXAMPLES = """
 
       # optional
       backend_tcp_proxy_protocol_version: 56
-    routing_policy_name: routing_policy_name_example
     rule_set_names: [ "rule_set_names_example" ]
 
 - name: Delete listener
   oci_loadbalancer_listener:
     # required
-    name: name_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
     state: absent
 
 """
@@ -624,6 +624,7 @@ def main():
             protocol=dict(type="str"),
             hostname_names=dict(type="list", elements="str"),
             path_route_set_name=dict(type="str"),
+            routing_policy_name=dict(type="str"),
             ssl_configuration=dict(
                 type="dict",
                 options=dict(
@@ -646,10 +647,9 @@ def main():
                     backend_tcp_proxy_protocol_version=dict(type="int"),
                 ),
             ),
-            name=dict(type="str", required=True),
-            routing_policy_name=dict(type="str"),
             rule_set_names=dict(type="list", elements="str"),
             load_balancer_id=dict(type="str", required=True),
+            name=dict(type="str", required=True),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

@@ -30,7 +30,7 @@ oracle.oci.oci_certificates_management_certificate -- Manage a Certificate resou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -1221,29 +1221,29 @@ Examples
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         certificate_config:
           # required
-          config_type: MANAGED_EXTERNALLY_ISSUED_BY_INTERNAL_CA
           issuer_certificate_authority_id: "ocid1.issuercertificateauthority.oc1..xxxxxxEXAMPLExxxxxx"
+          config_type: MANAGED_EXTERNALLY_ISSUED_BY_INTERNAL_CA
           csr_pem: csr_pem_example
 
           # optional
           version_name: version_name_example
+          stage: CURRENT
           validity:
             # required
             time_of_validity_not_after: time_of_validity_not_after_example
 
             # optional
             time_of_validity_not_before: time_of_validity_not_before_example
-          stage: CURRENT
 
         # optional
         description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
         certificate_rules:
         - # required
           rule_type: CERTIFICATE_RENEWAL_RULE
           renewal_interval: renewal_interval_example
           advance_renewal_period: advance_renewal_period_example
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
 
     - name: Update certificate
       oci_certificates_management_certificate:
@@ -1252,29 +1252,29 @@ Examples
 
         # optional
         description: description_example
-        certificate_rules:
-        - # required
-          rule_type: CERTIFICATE_RENEWAL_RULE
-          renewal_interval: renewal_interval_example
-          advance_renewal_period: advance_renewal_period_example
+        current_version_number: 56
         certificate_config:
           # required
-          config_type: MANAGED_EXTERNALLY_ISSUED_BY_INTERNAL_CA
           issuer_certificate_authority_id: "ocid1.issuercertificateauthority.oc1..xxxxxxEXAMPLExxxxxx"
+          config_type: MANAGED_EXTERNALLY_ISSUED_BY_INTERNAL_CA
           csr_pem: csr_pem_example
 
           # optional
           version_name: version_name_example
+          stage: CURRENT
           validity:
             # required
             time_of_validity_not_after: time_of_validity_not_after_example
 
             # optional
             time_of_validity_not_before: time_of_validity_not_before_example
-          stage: CURRENT
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        current_version_number: 56
+        certificate_rules:
+        - # required
+          rule_type: CERTIFICATE_RENEWAL_RULE
+          renewal_interval: renewal_interval_example
+          advance_renewal_period: advance_renewal_period_example
 
     - name: Update certificate using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_certificates_management_certificate:
@@ -1283,29 +1283,29 @@ Examples
 
         # optional
         description: description_example
-        certificate_rules:
-        - # required
-          rule_type: CERTIFICATE_RENEWAL_RULE
-          renewal_interval: renewal_interval_example
-          advance_renewal_period: advance_renewal_period_example
+        current_version_number: 56
         certificate_config:
           # required
-          config_type: MANAGED_EXTERNALLY_ISSUED_BY_INTERNAL_CA
           issuer_certificate_authority_id: "ocid1.issuercertificateauthority.oc1..xxxxxxEXAMPLExxxxxx"
+          config_type: MANAGED_EXTERNALLY_ISSUED_BY_INTERNAL_CA
           csr_pem: csr_pem_example
 
           # optional
           version_name: version_name_example
+          stage: CURRENT
           validity:
             # required
             time_of_validity_not_after: time_of_validity_not_after_example
 
             # optional
             time_of_validity_not_before: time_of_validity_not_before_example
-          stage: CURRENT
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        current_version_number: 56
+        certificate_rules:
+        - # required
+          rule_type: CERTIFICATE_RENEWAL_RULE
+          renewal_interval: renewal_interval_example
+          advance_renewal_period: advance_renewal_period_example
 
 
 

@@ -32,19 +32,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    display_name:
-        description:
-            - A user-friendly name for the announcement subscription. Does not have to be unique, and it's changeable. Avoid entering confidential information.
-            - Required for create using I(state=present).
-            - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
-    description:
-        description:
-            - A description of the announcement subscription. Avoid entering confidential information.
-            - This parameter is updatable.
-        type: str
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment where you want to create the announcement
@@ -52,15 +39,6 @@ options:
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-        type: str
-    ons_topic_id:
-        description:
-            - The OCID of the Notifications service topic that is the target for publishing announcements that match the configured announcement subscription.
-              The caller of the operation needs the ONS_TOPIC_PUBLISH permission for the targeted Notifications service topic. For more information about
-              Notifications permissions, see L(Details for
-              Notifications,https://docs.cloud.oracle.com/Content/Identity/policyreference/notificationpolicyreference.htm).
-            - Required for create using I(state=present).
-            - This parameter is updatable.
         type: str
     filter_groups:
         description:
@@ -93,6 +71,28 @@ options:
                             - The value of the filter.
                         type: str
                         required: true
+    display_name:
+        description:
+            - A user-friendly name for the announcement subscription. Does not have to be unique, and it's changeable. Avoid entering confidential information.
+            - Required for create using I(state=present).
+            - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
+    description:
+        description:
+            - A description of the announcement subscription. Avoid entering confidential information.
+            - This parameter is updatable.
+        type: str
+    ons_topic_id:
+        description:
+            - The OCID of the Notifications service topic that is the target for publishing announcements that match the configured announcement subscription.
+              The caller of the operation needs the ONS_TOPIC_PUBLISH permission for the targeted Notifications service topic. For more information about
+              Notifications permissions, see L(Details for
+              Notifications,https://docs.cloud.oracle.com/Content/Identity/policyreference/notificationpolicyreference.htm).
+            - Required for create using I(state=present).
+            - This parameter is updatable.
+        type: str
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -128,18 +128,18 @@ EXAMPLES = """
 - name: Create announcement_subscription
   oci_announcements_service_announcement_subscription:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     ons_topic_id: "ocid1.onstopic.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    description: description_example
     filter_groups:
       # required
       filters:
       - # required
         type: COMPARTMENT_ID
         value: value_example
+    description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -158,8 +158,8 @@ EXAMPLES = """
 - name: Update announcement_subscription using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_announcements_service_announcement_subscription:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     description: description_example
@@ -176,8 +176,8 @@ EXAMPLES = """
 - name: Delete announcement_subscription using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_announcements_service_announcement_subscription:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -496,11 +496,11 @@ def main():
     )
     module_args.update(
         dict(
+            compartment_id=dict(type="str"),
+            filter_groups=dict(type="dict"),
             display_name=dict(aliases=["name"], type="str"),
             description=dict(type="str"),
-            compartment_id=dict(type="str"),
             ons_topic_id=dict(type="str"),
-            filter_groups=dict(type="dict"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             announcement_subscription_id=dict(aliases=["id"], type="str"),

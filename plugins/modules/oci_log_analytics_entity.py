@@ -29,18 +29,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    namespace_name:
-        description:
-            - The Logging Analytics namespace used for the request.
-        type: str
-        required: true
-    name:
-        description:
-            - Log analytics entity name.
-            - Required for create using I(state=present).
-            - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
     compartment_id:
         description:
             - Compartment Identifier L(OCID],https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
@@ -53,15 +41,26 @@ options:
             - Log analytics entity type name.
             - Required for create using I(state=present).
         type: str
-    management_agent_id:
-        description:
-            - The OCID of the Management Agent.
-            - This parameter is updatable.
-        type: str
     cloud_resource_id:
         description:
             - The OCID of the Cloud resource which this entity is a representation of. This may be blank when the entity
               represents a non-cloud resource that the customer may have on their premises.
+        type: str
+    source_id:
+        description:
+            - This indicates the type of source. It is primarily for Enterprise Manager Repository ID.
+        type: str
+    name:
+        description:
+            - Log analytics entity name.
+            - Required for create using I(state=present).
+            - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+    management_agent_id:
+        description:
+            - The OCID of the Management Agent.
+            - This parameter is updatable.
         type: str
     timezone_region:
         description:
@@ -74,10 +73,6 @@ options:
               they run `echo $HOSTNAME` on Linux or an equivalent OS command. This may be different from
               management agents host since logs may be collected remotely.
             - This parameter is updatable.
-        type: str
-    source_id:
-        description:
-            - This indicates the type of source. It is primarily for Enterprise Manager Repository ID.
         type: str
     properties:
         description:
@@ -96,6 +91,11 @@ options:
               Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             - This parameter is updatable.
         type: dict
+    namespace_name:
+        description:
+            - The Logging Analytics namespace used for the request.
+        type: str
+        required: true
     log_analytics_entity_id:
         description:
             - The log analytics entity OCID.
@@ -119,17 +119,17 @@ EXAMPLES = """
 - name: Create log_analytics_entity
   oci_log_analytics_entity:
     # required
-    namespace_name: namespace_name_example
-    name: name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     entity_type_name: entity_type_name_example
+    name: name_example
+    namespace_name: namespace_name_example
 
     # optional
-    management_agent_id: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
     cloud_resource_id: "ocid1.cloudresource.oc1..xxxxxxEXAMPLExxxxxx"
+    source_id: "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx"
+    management_agent_id: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
     timezone_region: Asia/Kolkata
     hostname: hostname_example
-    source_id: "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx"
     properties: null
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -152,9 +152,9 @@ EXAMPLES = """
 - name: Update log_analytics_entity using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_log_analytics_entity:
     # required
-    namespace_name: namespace_name_example
-    name: name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
+    namespace_name: namespace_name_example
 
     # optional
     management_agent_id: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
@@ -174,9 +174,9 @@ EXAMPLES = """
 - name: Delete log_analytics_entity using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_log_analytics_entity:
     # required
-    namespace_name: namespace_name_example
-    name: name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
+    namespace_name: namespace_name_example
     state: absent
 
 """
@@ -542,18 +542,18 @@ def main():
     )
     module_args.update(
         dict(
-            namespace_name=dict(type="str", required=True),
-            name=dict(type="str"),
             compartment_id=dict(type="str"),
             entity_type_name=dict(type="str"),
-            management_agent_id=dict(type="str"),
             cloud_resource_id=dict(type="str"),
+            source_id=dict(type="str"),
+            name=dict(type="str"),
+            management_agent_id=dict(type="str"),
             timezone_region=dict(type="str"),
             hostname=dict(type="str"),
-            source_id=dict(type="str"),
             properties=dict(type="dict"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
+            namespace_name=dict(type="str", required=True),
             log_analytics_entity_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

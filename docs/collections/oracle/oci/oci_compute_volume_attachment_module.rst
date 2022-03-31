@@ -30,7 +30,7 @@ oracle.oci.oci_compute_volume_attachment -- Manage a VolumeAttachment resource i
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -620,12 +620,12 @@ Examples
         volume_id: "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
+        use_chap: true
+        encryption_in_transit_type: NONE
         device: device_example
         display_name: display_name_example
         is_read_only: true
         is_shareable: true
-        use_chap: true
-        encryption_in_transit_type: NONE
 
     - name: Create volume_attachment with type = paravirtualized
       oci_compute_volume_attachment:

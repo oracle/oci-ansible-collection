@@ -38,6 +38,11 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    target_id:
+        description:
+            - The OCID of the target database on which the user assessment is to be run.
+            - Required for create using I(state=present).
+        type: str
     description:
         description:
             - The description of the user assessment.
@@ -68,11 +73,6 @@ options:
                 <day-of-month> can be either '*' (without quotes or a number between 1 and 28)
                 5. No constraint introduced when it is '*'. When not, day of month must equal the given value"
             - This parameter is updatable.
-        type: str
-    target_id:
-        description:
-            - The OCID of the target database on which the user assessment is to be run.
-            - Required for create using I(state=present).
         type: str
     freeform_tags:
         description:
@@ -514,10 +514,10 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
+            target_id=dict(type="str"),
             description=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             schedule=dict(type="str"),
-            target_id=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             user_assessment_id=dict(aliases=["id"], type="str"),

@@ -30,7 +30,7 @@ oracle.oci.oci_budget -- Manage a Budget resource in Oracle Cloud Infrastructure
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -556,11 +556,11 @@ Examples
 
         # optional
         target_compartment_id: "ocid1.targetcompartment.oc1..xxxxxxEXAMPLExxxxxx"
+        target_type: COMPARTMENT
+        targets: [ "targets_example" ]
         display_name: display_name_example
         description: description_example
         budget_processing_period_start_offset: 56
-        target_type: COMPARTMENT
-        targets: [ "targets_example" ]
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -573,8 +573,8 @@ Examples
         display_name: display_name_example
         description: description_example
         amount: 3.4
-        reset_period: MONTHLY
         budget_processing_period_start_offset: 56
+        reset_period: MONTHLY
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -587,8 +587,8 @@ Examples
         # optional
         description: description_example
         amount: 3.4
-        reset_period: MONTHLY
         budget_processing_period_start_offset: 56
+        reset_period: MONTHLY
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 

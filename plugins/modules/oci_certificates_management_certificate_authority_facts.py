@@ -29,12 +29,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    certificate_authority_id:
-        description:
-            - The OCID of the certificate authority (CA).
-            - Required to get a specific certificate_authority.
-        type: str
-        aliases: ["id"]
     compartment_id:
         description:
             - A filter that returns only resources that match the given compartment OCID.
@@ -61,6 +55,12 @@ options:
         description:
             - The OCID of the certificate authority (CA). If the parameter is set to null, the service lists all CAs.
         type: str
+    certificate_authority_id:
+        description:
+            - The OCID of the certificate authority (CA).
+            - Required to get a specific certificate_authority.
+        type: str
+        aliases: ["id"]
     sort_by:
         description:
             - The field to sort by. You can specify only one sort order. The default
@@ -91,11 +91,11 @@ EXAMPLES = """
   oci_certificates_management_certificate_authority_facts:
 
     # optional
-    certificate_authority_id: "ocid1.certificateauthority.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     lifecycle_state: CREATING
     name: name_example
     issuer_certificate_authority_id: "ocid1.issuercertificateauthority.oc1..xxxxxxEXAMPLExxxxxx"
+    certificate_authority_id: "ocid1.certificateauthority.oc1..xxxxxxEXAMPLExxxxxx"
     sort_by: NAME
     sort_order: ASC
 
@@ -731,7 +731,6 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            certificate_authority_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
             lifecycle_state=dict(
                 type="str",
@@ -749,6 +748,7 @@ def main():
             ),
             name=dict(type="str"),
             issuer_certificate_authority_id=dict(type="str"),
+            certificate_authority_id=dict(aliases=["id"], type="str"),
             sort_by=dict(type="str", choices=["NAME", "EXPIRATIONDATE", "TIMECREATED"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
         )

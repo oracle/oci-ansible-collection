@@ -28,17 +28,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    budget_id:
-        description:
-            - The unique Budget OCID
-        type: str
-        required: true
     alert_rule_id:
         description:
             - The unique Alert Rule OCID
             - Required to get a specific budget_alert_rule.
         type: str
         aliases: ["id"]
+    budget_id:
+        description:
+            - The unique Budget OCID
+        type: str
+        required: true
     sort_order:
         description:
             - The sort order to use, either 'asc' or 'desc'.
@@ -75,8 +75,8 @@ EXAMPLES = """
 - name: Get a specific budget_alert_rule
   oci_budget_alert_rule_facts:
     # required
-    budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
     alert_rule_id: "ocid1.alertrule.oc1..xxxxxxEXAMPLExxxxxx"
+    budget_id: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List budget_alert_rules
   oci_budget_alert_rule_facts:
@@ -281,8 +281,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            budget_id=dict(type="str", required=True),
             alert_rule_id=dict(aliases=["id"], type="str"),
+            budget_id=dict(type="str", required=True),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["timeCreated", "displayName"]),
             lifecycle_state=dict(type="str", choices=["ACTIVE", "INACTIVE"]),

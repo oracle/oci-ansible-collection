@@ -30,7 +30,7 @@ oracle.oci.oci_compute_image -- Manage an Image resource in Oracle Cloud Infrast
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -670,15 +670,12 @@ Examples
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
-        display_name: display_name_example
-        freeform_tags: {'Department': 'Finance'}
         image_source_details:
           # required
-          source_type: objectStorageTuple
           bucket_name: bucket_name_example
           namespace_name: namespace_name_example
           object_name: object_name_example
+          source_type: objectStorageTuple
 
           # optional
           operating_system: operating_system_example
@@ -686,6 +683,9 @@ Examples
           source_image_type: QCOW2
         instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
         launch_mode: NATIVE
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        display_name: display_name_example
+        freeform_tags: {'Department': 'Finance'}
 
     - name: Update image
       oci_compute_image:

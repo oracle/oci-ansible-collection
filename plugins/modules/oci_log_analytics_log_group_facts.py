@@ -29,17 +29,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    namespace_name:
-        description:
-            - The Logging Analytics namespace used for the request.
-        type: str
-        required: true
     log_analytics_log_group_id:
         description:
             - unique logAnalytics log group identifier
             - Required to get a specific log_analytics_log_group.
         type: str
         aliases: ["id"]
+    namespace_name:
+        description:
+            - The Logging Analytics namespace used for the request.
+        type: str
+        required: true
     compartment_id:
         description:
             - The ID of the compartment in which to list resources.
@@ -74,8 +74,8 @@ EXAMPLES = """
 - name: Get a specific log_analytics_log_group
   oci_log_analytics_log_group_facts:
     # required
-    namespace_name: namespace_name_example
     log_analytics_log_group_id: "ocid1.loganalyticsloggroup.oc1..xxxxxxEXAMPLExxxxxx"
+    namespace_name: namespace_name_example
 
 - name: List log_analytics_log_groups
   oci_log_analytics_log_group_facts:
@@ -236,8 +236,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            namespace_name=dict(type="str", required=True),
             log_analytics_log_group_id=dict(aliases=["id"], type="str"),
+            namespace_name=dict(type="str", required=True),
             compartment_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),

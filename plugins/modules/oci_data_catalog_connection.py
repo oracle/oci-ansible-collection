@@ -28,16 +28,11 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    catalog_id:
+    type_key:
         description:
-            - Unique catalog identifier.
+            - The key of the object type. Type key's can be found via the '/types' endpoint.
+            - Required for create using I(state=present).
         type: str
-        required: true
-    data_asset_key:
-        description:
-            - Unique data asset key.
-        type: str
-        required: true
     description:
         description:
             - A description of the connection.
@@ -52,11 +47,6 @@ options:
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
-    type_key:
-        description:
-            - The key of the object type. Type key's can be found via the '/types' endpoint.
-            - Required for create using I(state=present).
-        type: str
     custom_property_members:
         description:
             - The list of customized properties along with the values for this object
@@ -114,6 +104,16 @@ options:
               need to be updated not to be the default and then the new connection can then be created as the default.
             - This parameter is updatable.
         type: bool
+    catalog_id:
+        description:
+            - Unique catalog identifier.
+        type: str
+        required: true
+    data_asset_key:
+        description:
+            - Unique data asset key.
+        type: str
+        required: true
     connection_key:
         description:
             - Unique connection key.
@@ -136,11 +136,11 @@ EXAMPLES = """
 - name: Create connection
   oci_data_catalog_connection:
     # required
+    type_key: type_key_example
+    display_name: display_name_example
+    properties: null
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     data_asset_key: data_asset_key_example
-    display_name: display_name_example
-    type_key: type_key_example
-    properties: null
 
     # optional
     description: description_example
@@ -176,9 +176,9 @@ EXAMPLES = """
 - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_catalog_connection:
     # required
+    display_name: display_name_example
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     data_asset_key: data_asset_key_example
-    display_name: display_name_example
 
     # optional
     description: description_example
@@ -203,9 +203,9 @@ EXAMPLES = """
 - name: Delete connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_catalog_connection:
     # required
+    display_name: display_name_example
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     data_asset_key: data_asset_key_example
-    display_name: display_name_example
     state: absent
 
 """
@@ -612,11 +612,9 @@ def main():
     )
     module_args.update(
         dict(
-            catalog_id=dict(type="str", required=True),
-            data_asset_key=dict(type="str", required=True, no_log=True),
+            type_key=dict(type="str", no_log=True),
             description=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
-            type_key=dict(type="str", no_log=True),
             custom_property_members=dict(
                 type="list",
                 elements="dict",
@@ -630,6 +628,8 @@ def main():
             properties=dict(type="dict"),
             enc_properties=dict(type="dict"),
             is_default=dict(type="bool"),
+            catalog_id=dict(type="str", required=True),
+            data_asset_key=dict(type="str", required=True, no_log=True),
             connection_key=dict(type="str", no_log=True),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

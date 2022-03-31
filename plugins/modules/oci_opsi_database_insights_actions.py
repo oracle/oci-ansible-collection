@@ -41,16 +41,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    database_insight_id:
-        description:
-            - Unique database insight identifier
-            - Required for I(action=change), I(action=disable), I(action=enable).
-        type: str
-    compartment_id:
-        description:
-            - The OCID of the compartment into which the resource should be moved.
-            - Required for I(action=change).
-        type: str
     entity_source:
         description:
             - Source of the database entity.
@@ -58,6 +48,11 @@ options:
         type: str
         choices:
             - "EM_MANAGED_EXTERNAL_DATABASE"
+    database_insight_id:
+        description:
+            - Unique database insight identifier
+            - Required for I(action=change), I(action=disable), I(action=enable).
+        type: str
     items:
         description:
             - Array of one or more database configuration metrics objects.
@@ -65,29 +60,6 @@ options:
         type: list
         elements: dict
         suboptions:
-            metric_name:
-                description:
-                    - Name of the metric group.
-                type: str
-                choices:
-                    - "DB_OS_CONFIG_INSTANCE"
-                    - "DB_EXTERNAL_INSTANCE"
-                    - "DB_EXTERNAL_PROPERTIES"
-            time_collected:
-                description:
-                    - "Collection timestamp
-                      Example: `\\"2020-05-06T00:00:00.000Z\\"`"
-                type: str
-            instance_name:
-                description:
-                    - Name of the database instance.
-                    - Required when metric_name is one of ['DB_EXTERNAL_INSTANCE', 'DB_OS_CONFIG_INSTANCE']
-                type: str
-            host_name:
-                description:
-                    - Host name of the database instance.
-                    - Required when metric_name is one of ['DB_EXTERNAL_INSTANCE', 'DB_OS_CONFIG_INSTANCE']
-                type: str
             num_cp_us:
                 description:
                     - Total number of CPUs available.
@@ -108,6 +80,11 @@ options:
                     - Total number of bytes of physical memory.
                     - Applicable when metric_name is 'DB_OS_CONFIG_INSTANCE'
                 type: float
+            host_name:
+                description:
+                    - Host name of the database instance.
+                    - Required when metric_name is one of ['DB_EXTERNAL_INSTANCE', 'DB_OS_CONFIG_INSTANCE']
+                type: str
             cpu_count:
                 description:
                     - Total number of CPUs allocated for the host.
@@ -158,6 +135,14 @@ options:
                     - Start up time of the database instance.
                     - Applicable when metric_name is 'DB_EXTERNAL_INSTANCE'
                 type: str
+            metric_name:
+                description:
+                    - Name of the metric group.
+                type: str
+                choices:
+                    - "DB_OS_CONFIG_INSTANCE"
+                    - "DB_EXTERNAL_INSTANCE"
+                    - "DB_EXTERNAL_PROPERTIES"
             name:
                 description:
                     - Name of the database.
@@ -208,23 +193,10 @@ options:
                     - Creation time.
                     - Applicable when metric_name is 'DB_EXTERNAL_PROPERTIES'
                 type: str
-            version:
-                description:
-                    - "Version
-                      Example: `1`"
-                type: float
             database_type:
                 description:
                     - Operations Insights internal representation of the database type.
                 type: str
-            sql_identifier:
-                description:
-                    - Unique SQL_ID for a SQL Statement.
-                type: str
-            plan_hash:
-                description:
-                    - Plan hash value for the SQL Execution Plan
-                type: int
             bucket_id:
                 description:
                     - "SQL Bucket ID, examples <= 3 secs, 3-10 secs, 10-60 secs, 1-5 min, > 5 min
@@ -255,6 +227,10 @@ options:
                     - "Total time
                       Example: `30917`"
                 type: float
+            plan_hash:
+                description:
+                    - Plan hash value for the SQL Execution Plan
+                type: int
             operation:
                 description:
                     - "Operation
@@ -433,6 +409,11 @@ options:
                 description:
                     - Plan hash value for the SQL Execution Plan
                 type: int
+            instance_name:
+                description:
+                    - Name of the database instance.
+                    - Required when metric_name is one of ['DB_EXTERNAL_INSTANCE', 'DB_OS_CONFIG_INSTANCE']
+                type: str
             last_active_time:
                 description:
                     - "last_active_time
@@ -580,16 +561,6 @@ options:
                 description:
                     - Number of bytes written to disks by the monitored SQL
                 type: int
-            exact_matching_signature:
-                description:
-                    - "exact_matching_signature
-                      Example: `\\"18067345456756876713\\"`"
-                type: str
-            force_matching_signature:
-                description:
-                    - "force_matching_signature
-                      Example: `\\"18067345456756876713\\"`"
-                type: str
             io_cell_uncompressed_bytes:
                 description:
                     - Number of uncompressed bytes (that is, size after decompression) that are offloaded to the Exadata cells
@@ -687,10 +658,34 @@ options:
                 description:
                     - Total number of rows in SQLStats table
                 type: int
+            version:
+                description:
+                    - "Version
+                      Example: `1`"
+                type: float
+            sql_identifier:
+                description:
+                    - Unique SQL_ID for a SQL Statement.
+                type: str
+            time_collected:
+                description:
+                    - "Collection timestamp
+                      Example: `\\"2020-05-06T00:00:00.000Z\\"`"
+                type: str
             sql_command:
                 description:
                     - "SQL command
                       Example: `\\"SELECT\\"`"
+                type: str
+            exact_matching_signature:
+                description:
+                    - "exact_matching_signature
+                      Example: `\\"18067345456756876713\\"`"
+                type: str
+            force_matching_signature:
+                description:
+                    - "force_matching_signature
+                      Example: `\\"18067345456756876713\\"`"
                 type: str
             sql_full_text:
                 description:
@@ -699,6 +694,11 @@ options:
                       Disclaimer: SQL text being uploaded explicitly via APIs is not masked. Any sensitive literals contained in the sqlFullText column should
                       be masked prior to ingestion."
                 type: str
+    compartment_id:
+        description:
+            - The OCID of the compartment into which the resource should be moved.
+            - Required for I(action=change).
+        type: str
     database_id:
         description:
             - Optional L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the associated DBaaS entity.
@@ -752,16 +752,16 @@ EXAMPLES = """
     # required
     items:
     - # required
+      host_name: host_name_example
       metric_name: DB_OS_CONFIG_INSTANCE
       instance_name: instance_name_example
-      host_name: host_name_example
 
       # optional
-      time_collected: time_collected_example
       num_cp_us: 56
       num_cpu_cores: 56
       num_cpu_sockets: 56
       physical_memory_bytes: 3.4
+      time_collected: time_collected_example
     action: ingest_database_configuration
 
     # optional
@@ -774,19 +774,19 @@ EXAMPLES = """
     action: ingest_sql_bucket
 
     # optional
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     items:
     - # required
+      host_name: host_name_example
       metric_name: DB_OS_CONFIG_INSTANCE
       instance_name: instance_name_example
-      host_name: host_name_example
 
       # optional
-      time_collected: time_collected_example
       num_cp_us: 56
       num_cpu_cores: 56
       num_cpu_sockets: 56
       physical_memory_bytes: 3.4
+      time_collected: time_collected_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
 
@@ -796,19 +796,19 @@ EXAMPLES = """
     action: ingest_sql_plan_lines
 
     # optional
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     items:
     - # required
+      host_name: host_name_example
       metric_name: DB_OS_CONFIG_INSTANCE
       instance_name: instance_name_example
-      host_name: host_name_example
 
       # optional
-      time_collected: time_collected_example
       num_cp_us: 56
       num_cpu_cores: 56
       num_cpu_sockets: 56
       physical_memory_bytes: 3.4
+      time_collected: time_collected_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
 
@@ -820,16 +820,16 @@ EXAMPLES = """
     # optional
     items:
     - # required
+      host_name: host_name_example
       metric_name: DB_OS_CONFIG_INSTANCE
       instance_name: instance_name_example
-      host_name: host_name_example
 
       # optional
-      time_collected: time_collected_example
       num_cp_us: 56
       num_cpu_cores: 56
       num_cpu_sockets: 56
       physical_memory_bytes: 3.4
+      time_collected: time_collected_example
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
 
@@ -839,19 +839,19 @@ EXAMPLES = """
     action: ingest_sql_text
 
     # optional
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     items:
     - # required
+      host_name: host_name_example
       metric_name: DB_OS_CONFIG_INSTANCE
       instance_name: instance_name_example
-      host_name: host_name_example
 
       # optional
-      time_collected: time_collected_example
       num_cp_us: 56
       num_cpu_cores: 56
       num_cpu_sockets: 56
       physical_memory_bytes: 3.4
+      time_collected: time_collected_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
 
@@ -1375,28 +1375,17 @@ def main():
     )
     module_args.update(
         dict(
-            database_insight_id=dict(type="str"),
-            compartment_id=dict(type="str"),
             entity_source=dict(type="str", choices=["EM_MANAGED_EXTERNAL_DATABASE"]),
+            database_insight_id=dict(type="str"),
             items=dict(
                 type="list",
                 elements="dict",
                 options=dict(
-                    metric_name=dict(
-                        type="str",
-                        choices=[
-                            "DB_OS_CONFIG_INSTANCE",
-                            "DB_EXTERNAL_INSTANCE",
-                            "DB_EXTERNAL_PROPERTIES",
-                        ],
-                    ),
-                    time_collected=dict(type="str"),
-                    instance_name=dict(type="str"),
-                    host_name=dict(type="str"),
                     num_cp_us=dict(type="int"),
                     num_cpu_cores=dict(type="int"),
                     num_cpu_sockets=dict(type="int"),
                     physical_memory_bytes=dict(type="float"),
+                    host_name=dict(type="str"),
                     cpu_count=dict(type="int"),
                     host_memory_capacity=dict(type="float"),
                     db_external_instance_version=dict(type="str"),
@@ -1407,6 +1396,14 @@ def main():
                     status=dict(type="str"),
                     edition=dict(type="str"),
                     startup_time=dict(type="str"),
+                    metric_name=dict(
+                        type="str",
+                        choices=[
+                            "DB_OS_CONFIG_INSTANCE",
+                            "DB_EXTERNAL_INSTANCE",
+                            "DB_EXTERNAL_PROPERTIES",
+                        ],
+                    ),
                     name=dict(type="str"),
                     log_mode=dict(type="str"),
                     cdb=dict(type="str"),
@@ -1417,16 +1414,14 @@ def main():
                     control_file_type=dict(type="str"),
                     switchover_status=dict(type="str"),
                     created=dict(type="str"),
-                    version=dict(type="float"),
                     database_type=dict(type="str"),
-                    sql_identifier=dict(type="str"),
-                    plan_hash=dict(type="int"),
                     bucket_id=dict(type="str"),
                     executions_count=dict(type="int"),
                     cpu_time_in_sec=dict(type="float"),
                     io_time_in_sec=dict(type="float"),
                     other_wait_time_in_sec=dict(type="float"),
                     total_time_in_sec=dict(type="float"),
+                    plan_hash=dict(type="int"),
                     operation=dict(type="str"),
                     remark=dict(type="str"),
                     options=dict(type="str"),
@@ -1461,6 +1456,7 @@ def main():
                     elapsed_time_in_sec=dict(type="float"),
                     other_xml=dict(type="str"),
                     plan_hash_value=dict(type="int"),
+                    instance_name=dict(type="str"),
                     last_active_time=dict(type="str"),
                     parse_calls=dict(type="int"),
                     disk_reads=dict(type="int"),
@@ -1497,8 +1493,6 @@ def main():
                     physical_read_bytes=dict(type="int"),
                     physical_write_requests=dict(type="int"),
                     physical_write_bytes=dict(type="int"),
-                    exact_matching_signature=dict(type="str"),
-                    force_matching_signature=dict(type="str"),
                     io_cell_uncompressed_bytes=dict(type="int"),
                     io_cell_offload_returned_bytes=dict(type="int"),
                     child_number=dict(type="int"),
@@ -1523,10 +1517,16 @@ def main():
                     harmonic_sum=dict(type="int"),
                     wt_harmonic_sum=dict(type="int"),
                     total_sql_count=dict(type="int"),
+                    version=dict(type="float"),
+                    sql_identifier=dict(type="str"),
+                    time_collected=dict(type="str"),
                     sql_command=dict(type="str"),
+                    exact_matching_signature=dict(type="str"),
+                    force_matching_signature=dict(type="str"),
                     sql_full_text=dict(type="str"),
                 ),
             ),
+            compartment_id=dict(type="str"),
             database_id=dict(type="str"),
             id=dict(type="str"),
             action=dict(

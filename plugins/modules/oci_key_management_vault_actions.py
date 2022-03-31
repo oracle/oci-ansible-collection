@@ -64,12 +64,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    vault_id:
-        description:
-            - The OCID of the vault.
-        type: str
-        aliases: ["id"]
-        required: true
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment to move the vault to.
@@ -80,6 +74,12 @@ options:
             - The region in the realm to which the vault need to be replicated to
             - Required for I(action=create_vault_replica), I(action=delete_vault_replica).
         type: str
+    vault_id:
+        description:
+            - The OCID of the vault.
+        type: str
+        aliases: ["id"]
+        required: true
     time_of_deletion:
         description:
             - An optional property indicating when to delete the vault, expressed in
@@ -113,22 +113,22 @@ EXAMPLES = """
 - name: Perform action change_compartment on vault
   oci_key_management_vault_actions:
     # required
-    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action create_vault_replica on vault
   oci_key_management_vault_actions:
     # required
-    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     replica_region: us-phoenix-1
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     action: create_vault_replica
 
 - name: Perform action delete_vault_replica on vault
   oci_key_management_vault_actions:
     # required
-    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     replica_region: us-phoenix-1
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     action: delete_vault_replica
 
 - name: Perform action schedule_vault_deletion on vault
@@ -442,9 +442,9 @@ def main():
     )
     module_args.update(
         dict(
-            vault_id=dict(aliases=["id"], type="str", required=True),
             compartment_id=dict(type="str"),
             replica_region=dict(type="str"),
+            vault_id=dict(aliases=["id"], type="str", required=True),
             time_of_deletion=dict(type="str"),
             action=dict(
                 type="str",

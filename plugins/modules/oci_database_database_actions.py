@@ -35,12 +35,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    database_id:
+    kms_key_id:
         description:
-            - The database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+            - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
+            - Required for I(action=migrate_vault_key).
         type: str
-        aliases: ["id"]
-        required: true
+    kms_key_version_id:
+        description:
+            - The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key
+              versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.
+            - Applicable only for I(action=migrate_vault_key).
+        type: str
     credential_details:
         description:
             - ""
@@ -76,17 +81,6 @@ options:
             - The name of the Oracle Database service that will be used to connect to the database.
             - Required for I(action=enable_database_management).
         type: str
-    kms_key_id:
-        description:
-            - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
-            - Required for I(action=migrate_vault_key).
-        type: str
-    kms_key_version_id:
-        description:
-            - The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key
-              versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.
-            - Applicable only for I(action=migrate_vault_key).
-        type: str
     database_scn:
         description:
             - Restores using the backup with the System Change Number (SCN) specified.
@@ -102,6 +96,12 @@ options:
             - Restores to the last known good state with the least possible data loss.
             - Applicable only for I(action=restore).
         type: bool
+    database_id:
+        description:
+            - The database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+        type: str
+        aliases: ["id"]
+        required: true
     action:
         description:
             - The action to perform on the Database.
@@ -123,6 +123,17 @@ options:
             - Applicable only for I(action=upgrade).
         type: dict
         suboptions:
+            db_home_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Home.
+                    - Required when source is 'DB_HOME'
+                type: str
+            database_software_image_id:
+                description:
+                    - The database software image L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the image to be used to
+                      upgrade a database.
+                    - Required when source is 'DB_SOFTWARE_IMAGE'
+                type: str
             source:
                 description:
                     - "The source of the Oracle Database software to be used for the upgrade.
@@ -141,17 +152,6 @@ options:
                 description:
                     - "Additional upgrade options supported by DBUA(Database Upgrade Assistant).
                       Example: \\"-upgradeTimezone false -keepEvents\\""
-                type: str
-            db_home_id:
-                description:
-                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Home.
-                    - Required when source is 'DB_HOME'
-                type: str
-            database_software_image_id:
-                description:
-                    - The database software image L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the image to be used to
-                      upgrade a database.
-                    - Required when source is 'DB_SOFTWARE_IMAGE'
                 type: str
             db_version:
                 description:
@@ -172,13 +172,13 @@ EXAMPLES = """
 - name: Perform action enable_database_management on database
   oci_database_database_actions:
     # required
-    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     credential_details:
       # required
       user_name: user_name_example
       password_secret_id: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
     private_end_point_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
     service_name: service_name_example
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     action: enable_database_management
 
     # optional
@@ -187,8 +187,8 @@ EXAMPLES = """
 - name: Perform action migrate_vault_key on database
   oci_database_database_actions:
     # required
-    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     action: migrate_vault_key
 
     # optional
@@ -235,8 +235,8 @@ EXAMPLES = """
     # optional
     database_upgrade_source_details:
       # required
-      source: DB_HOME
       db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
+      source: DB_HOME
 
       # optional
       options: options_example
@@ -250,8 +250,8 @@ EXAMPLES = """
     # optional
     database_upgrade_source_details:
       # required
-      source: DB_HOME
       db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
+      source: DB_HOME
 
       # optional
       options: options_example
@@ -265,8 +265,8 @@ EXAMPLES = """
     # optional
     database_upgrade_source_details:
       # required
-      source: DB_HOME
       db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
+      source: DB_HOME
 
       # optional
       options: options_example
@@ -783,7 +783,8 @@ def main():
     )
     module_args.update(
         dict(
-            database_id=dict(aliases=["id"], type="str", required=True),
+            kms_key_id=dict(type="str"),
+            kms_key_version_id=dict(type="str"),
             credential_details=dict(
                 type="dict",
                 options=dict(
@@ -794,11 +795,10 @@ def main():
             private_end_point_id=dict(type="str"),
             management_type=dict(type="str", choices=["BASIC", "ADVANCED"]),
             service_name=dict(type="str"),
-            kms_key_id=dict(type="str"),
-            kms_key_version_id=dict(type="str"),
             database_scn=dict(type="str"),
             timestamp=dict(type="str"),
             latest=dict(type="bool"),
+            database_id=dict(aliases=["id"], type="str", required=True),
             action=dict(
                 type="str",
                 required=True,
@@ -817,14 +817,14 @@ def main():
             database_upgrade_source_details=dict(
                 type="dict",
                 options=dict(
+                    db_home_id=dict(type="str"),
+                    database_software_image_id=dict(type="str"),
                     source=dict(
                         type="str",
                         required=True,
                         choices=["DB_HOME", "DB_SOFTWARE_IMAGE", "DB_VERSION"],
                     ),
                     options=dict(type="str"),
-                    db_home_id=dict(type="str"),
-                    database_software_image_id=dict(type="str"),
                     db_version=dict(type="str"),
                 ),
             ),

@@ -30,12 +30,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    blockchain_platform_id:
-        description:
-            - Unique service identifier.
-        type: str
-        aliases: ["id"]
-        required: true
     compartment_id:
         description:
             - The OCID of the new compartment.
@@ -46,6 +40,12 @@ options:
             - The patch ID corresponding to the version to which platform will be upgraded.
             - Required for I(action=upgrade).
         type: str
+    blockchain_platform_id:
+        description:
+            - Unique service identifier.
+        type: str
+        aliases: ["id"]
+        required: true
     action:
         description:
             - The action to perform on the BlockchainPlatform.
@@ -63,8 +63,8 @@ EXAMPLES = """
 - name: Perform action change_compartment on blockchain_platform
   oci_blockchain_platform_actions:
     # required
-    blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action start on blockchain_platform
@@ -82,8 +82,8 @@ EXAMPLES = """
 - name: Perform action upgrade on blockchain_platform
   oci_blockchain_platform_actions:
     # required
-    blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
     patch_id: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
+    blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
     action: upgrade
 
 """
@@ -570,9 +570,9 @@ def main():
     )
     module_args.update(
         dict(
-            blockchain_platform_id=dict(aliases=["id"], type="str", required=True),
             compartment_id=dict(type="str"),
             patch_id=dict(type="str"),
+            blockchain_platform_id=dict(aliases=["id"], type="str", required=True),
             action=dict(
                 type="str",
                 required=True,

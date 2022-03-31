@@ -34,13 +34,6 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
-    name:
-        description:
-            - The name assigned to the profile. Avoid entering confidential information.
-            - Required for create using I(state=present).
-            - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
     description:
         description:
             - Text describing the profile. Avoid entering confidential information.
@@ -140,6 +133,13 @@ options:
                             - The list of tag values. The tag value is the value that the user applying the tag adds to the tag key.
                         type: list
                         elements: str
+    name:
+        description:
+            - The name assigned to the profile. Avoid entering confidential information.
+            - Required for create using I(state=present).
+            - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
     profile_id:
         description:
             - The unique OCID of the profile.
@@ -164,7 +164,6 @@ EXAMPLES = """
   oci_optimizer_profile:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    name: name_example
     description: description_example
     levels_configuration:
       # optional
@@ -172,6 +171,7 @@ EXAMPLES = """
       - # optional
         recommendation_id: "ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx"
         level: level_example
+    name: name_example
 
     # optional
     aggregation_interval_in_days: 56
@@ -197,7 +197,6 @@ EXAMPLES = """
     profile_id: "ocid1.profile.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    name: name_example
     description: description_example
     aggregation_interval_in_days: 56
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -221,6 +220,7 @@ EXAMPLES = """
 
         # optional
         tag_values: [ "tag_values_example" ]
+    name: name_example
 
 - name: Update profile using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_optimizer_profile:
@@ -600,7 +600,6 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
-            name=dict(type="str"),
             description=dict(type="str"),
             aggregation_interval_in_days=dict(type="int"),
             defined_tags=dict(type="dict"),
@@ -639,6 +638,7 @@ def main():
                     )
                 ),
             ),
+            name=dict(type="str"),
             profile_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

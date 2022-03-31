@@ -1,0 +1,49 @@
+---
+# Copyright (c) 2020, 2022 Oracle and/or its affiliates.
+# This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
+# GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
+# Apache License v2.0
+# See LICENSE.TXT for details.
+
+# NOTE: Running `teardown.yaml` alone will not delete the autonomous db and autonomous container database created in `sample_dedicated.yaml`.
+# This playbook uses the `autonomous_database_id` and `autonomous_container_database_id` parameter that is being set in `sample_dedicated.yaml`.
+
+# Delete the ADB
+- name: Delete Autonomous Database
+  oci_database_autonomous_database:
+     autonomous_database_id: "{{ autonomous_database_id }}"
+     state: 'absent'
+  register: result
+  when: autonomous_database_id is defined
+
+- name: Assert that specified Autonomous Database is deleted
+  assert:
+         that:
+            - result.changed == True
+            - result.autonomous_database.display_name == adb_display_name
+  when: autonomous_database_id is defined
+
+#Wait for the created ACD to be in available state.  After ACD creation a backup is taken and termination cannot be done until the backup is completed.
+- name: Wait for autonomous container database to be in active state
+  oci_database_autonomous_container_database_facts:
+    autonomous_container_database_id: "{{ autonomous_container_database_id }}"
+  register: result
+  until: result.autonomous_container_databases[0].lifecycle_state == "AVAILABLE"
+  retries: 15
+  delay: 300
+  when: autonomous_container_database_id is defined
+
+#Delete the ACD
+- name: Delete autonomous_container_database
+  oci_database_autonomous_container_database:
+     autonomous_container_database_id: "{{ autonomous_container_database_id }}"
+     state: 'absent'
+  register: result
+  when: autonomous_container_database_id is defined
+
+- name: Assert that specified Autonomous Container Database is deleted
+  assert:
+         that:
+            - result.changed == True
+            - result.autonomous_container_database.display_name == acd_display_name
+  when: autonomous_database_id is defined

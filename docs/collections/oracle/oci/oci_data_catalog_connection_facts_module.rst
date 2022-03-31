@@ -30,7 +30,7 @@ oracle.oci.oci_data_catalog_connection_facts -- Fetches details about one or mul
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -537,9 +537,9 @@ Examples
     - name: Get a specific connection
       oci_data_catalog_connection_facts:
         # required
+        connection_key: connection_key_example
         catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         data_asset_key: data_asset_key_example
-        connection_key: connection_key_example
 
         # optional
         fields: [ "key" ]
@@ -551,7 +551,6 @@ Examples
         data_asset_key: data_asset_key_example
 
         # optional
-        fields: [ "key" ]
         display_name: display_name_example
         display_name_contains: display_name_contains_example
         lifecycle_state: CREATING
@@ -562,6 +561,7 @@ Examples
         external_key: external_key_example
         time_status_updated: 2013-10-20T19:20:30+01:00
         is_default: true
+        fields: [ "key" ]
         sort_by: TIMECREATED
         sort_order: ASC
 

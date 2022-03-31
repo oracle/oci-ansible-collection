@@ -28,6 +28,13 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the containing Compartment.
+            - Required for create using I(state=present).
+            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+        type: str
     display_name:
         description:
             - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
@@ -37,13 +44,6 @@ options:
             - Applicable when type is 'ORACLE_DATABASE'
         type: str
         aliases: ["name"]
-    compartment_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the containing Compartment.
-            - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-        type: str
     defined_tags:
         description:
             - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
@@ -321,8 +321,8 @@ EXAMPLES = """
 - name: Delete database_tools_connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_tools_connection:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -723,8 +723,8 @@ def main():
     )
     module_args.update(
         dict(
-            display_name=dict(aliases=["name"], type="str"),
             compartment_id=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
             defined_tags=dict(type="dict"),
             freeform_tags=dict(type="dict"),
             type=dict(type="str", choices=["ORACLE_DATABASE"]),

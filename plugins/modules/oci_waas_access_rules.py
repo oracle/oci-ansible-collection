@@ -260,6 +260,13 @@ options:
                 type: list
                 elements: dict
                 suboptions:
+                    value:
+                        description:
+                            - A header field value that conforms to RFC 7230.
+                            - "Example: `example_value`"
+                            - This parameter is updatable.
+                            - Required when action is one of ['ADD_HTTP_RESPONSE_HEADER', 'EXTEND_HTTP_RESPONSE_HEADER']
+                        type: str
                     action:
                         description:
                             - ""
@@ -277,13 +284,6 @@ options:
                             - This parameter is updatable.
                         type: str
                         required: true
-                    value:
-                        description:
-                            - A header field value that conforms to RFC 7230.
-                            - "Example: `example_value`"
-                            - This parameter is updatable.
-                            - Required when action is one of ['ADD_HTTP_RESPONSE_HEADER', 'EXTEND_HTTP_RESPONSE_HEADER']
-                        type: str
     state:
         description:
             - The state of the AccessRules.
@@ -327,9 +327,9 @@ EXAMPLES = """
       captcha_submit_label: captcha_submit_label_example
       response_header_manipulation:
       - # required
+        value: value_example
         action: EXTEND_HTTP_RESPONSE_HEADER
         header: header_example
-        value: value_example
 
 """
 
@@ -774,6 +774,7 @@ def main():
                         type="list",
                         elements="dict",
                         options=dict(
+                            value=dict(type="str"),
                             action=dict(
                                 type="str",
                                 required=True,
@@ -784,7 +785,6 @@ def main():
                                 ],
                             ),
                             header=dict(type="str", required=True),
-                            value=dict(type="str"),
                         ),
                     ),
                 ),

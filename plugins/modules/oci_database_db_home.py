@@ -28,6 +28,11 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    db_system_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.
+            - Required when source is one of ['DATABASE', 'NONE', 'DB_BACKUP']
+        type: str
     display_name:
         description:
             - The user-provided name of the Database Home.
@@ -62,10 +67,16 @@ options:
         description:
             - If true, the customer acknowledges that the specified Oracle Database software is an older release that is not currently supported by OCI.
         type: bool
-    db_system_id:
+    vm_cluster_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.
-            - Required when source is one of ['DATABASE', 'NONE', 'DB_BACKUP']
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VM cluster.
+            - Required when source is one of ['VM_CLUSTER_BACKUP', 'VM_CLUSTER_NEW']
+        type: str
+    db_version:
+        description:
+            - A valid Oracle Database version. To get a list of supported versions, use the L(ListDbVersions,https://docs.cloud.oracle.com/en-
+              us/iaas/api/#/en/database/latest/DbVersionSummary/ListDbVersions) operation.
+            - Applicable when source is one of ['VM_CLUSTER_NEW', 'NONE']
         type: str
     database:
         description:
@@ -78,27 +89,6 @@ options:
                     - The database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
                     - Required when source is 'DATABASE'
                 type: str
-            backup_tde_password:
-                description:
-                    - The password to open the TDE wallet.
-                    - Applicable when source is one of ['VM_CLUSTER_BACKUP', 'DATABASE', 'DB_BACKUP']
-                type: str
-            admin_password:
-                description:
-                    - "A strong password for SYS, SYSTEM, PDB Admin and TDE Wallet. The password must be at least nine characters and contain at least two
-                      uppercase, two lowercase, two numbers, and two special characters. The special characters must be _, #, or -."
-                type: str
-                required: true
-            db_unique_name:
-                description:
-                    - The `DB_UNIQUE_NAME` of the Oracle Database being backed up.
-                type: str
-            db_name:
-                description:
-                    - The display name of the database to be created from the backup. It must begin with an alphabetic character and can contain a maximum of
-                      eight alphanumeric characters. Special characters are not permitted.
-                    - Required when source is one of ['VM_CLUSTER_NEW', 'NONE']
-                type: str
             time_stamp_for_point_in_time_recovery:
                 description:
                     - The point in time of the original database from which the new database is created. If not specifed, the latest backup is used to create
@@ -110,10 +100,20 @@ options:
                     - The backup L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
                     - Required when source is one of ['VM_CLUSTER_BACKUP', 'DB_BACKUP']
                 type: str
-            sid_prefix:
+            backup_tde_password:
                 description:
-                    - Specifies a prefix for the `Oracle SID` of the database to be created.
-                    - Applicable when source is one of ['VM_CLUSTER_BACKUP', 'VM_CLUSTER_NEW', 'NONE', 'DB_BACKUP']
+                    - The password to open the TDE wallet.
+                    - Applicable when source is one of ['VM_CLUSTER_BACKUP', 'DATABASE', 'DB_BACKUP']
+                type: str
+            db_name:
+                description:
+                    - The display name of the database to be created from the backup. It must begin with an alphabetic character and can contain a maximum of
+                      eight alphanumeric characters. Special characters are not permitted.
+                    - Required when source is one of ['VM_CLUSTER_NEW', 'NONE']
+                type: str
+            db_unique_name:
+                description:
+                    - The `DB_UNIQUE_NAME` of the Oracle Database being backed up.
                 type: str
             database_software_image_id:
                 description:
@@ -126,6 +126,12 @@ options:
                       characters. Special characters are not permitted. Pluggable database should not be same as database name.
                     - Applicable when source is one of ['VM_CLUSTER_NEW', 'NONE']
                 type: str
+            admin_password:
+                description:
+                    - "A strong password for SYS, SYSTEM, PDB Admin and TDE Wallet. The password must be at least nine characters and contain at least two
+                      uppercase, two lowercase, two numbers, and two special characters. The special characters must be _, #, or -."
+                type: str
+                required: true
             tde_wallet_password:
                 description:
                     - "The optional password to open the TDE wallet. The password must be at least nine characters and contain at least two uppercase, two
@@ -256,24 +262,11 @@ options:
                       For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
                     - Applicable when source is one of ['VM_CLUSTER_NEW', 'NONE']
                 type: dict
-    vm_cluster_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VM cluster.
-            - Required when source is one of ['VM_CLUSTER_BACKUP', 'VM_CLUSTER_NEW']
-        type: str
-    db_version:
-        description:
-            - A valid Oracle Database version. To get a list of supported versions, use the L(ListDbVersions,https://docs.cloud.oracle.com/en-
-              us/iaas/api/#/en/database/latest/DbVersionSummary/ListDbVersions) operation.
-            - Applicable when source is one of ['VM_CLUSTER_NEW', 'NONE']
-        type: str
-    db_home_id:
-        description:
-            - The Database Home L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-            - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["id"]
+            sid_prefix:
+                description:
+                    - Specifies a prefix for the `Oracle SID` of the database to be created.
+                    - Applicable when source is one of ['VM_CLUSTER_BACKUP', 'VM_CLUSTER_NEW', 'NONE', 'DB_BACKUP']
+                type: str
     patch_details:
         description:
             - ""
@@ -304,6 +297,13 @@ options:
             - This parameter is updatable.
         type: list
         elements: str
+    db_home_id:
+        description:
+            - The Database Home L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+            - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["id"]
     perform_final_backup:
         description:
             - Whether to perform a final backup of the database or not. Default is false.
@@ -335,20 +335,19 @@ EXAMPLES = """
 - name: Create db_home with source = DATABASE
   oci_database_db_home:
     # required
-    source: DATABASE
     db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+    source: DATABASE
     database:
       # required
       admin_password: example-password
 
       # optional
       database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-      backup_tde_password: example-password
-      db_unique_name: db_unique_name_example
-      db_name: db_name_example
       time_stamp_for_point_in_time_recovery: time_stamp_for_point_in_time_recovery_example
       backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
-      sid_prefix: sid_prefix_example
+      backup_tde_password: example-password
+      db_name: db_name_example
+      db_unique_name: db_unique_name_example
       database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
       pdb_name: pdb_name_example
       tde_wallet_password: example-password
@@ -371,6 +370,7 @@ EXAMPLES = """
           internet_proxy: internet_proxy_example
       freeform_tags: {'Department': 'Finance'}
       defined_tags: {'Operations': {'CostCenter': 'US'}}
+      sid_prefix: sid_prefix_example
 
     # optional
     display_name: display_name_example
@@ -382,20 +382,19 @@ EXAMPLES = """
 - name: Create db_home with source = DB_BACKUP
   oci_database_db_home:
     # required
-    source: DB_BACKUP
     db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+    source: DB_BACKUP
     database:
       # required
       admin_password: example-password
 
       # optional
       database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-      backup_tde_password: example-password
-      db_unique_name: db_unique_name_example
-      db_name: db_name_example
       time_stamp_for_point_in_time_recovery: time_stamp_for_point_in_time_recovery_example
       backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
-      sid_prefix: sid_prefix_example
+      backup_tde_password: example-password
+      db_name: db_name_example
+      db_unique_name: db_unique_name_example
       database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
       pdb_name: pdb_name_example
       tde_wallet_password: example-password
@@ -418,6 +417,7 @@ EXAMPLES = """
           internet_proxy: internet_proxy_example
       freeform_tags: {'Department': 'Finance'}
       defined_tags: {'Operations': {'CostCenter': 'US'}}
+      sid_prefix: sid_prefix_example
 
     # optional
     display_name: display_name_example
@@ -430,18 +430,18 @@ EXAMPLES = """
   oci_database_db_home:
     # required
     source: VM_CLUSTER_BACKUP
+    vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
     database:
       # required
       admin_password: example-password
 
       # optional
       database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-      backup_tde_password: example-password
-      db_unique_name: db_unique_name_example
-      db_name: db_name_example
       time_stamp_for_point_in_time_recovery: time_stamp_for_point_in_time_recovery_example
       backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
-      sid_prefix: sid_prefix_example
+      backup_tde_password: example-password
+      db_name: db_name_example
+      db_unique_name: db_unique_name_example
       database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
       pdb_name: pdb_name_example
       tde_wallet_password: example-password
@@ -464,7 +464,7 @@ EXAMPLES = """
           internet_proxy: internet_proxy_example
       freeform_tags: {'Department': 'Finance'}
       defined_tags: {'Operations': {'CostCenter': 'US'}}
-    vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
+      sid_prefix: sid_prefix_example
 
     # optional
     display_name: display_name_example
@@ -485,18 +485,18 @@ EXAMPLES = """
     database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
     source: NONE
     is_desupported_version: true
+    db_version: db_version_example
     database:
       # required
       admin_password: example-password
 
       # optional
       database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-      backup_tde_password: example-password
-      db_unique_name: db_unique_name_example
-      db_name: db_name_example
       time_stamp_for_point_in_time_recovery: time_stamp_for_point_in_time_recovery_example
       backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
-      sid_prefix: sid_prefix_example
+      backup_tde_password: example-password
+      db_name: db_name_example
+      db_unique_name: db_unique_name_example
       database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
       pdb_name: pdb_name_example
       tde_wallet_password: example-password
@@ -519,7 +519,7 @@ EXAMPLES = """
           internet_proxy: internet_proxy_example
       freeform_tags: {'Department': 'Finance'}
       defined_tags: {'Operations': {'CostCenter': 'US'}}
-    db_version: db_version_example
+      sid_prefix: sid_prefix_example
 
 - name: Create db_home with source = VM_CLUSTER_NEW
   oci_database_db_home:
@@ -533,18 +533,18 @@ EXAMPLES = """
     kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
     database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
     is_desupported_version: true
+    db_version: db_version_example
     database:
       # required
       admin_password: example-password
 
       # optional
       database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-      backup_tde_password: example-password
-      db_unique_name: db_unique_name_example
-      db_name: db_name_example
       time_stamp_for_point_in_time_recovery: time_stamp_for_point_in_time_recovery_example
       backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
-      sid_prefix: sid_prefix_example
+      backup_tde_password: example-password
+      db_name: db_name_example
+      db_unique_name: db_unique_name_example
       database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
       pdb_name: pdb_name_example
       tde_wallet_password: example-password
@@ -567,7 +567,7 @@ EXAMPLES = """
           internet_proxy: internet_proxy_example
       freeform_tags: {'Department': 'Finance'}
       defined_tags: {'Operations': {'CostCenter': 'US'}}
-    db_version: db_version_example
+      sid_prefix: sid_prefix_example
 
 - name: Update db_home
   oci_database_db_home:
@@ -889,6 +889,7 @@ def main():
     )
     module_args.update(
         dict(
+            db_system_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             kms_key_id=dict(type="str"),
             kms_key_version_id=dict(type="str"),
@@ -905,20 +906,20 @@ def main():
                 ],
             ),
             is_desupported_version=dict(type="bool"),
-            db_system_id=dict(type="str"),
+            vm_cluster_id=dict(type="str"),
+            db_version=dict(type="str"),
             database=dict(
                 type="dict",
                 options=dict(
                     database_id=dict(type="str"),
-                    backup_tde_password=dict(type="str", no_log=True),
-                    admin_password=dict(type="str", required=True, no_log=True),
-                    db_unique_name=dict(type="str"),
-                    db_name=dict(type="str"),
                     time_stamp_for_point_in_time_recovery=dict(type="str"),
                     backup_id=dict(type="str"),
-                    sid_prefix=dict(type="str"),
+                    backup_tde_password=dict(type="str", no_log=True),
+                    db_name=dict(type="str"),
+                    db_unique_name=dict(type="str"),
                     database_software_image_id=dict(type="str"),
                     pdb_name=dict(type="str"),
+                    admin_password=dict(type="str", required=True, no_log=True),
                     tde_wallet_password=dict(type="str", no_log=True),
                     character_set=dict(type="str"),
                     ncharacter_set=dict(type="str"),
@@ -969,11 +970,9 @@ def main():
                     ),
                     freeform_tags=dict(type="dict"),
                     defined_tags=dict(type="dict"),
+                    sid_prefix=dict(type="str"),
                 ),
             ),
-            vm_cluster_id=dict(type="str"),
-            db_version=dict(type="str"),
-            db_home_id=dict(aliases=["id"], type="str"),
             patch_details=dict(
                 type="dict",
                 options=dict(
@@ -983,6 +982,7 @@ def main():
                 ),
             ),
             one_off_patches=dict(type="list", elements="str"),
+            db_home_id=dict(aliases=["id"], type="str"),
             perform_final_backup=dict(type="bool"),
             compartment_id=dict(type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),

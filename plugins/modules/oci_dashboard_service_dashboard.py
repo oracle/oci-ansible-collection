@@ -85,6 +85,13 @@ options:
             - Applicable when schema_version is 'V1'
         type: list
         elements: dict
+    dashboard_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the dashboard.
+            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+            - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["id"]
     opc_cross_region:
         description:
             - "To identify if the call is cross-regional. In CRUD calls for a resource, to
@@ -94,13 +101,6 @@ options:
               For same-region calls, the value is unassigned."
             - This parameter is updatable.
         type: str
-    dashboard_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the dashboard.
-            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-            - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["id"]
     state:
         description:
             - The state of the Dashboard.
@@ -470,8 +470,8 @@ def main():
             defined_tags=dict(type="dict"),
             config=dict(type="dict"),
             widgets=dict(type="list", elements="dict"),
-            opc_cross_region=dict(type="str"),
             dashboard_id=dict(aliases=["id"], type="str"),
+            opc_cross_region=dict(type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

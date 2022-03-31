@@ -28,16 +28,16 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    managed_database_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Managed Database.
-        type: str
-        required: true
     tablespace_name:
         description:
             - The name of the tablespace.
             - Required to get a specific tablespace.
         type: str
+    managed_database_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Managed Database.
+        type: str
+        required: true
     name:
         description:
             - A filter to return only resources that match the entire name.
@@ -65,8 +65,8 @@ EXAMPLES = """
 - name: Get a specific tablespace
   oci_database_management_tablespace_facts:
     # required
-    managed_database_id: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
     tablespace_name: tablespace_name_example
+    managed_database_id: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List tablespaces
   oci_database_management_tablespace_facts:
@@ -548,8 +548,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            managed_database_id=dict(type="str", required=True),
             tablespace_name=dict(type="str"),
+            managed_database_id=dict(type="str", required=True),
             name=dict(type="str"),
             sort_by=dict(type="str", choices=["TIMECREATED", "NAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),

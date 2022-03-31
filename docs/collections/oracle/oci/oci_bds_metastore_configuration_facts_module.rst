@@ -30,7 +30,7 @@ oracle.oci.oci_bds_metastore_configuration_facts -- Fetches details about one or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -416,8 +416,8 @@ Examples
     - name: Get a specific bds_metastore_configuration
       oci_bds_metastore_configuration_facts:
         # required
-        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         metastore_config_id: "ocid1.metastoreconfig.oc1..xxxxxxEXAMPLExxxxxx"
+        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: List bds_metastore_configurations
       oci_bds_metastore_configuration_facts:

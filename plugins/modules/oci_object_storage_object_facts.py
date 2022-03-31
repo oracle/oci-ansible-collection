@@ -41,17 +41,6 @@ options:
               overwritten.
             - Required to get a specific object.
         type: str
-    namespace_name:
-        description:
-            - The Object Storage namespace used for the request.
-        type: str
-        required: true
-    bucket_name:
-        description:
-            - "The name of the bucket. Avoid entering confidential information.
-              Example: `my-new-bucket1`"
-        type: str
-        required: true
     object_name:
         description:
             - "The name of the object. Avoid entering confidential information.
@@ -108,6 +97,17 @@ options:
         description:
             - Specify this query parameter to override the Expires response header in the GetObject response.
         type: str
+    namespace_name:
+        description:
+            - The Object Storage namespace used for the request.
+        type: str
+        required: true
+    bucket_name:
+        description:
+            - "The name of the bucket. Avoid entering confidential information.
+              Example: `my-new-bucket1`"
+        type: str
+        required: true
     prefix:
         description:
             - The string to use for matching against the start of object names in a list query.
@@ -144,9 +144,9 @@ EXAMPLES = """
   oci_object_storage_object_facts:
     # required
     dest: /tmp/myfile
+    object_name: object_name_example
     namespace_name: namespace_name_example
     bucket_name: bucket_name_example
-    object_name: object_name_example
 
     # optional
     version_id: "ocid1.version.oc1..xxxxxxEXAMPLExxxxxx"
@@ -335,8 +335,6 @@ def main():
     module_args.update(
         dict(
             dest=dict(type="str"),
-            namespace_name=dict(type="str", required=True),
-            bucket_name=dict(type="str", required=True),
             object_name=dict(type="str"),
             version_id=dict(type="str"),
             range=dict(type="str"),
@@ -349,6 +347,8 @@ def main():
             http_response_content_language=dict(type="str"),
             http_response_content_encoding=dict(type="str"),
             http_response_expires=dict(type="str"),
+            namespace_name=dict(type="str", required=True),
+            bucket_name=dict(type="str", required=True),
             prefix=dict(type="str"),
             start=dict(type="str"),
             end=dict(type="str"),

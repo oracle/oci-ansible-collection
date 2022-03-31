@@ -30,7 +30,7 @@ oracle.oci.oci_blockstorage_volume_group_backup_actions -- Perform actions on a 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -392,8 +392,8 @@ Examples
     - name: Perform action change_compartment on volume_group_backup
       oci_blockstorage_volume_group_backup_actions:
         # required
-        volume_group_backup_id: "ocid1.volumegroupbackup.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        volume_group_backup_id: "ocid1.volumegroupbackup.oc1..xxxxxxEXAMPLExxxxxx"
         action: change_compartment
 
     - name: Perform action copy on volume_group_backup

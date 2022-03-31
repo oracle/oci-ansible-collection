@@ -30,7 +30,7 @@ oracle.oci.oci_devops_project -- Manage a Project resource in Oracle Cloud Infra
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -481,10 +481,10 @@ Examples
       oci_devops_project:
         # required
         name: name_example
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         notification_config:
           # required
           topic_id: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         description: description_example

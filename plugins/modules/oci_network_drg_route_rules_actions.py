@@ -29,6 +29,12 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    route_rule_ids:
+        description:
+            - The Oracle-assigned ID of each DRG route rule to be deleted.
+            - Applicable only for I(action=remove).
+        type: list
+        elements: str
     drg_route_table_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the DRG route table.
@@ -42,14 +48,10 @@ options:
         type: list
         elements: dict
         suboptions:
-            destination_type:
+            id:
                 description:
-                    - "Type of destination for the rule. Required if `direction` = `EGRESS`.
-                      Allowed values:
-                        * `CIDR_BLOCK`: If the rule's `destination` is an IP address range in CIDR notation."
+                    - The Oracle-assigned ID of each DRG route rule to update.
                 type: str
-                choices:
-                    - "CIDR_BLOCK"
             destination:
                 description:
                     - This is the range of IP addresses used for matching when routing
@@ -58,22 +60,20 @@ options:
                         * IP address range in CIDR notation. This can be an IPv4 or IPv6 CIDR. For example: `192.168.1.0/24`
                         or `2001:0db8:0123:45::/56`."
                 type: str
+            destination_type:
+                description:
+                    - "Type of destination for the rule. Required if `direction` = `EGRESS`.
+                      Allowed values:
+                        * `CIDR_BLOCK`: If the rule's `destination` is an IP address range in CIDR notation."
+                type: str
+                choices:
+                    - "CIDR_BLOCK"
             next_hop_drg_attachment_id:
                 description:
                     - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the next hop DRG attachment. The next hop DRG
                       attachment is responsible
                       for reaching the network destination.
                 type: str
-            id:
-                description:
-                    - The Oracle-assigned ID of each DRG route rule to update.
-                type: str
-    route_rule_ids:
-        description:
-            - The Oracle-assigned ID of each DRG route rule to be deleted.
-            - Applicable only for I(action=remove).
-        type: list
-        elements: str
     action:
         description:
             - The action to perform on the DrgRouteRules.
@@ -96,10 +96,10 @@ EXAMPLES = """
     # optional
     route_rules:
     - # optional
-      destination_type: CIDR_BLOCK
-      destination: destination_example
-      next_hop_drg_attachment_id: "ocid1.nexthopdrgattachment.oc1..xxxxxxEXAMPLExxxxxx"
       id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+      destination: destination_example
+      destination_type: CIDR_BLOCK
+      next_hop_drg_attachment_id: "ocid1.nexthopdrgattachment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Perform action remove on drg_route_rules
   oci_network_drg_route_rules_actions:
@@ -119,10 +119,10 @@ EXAMPLES = """
     # optional
     route_rules:
     - # optional
-      destination_type: CIDR_BLOCK
-      destination: destination_example
-      next_hop_drg_attachment_id: "ocid1.nexthopdrgattachment.oc1..xxxxxxEXAMPLExxxxxx"
       id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+      destination: destination_example
+      destination_type: CIDR_BLOCK
+      next_hop_drg_attachment_id: "ocid1.nexthopdrgattachment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -337,18 +337,18 @@ def main():
     )
     module_args.update(
         dict(
+            route_rule_ids=dict(type="list", elements="str"),
             drg_route_table_id=dict(aliases=["id"], type="str", required=True),
             route_rules=dict(
                 type="list",
                 elements="dict",
                 options=dict(
-                    destination_type=dict(type="str", choices=["CIDR_BLOCK"]),
-                    destination=dict(type="str"),
-                    next_hop_drg_attachment_id=dict(type="str"),
                     id=dict(type="str"),
+                    destination=dict(type="str"),
+                    destination_type=dict(type="str", choices=["CIDR_BLOCK"]),
+                    next_hop_drg_attachment_id=dict(type="str"),
                 ),
             ),
-            route_rule_ids=dict(type="list", elements="str"),
             action=dict(type="str", required=True, choices=["add", "remove", "update"]),
         )
     )

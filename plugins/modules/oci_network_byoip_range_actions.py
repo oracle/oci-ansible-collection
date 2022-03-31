@@ -35,6 +35,12 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the destination compartment for the BYOIP CIDR block
+              move.
+            - Required for I(action=change_compartment).
+        type: str
     byoip_range_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the `ByoipRange` resource containing the BYOIP CIDR
@@ -42,12 +48,6 @@ options:
         type: str
         aliases: ["id"]
         required: true
-    compartment_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the destination compartment for the BYOIP CIDR block
-              move.
-            - Required for I(action=change_compartment).
-        type: str
     action:
         description:
             - The action to perform on the ByoipRange.
@@ -71,8 +71,8 @@ EXAMPLES = """
 - name: Perform action change_compartment on byoip_range
   oci_network_byoip_range_actions:
     # required
-    byoip_range_id: "ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    byoip_range_id: "ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action validate on byoip_range
@@ -347,8 +347,8 @@ def main():
     )
     module_args.update(
         dict(
-            byoip_range_id=dict(aliases=["id"], type="str", required=True),
             compartment_id=dict(type="str"),
+            byoip_range_id=dict(aliases=["id"], type="str", required=True),
             action=dict(
                 type="str",
                 required=True,

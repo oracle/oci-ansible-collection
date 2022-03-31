@@ -44,23 +44,6 @@ options:
             - The destination file path when downloading an object. Use with I(namespace_name), I(bucket_name) and I(object_name) to download an object.
             - This parameter is updatable.
         type: str
-    namespace_name:
-        description:
-            - The Object Storage namespace used for the request.
-        type: str
-        required: true
-    bucket_name:
-        description:
-            - "The name of the bucket. Avoid entering confidential information.
-              Example: `my-new-bucket1`"
-        type: str
-        required: true
-    object_name:
-        description:
-            - "The name of the object. Avoid entering confidential information.
-              Example: `test/object1.log`"
-        type: str
-        required: true
     content_length:
         description:
             - The content length of the body.
@@ -164,6 +147,23 @@ options:
             - Optional user-defined metadata key and value.
             - This parameter is updatable.
         type: dict
+    namespace_name:
+        description:
+            - The Object Storage namespace used for the request.
+        type: str
+        required: true
+    bucket_name:
+        description:
+            - "The name of the bucket. Avoid entering confidential information.
+              Example: `my-new-bucket1`"
+        type: str
+        required: true
+    object_name:
+        description:
+            - "The name of the object. Avoid entering confidential information.
+              Example: `test/object1.log`"
+        type: str
+        required: true
     version_id:
         description:
             - VersionId used to identify a particular version of the object
@@ -477,9 +477,6 @@ def main():
             src=dict(type="str"),
             force=dict(type="bool", default="true"),
             dest=dict(type="str"),
-            namespace_name=dict(type="str", required=True),
-            bucket_name=dict(type="str", required=True),
-            object_name=dict(type="str", required=True),
             content_length=dict(type="int"),
             expect=dict(type="str"),
             content_md5=dict(type="str"),
@@ -496,6 +493,9 @@ def main():
                 type="str", choices=["Standard", "InfrequentAccess", "Archive"]
             ),
             opc_meta=dict(type="dict"),
+            namespace_name=dict(type="str", required=True),
+            bucket_name=dict(type="str", required=True),
+            object_name=dict(type="str", required=True),
             version_id=dict(type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

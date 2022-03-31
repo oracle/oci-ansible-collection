@@ -30,7 +30,7 @@ oracle.oci.oci_log_analytics_scheduled_task -- Manage a ScheduledTask resource i
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -908,9 +908,9 @@ Examples
     - name: Create scheduled_task with kind = STANDARD
       oci_log_analytics_scheduled_task:
         # required
-        kind: STANDARD
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         task_type: SAVED_SEARCH
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        kind: STANDARD
 
         # optional
         display_name: display_name_example
@@ -918,20 +918,20 @@ Examples
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         schedules:
         - # required
-          type: CRON
           expression: expression_example
           time_zone: time_zone_example
+          type: CRON
 
           # optional
           misfire_policy: RETRY_ONCE
           time_of_first_execution: time_of_first_execution_example
         action:
           # required
-          type: PURGE
           query_string: query_string_example
           data_type: LOG
           purge_duration: purge_duration_example
           purge_compartment_id: "ocid1.purgecompartment.oc1..xxxxxxEXAMPLExxxxxx"
+          type: PURGE
 
           # optional
           compartment_id_in_subtree: true
@@ -939,9 +939,9 @@ Examples
     - name: Create scheduled_task with kind = ACCELERATION
       oci_log_analytics_scheduled_task:
         # required
-        kind: ACCELERATION
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         saved_search_id: "ocid1.savedsearch.oc1..xxxxxxEXAMPLExxxxxx"
+        kind: ACCELERATION
 
         # optional
         display_name: display_name_example
@@ -959,20 +959,20 @@ Examples
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         schedules:
         - # required
-          type: CRON
           expression: expression_example
           time_zone: time_zone_example
+          type: CRON
 
           # optional
           misfire_policy: RETRY_ONCE
           time_of_first_execution: time_of_first_execution_example
         action:
           # required
-          type: PURGE
           query_string: query_string_example
           data_type: LOG
           purge_duration: purge_duration_example
           purge_compartment_id: "ocid1.purgecompartment.oc1..xxxxxxEXAMPLExxxxxx"
+          type: PURGE
 
           # optional
           compartment_id_in_subtree: true
@@ -990,9 +990,9 @@ Examples
     - name: Update scheduled_task using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with kind = STANDARD
       oci_log_analytics_scheduled_task:
         # required
-        kind: STANDARD
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         task_type: SAVED_SEARCH
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        kind: STANDARD
 
         # optional
         display_name: display_name_example
@@ -1000,20 +1000,20 @@ Examples
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         schedules:
         - # required
-          type: CRON
           expression: expression_example
           time_zone: time_zone_example
+          type: CRON
 
           # optional
           misfire_policy: RETRY_ONCE
           time_of_first_execution: time_of_first_execution_example
         action:
           # required
-          type: PURGE
           query_string: query_string_example
           data_type: LOG
           purge_duration: purge_duration_example
           purge_compartment_id: "ocid1.purgecompartment.oc1..xxxxxxEXAMPLExxxxxx"
+          type: PURGE
 
           # optional
           compartment_id_in_subtree: true
@@ -1021,8 +1021,8 @@ Examples
     - name: Update scheduled_task using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with kind = ACCELERATION
       oci_log_analytics_scheduled_task:
         # required
-        kind: ACCELERATION
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        kind: ACCELERATION
 
         # optional
         display_name: display_name_example
@@ -1039,10 +1039,10 @@ Examples
     - name: Delete scheduled_task using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_log_analytics_scheduled_task:
         # required
-        namespace_name: namespace_name_example
+        task_type: SAVED_SEARCH
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
-        task_type: SAVED_SEARCH
+        namespace_name: namespace_name_example
         state: absent
 
 

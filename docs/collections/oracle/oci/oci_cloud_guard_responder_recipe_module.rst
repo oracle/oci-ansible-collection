@@ -30,7 +30,7 @@ oracle.oci.oci_cloud_guard_responder_recipe -- Manage a ResponderRecipe resource
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -537,9 +537,9 @@ Examples
     - name: Create responder_recipe
       oci_cloud_guard_responder_recipe:
         # required
-        display_name: display_name_example
         source_responder_recipe_id: "ocid1.sourceresponderrecipe.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
 
         # optional
         description: description_example
@@ -572,8 +572,8 @@ Examples
     - name: Update responder_recipe using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_cloud_guard_responder_recipe:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
 
         # optional
         description: description_example
@@ -595,8 +595,8 @@ Examples
     - name: Delete responder_recipe using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_cloud_guard_responder_recipe:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
         state: absent
 
 

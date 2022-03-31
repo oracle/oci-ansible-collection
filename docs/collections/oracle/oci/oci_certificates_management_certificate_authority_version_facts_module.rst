@@ -30,7 +30,7 @@ oracle.oci.oci_certificates_management_certificate_authority_version_facts -- Fe
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -339,8 +339,8 @@ Examples
     - name: Get a specific certificate_authority_version
       oci_certificates_management_certificate_authority_version_facts:
         # required
-        certificate_authority_id: "ocid1.certificateauthority.oc1..xxxxxxEXAMPLExxxxxx"
         certificate_authority_version_number: 56
+        certificate_authority_id: "ocid1.certificateauthority.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: List certificate_authority_versions
       oci_certificates_management_certificate_authority_version_facts:

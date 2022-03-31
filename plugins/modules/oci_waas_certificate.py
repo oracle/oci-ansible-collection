@@ -37,13 +37,6 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
-    display_name:
-        description:
-            - A user-friendly name for the SSL certificate. The name can be changed and does not need to be unique.
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
     certificate_data:
         description:
             - The data of the SSL certificate.
@@ -64,6 +57,13 @@ options:
         description:
             - Set to `true` if the SSL certificate is self-signed.
         type: bool
+    display_name:
+        description:
+            - A user-friendly name for the SSL certificate. The name can be changed and does not need to be unique.
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -107,8 +107,8 @@ EXAMPLES = """
     private_key_data: this-is-not-the-secret
 
     # optional
-    display_name: display_name_example
     is_trust_verification_disabled: true
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -607,10 +607,10 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
-            display_name=dict(aliases=["name"], type="str"),
             certificate_data=dict(type="str"),
             private_key_data=dict(type="str", no_log=True),
             is_trust_verification_disabled=dict(type="bool"),
+            display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             certificate_id=dict(aliases=["id"], type="str"),

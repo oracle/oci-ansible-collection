@@ -43,6 +43,13 @@ options:
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
         aliases: ["name"]
+    subnet_ids:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)s of the subnets in which to run functions in the
+              application.
+            - Required for create using I(state=present).
+        type: list
+        elements: str
     config:
         description:
             - Application configuration. These values are passed on to the function as environment variables, functions may override application configuration.
@@ -53,13 +60,6 @@ options:
               and value in UTF-8.
             - This parameter is updatable.
         type: dict
-    subnet_ids:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)s of the subnets in which to run functions in the
-              application.
-            - Required for create using I(state=present).
-        type: list
-        elements: str
     network_security_group_ids:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)s of the Network Security Groups to add the application to.
@@ -562,8 +562,8 @@ def main():
         dict(
             compartment_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
-            config=dict(type="dict"),
             subnet_ids=dict(type="list", elements="str"),
+            config=dict(type="dict"),
             network_security_group_ids=dict(type="list", elements="str"),
             syslog_url=dict(type="str"),
             trace_config=dict(

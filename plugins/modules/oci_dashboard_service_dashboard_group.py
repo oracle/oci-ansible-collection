@@ -31,6 +31,13 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the dashboard group.
+            - Required for create using I(state=present).
+            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+        type: str
     display_name:
         description:
             - "A user-friendly name for the dashboard. Does not have to be unique, and it can be changed. Avoid entering confidential information.
@@ -45,13 +52,6 @@ options:
               The following special characters are not allowed: <>()=/'\\"&\\\\"
             - This parameter is updatable.
         type: str
-    compartment_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the dashboard group.
-            - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-        type: str
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -64,6 +64,13 @@ options:
               Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             - This parameter is updatable.
         type: dict
+    dashboard_group_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the dashboard group.
+            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+            - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["id"]
     opc_cross_region:
         description:
             - "To identify if the call is cross-regional. In CRUD calls for a resource, to
@@ -73,13 +80,6 @@ options:
               For same-region calls, the value is unassigned."
             - This parameter is updatable.
         type: str
-    dashboard_group_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the dashboard group.
-            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-            - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["id"]
     state:
         description:
             - The state of the DashboardGroup.
@@ -120,8 +120,8 @@ EXAMPLES = """
 - name: Update dashboard_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_dashboard_service_dashboard_group:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     description: description_example
@@ -141,8 +141,8 @@ EXAMPLES = """
 - name: Delete dashboard_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_dashboard_service_dashboard_group:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -407,13 +407,13 @@ def main():
     )
     module_args.update(
         dict(
+            compartment_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             description=dict(type="str"),
-            compartment_id=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
-            opc_cross_region=dict(type="str"),
             dashboard_group_id=dict(aliases=["id"], type="str"),
+            opc_cross_region=dict(type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

@@ -30,7 +30,7 @@ oracle.oci.oci_network_dhcp_options -- Manage a DhcpOptions resource in Oracle C
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -571,14 +571,14 @@ Examples
       oci_network_dhcp_options:
         # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         options:
         - # required
-          type: DomainNameServer
           server_type: VcnLocal
+          type: DomainNameServer
 
           # optional
           custom_dns_servers: [ "custom_dns_servers_example" ]
-        vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -597,8 +597,8 @@ Examples
         freeform_tags: {'Department': 'Finance'}
         options:
         - # required
-          type: DomainNameServer
           server_type: VcnLocal
+          type: DomainNameServer
 
           # optional
           custom_dns_servers: [ "custom_dns_servers_example" ]
@@ -615,8 +615,8 @@ Examples
         freeform_tags: {'Department': 'Finance'}
         options:
         - # required
-          type: DomainNameServer
           server_type: VcnLocal
+          type: DomainNameServer
 
           # optional
           custom_dns_servers: [ "custom_dns_servers_example" ]

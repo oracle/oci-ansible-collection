@@ -47,6 +47,12 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    ip_address:
+        description:
+            - The public IP address of the on-premises router.
+            - "Example: `203.0.113.2`"
+            - Required for create using I(state=present).
+        type: str
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
@@ -70,12 +76,6 @@ options:
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
-    ip_address:
-        description:
-            - The public IP address of the on-premises router.
-            - "Example: `203.0.113.2`"
-            - Required for create using I(state=present).
-        type: str
     cpe_device_shape_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the CPE device type. You can provide
@@ -383,10 +383,10 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
+            ip_address=dict(type="str"),
             defined_tags=dict(type="dict"),
             display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
-            ip_address=dict(type="str"),
             cpe_device_shape_id=dict(type="str"),
             cpe_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),

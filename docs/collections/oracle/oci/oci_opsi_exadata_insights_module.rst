@@ -30,7 +30,7 @@ oracle.oci.oci_opsi_exadata_insights -- Manage an ExadataInsights resource in Or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -546,19 +546,19 @@ Examples
     - name: Create exadata_insights with entity_source = EM_MANAGED_EXTERNAL_EXADATA
       oci_opsi_exadata_insights:
         # required
-        entity_source: EM_MANAGED_EXTERNAL_EXADATA
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         enterprise_manager_identifier: enterprise_manager_identifier_example
         enterprise_manager_bridge_id: "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx"
         enterprise_manager_entity_identifier: enterprise_manager_entity_identifier_example
+        entity_source: EM_MANAGED_EXTERNAL_EXADATA
 
         # optional
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
         member_entity_details:
         - # required
           enterprise_manager_entity_identifier: enterprise_manager_entity_identifier_example
           compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
         is_auto_sync_enabled: true
 
     - name: Update exadata_insights with entity_source = EM_MANAGED_EXTERNAL_EXADATA

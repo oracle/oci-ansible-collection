@@ -1,0 +1,148 @@
+---
+# Copyright (c) 2020, 2022 Oracle and/or its affiliates.
+# This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
+# GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
+# Apache License v2.0
+# See LICENSE.TXT for details.
+
+- name: Autonomous Database Dedicated usage example for creating an Autonmous Container Database (ACD) and an Autonomous Database (ADB), Cloud Exadata Infrastructure (CEI) running an Autonomous VM Cluster (AVM) must be avaiable before running this script.
+  hosts: localhost
+  collections:
+    - oracle.oci
+  connection: local
+  vars:
+    #########################################
+    # *Note* - Override the following variables based on your tenancy or set a valid value for the corresponding environment variable
+    # Please refer to module documentation for sample values for variables
+    #########################################
+    compartment_ocid: "{{ lookup('env', 'SAMPLE_COMPARTMENT_OCID') }}"
+    ocpu_count: "{{ lookup('env', 'SAMPLE_OCPU_COUNT') | default(1, true) }}" # sample value, ocpu_count: 1
+    adb_display_name: "{{ lookup('env', 'SAMPLE_ADB_DISPLAY_NAME') | default('sample_autonomous_adb', true) }}" # sample value, display_name: 'sample_autonomous_db'
+    admin_password: "{{ lookup('env', 'SAMPLE_ADMIN_PASSWORD') | default('BEstr0ng_#11', true) }}" # sample value, admin_password: 'BEstr0ng_#11'
+    db_name: "{{ lookup('env', 'SAMPLE_DB_NAME') | default('autonomousdb', true) }}" # sample value, db_name: 'autonomousdb' (Maximum 14 alphanumeric characters)
+    data_storage_size_in_gbs: "{{ lookup('env', 'SAMPLE_DATA_STORAGE_SIZE_IN_GBS') | default(50, true) }}" # sample value, data_storage_size_in_gbs: 50
+    is_dedicated: "{{ lookup('env', 'SAMPLE_IS_DEDICATED') | default(true, true) }}" # sample value, is_dedicated: true
+    cloud_autonomous_vm_cluster_id: "{{ lookup('env', 'SAMPLE_CLOUD_AUTONOMOUS_VM_CLUSTER_ID') }}"
+    acd_display_name: "{{ lookup('env', 'SAMPLE_ACD_DISPLAY_NAME') | default('sample_autonomous_acd', true) }}" # sample value, display_name: 'sample_autonomous_db'
+
+#Example OS veriables:
+#export SAMPLE_COMPARTMENT_OCID=ocid1.compartment.oc1..aaaaaaaakpmroakfsteyo5ln6zl5p3ncgcpo7urwgg7m7sjwudjjrjjfjwf
+#export SAMPLE_OCPU_COUNT=.5
+#export SAMPLE_ADB_DISPLAY_NAME=ANSDED
+#export SAMPLE_DB_NAME=ANSDED
+#export SAMPLE_ADMIN_PASSWORD=OciOci2022##
+#export SAMPLE_DATA_STORAGE_SIZE_IN_GBS=75
+#export SAMPLE_IS_DEDICATED=true
+#export SAMPLE_CLOUD_AUTONOMOUS_VM_CLUSTER_ID=ocid1.autonomousexainfrastructure.oc1.iad.abuwcljsw2gxfuf2nsbmlav7ejdpk2gjwp2pdjtjejfjyiejsjrjjdjjejshr
+#export SAMPLE_ACD_DISPLAY_NAME=ANSACD
+#####################################################################################################################################################
+
+
+
+  tasks:
+    - block:
+
+        - name: Check pre-requisites
+          fail:
+            msg: "Environment variable {{item}} not set. Please declare an environment variable with an appropriate value for the sample to work."
+          when: item not in ansible_env
+          with_items:
+            - "SAMPLE_COMPARTMENT_OCID"
+
+#Create a new Autonomous Container Database and record the ID for use later
+        - name: Create a new Autonomous Container Database
+          oci_database_autonomous_container_database:
+              compartment_id: "{{ compartment_ocid }}"
+              display_name: "{{ acd_display_name }}"
+              cloud_autonomous_vm_cluster_id: "{{cloud_autonomous_vm_cluster_id}}"
+              state: 'present'
+          register: result
+
+        - set_fact:
+             autonomous_container_database_id: "{{ result.autonomous_container_database.id }}"
+
+        - assert:
+            that:
+              - result.autonomous_container_database.lifecycle_state in ["AVAILABLE", "BACKUP_IN_PROGRESS" ]
+
+#Create a new Autonomous Database inside the Autonomous Container Database created before using the ID stored
+
+        - name: Create a new Autonomous Database
+          oci_database_autonomous_database:
+              compartment_id: "{{ compartment_ocid }}"
+              ocpu_count: "{{ ocpu_count }}"
+              display_name: "{{ adb_display_name }}"
+              admin_password: "{{ admin_password }}"
+              db_name: "{{ db_name }}"
+              data_storage_size_in_gbs: "{{ data_storage_size_in_gbs }}"
+              autonomous_container_database_id:  "{{ autonomous_container_database_id }}"
+              is_dedicated: "{{ is_dedicated }}"
+              state: 'present'
+          register: result
+
+        - set_fact:
+             autonomous_database_id: "{{ result.autonomous_database.id }}"
+
+        - assert:
+            that:
+              - result.autonomous_database.lifecycle_state == "AVAILABLE"
+
+    # List Autonomous Databases filtered by Display Name
+        - name: List All Autonomous Databases in a compartment, filtered by Display Name
+          oci_database_autonomous_database_facts:
+             compartment_id: "{{ compartment_ocid }}"
+             display_name: '{{ adb_display_name }}'
+          register: result
+
+        - name: Assert that specified Autonomous Database is listed
+          assert:
+             that:
+                - result.autonomous_databases[0].display_name == adb_display_name
+
+    # Stop Autonomous Databases
+        - name: Stop an Autonomous Database
+          oci_database_autonomous_database_actions:
+             autonomous_database_id: "{{ autonomous_database_id }}"
+             action: 'stop'
+          register: result
+
+        - name: Assert that specified Autonomous Database is stopped
+          assert:
+             that:
+                - result.autonomous_database.lifecycle_state == 'STOPPED'
+
+    # Start Autonomous Databases
+        - name: Start Autonomous Database
+          oci_database_autonomous_database_actions:
+             autonomous_database_id: "{{ autonomous_database_id }}"
+             action: 'start'
+          register: result
+
+        - name: Assert that specified Autonomous Database is started and available
+          assert:
+             that:
+                - result.autonomous_database.lifecycle_state == 'AVAILABLE'
+
+    # Get a specific Autonomous Database
+        - name: Get a specific Autonomous Database's facts
+          oci_database_autonomous_database_facts:
+             autonomous_database_id: "{{ autonomous_database_id }}"
+          register: result
+        - debug: # print facts retrieved about the Autonomous Database
+              msg: "{{result}}"
+        - name: Assert that specified Autonomous Database is listed
+          assert:
+             that:
+                - result.autonomous_databases[0].display_name == adb_display_name
+
+#Run the teardown script to cleanup the ADB and ACD.  Teardown may take extra time as it must wait until ACD backup completes before deleting.
+
+        - import_tasks: teardown.yaml
+
+      rescue:
+
+        - import_tasks: teardown.yaml
+          ignore_errors: yes
+
+        - fail:
+            msg: "The sample execution failed."

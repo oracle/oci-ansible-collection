@@ -30,7 +30,7 @@ oracle.oci.oci_devops_trigger -- Manage a Trigger resource in Oracle Cloud Infra
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -686,6 +686,7 @@ Examples
         trigger_source: DEVOPS_CODE_REPOSITORY
 
         # optional
+        repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         description: description_example
         actions:
@@ -706,7 +707,6 @@ Examples
               base_ref: base_ref_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Create trigger with trigger_source = GITLAB
       oci_devops_trigger:
@@ -769,6 +769,7 @@ Examples
         trigger_source: DEVOPS_CODE_REPOSITORY
 
         # optional
+        repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         description: description_example
         actions:
@@ -789,7 +790,6 @@ Examples
               base_ref: base_ref_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update trigger with trigger_source = GITLAB
       oci_devops_trigger:
@@ -851,6 +851,7 @@ Examples
         trigger_source: DEVOPS_CODE_REPOSITORY
 
         # optional
+        repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         description: description_example
         actions:
@@ -871,7 +872,6 @@ Examples
               base_ref: base_ref_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update trigger using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with trigger_source = GITLAB
       oci_devops_trigger:

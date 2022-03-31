@@ -30,33 +30,12 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    entity_source:
-        description:
-            - Source of the database entity.
-            - Required for create using I(state=present), update using I(state=present) with database_insight_id present.
-        type: str
-        choices:
-            - "EM_MANAGED_EXTERNAL_DATABASE"
-            - "MACS_MANAGED_EXTERNAL_DATABASE"
-            - "AUTONOMOUS_DATABASE"
     compartment_id:
         description:
             - Compartment Identifier of database
             - Required for create using I(state=present).
             - Required when entity_source is 'EM_MANAGED_EXTERNAL_DATABASE'
         type: str
-    freeform_tags:
-        description:
-            - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-              Example: `{\\"bar-key\\": \\"value\\"}`"
-            - This parameter is updatable.
-        type: dict
-    defined_tags:
-        description:
-            - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
-              Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
-            - This parameter is updatable.
-        type: dict
     enterprise_manager_identifier:
         description:
             - Enterprise Manager Unique Identifier
@@ -80,6 +59,27 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Exadata insight.
             - Applicable when entity_source is 'EM_MANAGED_EXTERNAL_DATABASE'
         type: str
+    entity_source:
+        description:
+            - Source of the database entity.
+            - Required for create using I(state=present), update using I(state=present) with database_insight_id present.
+        type: str
+        choices:
+            - "EM_MANAGED_EXTERNAL_DATABASE"
+            - "MACS_MANAGED_EXTERNAL_DATABASE"
+            - "AUTONOMOUS_DATABASE"
+    freeform_tags:
+        description:
+            - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+              Example: `{\\"bar-key\\": \\"value\\"}`"
+            - This parameter is updatable.
+        type: dict
+    defined_tags:
+        description:
+            - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
+              Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+            - This parameter is updatable.
+        type: dict
     database_insight_id:
         description:
             - Unique database insight identifier
@@ -103,16 +103,16 @@ EXAMPLES = """
 - name: Create database_insights with entity_source = EM_MANAGED_EXTERNAL_DATABASE
   oci_opsi_database_insights:
     # required
-    entity_source: EM_MANAGED_EXTERNAL_DATABASE
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     enterprise_manager_identifier: enterprise_manager_identifier_example
     enterprise_manager_bridge_id: "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx"
     enterprise_manager_entity_identifier: enterprise_manager_entity_identifier_example
+    entity_source: EM_MANAGED_EXTERNAL_DATABASE
 
     # optional
+    exadata_insight_id: "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    exadata_insight_id: "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Create database_insights with entity_source = MACS_MANAGED_EXTERNAL_DATABASE
   oci_opsi_database_insights:
@@ -587,6 +587,11 @@ def main():
     )
     module_args.update(
         dict(
+            compartment_id=dict(type="str"),
+            enterprise_manager_identifier=dict(type="str"),
+            enterprise_manager_bridge_id=dict(type="str"),
+            enterprise_manager_entity_identifier=dict(type="str"),
+            exadata_insight_id=dict(type="str"),
             entity_source=dict(
                 type="str",
                 choices=[
@@ -595,13 +600,8 @@ def main():
                     "AUTONOMOUS_DATABASE",
                 ],
             ),
-            compartment_id=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
-            enterprise_manager_identifier=dict(type="str"),
-            enterprise_manager_bridge_id=dict(type="str"),
-            enterprise_manager_entity_identifier=dict(type="str"),
-            exadata_insight_id=dict(type="str"),
             database_insight_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

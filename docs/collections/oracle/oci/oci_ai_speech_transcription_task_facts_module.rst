@@ -30,7 +30,7 @@ oracle.oci.oci_ai_speech_transcription_task_facts -- Fetches details about one o
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -364,8 +364,8 @@ Examples
     - name: Get a specific transcription_task
       oci_ai_speech_transcription_task_facts:
         # required
-        transcription_job_id: "ocid1.transcriptionjob.oc1..xxxxxxEXAMPLExxxxxx"
         transcription_task_id: "ocid1.transcriptiontask.oc1..xxxxxxEXAMPLExxxxxx"
+        transcription_job_id: "ocid1.transcriptionjob.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: List transcription_tasks
       oci_ai_speech_transcription_task_facts:

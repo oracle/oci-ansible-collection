@@ -30,7 +30,7 @@ oracle.oci.oci_devops_repository_facts -- Fetches details about one or multiple 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -405,9 +405,9 @@ Examples
       oci_devops_repository_facts:
 
         # optional
-        repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+        repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state: ACTIVE
         name: name_example
         sort_order: ASC

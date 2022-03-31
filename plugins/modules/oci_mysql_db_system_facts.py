@@ -29,12 +29,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    db_system_id:
-        description:
-            - The DB System L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-            - Required to get a specific db_system.
-        type: str
-        aliases: ["id"]
     compartment_id:
         description:
             - The compartment L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -53,6 +47,12 @@ options:
               return only DB Systems with no HeatWave cluster attached. If not
               present, return all DB Systems.
         type: bool
+    db_system_id:
+        description:
+            - The DB System L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+            - Required to get a specific db_system.
+        type: str
+        aliases: ["id"]
     display_name:
         description:
             - A filter to return only the resource matching the given display name exactly.
@@ -109,9 +109,9 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
     is_analytics_cluster_attached: true
     is_heat_wave_cluster_attached: true
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     lifecycle_state: CREATING
     configuration_id: "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx"
@@ -677,6 +677,32 @@ db_systems:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        deletion_policy:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                automatic_backup_retention:
+                    description:
+                        - Specifies if any automatic backups created for a DB System should be retained or deleted when the DB System is deleted.
+                    returned: on success
+                    type: str
+                    sample: DELETE
+                final_backup:
+                    description:
+                        - "Specifies whether or not a backup is taken when the DB System is deleted.
+                            REQUIRE_FINAL_BACKUP: a backup is taken if the DB System is deleted.
+                            SKIP_FINAL_BACKUP: a backup is not taken if the DB System is deleted."
+                    returned: on success
+                    type: str
+                    sample: SKIP_FINAL_BACKUP
+                is_delete_protected:
+                    description:
+                        - Specifies whether the DB System can be deleted. Set to true to prevent deletion, false (default) to allow.
+                    returned: on success
+                    type: bool
+                    sample: true
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -791,6 +817,11 @@ db_systems:
         "mysql_version": "mysql_version_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
+        "deletion_policy": {
+            "automatic_backup_retention": "DELETE",
+            "final_backup": "SKIP_FINAL_BACKUP",
+            "is_delete_protected": true
+        },
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "crash_recovery": "ENABLED"
@@ -866,10 +897,10 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            db_system_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
             is_analytics_cluster_attached=dict(type="bool"),
             is_heat_wave_cluster_attached=dict(type="bool"),
+            db_system_id=dict(aliases=["id"], type="str"),
             display_name=dict(aliases=["name"], type="str"),
             lifecycle_state=dict(
                 type="str",

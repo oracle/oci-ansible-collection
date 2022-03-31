@@ -42,12 +42,6 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the resource to.
             - Required for I(action=change_compartment).
         type: str
-    external_non_container_database_id:
-        description:
-            - The external non-container database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-        type: str
-        aliases: ["id"]
-        required: true
     license_model:
         description:
             - The Oracle license model that applies to the external database.
@@ -56,6 +50,12 @@ options:
         choices:
             - "LICENSE_INCLUDED"
             - "BRING_YOUR_OWN_LICENSE"
+    external_non_container_database_id:
+        description:
+            - The external non-container database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+        type: str
+        aliases: ["id"]
+        required: true
     external_database_connector_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the
@@ -100,8 +100,8 @@ EXAMPLES = """
 - name: Perform action enable_external_non_container_database_database_management on external_non_container_database
   oci_database_external_non_container_database_actions:
     # required
-    external_non_container_database_id: "ocid1.externalnoncontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     license_model: LICENSE_INCLUDED
+    external_non_container_database_id: "ocid1.externalnoncontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     external_database_connector_id: "ocid1.externaldatabaseconnector.oc1..xxxxxxEXAMPLExxxxxx"
     action: enable_external_non_container_database_database_management
 
@@ -496,11 +496,11 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
-            external_non_container_database_id=dict(
-                aliases=["id"], type="str", required=True
-            ),
             license_model=dict(
                 type="str", choices=["LICENSE_INCLUDED", "BRING_YOUR_OWN_LICENSE"]
+            ),
+            external_non_container_database_id=dict(
+                aliases=["id"], type="str", required=True
             ),
             external_database_connector_id=dict(type="str"),
             action=dict(

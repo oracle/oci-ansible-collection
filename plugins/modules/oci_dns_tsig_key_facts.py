@@ -41,13 +41,6 @@ options:
               recent than the date provided in the field-value.  Transfer of the
               selected representation's data is avoided if that data has not changed.
         type: str
-    scope:
-        description:
-            - Specifies to operate only on resources that have a matching DNS scope.
-        type: str
-        choices:
-            - "GLOBAL"
-            - "PRIVATE"
     compartment_id:
         description:
             - The OCID of the compartment the resource belongs to.
@@ -82,6 +75,13 @@ options:
         choices:
             - "ASC"
             - "DESC"
+    scope:
+        description:
+            - Specifies to operate only on resources that have a matching DNS scope.
+        type: str
+        choices:
+            - "GLOBAL"
+            - "PRIVATE"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -101,11 +101,11 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    scope: GLOBAL
     name: name_example
     lifecycle_state: ACTIVE
     sort_by: name
     sort_order: ASC
+    scope: GLOBAL
 
 """
 
@@ -285,7 +285,6 @@ def main():
         dict(
             tsig_key_id=dict(aliases=["id"], type="str"),
             if_modified_since=dict(type="str"),
-            scope=dict(type="str", choices=["GLOBAL", "PRIVATE"]),
             compartment_id=dict(type="str"),
             name=dict(type="str"),
             lifecycle_state=dict(
@@ -301,6 +300,7 @@ def main():
             ),
             sort_by=dict(type="str", choices=["name", "timeCreated"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
+            scope=dict(type="str", choices=["GLOBAL", "PRIVATE"]),
         )
     )
 

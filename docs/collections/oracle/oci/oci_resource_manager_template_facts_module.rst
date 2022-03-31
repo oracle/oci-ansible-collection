@@ -30,7 +30,7 @@ oracle.oci.oci_resource_manager_template_facts -- Fetches details about one or m
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -363,9 +363,9 @@ Examples
       oci_resource_manager_template_facts:
 
         # optional
-        template_id: "ocid1.template.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         template_category_id: "ocid1.templatecategory.oc1..xxxxxxEXAMPLExxxxxx"
+        template_id: "ocid1.template.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         sort_by: TIMECREATED
         sort_order: ASC

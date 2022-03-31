@@ -28,17 +28,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The compartment L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+            - Required to list multiple backups.
+        type: str
     backup_id:
         description:
             - The OCID of the Backup
             - Required to get a specific backup.
         type: str
         aliases: ["id"]
-    compartment_id:
-        description:
-            - The compartment L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-            - Required to list multiple backups.
-        type: str
     lifecycle_state:
         description:
             - Backup Lifecycle State
@@ -370,6 +370,32 @@ backups:
                             returned: on success
                             type: str
                             sample: window_start_time_example
+                deletion_policy:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        automatic_backup_retention:
+                            description:
+                                - Specifies if any automatic backups created for a DB System should be retained or deleted when the DB System is deleted.
+                            returned: on success
+                            type: str
+                            sample: DELETE
+                        final_backup:
+                            description:
+                                - "Specifies whether or not a backup is taken when the DB System is deleted.
+                                    REQUIRE_FINAL_BACKUP: a backup is taken if the DB System is deleted.
+                                    SKIP_FINAL_BACKUP: a backup is not taken if the DB System is deleted."
+                            returned: on success
+                            type: str
+                            sample: SKIP_FINAL_BACKUP
+                        is_delete_protected:
+                            description:
+                                - Specifies whether the DB System can be deleted. Set to true to prevent deletion, false (default) to allow.
+                            returned: on success
+                            type: bool
+                            sample: true
                 freeform_tags:
                     description:
                         - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -524,6 +550,11 @@ backups:
             "maintenance": {
                 "window_start_time": "window_start_time_example"
             },
+            "deletion_policy": {
+                "automatic_backup_retention": "DELETE",
+                "final_backup": "SKIP_FINAL_BACKUP",
+                "is_delete_protected": true
+            },
             "freeform_tags": {'Department': 'Finance'},
             "defined_tags": {'Operations': {'CostCenter': 'US'}},
             "crash_recovery": "ENABLED"
@@ -612,8 +643,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            backup_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
+            backup_id=dict(aliases=["id"], type="str"),
             lifecycle_state=dict(
                 type="str",
                 choices=[

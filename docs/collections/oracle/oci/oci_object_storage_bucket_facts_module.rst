@@ -30,7 +30,7 @@ oracle.oci.oci_object_storage_bucket_facts -- Fetches details about one or multi
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -326,8 +326,8 @@ Examples
     - name: Get a specific bucket
       oci_object_storage_bucket_facts:
         # required
-        namespace_name: namespace_name_example
         bucket_name: bucket_name_example
+        namespace_name: namespace_name_example
 
         # optional
         fields: [ "approximateCount" ]

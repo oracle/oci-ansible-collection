@@ -29,6 +29,12 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    security_rule_ids:
+        description:
+            - The Oracle-assigned ID of each L(SecurityRule,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/SecurityRule/) to be deleted.
+            - Applicable only for I(action=remove).
+        type: list
+        elements: str
     network_security_group_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the network security group.
@@ -101,6 +107,11 @@ options:
                             - The ICMP type.
                         type: int
                         required: true
+            id:
+                description:
+                    - The Oracle-assigned ID of the security rule that you want to update. You can't change this value.
+                    - "Example: `04ABEC`"
+                type: str
             is_stateless:
                 description:
                     - A stateless rule allows traffic in one direction. Remember to add a corresponding
@@ -222,17 +233,6 @@ options:
                                     - The minimum port number, which must not be greater than the maximum port number.
                                 type: int
                                 required: true
-            id:
-                description:
-                    - The Oracle-assigned ID of the security rule that you want to update. You can't change this value.
-                    - "Example: `04ABEC`"
-                type: str
-    security_rule_ids:
-        description:
-            - The Oracle-assigned ID of each L(SecurityRule,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/SecurityRule/) to be deleted.
-            - Applicable only for I(action=remove).
-        type: list
-        elements: str
     action:
         description:
             - The action to perform on the NetworkSecurityGroupSecurityRule.
@@ -268,6 +268,7 @@ EXAMPLES = """
 
         # optional
         code: 56
+      id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
       is_stateless: true
       source: source_example
       source_type: CIDR_BLOCK
@@ -291,7 +292,6 @@ EXAMPLES = """
           # required
           max: 56
           min: 56
-      id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Perform action remove on network_security_group_security_rule
   oci_network_security_group_security_rule_actions:
@@ -324,6 +324,7 @@ EXAMPLES = """
 
         # optional
         code: 56
+      id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
       is_stateless: true
       source: source_example
       source_type: CIDR_BLOCK
@@ -347,7 +348,6 @@ EXAMPLES = """
           # required
           max: 56
           min: 56
-      id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -758,6 +758,7 @@ def main():
     )
     module_args.update(
         dict(
+            security_rule_ids=dict(type="list", elements="str"),
             network_security_group_id=dict(aliases=["id"], type="str", required=True),
             security_rules=dict(
                 type="list",
@@ -782,6 +783,7 @@ def main():
                             code=dict(type="int"), type=dict(type="int", required=True)
                         ),
                     ),
+                    id=dict(type="str"),
                     is_stateless=dict(type="bool"),
                     protocol=dict(type="str", required=True),
                     source=dict(type="str"),
@@ -831,10 +833,8 @@ def main():
                             ),
                         ),
                     ),
-                    id=dict(type="str"),
                 ),
             ),
-            security_rule_ids=dict(type="list", elements="str"),
             action=dict(type="str", required=True, choices=["add", "remove", "update"]),
         )
     )

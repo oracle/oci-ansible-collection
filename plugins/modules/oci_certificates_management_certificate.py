@@ -36,42 +36,27 @@ options:
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
-    description:
-        description:
-            - A brief description of the certificate. Avoid entering confidential information.
-            - This parameter is updatable.
-        type: str
     compartment_id:
         description:
             - The OCID of the compartment where you want to create the certificate.
             - Required for create using I(state=present).
         type: str
-    certificate_rules:
+    certificate_id:
         description:
-            - An optional list of rules that control how the certificate is used and managed.
+            - The OCID of the certificate.
+            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["id"]
+    description:
+        description:
+            - A brief description of the certificate. Avoid entering confidential information.
             - This parameter is updatable.
-        type: list
-        elements: dict
-        suboptions:
-            rule_type:
-                description:
-                    - The type of rule.
-                type: str
-                choices:
-                    - "CERTIFICATE_RENEWAL_RULE"
-                required: true
-            renewal_interval:
-                description:
-                    - A property specifying how often, in days, a certificate should be renewed.
-                      Expressed in L(ISO 8601,https://en.wikipedia.org/wiki/ISO_8601#Time_intervals) format.
-                type: str
-                required: true
-            advance_renewal_period:
-                description:
-                    - A property specifying the period of time, in days, before the certificate's targeted renewal that the process should occur.
-                      Expressed in L(ISO 8601,https://en.wikipedia.org/wiki/ISO_8601#Time_intervals) format.
-                type: str
-                required: true
+        type: str
+    current_version_number:
+        description:
+            - Makes this version the current version. This property cannot be updated in combination with any other properties.
+            - This parameter is updatable.
+        type: int
     certificate_config:
         description:
             - ""
@@ -79,53 +64,6 @@ options:
             - This parameter is updatable.
         type: dict
         suboptions:
-            config_type:
-                description:
-                    - The origin of the certificate.
-                    - This parameter is updatable.
-                type: str
-                choices:
-                    - "MANAGED_EXTERNALLY_ISSUED_BY_INTERNAL_CA"
-                    - "ISSUED_BY_INTERNAL_CA"
-                    - "IMPORTED"
-                required: true
-            version_name:
-                description:
-                    - A name for the certificate. When the value is not null, a name is unique across versions of a given certificate.
-                    - This parameter is updatable.
-                type: str
-            issuer_certificate_authority_id:
-                description:
-                    - The OCID of the private CA.
-                    - Required when config_type is one of ['ISSUED_BY_INTERNAL_CA', 'MANAGED_EXTERNALLY_ISSUED_BY_INTERNAL_CA']
-                type: str
-            validity:
-                description:
-                    - ""
-                    - Applicable when config_type is one of ['ISSUED_BY_INTERNAL_CA', 'MANAGED_EXTERNALLY_ISSUED_BY_INTERNAL_CA']
-                type: dict
-                suboptions:
-                    time_of_validity_not_before:
-                        description:
-                            - "The date on which the certificate validity period begins, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp
-                              format.
-                              Example: `2019-04-03T21:10:29.600Z`"
-                            - Applicable when config_type is 'MANAGED_EXTERNALLY_ISSUED_BY_INTERNAL_CA'
-                        type: str
-                    time_of_validity_not_after:
-                        description:
-                            - "The date on which the certificate validity period ends, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp
-                              format.
-                              Example: `2019-04-03T21:10:29.600Z`"
-                            - Required when config_type is 'MANAGED_EXTERNALLY_ISSUED_BY_INTERNAL_CA'
-                        type: str
-                        required: true
-            csr_pem:
-                description:
-                    - The certificate signing request (in PEM format).
-                    - This parameter is updatable.
-                    - Required when config_type is 'MANAGED_EXTERNALLY_ISSUED_BY_INTERNAL_CA'
-                type: str
             certificate_profile_type:
                 description:
                     - The name of the profile used to create the certificate, which depends on the type of certificate you need.
@@ -136,6 +74,11 @@ options:
                     - "TLS_SERVER"
                     - "TLS_CLIENT"
                     - "TLS_CODE_SIGN"
+            issuer_certificate_authority_id:
+                description:
+                    - The OCID of the private CA.
+                    - Required when config_type is one of ['ISSUED_BY_INTERNAL_CA', 'MANAGED_EXTERNALLY_ISSUED_BY_INTERNAL_CA']
+                type: str
             subject:
                 description:
                     - ""
@@ -296,6 +239,21 @@ options:
                     - This parameter is updatable.
                     - Applicable when config_type is 'IMPORTED'
                 type: str
+            config_type:
+                description:
+                    - The origin of the certificate.
+                    - This parameter is updatable.
+                type: str
+                choices:
+                    - "MANAGED_EXTERNALLY_ISSUED_BY_INTERNAL_CA"
+                    - "ISSUED_BY_INTERNAL_CA"
+                    - "IMPORTED"
+                required: true
+            version_name:
+                description:
+                    - A name for the certificate. When the value is not null, a name is unique across versions of a given certificate.
+                    - This parameter is updatable.
+                type: str
             stage:
                 description:
                     - The rotation state of the certificate. The default is `CURRENT`, meaning that the certificate is currently in use. A certificate version
@@ -306,6 +264,33 @@ options:
                 choices:
                     - "CURRENT"
                     - "PENDING"
+            csr_pem:
+                description:
+                    - The certificate signing request (in PEM format).
+                    - This parameter is updatable.
+                    - Required when config_type is 'MANAGED_EXTERNALLY_ISSUED_BY_INTERNAL_CA'
+                type: str
+            validity:
+                description:
+                    - ""
+                    - Applicable when config_type is one of ['ISSUED_BY_INTERNAL_CA', 'MANAGED_EXTERNALLY_ISSUED_BY_INTERNAL_CA']
+                type: dict
+                suboptions:
+                    time_of_validity_not_before:
+                        description:
+                            - "The date on which the certificate validity period begins, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp
+                              format.
+                              Example: `2019-04-03T21:10:29.600Z`"
+                            - Applicable when config_type is 'MANAGED_EXTERNALLY_ISSUED_BY_INTERNAL_CA'
+                        type: str
+                    time_of_validity_not_after:
+                        description:
+                            - "The date on which the certificate validity period ends, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp
+                              format.
+                              Example: `2019-04-03T21:10:29.600Z`"
+                            - Required when config_type is 'MANAGED_EXTERNALLY_ISSUED_BY_INTERNAL_CA'
+                        type: str
+                        required: true
     freeform_tags:
         description:
             - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -320,17 +305,32 @@ options:
               Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             - This parameter is updatable.
         type: dict
-    certificate_id:
+    certificate_rules:
         description:
-            - The OCID of the certificate.
-            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["id"]
-    current_version_number:
-        description:
-            - Makes this version the current version. This property cannot be updated in combination with any other properties.
+            - An optional list of rules that control how the certificate is used and managed.
             - This parameter is updatable.
-        type: int
+        type: list
+        elements: dict
+        suboptions:
+            rule_type:
+                description:
+                    - The type of rule.
+                type: str
+                choices:
+                    - "CERTIFICATE_RENEWAL_RULE"
+                required: true
+            renewal_interval:
+                description:
+                    - A property specifying how often, in days, a certificate should be renewed.
+                      Expressed in L(ISO 8601,https://en.wikipedia.org/wiki/ISO_8601#Time_intervals) format.
+                type: str
+                required: true
+            advance_renewal_period:
+                description:
+                    - A property specifying the period of time, in days, before the certificate's targeted renewal that the process should occur.
+                      Expressed in L(ISO 8601,https://en.wikipedia.org/wiki/ISO_8601#Time_intervals) format.
+                type: str
+                required: true
     state:
         description:
             - The state of the Certificate.
@@ -350,29 +350,29 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     certificate_config:
       # required
-      config_type: MANAGED_EXTERNALLY_ISSUED_BY_INTERNAL_CA
       issuer_certificate_authority_id: "ocid1.issuercertificateauthority.oc1..xxxxxxEXAMPLExxxxxx"
+      config_type: MANAGED_EXTERNALLY_ISSUED_BY_INTERNAL_CA
       csr_pem: csr_pem_example
 
       # optional
       version_name: version_name_example
+      stage: CURRENT
       validity:
         # required
         time_of_validity_not_after: time_of_validity_not_after_example
 
         # optional
         time_of_validity_not_before: time_of_validity_not_before_example
-      stage: CURRENT
 
     # optional
     description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
     certificate_rules:
     - # required
       rule_type: CERTIFICATE_RENEWAL_RULE
       renewal_interval: renewal_interval_example
       advance_renewal_period: advance_renewal_period_example
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update certificate
   oci_certificates_management_certificate:
@@ -381,29 +381,29 @@ EXAMPLES = """
 
     # optional
     description: description_example
-    certificate_rules:
-    - # required
-      rule_type: CERTIFICATE_RENEWAL_RULE
-      renewal_interval: renewal_interval_example
-      advance_renewal_period: advance_renewal_period_example
+    current_version_number: 56
     certificate_config:
       # required
-      config_type: MANAGED_EXTERNALLY_ISSUED_BY_INTERNAL_CA
       issuer_certificate_authority_id: "ocid1.issuercertificateauthority.oc1..xxxxxxEXAMPLExxxxxx"
+      config_type: MANAGED_EXTERNALLY_ISSUED_BY_INTERNAL_CA
       csr_pem: csr_pem_example
 
       # optional
       version_name: version_name_example
+      stage: CURRENT
       validity:
         # required
         time_of_validity_not_after: time_of_validity_not_after_example
 
         # optional
         time_of_validity_not_before: time_of_validity_not_before_example
-      stage: CURRENT
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    current_version_number: 56
+    certificate_rules:
+    - # required
+      rule_type: CERTIFICATE_RENEWAL_RULE
+      renewal_interval: renewal_interval_example
+      advance_renewal_period: advance_renewal_period_example
 
 - name: Update certificate using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_certificates_management_certificate:
@@ -412,29 +412,29 @@ EXAMPLES = """
 
     # optional
     description: description_example
-    certificate_rules:
-    - # required
-      rule_type: CERTIFICATE_RENEWAL_RULE
-      renewal_interval: renewal_interval_example
-      advance_renewal_period: advance_renewal_period_example
+    current_version_number: 56
     certificate_config:
       # required
-      config_type: MANAGED_EXTERNALLY_ISSUED_BY_INTERNAL_CA
       issuer_certificate_authority_id: "ocid1.issuercertificateauthority.oc1..xxxxxxEXAMPLExxxxxx"
+      config_type: MANAGED_EXTERNALLY_ISSUED_BY_INTERNAL_CA
       csr_pem: csr_pem_example
 
       # optional
       version_name: version_name_example
+      stage: CURRENT
       validity:
         # required
         time_of_validity_not_after: time_of_validity_not_after_example
 
         # optional
         time_of_validity_not_before: time_of_validity_not_before_example
-      stage: CURRENT
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    current_version_number: 56
+    certificate_rules:
+    - # required
+      rule_type: CERTIFICATE_RENEWAL_RULE
+      renewal_interval: renewal_interval_example
+      advance_renewal_period: advance_renewal_period_example
 
 """
 
@@ -1048,41 +1048,13 @@ def main():
     module_args.update(
         dict(
             name=dict(type="str"),
-            description=dict(type="str"),
             compartment_id=dict(type="str"),
-            certificate_rules=dict(
-                type="list",
-                elements="dict",
-                options=dict(
-                    rule_type=dict(
-                        type="str", required=True, choices=["CERTIFICATE_RENEWAL_RULE"]
-                    ),
-                    renewal_interval=dict(type="str", required=True),
-                    advance_renewal_period=dict(type="str", required=True),
-                ),
-            ),
+            certificate_id=dict(aliases=["id"], type="str"),
+            description=dict(type="str"),
+            current_version_number=dict(type="int"),
             certificate_config=dict(
                 type="dict",
                 options=dict(
-                    config_type=dict(
-                        type="str",
-                        required=True,
-                        choices=[
-                            "MANAGED_EXTERNALLY_ISSUED_BY_INTERNAL_CA",
-                            "ISSUED_BY_INTERNAL_CA",
-                            "IMPORTED",
-                        ],
-                    ),
-                    version_name=dict(type="str"),
-                    issuer_certificate_authority_id=dict(type="str"),
-                    validity=dict(
-                        type="dict",
-                        options=dict(
-                            time_of_validity_not_before=dict(type="str"),
-                            time_of_validity_not_after=dict(type="str", required=True),
-                        ),
-                    ),
-                    csr_pem=dict(type="str"),
                     certificate_profile_type=dict(
                         type="str",
                         choices=[
@@ -1092,6 +1064,7 @@ def main():
                             "TLS_CODE_SIGN",
                         ],
                     ),
+                    issuer_certificate_authority_id=dict(type="str"),
                     subject=dict(
                         type="dict",
                         options=dict(
@@ -1141,13 +1114,40 @@ def main():
                     private_key_pem=dict(type="str", no_log=True),
                     certificate_pem=dict(type="str"),
                     private_key_pem_passphrase=dict(type="str", no_log=True),
+                    config_type=dict(
+                        type="str",
+                        required=True,
+                        choices=[
+                            "MANAGED_EXTERNALLY_ISSUED_BY_INTERNAL_CA",
+                            "ISSUED_BY_INTERNAL_CA",
+                            "IMPORTED",
+                        ],
+                    ),
+                    version_name=dict(type="str"),
                     stage=dict(type="str", choices=["CURRENT", "PENDING"]),
+                    csr_pem=dict(type="str"),
+                    validity=dict(
+                        type="dict",
+                        options=dict(
+                            time_of_validity_not_before=dict(type="str"),
+                            time_of_validity_not_after=dict(type="str", required=True),
+                        ),
+                    ),
                 ),
             ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
-            certificate_id=dict(aliases=["id"], type="str"),
-            current_version_number=dict(type="int"),
+            certificate_rules=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    rule_type=dict(
+                        type="str", required=True, choices=["CERTIFICATE_RENEWAL_RULE"]
+                    ),
+                    renewal_interval=dict(type="str", required=True),
+                    advance_renewal_period=dict(type="str", required=True),
+                ),
+            ),
             state=dict(type="str", default="present", choices=["present"]),
         )
     )

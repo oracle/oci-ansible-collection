@@ -27,112 +27,11 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    description:
-        description:
-            - Optional description about the deployment stage.
-            - This parameter is updatable.
-        type: str
-    display_name:
-        description:
-            - Deployment stage display name, which can be renamed and is not necessarily unique. Avoid entering confidential information.
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
-    deploy_stage_type:
-        description:
-            - Deployment stage type.
-            - Required for create using I(state=present), update using I(state=present) with deploy_stage_id present.
-        type: str
-        choices:
-            - "MANUAL_APPROVAL"
-            - "WAIT"
-            - "OKE_DEPLOYMENT"
-            - "LOAD_BALANCER_TRAFFIC_SHIFT"
-            - "COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT"
-            - "INVOKE_FUNCTION"
-            - "DEPLOY_FUNCTION"
     deploy_pipeline_id:
         description:
             - The OCID of a pipeline.
             - Required for create using I(state=present).
         type: str
-    deploy_stage_predecessor_collection:
-        description:
-            - ""
-            - Required for create using I(state=present).
-            - This parameter is updatable.
-            - Applicable when deploy_stage_type is one of ['COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT', 'OKE_DEPLOYMENT', 'DEPLOY_FUNCTION', 'MANUAL_APPROVAL',
-              'LOAD_BALANCER_TRAFFIC_SHIFT', 'WAIT', 'INVOKE_FUNCTION']
-        type: dict
-        suboptions:
-            items:
-                description:
-                    - A list of stage predecessors for a stage.
-                    - Required when deploy_stage_type is 'MANUAL_APPROVAL'
-                type: list
-                elements: dict
-                required: true
-                suboptions:
-                    id:
-                        description:
-                            - The OCID of the predecessor stage. If a stage is the first stage in the pipeline, then the ID is the pipeline's OCID.
-                            - Required when deploy_stage_type is 'MANUAL_APPROVAL'
-                        type: str
-                        required: true
-    freeform_tags:
-        description:
-            - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.  See L(Resource
-              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm). Example: `{\\"bar-key\\": \\"value\\"}`"
-            - This parameter is updatable.
-        type: dict
-    defined_tags:
-        description:
-            - "Defined tags for this resource. Each key is predefined and scoped to a namespace. See L(Resource
-              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm). Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
-            - This parameter is updatable.
-        type: dict
-    approval_policy:
-        description:
-            - ""
-            - This parameter is updatable.
-            - Applicable when deploy_stage_type is 'MANUAL_APPROVAL'
-            - Required when deploy_stage_type is 'MANUAL_APPROVAL'
-        type: dict
-        suboptions:
-            approval_policy_type:
-                description:
-                    - Approval policy type.
-                type: str
-                choices:
-                    - "COUNT_BASED_APPROVAL"
-                required: true
-            number_of_approvals_required:
-                description:
-                    - A minimum number of approvals required for stage to proceed.
-                type: int
-                required: true
-    wait_criteria:
-        description:
-            - ""
-            - This parameter is updatable.
-            - Applicable when deploy_stage_type is 'WAIT'
-            - Required when deploy_stage_type is 'WAIT'
-        type: dict
-        suboptions:
-            wait_type:
-                description:
-                    - Wait criteria type.
-                type: str
-                choices:
-                    - "ABSOLUTE_WAIT"
-                required: true
-            wait_duration:
-                description:
-                    - The absolute wait duration. An ISO 8601 formatted duration string. Minimum waitDuration should be 5 seconds. Maximum waitDuration can be
-                      up to 2 days.
-                type: str
-                required: true
     oke_cluster_deploy_environment_id:
         description:
             - Kubernetes cluster environment OCID for deployment.
@@ -154,21 +53,6 @@ options:
             - This parameter is updatable.
             - Applicable when deploy_stage_type is 'OKE_DEPLOYMENT'
         type: str
-    rollback_policy:
-        description:
-            - ""
-            - This parameter is updatable.
-            - Applicable when deploy_stage_type is one of ['COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT', 'OKE_DEPLOYMENT', 'LOAD_BALANCER_TRAFFIC_SHIFT']
-        type: dict
-        suboptions:
-            policy_type:
-                description:
-                    - Specifies type of the deployment stage rollback policy.
-                type: str
-                choices:
-                    - "NO_STAGE_ROLLBACK_POLICY"
-                    - "AUTOMATED_STAGE_ROLLBACK_POLICY"
-                required: true
     blue_backend_ips:
         description:
             - ""
@@ -204,6 +88,27 @@ options:
             - Applicable when deploy_stage_type is 'LOAD_BALANCER_TRAFFIC_SHIFT'
             - Required when deploy_stage_type is 'LOAD_BALANCER_TRAFFIC_SHIFT'
         type: str
+    compute_instance_group_deploy_environment_id:
+        description:
+            - A compute instance group environment OCID for rolling deployment.
+            - This parameter is updatable.
+            - Applicable when deploy_stage_type is 'COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT'
+            - Required when deploy_stage_type is 'COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT'
+        type: str
+    deployment_spec_deploy_artifact_id:
+        description:
+            - The OCID of the artifact that contains the deployment specification.
+            - This parameter is updatable.
+            - Applicable when deploy_stage_type is 'COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT'
+            - Required when deploy_stage_type is 'COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT'
+        type: str
+    deploy_artifact_ids:
+        description:
+            - Additional file artifact OCIDs.
+            - This parameter is updatable.
+            - Applicable when deploy_stage_type is 'COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT'
+        type: list
+        elements: str
     rollout_policy:
         description:
             - ""
@@ -212,22 +117,16 @@ options:
             - Required when deploy_stage_type is one of ['COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT', 'LOAD_BALANCER_TRAFFIC_SHIFT']
         type: dict
         suboptions:
-            batch_count:
-                description:
-                    - Specifies number of batches for this stage.
-                    - Required when deploy_stage_type is one of ['COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_COUNT', 'LOAD_BALANCER_TRAFFIC_SHIFT']
-                type: int
-            batch_delay_in_seconds:
-                description:
-                    - Specifies delay in seconds between batches. The default delay is 1 minute.
-                    - Applicable when deploy_stage_type is one of ['COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE',
-                      'COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_COUNT', 'LOAD_BALANCER_TRAFFIC_SHIFT']
-                type: int
             ramp_limit_percent:
                 description:
                     - Indicates the criteria to stop.
                     - Applicable when deploy_stage_type is 'LOAD_BALANCER_TRAFFIC_SHIFT'
                 type: float
+            batch_percentage:
+                description:
+                    - The percentage that will be used to determine how many instances will be deployed concurrently.
+                    - Required when policy_type is 'COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE'
+                type: int
             policy_type:
                 description:
                     - The type of policy used for rolling out a deployment stage.
@@ -235,10 +134,57 @@ options:
                 choices:
                     - "COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE"
                     - "COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_COUNT"
-            batch_percentage:
+            batch_delay_in_seconds:
                 description:
-                    - The percentage that will be used to determine how many instances will be deployed concurrently.
-                    - Required when policy_type is 'COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE'
+                    - Specifies delay in seconds between batches. The default delay is 1 minute.
+                    - Applicable when deploy_stage_type is one of ['COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE',
+                      'COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_COUNT', 'LOAD_BALANCER_TRAFFIC_SHIFT']
+                type: int
+            batch_count:
+                description:
+                    - Specifies number of batches for this stage.
+                    - Required when deploy_stage_type is one of ['COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_COUNT', 'LOAD_BALANCER_TRAFFIC_SHIFT']
+                type: int
+    rollback_policy:
+        description:
+            - ""
+            - This parameter is updatable.
+            - Applicable when deploy_stage_type is one of ['COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT', 'OKE_DEPLOYMENT', 'LOAD_BALANCER_TRAFFIC_SHIFT']
+        type: dict
+        suboptions:
+            policy_type:
+                description:
+                    - Specifies type of the deployment stage rollback policy.
+                type: str
+                choices:
+                    - "NO_STAGE_ROLLBACK_POLICY"
+                    - "AUTOMATED_STAGE_ROLLBACK_POLICY"
+                required: true
+    failure_policy:
+        description:
+            - ""
+            - This parameter is updatable.
+            - Applicable when deploy_stage_type is 'COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT'
+        type: dict
+        suboptions:
+            failure_percentage:
+                description:
+                    - The failure percentage threshold, which when reached or exceeded sets the stage as FAILED. Percentage is computed as the ceiling value of
+                      the number of failed instances over the total count of the instances in the group.
+                    - Required when policy_type is 'COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE'
+                type: int
+            policy_type:
+                description:
+                    - Specifies if the failure instance size is given by absolute number or by percentage.
+                type: str
+                choices:
+                    - "COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE"
+                    - "COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_COUNT"
+                required: true
+            failure_count:
+                description:
+                    - The threshold count of failed instances in the group, which when reached or exceeded sets the stage as FAILED.
+                    - Required when policy_type is 'COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_COUNT'
                 type: int
     load_balancer_config:
         description:
@@ -265,53 +211,132 @@ options:
                     - Listen port for the backend server.
                     - Applicable when deploy_stage_type is 'LOAD_BALANCER_TRAFFIC_SHIFT'
                 type: int
-    compute_instance_group_deploy_environment_id:
-        description:
-            - A compute instance group environment OCID for rolling deployment.
-            - This parameter is updatable.
-            - Applicable when deploy_stage_type is 'COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT'
-            - Required when deploy_stage_type is 'COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT'
-        type: str
-    deployment_spec_deploy_artifact_id:
-        description:
-            - The OCID of the artifact that contains the deployment specification.
-            - This parameter is updatable.
-            - Applicable when deploy_stage_type is 'COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT'
-            - Required when deploy_stage_type is 'COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT'
-        type: str
-    deploy_artifact_ids:
-        description:
-            - Additional file artifact OCIDs.
-            - This parameter is updatable.
-            - Applicable when deploy_stage_type is 'COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT'
-        type: list
-        elements: str
-    failure_policy:
+    wait_criteria:
         description:
             - ""
             - This parameter is updatable.
-            - Applicable when deploy_stage_type is 'COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT'
+            - Applicable when deploy_stage_type is 'WAIT'
+            - Required when deploy_stage_type is 'WAIT'
         type: dict
         suboptions:
-            policy_type:
+            wait_type:
                 description:
-                    - Specifies if the failure instance size is given by absolute number or by percentage.
+                    - Wait criteria type.
                 type: str
                 choices:
-                    - "COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE"
-                    - "COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_COUNT"
+                    - "ABSOLUTE_WAIT"
                 required: true
-            failure_percentage:
+            wait_duration:
                 description:
-                    - The failure percentage threshold, which when reached or exceeded sets the stage as FAILED. Percentage is computed as the ceiling value of
-                      the number of failed instances over the total count of the instances in the group.
-                    - Required when policy_type is 'COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE'
-                type: int
-            failure_count:
+                    - The absolute wait duration. An ISO 8601 formatted duration string. Minimum waitDuration should be 5 seconds. Maximum waitDuration can be
+                      up to 2 days.
+                type: str
+                required: true
+    approval_policy:
+        description:
+            - ""
+            - This parameter is updatable.
+            - Applicable when deploy_stage_type is 'MANUAL_APPROVAL'
+            - Required when deploy_stage_type is 'MANUAL_APPROVAL'
+        type: dict
+        suboptions:
+            approval_policy_type:
                 description:
-                    - The threshold count of failed instances in the group, which when reached or exceeded sets the stage as FAILED.
-                    - Required when policy_type is 'COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_COUNT'
+                    - Approval policy type.
+                type: str
+                choices:
+                    - "COUNT_BASED_APPROVAL"
+                required: true
+            number_of_approvals_required:
+                description:
+                    - A minimum number of approvals required for stage to proceed.
                 type: int
+                required: true
+    docker_image_deploy_artifact_id:
+        description:
+            - A Docker image artifact OCID.
+            - This parameter is updatable.
+            - Applicable when deploy_stage_type is 'DEPLOY_FUNCTION'
+            - Required when deploy_stage_type is 'DEPLOY_FUNCTION'
+        type: str
+    config:
+        description:
+            - User provided key and value pair configuration, which is assigned through constants or parameter.
+            - This parameter is updatable.
+            - Applicable when deploy_stage_type is 'DEPLOY_FUNCTION'
+        type: dict
+    max_memory_in_mbs:
+        description:
+            - Maximum usable memory for the Function (in MB).
+            - This parameter is updatable.
+            - Applicable when deploy_stage_type is 'DEPLOY_FUNCTION'
+        type: int
+    function_timeout_in_seconds:
+        description:
+            - Timeout for execution of the Function. Value in seconds.
+            - This parameter is updatable.
+            - Applicable when deploy_stage_type is 'DEPLOY_FUNCTION'
+        type: int
+    description:
+        description:
+            - Optional description about the deployment stage.
+            - This parameter is updatable.
+        type: str
+    display_name:
+        description:
+            - Deployment stage display name, which can be renamed and is not necessarily unique. Avoid entering confidential information.
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
+    deploy_stage_type:
+        description:
+            - Deployment stage type.
+            - Required for create using I(state=present), update using I(state=present) with deploy_stage_id present.
+        type: str
+        choices:
+            - "MANUAL_APPROVAL"
+            - "WAIT"
+            - "OKE_DEPLOYMENT"
+            - "LOAD_BALANCER_TRAFFIC_SHIFT"
+            - "COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT"
+            - "INVOKE_FUNCTION"
+            - "DEPLOY_FUNCTION"
+    deploy_stage_predecessor_collection:
+        description:
+            - ""
+            - Required for create using I(state=present).
+            - This parameter is updatable.
+            - Applicable when deploy_stage_type is one of ['COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT', 'OKE_DEPLOYMENT', 'DEPLOY_FUNCTION', 'MANUAL_APPROVAL',
+              'LOAD_BALANCER_TRAFFIC_SHIFT', 'WAIT', 'INVOKE_FUNCTION']
+        type: dict
+        suboptions:
+            items:
+                description:
+                    - A list of stage predecessors for a stage.
+                    - Required when deploy_stage_type is 'MANUAL_APPROVAL'
+                type: list
+                elements: dict
+                required: true
+                suboptions:
+                    id:
+                        description:
+                            - The OCID of the predecessor stage. If a stage is the first stage in the pipeline, then the ID is the pipeline's OCID.
+                            - Required when deploy_stage_type is 'MANUAL_APPROVAL'
+                        type: str
+                        required: true
+    freeform_tags:
+        description:
+            - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.  See L(Resource
+              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm). Example: `{\\"bar-key\\": \\"value\\"}`"
+            - This parameter is updatable.
+        type: dict
+    defined_tags:
+        description:
+            - "Defined tags for this resource. Each key is predefined and scoped to a namespace. See L(Resource
+              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm). Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+            - This parameter is updatable.
+        type: dict
     function_deploy_environment_id:
         description:
             - Function environment OCID.
@@ -339,31 +364,6 @@ options:
             - Applicable when deploy_stage_type is 'INVOKE_FUNCTION'
             - Required when deploy_stage_type is 'INVOKE_FUNCTION'
         type: bool
-    docker_image_deploy_artifact_id:
-        description:
-            - A Docker image artifact OCID.
-            - This parameter is updatable.
-            - Applicable when deploy_stage_type is 'DEPLOY_FUNCTION'
-            - Required when deploy_stage_type is 'DEPLOY_FUNCTION'
-        type: str
-    config:
-        description:
-            - User provided key and value pair configuration, which is assigned through constants or parameter.
-            - This parameter is updatable.
-            - Applicable when deploy_stage_type is 'DEPLOY_FUNCTION'
-        type: dict
-    max_memory_in_mbs:
-        description:
-            - Maximum usable memory for the Function (in MB).
-            - This parameter is updatable.
-            - Applicable when deploy_stage_type is 'DEPLOY_FUNCTION'
-        type: int
-    function_timeout_in_seconds:
-        description:
-            - Timeout for execution of the Function. Value in seconds.
-            - This parameter is updatable.
-            - Applicable when deploy_stage_type is 'DEPLOY_FUNCTION'
-        type: int
     deploy_stage_id:
         description:
             - Unique stage identifier.
@@ -387,52 +387,35 @@ EXAMPLES = """
 - name: Create deploy_stage with deploy_stage_type = MANUAL_APPROVAL
   oci_devops_deploy_stage:
     # required
-    deploy_stage_type: MANUAL_APPROVAL
     deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_stage_type: MANUAL_APPROVAL
 
     # optional
-    description: description_example
-    display_name: display_name_example
-    deploy_stage_predecessor_collection:
-      # required
-      items:
-      - # required
-        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
     approval_policy:
       # required
       approval_policy_type: COUNT_BASED_APPROVAL
       number_of_approvals_required: 56
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Create deploy_stage with deploy_stage_type = WAIT
   oci_devops_deploy_stage:
     # required
-    deploy_stage_type: WAIT
     deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_stage_type: WAIT
 
     # optional
-    description: description_example
-    display_name: display_name_example
-    deploy_stage_predecessor_collection:
-      # required
-      items:
-      - # required
-        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
     wait_criteria:
       # required
       wait_type: ABSOLUTE_WAIT
       wait_duration: wait_duration_example
-
-- name: Create deploy_stage with deploy_stage_type = OKE_DEPLOYMENT
-  oci_devops_deploy_stage:
-    # required
-    deploy_stage_type: OKE_DEPLOYMENT
-    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
-
-    # optional
     description: description_example
     display_name: display_name_example
     deploy_stage_predecessor_collection:
@@ -442,20 +425,20 @@ EXAMPLES = """
         id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Create deploy_stage with deploy_stage_type = OKE_DEPLOYMENT
+  oci_devops_deploy_stage:
+    # required
+    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_stage_type: OKE_DEPLOYMENT
+
+    # optional
     oke_cluster_deploy_environment_id: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
     kubernetes_manifest_deploy_artifact_ids: [ "kubernetes_manifest_deploy_artifact_ids_example" ]
     namespace: namespace_example
     rollback_policy:
       # required
       policy_type: NO_STAGE_ROLLBACK_POLICY
-
-- name: Create deploy_stage with deploy_stage_type = LOAD_BALANCER_TRAFFIC_SHIFT
-  oci_devops_deploy_stage:
-    # required
-    deploy_stage_type: LOAD_BALANCER_TRAFFIC_SHIFT
-    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
-
-    # optional
     description: description_example
     display_name: display_name_example
     deploy_stage_predecessor_collection:
@@ -465,9 +448,14 @@ EXAMPLES = """
         id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    rollback_policy:
-      # required
-      policy_type: NO_STAGE_ROLLBACK_POLICY
+
+- name: Create deploy_stage with deploy_stage_type = LOAD_BALANCER_TRAFFIC_SHIFT
+  oci_devops_deploy_stage:
+    # required
+    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_stage_type: LOAD_BALANCER_TRAFFIC_SHIFT
+
+    # optional
     blue_backend_ips:
       # optional
       items: [ "items_example" ]
@@ -477,11 +465,14 @@ EXAMPLES = """
     traffic_shift_target: traffic_shift_target_example
     rollout_policy:
       # required
-      policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
       batch_percentage: 56
+      policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
 
       # optional
       batch_delay_in_seconds: 56
+    rollback_policy:
+      # required
+      policy_type: NO_STAGE_ROLLBACK_POLICY
     load_balancer_config:
       # required
       load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
@@ -489,14 +480,6 @@ EXAMPLES = """
 
       # optional
       backend_port: 56
-
-- name: Create deploy_stage with deploy_stage_type = COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT
-  oci_devops_deploy_stage:
-    # required
-    deploy_stage_type: COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT
-    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
-
-    # optional
     description: description_example
     display_name: display_name_example
     deploy_stage_predecessor_collection:
@@ -506,16 +489,31 @@ EXAMPLES = """
         id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    rollback_policy:
-      # required
-      policy_type: NO_STAGE_ROLLBACK_POLICY
+
+- name: Create deploy_stage with deploy_stage_type = COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT
+  oci_devops_deploy_stage:
+    # required
+    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_stage_type: COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT
+
+    # optional
+    compute_instance_group_deploy_environment_id: "ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+    deployment_spec_deploy_artifact_id: "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_artifact_ids: [ "deploy_artifact_ids_example" ]
     rollout_policy:
       # required
-      policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
       batch_percentage: 56
+      policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
 
       # optional
       batch_delay_in_seconds: 56
+    rollback_policy:
+      # required
+      policy_type: NO_STAGE_ROLLBACK_POLICY
+    failure_policy:
+      # required
+      failure_percentage: 56
+      policy_type: COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE
     load_balancer_config:
       # required
       load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
@@ -523,19 +521,21 @@ EXAMPLES = """
 
       # optional
       backend_port: 56
-    compute_instance_group_deploy_environment_id: "ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
-    deployment_spec_deploy_artifact_id: "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
-    deploy_artifact_ids: [ "deploy_artifact_ids_example" ]
-    failure_policy:
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
       # required
-      policy_type: COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE
-      failure_percentage: 56
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Create deploy_stage with deploy_stage_type = INVOKE_FUNCTION
   oci_devops_deploy_stage:
     # required
-    deploy_stage_type: INVOKE_FUNCTION
     deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_stage_type: INVOKE_FUNCTION
 
     # optional
     description: description_example
@@ -555,10 +555,14 @@ EXAMPLES = """
 - name: Create deploy_stage with deploy_stage_type = DEPLOY_FUNCTION
   oci_devops_deploy_stage:
     # required
-    deploy_stage_type: DEPLOY_FUNCTION
     deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_stage_type: DEPLOY_FUNCTION
 
     # optional
+    docker_image_deploy_artifact_id: "ocid1.dockerimagedeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+    config: null
+    max_memory_in_mbs: 56
+    function_timeout_in_seconds: 56
     description: description_example
     display_name: display_name_example
     deploy_stage_predecessor_collection:
@@ -569,10 +573,6 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     function_deploy_environment_id: "ocid1.functiondeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
-    docker_image_deploy_artifact_id: "ocid1.dockerimagedeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
-    config: null
-    max_memory_in_mbs: 56
-    function_timeout_in_seconds: 56
 
 - name: Update deploy_stage with deploy_stage_type = MANUAL_APPROVAL
   oci_devops_deploy_stage:
@@ -580,6 +580,10 @@ EXAMPLES = """
     deploy_stage_type: MANUAL_APPROVAL
 
     # optional
+    approval_policy:
+      # required
+      approval_policy_type: COUNT_BASED_APPROVAL
+      number_of_approvals_required: 56
     description: description_example
     display_name: display_name_example
     deploy_stage_predecessor_collection:
@@ -589,10 +593,6 @@ EXAMPLES = """
         id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    approval_policy:
-      # required
-      approval_policy_type: COUNT_BASED_APPROVAL
-      number_of_approvals_required: 56
 
 - name: Update deploy_stage with deploy_stage_type = WAIT
   oci_devops_deploy_stage:
@@ -600,6 +600,10 @@ EXAMPLES = """
     deploy_stage_type: WAIT
 
     # optional
+    wait_criteria:
+      # required
+      wait_type: ABSOLUTE_WAIT
+      wait_duration: wait_duration_example
     description: description_example
     display_name: display_name_example
     deploy_stage_predecessor_collection:
@@ -609,10 +613,6 @@ EXAMPLES = """
         id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    wait_criteria:
-      # required
-      wait_type: ABSOLUTE_WAIT
-      wait_duration: wait_duration_example
 
 - name: Update deploy_stage with deploy_stage_type = OKE_DEPLOYMENT
   oci_devops_deploy_stage:
@@ -620,6 +620,12 @@ EXAMPLES = """
     deploy_stage_type: OKE_DEPLOYMENT
 
     # optional
+    oke_cluster_deploy_environment_id: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+    kubernetes_manifest_deploy_artifact_ids: [ "kubernetes_manifest_deploy_artifact_ids_example" ]
+    namespace: namespace_example
+    rollback_policy:
+      # required
+      policy_type: NO_STAGE_ROLLBACK_POLICY
     description: description_example
     display_name: display_name_example
     deploy_stage_predecessor_collection:
@@ -629,12 +635,6 @@ EXAMPLES = """
         id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    oke_cluster_deploy_environment_id: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
-    kubernetes_manifest_deploy_artifact_ids: [ "kubernetes_manifest_deploy_artifact_ids_example" ]
-    namespace: namespace_example
-    rollback_policy:
-      # required
-      policy_type: NO_STAGE_ROLLBACK_POLICY
 
 - name: Update deploy_stage with deploy_stage_type = LOAD_BALANCER_TRAFFIC_SHIFT
   oci_devops_deploy_stage:
@@ -642,18 +642,6 @@ EXAMPLES = """
     deploy_stage_type: LOAD_BALANCER_TRAFFIC_SHIFT
 
     # optional
-    description: description_example
-    display_name: display_name_example
-    deploy_stage_predecessor_collection:
-      # required
-      items:
-      - # required
-        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
-    rollback_policy:
-      # required
-      policy_type: NO_STAGE_ROLLBACK_POLICY
     blue_backend_ips:
       # optional
       items: [ "items_example" ]
@@ -663,11 +651,14 @@ EXAMPLES = """
     traffic_shift_target: traffic_shift_target_example
     rollout_policy:
       # required
-      policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
       batch_percentage: 56
+      policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
 
       # optional
       batch_delay_in_seconds: 56
+    rollback_policy:
+      # required
+      policy_type: NO_STAGE_ROLLBACK_POLICY
     load_balancer_config:
       # required
       load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
@@ -675,13 +666,6 @@ EXAMPLES = """
 
       # optional
       backend_port: 56
-
-- name: Update deploy_stage with deploy_stage_type = COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT
-  oci_devops_deploy_stage:
-    # required
-    deploy_stage_type: COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT
-
-    # optional
     description: description_example
     display_name: display_name_example
     deploy_stage_predecessor_collection:
@@ -691,16 +675,30 @@ EXAMPLES = """
         id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    rollback_policy:
-      # required
-      policy_type: NO_STAGE_ROLLBACK_POLICY
+
+- name: Update deploy_stage with deploy_stage_type = COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT
+
+    # optional
+    compute_instance_group_deploy_environment_id: "ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+    deployment_spec_deploy_artifact_id: "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_artifact_ids: [ "deploy_artifact_ids_example" ]
     rollout_policy:
       # required
-      policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
       batch_percentage: 56
+      policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
 
       # optional
       batch_delay_in_seconds: 56
+    rollback_policy:
+      # required
+      policy_type: NO_STAGE_ROLLBACK_POLICY
+    failure_policy:
+      # required
+      failure_percentage: 56
+      policy_type: COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE
     load_balancer_config:
       # required
       load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
@@ -708,13 +706,15 @@ EXAMPLES = """
 
       # optional
       backend_port: 56
-    compute_instance_group_deploy_environment_id: "ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
-    deployment_spec_deploy_artifact_id: "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
-    deploy_artifact_ids: [ "deploy_artifact_ids_example" ]
-    failure_policy:
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
       # required
-      policy_type: COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE
-      failure_percentage: 56
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update deploy_stage with deploy_stage_type = INVOKE_FUNCTION
   oci_devops_deploy_stage:
@@ -742,6 +742,10 @@ EXAMPLES = """
     deploy_stage_type: DEPLOY_FUNCTION
 
     # optional
+    docker_image_deploy_artifact_id: "ocid1.dockerimagedeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+    config: null
+    max_memory_in_mbs: 56
+    function_timeout_in_seconds: 56
     description: description_example
     display_name: display_name_example
     deploy_stage_predecessor_collection:
@@ -752,10 +756,6 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     function_deploy_environment_id: "ocid1.functiondeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
-    docker_image_deploy_artifact_id: "ocid1.dockerimagedeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
-    config: null
-    max_memory_in_mbs: 56
-    function_timeout_in_seconds: 56
 
 - name: Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_stage_type = MANUAL_APPROVAL
   oci_devops_deploy_stage:
@@ -763,6 +763,10 @@ EXAMPLES = """
     deploy_stage_type: MANUAL_APPROVAL
 
     # optional
+    approval_policy:
+      # required
+      approval_policy_type: COUNT_BASED_APPROVAL
+      number_of_approvals_required: 56
     description: description_example
     display_name: display_name_example
     deploy_stage_predecessor_collection:
@@ -772,10 +776,6 @@ EXAMPLES = """
         id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    approval_policy:
-      # required
-      approval_policy_type: COUNT_BASED_APPROVAL
-      number_of_approvals_required: 56
 
 - name: Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_stage_type = WAIT
   oci_devops_deploy_stage:
@@ -783,6 +783,10 @@ EXAMPLES = """
     deploy_stage_type: WAIT
 
     # optional
+    wait_criteria:
+      # required
+      wait_type: ABSOLUTE_WAIT
+      wait_duration: wait_duration_example
     description: description_example
     display_name: display_name_example
     deploy_stage_predecessor_collection:
@@ -792,10 +796,6 @@ EXAMPLES = """
         id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    wait_criteria:
-      # required
-      wait_type: ABSOLUTE_WAIT
-      wait_duration: wait_duration_example
 
 - name: Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_stage_type = OKE_DEPLOYMENT
   oci_devops_deploy_stage:
@@ -803,6 +803,12 @@ EXAMPLES = """
     deploy_stage_type: OKE_DEPLOYMENT
 
     # optional
+    oke_cluster_deploy_environment_id: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+    kubernetes_manifest_deploy_artifact_ids: [ "kubernetes_manifest_deploy_artifact_ids_example" ]
+    namespace: namespace_example
+    rollback_policy:
+      # required
+      policy_type: NO_STAGE_ROLLBACK_POLICY
     description: description_example
     display_name: display_name_example
     deploy_stage_predecessor_collection:
@@ -812,12 +818,6 @@ EXAMPLES = """
         id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    oke_cluster_deploy_environment_id: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
-    kubernetes_manifest_deploy_artifact_ids: [ "kubernetes_manifest_deploy_artifact_ids_example" ]
-    namespace: namespace_example
-    rollback_policy:
-      # required
-      policy_type: NO_STAGE_ROLLBACK_POLICY
 
 - name: Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_stage_type = LOAD_BALANCER_TRAFFIC_SHIFT
   oci_devops_deploy_stage:
@@ -825,18 +825,6 @@ EXAMPLES = """
     deploy_stage_type: LOAD_BALANCER_TRAFFIC_SHIFT
 
     # optional
-    description: description_example
-    display_name: display_name_example
-    deploy_stage_predecessor_collection:
-      # required
-      items:
-      - # required
-        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
-    rollback_policy:
-      # required
-      policy_type: NO_STAGE_ROLLBACK_POLICY
     blue_backend_ips:
       # optional
       items: [ "items_example" ]
@@ -846,11 +834,14 @@ EXAMPLES = """
     traffic_shift_target: traffic_shift_target_example
     rollout_policy:
       # required
-      policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
       batch_percentage: 56
+      policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
 
       # optional
       batch_delay_in_seconds: 56
+    rollback_policy:
+      # required
+      policy_type: NO_STAGE_ROLLBACK_POLICY
     load_balancer_config:
       # required
       load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
@@ -858,15 +849,6 @@ EXAMPLES = """
 
       # optional
       backend_port: 56
-
-- name: >
-    Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
-    with deploy_stage_type = COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT
-  oci_devops_deploy_stage:
-    # required
-    deploy_stage_type: COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT
-
-    # optional
     description: description_example
     display_name: display_name_example
     deploy_stage_predecessor_collection:
@@ -876,16 +858,32 @@ EXAMPLES = """
         id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    rollback_policy:
-      # required
-      policy_type: NO_STAGE_ROLLBACK_POLICY
+
+- name: >
+    Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    with deploy_stage_type = COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT
+
+    # optional
+    compute_instance_group_deploy_environment_id: "ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+    deployment_spec_deploy_artifact_id: "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_artifact_ids: [ "deploy_artifact_ids_example" ]
     rollout_policy:
       # required
-      policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
       batch_percentage: 56
+      policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
 
       # optional
       batch_delay_in_seconds: 56
+    rollback_policy:
+      # required
+      policy_type: NO_STAGE_ROLLBACK_POLICY
+    failure_policy:
+      # required
+      failure_percentage: 56
+      policy_type: COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE
     load_balancer_config:
       # required
       load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
@@ -893,13 +891,15 @@ EXAMPLES = """
 
       # optional
       backend_port: 56
-    compute_instance_group_deploy_environment_id: "ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
-    deployment_spec_deploy_artifact_id: "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
-    deploy_artifact_ids: [ "deploy_artifact_ids_example" ]
-    failure_policy:
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
       # required
-      policy_type: COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE
-      failure_percentage: 56
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_stage_type = INVOKE_FUNCTION
   oci_devops_deploy_stage:
@@ -927,6 +927,10 @@ EXAMPLES = """
     deploy_stage_type: DEPLOY_FUNCTION
 
     # optional
+    docker_image_deploy_artifact_id: "ocid1.dockerimagedeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+    config: null
+    max_memory_in_mbs: 56
+    function_timeout_in_seconds: 56
     description: description_example
     display_name: display_name_example
     deploy_stage_predecessor_collection:
@@ -937,10 +941,6 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     function_deploy_environment_id: "ocid1.functiondeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
-    docker_image_deploy_artifact_id: "ocid1.dockerimagedeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
-    config: null
-    max_memory_in_mbs: 56
-    function_timeout_in_seconds: 56
 
 - name: Delete deploy_stage
   oci_devops_deploy_stage:
@@ -1539,6 +1539,94 @@ def main():
     )
     module_args.update(
         dict(
+            deploy_pipeline_id=dict(type="str"),
+            oke_cluster_deploy_environment_id=dict(type="str"),
+            kubernetes_manifest_deploy_artifact_ids=dict(type="list", elements="str"),
+            namespace=dict(type="str"),
+            blue_backend_ips=dict(
+                type="dict", options=dict(items=dict(type="list", elements="str"))
+            ),
+            green_backend_ips=dict(
+                type="dict", options=dict(items=dict(type="list", elements="str"))
+            ),
+            traffic_shift_target=dict(type="str"),
+            compute_instance_group_deploy_environment_id=dict(type="str"),
+            deployment_spec_deploy_artifact_id=dict(type="str"),
+            deploy_artifact_ids=dict(type="list", elements="str"),
+            rollout_policy=dict(
+                type="dict",
+                options=dict(
+                    ramp_limit_percent=dict(type="float"),
+                    batch_percentage=dict(type="int"),
+                    policy_type=dict(
+                        type="str",
+                        choices=[
+                            "COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE",
+                            "COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_COUNT",
+                        ],
+                    ),
+                    batch_delay_in_seconds=dict(type="int"),
+                    batch_count=dict(type="int"),
+                ),
+            ),
+            rollback_policy=dict(
+                type="dict",
+                options=dict(
+                    policy_type=dict(
+                        type="str",
+                        required=True,
+                        choices=[
+                            "NO_STAGE_ROLLBACK_POLICY",
+                            "AUTOMATED_STAGE_ROLLBACK_POLICY",
+                        ],
+                    )
+                ),
+            ),
+            failure_policy=dict(
+                type="dict",
+                options=dict(
+                    failure_percentage=dict(type="int"),
+                    policy_type=dict(
+                        type="str",
+                        required=True,
+                        choices=[
+                            "COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE",
+                            "COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_COUNT",
+                        ],
+                    ),
+                    failure_count=dict(type="int"),
+                ),
+            ),
+            load_balancer_config=dict(
+                type="dict",
+                options=dict(
+                    load_balancer_id=dict(type="str", required=True),
+                    listener_name=dict(type="str", required=True),
+                    backend_port=dict(type="int"),
+                ),
+            ),
+            wait_criteria=dict(
+                type="dict",
+                options=dict(
+                    wait_type=dict(
+                        type="str", required=True, choices=["ABSOLUTE_WAIT"]
+                    ),
+                    wait_duration=dict(type="str", required=True),
+                ),
+            ),
+            approval_policy=dict(
+                type="dict",
+                options=dict(
+                    approval_policy_type=dict(
+                        type="str", required=True, choices=["COUNT_BASED_APPROVAL"]
+                    ),
+                    number_of_approvals_required=dict(type="int", required=True),
+                ),
+            ),
+            docker_image_deploy_artifact_id=dict(type="str"),
+            config=dict(type="dict"),
+            max_memory_in_mbs=dict(type="int"),
+            function_timeout_in_seconds=dict(type="int"),
             description=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             deploy_stage_type=dict(
@@ -1553,7 +1641,6 @@ def main():
                     "DEPLOY_FUNCTION",
                 ],
             ),
-            deploy_pipeline_id=dict(type="str"),
             deploy_stage_predecessor_collection=dict(
                 type="dict",
                 options=dict(
@@ -1567,97 +1654,10 @@ def main():
             ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
-            approval_policy=dict(
-                type="dict",
-                options=dict(
-                    approval_policy_type=dict(
-                        type="str", required=True, choices=["COUNT_BASED_APPROVAL"]
-                    ),
-                    number_of_approvals_required=dict(type="int", required=True),
-                ),
-            ),
-            wait_criteria=dict(
-                type="dict",
-                options=dict(
-                    wait_type=dict(
-                        type="str", required=True, choices=["ABSOLUTE_WAIT"]
-                    ),
-                    wait_duration=dict(type="str", required=True),
-                ),
-            ),
-            oke_cluster_deploy_environment_id=dict(type="str"),
-            kubernetes_manifest_deploy_artifact_ids=dict(type="list", elements="str"),
-            namespace=dict(type="str"),
-            rollback_policy=dict(
-                type="dict",
-                options=dict(
-                    policy_type=dict(
-                        type="str",
-                        required=True,
-                        choices=[
-                            "NO_STAGE_ROLLBACK_POLICY",
-                            "AUTOMATED_STAGE_ROLLBACK_POLICY",
-                        ],
-                    )
-                ),
-            ),
-            blue_backend_ips=dict(
-                type="dict", options=dict(items=dict(type="list", elements="str"))
-            ),
-            green_backend_ips=dict(
-                type="dict", options=dict(items=dict(type="list", elements="str"))
-            ),
-            traffic_shift_target=dict(type="str"),
-            rollout_policy=dict(
-                type="dict",
-                options=dict(
-                    batch_count=dict(type="int"),
-                    batch_delay_in_seconds=dict(type="int"),
-                    ramp_limit_percent=dict(type="float"),
-                    policy_type=dict(
-                        type="str",
-                        choices=[
-                            "COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE",
-                            "COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_COUNT",
-                        ],
-                    ),
-                    batch_percentage=dict(type="int"),
-                ),
-            ),
-            load_balancer_config=dict(
-                type="dict",
-                options=dict(
-                    load_balancer_id=dict(type="str", required=True),
-                    listener_name=dict(type="str", required=True),
-                    backend_port=dict(type="int"),
-                ),
-            ),
-            compute_instance_group_deploy_environment_id=dict(type="str"),
-            deployment_spec_deploy_artifact_id=dict(type="str"),
-            deploy_artifact_ids=dict(type="list", elements="str"),
-            failure_policy=dict(
-                type="dict",
-                options=dict(
-                    policy_type=dict(
-                        type="str",
-                        required=True,
-                        choices=[
-                            "COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE",
-                            "COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_COUNT",
-                        ],
-                    ),
-                    failure_percentage=dict(type="int"),
-                    failure_count=dict(type="int"),
-                ),
-            ),
             function_deploy_environment_id=dict(type="str"),
             deploy_artifact_id=dict(type="str"),
             is_async=dict(type="bool"),
             is_validation_enabled=dict(type="bool"),
-            docker_image_deploy_artifact_id=dict(type="str"),
-            config=dict(type="dict"),
-            max_memory_in_mbs=dict(type="int"),
-            function_timeout_in_seconds=dict(type="int"),
             deploy_stage_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

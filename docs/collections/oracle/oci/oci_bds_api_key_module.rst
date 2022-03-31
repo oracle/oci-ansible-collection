@@ -30,7 +30,7 @@ oracle.oci.oci_bds_api_key -- Manage a BdsApiKey resource in Oracle Cloud Infras
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -440,10 +440,10 @@ Examples
     - name: Create bds_api_key
       oci_bds_api_key:
         # required
-        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
         passphrase: passphrase_example
         key_alias: key_alias_example
+        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         default_region: us-phoenix-1

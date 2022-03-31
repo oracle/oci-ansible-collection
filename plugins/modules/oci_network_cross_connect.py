@@ -54,21 +54,6 @@ options:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the cross-connect group to put this cross-connect in.
         type: str
-    defined_tags:
-        description:
-            - Defined tags for this resource. Each key is predefined and scoped to a
-              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-            - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-            - This parameter is updatable.
-        type: dict
-    display_name:
-        description:
-            - A user-friendly name. Does not have to be unique, and it's changeable.
-              Avoid entering confidential information.
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
     far_cross_connect_or_cross_connect_group_id:
         description:
             - If you already have an existing cross-connect or cross-connect group at this FastConnect
@@ -77,14 +62,6 @@ options:
               connect or
               cross-connect group.
         type: str
-    freeform_tags:
-        description:
-            - Free-form tags for this resource. Each tag is a simple key-value pair with no
-              predefined name, type, or namespace. For more information, see L(Resource
-              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-            - "Example: `{\\"Department\\": \\"Finance\\"}`"
-            - This parameter is updatable.
-        type: dict
     location_name:
         description:
             - The name of the FastConnect location where this cross-connect will be installed.
@@ -107,6 +84,37 @@ options:
             - "Example: `10 Gbps`"
             - Required for create using I(state=present).
         type: str
+    defined_tags:
+        description:
+            - Defined tags for this resource. Each key is predefined and scoped to a
+              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
+        type: dict
+    display_name:
+        description:
+            - A user-friendly name. Does not have to be unique, and it's changeable.
+              Avoid entering confidential information.
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
+    freeform_tags:
+        description:
+            - Free-form tags for this resource. Each tag is a simple key-value pair with no
+              predefined name, type, or namespace. For more information, see L(Resource
+              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
+        type: dict
+    is_active:
+        description:
+            - Set to true to activate the cross-connect. You activate it after the physical cabling
+              is complete, and you've confirmed the cross-connect's light levels are good and your side
+              of the interface is up. Activation indicates to Oracle that the physical connection is ready.
+            - "Example: `true`"
+            - This parameter is updatable.
+        type: bool
     customer_reference_name:
         description:
             - A reference name or identifier for the physical fiber connection that this cross-connect
@@ -141,6 +149,11 @@ options:
                             - This parameter is updatable.
                         type: str
                         required: true
+                    connectivity_association_name_secret_version:
+                        description:
+                            - The secret version of the connectivity association name secret in Vault.
+                            - This parameter is updatable.
+                        type: int
                     connectivity_association_key_secret_id:
                         description:
                             - Secret L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) containing the Connectivity Association
@@ -149,11 +162,6 @@ options:
                             - This parameter is updatable.
                         type: str
                         required: true
-                    connectivity_association_name_secret_version:
-                        description:
-                            - The secret version of the connectivity association name secret in Vault.
-                            - This parameter is updatable.
-                        type: int
                     connectivity_association_key_secret_version:
                         description:
                             - The secret version of the connectivityAssociationKey secret in Vault.
@@ -176,14 +184,6 @@ options:
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["id"]
-    is_active:
-        description:
-            - Set to true to activate the cross-connect. You activate it after the physical cabling
-              is complete, and you've confirmed the cross-connect's light levels are good and your side
-              of the interface is up. Activation indicates to Oracle that the physical connection is ready.
-            - "Example: `true`"
-            - This parameter is updatable.
-        type: bool
     state:
         description:
             - The state of the CrossConnect.
@@ -206,11 +206,11 @@ EXAMPLES = """
 
     # optional
     cross_connect_group_id: "ocid1.crossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx"
+    far_cross_connect_or_cross_connect_group_id: "ocid1.farcrossconnectorcrossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx"
+    near_cross_connect_or_cross_connect_group_id: "ocid1.nearcrossconnectorcrossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
-    far_cross_connect_or_cross_connect_group_id: "ocid1.farcrossconnectorcrossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
-    near_cross_connect_or_cross_connect_group_id: "ocid1.nearcrossconnectorcrossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx"
     customer_reference_name: customer_reference_name_example
     macsec_properties:
       # required
@@ -236,6 +236,7 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
+    is_active: true
     customer_reference_name: customer_reference_name_example
     macsec_properties:
       # required
@@ -251,7 +252,6 @@ EXAMPLES = """
         connectivity_association_name_secret_version: 56
         connectivity_association_key_secret_version: 56
       encryption_cipher: AES128_GCM
-    is_active: true
 
 - name: Update cross_connect using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_cross_connect:
@@ -262,6 +262,7 @@ EXAMPLES = """
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
+    is_active: true
     customer_reference_name: customer_reference_name_example
     macsec_properties:
       # required
@@ -277,7 +278,6 @@ EXAMPLES = """
         connectivity_association_name_secret_version: 56
         connectivity_association_key_secret_version: 56
       encryption_cipher: AES128_GCM
-    is_active: true
 
 - name: Delete cross_connect
   oci_network_cross_connect:
@@ -634,13 +634,14 @@ def main():
         dict(
             compartment_id=dict(type="str"),
             cross_connect_group_id=dict(type="str"),
-            defined_tags=dict(type="dict"),
-            display_name=dict(aliases=["name"], type="str"),
             far_cross_connect_or_cross_connect_group_id=dict(type="str"),
-            freeform_tags=dict(type="dict"),
             location_name=dict(type="str"),
             near_cross_connect_or_cross_connect_group_id=dict(type="str"),
             port_speed_shape_name=dict(type="str"),
+            defined_tags=dict(type="dict"),
+            display_name=dict(aliases=["name"], type="str"),
+            freeform_tags=dict(type="dict"),
+            is_active=dict(type="bool"),
             customer_reference_name=dict(type="str"),
             macsec_properties=dict(
                 type="dict",
@@ -655,11 +656,11 @@ def main():
                             connectivity_association_name_secret_id=dict(
                                 type="str", required=True
                             ),
-                            connectivity_association_key_secret_id=dict(
-                                type="str", required=True
-                            ),
                             connectivity_association_name_secret_version=dict(
                                 type="int", no_log=True
+                            ),
+                            connectivity_association_key_secret_id=dict(
+                                type="str", required=True
                             ),
                             connectivity_association_key_secret_version=dict(
                                 type="int", no_log=True
@@ -678,7 +679,6 @@ def main():
                 ),
             ),
             cross_connect_id=dict(aliases=["id"], type="str"),
-            is_active=dict(type="bool"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

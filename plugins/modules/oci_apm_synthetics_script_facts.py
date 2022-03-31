@@ -28,17 +28,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    apm_domain_id:
-        description:
-            - The APM domain ID the request is intended for.
-        type: str
-        required: true
     script_id:
         description:
             - The OCID of the script.
             - Required to get a specific script.
         type: str
         aliases: ["id"]
+    apm_domain_id:
+        description:
+            - The APM domain ID the request is intended for.
+        type: str
+        required: true
     display_name:
         description:
             - A filter to return only resources that match the entire display name given.
@@ -74,8 +74,8 @@ EXAMPLES = """
 - name: Get a specific script
   oci_apm_synthetics_script_facts:
     # required
-    apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
     script_id: "ocid1.script.oc1..xxxxxxEXAMPLExxxxxx"
+    apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List scripts
   oci_apm_synthetics_script_facts:
@@ -344,8 +344,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            apm_domain_id=dict(type="str", required=True),
             script_id=dict(aliases=["id"], type="str"),
+            apm_domain_id=dict(type="str", required=True),
             display_name=dict(aliases=["name"], type="str"),
             content_type=dict(type="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),

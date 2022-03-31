@@ -30,7 +30,7 @@ oracle.oci.oci_autoscaling_auto_scaling_configuration -- Manage an AutoScalingCo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -984,14 +984,18 @@ Examples
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         policies:
         - # required
-          policy_type: scheduled
           execution_schedule:
             # required
             type: cron
             timezone: UTC
             expression: expression_example
+          policy_type: scheduled
 
           # optional
+          resource_action:
+            # required
+            action_type: power
+            action: STOP
           capacity:
             # optional
             max: 56
@@ -999,10 +1003,6 @@ Examples
             initial: 56
           display_name: display_name_example
           is_enabled: true
-          resource_action:
-            # required
-            action_type: power
-            action: STOP
         resource:
           # required
           type: instancePool
@@ -1012,8 +1012,8 @@ Examples
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
-        cool_down_in_seconds: 56
         is_enabled: true
+        cool_down_in_seconds: 56
 
     - name: Update auto_scaling_configuration
       oci_autoscaling_auto_scaling_configuration:
@@ -1024,8 +1024,8 @@ Examples
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
-        cool_down_in_seconds: 56
         is_enabled: true
+        cool_down_in_seconds: 56
 
     - name: Update auto_scaling_configuration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_autoscaling_auto_scaling_configuration:
@@ -1036,8 +1036,8 @@ Examples
         # optional
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         freeform_tags: {'Department': 'Finance'}
-        cool_down_in_seconds: 56
         is_enabled: true
+        cool_down_in_seconds: 56
 
     - name: Delete auto_scaling_configuration
       oci_autoscaling_auto_scaling_configuration:

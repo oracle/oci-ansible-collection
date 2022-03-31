@@ -30,7 +30,7 @@ oracle.oci.oci_identity_tag -- Manage a Tag resource in Oracle Cloud Infrastruct
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -525,9 +525,9 @@ Examples
     - name: Create tag
       oci_identity_tag:
         # required
+        description: description_example
         tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
-        description: description_example
 
         # optional
         freeform_tags: {'Department': 'Finance'}
@@ -545,13 +545,13 @@ Examples
 
         # optional
         description: description_example
+        is_retired: true
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         is_cost_tracking: true
         validator:
           # required
           validator_type: DEFAULT
-        is_retired: true
 
     - name: Delete tag
       oci_identity_tag:

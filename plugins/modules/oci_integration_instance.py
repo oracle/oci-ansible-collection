@@ -29,6 +29,62 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - Compartment Identifier.
+            - Required for create using I(state=present).
+            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+        type: str
+    idcs_at:
+        description:
+            - IDCS Authentication token. This is required for all realms with IDCS. Its optional as its not required for non IDCS realms.
+        type: str
+    consumption_model:
+        description:
+            - Optional parameter specifying which entitlement to use for billing purposes. Only required if the account possesses more than one entitlement.
+        type: str
+        choices:
+            - "UCM"
+            - "GOV"
+            - "OIC4SAAS"
+    network_endpoint_details:
+        description:
+            - ""
+        type: dict
+        suboptions:
+            network_endpoint_type:
+                description:
+                    - The type of network endpoint.
+                type: str
+                choices:
+                    - "PUBLIC"
+                required: true
+            allowlisted_http_ips:
+                description:
+                    - Source IP addresses or IP address ranges ingress rules.
+                type: list
+                elements: str
+            allowlisted_http_vcns:
+                description:
+                    - Virtual Cloud Networks allowed to access this network endpoint.
+                type: list
+                elements: dict
+                suboptions:
+                    id:
+                        description:
+                            - The Virtual Cloud Network OCID.
+                        type: str
+                        required: true
+                    allowlisted_ips:
+                        description:
+                            - Source IP addresses or IP address ranges ingress rules.
+                        type: list
+                        elements: str
+            is_integration_vcn_allowlisted:
+                description:
+                    - The Integration service's VCN is allow-listed to allow integrations to call back into other integrations
+                type: bool
     display_name:
         description:
             - Integration Instance Identifier.
@@ -37,13 +93,6 @@ options:
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
-    compartment_id:
-        description:
-            - Compartment Identifier.
-            - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-        type: str
     integration_instance_type:
         description:
             - Standard or Enterprise type
@@ -73,16 +122,17 @@ options:
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: bool
-    idcs_at:
-        description:
-            - IDCS Authentication token. This is required for all realms with IDCS. Its optional as its not required for non IDCS realms.
-        type: str
     message_packs:
         description:
             - The number of configured message packs
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: int
+    is_file_server_enabled:
+        description:
+            - The file server is enabled or not.
+            - This parameter is updatable.
+        type: bool
     is_visual_builder_enabled:
         description:
             - Visual Builder is enabled or not.
@@ -128,56 +178,6 @@ options:
                       Note the update will fail if this is not a valid certificate.
                     - This parameter is updatable.
                 type: str
-    consumption_model:
-        description:
-            - Optional parameter specifying which entitlement to use for billing purposes. Only required if the account possesses more than one entitlement.
-        type: str
-        choices:
-            - "UCM"
-            - "GOV"
-            - "OIC4SAAS"
-    is_file_server_enabled:
-        description:
-            - The file server is enabled or not.
-            - This parameter is updatable.
-        type: bool
-    network_endpoint_details:
-        description:
-            - ""
-        type: dict
-        suboptions:
-            network_endpoint_type:
-                description:
-                    - The type of network endpoint.
-                type: str
-                choices:
-                    - "PUBLIC"
-                required: true
-            allowlisted_http_ips:
-                description:
-                    - Source IP addresses or IP address ranges ingress rules.
-                type: list
-                elements: str
-            allowlisted_http_vcns:
-                description:
-                    - Virtual Cloud Networks allowed to access this network endpoint.
-                type: list
-                elements: dict
-                suboptions:
-                    id:
-                        description:
-                            - The Virtual Cloud Network OCID.
-                        type: str
-                        required: true
-                    allowlisted_ips:
-                        description:
-                            - Source IP addresses or IP address ranges ingress rules.
-                        type: list
-                        elements: str
-            is_integration_vcn_allowlisted:
-                description:
-                    - The Integration service's VCN is allow-listed to allow integrations to call back into other integrations
-                type: bool
     integration_instance_id:
         description:
             - Unique Integration Instance identifier.
@@ -201,31 +201,15 @@ EXAMPLES = """
 - name: Create integration_instance
   oci_integration_instance:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     integration_instance_type: STANDARD
     is_byol: true
     message_packs: 56
 
     # optional
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
     idcs_at: idcs_at_example
-    is_visual_builder_enabled: true
-    custom_endpoint:
-      # required
-      hostname: hostname_example
-
-      # optional
-      certificate_secret_id: "ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx"
-    alternate_custom_endpoints:
-    - # required
-      hostname: hostname_example
-
-      # optional
-      certificate_secret_id: "ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx"
     consumption_model: UCM
-    is_file_server_enabled: true
     network_endpoint_details:
       # required
       network_endpoint_type: PUBLIC
@@ -239,6 +223,22 @@ EXAMPLES = """
         # optional
         allowlisted_ips: [ "allowlisted_ips_example" ]
       is_integration_vcn_allowlisted: true
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    is_file_server_enabled: true
+    is_visual_builder_enabled: true
+    custom_endpoint:
+      # required
+      hostname: hostname_example
+
+      # optional
+      certificate_secret_id: "ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx"
+    alternate_custom_endpoints:
+    - # required
+      hostname: hostname_example
+
+      # optional
+      certificate_secret_id: "ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update integration_instance
   oci_integration_instance:
@@ -252,6 +252,7 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     is_byol: true
     message_packs: 56
+    is_file_server_enabled: true
     is_visual_builder_enabled: true
     custom_endpoint:
       # required
@@ -265,13 +266,12 @@ EXAMPLES = """
 
       # optional
       certificate_secret_id: "ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx"
-    is_file_server_enabled: true
 
 - name: Update integration_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_integration_instance:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     integration_instance_type: STANDARD
@@ -279,6 +279,7 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     is_byol: true
     message_packs: 56
+    is_file_server_enabled: true
     is_visual_builder_enabled: true
     custom_endpoint:
       # required
@@ -292,7 +293,6 @@ EXAMPLES = """
 
       # optional
       certificate_secret_id: "ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx"
-    is_file_server_enabled: true
 
 - name: Delete integration_instance
   oci_integration_instance:
@@ -303,8 +303,8 @@ EXAMPLES = """
 - name: Delete integration_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_integration_instance:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -705,34 +705,9 @@ def main():
     )
     module_args.update(
         dict(
-            display_name=dict(aliases=["name"], type="str"),
             compartment_id=dict(type="str"),
-            integration_instance_type=dict(
-                type="str", choices=["STANDARD", "ENTERPRISE"]
-            ),
-            freeform_tags=dict(type="dict"),
-            defined_tags=dict(type="dict"),
-            is_byol=dict(type="bool"),
             idcs_at=dict(type="str"),
-            message_packs=dict(type="int"),
-            is_visual_builder_enabled=dict(type="bool"),
-            custom_endpoint=dict(
-                type="dict",
-                options=dict(
-                    hostname=dict(type="str", required=True),
-                    certificate_secret_id=dict(type="str"),
-                ),
-            ),
-            alternate_custom_endpoints=dict(
-                type="list",
-                elements="dict",
-                options=dict(
-                    hostname=dict(type="str", required=True),
-                    certificate_secret_id=dict(type="str"),
-                ),
-            ),
             consumption_model=dict(type="str", choices=["UCM", "GOV", "OIC4SAAS"]),
-            is_file_server_enabled=dict(type="bool"),
             network_endpoint_details=dict(
                 type="dict",
                 options=dict(
@@ -749,6 +724,31 @@ def main():
                         ),
                     ),
                     is_integration_vcn_allowlisted=dict(type="bool"),
+                ),
+            ),
+            display_name=dict(aliases=["name"], type="str"),
+            integration_instance_type=dict(
+                type="str", choices=["STANDARD", "ENTERPRISE"]
+            ),
+            freeform_tags=dict(type="dict"),
+            defined_tags=dict(type="dict"),
+            is_byol=dict(type="bool"),
+            message_packs=dict(type="int"),
+            is_file_server_enabled=dict(type="bool"),
+            is_visual_builder_enabled=dict(type="bool"),
+            custom_endpoint=dict(
+                type="dict",
+                options=dict(
+                    hostname=dict(type="str", required=True),
+                    certificate_secret_id=dict(type="str"),
+                ),
+            ),
+            alternate_custom_endpoints=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    hostname=dict(type="str", required=True),
+                    certificate_secret_id=dict(type="str"),
                 ),
             ),
             integration_instance_id=dict(aliases=["id"], type="str"),

@@ -30,6 +30,37 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    data_files:
+        description:
+            - The list of data files or temp files added to the tablespace.
+            - Applicable only for I(action=add_data_files).
+        type: list
+        elements: str
+    file_count:
+        description:
+            - The number of data files or temp files to be added for the tablespace. This is for Oracle Managed Files only.
+            - Applicable only for I(action=add_data_files).
+        type: int
+    is_reusable:
+        description:
+            - Specifies whether Oracle can reuse the data file or temp file. Reuse is only allowed when the file name is provided.
+            - Applicable only for I(action=add_data_files).
+        type: bool
+    is_including_contents:
+        description:
+            - Specifies whether all the contents of the tablespace being dropped should be dropped.
+            - Applicable only for I(action=drop).
+        type: bool
+    is_dropping_data_files:
+        description:
+            - Specifies whether all the associated data files of the tablespace being dropped should be dropped.
+            - Applicable only for I(action=drop).
+        type: bool
+    is_cascade_constraints:
+        description:
+            - Specifies whether all the constraints on the tablespace being dropped should be dropped.
+            - Applicable only for I(action=drop).
+        type: bool
     managed_database_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Managed Database.
@@ -46,6 +77,11 @@ options:
         type: dict
         required: true
         suboptions:
+            password:
+                description:
+                    - The database user's password encoded using BASE64 scheme.
+                    - Required when tablespace_admin_credential_type is 'PASSWORD'
+                type: str
             tablespace_admin_credential_type:
                 description:
                     - The type of the credential for tablespace administration tasks.
@@ -67,11 +103,6 @@ options:
                     - "NORMAL"
                     - "SYSDBA"
                 required: true
-            password:
-                description:
-                    - The database user's password encoded using BASE64 scheme.
-                    - Required when tablespace_admin_credential_type is 'PASSWORD'
-                type: str
             password_secret_id:
                 description:
                     - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Secret
@@ -86,17 +117,11 @@ options:
         choices:
             - "DATAFILE"
             - "TEMPFILE"
-    data_files:
+    data_file:
         description:
-            - The list of data files or temp files added to the tablespace.
-            - Applicable only for I(action=add_data_files).
-        type: list
-        elements: str
-    file_count:
-        description:
-            - The number of data files or temp files to be added for the tablespace. This is for Oracle Managed Files only.
-            - Applicable only for I(action=add_data_files).
-        type: int
+            - Name of the data file or temp file to be removed from the tablespace.
+            - Required for I(action=remove_data_file), I(action=resize_data_file).
+        type: str
     file_size:
         description:
             - The size of each data file or temp file.
@@ -118,11 +143,6 @@ options:
                     - "MEGABYTES"
                     - "GIGABYTES"
                     - "TERABYTES"
-    is_reusable:
-        description:
-            - Specifies whether Oracle can reuse the data file or temp file. Reuse is only allowed when the file name is provided.
-            - Applicable only for I(action=add_data_files).
-        type: bool
     is_auto_extensible:
         description:
             - Specifies whether the data file or temp file can be extended automatically.
@@ -175,26 +195,6 @@ options:
             - Specifies whether the disk space of the data file or temp file can be limited.
             - Applicable only for I(action=add_data_files)I(action=resize_data_file).
         type: bool
-    is_including_contents:
-        description:
-            - Specifies whether all the contents of the tablespace being dropped should be dropped.
-            - Applicable only for I(action=drop).
-        type: bool
-    is_dropping_data_files:
-        description:
-            - Specifies whether all the associated data files of the tablespace being dropped should be dropped.
-            - Applicable only for I(action=drop).
-        type: bool
-    is_cascade_constraints:
-        description:
-            - Specifies whether all the constraints on the tablespace being dropped should be dropped.
-            - Applicable only for I(action=drop).
-        type: bool
-    data_file:
-        description:
-            - Name of the data file or temp file to be removed from the tablespace.
-            - Required for I(action=remove_data_file), I(action=resize_data_file).
-        type: str
     action:
         description:
             - The action to perform on the Tablespace.
@@ -216,23 +216,23 @@ EXAMPLES = """
     tablespace_name: tablespace_name_example
     credential_details:
       # required
+      password: example-password
       tablespace_admin_credential_type: PASSWORD
       username: username_example
       role: NORMAL
-      password: example-password
     file_type: DATAFILE
     action: add_data_files
 
     # optional
     data_files: [ "data_files_example" ]
     file_count: 56
+    is_reusable: true
     file_size:
       # required
       size: 3.4
 
       # optional
       unit: BYTES
-    is_reusable: true
     is_auto_extensible: true
     auto_extend_next_size:
       # required
@@ -255,10 +255,10 @@ EXAMPLES = """
     tablespace_name: tablespace_name_example
     credential_details:
       # required
+      password: example-password
       tablespace_admin_credential_type: PASSWORD
       username: username_example
       role: NORMAL
-      password: example-password
     action: drop
 
     # optional
@@ -273,10 +273,10 @@ EXAMPLES = """
     tablespace_name: tablespace_name_example
     credential_details:
       # required
+      password: example-password
       tablespace_admin_credential_type: PASSWORD
       username: username_example
       role: NORMAL
-      password: example-password
     file_type: DATAFILE
     data_file: data_file_example
     action: remove_data_file
@@ -288,10 +288,10 @@ EXAMPLES = """
     tablespace_name: tablespace_name_example
     credential_details:
       # required
+      password: example-password
       tablespace_admin_credential_type: PASSWORD
       username: username_example
       role: NORMAL
-      password: example-password
     file_type: DATAFILE
     data_file: data_file_example
     action: resize_data_file
@@ -512,24 +512,29 @@ def main():
     )
     module_args.update(
         dict(
+            data_files=dict(type="list", elements="str"),
+            file_count=dict(type="int"),
+            is_reusable=dict(type="bool"),
+            is_including_contents=dict(type="bool"),
+            is_dropping_data_files=dict(type="bool"),
+            is_cascade_constraints=dict(type="bool"),
             managed_database_id=dict(type="str", required=True),
             tablespace_name=dict(type="str", required=True),
             credential_details=dict(
                 type="dict",
                 required=True,
                 options=dict(
+                    password=dict(type="str", no_log=True),
                     tablespace_admin_credential_type=dict(
                         type="str", required=True, choices=["PASSWORD", "SECRET"]
                     ),
                     username=dict(type="str", required=True),
                     role=dict(type="str", required=True, choices=["NORMAL", "SYSDBA"]),
-                    password=dict(type="str", no_log=True),
                     password_secret_id=dict(type="str"),
                 ),
             ),
             file_type=dict(type="str", choices=["DATAFILE", "TEMPFILE"]),
-            data_files=dict(type="list", elements="str"),
-            file_count=dict(type="int"),
+            data_file=dict(type="str"),
             file_size=dict(
                 type="dict",
                 options=dict(
@@ -546,7 +551,6 @@ def main():
                     ),
                 ),
             ),
-            is_reusable=dict(type="bool"),
             is_auto_extensible=dict(type="bool"),
             auto_extend_next_size=dict(
                 type="dict",
@@ -581,10 +585,6 @@ def main():
                 ),
             ),
             is_max_size_unlimited=dict(type="bool"),
-            is_including_contents=dict(type="bool"),
-            is_dropping_data_files=dict(type="bool"),
-            is_cascade_constraints=dict(type="bool"),
-            data_file=dict(type="str"),
             action=dict(
                 type="str",
                 required=True,

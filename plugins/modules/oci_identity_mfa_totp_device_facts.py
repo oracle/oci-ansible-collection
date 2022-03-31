@@ -29,17 +29,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    user_id:
-        description:
-            - The OCID of the user.
-        type: str
-        required: true
     mfa_totp_device_id:
         description:
             - The OCID of the MFA TOTP device.
             - Required to get a specific mfa_totp_device.
         type: str
         aliases: ["id"]
+    user_id:
+        description:
+            - The OCID of the user.
+        type: str
+        required: true
     sort_by:
         description:
             - The field to sort by. You can provide one sort order (`sortOrder`). Default order for
@@ -68,8 +68,8 @@ EXAMPLES = """
 - name: Get a specific mfa_totp_device
   oci_identity_mfa_totp_device_facts:
     # required
-    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
     mfa_totp_device_id: "ocid1.mfatotpdevice.oc1..xxxxxxEXAMPLExxxxxx"
+    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List mfa_totp_devices
   oci_identity_mfa_totp_device_facts:
@@ -214,8 +214,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            user_id=dict(type="str", required=True),
             mfa_totp_device_id=dict(aliases=["id"], type="str"),
+            user_id=dict(type="str", required=True),
             sort_by=dict(type="str", choices=["TIMECREATED", "NAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
         )

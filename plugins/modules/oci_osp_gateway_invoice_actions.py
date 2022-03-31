@@ -39,16 +39,16 @@ options:
             - The home region's public name of the logged in user.
         type: str
         required: true
-    compartment_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
-        type: str
-        required: true
     internal_invoice_id:
         description:
             - The identifier of the invoice.
         type: str
         aliases: ["id"]
+        required: true
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
+        type: str
         required: true
     language_code:
         description:
@@ -82,16 +82,16 @@ EXAMPLES = """
     # required
     dest: /tmp/myfile
     osp_home_region: us-phoenix-1
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     internal_invoice_id: "ocid1.internalinvoice.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: download_pdf_content
 
 - name: Perform action pay on invoice
   oci_osp_gateway_invoice_actions:
     # required
     osp_home_region: us-phoenix-1
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     internal_invoice_id: "ocid1.internalinvoice.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     email: email_example
     action: pay
 
@@ -246,8 +246,8 @@ def main():
         dict(
             dest=dict(type="str"),
             osp_home_region=dict(type="str", required=True),
-            compartment_id=dict(type="str", required=True),
             internal_invoice_id=dict(aliases=["id"], type="str", required=True),
+            compartment_id=dict(type="str", required=True),
             language_code=dict(type="str"),
             return_url=dict(type="str"),
             email=dict(type="str"),

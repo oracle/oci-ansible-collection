@@ -77,21 +77,6 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
-    defined_tags:
-        description:
-            - Defined tags for this resource. Each key is predefined and scoped to a
-              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-            - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-            - This parameter is updatable.
-        type: dict
-    display_name:
-        description:
-            - A user-friendly name. Does not have to be unique, and it's changeable.
-              Avoid entering confidential information.
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
     dns_label:
         description:
             - A DNS label for the VCN, used in conjunction with the VNIC's hostname and
@@ -107,14 +92,6 @@ options:
               L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm).
             - "Example: `vcn1`"
         type: str
-    freeform_tags:
-        description:
-            - Free-form tags for this resource. Each tag is a simple key-value pair with no
-              predefined name, type, or namespace. For more information, see L(Resource
-              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-            - "Example: `{\\"Department\\": \\"Finance\\"}`"
-            - This parameter is updatable.
-        type: dict
     is_ipv6_enabled:
         description:
             - Whether IPv6 is enabled for the VCN. Default is `false`.
@@ -123,6 +100,29 @@ options:
               For important details about IPv6 addressing in a VCN, see L(IPv6 Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm).
             - "Example: `true`"
         type: bool
+    defined_tags:
+        description:
+            - Defined tags for this resource. Each key is predefined and scoped to a
+              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
+        type: dict
+    display_name:
+        description:
+            - A user-friendly name. Does not have to be unique, and it's changeable.
+              Avoid entering confidential information.
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
+    freeform_tags:
+        description:
+            - Free-form tags for this resource. Each tag is a simple key-value pair with no
+              predefined name, type, or namespace. For more information, see L(Resource
+              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
+        type: dict
     vcn_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN.
@@ -151,11 +151,11 @@ EXAMPLES = """
     # optional
     cidr_block: cidr_block_example
     cidr_blocks: [ "cidr_blocks_example" ]
+    dns_label: dns_label_example
+    is_ipv6_enabled: true
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
-    dns_label: dns_label_example
     freeform_tags: {'Department': 'Finance'}
-    is_ipv6_enabled: true
 
 - name: Update vcn
   oci_network_vcn:
@@ -483,11 +483,11 @@ def main():
             cidr_block=dict(type="str"),
             cidr_blocks=dict(type="list", elements="str"),
             compartment_id=dict(type="str"),
+            dns_label=dict(type="str"),
+            is_ipv6_enabled=dict(type="bool"),
             defined_tags=dict(type="dict"),
             display_name=dict(aliases=["name"], type="str"),
-            dns_label=dict(type="str"),
             freeform_tags=dict(type="dict"),
-            is_ipv6_enabled=dict(type="bool"),
             vcn_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

@@ -28,17 +28,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    load_balancer_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the specified load balancer.
-        type: str
-        required: true
     routing_policy_name:
         description:
             - The name of the routing policy to retrieve.
             - "Example: `example_routing_policy`"
             - Required to get a specific routing_policy.
         type: str
+    load_balancer_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the specified load balancer.
+        type: str
+        required: true
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -46,8 +46,8 @@ EXAMPLES = """
 - name: Get a specific routing_policy
   oci_loadbalancer_routing_policy_facts:
     # required
-    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     routing_policy_name: routing_policy_name_example
+    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List routing_policies
   oci_loadbalancer_routing_policy_facts:
@@ -188,8 +188,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            load_balancer_id=dict(type="str", required=True),
             routing_policy_name=dict(type="str"),
+            load_balancer_id=dict(type="str", required=True),
         )
     )
 

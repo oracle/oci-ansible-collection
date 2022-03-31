@@ -54,12 +54,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    autonomous_database_id:
-        description:
-            - The database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-        type: str
-        aliases: ["id"]
-        required: true
     time_refresh_cutoff:
         description:
             - The timestamp to which the Autonomous Database refreshable clone will be refreshed. Changes made in the primary database after this timestamp are
@@ -87,19 +81,6 @@ options:
             - True if disable Customer Managed Keys and use Oracle Managed Keys.
             - Applicable only for I(action=configure_autonomous_database_vault_key).
         type: bool
-    pdb_admin_password:
-        description:
-            - "The admin password provided during the creation of the database. This password is between 12 and 30 characters long, and must contain at least 1
-              uppercase, 1 lowercase, and 1 numeric character. It cannot contain the double quote symbol (\\") or the username \\"admin\\", regardless of
-              casing."
-            - Required for I(action=deregister_autonomous_database_data_safe), I(action=register_autonomous_database_data_safe).
-        type: str
-    peer_db_id:
-        description:
-            - The database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Autonomous Data Guard standby database located
-              in a different (remote) region from the source primary Autonomous Database.
-            - Applicable only for I(action=fail_over)I(action=switchover).
-        type: str
     wallet_file:
         description:
             - The destination file path with file name when downloading wallet. The file must have 'zip' extension. I(wallet_file) is required if
@@ -131,6 +112,13 @@ options:
               1 numeric character or 1 special character.
             - Required for I(action=generate_autonomous_database_wallet).
         type: str
+    pdb_admin_password:
+        description:
+            - "The admin password provided during the creation of the database. This password is between 12 and 30 characters long, and must contain at least 1
+              uppercase, 1 lowercase, and 1 numeric character. It cannot contain the double quote symbol (\\") or the username \\"admin\\", regardless of
+              casing."
+            - Required for I(action=deregister_autonomous_database_data_safe), I(action=register_autonomous_database_data_safe).
+        type: str
     timestamp:
         description:
             - The time to restore the database to.
@@ -146,6 +134,18 @@ options:
             - Restores to the last known good state with the least possible data loss.
             - Applicable only for I(action=restore).
         type: bool
+    autonomous_database_id:
+        description:
+            - The database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+        type: str
+        aliases: ["id"]
+        required: true
+    peer_db_id:
+        description:
+            - The database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Autonomous Data Guard standby database located
+              in a different (remote) region from the source primary Autonomous Database.
+            - Applicable only for I(action=fail_over)I(action=switchover).
+        type: str
     action:
         description:
             - The action to perform on the AutonomousDatabase.
@@ -186,8 +186,8 @@ EXAMPLES = """
 - name: Perform action change_compartment on autonomous_database
   oci_database_autonomous_database_actions:
     # required
-    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action configure_autonomous_database_vault_key on autonomous_database
@@ -204,8 +204,8 @@ EXAMPLES = """
 - name: Perform action deregister_autonomous_database_data_safe on autonomous_database
   oci_database_autonomous_database_actions:
     # required
-    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     pdb_admin_password: example-password
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: deregister_autonomous_database_data_safe
 
 - name: Perform action disable_autonomous_database_management on autonomous_database
@@ -244,9 +244,9 @@ EXAMPLES = """
 - name: Perform action generate_autonomous_database_wallet on autonomous_database
   oci_database_autonomous_database_actions:
     # required
-    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     wallet_file: /tmp/atp_wallet.zip
     password: example-password
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: generate_autonomous_database_wallet
 
     # optional
@@ -256,8 +256,8 @@ EXAMPLES = """
 - name: Perform action register_autonomous_database_data_safe on autonomous_database
   oci_database_autonomous_database_actions:
     # required
-    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     pdb_admin_password: example-password
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: register_autonomous_database_data_safe
 
 - name: Perform action restart on autonomous_database
@@ -269,8 +269,8 @@ EXAMPLES = """
 - name: Perform action restore on autonomous_database
   oci_database_autonomous_database_actions:
     # required
-    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     timestamp: timestamp_example
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: restore
 
     # optional
@@ -1701,21 +1701,21 @@ def main():
     )
     module_args.update(
         dict(
-            autonomous_database_id=dict(aliases=["id"], type="str", required=True),
             time_refresh_cutoff=dict(type="str"),
             compartment_id=dict(type="str"),
             kms_key_id=dict(type="str"),
             vault_id=dict(type="str"),
             is_using_oracle_managed_keys=dict(type="bool", no_log=True),
-            pdb_admin_password=dict(type="str", no_log=True),
-            peer_db_id=dict(type="str"),
             wallet_file=dict(type="str"),
             force=dict(aliases=["overwrite"], type="bool", default="true"),
             generate_type=dict(type="str", choices=["ALL", "SINGLE"]),
             password=dict(type="str", no_log=True),
+            pdb_admin_password=dict(type="str", no_log=True),
             timestamp=dict(type="str"),
             database_scn=dict(type="str"),
             latest=dict(type="bool"),
+            autonomous_database_id=dict(aliases=["id"], type="str", required=True),
+            peer_db_id=dict(type="str"),
             action=dict(
                 type="str",
                 required=True,

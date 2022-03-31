@@ -30,7 +30,7 @@ oracle.oci.oci_bastion -- Manage a Bastion resource in Oracle Cloud Infrastructu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -531,9 +531,9 @@ Examples
         # optional
         name: name_example
         phone_book_entry: phone_book_entry_example
+        max_session_ttl_in_seconds: 56
         static_jump_host_ip_addresses: [ "static_jump_host_ip_addresses_example" ]
         client_cidr_block_allow_list: [ "client_cidr_block_allow_list_example" ]
-        max_session_ttl_in_seconds: 56
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -543,9 +543,9 @@ Examples
         bastion_id: "ocid1.bastion.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
+        max_session_ttl_in_seconds: 56
         static_jump_host_ip_addresses: [ "static_jump_host_ip_addresses_example" ]
         client_cidr_block_allow_list: [ "client_cidr_block_allow_list_example" ]
-        max_session_ttl_in_seconds: 56
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -556,9 +556,9 @@ Examples
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
+        max_session_ttl_in_seconds: 56
         static_jump_host_ip_addresses: [ "static_jump_host_ip_addresses_example" ]
         client_cidr_block_allow_list: [ "client_cidr_block_allow_list_example" ]
-        max_session_ttl_in_seconds: 56
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 

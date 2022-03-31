@@ -56,26 +56,6 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
-    display_name:
-        description:
-            - A user-friendly name. It does not have to be unique, and it is changeable.
-              Avoid entering confidential information.
-            - "Example: `example_load_balancer`"
-            - Required for create using I(state=present).
-            - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
-    shape_name:
-        description:
-            - A template that determines the total pre-provisioned bandwidth (ingress plus egress).
-              To get a list of available shapes, use the L(ListShapes,https://docs.cloud.oracle.com/en-
-              us/iaas/api/#/en/loadbalancer/20170115/LoadBalancerShape/ListShapes)
-              operation.
-            - "Example: `100Mbps`"
-            - Required for create using I(state=present).
-            - This parameter is updatable.
-        type: str
     shape_details:
         description:
             - The configuration details to create load balancer using Flexible shape. This is required only if shapeName is `Flexible`.
@@ -134,6 +114,26 @@ options:
             - Required for create using I(state=present).
         type: list
         elements: str
+    shape_name:
+        description:
+            - A template that determines the total pre-provisioned bandwidth (ingress plus egress).
+              To get a list of available shapes, use the L(ListShapes,https://docs.cloud.oracle.com/en-
+              us/iaas/api/#/en/loadbalancer/20170115/LoadBalancerShape/ListShapes)
+              operation.
+            - "Example: `100Mbps`"
+            - Required for create using I(state=present).
+            - This parameter is updatable.
+        type: str
+    display_name:
+        description:
+            - A user-friendly name. It does not have to be unique, and it is changeable.
+              Avoid entering confidential information.
+            - "Example: `example_load_balancer`"
+            - Required for create using I(state=present).
+            - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -172,9 +172,9 @@ EXAMPLES = """
   oci_loadbalancer_load_balancer:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: display_name_example
-    shape_name: shape_name_example
     subnet_ids: [ "subnet_ids_example" ]
+    shape_name: shape_name_example
+    display_name: display_name_example
 
     # optional
     shape_details:
@@ -195,8 +195,8 @@ EXAMPLES = """
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: display_name_example
     shape_name: shape_name_example
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -1824,8 +1824,6 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
-            display_name=dict(aliases=["name"], type="str"),
-            shape_name=dict(type="str"),
             shape_details=dict(
                 type="dict",
                 options=dict(
@@ -1839,6 +1837,8 @@ def main():
                 type="list", elements="dict", options=dict(id=dict(type="str"))
             ),
             subnet_ids=dict(type="list", elements="str"),
+            shape_name=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             load_balancer_id=dict(aliases=["id"], type="str"),

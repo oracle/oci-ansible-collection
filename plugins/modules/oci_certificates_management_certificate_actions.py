@@ -36,18 +36,18 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    certificate_id:
-        description:
-            - The OCID of the certificate.
-        type: str
-        aliases: ["id"]
-        required: true
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment
               into which the certificate should move.
             - Required for I(action=change_compartment).
         type: str
+    certificate_id:
+        description:
+            - The OCID of the certificate.
+        type: str
+        aliases: ["id"]
+        required: true
     time_of_deletion:
         description:
             - An optional property indicating when to delete the certificate version, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp
@@ -76,8 +76,8 @@ EXAMPLES = """
 - name: Perform action change_compartment on certificate
   oci_certificates_management_certificate_actions:
     # required
-    certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action schedule_certificate_deletion on certificate
@@ -685,8 +685,8 @@ def main():
     )
     module_args.update(
         dict(
-            certificate_id=dict(aliases=["id"], type="str", required=True),
             compartment_id=dict(type="str"),
+            certificate_id=dict(aliases=["id"], type="str", required=True),
             time_of_deletion=dict(type="str"),
             action=dict(
                 type="str",

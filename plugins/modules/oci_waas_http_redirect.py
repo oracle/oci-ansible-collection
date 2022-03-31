@@ -35,6 +35,11 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    domain:
+        description:
+            - The domain from which traffic will be redirected.
+            - Required for create using I(state=present).
+        type: str
     display_name:
         description:
             - The user-friendly name of the HTTP Redirect. The name can be changed and does not need to be unique.
@@ -42,11 +47,6 @@ options:
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
-    domain:
-        description:
-            - The domain from which traffic will be redirected.
-            - Required for create using I(state=present).
-        type: str
     target:
         description:
             - The redirect target object including all the redirect data.
@@ -489,8 +489,8 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
-            display_name=dict(aliases=["name"], type="str"),
             domain=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
             target=dict(
                 type="dict",
                 options=dict(

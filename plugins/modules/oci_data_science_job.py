@@ -40,18 +40,6 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
-    display_name:
-        description:
-            - A user-friendly display name for the resource.
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
-    description:
-        description:
-            - A short description of the job.
-            - This parameter is updatable.
-        type: str
     job_configuration_details:
         description:
             - ""
@@ -77,36 +65,6 @@ options:
                 description:
                     - A time bound for the execution of the job. Timer starts when the job becomes active.
                 type: int
-    job_infrastructure_configuration_details:
-        description:
-            - ""
-            - Required for create using I(state=present).
-            - This parameter is updatable.
-        type: dict
-        suboptions:
-            job_infrastructure_type:
-                description:
-                    - The infrastructure type used for job run.
-                type: str
-                choices:
-                    - "ME_STANDALONE"
-                    - "STANDALONE"
-                required: true
-            shape_name:
-                description:
-                    - The shape used to launch the job run instances.
-                type: str
-                required: true
-            block_storage_size_in_gbs:
-                description:
-                    - The size of the block storage volume to attach to the instance running the job
-                type: int
-                required: true
-            subnet_id:
-                description:
-                    - The subnet to create a secondary vnic in to attach to the instance running the job
-                    - Required when job_infrastructure_type is 'STANDALONE'
-                type: str
     job_log_configuration_details:
         description:
             - ""
@@ -128,6 +86,48 @@ options:
                 description:
                     - The log id the job run will push logs too.
                 type: str
+    display_name:
+        description:
+            - A user-friendly display name for the resource.
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
+    description:
+        description:
+            - A short description of the job.
+            - This parameter is updatable.
+        type: str
+    job_infrastructure_configuration_details:
+        description:
+            - ""
+            - Required for create using I(state=present).
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            job_infrastructure_type:
+                description:
+                    - The infrastructure type used for job run.
+                type: str
+                choices:
+                    - "ME_STANDALONE"
+                    - "STANDALONE"
+                required: true
+            shape_name:
+                description:
+                    - The shape used to launch the job run instances.
+                type: str
+                required: true
+            subnet_id:
+                description:
+                    - The subnet to create a secondary vnic in to attach to the instance running the job
+                    - Required when job_infrastructure_type is 'STANDALONE'
+                type: str
+            block_storage_size_in_gbs:
+                description:
+                    - The size of the block storage volume to attach to the instance running the job
+                type: int
+                required: true
     freeform_tags:
         description:
             - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. See L(Resource
@@ -186,14 +186,14 @@ EXAMPLES = """
       block_storage_size_in_gbs: 56
 
     # optional
-    display_name: display_name_example
-    description: description_example
     job_log_configuration_details:
       # optional
       enable_logging: true
       enable_auto_log_creation: true
       log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
       log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -605,8 +605,6 @@ def main():
         dict(
             project_id=dict(type="str"),
             compartment_id=dict(type="str"),
-            display_name=dict(aliases=["name"], type="str"),
-            description=dict(type="str"),
             job_configuration_details=dict(
                 type="dict",
                 options=dict(
@@ -616,6 +614,17 @@ def main():
                     maximum_runtime_in_minutes=dict(type="int"),
                 ),
             ),
+            job_log_configuration_details=dict(
+                type="dict",
+                options=dict(
+                    enable_logging=dict(type="bool"),
+                    enable_auto_log_creation=dict(type="bool"),
+                    log_group_id=dict(type="str"),
+                    log_id=dict(type="str"),
+                ),
+            ),
+            display_name=dict(aliases=["name"], type="str"),
+            description=dict(type="str"),
             job_infrastructure_configuration_details=dict(
                 type="dict",
                 options=dict(
@@ -625,17 +634,8 @@ def main():
                         choices=["ME_STANDALONE", "STANDALONE"],
                     ),
                     shape_name=dict(type="str", required=True),
-                    block_storage_size_in_gbs=dict(type="int", required=True),
                     subnet_id=dict(type="str"),
-                ),
-            ),
-            job_log_configuration_details=dict(
-                type="dict",
-                options=dict(
-                    enable_logging=dict(type="bool"),
-                    enable_auto_log_creation=dict(type="bool"),
-                    log_group_id=dict(type="str"),
-                    log_id=dict(type="str"),
+                    block_storage_size_in_gbs=dict(type="int", required=True),
                 ),
             ),
             freeform_tags=dict(type="dict"),

@@ -30,7 +30,7 @@ oracle.oci.oci_mysql_configuration -- Manage a Configuration resource in Oracle 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -1425,8 +1425,6 @@ Examples
         shape_name: shape_name_example
 
         # optional
-        description: description_example
-        display_name: display_name_example
         variables:
           # optional
           completion_type: NO_CHAIN
@@ -1484,6 +1482,8 @@ Examples
           mysqlx_zstd_default_compression_level: 56
           mysql_zstd_default_compression_level: 56
         parent_configuration_id: "ocid1.parentconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
+        description: description_example
+        display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 

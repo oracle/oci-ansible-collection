@@ -28,6 +28,13 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to which this rule belongs.
+            - Required for create using I(state=present).
+            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+        type: str
     display_name:
         description:
             - A string that describes the rule. It does not have to be unique, and you can change it. Avoid entering
@@ -73,13 +80,6 @@ options:
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
-    compartment_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to which this rule belongs.
-            - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-        type: str
     actions:
         description:
             - ""
@@ -94,6 +94,18 @@ options:
                 elements: dict
                 required: true
                 suboptions:
+                    stream_id:
+                        description:
+                            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the stream to which messages are
+                              delivered.
+                            - Required when action_type is 'OSS'
+                        type: str
+                    function_id:
+                        description:
+                            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of a Function hosted by Oracle Functions
+                              Service.
+                            - Applicable when action_type is 'FAAS'
+                        type: str
                     action_type:
                         description:
                             - The action to perform if the condition in the rule matches an event.
@@ -116,18 +128,6 @@ options:
                         description:
                             - A string that describes the details of the action. It does not have to be unique, and you can change it. Avoid entering
                               confidential information.
-                        type: str
-                    stream_id:
-                        description:
-                            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the stream to which messages are
-                              delivered.
-                            - Required when action_type is 'OSS'
-                        type: str
-                    function_id:
-                        description:
-                            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of a Function hosted by Oracle Functions
-                              Service.
-                            - Applicable when action_type is 'FAAS'
                         type: str
                     topic_id:
                         description:
@@ -173,17 +173,17 @@ EXAMPLES = """
 - name: Create rule
   oci_events_rule:
     # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     is_enabled: true
     condition: condition_example
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     actions:
       # required
       actions:
       - # required
+        stream_id: "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx"
         action_type: OSS
         is_enabled: true
-        stream_id: "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         description: description_example
@@ -207,9 +207,9 @@ EXAMPLES = """
       # required
       actions:
       - # required
+        stream_id: "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx"
         action_type: OSS
         is_enabled: true
-        stream_id: "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         description: description_example
@@ -219,8 +219,8 @@ EXAMPLES = """
 - name: Update rule using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_events_rule:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     description: description_example
@@ -230,9 +230,9 @@ EXAMPLES = """
       # required
       actions:
       - # required
+        stream_id: "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx"
         action_type: OSS
         is_enabled: true
-        stream_id: "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         description: description_example
@@ -248,8 +248,8 @@ EXAMPLES = """
 - name: Delete rule using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_events_rule:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -609,11 +609,11 @@ def main():
     )
     module_args.update(
         dict(
+            compartment_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             description=dict(type="str"),
             is_enabled=dict(type="bool"),
             condition=dict(type="str"),
-            compartment_id=dict(type="str"),
             actions=dict(
                 type="dict",
                 options=dict(
@@ -622,6 +622,8 @@ def main():
                         elements="dict",
                         required=True,
                         options=dict(
+                            stream_id=dict(type="str"),
+                            function_id=dict(type="str"),
                             action_type=dict(
                                 type="str",
                                 required=True,
@@ -629,8 +631,6 @@ def main():
                             ),
                             is_enabled=dict(type="bool", required=True),
                             description=dict(type="str"),
-                            stream_id=dict(type="str"),
-                            function_id=dict(type="str"),
                             topic_id=dict(type="str"),
                         ),
                     )

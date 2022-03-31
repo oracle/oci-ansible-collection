@@ -48,6 +48,35 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Exadata infrastructure.
             - Required for create using I(state=present).
         type: str
+    vm_cluster_network_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VM cluster network.
+            - Required for create using I(state=present).
+        type: str
+    is_sparse_diskgroup_enabled:
+        description:
+            - If true, the sparse disk group is configured for the VM cluster. If false, the sparse disk group is not created.
+        type: bool
+    is_local_backup_enabled:
+        description:
+            - If true, database backup on local Exadata storage is configured for the VM cluster. If false, database backup on local Exadata storage is not
+              available in the VM cluster.
+        type: bool
+    time_zone:
+        description:
+            - The time zone to use for the VM cluster. For details, see L(DB System Time
+              Zones,https://docs.cloud.oracle.com/Content/Database/References/timezones.htm).
+        type: str
+    gi_version:
+        description:
+            - The Oracle Grid Infrastructure software version for the VM cluster.
+            - Required for create using I(state=present).
+        type: str
+    db_servers:
+        description:
+            - The list of Db server.
+        type: list
+        elements: str
     cpu_core_count:
         description:
             - The number of CPU cores to enable for the VM cluster.
@@ -79,18 +108,6 @@ options:
             - The data disk group size to be allocated in GBs.
             - This parameter is updatable.
         type: float
-    ssh_public_keys:
-        description:
-            - The public key portion of one or more key pairs used for SSH access to the VM cluster.
-            - Required for create using I(state=present).
-            - This parameter is updatable.
-        type: list
-        elements: str
-    vm_cluster_network_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VM cluster network.
-            - Required for create using I(state=present).
-        type: str
     license_model:
         description:
             - The Oracle license model that applies to the VM cluster. The default is BRING_YOUR_OWN_LICENSE.
@@ -99,50 +116,13 @@ options:
         choices:
             - "LICENSE_INCLUDED"
             - "BRING_YOUR_OWN_LICENSE"
-    is_sparse_diskgroup_enabled:
+    ssh_public_keys:
         description:
-            - If true, the sparse disk group is configured for the VM cluster. If false, the sparse disk group is not created.
-        type: bool
-    is_local_backup_enabled:
-        description:
-            - If true, database backup on local Exadata storage is configured for the VM cluster. If false, database backup on local Exadata storage is not
-              available in the VM cluster.
-        type: bool
-    time_zone:
-        description:
-            - The time zone to use for the VM cluster. For details, see L(DB System Time
-              Zones,https://docs.cloud.oracle.com/Content/Database/References/timezones.htm).
-        type: str
-    gi_version:
-        description:
-            - The Oracle Grid Infrastructure software version for the VM cluster.
+            - The public key portion of one or more key pairs used for SSH access to the VM cluster.
             - Required for create using I(state=present).
-        type: str
-    db_servers:
-        description:
-            - The list of Db server.
+            - This parameter is updatable.
         type: list
         elements: str
-    freeform_tags:
-        description:
-            - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
-              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-            - "Example: `{\\"Department\\": \\"Finance\\"}`"
-            - This parameter is updatable.
-        type: dict
-    defined_tags:
-        description:
-            - Defined tags for this resource. Each key is predefined and scoped to a namespace.
-              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-            - This parameter is updatable.
-        type: dict
-    vm_cluster_id:
-        description:
-            - The VM cluster L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-            - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["id"]
     version:
         description:
             - ""
@@ -187,6 +167,26 @@ options:
                     - "ROLLING_APPLY"
                     - "PRECHECK"
                     - "ROLLBACK"
+    freeform_tags:
+        description:
+            - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
+        type: dict
+    defined_tags:
+        description:
+            - Defined tags for this resource. Each key is predefined and scoped to a namespace.
+              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+            - This parameter is updatable.
+        type: dict
+    vm_cluster_id:
+        description:
+            - The VM cluster L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+            - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["id"]
     state:
         description:
             - The state of the VmCluster.
@@ -206,22 +206,22 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
-    cpu_core_count: 56
-    ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
     vm_cluster_network_id: "ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx"
     gi_version: gi_version_example
+    cpu_core_count: 56
+    ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
 
     # optional
+    is_sparse_diskgroup_enabled: true
+    is_local_backup_enabled: true
+    time_zone: time_zone_example
+    db_servers: [ "db_servers_example" ]
     ocpu_count: 3.4
     memory_size_in_gbs: 56
     db_node_storage_size_in_gbs: 56
     data_storage_size_in_tbs: 3.4
     data_storage_size_in_gbs: 3.4
     license_model: LICENSE_INCLUDED
-    is_sparse_diskgroup_enabled: true
-    is_local_backup_enabled: true
-    time_zone: time_zone_example
-    db_servers: [ "db_servers_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -237,10 +237,8 @@ EXAMPLES = """
     db_node_storage_size_in_gbs: 56
     data_storage_size_in_tbs: 3.4
     data_storage_size_in_gbs: 3.4
-    ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
     license_model: LICENSE_INCLUDED
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
     version:
       # optional
       patch_id: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
@@ -250,6 +248,8 @@ EXAMPLES = """
       # optional
       update_id: "ocid1.update.oc1..xxxxxxEXAMPLExxxxxx"
       update_action: ROLLING_APPLY
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update vm_cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_vm_cluster:
@@ -264,10 +264,8 @@ EXAMPLES = """
     db_node_storage_size_in_gbs: 56
     data_storage_size_in_tbs: 3.4
     data_storage_size_in_gbs: 3.4
-    ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
     license_model: LICENSE_INCLUDED
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
     version:
       # optional
       patch_id: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
@@ -277,6 +275,8 @@ EXAMPLES = """
       # optional
       update_id: "ocid1.update.oc1..xxxxxxEXAMPLExxxxxx"
       update_action: ROLLING_APPLY
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete vm_cluster
   oci_database_vm_cluster:
@@ -654,25 +654,22 @@ def main():
             compartment_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             exadata_infrastructure_id=dict(type="str"),
+            vm_cluster_network_id=dict(type="str"),
+            is_sparse_diskgroup_enabled=dict(type="bool"),
+            is_local_backup_enabled=dict(type="bool"),
+            time_zone=dict(type="str"),
+            gi_version=dict(type="str"),
+            db_servers=dict(type="list", elements="str"),
             cpu_core_count=dict(type="int"),
             ocpu_count=dict(type="float"),
             memory_size_in_gbs=dict(type="int"),
             db_node_storage_size_in_gbs=dict(type="int"),
             data_storage_size_in_tbs=dict(type="float"),
             data_storage_size_in_gbs=dict(type="float"),
-            ssh_public_keys=dict(type="list", elements="str", no_log=True),
-            vm_cluster_network_id=dict(type="str"),
             license_model=dict(
                 type="str", choices=["LICENSE_INCLUDED", "BRING_YOUR_OWN_LICENSE"]
             ),
-            is_sparse_diskgroup_enabled=dict(type="bool"),
-            is_local_backup_enabled=dict(type="bool"),
-            time_zone=dict(type="str"),
-            gi_version=dict(type="str"),
-            db_servers=dict(type="list", elements="str"),
-            freeform_tags=dict(type="dict"),
-            defined_tags=dict(type="dict"),
-            vm_cluster_id=dict(aliases=["id"], type="str"),
+            ssh_public_keys=dict(type="list", elements="str", no_log=True),
             version=dict(
                 type="dict",
                 options=dict(
@@ -690,6 +687,9 @@ def main():
                     ),
                 ),
             ),
+            freeform_tags=dict(type="dict"),
+            defined_tags=dict(type="dict"),
+            vm_cluster_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

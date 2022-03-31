@@ -39,6 +39,12 @@ options:
             - The OCID of the cluster to which this node pool is attached.
             - Required for create using I(state=present).
         type: str
+    node_image_name:
+        description:
+            - Deprecated. Use `nodeSourceDetails` instead.
+              If you specify values for both, this value is ignored.
+              The name of the image running on the nodes in the node pool.
+        type: str
     name:
         description:
             - The name of the node pool. Avoid entering confidential information.
@@ -52,64 +58,6 @@ options:
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
-    node_metadata:
-        description:
-            - A list of key/value pairs to add to each underlying OCI instance in the node pool on launch.
-            - This parameter is updatable.
-        type: dict
-    node_image_name:
-        description:
-            - Deprecated. Use `nodeSourceDetails` instead.
-              If you specify values for both, this value is ignored.
-              The name of the image running on the nodes in the node pool.
-        type: str
-    node_source_details:
-        description:
-            - Specify the source to use to launch nodes in the node pool. Currently, image is the only supported source.
-            - This parameter is updatable.
-        type: dict
-        suboptions:
-            source_type:
-                description:
-                    - The source type for the node.
-                      Use `IMAGE` when specifying an OCID of an image.
-                type: str
-                choices:
-                    - "IMAGE"
-                required: true
-            image_id:
-                description:
-                    - The OCID of the image used to boot the node.
-                type: str
-                required: true
-            boot_volume_size_in_gbs:
-                description:
-                    - The size of the boot volume in GBs. Minimum value is 50 GB. See L(here,https://docs.cloud.oracle.com/en-
-                      us/iaas/Content/Block/Concepts/bootvolumes.htm) for max custom boot volume sizing and OS-specific requirements.
-                type: int
-    node_shape:
-        description:
-            - The name of the node shape of the nodes in the node pool.
-            - Required for create using I(state=present).
-            - This parameter is updatable.
-        type: str
-    node_shape_config:
-        description:
-            - Specify the configuration of the shape to launch nodes in the node pool.
-            - This parameter is updatable.
-        type: dict
-        suboptions:
-            ocpus:
-                description:
-                    - The total number of OCPUs available to each node in the node pool.
-                      See L(here,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Shape/) for details.
-                    - This parameter is updatable.
-                type: float
-            memory_in_gbs:
-                description:
-                    - The total amount of memory available to each node, in gigabytes.
-                    - This parameter is updatable.
-                type: float
     initial_node_labels:
         description:
             - A list of key/value pairs to add to nodes after they join the Kubernetes cluster.
@@ -125,11 +73,6 @@ options:
                 description:
                     - The value of the pair.
                 type: str
-    ssh_public_key:
-        description:
-            - The SSH public key on each node in the node pool on launch.
-            - This parameter is updatable.
-        type: str
     quantity_per_subnet:
         description:
             - Optional, default to 1. The number of nodes to create in each subnet specified in subnetIds property.
@@ -213,6 +156,63 @@ options:
                         description:
                             - The OCID of the compute capacity reservation in which to place the compute instance.
                         type: str
+    node_metadata:
+        description:
+            - A list of key/value pairs to add to each underlying OCI instance in the node pool on launch.
+            - This parameter is updatable.
+        type: dict
+    node_source_details:
+        description:
+            - Specify the source to use to launch nodes in the node pool. Currently, image is the only supported source.
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            source_type:
+                description:
+                    - The source type for the node.
+                      Use `IMAGE` when specifying an OCID of an image.
+                type: str
+                choices:
+                    - "IMAGE"
+                required: true
+            image_id:
+                description:
+                    - The OCID of the image used to boot the node.
+                type: str
+                required: true
+            boot_volume_size_in_gbs:
+                description:
+                    - The size of the boot volume in GBs. Minimum value is 50 GB. See L(here,https://docs.cloud.oracle.com/en-
+                      us/iaas/Content/Block/Concepts/bootvolumes.htm) for max custom boot volume sizing and OS-specific requirements.
+                type: int
+    ssh_public_key:
+        description:
+            - The SSH public key on each node in the node pool on launch.
+            - This parameter is updatable.
+        type: str
+    node_shape:
+        description:
+            - The name of the node shape of the nodes in the node pool.
+            - Required for create using I(state=present).
+            - This parameter is updatable.
+        type: str
+    node_shape_config:
+        description:
+            - Specify the configuration of the shape to launch nodes in the node pool.
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            ocpus:
+                description:
+                    - The total number of OCPUs available to each node in the node pool.
+                      See L(here,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Shape/) for details.
+                    - This parameter is updatable.
+                type: float
+            memory_in_gbs:
+                description:
+                    - The total amount of memory available to each node, in gigabytes.
+                    - This parameter is updatable.
+                type: float
     freeform_tags:
         description:
             - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -257,24 +257,11 @@ EXAMPLES = """
     node_shape: node_shape_example
 
     # optional
-    node_metadata: null
     node_image_name: node_image_name_example
-    node_source_details:
-      # required
-      source_type: IMAGE
-      image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
-
-      # optional
-      boot_volume_size_in_gbs: 56
-    node_shape_config:
-      # optional
-      ocpus: 3.4
-      memory_in_gbs: 3.4
     initial_node_labels:
     - # optional
       key: key_example
       value: value_example
-    ssh_public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
     quantity_per_subnet: 56
     subnet_ids: [ "subnet_ids_example" ]
     node_config_details:
@@ -292,6 +279,19 @@ EXAMPLES = """
 
         # optional
         capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+    node_metadata: null
+    node_source_details:
+      # required
+      source_type: IMAGE
+      image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      boot_volume_size_in_gbs: 56
+    ssh_public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
+    node_shape_config:
+      # optional
+      ocpus: 3.4
+      memory_in_gbs: 3.4
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -303,24 +303,10 @@ EXAMPLES = """
     # optional
     name: name_example
     kubernetes_version: kubernetes_version_example
-    node_metadata: null
-    node_source_details:
-      # required
-      source_type: IMAGE
-      image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
-
-      # optional
-      boot_volume_size_in_gbs: 56
-    node_shape: node_shape_example
-    node_shape_config:
-      # optional
-      ocpus: 3.4
-      memory_in_gbs: 3.4
     initial_node_labels:
     - # optional
       key: key_example
       value: value_example
-    ssh_public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
     quantity_per_subnet: 56
     subnet_ids: [ "subnet_ids_example" ]
     node_config_details:
@@ -338,6 +324,20 @@ EXAMPLES = """
 
         # optional
         capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+    node_metadata: null
+    node_source_details:
+      # required
+      source_type: IMAGE
+      image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      boot_volume_size_in_gbs: 56
+    ssh_public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
+    node_shape: node_shape_example
+    node_shape_config:
+      # optional
+      ocpus: 3.4
+      memory_in_gbs: 3.4
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -349,24 +349,10 @@ EXAMPLES = """
 
     # optional
     kubernetes_version: kubernetes_version_example
-    node_metadata: null
-    node_source_details:
-      # required
-      source_type: IMAGE
-      image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
-
-      # optional
-      boot_volume_size_in_gbs: 56
-    node_shape: node_shape_example
-    node_shape_config:
-      # optional
-      ocpus: 3.4
-      memory_in_gbs: 3.4
     initial_node_labels:
     - # optional
       key: key_example
       value: value_example
-    ssh_public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
     quantity_per_subnet: 56
     subnet_ids: [ "subnet_ids_example" ]
     node_config_details:
@@ -384,6 +370,20 @@ EXAMPLES = """
 
         # optional
         capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+    node_metadata: null
+    node_source_details:
+      # required
+      source_type: IMAGE
+      image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      boot_volume_size_in_gbs: 56
+    ssh_public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
+    node_shape: node_shape_example
+    node_shape_config:
+      # optional
+      ocpus: 3.4
+      memory_in_gbs: 3.4
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -1019,31 +1019,14 @@ def main():
         dict(
             compartment_id=dict(type="str"),
             cluster_id=dict(type="str"),
+            node_image_name=dict(type="str"),
             name=dict(type="str"),
             kubernetes_version=dict(type="str"),
-            node_metadata=dict(type="dict"),
-            node_image_name=dict(type="str"),
-            node_source_details=dict(
-                type="dict",
-                options=dict(
-                    source_type=dict(type="str", required=True, choices=["IMAGE"]),
-                    image_id=dict(type="str", required=True),
-                    boot_volume_size_in_gbs=dict(type="int"),
-                ),
-            ),
-            node_shape=dict(type="str"),
-            node_shape_config=dict(
-                type="dict",
-                options=dict(
-                    ocpus=dict(type="float"), memory_in_gbs=dict(type="float")
-                ),
-            ),
             initial_node_labels=dict(
                 type="list",
                 elements="dict",
                 options=dict(key=dict(type="str", no_log=True), value=dict(type="str")),
             ),
-            ssh_public_key=dict(type="str", no_log=True),
             quantity_per_subnet=dict(type="int"),
             subnet_ids=dict(type="list", elements="str"),
             node_config_details=dict(
@@ -1064,6 +1047,23 @@ def main():
                             capacity_reservation_id=dict(type="str"),
                         ),
                     ),
+                ),
+            ),
+            node_metadata=dict(type="dict"),
+            node_source_details=dict(
+                type="dict",
+                options=dict(
+                    source_type=dict(type="str", required=True, choices=["IMAGE"]),
+                    image_id=dict(type="str", required=True),
+                    boot_volume_size_in_gbs=dict(type="int"),
+                ),
+            ),
+            ssh_public_key=dict(type="str", no_log=True),
+            node_shape=dict(type="str"),
+            node_shape_config=dict(
+                type="dict",
+                options=dict(
+                    ocpus=dict(type="float"), memory_in_gbs=dict(type="float")
                 ),
             ),
             freeform_tags=dict(type="dict"),

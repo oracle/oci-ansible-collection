@@ -30,7 +30,7 @@ oracle.oci.oci_loadbalancer_load_balancer -- Manage a LoadBalancer resource in O
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -604,9 +604,9 @@ Examples
       oci_loadbalancer_load_balancer:
         # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name: display_name_example
-        shape_name: shape_name_example
         subnet_ids: [ "subnet_ids_example" ]
+        shape_name: shape_name_example
+        display_name: display_name_example
 
         # optional
         shape_details:
@@ -627,8 +627,8 @@ Examples
         load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        display_name: display_name_example
         shape_name: shape_name_example
+        display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 

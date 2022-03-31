@@ -30,7 +30,7 @@ oracle.oci.oci_database_autonomous_database_actions -- Perform actions on an Aut
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -610,8 +610,8 @@ Examples
     - name: Perform action change_compartment on autonomous_database
       oci_database_autonomous_database_actions:
         # required
-        autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         action: change_compartment
 
     - name: Perform action configure_autonomous_database_vault_key on autonomous_database
@@ -628,8 +628,8 @@ Examples
     - name: Perform action deregister_autonomous_database_data_safe on autonomous_database
       oci_database_autonomous_database_actions:
         # required
-        autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         pdb_admin_password: example-password
+        autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         action: deregister_autonomous_database_data_safe
 
     - name: Perform action disable_autonomous_database_management on autonomous_database
@@ -668,9 +668,9 @@ Examples
     - name: Perform action generate_autonomous_database_wallet on autonomous_database
       oci_database_autonomous_database_actions:
         # required
-        autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         wallet_file: /tmp/atp_wallet.zip
         password: example-password
+        autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         action: generate_autonomous_database_wallet
 
         # optional
@@ -680,8 +680,8 @@ Examples
     - name: Perform action register_autonomous_database_data_safe on autonomous_database
       oci_database_autonomous_database_actions:
         # required
-        autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         pdb_admin_password: example-password
+        autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         action: register_autonomous_database_data_safe
 
     - name: Perform action restart on autonomous_database
@@ -693,8 +693,8 @@ Examples
     - name: Perform action restore on autonomous_database
       oci_database_autonomous_database_actions:
         # required
-        autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         timestamp: timestamp_example
+        autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         action: restore
 
         # optional

@@ -30,11 +30,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the subscription to unsubscribe from.
-        type: str
-        required: true
     token:
         description:
             - The subscription confirmation token.
@@ -55,6 +50,11 @@ options:
               L(To create a subscription,https://docs.cloud.oracle.com/iaas/Content/Notification/Tasks/managingtopicsandsubscriptions.htm#createSub).
             - Required for I(action=get_unsubscription).
         type: str
+    id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the subscription to unsubscribe from.
+        type: str
+        required: true
     action:
         description:
             - The action to perform on the Subscription.
@@ -70,9 +70,9 @@ EXAMPLES = """
 - name: Perform action get_unsubscription on subscription
   oci_ons_subscription_actions:
     # required
-    id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     token: token_example
     protocol: protocol_example
+    id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     action: get_unsubscription
 
 - name: Perform action resend_subscription_confirmation on subscription
@@ -280,9 +280,9 @@ def main():
     )
     module_args.update(
         dict(
-            id=dict(type="str", required=True),
             token=dict(type="str", no_log=True),
             protocol=dict(type="str"),
+            id=dict(type="str", required=True),
             action=dict(
                 type="str",
                 required=True,

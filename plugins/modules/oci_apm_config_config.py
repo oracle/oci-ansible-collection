@@ -27,54 +27,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    apm_domain_id:
-        description:
-            - The APM Domain ID the request is intended for.
-        type: str
-        required: true
-    config_type:
-        description:
-            - The type of configuration item.
-            - Required for create using I(state=present), update using I(state=present) with config_id present.
-        type: str
-        choices:
-            - "SPAN_FILTER"
-            - "METRIC_GROUP"
-            - "APDEX"
-    freeform_tags:
-        description:
-            - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-              Example: `{\\"bar-key\\": \\"value\\"}`"
-            - This parameter is updatable.
-        type: dict
-    defined_tags:
-        description:
-            - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
-              Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
-            - This parameter is updatable.
-        type: dict
-    display_name:
-        description:
-            - The name by which the span filter can be displayed in the UI.
-            - Required for create using I(state=present).
-            - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-            - Applicable when config_type is one of ['APDEX', 'METRIC_GROUP', 'SPAN_FILTER']
-        type: str
-        aliases: ["name"]
-    filter_text:
-        description:
-            - The string that defines the Span Filter expression.
-            - This parameter is updatable.
-            - Applicable when config_type is 'SPAN_FILTER'
-            - Required when config_type is 'SPAN_FILTER'
-        type: str
-    description:
-        description:
-            - An optional string that describes what the filter is intended or used for.
-            - This parameter is updatable.
-            - Applicable when config_type is 'SPAN_FILTER'
-        type: str
     filter_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a Span Filter. The filterId is mandatory for the creation
@@ -191,12 +143,60 @@ options:
                     - Applicable when config_type is 'APDEX'
                 type: str
                 aliases: ["name"]
+    config_type:
+        description:
+            - The type of configuration item.
+            - Required for create using I(state=present), update using I(state=present) with config_id present.
+        type: str
+        choices:
+            - "SPAN_FILTER"
+            - "METRIC_GROUP"
+            - "APDEX"
+    freeform_tags:
+        description:
+            - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+              Example: `{\\"bar-key\\": \\"value\\"}`"
+            - This parameter is updatable.
+        type: dict
+    defined_tags:
+        description:
+            - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
+              Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+            - This parameter is updatable.
+        type: dict
+    display_name:
+        description:
+            - The name by which the span filter can be displayed in the UI.
+            - Required for create using I(state=present).
+            - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+            - Applicable when config_type is one of ['APDEX', 'METRIC_GROUP', 'SPAN_FILTER']
+        type: str
+        aliases: ["name"]
+    filter_text:
+        description:
+            - The string that defines the Span Filter expression.
+            - This parameter is updatable.
+            - Applicable when config_type is 'SPAN_FILTER'
+            - Required when config_type is 'SPAN_FILTER'
+        type: str
+    description:
+        description:
+            - An optional string that describes what the filter is intended or used for.
+            - This parameter is updatable.
+            - Applicable when config_type is 'SPAN_FILTER'
+        type: str
     opc_dry_run:
         description:
             - "Indicates that the request is a dry run, if set to \\"true\\". A dry run request does not modify the
               configuration item details and is used only to perform validation on the submitted data."
             - This parameter is updatable.
         type: str
+    apm_domain_id:
+        description:
+            - The APM Domain ID the request is intended for.
+        type: str
+        required: true
     config_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the configuration item.
@@ -235,9 +235,6 @@ EXAMPLES = """
     config_type: METRIC_GROUP
 
     # optional
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: display_name_example
     filter_id: "ocid1.filter.oc1..xxxxxxEXAMPLExxxxxx"
     namespace: namespace_example
     dimensions:
@@ -254,11 +251,13 @@ EXAMPLES = """
       value_source: value_source_example
       unit: unit_example
       description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: display_name_example
 
 - name: Create config with config_type = APDEX
   oci_apm_config_config:
     # required
-    config_type: APDEX
     rules:
     - # required
       filter_text: filter_text_example
@@ -270,6 +269,7 @@ EXAMPLES = """
       tolerating_response_time: 56
       is_apply_to_error_spans: true
       display_name: display_name_example
+    config_type: APDEX
 
     # optional
     freeform_tags: {'Department': 'Finance'}
@@ -294,9 +294,6 @@ EXAMPLES = """
     config_type: METRIC_GROUP
 
     # optional
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: display_name_example
     filter_id: "ocid1.filter.oc1..xxxxxxEXAMPLExxxxxx"
     namespace: namespace_example
     dimensions:
@@ -313,11 +310,13 @@ EXAMPLES = """
       value_source: value_source_example
       unit: unit_example
       description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: display_name_example
 
 - name: Update config with config_type = APDEX
   oci_apm_config_config:
     # required
-    config_type: APDEX
     rules:
     - # required
       filter_text: filter_text_example
@@ -329,6 +328,7 @@ EXAMPLES = """
       tolerating_response_time: 56
       is_apply_to_error_spans: true
       display_name: display_name_example
+    config_type: APDEX
 
     # optional
     freeform_tags: {'Department': 'Finance'}
@@ -353,9 +353,6 @@ EXAMPLES = """
     config_type: METRIC_GROUP
 
     # optional
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: display_name_example
     filter_id: "ocid1.filter.oc1..xxxxxxEXAMPLExxxxxx"
     namespace: namespace_example
     dimensions:
@@ -372,11 +369,13 @@ EXAMPLES = """
       value_source: value_source_example
       unit: unit_example
       description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: display_name_example
 
 - name: Update config using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with config_type = APDEX
   oci_apm_config_config:
     # required
-    config_type: APDEX
     rules:
     - # required
       filter_text: filter_text_example
@@ -388,6 +387,7 @@ EXAMPLES = """
       tolerating_response_time: 56
       is_apply_to_error_spans: true
       display_name: display_name_example
+    config_type: APDEX
 
     # optional
     freeform_tags: {'Department': 'Finance'}
@@ -404,8 +404,8 @@ EXAMPLES = """
 - name: Delete config using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apm_config_config:
     # required
-    apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
+    apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -791,15 +791,6 @@ def main():
     )
     module_args.update(
         dict(
-            apm_domain_id=dict(type="str", required=True),
-            config_type=dict(
-                type="str", choices=["SPAN_FILTER", "METRIC_GROUP", "APDEX"]
-            ),
-            freeform_tags=dict(type="dict"),
-            defined_tags=dict(type="dict"),
-            display_name=dict(aliases=["name"], type="str"),
-            filter_text=dict(type="str"),
-            description=dict(type="str"),
             filter_id=dict(type="str"),
             namespace=dict(type="str"),
             dimensions=dict(
@@ -832,7 +823,16 @@ def main():
                     display_name=dict(aliases=["name"], type="str"),
                 ),
             ),
+            config_type=dict(
+                type="str", choices=["SPAN_FILTER", "METRIC_GROUP", "APDEX"]
+            ),
+            freeform_tags=dict(type="dict"),
+            defined_tags=dict(type="dict"),
+            display_name=dict(aliases=["name"], type="str"),
+            filter_text=dict(type="str"),
+            description=dict(type="str"),
             opc_dry_run=dict(type="str"),
+            apm_domain_id=dict(type="str", required=True),
             config_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

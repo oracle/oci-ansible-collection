@@ -30,7 +30,7 @@ oracle.oci.oci_data_integration_workspace_actions -- Perform actions on a Worksp
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -379,8 +379,8 @@ Examples
     - name: Perform action change_compartment on workspace
       oci_data_integration_workspace_actions:
         # required
-        workspace_id: "ocid1.workspace.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        workspace_id: "ocid1.workspace.oc1..xxxxxxEXAMPLExxxxxx"
         action: change_compartment
 
     - name: Perform action start on workspace

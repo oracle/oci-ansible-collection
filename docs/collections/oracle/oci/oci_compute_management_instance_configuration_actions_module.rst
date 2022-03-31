@@ -30,7 +30,7 @@ oracle.oci.oci_compute_management_instance_configuration_actions -- Perform acti
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -2253,8 +2253,8 @@ Examples
     - name: Perform action change_compartment on instance_configuration
       oci_compute_management_instance_configuration_actions:
         # required
-        instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
         action: change_compartment
 
     - name: Perform action launch on instance_configuration with instance_type = compute
@@ -2270,11 +2270,11 @@ Examples
             type: iscsi
 
             # optional
+            use_chap: true
             display_name: display_name_example
             is_read_only: true
             device: device_example
             is_shareable: true
-            use_chap: true
           create_details:
             # optional
             availability_domain: Uocm:PHX-AD-1
@@ -2327,10 +2327,10 @@ Examples
             type: AMD_MILAN_BM
 
             # optional
+            numa_nodes_per_socket: NPS0
             is_secure_boot_enabled: true
             is_trusted_platform_module_enabled: true
             is_measured_boot_enabled: true
-            numa_nodes_per_socket: NPS0
           source_details:
             # required
             source_type: image

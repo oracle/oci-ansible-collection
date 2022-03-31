@@ -30,7 +30,7 @@ oracle.oci.oci_waas_policy_actions -- Perform actions on a WaasPolicy resource i
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -375,15 +375,15 @@ Examples
     - name: Perform action accept_recommendations on waas_policy
       oci_waas_policy_actions:
         # required
-        waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
         protection_rule_keys: [ "protection_rule_keys_example" ]
+        waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
         action: accept_recommendations
 
     - name: Perform action change_compartment on waas_policy
       oci_waas_policy_actions:
         # required
-        waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
         action: change_compartment
 
     - name: Perform action purge_cache on waas_policy

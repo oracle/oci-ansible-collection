@@ -30,7 +30,7 @@ oracle.oci.oci_visual_builder_vb_instance -- Manage a VbInstance resource in Ora
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -607,11 +607,12 @@ Examples
     - name: Create vb_instance
       oci_visual_builder_vb_instance:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
         node_count: 56
 
         # optional
+        consumption_model: UCM
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         idcs_open_id: "ocid1.idcsopen.oc1..xxxxxxEXAMPLExxxxxx"
@@ -628,7 +629,6 @@ Examples
 
           # optional
           certificate_secret_id: "ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx"
-        consumption_model: UCM
 
     - name: Update vb_instance
       oci_visual_builder_vb_instance:
@@ -658,8 +658,8 @@ Examples
     - name: Update vb_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_visual_builder_vb_instance:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
 
         # optional
         freeform_tags: {'Department': 'Finance'}
@@ -689,8 +689,8 @@ Examples
     - name: Delete vb_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_visual_builder_vb_instance:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
         state: absent
 
 

@@ -46,6 +46,14 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the
+              comparment to create the service connector in.
+            - Required for create using I(state=present).
+            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+        type: str
     display_name:
         description:
             - A user-friendly name. It does not have to be unique, and it is changeable.
@@ -55,14 +63,6 @@ options:
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
-    compartment_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the
-              comparment to create the service connector in.
-            - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-        type: str
     description:
         description:
             - The description of the resource. Avoid entering confidential information.
@@ -75,14 +75,6 @@ options:
             - This parameter is updatable.
         type: dict
         suboptions:
-            kind:
-                description:
-                    - The type descriminator.
-                type: str
-                choices:
-                    - "logging"
-                    - "streaming"
-                required: true
             log_sources:
                 description:
                     - The logs for this Logging source.
@@ -107,6 +99,14 @@ options:
                             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the log.
                             - Applicable when kind is 'logging'
                         type: str
+            kind:
+                description:
+                    - The type descriminator.
+                type: str
+                choices:
+                    - "logging"
+                    - "streaming"
+                required: true
             stream_id:
                 description:
                     - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the stream.
@@ -133,14 +133,6 @@ options:
         type: list
         elements: dict
         suboptions:
-            kind:
-                description:
-                    - The type descriminator.
-                type: str
-                choices:
-                    - "function"
-                    - "logRule"
-                required: true
             function_id:
                 description:
                     - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the function to be used as a task.
@@ -156,6 +148,14 @@ options:
                     - Time limit (seconds) for batch sent to invoke the function.
                     - Applicable when kind is 'function'
                 type: int
+            kind:
+                description:
+                    - The type descriminator.
+                type: str
+                choices:
+                    - "function"
+                    - "logRule"
+                required: true
             condition:
                 description:
                     - A filter or mask to limit the source used in the flow defined by the service connector.
@@ -168,18 +168,6 @@ options:
             - This parameter is updatable.
         type: dict
         suboptions:
-            kind:
-                description:
-                    - The type descriminator.
-                type: str
-                choices:
-                    - "notifications"
-                    - "objectStorage"
-                    - "monitoring"
-                    - "functions"
-                    - "loggingAnalytics"
-                    - "streaming"
-                required: true
             topic_id:
                 description:
                     - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the topic.
@@ -260,6 +248,13 @@ options:
                         type: dict
                         required: true
                         suboptions:
+                            value:
+                                description:
+                                    - The data extracted from the specified dimension value (passed as-is). Unicode characters only.
+                                      For information on valid dimension keys and values, see L(MetricDataDetails Reference,https://docs.cloud.oracle.com/en-
+                                      us/iaas/api/#/en/monitoring/latest/datatypes/MetricDataDetails).
+                                    - Required when kind is 'static'
+                                type: str
                             kind:
                                 description:
                                     - "The type of dimension value: static or evaluated."
@@ -268,13 +263,6 @@ options:
                                     - "static"
                                     - "jmesPath"
                                 required: true
-                            value:
-                                description:
-                                    - The data extracted from the specified dimension value (passed as-is). Unicode characters only.
-                                      For information on valid dimension keys and values, see L(MetricDataDetails Reference,https://docs.cloud.oracle.com/en-
-                                      us/iaas/api/#/en/monitoring/latest/datatypes/MetricDataDetails).
-                                    - Required when kind is 'static'
-                                type: str
                             path:
                                 description:
                                     - "The location to use for deriving the dimension value (evaluated).
@@ -302,6 +290,18 @@ options:
                     - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Logging Analytics log group.
                     - Required when kind is 'loggingAnalytics'
                 type: str
+            kind:
+                description:
+                    - The type descriminator.
+                type: str
+                choices:
+                    - "notifications"
+                    - "objectStorage"
+                    - "monitoring"
+                    - "functions"
+                    - "loggingAnalytics"
+                    - "streaming"
+                required: true
             stream_id:
                 description:
                     - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the stream.
@@ -342,11 +342,10 @@ EXAMPLES = """
 - name: Create service_connector
   oci_sch_service_connector:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     source:
       # required
-      kind: logging
       log_sources:
       - # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -354,10 +353,11 @@ EXAMPLES = """
         # optional
         log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
         log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+      kind: logging
     target:
       # required
-      kind: notifications
       topic_id: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
+      kind: notifications
 
       # optional
       enable_formatted_messaging: true
@@ -366,8 +366,8 @@ EXAMPLES = """
     description: description_example
     tasks:
     - # required
-      kind: function
       function_id: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
+      kind: function
 
       # optional
       batch_size_in_kbs: 56
@@ -385,7 +385,6 @@ EXAMPLES = """
     description: description_example
     source:
       # required
-      kind: logging
       log_sources:
       - # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -393,18 +392,19 @@ EXAMPLES = """
         # optional
         log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
         log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+      kind: logging
     tasks:
     - # required
-      kind: function
       function_id: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
+      kind: function
 
       # optional
       batch_size_in_kbs: 56
       batch_time_in_sec: 56
     target:
       # required
-      kind: notifications
       topic_id: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
+      kind: notifications
 
       # optional
       enable_formatted_messaging: true
@@ -414,14 +414,13 @@ EXAMPLES = """
 - name: Update service_connector using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_sch_service_connector:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     description: description_example
     source:
       # required
-      kind: logging
       log_sources:
       - # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -429,18 +428,19 @@ EXAMPLES = """
         # optional
         log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
         log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+      kind: logging
     tasks:
     - # required
-      kind: function
       function_id: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
+      kind: function
 
       # optional
       batch_size_in_kbs: 56
       batch_time_in_sec: 56
     target:
       # required
-      kind: notifications
       topic_id: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
+      kind: notifications
 
       # optional
       enable_formatted_messaging: true
@@ -456,8 +456,8 @@ EXAMPLES = """
 - name: Delete service_connector using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_sch_service_connector:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -997,15 +997,12 @@ def main():
     )
     module_args.update(
         dict(
-            display_name=dict(aliases=["name"], type="str"),
             compartment_id=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
             description=dict(type="str"),
             source=dict(
                 type="dict",
                 options=dict(
-                    kind=dict(
-                        type="str", required=True, choices=["logging", "streaming"]
-                    ),
                     log_sources=dict(
                         type="list",
                         elements="dict",
@@ -1014,6 +1011,9 @@ def main():
                             log_group_id=dict(type="str"),
                             log_id=dict(type="str"),
                         ),
+                    ),
+                    kind=dict(
+                        type="str", required=True, choices=["logging", "streaming"]
                     ),
                     stream_id=dict(type="str"),
                     cursor=dict(
@@ -1032,30 +1032,18 @@ def main():
                 type="list",
                 elements="dict",
                 options=dict(
-                    kind=dict(
-                        type="str", required=True, choices=["function", "logRule"]
-                    ),
                     function_id=dict(type="str"),
                     batch_size_in_kbs=dict(type="int"),
                     batch_time_in_sec=dict(type="int"),
+                    kind=dict(
+                        type="str", required=True, choices=["function", "logRule"]
+                    ),
                     condition=dict(type="str"),
                 ),
             ),
             target=dict(
                 type="dict",
                 options=dict(
-                    kind=dict(
-                        type="str",
-                        required=True,
-                        choices=[
-                            "notifications",
-                            "objectStorage",
-                            "monitoring",
-                            "functions",
-                            "loggingAnalytics",
-                            "streaming",
-                        ],
-                    ),
                     topic_id=dict(type="str"),
                     enable_formatted_messaging=dict(type="bool"),
                     namespace=dict(type="str"),
@@ -1075,12 +1063,12 @@ def main():
                                 type="dict",
                                 required=True,
                                 options=dict(
+                                    value=dict(type="str"),
                                     kind=dict(
                                         type="str",
                                         required=True,
                                         choices=["static", "jmesPath"],
                                     ),
-                                    value=dict(type="str"),
                                     path=dict(type="str"),
                                 ),
                             ),
@@ -1088,6 +1076,18 @@ def main():
                     ),
                     function_id=dict(type="str"),
                     log_group_id=dict(type="str"),
+                    kind=dict(
+                        type="str",
+                        required=True,
+                        choices=[
+                            "notifications",
+                            "objectStorage",
+                            "monitoring",
+                            "functions",
+                            "loggingAnalytics",
+                            "streaming",
+                        ],
+                    ),
                     stream_id=dict(type="str"),
                 ),
             ),

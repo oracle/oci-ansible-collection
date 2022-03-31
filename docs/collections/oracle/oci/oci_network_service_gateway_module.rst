@@ -30,7 +30,7 @@ oracle.oci.oci_network_service_gateway -- Manage a ServiceGateway resource in Or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -526,10 +526,10 @@ Examples
       oci_network_service_gateway:
         # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         services:
         - # required
           service_id: "ocid1.service.oc1..xxxxxxEXAMPLExxxxxx"
-        vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -543,6 +543,7 @@ Examples
         service_gateway_id: "ocid1.servicegateway.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
+        block_traffic: true
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
@@ -550,7 +551,6 @@ Examples
         services:
         - # required
           service_id: "ocid1.service.oc1..xxxxxxEXAMPLExxxxxx"
-        block_traffic: true
 
     - name: Update service_gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_service_gateway:
@@ -559,13 +559,13 @@ Examples
         display_name: display_name_example
 
         # optional
+        block_traffic: true
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         freeform_tags: {'Department': 'Finance'}
         route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
         services:
         - # required
           service_id: "ocid1.service.oc1..xxxxxxEXAMPLExxxxxx"
-        block_traffic: true
 
     - name: Delete service_gateway
       oci_network_service_gateway:

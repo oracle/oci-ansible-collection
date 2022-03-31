@@ -41,18 +41,18 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    service_connector_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the service connector.
-        type: str
-        aliases: ["id"]
-        required: true
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment
               to move the service connector to.
             - Required for I(action=change_compartment).
         type: str
+    service_connector_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the service connector.
+        type: str
+        aliases: ["id"]
+        required: true
     action:
         description:
             - The action to perform on the ServiceConnector.
@@ -75,8 +75,8 @@ EXAMPLES = """
 - name: Perform action change_compartment on service_connector
   oci_sch_service_connector_actions:
     # required
-    service_connector_id: "ocid1.serviceconnector.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    service_connector_id: "ocid1.serviceconnector.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action deactivate on service_connector
@@ -587,8 +587,8 @@ def main():
     )
     module_args.update(
         dict(
-            service_connector_id=dict(aliases=["id"], type="str", required=True),
             compartment_id=dict(type="str"),
+            service_connector_id=dict(aliases=["id"], type="str", required=True),
             action=dict(
                 type="str",
                 required=True,

@@ -30,7 +30,7 @@ oracle.oci.oci_network_public_ip_pool_actions -- Perform actions on a PublicIpPo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -375,16 +375,16 @@ Examples
     - name: Perform action add_public_ip_pool_capacity on public_ip_pool
       oci_network_public_ip_pool_actions:
         # required
-        public_ip_pool_id: "ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx"
         byoip_range_id: "ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx"
+        public_ip_pool_id: "ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx"
         cidr_block: cidr_block_example
         action: add_public_ip_pool_capacity
 
     - name: Perform action change_compartment on public_ip_pool
       oci_network_public_ip_pool_actions:
         # required
-        public_ip_pool_id: "ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        public_ip_pool_id: "ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx"
         action: change_compartment
 
     - name: Perform action remove_public_ip_pool_capacity on public_ip_pool

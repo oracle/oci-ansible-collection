@@ -40,6 +40,11 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
             - Required for create using I(state=present).
         type: str
+    object_storage_bucket_name:
+        description:
+            - Object Storage Bucket Name
+            - Required for create using I(state=present).
+        type: str
     display_name:
         description:
             - User-friedly name of AWR Hub that does not have to be unique.
@@ -48,11 +53,6 @@ options:
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
-    object_storage_bucket_name:
-        description:
-            - Object Storage Bucket Name
-            - Required for create using I(state=present).
-        type: str
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -90,8 +90,8 @@ EXAMPLES = """
     # required
     operations_insights_warehouse_id: "ocid1.operationsinsightswarehouse.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: display_name_example
     object_storage_bucket_name: object_storage_bucket_name_example
+    display_name: display_name_example
 
     # optional
     freeform_tags: {'Department': 'Finance'}
@@ -386,8 +386,8 @@ def main():
         dict(
             operations_insights_warehouse_id=dict(type="str"),
             compartment_id=dict(type="str"),
-            display_name=dict(aliases=["name"], type="str"),
             object_storage_bucket_name=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             awr_hub_id=dict(aliases=["id"], type="str"),

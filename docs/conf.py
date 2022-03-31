@@ -38,7 +38,7 @@ author = "Oracle Corporation"
 # XXX Fill in the version and release from the OCI ansible modules'
 # version
 # The short X.Y version
-version = "2.46.0"
+version = "2.47.0"
 # The full version, including alpha/beta/rc tags
 release = version
 

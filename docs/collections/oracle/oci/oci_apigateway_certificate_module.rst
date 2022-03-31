@@ -30,7 +30,7 @@ oracle.oci.oci_apigateway_certificate -- Manage a Certificate resource in Oracle
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -486,8 +486,8 @@ Examples
         certificate: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
 
         # optional
-        display_name: display_name_example
         intermediate_certificates: intermediate_certificates_example
+        display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -504,8 +504,8 @@ Examples
     - name: Update certificate using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_apigateway_certificate:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
 
         # optional
         freeform_tags: {'Department': 'Finance'}
@@ -520,8 +520,8 @@ Examples
     - name: Delete certificate using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_apigateway_certificate:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
         state: absent
 
 

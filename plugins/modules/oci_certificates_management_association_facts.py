@@ -29,12 +29,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    association_id:
-        description:
-            - The OCID of an association between a certificate-related resource and another Oracle Cloud Infrastructure resource.
-            - Required to get a specific association.
-        type: str
-        aliases: ["id"]
     compartment_id:
         description:
             - A filter that returns only resources that match the given compartment OCID.
@@ -47,6 +41,12 @@ options:
         description:
             - A filter that returns only resources that match the given OCID of an associated Oracle Cloud Infrastructure resource.
         type: str
+    association_id:
+        description:
+            - The OCID of an association between a certificate-related resource and another Oracle Cloud Infrastructure resource.
+            - Required to get a specific association.
+        type: str
+        aliases: ["id"]
     name:
         description:
             - A filter that returns only resources that match the specified name.
@@ -87,10 +87,10 @@ EXAMPLES = """
   oci_certificates_management_association_facts:
 
     # optional
-    association_id: "ocid1.association.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     certificates_resource_id: "ocid1.certificatesresource.oc1..xxxxxxEXAMPLExxxxxx"
     associated_resource_id: "ocid1.associatedresource.oc1..xxxxxxEXAMPLExxxxxx"
+    association_id: "ocid1.association.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
     sort_by: NAME
     sort_order: ASC
@@ -231,10 +231,10 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            association_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
             certificates_resource_id=dict(type="str"),
             associated_resource_id=dict(type="str"),
+            association_id=dict(aliases=["id"], type="str"),
             name=dict(type="str"),
             sort_by=dict(type="str", choices=["NAME", "TIMECREATED"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),

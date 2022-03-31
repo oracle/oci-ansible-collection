@@ -38,6 +38,21 @@ options:
         description:
             - This is DEPRECTAED. Set the target compartment id in targets instead.
         type: str
+    target_type:
+        description:
+            - The type of target on which the budget is applied.
+        type: str
+        choices:
+            - "COMPARTMENT"
+            - "TAG"
+    targets:
+        description:
+            - "The list of targets on which the budget is applied.
+                If targetType is \\"COMPARTMENT\\", targets contains list of compartment OCIDs.
+                If targetType is \\"TAG\\", targets contains list of cost tracking tag identifiers in the form of \\"{tagNamespace}.{tagKey}.{tagValue}\\".
+              Curerntly, the array should contain EXACT ONE item."
+        type: list
+        elements: str
     display_name:
         description:
             - The displayName of the budget.
@@ -56,6 +71,12 @@ options:
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: float
+    budget_processing_period_start_offset:
+        description:
+            - The number of days offset from the first day of the month, at which the budget processing period starts. In months that have fewer days than this
+              value, processing will begin on the last day of that month. For example, for a value of 12, processing starts every month on the 12th at midnight.
+            - This parameter is updatable.
+        type: int
     reset_period:
         description:
             - The reset period for the budget.
@@ -64,27 +85,6 @@ options:
         type: str
         choices:
             - "MONTHLY"
-    budget_processing_period_start_offset:
-        description:
-            - The number of days offset from the first day of the month, at which the budget processing period starts. In months that have fewer days than this
-              value, processing will begin on the last day of that month. For example, for a value of 12, processing starts every month on the 12th at midnight.
-            - This parameter is updatable.
-        type: int
-    target_type:
-        description:
-            - The type of target on which the budget is applied.
-        type: str
-        choices:
-            - "COMPARTMENT"
-            - "TAG"
-    targets:
-        description:
-            - "The list of targets on which the budget is applied.
-                If targetType is \\"COMPARTMENT\\", targets contains list of compartment OCIDs.
-                If targetType is \\"TAG\\", targets contains list of cost tracking tag identifiers in the form of \\"{tagNamespace}.{tagKey}.{tagValue}\\".
-              Curerntly, the array should contain EXACT ONE item."
-        type: list
-        elements: str
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -128,11 +128,11 @@ EXAMPLES = """
 
     # optional
     target_compartment_id: "ocid1.targetcompartment.oc1..xxxxxxEXAMPLExxxxxx"
+    target_type: COMPARTMENT
+    targets: [ "targets_example" ]
     display_name: display_name_example
     description: description_example
     budget_processing_period_start_offset: 56
-    target_type: COMPARTMENT
-    targets: [ "targets_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -145,8 +145,8 @@ EXAMPLES = """
     display_name: display_name_example
     description: description_example
     amount: 3.4
-    reset_period: MONTHLY
     budget_processing_period_start_offset: 56
+    reset_period: MONTHLY
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -159,8 +159,8 @@ EXAMPLES = """
     # optional
     description: description_example
     amount: 3.4
-    reset_period: MONTHLY
     budget_processing_period_start_offset: 56
+    reset_period: MONTHLY
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -493,13 +493,13 @@ def main():
         dict(
             compartment_id=dict(type="str"),
             target_compartment_id=dict(type="str"),
+            target_type=dict(type="str", choices=["COMPARTMENT", "TAG"]),
+            targets=dict(type="list", elements="str"),
             display_name=dict(aliases=["name"], type="str"),
             description=dict(type="str"),
             amount=dict(type="float"),
-            reset_period=dict(type="str", choices=["MONTHLY"]),
             budget_processing_period_start_offset=dict(type="int"),
-            target_type=dict(type="str", choices=["COMPARTMENT", "TAG"]),
-            targets=dict(type="list", elements="str"),
+            reset_period=dict(type="str", choices=["MONTHLY"]),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             budget_id=dict(aliases=["id"], type="str"),

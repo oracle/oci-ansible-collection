@@ -27,11 +27,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    blockchain_platform_id:
-        description:
-            - Unique service identifier.
-        type: str
-        required: true
     role:
         description:
             - Peer role
@@ -40,6 +35,11 @@ options:
     alias:
         description:
             - peer alias
+        type: str
+    ad:
+        description:
+            - Availability Domain to place new peer
+            - Required for create using I(state=present).
         type: str
     ocpu_allocation_param:
         description:
@@ -52,11 +52,11 @@ options:
                     - Number of OCPU allocation
                 type: float
                 required: true
-    ad:
+    blockchain_platform_id:
         description:
-            - Availability Domain to place new peer
-            - Required for create using I(state=present).
+            - Unique service identifier.
         type: str
+        required: true
     peer_id:
         description:
             - Peer identifier.
@@ -80,12 +80,12 @@ EXAMPLES = """
 - name: Create blockchain_platform_peer
   oci_blockchain_platform_peer:
     # required
-    blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
     role: role_example
+    ad: Uocm:PHX-AD-1
     ocpu_allocation_param:
       # required
       ocpu_allocation_number: 3.4
-    ad: Uocm:PHX-AD-1
+    blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     alias: alias_example
@@ -93,10 +93,10 @@ EXAMPLES = """
 - name: Update blockchain_platform_peer
   oci_blockchain_platform_peer:
     # required
-    blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
     ocpu_allocation_param:
       # required
       ocpu_allocation_number: 3.4
+    blockchain_platform_id: "ocid1.blockchainplatform.oc1..xxxxxxEXAMPLExxxxxx"
     peer_id: "ocid1.peer.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete blockchain_platform_peer
@@ -332,14 +332,14 @@ def main():
     )
     module_args.update(
         dict(
-            blockchain_platform_id=dict(type="str", required=True),
             role=dict(type="str"),
             alias=dict(type="str"),
+            ad=dict(type="str"),
             ocpu_allocation_param=dict(
                 type="dict",
                 options=dict(ocpu_allocation_number=dict(type="float", required=True)),
             ),
-            ad=dict(type="str"),
+            blockchain_platform_id=dict(type="str", required=True),
             peer_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

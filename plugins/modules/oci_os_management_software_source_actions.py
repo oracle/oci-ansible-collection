@@ -30,6 +30,12 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the
+              compartment into which the resource should be moved.
+            - Applicable only for I(action=change_compartment).
+        type: str
     software_source_id:
         description:
             - The OCID of the software source.
@@ -42,12 +48,6 @@ options:
             - Required for I(action=add_packages), I(action=remove_packages).
         type: list
         elements: str
-    compartment_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the
-              compartment into which the resource should be moved.
-            - Applicable only for I(action=change_compartment).
-        type: str
     action:
         description:
             - The action to perform on the SoftwareSource.
@@ -398,9 +398,9 @@ def main():
     )
     module_args.update(
         dict(
+            compartment_id=dict(type="str"),
             software_source_id=dict(aliases=["id"], type="str", required=True),
             package_names=dict(type="list", elements="str"),
-            compartment_id=dict(type="str"),
             action=dict(
                 type="str",
                 required=True,

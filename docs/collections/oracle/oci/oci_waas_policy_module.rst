@@ -30,7 +30,7 @@ oracle.oci.oci_waas_policy -- Manage a WaasPolicy resource in Oracle Cloud Infra
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -4299,9 +4299,9 @@ Examples
             captcha_submit_label: captcha_submit_label_example
             response_header_manipulation:
             - # required
+              value: value_example
               action: EXTEND_HTTP_RESPONSE_HEADER
               header: header_example
-              value: value_example
           address_rate_limiting:
             # required
             is_enabled: true
@@ -4343,6 +4343,14 @@ Examples
               captcha_header: captcha_header_example
               captcha_footer: captcha_footer_example
               captcha_submit_label: captcha_submit_label_example
+          good_bots:
+          - # required
+            key: key_example
+            is_enabled: true
+
+            # optional
+            name: name_example
+            description: description_example
           human_interaction_challenge:
             # required
             is_enabled: true
@@ -4426,6 +4434,18 @@ Examples
               target: REQUEST_COOKIES
               exclusions: [ "exclusions_example" ]
           origin_groups: [ "origin_groups_example" ]
+          protection_rules:
+          - # optional
+            key: key_example
+            mod_security_rule_ids: [ "mod_security_rule_ids_example" ]
+            name: name_example
+            description: description_example
+            action: OFF
+            labels: [ "labels_example" ]
+            exclusions:
+            - # optional
+              target: REQUEST_COOKIES
+              exclusions: [ "exclusions_example" ]
           protection_settings:
             # optional
             block_action: SHOW_ERROR_PAGE
@@ -4441,6 +4461,12 @@ Examples
             max_response_size_in_ki_b: 56
             allowed_http_methods: [ "OPTIONS" ]
             media_types: [ "media_types_example" ]
+          threat_feeds:
+          - # optional
+            key: key_example
+            name: name_example
+            action: OFF
+            description: description_example
           whitelists:
           - # required
             name: name_example
@@ -4448,32 +4474,6 @@ Examples
             # optional
             addresses: [ "addresses_example" ]
             address_lists: [ "address_lists_example" ]
-          good_bots:
-          - # required
-            key: key_example
-            is_enabled: true
-
-            # optional
-            name: name_example
-            description: description_example
-          protection_rules:
-          - # optional
-            key: key_example
-            mod_security_rule_ids: [ "mod_security_rule_ids_example" ]
-            name: name_example
-            description: description_example
-            action: OFF
-            labels: [ "labels_example" ]
-            exclusions:
-            - # optional
-              target: REQUEST_COOKIES
-              exclusions: [ "exclusions_example" ]
-          threat_feeds:
-          - # optional
-            key: key_example
-            name: name_example
-            action: OFF
-            description: description_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -4561,9 +4561,9 @@ Examples
             captcha_submit_label: captcha_submit_label_example
             response_header_manipulation:
             - # required
+              value: value_example
               action: EXTEND_HTTP_RESPONSE_HEADER
               header: header_example
-              value: value_example
           address_rate_limiting:
             # required
             is_enabled: true
@@ -4605,6 +4605,14 @@ Examples
               captcha_header: captcha_header_example
               captcha_footer: captcha_footer_example
               captcha_submit_label: captcha_submit_label_example
+          good_bots:
+          - # required
+            key: key_example
+            is_enabled: true
+
+            # optional
+            name: name_example
+            description: description_example
           human_interaction_challenge:
             # required
             is_enabled: true
@@ -4688,6 +4696,18 @@ Examples
               target: REQUEST_COOKIES
               exclusions: [ "exclusions_example" ]
           origin_groups: [ "origin_groups_example" ]
+          protection_rules:
+          - # optional
+            key: key_example
+            mod_security_rule_ids: [ "mod_security_rule_ids_example" ]
+            name: name_example
+            description: description_example
+            action: OFF
+            labels: [ "labels_example" ]
+            exclusions:
+            - # optional
+              target: REQUEST_COOKIES
+              exclusions: [ "exclusions_example" ]
           protection_settings:
             # optional
             block_action: SHOW_ERROR_PAGE
@@ -4703,6 +4723,12 @@ Examples
             max_response_size_in_ki_b: 56
             allowed_http_methods: [ "OPTIONS" ]
             media_types: [ "media_types_example" ]
+          threat_feeds:
+          - # optional
+            key: key_example
+            name: name_example
+            action: OFF
+            description: description_example
           whitelists:
           - # required
             name: name_example
@@ -4710,32 +4736,6 @@ Examples
             # optional
             addresses: [ "addresses_example" ]
             address_lists: [ "address_lists_example" ]
-          good_bots:
-          - # required
-            key: key_example
-            is_enabled: true
-
-            # optional
-            name: name_example
-            description: description_example
-          protection_rules:
-          - # optional
-            key: key_example
-            mod_security_rule_ids: [ "mod_security_rule_ids_example" ]
-            name: name_example
-            description: description_example
-            action: OFF
-            labels: [ "labels_example" ]
-            exclusions:
-            - # optional
-              target: REQUEST_COOKIES
-              exclusions: [ "exclusions_example" ]
-          threat_feeds:
-          - # optional
-            key: key_example
-            name: name_example
-            action: OFF
-            description: description_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -4823,9 +4823,9 @@ Examples
             captcha_submit_label: captcha_submit_label_example
             response_header_manipulation:
             - # required
+              value: value_example
               action: EXTEND_HTTP_RESPONSE_HEADER
               header: header_example
-              value: value_example
           address_rate_limiting:
             # required
             is_enabled: true
@@ -4867,6 +4867,14 @@ Examples
               captcha_header: captcha_header_example
               captcha_footer: captcha_footer_example
               captcha_submit_label: captcha_submit_label_example
+          good_bots:
+          - # required
+            key: key_example
+            is_enabled: true
+
+            # optional
+            name: name_example
+            description: description_example
           human_interaction_challenge:
             # required
             is_enabled: true
@@ -4950,6 +4958,18 @@ Examples
               target: REQUEST_COOKIES
               exclusions: [ "exclusions_example" ]
           origin_groups: [ "origin_groups_example" ]
+          protection_rules:
+          - # optional
+            key: key_example
+            mod_security_rule_ids: [ "mod_security_rule_ids_example" ]
+            name: name_example
+            description: description_example
+            action: OFF
+            labels: [ "labels_example" ]
+            exclusions:
+            - # optional
+              target: REQUEST_COOKIES
+              exclusions: [ "exclusions_example" ]
           protection_settings:
             # optional
             block_action: SHOW_ERROR_PAGE
@@ -4965,6 +4985,12 @@ Examples
             max_response_size_in_ki_b: 56
             allowed_http_methods: [ "OPTIONS" ]
             media_types: [ "media_types_example" ]
+          threat_feeds:
+          - # optional
+            key: key_example
+            name: name_example
+            action: OFF
+            description: description_example
           whitelists:
           - # required
             name: name_example
@@ -4972,32 +4998,6 @@ Examples
             # optional
             addresses: [ "addresses_example" ]
             address_lists: [ "address_lists_example" ]
-          good_bots:
-          - # required
-            key: key_example
-            is_enabled: true
-
-            # optional
-            name: name_example
-            description: description_example
-          protection_rules:
-          - # optional
-            key: key_example
-            mod_security_rule_ids: [ "mod_security_rule_ids_example" ]
-            name: name_example
-            description: description_example
-            action: OFF
-            labels: [ "labels_example" ]
-            exclusions:
-            - # optional
-              target: REQUEST_COOKIES
-              exclusions: [ "exclusions_example" ]
-          threat_feeds:
-          - # optional
-            key: key_example
-            name: name_example
-            action: OFF
-            description: description_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 

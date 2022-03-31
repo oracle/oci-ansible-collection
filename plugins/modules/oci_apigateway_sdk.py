@@ -27,15 +27,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    display_name:
-        description:
-            - A user-friendly name. Does not have to be unique, and it's changeable.
-              Avoid entering confidential information.
-            - "Example: `My new resource`"
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
     target_language:
         description:
             - The string representing the target programming language for generating the SDK.
@@ -46,6 +37,21 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of API resource
             - Required for create using I(state=present).
         type: str
+    parameters:
+        description:
+            - "Additional optional configurations that can be passed to generate SDK Api.
+              The applicable parameters are listed under \\"parameters\\" when \\"/sdkLanguageTypes\\" is called."
+            - "Example: `{\\"configName\\": \\"configValue\\"}`"
+        type: dict
+    display_name:
+        description:
+            - A user-friendly name. Does not have to be unique, and it's changeable.
+              Avoid entering confidential information.
+            - "Example: `My new resource`"
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair
@@ -61,12 +67,6 @@ options:
               L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             - This parameter is updatable.
-        type: dict
-    parameters:
-        description:
-            - "Additional optional configurations that can be passed to generate SDK Api.
-              The applicable parameters are listed under \\"parameters\\" when \\"/sdkLanguageTypes\\" is called."
-            - "Example: `{\\"configName\\": \\"configValue\\"}`"
         type: dict
     sdk_id:
         description:
@@ -95,10 +95,10 @@ EXAMPLES = """
     api_id: "ocid1.api.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    parameters: null
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    parameters: null
 
 - name: Update sdk
   oci_apigateway_sdk:
@@ -411,12 +411,12 @@ def main():
     )
     module_args.update(
         dict(
-            display_name=dict(aliases=["name"], type="str"),
             target_language=dict(type="str"),
             api_id=dict(type="str"),
+            parameters=dict(type="dict"),
+            display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
-            parameters=dict(type="dict"),
             sdk_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

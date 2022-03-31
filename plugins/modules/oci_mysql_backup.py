@@ -28,18 +28,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    display_name:
-        description:
-            - A user-supplied display name for the backup.
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
-    description:
-        description:
-            - A user-supplied description for the backup.
-            - This parameter is updatable.
-        type: str
     backup_type:
         description:
             - The type of backup.
@@ -51,6 +39,18 @@ options:
         description:
             - The OCID of the DB System the Backup is associated with.
             - Required for create using I(state=present).
+        type: str
+    display_name:
+        description:
+            - A user-supplied display name for the backup.
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
+    description:
+        description:
+            - A user-supplied description for the backup.
+            - This parameter is updatable.
         type: str
     retention_in_days:
         description:
@@ -102,9 +102,9 @@ EXAMPLES = """
     db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    backup_type: FULL
     display_name: display_name_example
     description: description_example
-    backup_type: FULL
     retention_in_days: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -454,6 +454,32 @@ backup:
                             returned: on success
                             type: str
                             sample: window_start_time_example
+                deletion_policy:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        automatic_backup_retention:
+                            description:
+                                - Specifies if any automatic backups created for a DB System should be retained or deleted when the DB System is deleted.
+                            returned: on success
+                            type: str
+                            sample: DELETE
+                        final_backup:
+                            description:
+                                - "Specifies whether or not a backup is taken when the DB System is deleted.
+                                    REQUIRE_FINAL_BACKUP: a backup is taken if the DB System is deleted.
+                                    SKIP_FINAL_BACKUP: a backup is not taken if the DB System is deleted."
+                            returned: on success
+                            type: str
+                            sample: SKIP_FINAL_BACKUP
+                        is_delete_protected:
+                            description:
+                                - Specifies whether the DB System can be deleted. Set to true to prevent deletion, false (default) to allow.
+                            returned: on success
+                            type: bool
+                            sample: true
                 freeform_tags:
                     description:
                         - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -567,6 +593,11 @@ backup:
             }],
             "maintenance": {
                 "window_start_time": "window_start_time_example"
+            },
+            "deletion_policy": {
+                "automatic_backup_retention": "DELETE",
+                "final_backup": "SKIP_FINAL_BACKUP",
+                "is_delete_protected": true
             },
             "freeform_tags": {'Department': 'Finance'},
             "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -735,10 +766,10 @@ def main():
     )
     module_args.update(
         dict(
-            display_name=dict(aliases=["name"], type="str"),
-            description=dict(type="str"),
             backup_type=dict(type="str", choices=["FULL", "INCREMENTAL"]),
             db_system_id=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
+            description=dict(type="str"),
             retention_in_days=dict(type="int"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),

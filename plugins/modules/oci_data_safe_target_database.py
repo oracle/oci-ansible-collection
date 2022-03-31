@@ -55,6 +55,27 @@ options:
             - This parameter is updatable.
         type: dict
         suboptions:
+            instance_id:
+                description:
+                    - The OCID of the compute instance on which the database is running.
+                    - Applicable when database_type is 'INSTALLED_DATABASE'
+                type: str
+            ip_addresses:
+                description:
+                    - The list of database host IP Addresses. Fully qualified domain names can be used if connectionType is 'ONPREM_CONNECTOR'.
+                    - Applicable when database_type is 'INSTALLED_DATABASE'
+                type: list
+                elements: str
+            listener_port:
+                description:
+                    - The port number of the database listener.
+                    - Applicable when database_type is 'INSTALLED_DATABASE'
+                type: int
+            autonomous_database_id:
+                description:
+                    - The OCID of the autonomous database registered as a target database in Data Safe.
+                    - Applicable when database_type is 'AUTONOMOUS_DATABASE'
+                type: str
             database_type:
                 description:
                     - The database type.
@@ -74,32 +95,6 @@ options:
                     - "ON_PREMISES"
                     - "NON_ORACLE_CLOUD"
                 required: true
-            instance_id:
-                description:
-                    - The OCID of the compute instance on which the database is running.
-                    - Applicable when database_type is 'INSTALLED_DATABASE'
-                type: str
-            ip_addresses:
-                description:
-                    - The list of database host IP Addresses. Fully qualified domain names can be used if connectionType is 'ONPREM_CONNECTOR'.
-                    - Applicable when database_type is 'INSTALLED_DATABASE'
-                type: list
-                elements: str
-            listener_port:
-                description:
-                    - The port number of the database listener.
-                    - Applicable when database_type is 'INSTALLED_DATABASE'
-                type: int
-            service_name:
-                description:
-                    - The service name of the database registered as target database.
-                    - Applicable when database_type is one of ['INSTALLED_DATABASE', 'DATABASE_CLOUD_SERVICE']
-                type: str
-            autonomous_database_id:
-                description:
-                    - The OCID of the autonomous database registered as a target database in Data Safe.
-                    - Applicable when database_type is 'AUTONOMOUS_DATABASE'
-                type: str
             vm_cluster_id:
                 description:
                     - The OCID of the VM cluster in which the database is running.
@@ -109,6 +104,11 @@ options:
                 description:
                     - The OCID of the cloud database system registered as a target database in Data Safe.
                     - Applicable when database_type is 'DATABASE_CLOUD_SERVICE'
+                type: str
+            service_name:
+                description:
+                    - The service name of the database registered as target database.
+                    - Applicable when database_type is one of ['INSTALLED_DATABASE', 'DATABASE_CLOUD_SERVICE']
                 type: str
     credentials:
         description:
@@ -164,6 +164,11 @@ options:
             - This parameter is updatable.
         type: dict
         suboptions:
+            datasafe_private_endpoint_id:
+                description:
+                    - The OCID of the Data Safe private endpoint.
+                    - Applicable when connection_type is 'PRIVATE_ENDPOINT'
+                type: str
             connection_type:
                 description:
                     - "The connection type used to connect to the database. Allowed values:
@@ -174,11 +179,6 @@ options:
                     - "PRIVATE_ENDPOINT"
                     - "ONPREM_CONNECTOR"
                 required: true
-            datasafe_private_endpoint_id:
-                description:
-                    - The OCID of the Data Safe private endpoint.
-                    - Applicable when connection_type is 'PRIVATE_ENDPOINT'
-                type: str
             on_prem_connector_id:
                 description:
                     - The OCID of the on-premises connector.
@@ -789,6 +789,10 @@ def main():
             database_details=dict(
                 type="dict",
                 options=dict(
+                    instance_id=dict(type="str"),
+                    ip_addresses=dict(type="list", elements="str"),
+                    listener_port=dict(type="int"),
+                    autonomous_database_id=dict(type="str"),
                     database_type=dict(
                         type="str",
                         required=True,
@@ -808,13 +812,9 @@ def main():
                             "NON_ORACLE_CLOUD",
                         ],
                     ),
-                    instance_id=dict(type="str"),
-                    ip_addresses=dict(type="list", elements="str"),
-                    listener_port=dict(type="int"),
-                    service_name=dict(type="str"),
-                    autonomous_database_id=dict(type="str"),
                     vm_cluster_id=dict(type="str"),
                     db_system_id=dict(type="str"),
+                    service_name=dict(type="str"),
                 ),
             ),
             credentials=dict(
@@ -839,12 +839,12 @@ def main():
             connection_option=dict(
                 type="dict",
                 options=dict(
+                    datasafe_private_endpoint_id=dict(type="str"),
                     connection_type=dict(
                         type="str",
                         required=True,
                         choices=["PRIVATE_ENDPOINT", "ONPREM_CONNECTOR"],
                     ),
-                    datasafe_private_endpoint_id=dict(type="str"),
                     on_prem_connector_id=dict(type="str"),
                 ),
             ),

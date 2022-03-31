@@ -45,23 +45,18 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    tag_namespace_id:
-        description:
-            - The OCID of the tag namespace.
-        type: str
-        required: true
-    name:
-        description:
-            - The name you assign to the tag during creation. This is the tag key definition.
-              The name must be unique within the tag namespace and cannot be changed.
-        type: str
-        required: true
     description:
         description:
             - The description you assign to the tag during creation.
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
+    is_retired:
+        description:
+            - Whether the tag is retired.
+              See L(Retiring Key Definitions and Namespace Definitions,https://docs.cloud.oracle.com/Content/Identity/Concepts/taggingoverview.htm#Retiring).
+            - This parameter is updatable.
+        type: bool
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -101,12 +96,17 @@ options:
                     - Applicable when validator_type is 'ENUM'
                 type: list
                 elements: str
-    is_retired:
+    tag_namespace_id:
         description:
-            - Whether the tag is retired.
-              See L(Retiring Key Definitions and Namespace Definitions,https://docs.cloud.oracle.com/Content/Identity/Concepts/taggingoverview.htm#Retiring).
-            - This parameter is updatable.
-        type: bool
+            - The OCID of the tag namespace.
+        type: str
+        required: true
+    name:
+        description:
+            - The name you assign to the tag during creation. This is the tag key definition.
+              The name must be unique within the tag namespace and cannot be changed.
+        type: str
+        required: true
     state:
         description:
             - The state of the Tag.
@@ -123,9 +123,9 @@ EXAMPLES = """
 - name: Create tag
   oci_identity_tag:
     # required
+    description: description_example
     tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
-    description: description_example
 
     # optional
     freeform_tags: {'Department': 'Finance'}
@@ -143,13 +143,13 @@ EXAMPLES = """
 
     # optional
     description: description_example
+    is_retired: true
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     is_cost_tracking: true
     validator:
       # required
       validator_type: DEFAULT
-    is_retired: true
 
 - name: Delete tag
   oci_identity_tag:
@@ -447,9 +447,8 @@ def main():
     )
     module_args.update(
         dict(
-            tag_namespace_id=dict(type="str", required=True),
-            name=dict(type="str", required=True),
             description=dict(type="str"),
+            is_retired=dict(type="bool"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             is_cost_tracking=dict(type="bool"),
@@ -462,7 +461,8 @@ def main():
                     values=dict(type="list", elements="str"),
                 ),
             ),
-            is_retired=dict(type="bool"),
+            tag_namespace_id=dict(type="str", required=True),
+            name=dict(type="str", required=True),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

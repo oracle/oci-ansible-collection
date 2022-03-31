@@ -30,7 +30,7 @@ oracle.oci.oci_identity_tag_namespace -- Manage a TagNamespace resource in Oracl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -487,9 +487,9 @@ Examples
 
         # optional
         description: description_example
+        is_retired: true
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        is_retired: true
 
     - name: Update tag_namespace using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_identity_tag_namespace:
@@ -499,9 +499,9 @@ Examples
 
         # optional
         description: description_example
+        is_retired: true
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        is_retired: true
 
     - name: Delete tag_namespace
       oci_identity_tag_namespace:

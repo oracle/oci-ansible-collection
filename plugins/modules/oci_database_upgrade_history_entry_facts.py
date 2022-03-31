@@ -28,17 +28,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    database_id:
-        description:
-            - The database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-        type: str
-        required: true
     upgrade_history_entry_id:
         description:
             - The database/db system upgrade History L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
             - Required to get a specific database_upgrade_history_entry.
         type: str
         aliases: ["id"]
+    database_id:
+        description:
+            - The database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+        type: str
+        required: true
     upgrade_action:
         description:
             - A filter to return only upgradeHistoryEntries that match the specified Upgrade Action.
@@ -75,8 +75,8 @@ EXAMPLES = """
 - name: Get a specific database_upgrade_history_entry
   oci_database_upgrade_history_entry_facts:
     # required
-    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     upgrade_history_entry_id: "ocid1.upgradehistoryentry.oc1..xxxxxxEXAMPLExxxxxx"
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List database_upgrade_history_entries
   oci_database_upgrade_history_entry_facts:
@@ -264,8 +264,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            database_id=dict(type="str", required=True),
             upgrade_history_entry_id=dict(aliases=["id"], type="str"),
+            database_id=dict(type="str", required=True),
             upgrade_action=dict(
                 type="str", choices=["PRECHECK", "UPGRADE", "ROLLBACK"]
             ),

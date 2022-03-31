@@ -30,7 +30,7 @@ oracle.oci.oci_bastion_session_facts -- Fetches details about one or multiple Se
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -373,9 +373,9 @@ Examples
         bastion_id: "ocid1.bastion.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        session_id: "ocid1.session.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         session_lifecycle_state: CREATING
+        session_id: "ocid1.session.oc1..xxxxxxEXAMPLExxxxxx"
         sort_order: ASC
         sort_by: timeCreated
 

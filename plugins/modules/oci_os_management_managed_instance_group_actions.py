@@ -34,23 +34,23 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    managed_instance_group_id:
-        description:
-            - OCID for the managed instance group
-        type: str
-        aliases: ["id"]
-        required: true
-    managed_instance_id:
-        description:
-            - OCID for the managed instance
-            - Required for I(action=attach_managed_instance), I(action=detach_managed_instance).
-        type: str
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the
               compartment into which the resource should be moved.
             - Applicable only for I(action=change_compartment).
         type: str
+    managed_instance_id:
+        description:
+            - OCID for the managed instance
+            - Required for I(action=attach_managed_instance), I(action=detach_managed_instance).
+        type: str
+    managed_instance_group_id:
+        description:
+            - OCID for the managed instance group
+        type: str
+        aliases: ["id"]
+        required: true
     update_type:
         description:
             - The type of updates to be applied
@@ -80,8 +80,8 @@ EXAMPLES = """
 - name: Perform action attach_managed_instance on managed_instance_group
   oci_os_management_managed_instance_group_actions:
     # required
-    managed_instance_group_id: "ocid1.managedinstancegroup.oc1..xxxxxxEXAMPLExxxxxx"
     managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    managed_instance_group_id: "ocid1.managedinstancegroup.oc1..xxxxxxEXAMPLExxxxxx"
     action: attach_managed_instance
 
 - name: Perform action change_compartment on managed_instance_group
@@ -96,8 +96,8 @@ EXAMPLES = """
 - name: Perform action detach_managed_instance on managed_instance_group
   oci_os_management_managed_instance_group_actions:
     # required
-    managed_instance_group_id: "ocid1.managedinstancegroup.oc1..xxxxxxEXAMPLExxxxxx"
     managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    managed_instance_group_id: "ocid1.managedinstancegroup.oc1..xxxxxxEXAMPLExxxxxx"
     action: detach_managed_instance
 
 - name: Perform action install_all_updates on managed_instance_group
@@ -355,9 +355,9 @@ def main():
     )
     module_args.update(
         dict(
-            managed_instance_group_id=dict(aliases=["id"], type="str", required=True),
-            managed_instance_id=dict(type="str"),
             compartment_id=dict(type="str"),
+            managed_instance_id=dict(type="str"),
+            managed_instance_group_id=dict(aliases=["id"], type="str", required=True),
             update_type=dict(
                 type="str",
                 choices=[

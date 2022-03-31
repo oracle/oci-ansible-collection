@@ -30,7 +30,7 @@ oracle.oci.oci_data_catalog_data_asset_facts -- Fetches details about one or mul
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -501,8 +501,8 @@ Examples
     - name: Get a specific data_asset
       oci_data_catalog_data_asset_facts:
         # required
-        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         data_asset_key: data_asset_key_example
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         fields: [ "key" ]
@@ -513,7 +513,6 @@ Examples
         catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        fields: [ "key" ]
         display_name: display_name_example
         display_name_contains: display_name_contains_example
         lifecycle_state: CREATING
@@ -523,6 +522,7 @@ Examples
         updated_by_id: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
         external_key: external_key_example
         type_key: type_key_example
+        fields: [ "key" ]
         sort_by: TIMECREATED
         sort_order: ASC
 

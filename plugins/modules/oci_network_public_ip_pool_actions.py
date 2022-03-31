@@ -32,29 +32,29 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    public_ip_pool_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the public IP pool.
-        type: str
-        aliases: ["id"]
-        required: true
     byoip_range_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the `ByoipRange` resource to which the CIDR block
               belongs.
             - Required for I(action=add_public_ip_pool_capacity).
         type: str
-    cidr_block:
-        description:
-            - "The CIDR block to add to the public IP pool. It could be all of the CIDR block identified in `byoipRangeId`, or a subrange.
-              Example: `10.0.1.0/24`"
-            - Required for I(action=add_public_ip_pool_capacity), I(action=remove_public_ip_pool_capacity).
-        type: str
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the destination compartment for the public IP pool
               move.
             - Required for I(action=change_compartment).
+        type: str
+    public_ip_pool_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the public IP pool.
+        type: str
+        aliases: ["id"]
+        required: true
+    cidr_block:
+        description:
+            - "The CIDR block to add to the public IP pool. It could be all of the CIDR block identified in `byoipRangeId`, or a subrange.
+              Example: `10.0.1.0/24`"
+            - Required for I(action=add_public_ip_pool_capacity), I(action=remove_public_ip_pool_capacity).
         type: str
     action:
         description:
@@ -72,16 +72,16 @@ EXAMPLES = """
 - name: Perform action add_public_ip_pool_capacity on public_ip_pool
   oci_network_public_ip_pool_actions:
     # required
-    public_ip_pool_id: "ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx"
     byoip_range_id: "ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx"
+    public_ip_pool_id: "ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx"
     cidr_block: cidr_block_example
     action: add_public_ip_pool_capacity
 
 - name: Perform action change_compartment on public_ip_pool
   oci_network_public_ip_pool_actions:
     # required
-    public_ip_pool_id: "ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    public_ip_pool_id: "ocid1.publicippool.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action remove_public_ip_pool_capacity on public_ip_pool
@@ -295,10 +295,10 @@ def main():
     )
     module_args.update(
         dict(
-            public_ip_pool_id=dict(aliases=["id"], type="str", required=True),
             byoip_range_id=dict(type="str"),
-            cidr_block=dict(type="str"),
             compartment_id=dict(type="str"),
+            public_ip_pool_id=dict(aliases=["id"], type="str", required=True),
+            cidr_block=dict(type="str"),
             action=dict(
                 type="str",
                 required=True,

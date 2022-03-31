@@ -30,7 +30,7 @@ oracle.oci.oci_data_science_model -- Manage a Model resource in Oracle Cloud Inf
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -661,6 +661,8 @@ Examples
         project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
+        input_schema: input_schema_example
+        output_schema: output_schema_example
         display_name: display_name_example
         description: description_example
         freeform_tags: {'Department': 'Finance'}
@@ -677,8 +679,6 @@ Examples
           value: value_example
           description: description_example
           category: category_example
-        input_schema: input_schema_example
-        output_schema: output_schema_example
 
     - name: Update model
       oci_data_science_model:

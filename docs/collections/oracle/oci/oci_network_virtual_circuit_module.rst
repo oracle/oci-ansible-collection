@@ -30,7 +30,7 @@ oracle.oci.oci_network_virtual_circuit -- Manage a VirtualCircuit resource in Or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -839,6 +839,13 @@ Examples
         type: PUBLIC
 
         # optional
+        provider_name: provider_name_example
+        provider_service_id: "ocid1.providerservice.oc1..xxxxxxEXAMPLExxxxxx"
+        provider_service_name: provider_service_name_example
+        public_prefixes:
+        - # required
+          cidr_block: cidr_block_example
+        region: us-phoenix-1
         bandwidth_shape_name: bandwidth_shape_name_example
         cross_connect_mappings:
         - # optional
@@ -856,14 +863,7 @@ Examples
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
         gateway_id: "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx"
-        provider_name: provider_name_example
-        provider_service_id: "ocid1.providerservice.oc1..xxxxxxEXAMPLExxxxxx"
         provider_service_key_name: provider_service_key_name_example
-        provider_service_name: provider_service_name_example
-        public_prefixes:
-        - # required
-          cidr_block: cidr_block_example
-        region: us-phoenix-1
         ip_mtu: MTU_1500
 
     - name: Update virtual_circuit
@@ -889,10 +889,10 @@ Examples
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
         gateway_id: "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx"
-        provider_service_key_name: provider_service_key_name_example
-        ip_mtu: MTU_1500
         provider_state: ACTIVE
+        provider_service_key_name: provider_service_key_name_example
         reference_comment: reference_comment_example
+        ip_mtu: MTU_1500
 
     - name: Update virtual_circuit using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_virtual_circuit:
@@ -917,10 +917,10 @@ Examples
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         freeform_tags: {'Department': 'Finance'}
         gateway_id: "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx"
-        provider_service_key_name: provider_service_key_name_example
-        ip_mtu: MTU_1500
         provider_state: ACTIVE
+        provider_service_key_name: provider_service_key_name_example
         reference_comment: reference_comment_example
+        ip_mtu: MTU_1500
 
     - name: Delete virtual_circuit
       oci_network_virtual_circuit:

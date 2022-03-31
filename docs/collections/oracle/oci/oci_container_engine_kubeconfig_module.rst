@@ -30,7 +30,7 @@ oracle.oci.oci_container_engine_kubeconfig -- Manage a Kubeconfig resource in Or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -226,6 +226,7 @@ Parameters
                                                                                                                                                                 <li>LEGACY_KUBERNETES</li>
                                                                                                                                                                                                 <li>PUBLIC_ENDPOINT</li>
                                                                                                                                                                                                 <li>PRIVATE_ENDPOINT</li>
+                                                                                                                                                                                                <li>VCN_HOSTNAME</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>

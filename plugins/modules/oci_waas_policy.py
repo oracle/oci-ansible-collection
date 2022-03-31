@@ -52,6 +52,11 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    domain:
+        description:
+            - The web application domain that the WAAS policy protects.
+            - Required for create using I(state=present).
+        type: str
     display_name:
         description:
             - A user-friendly name for the WAAS policy. The name can be changed and does not need to be unique.
@@ -59,11 +64,6 @@ options:
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
-    domain:
-        description:
-            - The web application domain that the WAAS policy protects.
-            - Required for create using I(state=present).
-        type: str
     additional_domains:
         description:
             - An array of additional domains for the specified web application.
@@ -224,6 +224,23 @@ options:
                     - An object that represents a load balancing method and its properties.
                 type: dict
                 suboptions:
+                    name:
+                        description:
+                            - The name of the cookie used to track the persistence.
+                              Can contain any US-ASCII character except separator or control character.
+                            - Applicable when method is 'STICKY_COOKIE'
+                        type: str
+                    domain:
+                        description:
+                            - The domain for which the cookie is set, defaults to WAAS policy domain.
+                            - Applicable when method is 'STICKY_COOKIE'
+                        type: str
+                    expiration_time_in_seconds:
+                        description:
+                            - The time for which a browser should keep the cookie in seconds.
+                              Empty value will cause the cookie to expire at the end of a browser session.
+                            - Applicable when method is 'STICKY_COOKIE'
+                        type: int
                     method:
                         description:
                             - Load balancing methods are algorithms used to efficiently distribute traffic among origin servers.
@@ -245,23 +262,6 @@ options:
                             - "STICKY_COOKIE"
                             - "IP_HASH"
                         required: true
-                    name:
-                        description:
-                            - The name of the cookie used to track the persistence.
-                              Can contain any US-ASCII character except separator or control character.
-                            - Applicable when method is 'STICKY_COOKIE'
-                        type: str
-                    domain:
-                        description:
-                            - The domain for which the cookie is set, defaults to WAAS policy domain.
-                            - Applicable when method is 'STICKY_COOKIE'
-                        type: str
-                    expiration_time_in_seconds:
-                        description:
-                            - The time for which a browser should keep the cookie in seconds.
-                              Empty value will cause the cookie to expire at the end of a browser session.
-                            - Applicable when method is 'STICKY_COOKIE'
-                        type: int
             websocket_path_prefixes:
                 description:
                     - ModSecurity is not capable to inspect WebSockets. Therefore paths specified here have WAF disabled if Connection request header from the
@@ -566,6 +566,12 @@ options:
                         type: list
                         elements: dict
                         suboptions:
+                            value:
+                                description:
+                                    - A header field value that conforms to RFC 7230.
+                                    - "Example: `example_value`"
+                                    - Required when action is one of ['ADD_HTTP_RESPONSE_HEADER', 'EXTEND_HTTP_RESPONSE_HEADER']
+                                type: str
                             action:
                                 description:
                                     - ""
@@ -581,12 +587,6 @@ options:
                                     - "Example: `example_header_name`"
                                 type: str
                                 required: true
-                            value:
-                                description:
-                                    - A header field value that conforms to RFC 7230.
-                                    - "Example: `example_value`"
-                                    - Required when action is one of ['ADD_HTTP_RESPONSE_HEADER', 'EXTEND_HTTP_RESPONSE_HEADER']
-                                type: str
             address_rate_limiting:
                 description:
                     - The settings used to limit the number of requests from an IP address.
@@ -751,6 +751,34 @@ options:
                                     - The text to show on the label of the CAPTCHA challenge submit button when `action` is set to `BLOCK`, `blockAction` is set
                                       to `SHOW_CAPTCHA`, and the request is blocked. If unspecified, defaults to `Yes, I am human`.
                                 type: str
+            good_bots:
+                description:
+                    - A list of bots allowed to access the web application.
+                type: list
+                elements: dict
+                suboptions:
+                    key:
+                        description:
+                            - The unique key for the bot.
+                            - This parameter is updatable.
+                        type: str
+                        required: true
+                    name:
+                        description:
+                            - The bot name.
+                            - This parameter is updatable.
+                        type: str
+                    is_enabled:
+                        description:
+                            - Enables or disables the bot.
+                            - This parameter is updatable.
+                        type: bool
+                        required: true
+                    description:
+                        description:
+                            - The description of the bot.
+                            - This parameter is updatable.
+                        type: str
             human_interaction_challenge:
                 description:
                     - The human interaction challenge settings. Detects natural human interactions such as mouse movements, time on site, and page scrolling to
@@ -1213,6 +1241,72 @@ options:
                     - This parameter is updatable.
                 type: list
                 elements: str
+            protection_rules:
+                description:
+                    - A list of the protection rules and their details.
+                type: list
+                elements: dict
+                suboptions:
+                    key:
+                        description:
+                            - The unique key of the protection rule.
+                            - This parameter is updatable.
+                        type: str
+                    mod_security_rule_ids:
+                        description:
+                            - The list of the ModSecurity rule IDs that apply to this protection rule. For more information about ModSecurity's open source WAF
+                              rules, see L(Mod Security's documentation,https://www.modsecurity.org/CRS/Documentation/index.html).
+                            - This parameter is updatable.
+                        type: list
+                        elements: str
+                    name:
+                        description:
+                            - The name of the protection rule.
+                            - This parameter is updatable.
+                        type: str
+                    description:
+                        description:
+                            - The description of the protection rule.
+                            - This parameter is updatable.
+                        type: str
+                    action:
+                        description:
+                            - The action to take when the traffic is detected as malicious. If unspecified, defaults to `OFF`.
+                            - This parameter is updatable.
+                        type: str
+                        choices:
+                            - "OFF"
+                            - "DETECT"
+                            - "BLOCK"
+                    labels:
+                        description:
+                            - The list of labels for the protection rule.
+                            - "**Note:** Protection rules with a `ResponseBody` label will have no effect unless `isResponseInspected` is true."
+                            - This parameter is updatable.
+                        type: list
+                        elements: str
+                    exclusions:
+                        description:
+                            - ""
+                        type: list
+                        elements: dict
+                        suboptions:
+                            target:
+                                description:
+                                    - The target of the exclusion.
+                                    - This parameter is updatable.
+                                type: str
+                                choices:
+                                    - "REQUEST_COOKIES"
+                                    - "REQUEST_COOKIE_NAMES"
+                                    - "ARGS"
+                                    - "ARGS_NAMES"
+                            exclusions:
+                                description:
+                                    - ""
+                                    - This parameter is updatable.
+                                type: list
+                                elements: str
             protection_settings:
                 description:
                     - The settings applied to protection rules.
@@ -1329,122 +1423,6 @@ options:
                                   - text/xml"
                         type: list
                         elements: str
-            whitelists:
-                description:
-                    - A list of IP addresses that bypass the Web Application Firewall.
-                type: list
-                elements: dict
-                suboptions:
-                    name:
-                        description:
-                            - The unique name of the whitelist.
-                        type: str
-                        required: true
-                    addresses:
-                        description:
-                            - A set of IP addresses or CIDR notations to include in the whitelist.
-                        type: list
-                        elements: str
-                    address_lists:
-                        description:
-                            - A list of L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of IP address lists to include in the
-                              whitelist.
-                        type: list
-                        elements: str
-            good_bots:
-                description:
-                    - A list of bots allowed to access the web application.
-                type: list
-                elements: dict
-                suboptions:
-                    key:
-                        description:
-                            - The unique key for the bot.
-                            - This parameter is updatable.
-                        type: str
-                        required: true
-                    name:
-                        description:
-                            - The bot name.
-                            - This parameter is updatable.
-                        type: str
-                    is_enabled:
-                        description:
-                            - Enables or disables the bot.
-                            - This parameter is updatable.
-                        type: bool
-                        required: true
-                    description:
-                        description:
-                            - The description of the bot.
-                            - This parameter is updatable.
-                        type: str
-            protection_rules:
-                description:
-                    - A list of the protection rules and their details.
-                type: list
-                elements: dict
-                suboptions:
-                    key:
-                        description:
-                            - The unique key of the protection rule.
-                            - This parameter is updatable.
-                        type: str
-                    mod_security_rule_ids:
-                        description:
-                            - The list of the ModSecurity rule IDs that apply to this protection rule. For more information about ModSecurity's open source WAF
-                              rules, see L(Mod Security's documentation,https://www.modsecurity.org/CRS/Documentation/index.html).
-                            - This parameter is updatable.
-                        type: list
-                        elements: str
-                    name:
-                        description:
-                            - The name of the protection rule.
-                            - This parameter is updatable.
-                        type: str
-                    description:
-                        description:
-                            - The description of the protection rule.
-                            - This parameter is updatable.
-                        type: str
-                    action:
-                        description:
-                            - The action to take when the traffic is detected as malicious. If unspecified, defaults to `OFF`.
-                            - This parameter is updatable.
-                        type: str
-                        choices:
-                            - "OFF"
-                            - "DETECT"
-                            - "BLOCK"
-                    labels:
-                        description:
-                            - The list of labels for the protection rule.
-                            - "**Note:** Protection rules with a `ResponseBody` label will have no effect unless `isResponseInspected` is true."
-                            - This parameter is updatable.
-                        type: list
-                        elements: str
-                    exclusions:
-                        description:
-                            - ""
-                        type: list
-                        elements: dict
-                        suboptions:
-                            target:
-                                description:
-                                    - The target of the exclusion.
-                                    - This parameter is updatable.
-                                type: str
-                                choices:
-                                    - "REQUEST_COOKIES"
-                                    - "REQUEST_COOKIE_NAMES"
-                                    - "ARGS"
-                                    - "ARGS_NAMES"
-                            exclusions:
-                                description:
-                                    - ""
-                                    - This parameter is updatable.
-                                type: list
-                                elements: str
             threat_feeds:
                 description:
                     - A list of threat intelligence feeds and the actions to apply to known malicious traffic based on internet intelligence.
@@ -1476,6 +1454,28 @@ options:
                             - The description of the threat intelligence feed.
                             - This parameter is updatable.
                         type: str
+            whitelists:
+                description:
+                    - A list of IP addresses that bypass the Web Application Firewall.
+                type: list
+                elements: dict
+                suboptions:
+                    name:
+                        description:
+                            - The unique name of the whitelist.
+                        type: str
+                        required: true
+                    addresses:
+                        description:
+                            - A set of IP addresses or CIDR notations to include in the whitelist.
+                        type: list
+                        elements: str
+                    address_lists:
+                        description:
+                            - A list of L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of IP address lists to include in the
+                              whitelist.
+                        type: list
+                        elements: str
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -1595,9 +1595,9 @@ EXAMPLES = """
         captcha_submit_label: captcha_submit_label_example
         response_header_manipulation:
         - # required
+          value: value_example
           action: EXTEND_HTTP_RESPONSE_HEADER
           header: header_example
-          value: value_example
       address_rate_limiting:
         # required
         is_enabled: true
@@ -1639,6 +1639,14 @@ EXAMPLES = """
           captcha_header: captcha_header_example
           captcha_footer: captcha_footer_example
           captcha_submit_label: captcha_submit_label_example
+      good_bots:
+      - # required
+        key: key_example
+        is_enabled: true
+
+        # optional
+        name: name_example
+        description: description_example
       human_interaction_challenge:
         # required
         is_enabled: true
@@ -1722,6 +1730,18 @@ EXAMPLES = """
           target: REQUEST_COOKIES
           exclusions: [ "exclusions_example" ]
       origin_groups: [ "origin_groups_example" ]
+      protection_rules:
+      - # optional
+        key: key_example
+        mod_security_rule_ids: [ "mod_security_rule_ids_example" ]
+        name: name_example
+        description: description_example
+        action: OFF
+        labels: [ "labels_example" ]
+        exclusions:
+        - # optional
+          target: REQUEST_COOKIES
+          exclusions: [ "exclusions_example" ]
       protection_settings:
         # optional
         block_action: SHOW_ERROR_PAGE
@@ -1737,6 +1757,12 @@ EXAMPLES = """
         max_response_size_in_ki_b: 56
         allowed_http_methods: [ "OPTIONS" ]
         media_types: [ "media_types_example" ]
+      threat_feeds:
+      - # optional
+        key: key_example
+        name: name_example
+        action: OFF
+        description: description_example
       whitelists:
       - # required
         name: name_example
@@ -1744,32 +1770,6 @@ EXAMPLES = """
         # optional
         addresses: [ "addresses_example" ]
         address_lists: [ "address_lists_example" ]
-      good_bots:
-      - # required
-        key: key_example
-        is_enabled: true
-
-        # optional
-        name: name_example
-        description: description_example
-      protection_rules:
-      - # optional
-        key: key_example
-        mod_security_rule_ids: [ "mod_security_rule_ids_example" ]
-        name: name_example
-        description: description_example
-        action: OFF
-        labels: [ "labels_example" ]
-        exclusions:
-        - # optional
-          target: REQUEST_COOKIES
-          exclusions: [ "exclusions_example" ]
-      threat_feeds:
-      - # optional
-        key: key_example
-        name: name_example
-        action: OFF
-        description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -1857,9 +1857,9 @@ EXAMPLES = """
         captcha_submit_label: captcha_submit_label_example
         response_header_manipulation:
         - # required
+          value: value_example
           action: EXTEND_HTTP_RESPONSE_HEADER
           header: header_example
-          value: value_example
       address_rate_limiting:
         # required
         is_enabled: true
@@ -1901,6 +1901,14 @@ EXAMPLES = """
           captcha_header: captcha_header_example
           captcha_footer: captcha_footer_example
           captcha_submit_label: captcha_submit_label_example
+      good_bots:
+      - # required
+        key: key_example
+        is_enabled: true
+
+        # optional
+        name: name_example
+        description: description_example
       human_interaction_challenge:
         # required
         is_enabled: true
@@ -1984,6 +1992,18 @@ EXAMPLES = """
           target: REQUEST_COOKIES
           exclusions: [ "exclusions_example" ]
       origin_groups: [ "origin_groups_example" ]
+      protection_rules:
+      - # optional
+        key: key_example
+        mod_security_rule_ids: [ "mod_security_rule_ids_example" ]
+        name: name_example
+        description: description_example
+        action: OFF
+        labels: [ "labels_example" ]
+        exclusions:
+        - # optional
+          target: REQUEST_COOKIES
+          exclusions: [ "exclusions_example" ]
       protection_settings:
         # optional
         block_action: SHOW_ERROR_PAGE
@@ -1999,6 +2019,12 @@ EXAMPLES = """
         max_response_size_in_ki_b: 56
         allowed_http_methods: [ "OPTIONS" ]
         media_types: [ "media_types_example" ]
+      threat_feeds:
+      - # optional
+        key: key_example
+        name: name_example
+        action: OFF
+        description: description_example
       whitelists:
       - # required
         name: name_example
@@ -2006,32 +2032,6 @@ EXAMPLES = """
         # optional
         addresses: [ "addresses_example" ]
         address_lists: [ "address_lists_example" ]
-      good_bots:
-      - # required
-        key: key_example
-        is_enabled: true
-
-        # optional
-        name: name_example
-        description: description_example
-      protection_rules:
-      - # optional
-        key: key_example
-        mod_security_rule_ids: [ "mod_security_rule_ids_example" ]
-        name: name_example
-        description: description_example
-        action: OFF
-        labels: [ "labels_example" ]
-        exclusions:
-        - # optional
-          target: REQUEST_COOKIES
-          exclusions: [ "exclusions_example" ]
-      threat_feeds:
-      - # optional
-        key: key_example
-        name: name_example
-        action: OFF
-        description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -2119,9 +2119,9 @@ EXAMPLES = """
         captcha_submit_label: captcha_submit_label_example
         response_header_manipulation:
         - # required
+          value: value_example
           action: EXTEND_HTTP_RESPONSE_HEADER
           header: header_example
-          value: value_example
       address_rate_limiting:
         # required
         is_enabled: true
@@ -2163,6 +2163,14 @@ EXAMPLES = """
           captcha_header: captcha_header_example
           captcha_footer: captcha_footer_example
           captcha_submit_label: captcha_submit_label_example
+      good_bots:
+      - # required
+        key: key_example
+        is_enabled: true
+
+        # optional
+        name: name_example
+        description: description_example
       human_interaction_challenge:
         # required
         is_enabled: true
@@ -2246,6 +2254,18 @@ EXAMPLES = """
           target: REQUEST_COOKIES
           exclusions: [ "exclusions_example" ]
       origin_groups: [ "origin_groups_example" ]
+      protection_rules:
+      - # optional
+        key: key_example
+        mod_security_rule_ids: [ "mod_security_rule_ids_example" ]
+        name: name_example
+        description: description_example
+        action: OFF
+        labels: [ "labels_example" ]
+        exclusions:
+        - # optional
+          target: REQUEST_COOKIES
+          exclusions: [ "exclusions_example" ]
       protection_settings:
         # optional
         block_action: SHOW_ERROR_PAGE
@@ -2261,6 +2281,12 @@ EXAMPLES = """
         max_response_size_in_ki_b: 56
         allowed_http_methods: [ "OPTIONS" ]
         media_types: [ "media_types_example" ]
+      threat_feeds:
+      - # optional
+        key: key_example
+        name: name_example
+        action: OFF
+        description: description_example
       whitelists:
       - # required
         name: name_example
@@ -2268,32 +2294,6 @@ EXAMPLES = """
         # optional
         addresses: [ "addresses_example" ]
         address_lists: [ "address_lists_example" ]
-      good_bots:
-      - # required
-        key: key_example
-        is_enabled: true
-
-        # optional
-        name: name_example
-        description: description_example
-      protection_rules:
-      - # optional
-        key: key_example
-        mod_security_rule_ids: [ "mod_security_rule_ids_example" ]
-        name: name_example
-        description: description_example
-        action: OFF
-        labels: [ "labels_example" ]
-        exclusions:
-        - # optional
-          target: REQUEST_COOKIES
-          exclusions: [ "exclusions_example" ]
-      threat_feeds:
-      - # optional
-        key: key_example
-        name: name_example
-        action: OFF
-        description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -4314,8 +4314,8 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
-            display_name=dict(aliases=["name"], type="str"),
             domain=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
             additional_domains=dict(type="list", elements="str"),
             origins=dict(type="dict"),
             origin_groups=dict(type="dict"),
@@ -4348,14 +4348,14 @@ def main():
                     load_balancing_method=dict(
                         type="dict",
                         options=dict(
+                            name=dict(type="str"),
+                            domain=dict(type="str"),
+                            expiration_time_in_seconds=dict(type="int"),
                             method=dict(
                                 type="str",
                                 required=True,
                                 choices=["ROUND_ROBIN", "STICKY_COOKIE", "IP_HASH"],
                             ),
-                            name=dict(type="str"),
-                            domain=dict(type="str"),
-                            expiration_time_in_seconds=dict(type="int"),
                         ),
                     ),
                     websocket_path_prefixes=dict(type="list", elements="str"),
@@ -4469,6 +4469,7 @@ def main():
                                 type="list",
                                 elements="dict",
                                 options=dict(
+                                    value=dict(type="str"),
                                     action=dict(
                                         type="str",
                                         required=True,
@@ -4479,7 +4480,6 @@ def main():
                                         ],
                                     ),
                                     header=dict(type="str", required=True),
-                                    value=dict(type="str"),
                                 ),
                             ),
                         ),
@@ -4539,6 +4539,16 @@ def main():
                                     captcha_submit_label=dict(type="str"),
                                 ),
                             ),
+                        ),
+                    ),
+                    good_bots=dict(
+                        type="list",
+                        elements="dict",
+                        options=dict(
+                            key=dict(type="str", required=True, no_log=True),
+                            name=dict(type="str"),
+                            is_enabled=dict(type="bool", required=True),
+                            description=dict(type="str"),
                         ),
                     ),
                     human_interaction_challenge=dict(
@@ -4716,6 +4726,34 @@ def main():
                         ),
                     ),
                     origin_groups=dict(type="list", elements="str"),
+                    protection_rules=dict(
+                        type="list",
+                        elements="dict",
+                        options=dict(
+                            key=dict(type="str", no_log=True),
+                            mod_security_rule_ids=dict(type="list", elements="str"),
+                            name=dict(type="str"),
+                            description=dict(type="str"),
+                            action=dict(type="str", choices=["OFF", "DETECT", "BLOCK"]),
+                            labels=dict(type="list", elements="str"),
+                            exclusions=dict(
+                                type="list",
+                                elements="dict",
+                                options=dict(
+                                    target=dict(
+                                        type="str",
+                                        choices=[
+                                            "REQUEST_COOKIES",
+                                            "REQUEST_COOKIE_NAMES",
+                                            "ARGS",
+                                            "ARGS_NAMES",
+                                        ],
+                                    ),
+                                    exclusions=dict(type="list", elements="str"),
+                                ),
+                            ),
+                        ),
+                    ),
                     protection_settings=dict(
                         type="dict",
                         options=dict(
@@ -4752,53 +4790,6 @@ def main():
                             media_types=dict(type="list", elements="str"),
                         ),
                     ),
-                    whitelists=dict(
-                        type="list",
-                        elements="dict",
-                        options=dict(
-                            name=dict(type="str", required=True),
-                            addresses=dict(type="list", elements="str"),
-                            address_lists=dict(type="list", elements="str"),
-                        ),
-                    ),
-                    good_bots=dict(
-                        type="list",
-                        elements="dict",
-                        options=dict(
-                            key=dict(type="str", required=True, no_log=True),
-                            name=dict(type="str"),
-                            is_enabled=dict(type="bool", required=True),
-                            description=dict(type="str"),
-                        ),
-                    ),
-                    protection_rules=dict(
-                        type="list",
-                        elements="dict",
-                        options=dict(
-                            key=dict(type="str", no_log=True),
-                            mod_security_rule_ids=dict(type="list", elements="str"),
-                            name=dict(type="str"),
-                            description=dict(type="str"),
-                            action=dict(type="str", choices=["OFF", "DETECT", "BLOCK"]),
-                            labels=dict(type="list", elements="str"),
-                            exclusions=dict(
-                                type="list",
-                                elements="dict",
-                                options=dict(
-                                    target=dict(
-                                        type="str",
-                                        choices=[
-                                            "REQUEST_COOKIES",
-                                            "REQUEST_COOKIE_NAMES",
-                                            "ARGS",
-                                            "ARGS_NAMES",
-                                        ],
-                                    ),
-                                    exclusions=dict(type="list", elements="str"),
-                                ),
-                            ),
-                        ),
-                    ),
                     threat_feeds=dict(
                         type="list",
                         elements="dict",
@@ -4807,6 +4798,15 @@ def main():
                             name=dict(type="str"),
                             action=dict(type="str", choices=["OFF", "DETECT", "BLOCK"]),
                             description=dict(type="str"),
+                        ),
+                    ),
+                    whitelists=dict(
+                        type="list",
+                        elements="dict",
+                        options=dict(
+                            name=dict(type="str", required=True),
+                            addresses=dict(type="list", elements="str"),
+                            address_lists=dict(type="list", elements="str"),
                         ),
                     ),
                 ),

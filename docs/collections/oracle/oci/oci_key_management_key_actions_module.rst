@@ -30,7 +30,7 @@ oracle.oci.oci_key_management_key_actions -- Perform actions on a Key resource i
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -385,8 +385,8 @@ Examples
     - name: Perform action change_compartment on key
       oci_key_management_key_actions:
         # required
-        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         action: change_compartment
         service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 

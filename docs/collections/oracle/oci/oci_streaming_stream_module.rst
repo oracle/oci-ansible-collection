@@ -30,7 +30,7 @@ oracle.oci.oci_streaming_stream -- Manage a Stream resource in Oracle Cloud Infr
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -482,8 +482,8 @@ Examples
 
         # optional
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        stream_pool_id: "ocid1.streampool.oc1..xxxxxxEXAMPLExxxxxx"
         retention_in_hours: 56
+        stream_pool_id: "ocid1.streampool.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 

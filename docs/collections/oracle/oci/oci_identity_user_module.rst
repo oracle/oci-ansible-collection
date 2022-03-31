@@ -30,7 +30,7 @@ oracle.oci.oci_identity_user -- Manage an User resource in Oracle Cloud Infrastr
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -501,9 +501,9 @@ Examples
         # optional
         description: description_example
         email: email_example
+        db_user_name: db_user_name_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        db_user_name: db_user_name_example
 
     - name: Update user using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_identity_user:
@@ -514,9 +514,9 @@ Examples
         # optional
         description: description_example
         email: email_example
+        db_user_name: db_user_name_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        db_user_name: db_user_name_example
 
     - name: Delete user
       oci_identity_user:

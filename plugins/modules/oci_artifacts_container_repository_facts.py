@@ -28,13 +28,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    repository_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the container repository.
-            - "Example: `ocid1.containerrepo.oc1..exampleuniqueID`"
-            - Required to get a specific container_repository.
-        type: str
-        aliases: ["id"]
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
@@ -48,6 +41,13 @@ options:
               Default is false. Can only be set to true when calling the API
               on the tenancy (root compartment).
         type: bool
+    repository_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the container repository.
+            - "Example: `ocid1.containerrepo.oc1..exampleuniqueID`"
+            - Required to get a specific container_repository.
+        type: str
+        aliases: ["id"]
     display_name:
         description:
             - A filter to return only resources that match the given display name exactly.
@@ -97,8 +97,8 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id_in_subtree: true
+    repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     is_public: true
     lifecycle_state: lifecycle_state_example
@@ -307,9 +307,9 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            repository_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
             compartment_id_in_subtree=dict(type="bool"),
+            repository_id=dict(aliases=["id"], type="str"),
             display_name=dict(aliases=["name"], type="str"),
             is_public=dict(type="bool"),
             lifecycle_state=dict(type="str"),

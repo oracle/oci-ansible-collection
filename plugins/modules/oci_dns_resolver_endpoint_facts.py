@@ -31,11 +31,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    resolver_id:
-        description:
-            - The OCID of the target resolver.
-        type: str
-        required: true
     resolver_endpoint_name:
         description:
             - The name of the target resolver endpoint.
@@ -48,13 +43,11 @@ options:
               recent than the date provided in the field-value.  Transfer of the
               selected representation's data is avoided if that data has not changed.
         type: str
-    scope:
+    resolver_id:
         description:
-            - Specifies to operate only on resources that have a matching DNS scope.
+            - The OCID of the target resolver.
         type: str
-        choices:
-            - "GLOBAL"
-            - "PRIVATE"
+        required: true
     name:
         description:
             - The name of a resource.
@@ -84,6 +77,13 @@ options:
             - "DELETING"
             - "FAILED"
             - "UPDATING"
+    scope:
+        description:
+            - Specifies to operate only on resources that have a matching DNS scope.
+        type: str
+        choices:
+            - "GLOBAL"
+            - "PRIVATE"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -91,8 +91,8 @@ EXAMPLES = """
 - name: Get a specific resolver_endpoint
   oci_dns_resolver_endpoint_facts:
     # required
-    resolver_id: "ocid1.resolver.oc1..xxxxxxEXAMPLExxxxxx"
     resolver_endpoint_name: resolver_endpoint_name_example
+    resolver_id: "ocid1.resolver.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     if_modified_since: if_modified_since_example
@@ -104,11 +104,11 @@ EXAMPLES = """
     resolver_id: "ocid1.resolver.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    scope: GLOBAL
     name: name_example
     sort_order: ASC
     sort_by: name
     lifecycle_state: ACTIVE
+    scope: GLOBAL
 
 """
 
@@ -304,10 +304,9 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            resolver_id=dict(type="str", required=True),
             resolver_endpoint_name=dict(type="str"),
             if_modified_since=dict(type="str"),
-            scope=dict(type="str", choices=["GLOBAL", "PRIVATE"]),
+            resolver_id=dict(type="str", required=True),
             name=dict(type="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["name", "timeCreated"]),
@@ -322,6 +321,7 @@ def main():
                     "UPDATING",
                 ],
             ),
+            scope=dict(type="str", choices=["GLOBAL", "PRIVATE"]),
         )
     )
 

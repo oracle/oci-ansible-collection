@@ -51,17 +51,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the instance to.
+            - Required for I(action=change_compartment).
+        type: str
     instance_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance.
         type: str
         aliases: ["id"]
         required: true
-    compartment_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the instance to.
-            - Required for I(action=change_compartment).
-        type: str
     action:
         description:
             - The action to perform on the Instance.
@@ -82,8 +82,8 @@ EXAMPLES = """
 - name: Perform action change_compartment on instance
   oci_compute_instance_actions:
     # required
-    instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action stop on instance
@@ -841,8 +841,8 @@ def main():
     )
     module_args.update(
         dict(
-            instance_id=dict(aliases=["id"], type="str", required=True),
             compartment_id=dict(type="str"),
+            instance_id=dict(aliases=["id"], type="str", required=True),
             action=dict(
                 type="str",
                 required=True,

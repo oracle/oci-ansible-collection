@@ -28,6 +28,12 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    backend_name:
+        description:
+            - The IP address and port of the backend server to retrieve.
+            - "Example: `10.0.0.3:8080`"
+            - Required to get a specific backend.
+        type: str
     load_balancer_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the load balancer associated with the backend set and
@@ -41,12 +47,6 @@ options:
             - "Example: `example_backend_set`"
         type: str
         required: true
-    backend_name:
-        description:
-            - The IP address and port of the backend server to retrieve.
-            - "Example: `10.0.0.3:8080`"
-            - Required to get a specific backend.
-        type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -54,9 +54,9 @@ EXAMPLES = """
 - name: Get a specific backend
   oci_loadbalancer_backend_facts:
     # required
+    backend_name: backend_name_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     backend_set_name: backend_set_name_example
-    backend_name: backend_name_example
 
 - name: List backends
   oci_loadbalancer_backend_facts:
@@ -206,9 +206,9 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
+            backend_name=dict(type="str"),
             load_balancer_id=dict(aliases=["id"], type="str", required=True),
             backend_set_name=dict(type="str", required=True),
-            backend_name=dict(type="str"),
         )
     )
 

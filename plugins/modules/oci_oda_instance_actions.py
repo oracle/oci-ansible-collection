@@ -33,17 +33,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - Identifier of the compartment into which the Digital Assistant instance should be moved.
+            - Required for I(action=change_compartment).
+        type: str
     oda_instance_id:
         description:
             - Unique Digital Assistant instance identifier.
         type: str
         aliases: ["id"]
         required: true
-    compartment_id:
-        description:
-            - Identifier of the compartment into which the Digital Assistant instance should be moved.
-            - Required for I(action=change_compartment).
-        type: str
     action:
         description:
             - The action to perform on the OdaInstance.
@@ -60,8 +60,8 @@ EXAMPLES = """
 - name: Perform action change_compartment on oda_instance
   oci_oda_instance_actions:
     # required
-    oda_instance_id: "ocid1.odainstance.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    oda_instance_id: "ocid1.odainstance.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action start on oda_instance
@@ -305,8 +305,8 @@ def main():
     )
     module_args.update(
         dict(
-            oda_instance_id=dict(aliases=["id"], type="str", required=True),
             compartment_id=dict(type="str"),
+            oda_instance_id=dict(aliases=["id"], type="str", required=True),
             action=dict(
                 type="str",
                 required=True,

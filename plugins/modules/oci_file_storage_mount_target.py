@@ -70,15 +70,6 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
-    display_name:
-        description:
-            - A user-friendly name. It does not have to be unique, and it is changeable.
-              Avoid entering confidential information.
-            - "Example: `My mount target`"
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
     hostname_label:
         description:
             - The hostname for the mount target's IP address, used for
@@ -104,6 +95,15 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet in which to create the mount target.
             - Required for create using I(state=present).
         type: str
+    display_name:
+        description:
+            - A user-friendly name. It does not have to be unique, and it is changeable.
+              Avoid entering confidential information.
+            - "Example: `My mount target`"
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
     nsg_ids:
         description:
             - A list of Network Security Group L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) associated with this mount
@@ -157,9 +157,9 @@ EXAMPLES = """
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: display_name_example
     hostname_label: hostname_label_example
     ip_address: ip_address_example
+    display_name: display_name_example
     nsg_ids: [ "nsg_ids_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -485,10 +485,10 @@ def main():
         dict(
             availability_domain=dict(type="str"),
             compartment_id=dict(type="str"),
-            display_name=dict(aliases=["name"], type="str"),
             hostname_label=dict(type="str"),
             ip_address=dict(type="str"),
             subnet_id=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
             nsg_ids=dict(type="list", elements="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),

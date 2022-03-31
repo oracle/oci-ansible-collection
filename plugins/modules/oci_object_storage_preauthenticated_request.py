@@ -27,17 +27,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    namespace_name:
-        description:
-            - The Object Storage namespace used for the request.
-        type: str
-        required: true
-    bucket_name:
-        description:
-            - "The name of the bucket. Avoid entering confidential information.
-              Example: `my-new-bucket1`"
-        type: str
-        required: true
     name:
         description:
             - A user-specified name for the pre-authenticated request. Names can be helpful in managing pre-authenticated requests.
@@ -76,6 +65,17 @@ options:
               After this date the pre-authenticated request will no longer be valid.
             - Required for create using I(state=present).
         type: str
+    namespace_name:
+        description:
+            - The Object Storage namespace used for the request.
+        type: str
+        required: true
+    bucket_name:
+        description:
+            - "The name of the bucket. Avoid entering confidential information.
+              Example: `my-new-bucket1`"
+        type: str
+        required: true
     par_id:
         description:
             - The unique identifier for the pre-authenticated request. This can be used to manage operations against
@@ -99,11 +99,11 @@ EXAMPLES = """
 - name: Create preauthenticated_request
   oci_object_storage_preauthenticated_request:
     # required
-    namespace_name: namespace_name_example
-    bucket_name: bucket_name_example
     name: name_example
     access_type: ObjectRead
     time_expires: time_expires_example
+    namespace_name: namespace_name_example
+    bucket_name: bucket_name_example
 
     # optional
     bucket_listing_action: bucket_listing_action_example
@@ -120,9 +120,9 @@ EXAMPLES = """
 - name: Delete preauthenticated_request using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_object_storage_preauthenticated_request:
     # required
+    name: name_example
     namespace_name: namespace_name_example
     bucket_name: bucket_name_example
-    name: name_example
     state: absent
 
 """
@@ -337,8 +337,6 @@ def main():
     )
     module_args.update(
         dict(
-            namespace_name=dict(type="str", required=True),
-            bucket_name=dict(type="str", required=True),
             name=dict(type="str"),
             bucket_listing_action=dict(type="str"),
             object_name=dict(type="str"),
@@ -354,6 +352,8 @@ def main():
                 ],
             ),
             time_expires=dict(type="str"),
+            namespace_name=dict(type="str", required=True),
+            bucket_name=dict(type="str", required=True),
             par_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

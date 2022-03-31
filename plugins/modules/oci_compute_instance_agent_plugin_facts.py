@@ -28,21 +28,21 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    instanceagent_id:
-        description:
-            - The OCID of the instance.
-        type: str
-        required: true
-    compartment_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
-        type: str
-        required: true
     plugin_name:
         description:
             - The name of the plugin.
             - Required to get a specific plugin.
         type: str
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
+        type: str
+        required: true
+    instanceagent_id:
+        description:
+            - The OCID of the instance.
+        type: str
+        required: true
     status:
         description:
             - The plugin status
@@ -83,15 +83,15 @@ EXAMPLES = """
 - name: Get a specific plugin
   oci_compute_instance_agent_plugin_facts:
     # required
-    instanceagent_id: "ocid1.instanceagent.oc1..xxxxxxEXAMPLExxxxxx"
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     plugin_name: plugin_name_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    instanceagent_id: "ocid1.instanceagent.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List plugins
   oci_compute_instance_agent_plugin_facts:
     # required
-    instanceagent_id: "ocid1.instanceagent.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    instanceagent_id: "ocid1.instanceagent.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     status: RUNNING
@@ -213,9 +213,9 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            instanceagent_id=dict(type="str", required=True),
-            compartment_id=dict(type="str", required=True),
             plugin_name=dict(type="str"),
+            compartment_id=dict(type="str", required=True),
+            instanceagent_id=dict(type="str", required=True),
             status=dict(
                 type="str", choices=["RUNNING", "STOPPED", "NOT_SUPPORTED", "INVALID"]
             ),

@@ -30,7 +30,7 @@ oracle.oci.oci_dns_tsig_key -- Manage a TsigKey resource in Oracle Cloud Infrast
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -518,8 +518,8 @@ Examples
         # optional
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        scope: GLOBAL
         if_unmodified_since: if_unmodified_since_example
+        scope: GLOBAL
 
     - name: Update tsig_key using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_dns_tsig_key:
@@ -530,8 +530,8 @@ Examples
         # optional
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        scope: GLOBAL
         if_unmodified_since: if_unmodified_since_example
+        scope: GLOBAL
 
     - name: Delete tsig_key
       oci_dns_tsig_key:
@@ -540,8 +540,8 @@ Examples
         state: absent
 
         # optional
-        scope: GLOBAL
         if_unmodified_since: if_unmodified_since_example
+        scope: GLOBAL
 
     - name: Delete tsig_key using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_dns_tsig_key:

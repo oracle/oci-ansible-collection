@@ -28,6 +28,38 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    mount_type_details:
+        description:
+            - ""
+            - Applicable when type is 'NFS'
+        type: dict
+        suboptions:
+            local_mount_point_path:
+                description:
+                    - The local directory path on each VM cluster node where the NFS server location is mounted. The local directory path and the NFS server
+                      location must each be the same across all of the VM cluster nodes. Ensure that the NFS mount is maintained continuously on all of the VM
+                      cluster nodes.
+                    - Required when mount_type is 'SELF_MOUNT'
+                type: str
+            mount_type:
+                description:
+                    - Mount type for backup destination.
+                type: str
+                choices:
+                    - "SELF_MOUNT"
+                    - "AUTOMATED_MOUNT"
+                default: "SELF_MOUNT"
+            nfs_server:
+                description:
+                    - IP addresses for NFS Auto mount.
+                    - Required when mount_type is 'AUTOMATED_MOUNT'
+                type: list
+                elements: str
+            nfs_server_export:
+                description:
+                    - Specifies the directory on which to mount the file system
+                    - Required when mount_type is 'AUTOMATED_MOUNT'
+                type: str
     display_name:
         description:
             - The user-provided name of the backup destination.
@@ -50,19 +82,19 @@ options:
         choices:
             - "NFS"
             - "RECOVERY_APPLIANCE"
-    freeform_tags:
+    vpc_users:
         description:
-            - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
-              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-            - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - The Virtual Private Catalog (VPC) users that are used to access the Recovery Appliance.
             - This parameter is updatable.
-        type: dict
-    defined_tags:
+            - Required when type is 'RECOVERY_APPLIANCE'
+        type: list
+        elements: str
+    connection_string:
         description:
-            - Defined tags for this resource. Each key is predefined and scoped to a namespace.
-              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+            - The connection string for connecting to the Recovery Appliance.
             - This parameter is updatable.
-        type: dict
+            - Required when type is 'RECOVERY_APPLIANCE'
+        type: str
     local_mount_point_path:
         description:
             - "**Deprecated.** The local directory path on each VM cluster node where the NFS server location is mounted. The local directory path and the NFS
@@ -72,58 +104,6 @@ options:
             - This parameter is updatable.
             - Applicable when type is 'NFS'
         type: str
-    mount_type_details:
-        description:
-            - ""
-            - Applicable when type is 'NFS'
-        type: dict
-        suboptions:
-            mount_type:
-                description:
-                    - Mount type for backup destination.
-                type: str
-                choices:
-                    - "SELF_MOUNT"
-                    - "AUTOMATED_MOUNT"
-                default: "SELF_MOUNT"
-            local_mount_point_path:
-                description:
-                    - The local directory path on each VM cluster node where the NFS server location is mounted. The local directory path and the NFS server
-                      location must each be the same across all of the VM cluster nodes. Ensure that the NFS mount is maintained continuously on all of the VM
-                      cluster nodes.
-                    - Required when mount_type is 'SELF_MOUNT'
-                type: str
-            nfs_server:
-                description:
-                    - IP addresses for NFS Auto mount.
-                    - Required when mount_type is 'AUTOMATED_MOUNT'
-                type: list
-                elements: str
-            nfs_server_export:
-                description:
-                    - Specifies the directory on which to mount the file system
-                    - Required when mount_type is 'AUTOMATED_MOUNT'
-                type: str
-    connection_string:
-        description:
-            - The connection string for connecting to the Recovery Appliance.
-            - This parameter is updatable.
-            - Required when type is 'RECOVERY_APPLIANCE'
-        type: str
-    vpc_users:
-        description:
-            - The Virtual Private Catalog (VPC) users that are used to access the Recovery Appliance.
-            - This parameter is updatable.
-            - Required when type is 'RECOVERY_APPLIANCE'
-        type: list
-        elements: str
-    backup_destination_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup destination.
-            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-            - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["id"]
     nfs_mount_type:
         description:
             - NFS Mount type for backup destination.
@@ -143,6 +123,26 @@ options:
             - Specifies the directory on which to mount the file system
             - This parameter is updatable.
         type: str
+    freeform_tags:
+        description:
+            - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
+        type: dict
+    defined_tags:
+        description:
+            - Defined tags for this resource. Each key is predefined and scoped to a namespace.
+              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+            - This parameter is updatable.
+        type: dict
+    backup_destination_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup destination.
+            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+            - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["id"]
     state:
         description:
             - The state of the BackupDestination.
@@ -164,15 +164,15 @@ EXAMPLES = """
     type: NFS
 
     # optional
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
-    local_mount_point_path: local_mount_point_path_example
     mount_type_details:
       # required
       local_mount_point_path: local_mount_point_path_example
 
       # optional
       mount_type: SELF_MOUNT
+    local_mount_point_path: local_mount_point_path_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Create backup_destination with type = RECOVERY_APPLIANCE
   oci_database_backup_destination:
@@ -180,8 +180,8 @@ EXAMPLES = """
     display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     type: RECOVERY_APPLIANCE
-    connection_string: connection_string_example
     vpc_users: [ "vpc_users_example" ]
+    connection_string: connection_string_example
 
     # optional
     freeform_tags: {'Department': 'Finance'}
@@ -193,14 +193,14 @@ EXAMPLES = """
     backup_destination_id: "ocid1.backupdestination.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
-    local_mount_point_path: local_mount_point_path_example
-    connection_string: connection_string_example
     vpc_users: [ "vpc_users_example" ]
+    connection_string: connection_string_example
+    local_mount_point_path: local_mount_point_path_example
     nfs_mount_type: SELF_MOUNT
     nfs_server: [ "nfs_server_example" ]
     nfs_server_export: nfs_server_export_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update backup_destination using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_backup_destination:
@@ -209,14 +209,14 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
-    local_mount_point_path: local_mount_point_path_example
-    connection_string: connection_string_example
     vpc_users: [ "vpc_users_example" ]
+    connection_string: connection_string_example
+    local_mount_point_path: local_mount_point_path_example
     nfs_mount_type: SELF_MOUNT
     nfs_server: [ "nfs_server_example" ]
     nfs_server_export: nfs_server_export_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete backup_destination
   oci_database_backup_destination:
@@ -537,31 +537,31 @@ def main():
     )
     module_args.update(
         dict(
-            display_name=dict(aliases=["name"], type="str"),
-            compartment_id=dict(type="str"),
-            type=dict(type="str", choices=["NFS", "RECOVERY_APPLIANCE"]),
-            freeform_tags=dict(type="dict"),
-            defined_tags=dict(type="dict"),
-            local_mount_point_path=dict(type="str"),
             mount_type_details=dict(
                 type="dict",
                 options=dict(
+                    local_mount_point_path=dict(type="str"),
                     mount_type=dict(
                         type="str",
                         default="SELF_MOUNT",
                         choices=["SELF_MOUNT", "AUTOMATED_MOUNT"],
                     ),
-                    local_mount_point_path=dict(type="str"),
                     nfs_server=dict(type="list", elements="str"),
                     nfs_server_export=dict(type="str"),
                 ),
             ),
-            connection_string=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
+            compartment_id=dict(type="str"),
+            type=dict(type="str", choices=["NFS", "RECOVERY_APPLIANCE"]),
             vpc_users=dict(type="list", elements="str"),
-            backup_destination_id=dict(aliases=["id"], type="str"),
+            connection_string=dict(type="str"),
+            local_mount_point_path=dict(type="str"),
             nfs_mount_type=dict(type="str", choices=["SELF_MOUNT", "AUTOMATED_MOUNT"]),
             nfs_server=dict(type="list", elements="str"),
             nfs_server_export=dict(type="str"),
+            freeform_tags=dict(type="dict"),
+            defined_tags=dict(type="dict"),
+            backup_destination_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

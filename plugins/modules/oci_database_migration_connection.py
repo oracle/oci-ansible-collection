@@ -36,13 +36,6 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
-    display_name:
-        description:
-            - Database Connection display name identifier.
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
     database_type:
         description:
             - Database connection type.
@@ -52,6 +45,13 @@ options:
             - "MANUAL"
             - "AUTONOMOUS"
             - "USER_MANAGED_OCI"
+    display_name:
+        description:
+            - Database Connection display name identifier.
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
     database_id:
         description:
             - The OCID of the cloud database. Required if the database connection type is Autonomous.
@@ -785,10 +785,10 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
-            display_name=dict(aliases=["name"], type="str"),
             database_type=dict(
                 type="str", choices=["MANUAL", "AUTONOMOUS", "USER_MANAGED_OCI"]
             ),
+            display_name=dict(aliases=["name"], type="str"),
             database_id=dict(type="str"),
             connect_descriptor=dict(
                 type="dict",

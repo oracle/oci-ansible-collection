@@ -28,17 +28,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    vm_cluster_id:
-        description:
-            - The VM cluster L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-        type: str
-        required: true
     patch_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the patch.
             - Required to get a specific vm_cluster_patch.
         type: str
         aliases: ["id"]
+    vm_cluster_id:
+        description:
+            - The VM cluster L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+        type: str
+        required: true
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -46,8 +46,8 @@ EXAMPLES = """
 - name: Get a specific vm_cluster_patch
   oci_database_vm_cluster_patch_facts:
     # required
-    vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
     patch_id: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
+    vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List vm_cluster_patches
   oci_database_vm_cluster_patch_facts:
@@ -187,8 +187,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            vm_cluster_id=dict(type="str", required=True),
             patch_id=dict(aliases=["id"], type="str"),
+            vm_cluster_id=dict(type="str", required=True),
         )
     )
 

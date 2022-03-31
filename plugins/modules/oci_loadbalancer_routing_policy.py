@@ -28,13 +28,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    name:
-        description:
-            - The name for this list of routing rules. It must be unique and it cannot be changed. Avoid entering
-              confidential information.
-            - "Example: `example_routing_rules`"
-        type: str
-        required: true
     condition_language_version:
         description:
             - The version of the language in which `condition` of `rules` are composed.
@@ -84,6 +77,13 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the load balancer to add the routing policy rule list to.
         type: str
         required: true
+    name:
+        description:
+            - The name for this list of routing rules. It must be unique and it cannot be changed. Avoid entering
+              confidential information.
+            - "Example: `example_routing_rules`"
+        type: str
+        required: true
     state:
         description:
             - The state of the RoutingPolicy.
@@ -100,7 +100,6 @@ EXAMPLES = """
 - name: Create routing_policy
   oci_loadbalancer_routing_policy:
     # required
-    name: name_example
     condition_language_version: V1
     rules:
     - # required
@@ -113,11 +112,11 @@ EXAMPLES = """
         # optional
         backend_set_name: backend_set_name_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
 
 - name: Update routing_policy
   oci_loadbalancer_routing_policy:
     # required
-    name: name_example
     rules:
     - # required
       name: name_example
@@ -129,6 +128,7 @@ EXAMPLES = """
         # optional
         backend_set_name: backend_set_name_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
 
     # optional
     condition_language_version: V1
@@ -136,8 +136,8 @@ EXAMPLES = """
 - name: Delete routing_policy
   oci_loadbalancer_routing_policy:
     # required
-    name: name_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
     state: absent
 
 """
@@ -364,7 +364,6 @@ def main():
     )
     module_args.update(
         dict(
-            name=dict(type="str", required=True),
             condition_language_version=dict(type="str", choices=["V1"]),
             rules=dict(
                 type="list",
@@ -388,6 +387,7 @@ def main():
                 ),
             ),
             load_balancer_id=dict(type="str", required=True),
+            name=dict(type="str", required=True),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

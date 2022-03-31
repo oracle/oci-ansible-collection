@@ -30,7 +30,7 @@ oracle.oci.oci_waf_web_app_firewall -- Manage a WebAppFirewall resource in Oracl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -501,8 +501,8 @@ Examples
         # required
         backend_type: LOAD_BALANCER
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        web_app_firewall_policy_id: "ocid1.webappfirewallpolicy.oc1..xxxxxxEXAMPLExxxxxx"
         load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+        web_app_firewall_policy_id: "ocid1.webappfirewallpolicy.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         display_name: display_name_example
@@ -525,8 +525,8 @@ Examples
     - name: Update web_app_firewall using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_waf_web_app_firewall:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
 
         # optional
         web_app_firewall_policy_id: "ocid1.webappfirewallpolicy.oc1..xxxxxxEXAMPLExxxxxx"
@@ -543,8 +543,8 @@ Examples
     - name: Delete web_app_firewall using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_waf_web_app_firewall:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
         state: absent
 
 

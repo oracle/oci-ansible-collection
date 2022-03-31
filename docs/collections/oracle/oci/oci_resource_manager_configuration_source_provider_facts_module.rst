@@ -30,7 +30,7 @@ oracle.oci.oci_resource_manager_configuration_source_provider_facts -- Fetches d
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -363,8 +363,8 @@ Examples
       oci_resource_manager_configuration_source_provider_facts:
 
         # optional
-        configuration_source_provider_id: "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        configuration_source_provider_id: "ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         sort_by: TIMECREATED
         sort_order: ASC

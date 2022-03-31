@@ -30,7 +30,7 @@ oracle.oci.oci_osp_gateway_invoice_actions -- Perform actions on an Invoice reso
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -387,16 +387,16 @@ Examples
         # required
         dest: /tmp/myfile
         osp_home_region: us-phoenix-1
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         internal_invoice_id: "ocid1.internalinvoice.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         action: download_pdf_content
 
     - name: Perform action pay on invoice
       oci_osp_gateway_invoice_actions:
         # required
         osp_home_region: us-phoenix-1
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         internal_invoice_id: "ocid1.internalinvoice.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         email: email_example
         action: pay
 

@@ -28,6 +28,11 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    query:
+        description:
+            - The structured query describing which resources to search for.
+            - Required when type is 'Structured'
+        type: str
     type:
         description:
             - The type of SearchDetails, whether FreeText or Structured.
@@ -44,11 +49,6 @@ options:
         choices:
             - "NONE"
             - "HIGHLIGHTS"
-    query:
-        description:
-            - The structured query describing which resources to search for.
-            - Required when type is 'Structured'
-        type: str
     text:
         description:
             - The text to search for.
@@ -61,8 +61,8 @@ EXAMPLES = """
 - name: List search_listings with type = Structured
   oci_marketplace_search_listings_facts:
     # required
-    type: Structured
     query: query_example
+    type: Structured
 
     # optional
     matching_context_type: NONE
@@ -338,9 +338,9 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
+            query=dict(type="str"),
             type=dict(type="str", required=True, choices=["Structured", "FreeText"]),
             matching_context_type=dict(type="str", choices=["NONE", "HIGHLIGHTS"]),
-            query=dict(type="str"),
             text=dict(type="str"),
             name=dict(type="str"),
         )

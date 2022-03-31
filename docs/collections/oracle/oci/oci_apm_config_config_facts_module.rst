@@ -30,7 +30,7 @@ oracle.oci.oci_apm_config_config_facts -- Fetches details about one or multiple 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -358,8 +358,8 @@ Examples
     - name: Get a specific config
       oci_apm_config_config_facts:
         # required
-        apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
         config_id: "ocid1.config.oc1..xxxxxxEXAMPLExxxxxx"
+        apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: List configs
       oci_apm_config_config_facts:

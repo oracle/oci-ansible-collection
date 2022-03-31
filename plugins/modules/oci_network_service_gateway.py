@@ -43,6 +43,18 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    vcn_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN.
+            - Required for create using I(state=present).
+        type: str
+    block_traffic:
+        description:
+            - Whether the service gateway blocks all traffic through it. The default is `false`. When
+              this is `true`, traffic is not routed to any services, regardless of route rules.
+            - "Example: `true`"
+            - This parameter is updatable.
+        type: bool
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
@@ -97,11 +109,6 @@ options:
                       us/iaas/api/#/en/iaas/latest/Service/).
                 type: str
                 required: true
-    vcn_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN.
-            - Required for create using I(state=present).
-        type: str
     service_gateway_id:
         description:
             - The service gateway's L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
@@ -109,13 +116,6 @@ options:
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["id"]
-    block_traffic:
-        description:
-            - Whether the service gateway blocks all traffic through it. The default is `false`. When
-              this is `true`, traffic is not routed to any services, regardless of route rules.
-            - "Example: `true`"
-            - This parameter is updatable.
-        type: bool
     state:
         description:
             - The state of the ServiceGateway.
@@ -133,10 +133,10 @@ EXAMPLES = """
   oci_network_service_gateway:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     services:
     - # required
       service_id: "ocid1.service.oc1..xxxxxxEXAMPLExxxxxx"
-    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -150,6 +150,7 @@ EXAMPLES = """
     service_gateway_id: "ocid1.servicegateway.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    block_traffic: true
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
@@ -157,7 +158,6 @@ EXAMPLES = """
     services:
     - # required
       service_id: "ocid1.service.oc1..xxxxxxEXAMPLExxxxxx"
-    block_traffic: true
 
 - name: Update service_gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_service_gateway:
@@ -166,13 +166,13 @@ EXAMPLES = """
     display_name: display_name_example
 
     # optional
+    block_traffic: true
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
     route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
     services:
     - # required
       service_id: "ocid1.service.oc1..xxxxxxEXAMPLExxxxxx"
-    block_traffic: true
 
 - name: Delete service_gateway
   oci_network_service_gateway:
@@ -462,6 +462,8 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
+            vcn_id=dict(type="str"),
+            block_traffic=dict(type="bool"),
             defined_tags=dict(type="dict"),
             display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
@@ -471,9 +473,7 @@ def main():
                 elements="dict",
                 options=dict(service_id=dict(type="str", required=True)),
             ),
-            vcn_id=dict(type="str"),
             service_gateway_id=dict(aliases=["id"], type="str"),
-            block_traffic=dict(type="bool"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

@@ -30,68 +30,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    compartment_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment
-              containing the instance configuration.
-            - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-        type: str
-    defined_tags:
-        description:
-            - Defined tags for this resource. Each key is predefined and scoped to a
-              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-            - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-            - This parameter is updatable.
-        type: dict
-    display_name:
-        description:
-            - A user-friendly name. Does not have to be unique, and it's changeable.
-              Avoid entering confidential information.
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
-    freeform_tags:
-        description:
-            - Free-form tags for this resource. Each tag is a simple key-value pair with no
-              predefined name, type, or namespace. For more information, see L(Resource
-              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-            - "Example: `{\\"Department\\": \\"Finance\\"}`"
-            - This parameter is updatable.
-        type: dict
-    source:
-        description:
-            - The source of the instance configuration. An instance configuration defines the
-              settings to use when creating Compute instances, including details
-              such as the base image, shape, and metadata. You can also specify the associated resources for the
-              instance, such as block volume attachments and network configuration.
-            - When you create an instance configuration using an existing instance as a template, the instance
-              configuration does not include any information from the source instance's boot volume, such as installed
-              applications, binaries, and files on the instance. It also does not include the contents of
-              any block volumes that are attached to the instance.
-            - To create an instance configuration that includes the custom setup from an instance's boot volume, you
-              must first create a custom image from the instance (see L(CreateImage,https://docs.cloud.oracle.com/en-
-              us/iaas/api/#/en/iaas/latest/Image/CreateImage)).
-              Then, use the custom image to launch a new instance
-              (see L(LaunchInstance,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/LaunchInstance)). Finally, create the instance
-              configuration based on the instance that you created from the custom image.
-            - To include block volume contents with an instance configuration, first create a backup of the attached block volumes
-              (see L(CreateVolumeBackup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/VolumeBackup/CreateVolumeBackup)). Then, create the
-              instance
-              configuration by specifying the list of settings, using
-              L(InstanceConfigurationVolumeSourceFromVolumeBackupDetails,https://docs.cloud.oracle.com/en-
-              us/iaas/api/#/en/iaas/latest/datatypes/InstanceConfigurationVolumeSourceFromVolumeBackupDetails)
-              to include the block volume backups in the list of settings.
-            - "The following values are supported:"
-            - "* `NONE`: Creates an instance configuration using the list of settings that you specify."
-            - "* `INSTANCE`: Creates an instance configuration using an existing instance as a template."
-        type: str
-        choices:
-            - "NONE"
-            - "INSTANCE"
-        default: "NONE"
     instance_details:
         description:
             - ""
@@ -116,6 +54,11 @@ options:
                             - ""
                         type: dict
                         suboptions:
+                            use_chap:
+                                description:
+                                    - Whether to use CHAP authentication for the volume attachment. Defaults to false.
+                                    - Applicable when type is 'iscsi'
+                                type: bool
                             display_name:
                                 description:
                                     - A user-friendly name. Does not have to be unique, and it's changeable.
@@ -145,11 +88,6 @@ options:
                                     - "iscsi"
                                     - "paravirtualized"
                                 required: true
-                            use_chap:
-                                description:
-                                    - Whether to use CHAP authentication for the volume attachment. Defaults to false.
-                                    - Applicable when type is 'iscsi'
-                                type: bool
                             is_pv_encryption_in_transit_enabled:
                                 description:
                                     - Whether to enable in-transit encryption for the data volume's paravirtualized attachment. The default value is false.
@@ -452,6 +390,16 @@ options:
                             - ""
                         type: dict
                         suboptions:
+                            numa_nodes_per_socket:
+                                description:
+                                    - The number of NUMA nodes per socket (NPS).
+                                    - Applicable when type is 'AMD_MILAN_BM'
+                                type: str
+                                choices:
+                                    - "NPS0"
+                                    - "NPS1"
+                                    - "NPS2"
+                                    - "NPS4"
                             type:
                                 description:
                                     - The type of platform being configured.
@@ -475,31 +423,11 @@ options:
                                 description:
                                     - Whether the Measured Boot feature is enabled on the instance.
                                 type: bool
-                            numa_nodes_per_socket:
-                                description:
-                                    - The number of NUMA nodes per socket (NPS).
-                                    - Applicable when type is 'AMD_MILAN_BM'
-                                type: str
-                                choices:
-                                    - "NPS0"
-                                    - "NPS1"
-                                    - "NPS2"
-                                    - "NPS4"
                     source_details:
                         description:
                             - ""
                         type: dict
                         suboptions:
-                            source_type:
-                                description:
-                                    - The source type for the instance.
-                                      Use `image` when specifying the image OCID. Use `bootVolume` when specifying
-                                      the boot volume OCID.
-                                type: str
-                                choices:
-                                    - "image"
-                                    - "bootVolume"
-                                required: true
                             boot_volume_size_in_gbs:
                                 description:
                                     - The size of the boot volume in GBs. The minimum value is 50 GB and the maximum
@@ -511,6 +439,16 @@ options:
                                     - The OCID of the image used to boot the instance.
                                     - Applicable when source_type is 'image'
                                 type: str
+                            source_type:
+                                description:
+                                    - The source type for the instance.
+                                      Use `image` when specifying the image OCID. Use `bootVolume` when specifying
+                                      the boot volume OCID.
+                                type: str
+                                choices:
+                                    - "image"
+                                    - "bootVolume"
+                                required: true
                             boot_volume_id:
                                 description:
                                     - The OCID of the boot volume used to boot the instance.
@@ -840,12 +778,74 @@ options:
                               the VNIC will use. For more information, see
                               L(Virtual Network Interface Cards (VNICs),https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingVNICs.htm).
                         type: int
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment
+              containing the instance configuration.
+            - Required for create using I(state=present).
+            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+        type: str
+    source:
+        description:
+            - The source of the instance configuration. An instance configuration defines the
+              settings to use when creating Compute instances, including details
+              such as the base image, shape, and metadata. You can also specify the associated resources for the
+              instance, such as block volume attachments and network configuration.
+            - When you create an instance configuration using an existing instance as a template, the instance
+              configuration does not include any information from the source instance's boot volume, such as installed
+              applications, binaries, and files on the instance. It also does not include the contents of
+              any block volumes that are attached to the instance.
+            - To create an instance configuration that includes the custom setup from an instance's boot volume, you
+              must first create a custom image from the instance (see L(CreateImage,https://docs.cloud.oracle.com/en-
+              us/iaas/api/#/en/iaas/latest/Image/CreateImage)).
+              Then, use the custom image to launch a new instance
+              (see L(LaunchInstance,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Instance/LaunchInstance)). Finally, create the instance
+              configuration based on the instance that you created from the custom image.
+            - To include block volume contents with an instance configuration, first create a backup of the attached block volumes
+              (see L(CreateVolumeBackup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/VolumeBackup/CreateVolumeBackup)). Then, create the
+              instance
+              configuration by specifying the list of settings, using
+              L(InstanceConfigurationVolumeSourceFromVolumeBackupDetails,https://docs.cloud.oracle.com/en-
+              us/iaas/api/#/en/iaas/latest/datatypes/InstanceConfigurationVolumeSourceFromVolumeBackupDetails)
+              to include the block volume backups in the list of settings.
+            - "The following values are supported:"
+            - "* `NONE`: Creates an instance configuration using the list of settings that you specify."
+            - "* `INSTANCE`: Creates an instance configuration using an existing instance as a template."
+        type: str
+        choices:
+            - "NONE"
+            - "INSTANCE"
+        default: "NONE"
     instance_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance to use to create the
               instance configuration.
             - Required when source is 'INSTANCE'
         type: str
+    defined_tags:
+        description:
+            - Defined tags for this resource. Each key is predefined and scoped to a
+              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
+        type: dict
+    display_name:
+        description:
+            - A user-friendly name. Does not have to be unique, and it's changeable.
+              Avoid entering confidential information.
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
+    freeform_tags:
+        description:
+            - Free-form tags for this resource. Each tag is a simple key-value pair with no
+              predefined name, type, or namespace. For more information, see L(Resource
+              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
+        type: dict
     instance_configuration_id:
         description:
             - The OCID of the instance configuration.
@@ -869,7 +869,6 @@ EXAMPLES = """
 - name: Create instance_configuration with source = NONE
   oci_compute_management_instance_configuration:
     # required
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     instance_details:
       # required
       instance_type: compute
@@ -882,11 +881,11 @@ EXAMPLES = """
           type: iscsi
 
           # optional
+          use_chap: true
           display_name: display_name_example
           is_read_only: true
           device: device_example
           is_shareable: true
-          use_chap: true
         create_details:
           # optional
           availability_domain: Uocm:PHX-AD-1
@@ -939,10 +938,10 @@ EXAMPLES = """
           type: AMD_MILAN_BM
 
           # optional
+          numa_nodes_per_socket: NPS0
           is_secure_boot_enabled: true
           is_trusted_platform_module_enabled: true
           is_measured_boot_enabled: true
-          numa_nodes_per_socket: NPS0
         source_details:
           # required
           source_type: image
@@ -1002,12 +1001,13 @@ EXAMPLES = """
           subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         nic_index: 56
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    source: NONE
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
-    source: NONE
 
 - name: Create instance_configuration with source = INSTANCE
   oci_compute_management_instance_configuration:
@@ -2254,11 +2254,6 @@ def main():
     )
     module_args.update(
         dict(
-            compartment_id=dict(type="str"),
-            defined_tags=dict(type="dict"),
-            display_name=dict(aliases=["name"], type="str"),
-            freeform_tags=dict(type="dict"),
-            source=dict(type="str", default="NONE", choices=["NONE", "INSTANCE"]),
             instance_details=dict(
                 type="dict",
                 options=dict(
@@ -2270,6 +2265,7 @@ def main():
                             attach_details=dict(
                                 type="dict",
                                 options=dict(
+                                    use_chap=dict(type="bool"),
                                     display_name=dict(aliases=["name"], type="str"),
                                     is_read_only=dict(type="bool"),
                                     device=dict(type="str"),
@@ -2279,7 +2275,6 @@ def main():
                                         required=True,
                                         choices=["iscsi", "paravirtualized"],
                                     ),
-                                    use_chap=dict(type="bool"),
                                     is_pv_encryption_in_transit_enabled=dict(
                                         type="bool"
                                     ),
@@ -2359,6 +2354,10 @@ def main():
                             platform_config=dict(
                                 type="dict",
                                 options=dict(
+                                    numa_nodes_per_socket=dict(
+                                        type="str",
+                                        choices=["NPS0", "NPS1", "NPS2", "NPS4"],
+                                    ),
                                     type=dict(
                                         type="str",
                                         required=True,
@@ -2375,22 +2374,18 @@ def main():
                                         type="bool"
                                     ),
                                     is_measured_boot_enabled=dict(type="bool"),
-                                    numa_nodes_per_socket=dict(
-                                        type="str",
-                                        choices=["NPS0", "NPS1", "NPS2", "NPS4"],
-                                    ),
                                 ),
                             ),
                             source_details=dict(
                                 type="dict",
                                 options=dict(
+                                    boot_volume_size_in_gbs=dict(type="int"),
+                                    image_id=dict(type="str"),
                                     source_type=dict(
                                         type="str",
                                         required=True,
                                         choices=["image", "bootVolume"],
                                     ),
-                                    boot_volume_size_in_gbs=dict(type="int"),
-                                    image_id=dict(type="str"),
                                     boot_volume_id=dict(type="str"),
                                 ),
                             ),
@@ -2526,7 +2521,12 @@ def main():
                     ),
                 ),
             ),
+            compartment_id=dict(type="str"),
+            source=dict(type="str", default="NONE", choices=["NONE", "INSTANCE"]),
             instance_id=dict(type="str"),
+            defined_tags=dict(type="dict"),
+            display_name=dict(aliases=["name"], type="str"),
+            freeform_tags=dict(type="dict"),
             instance_configuration_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

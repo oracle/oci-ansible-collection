@@ -28,15 +28,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    display_name:
-        description:
-            - A user-friendly name. Does not have to be unique, and it's changeable.
-              Avoid entering confidential information.
-            - "Example: `My new resource`"
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which the
@@ -59,6 +50,15 @@ options:
         description:
             - The intermediate certificate data associated with the certificate in pem format.
         type: str
+    display_name:
+        description:
+            - A user-friendly name. Does not have to be unique, and it's changeable.
+              Avoid entering confidential information.
+            - "Example: `My new resource`"
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair
@@ -103,8 +103,8 @@ EXAMPLES = """
     certificate: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
 
     # optional
-    display_name: display_name_example
     intermediate_certificates: intermediate_certificates_example
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -121,8 +121,8 @@ EXAMPLES = """
 - name: Update certificate using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apigateway_certificate:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     freeform_tags: {'Department': 'Finance'}
@@ -137,8 +137,8 @@ EXAMPLES = """
 - name: Delete certificate using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apigateway_certificate:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -423,11 +423,11 @@ def main():
     )
     module_args.update(
         dict(
-            display_name=dict(aliases=["name"], type="str"),
             compartment_id=dict(type="str"),
             private_key=dict(type="str", no_log=True),
             certificate=dict(type="str"),
             intermediate_certificates=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             certificate_id=dict(aliases=["id"], type="str"),

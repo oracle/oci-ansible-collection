@@ -57,52 +57,11 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
-    defined_tags:
-        description:
-            - Defined tags for this resource. Each key is predefined and scoped to a
-              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-            - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-            - This parameter is updatable.
-        type: dict
-    display_name:
-        description:
-            - A user-friendly name. Does not have to be unique, and it's changeable.
-              Avoid entering confidential information.
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
-    freeform_tags:
-        description:
-            - Free-form tags for this resource. Each tag is a simple key-value pair with no
-              predefined name, type, or namespace. For more information, see L(Resource
-              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-            - "Example: `{\\"Department\\": \\"Finance\\"}`"
-            - This parameter is updatable.
-        type: dict
     kms_key_id:
         description:
             - The OCID of the Key Management key to assign as the master encryption key
               for the volume.
         type: str
-    vpus_per_gb:
-        description:
-            - The number of volume performance units (VPUs) that will be applied to this volume per GB,
-              representing the Block Volume service's elastic performance options.
-              See L(Block Volume Elastic Performance,https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/blockvolumeelasticperformance.htm) for more
-              information.
-            - "Allowed values:"
-            - " * `0`: Represents Lower Cost option."
-            - " * `10`: Represents Balanced option."
-            - " * `20`: Represents Higher Performance option."
-            - For performance autotune enabled volumes, It would be the Default(Minimum) VPUs/GB.
-            - This parameter is updatable.
-        type: int
-    size_in_gbs:
-        description:
-            - The size of the volume in GBs.
-            - This parameter is updatable.
-        type: int
     size_in_mbs:
         description:
             - The size of the volume in MBs. The value must be a multiple of 1024.
@@ -133,6 +92,47 @@ options:
               This field is deprecated. Use the sourceDetails field instead to specify the
               backup for the volume.
         type: str
+    defined_tags:
+        description:
+            - Defined tags for this resource. Each key is predefined and scoped to a
+              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
+        type: dict
+    display_name:
+        description:
+            - A user-friendly name. Does not have to be unique, and it's changeable.
+              Avoid entering confidential information.
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
+    freeform_tags:
+        description:
+            - Free-form tags for this resource. Each tag is a simple key-value pair with no
+              predefined name, type, or namespace. For more information, see L(Resource
+              Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
+        type: dict
+    vpus_per_gb:
+        description:
+            - The number of volume performance units (VPUs) that will be applied to this volume per GB,
+              representing the Block Volume service's elastic performance options.
+              See L(Block Volume Elastic Performance,https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/blockvolumeelasticperformance.htm) for more
+              information.
+            - "Allowed values:"
+            - " * `0`: Represents Lower Cost option."
+            - " * `10`: Represents Balanced option."
+            - " * `20`: Represents Higher Performance option."
+            - For performance autotune enabled volumes, It would be the Default(Minimum) VPUs/GB.
+            - This parameter is updatable.
+        type: int
+    size_in_gbs:
+        description:
+            - The size of the volume in GBs.
+            - This parameter is updatable.
+        type: int
     is_auto_tune_enabled:
         description:
             - Specifies whether the auto-tune performance is enabled for this volume. This field is deprecated.
@@ -187,18 +187,18 @@ EXAMPLES = """
     # optional
     availability_domain: Uocm:PHX-AD-1
     backup_policy_id: "ocid1.backuppolicy.oc1..xxxxxxEXAMPLExxxxxx"
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
-    display_name: display_name_example
-    freeform_tags: {'Department': 'Finance'}
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
-    vpus_per_gb: 56
-    size_in_gbs: 56
     size_in_mbs: 56
     source_details:
       # required
       type: blockVolumeReplica
       id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     volume_backup_id: "ocid1.volumebackup.oc1..xxxxxxEXAMPLExxxxxx"
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    vpus_per_gb: 56
+    size_in_gbs: 56
     is_auto_tune_enabled: true
     block_volume_replicas:
     - # required
@@ -614,12 +614,7 @@ def main():
             availability_domain=dict(type="str"),
             backup_policy_id=dict(type="str"),
             compartment_id=dict(type="str"),
-            defined_tags=dict(type="dict"),
-            display_name=dict(aliases=["name"], type="str"),
-            freeform_tags=dict(type="dict"),
             kms_key_id=dict(type="str"),
-            vpus_per_gb=dict(type="int"),
-            size_in_gbs=dict(type="int"),
             size_in_mbs=dict(type="int"),
             source_details=dict(
                 type="dict",
@@ -633,6 +628,11 @@ def main():
                 ),
             ),
             volume_backup_id=dict(type="str"),
+            defined_tags=dict(type="dict"),
+            display_name=dict(aliases=["name"], type="str"),
+            freeform_tags=dict(type="dict"),
+            vpus_per_gb=dict(type="int"),
+            size_in_gbs=dict(type="int"),
             is_auto_tune_enabled=dict(type="bool"),
             block_volume_replicas=dict(
                 type="list",

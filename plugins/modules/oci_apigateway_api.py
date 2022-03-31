@@ -28,6 +28,14 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which the
+              resource is created.
+            - Required for create using I(state=present).
+            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+        type: str
     display_name:
         description:
             - A user-friendly name. Does not have to be unique, and it's changeable.
@@ -37,14 +45,6 @@ options:
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
-    compartment_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which the
-              resource is created.
-            - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-        type: str
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair
@@ -111,8 +111,8 @@ EXAMPLES = """
 - name: Update api using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apigateway_api:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     freeform_tags: {'Department': 'Finance'}
@@ -128,8 +128,8 @@ EXAMPLES = """
 - name: Delete api using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apigateway_api:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -413,8 +413,8 @@ def main():
     )
     module_args.update(
         dict(
-            display_name=dict(aliases=["name"], type="str"),
             compartment_id=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             content=dict(type="str"),

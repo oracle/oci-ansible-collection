@@ -30,7 +30,7 @@ oracle.oci.oci_sch_service_connector -- Manage a ServiceConnector resource in Or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -1106,11 +1106,10 @@ Examples
     - name: Create service_connector
       oci_sch_service_connector:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
         source:
           # required
-          kind: logging
           log_sources:
           - # required
             compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1118,10 +1117,11 @@ Examples
             # optional
             log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
             log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+          kind: logging
         target:
           # required
-          kind: notifications
           topic_id: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
+          kind: notifications
 
           # optional
           enable_formatted_messaging: true
@@ -1130,8 +1130,8 @@ Examples
         description: description_example
         tasks:
         - # required
-          kind: function
           function_id: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
+          kind: function
 
           # optional
           batch_size_in_kbs: 56
@@ -1149,7 +1149,6 @@ Examples
         description: description_example
         source:
           # required
-          kind: logging
           log_sources:
           - # required
             compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1157,18 +1156,19 @@ Examples
             # optional
             log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
             log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+          kind: logging
         tasks:
         - # required
-          kind: function
           function_id: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
+          kind: function
 
           # optional
           batch_size_in_kbs: 56
           batch_time_in_sec: 56
         target:
           # required
-          kind: notifications
           topic_id: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
+          kind: notifications
 
           # optional
           enable_formatted_messaging: true
@@ -1178,14 +1178,13 @@ Examples
     - name: Update service_connector using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_sch_service_connector:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
 
         # optional
         description: description_example
         source:
           # required
-          kind: logging
           log_sources:
           - # required
             compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1193,18 +1192,19 @@ Examples
             # optional
             log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
             log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+          kind: logging
         tasks:
         - # required
-          kind: function
           function_id: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
+          kind: function
 
           # optional
           batch_size_in_kbs: 56
           batch_time_in_sec: 56
         target:
           # required
-          kind: notifications
           topic_id: "ocid1.topic.oc1..xxxxxxEXAMPLExxxxxx"
+          kind: notifications
 
           # optional
           enable_formatted_messaging: true
@@ -1220,8 +1220,8 @@ Examples
     - name: Delete service_connector using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_sch_service_connector:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
         state: absent
 
 

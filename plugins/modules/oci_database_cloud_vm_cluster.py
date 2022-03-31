@@ -46,24 +46,6 @@ options:
               cluster.
             - Required for create using I(state=present).
         type: str
-    cpu_core_count:
-        description:
-            - "The number of CPU cores to enable for a cloud VM cluster. Valid values depend on the specified shape:"
-            - "- Exadata.Base.48 - Specify a multiple of 2, from 0 to 48.
-              - Exadata.Quarter1.84 - Specify a multiple of 2, from 22 to 84.
-              - Exadata.Half1.168 - Specify a multiple of 4, from 44 to 168.
-              - Exadata.Full1.336 - Specify a multiple of 8, from 88 to 336.
-              - Exadata.Quarter2.92 - Specify a multiple of 2, from 0 to 92.
-              - Exadata.Half2.184 - Specify a multiple of 4, from 0 to 184.
-              - Exadata.Full2.368 - Specify a multiple of 8, from 0 to 368."
-            - Required for create using I(state=present).
-            - This parameter is updatable.
-        type: int
-    ocpu_count:
-        description:
-            - The number of OCPU cores to enable for a cloud VM cluster. Only 1 decimal place is allowed for the fractional part.
-            - This parameter is updatable.
-        type: float
     cluster_name:
         description:
             - The cluster name for cloud VM cluster. The cluster name must begin with an alphabetic character, and may contain hyphens (-). Underscores (_) are
@@ -77,14 +59,6 @@ options:
               Configuration,https://docs.cloud.oracle.com/Content/Database/Concepts/exaoverview.htm#Exadata) in the Exadata documentation for details on the
               impact of the configuration settings on storage.
         type: int
-    display_name:
-        description:
-            - The user-friendly name for the cloud VM cluster. The name does not need to be unique.
-            - Required for create using I(state=present).
-            - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
     cloud_exadata_infrastructure_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the cloud Exadata infrastructure resource.
@@ -107,21 +81,6 @@ options:
               (do not provide one). Otherwise, provide a valid DNS domain name. Hyphens (-) are not permitted.
               Applies to Exadata Cloud Service instances only.
         type: str
-    ssh_public_keys:
-        description:
-            - The public key portion of one or more key pairs used for SSH access to the cloud VM cluster.
-            - Required for create using I(state=present).
-            - This parameter is updatable.
-        type: list
-        elements: str
-    license_model:
-        description:
-            - The Oracle license model that applies to the cloud VM cluster. The default is BRING_YOUR_OWN_LICENSE.
-            - This parameter is updatable.
-        type: str
-        choices:
-            - "LICENSE_INCLUDED"
-            - "BRING_YOUR_OWN_LICENSE"
     is_sparse_diskgroup_enabled:
         description:
             - If true, the sparse disk group is configured for the cloud VM cluster. If false, the sparse disk group is not created.
@@ -144,50 +103,52 @@ options:
         description:
             - The TCPS Single Client Access Name (SCAN) port. The default port is 2484.
         type: int
-    nsg_ids:
-        description:
-            - "A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this
-              resource belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs,
-              see L(Security Rules,https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
-              **NsgIds restrictions:**
-              - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds array cannot be empty."
-            - This parameter is updatable.
-        type: list
-        elements: str
-    backup_network_nsg_ids:
-        description:
-            - A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that the
-              backup network of this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more
-              information about NSGs, see L(Security Rules,https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm). Applicable only to Exadata
-              systems.
-            - This parameter is updatable.
-        type: list
-        elements: str
     gi_version:
         description:
             - A valid Oracle Grid Infrastructure (GI) software version.
             - Required for create using I(state=present).
         type: str
-    freeform_tags:
+    display_name:
         description:
-            - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
-              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-            - "Example: `{\\"Department\\": \\"Finance\\"}`"
-            - This parameter is updatable.
-        type: dict
-    defined_tags:
-        description:
-            - Defined tags for this resource. Each key is predefined and scoped to a namespace.
-              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-            - This parameter is updatable.
-        type: dict
-    cloud_vm_cluster_id:
-        description:
-            - The cloud VM cluster L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-            - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+            - The user-friendly name for the cloud VM cluster. The name does not need to be unique.
+            - Required for create using I(state=present).
+            - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
-        aliases: ["id"]
+        aliases: ["name"]
+    cpu_core_count:
+        description:
+            - "The number of CPU cores to enable for a cloud VM cluster. Valid values depend on the specified shape:"
+            - "- Exadata.Base.48 - Specify a multiple of 2, from 0 to 48.
+              - Exadata.Quarter1.84 - Specify a multiple of 2, from 22 to 84.
+              - Exadata.Half1.168 - Specify a multiple of 4, from 44 to 168.
+              - Exadata.Full1.336 - Specify a multiple of 8, from 88 to 336.
+              - Exadata.Quarter2.92 - Specify a multiple of 2, from 0 to 92.
+              - Exadata.Half2.184 - Specify a multiple of 4, from 0 to 184.
+              - Exadata.Full2.368 - Specify a multiple of 8, from 0 to 368."
+            - Required for create using I(state=present).
+            - This parameter is updatable.
+        type: int
+    ocpu_count:
+        description:
+            - The number of OCPU cores to enable for a cloud VM cluster. Only 1 decimal place is allowed for the fractional part.
+            - This parameter is updatable.
+        type: float
+    license_model:
+        description:
+            - The Oracle license model that applies to the cloud VM cluster. The default is BRING_YOUR_OWN_LICENSE.
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "LICENSE_INCLUDED"
+            - "BRING_YOUR_OWN_LICENSE"
+    ssh_public_keys:
+        description:
+            - The public key portion of one or more key pairs used for SSH access to the cloud VM cluster.
+            - Required for create using I(state=present).
+            - This parameter is updatable.
+        type: list
+        elements: str
     update_details:
         description:
             - ""
@@ -209,6 +170,25 @@ options:
                     - "NON_ROLLING_APPLY"
                     - "PRECHECK"
                     - "ROLLBACK"
+    nsg_ids:
+        description:
+            - "A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this
+              resource belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs,
+              see L(Security Rules,https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
+              **NsgIds restrictions:**
+              - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds array cannot be empty."
+            - This parameter is updatable.
+        type: list
+        elements: str
+    backup_network_nsg_ids:
+        description:
+            - A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that the
+              backup network of this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more
+              information about NSGs, see L(Security Rules,https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm). Applicable only to Exadata
+              systems.
+            - This parameter is updatable.
+        type: list
+        elements: str
     compute_nodes:
         description:
             - The list of compute servers to be added to the cloud VM cluster.
@@ -220,6 +200,26 @@ options:
             - The disk group size to be allocated in GBs.
             - This parameter is updatable.
         type: int
+    freeform_tags:
+        description:
+            - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
+        type: dict
+    defined_tags:
+        description:
+            - Defined tags for this resource. Each key is predefined and scoped to a namespace.
+              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+            - This parameter is updatable.
+        type: dict
+    cloud_vm_cluster_id:
+        description:
+            - The cloud VM cluster L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+            - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["id"]
     state:
         description:
             - The state of the CloudVmCluster.
@@ -239,24 +239,24 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     backup_subnet_id: "ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx"
-    cpu_core_count: 56
-    display_name: display_name_example
     cloud_exadata_infrastructure_id: "ocid1.cloudexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
     hostname: hostname_example
-    ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
     gi_version: gi_version_example
+    display_name: display_name_example
+    cpu_core_count: 56
+    ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
 
     # optional
-    ocpu_count: 3.4
     cluster_name: cluster_name_example
     data_storage_percentage: 56
     domain: domain_example
-    license_model: LICENSE_INCLUDED
     is_sparse_diskgroup_enabled: true
     is_local_backup_enabled: true
     time_zone: time_zone_example
     scan_listener_port_tcp: 56
     scan_listener_port_tcp_ssl: 56
+    ocpu_count: 3.4
+    license_model: LICENSE_INCLUDED
     nsg_ids: [ "nsg_ids_example" ]
     backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
     freeform_tags: {'Department': 'Finance'}
@@ -268,21 +268,21 @@ EXAMPLES = """
     cloud_vm_cluster_id: "ocid1.cloudvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    display_name: display_name_example
     cpu_core_count: 56
     ocpu_count: 3.4
-    display_name: display_name_example
-    ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
     license_model: LICENSE_INCLUDED
-    nsg_ids: [ "nsg_ids_example" ]
-    backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
     update_details:
       # optional
       update_id: "ocid1.update.oc1..xxxxxxEXAMPLExxxxxx"
       update_action: ROLLING_APPLY
+    nsg_ids: [ "nsg_ids_example" ]
+    backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
     compute_nodes: [ "compute_nodes_example" ]
     storage_size_in_gbs: 56
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update cloud_vm_cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_cloud_vm_cluster:
@@ -293,18 +293,18 @@ EXAMPLES = """
     # optional
     cpu_core_count: 56
     ocpu_count: 3.4
-    ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
     license_model: LICENSE_INCLUDED
-    nsg_ids: [ "nsg_ids_example" ]
-    backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
     update_details:
       # optional
       update_id: "ocid1.update.oc1..xxxxxxEXAMPLExxxxxx"
       update_action: ROLLING_APPLY
+    nsg_ids: [ "nsg_ids_example" ]
+    backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
     compute_nodes: [ "compute_nodes_example" ]
     storage_size_in_gbs: 56
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete cloud_vm_cluster
   oci_database_cloud_vm_cluster:
@@ -873,29 +873,24 @@ def main():
             compartment_id=dict(type="str"),
             subnet_id=dict(type="str"),
             backup_subnet_id=dict(type="str"),
-            cpu_core_count=dict(type="int"),
-            ocpu_count=dict(type="float"),
             cluster_name=dict(type="str"),
             data_storage_percentage=dict(type="int"),
-            display_name=dict(aliases=["name"], type="str"),
             cloud_exadata_infrastructure_id=dict(type="str"),
             hostname=dict(type="str"),
             domain=dict(type="str"),
-            ssh_public_keys=dict(type="list", elements="str", no_log=True),
-            license_model=dict(
-                type="str", choices=["LICENSE_INCLUDED", "BRING_YOUR_OWN_LICENSE"]
-            ),
             is_sparse_diskgroup_enabled=dict(type="bool"),
             is_local_backup_enabled=dict(type="bool"),
             time_zone=dict(type="str"),
             scan_listener_port_tcp=dict(type="int"),
             scan_listener_port_tcp_ssl=dict(type="int"),
-            nsg_ids=dict(type="list", elements="str"),
-            backup_network_nsg_ids=dict(type="list", elements="str"),
             gi_version=dict(type="str"),
-            freeform_tags=dict(type="dict"),
-            defined_tags=dict(type="dict"),
-            cloud_vm_cluster_id=dict(aliases=["id"], type="str"),
+            display_name=dict(aliases=["name"], type="str"),
+            cpu_core_count=dict(type="int"),
+            ocpu_count=dict(type="float"),
+            license_model=dict(
+                type="str", choices=["LICENSE_INCLUDED", "BRING_YOUR_OWN_LICENSE"]
+            ),
+            ssh_public_keys=dict(type="list", elements="str", no_log=True),
             update_details=dict(
                 type="dict",
                 options=dict(
@@ -911,8 +906,13 @@ def main():
                     ),
                 ),
             ),
+            nsg_ids=dict(type="list", elements="str"),
+            backup_network_nsg_ids=dict(type="list", elements="str"),
             compute_nodes=dict(type="list", elements="str"),
             storage_size_in_gbs=dict(type="int"),
+            freeform_tags=dict(type="dict"),
+            defined_tags=dict(type="dict"),
+            cloud_vm_cluster_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

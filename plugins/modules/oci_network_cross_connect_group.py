@@ -104,6 +104,11 @@ options:
                             - This parameter is updatable.
                         type: str
                         required: true
+                    connectivity_association_name_secret_version:
+                        description:
+                            - The secret version of the connectivity association name secret in Vault.
+                            - This parameter is updatable.
+                        type: int
                     connectivity_association_key_secret_id:
                         description:
                             - Secret L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) containing the Connectivity Association
@@ -112,11 +117,6 @@ options:
                             - This parameter is updatable.
                         type: str
                         required: true
-                    connectivity_association_name_secret_version:
-                        description:
-                            - The secret version of the connectivity association name secret in Vault.
-                            - This parameter is updatable.
-                        type: int
                     connectivity_association_key_secret_version:
                         description:
                             - The secret version of the connectivityAssociationKey secret in Vault.
@@ -562,11 +562,11 @@ def main():
                             connectivity_association_name_secret_id=dict(
                                 type="str", required=True
                             ),
-                            connectivity_association_key_secret_id=dict(
-                                type="str", required=True
-                            ),
                             connectivity_association_name_secret_version=dict(
                                 type="int", no_log=True
+                            ),
+                            connectivity_association_key_secret_id=dict(
+                                type="str", required=True
                             ),
                             connectivity_association_key_secret_version=dict(
                                 type="int", no_log=True

@@ -36,6 +36,11 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    drg_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the DRG the RPC belongs to.
+            - Required for create using I(state=present).
+        type: str
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
@@ -51,11 +56,6 @@ options:
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
-    drg_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the DRG the RPC belongs to.
-            - Required for create using I(state=present).
-        type: str
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -411,9 +411,9 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
+            drg_id=dict(type="str"),
             defined_tags=dict(type="dict"),
             display_name=dict(aliases=["name"], type="str"),
-            drg_id=dict(type="str"),
             freeform_tags=dict(type="dict"),
             remote_peering_connection_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),

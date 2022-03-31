@@ -59,17 +59,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment that you want to move the key to.
+            - Required for I(action=change_compartment).
+        type: str
     key_id:
         description:
             - The OCID of the key.
         type: str
         aliases: ["id"]
         required: true
-    compartment_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment that you want to move the key to.
-            - Required for I(action=change_compartment).
-        type: str
     time_of_deletion:
         description:
             - An optional property to indicate when to delete the vault, expressed in
@@ -109,8 +109,8 @@ EXAMPLES = """
 - name: Perform action change_compartment on key
   oci_key_management_key_actions:
     # required
-    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
     service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
@@ -453,8 +453,8 @@ def main():
     )
     module_args.update(
         dict(
-            key_id=dict(aliases=["id"], type="str", required=True),
             compartment_id=dict(type="str"),
+            key_id=dict(aliases=["id"], type="str", required=True),
             time_of_deletion=dict(type="str"),
             service_endpoint=dict(type="str", required=True),
             action=dict(

@@ -30,7 +30,7 @@ oracle.oci.oci_database_db_home -- Manage a DbHome resource in Oracle Cloud Infr
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -1144,20 +1144,19 @@ Examples
     - name: Create db_home with source = DATABASE
       oci_database_db_home:
         # required
-        source: DATABASE
         db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+        source: DATABASE
         database:
           # required
           admin_password: example-password
 
           # optional
           database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-          backup_tde_password: example-password
-          db_unique_name: db_unique_name_example
-          db_name: db_name_example
           time_stamp_for_point_in_time_recovery: time_stamp_for_point_in_time_recovery_example
           backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
-          sid_prefix: sid_prefix_example
+          backup_tde_password: example-password
+          db_name: db_name_example
+          db_unique_name: db_unique_name_example
           database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
           pdb_name: pdb_name_example
           tde_wallet_password: example-password
@@ -1180,6 +1179,7 @@ Examples
               internet_proxy: internet_proxy_example
           freeform_tags: {'Department': 'Finance'}
           defined_tags: {'Operations': {'CostCenter': 'US'}}
+          sid_prefix: sid_prefix_example
 
         # optional
         display_name: display_name_example
@@ -1191,20 +1191,19 @@ Examples
     - name: Create db_home with source = DB_BACKUP
       oci_database_db_home:
         # required
-        source: DB_BACKUP
         db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+        source: DB_BACKUP
         database:
           # required
           admin_password: example-password
 
           # optional
           database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-          backup_tde_password: example-password
-          db_unique_name: db_unique_name_example
-          db_name: db_name_example
           time_stamp_for_point_in_time_recovery: time_stamp_for_point_in_time_recovery_example
           backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
-          sid_prefix: sid_prefix_example
+          backup_tde_password: example-password
+          db_name: db_name_example
+          db_unique_name: db_unique_name_example
           database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
           pdb_name: pdb_name_example
           tde_wallet_password: example-password
@@ -1227,6 +1226,7 @@ Examples
               internet_proxy: internet_proxy_example
           freeform_tags: {'Department': 'Finance'}
           defined_tags: {'Operations': {'CostCenter': 'US'}}
+          sid_prefix: sid_prefix_example
 
         # optional
         display_name: display_name_example
@@ -1239,18 +1239,18 @@ Examples
       oci_database_db_home:
         # required
         source: VM_CLUSTER_BACKUP
+        vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
         database:
           # required
           admin_password: example-password
 
           # optional
           database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-          backup_tde_password: example-password
-          db_unique_name: db_unique_name_example
-          db_name: db_name_example
           time_stamp_for_point_in_time_recovery: time_stamp_for_point_in_time_recovery_example
           backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
-          sid_prefix: sid_prefix_example
+          backup_tde_password: example-password
+          db_name: db_name_example
+          db_unique_name: db_unique_name_example
           database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
           pdb_name: pdb_name_example
           tde_wallet_password: example-password
@@ -1273,7 +1273,7 @@ Examples
               internet_proxy: internet_proxy_example
           freeform_tags: {'Department': 'Finance'}
           defined_tags: {'Operations': {'CostCenter': 'US'}}
-        vm_cluster_id: "ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx"
+          sid_prefix: sid_prefix_example
 
         # optional
         display_name: display_name_example
@@ -1294,18 +1294,18 @@ Examples
         database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
         source: NONE
         is_desupported_version: true
+        db_version: db_version_example
         database:
           # required
           admin_password: example-password
 
           # optional
           database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-          backup_tde_password: example-password
-          db_unique_name: db_unique_name_example
-          db_name: db_name_example
           time_stamp_for_point_in_time_recovery: time_stamp_for_point_in_time_recovery_example
           backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
-          sid_prefix: sid_prefix_example
+          backup_tde_password: example-password
+          db_name: db_name_example
+          db_unique_name: db_unique_name_example
           database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
           pdb_name: pdb_name_example
           tde_wallet_password: example-password
@@ -1328,7 +1328,7 @@ Examples
               internet_proxy: internet_proxy_example
           freeform_tags: {'Department': 'Finance'}
           defined_tags: {'Operations': {'CostCenter': 'US'}}
-        db_version: db_version_example
+          sid_prefix: sid_prefix_example
 
     - name: Create db_home with source = VM_CLUSTER_NEW
       oci_database_db_home:
@@ -1342,18 +1342,18 @@ Examples
         kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
         database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
         is_desupported_version: true
+        db_version: db_version_example
         database:
           # required
           admin_password: example-password
 
           # optional
           database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-          backup_tde_password: example-password
-          db_unique_name: db_unique_name_example
-          db_name: db_name_example
           time_stamp_for_point_in_time_recovery: time_stamp_for_point_in_time_recovery_example
           backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
-          sid_prefix: sid_prefix_example
+          backup_tde_password: example-password
+          db_name: db_name_example
+          db_unique_name: db_unique_name_example
           database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
           pdb_name: pdb_name_example
           tde_wallet_password: example-password
@@ -1376,7 +1376,7 @@ Examples
               internet_proxy: internet_proxy_example
           freeform_tags: {'Department': 'Finance'}
           defined_tags: {'Operations': {'CostCenter': 'US'}}
-        db_version: db_version_example
+          sid_prefix: sid_prefix_example
 
     - name: Update db_home
       oci_database_db_home:

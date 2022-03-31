@@ -42,6 +42,11 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    source_db_system_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.
+            - Required when source is 'DB_SYSTEM'
+        type: str
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment the DB system  belongs in.
@@ -94,35 +99,6 @@ options:
               Applicable only to Exadata DB systems.
             - "**Subnet Restrictions:** See the subnet restrictions information for **subnetId**."
         type: str
-    nsg_ids:
-        description:
-            - "A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this
-              resource belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs,
-              see L(Security Rules,https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
-              **NsgIds restrictions:**
-              - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds array cannot be empty."
-            - This parameter is updatable.
-        type: list
-        elements: str
-    backup_network_nsg_ids:
-        description:
-            - A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that the
-              backup network of this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more
-              information about NSGs, see L(Security Rules,https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm). Applicable only to Exadata
-              systems.
-            - This parameter is updatable.
-        type: list
-        elements: str
-    shape:
-        description:
-            - "The shape of the DB system. The shape determines resources allocated to the DB system.
-              - For virtual machine shapes, the number of CPU cores and memory
-              - For bare metal and Exadata shapes, the number of CPU cores, memory, and storage"
-            - To get a list of shapes, use the L(ListDbSystemShapes,https://docs.cloud.oracle.com/en-
-              us/iaas/api/#/en/database/latest/DbSystemShapeSummary/ListDbSystemShapes) operation.
-            - Required for create using I(state=present).
-            - This parameter is updatable.
-        type: str
     time_zone:
         description:
             - The time zone to use for the DB system. For details, see L(DB System Time
@@ -147,14 +123,6 @@ options:
         description:
             - If true, Sparse Diskgroup is configured for Exadata dbsystem. If False, Sparse diskgroup is not configured.
         type: bool
-    ssh_public_keys:
-        description:
-            - The public key portion of the key pair to use for SSH access to the DB system. Multiple public keys can be provided. The length of the combined
-              keys cannot exceed 40,000 characters.
-            - Required for create using I(state=present).
-            - This parameter is updatable.
-        type: list
-        elements: str
     hostname:
         description:
             - The hostname for the DB system. The hostname must begin with an alphabetic character, and
@@ -171,24 +139,6 @@ options:
               Resolver is enabled for the specified subnet, the domain name for the subnet is used
               (do not provide one). Otherwise, provide a valid DNS domain name. Hyphens (-) are not permitted.
         type: str
-    cpu_core_count:
-        description:
-            - "The number of CPU cores to enable for a bare metal or Exadata DB system. The valid values depend on the specified shape:"
-            - "- BM.DenseIO1.36 - Specify a multiple of 2, from 2 to 36.
-              - BM.DenseIO2.52 - Specify a multiple of 2, from 2 to 52.
-              - Exadata.Base.48 - Specify a multiple of 2, from 0 to 48.
-              - Exadata.Quarter1.84 - Specify a multiple of 2, from 22 to 84.
-              - Exadata.Half1.168 - Specify a multiple of 4, from 44 to 168.
-              - Exadata.Full1.336 - Specify a multiple of 8, from 88 to 336.
-              - Exadata.Quarter2.92 - Specify a multiple of 2, from 0 to 92.
-              - Exadata.Half2.184 - Specify a multiple of 4, from 0 to 184.
-              - Exadata.Full2.368 - Specify a multiple of 8, from 0 to 368."
-            - This parameter is not used for virtual machine DB systems because virtual machine DB systems have a set number of cores for each shape.
-              For information about the number of cores for a virtual machine DB system shape, see L(Virtual Machine DB
-              Systems,https://docs.cloud.oracle.com/Content/Database/Concepts/overview.htm#virtualmachine)
-            - Required for create using I(state=present).
-            - This parameter is updatable.
-        type: int
     cluster_name:
         description:
             - The cluster name for Exadata and 2-node RAC virtual machine DB systems. The cluster name must begin with an alphabetic character, and may contain
@@ -200,14 +150,6 @@ options:
               The remaining percentage is assigned to RECO storage (database redo logs, archive logs, and recovery manager backups).
               Specify 80 or 40. The default is 80 percent assigned to DATA storage. Not applicable for virtual machine DB systems.
         type: int
-    data_storage_size_in_gbs:
-        description:
-            - Size (in GB) of the initial data volume that will be created and attached to a virtual machine DB system. You can scale up storage after
-              provisioning, as needed. Note that the total storage size attached will be more than the amount you specify to allow for REDO/RECO space and
-              software volume.
-            - This parameter is updatable.
-        type: int
-        aliases: ["initial_data_storage_size_in_gb"]
     kms_key_id:
         description:
             - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
@@ -221,19 +163,6 @@ options:
         description:
             - The number of nodes to launch for a 2-node RAC virtual machine DB system. Specify either 1 or 2.
         type: int
-    freeform_tags:
-        description:
-            - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
-              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-            - "Example: `{\\"Department\\": \\"Finance\\"}`"
-            - This parameter is updatable.
-        type: dict
-    defined_tags:
-        description:
-            - Defined tags for this resource. Each key is predefined and scoped to a namespace.
-              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-            - This parameter is updatable.
-        type: dict
     source:
         description:
             - "The source of the database:
@@ -257,17 +186,30 @@ options:
             - Required for create using I(state=present).
         type: dict
         suboptions:
-            display_name:
-                description:
-                    - The user-provided name of the Database Home.
-                type: str
-                aliases: ["name"]
             db_version:
                 description:
                     - A valid Oracle Database version. To get a list of supported versions, use the L(ListDbVersions,https://docs.cloud.oracle.com/en-
                       us/iaas/api/#/en/database/latest/DbVersionSummary/ListDbVersions) operation.
                     - Required when source is 'NONE'
                 type: str
+            freeform_tags:
+                description:
+                    - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+                      For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                    - "Example: `{\\"Department\\": \\"Finance\\"}`"
+                    - Applicable when source is 'DB_SYSTEM'
+                type: dict
+            defined_tags:
+                description:
+                    - Defined tags for this resource. Each key is predefined and scoped to a namespace.
+                      For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                    - Applicable when source is 'DB_SYSTEM'
+                type: dict
+            display_name:
+                description:
+                    - The user-provided name of the Database Home.
+                type: str
+                aliases: ["name"]
             database_software_image_id:
                 description:
                     - The database software image L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -279,16 +221,6 @@ options:
                 type: dict
                 required: true
                 suboptions:
-                    db_name:
-                        description:
-                            - The database name. The name must begin with an alphabetic character and can contain a maximum of eight alphanumeric characters.
-                              Special characters are not permitted.
-                            - Required when source is 'NONE'
-                        type: str
-                    db_unique_name:
-                        description:
-                            - The `DB_UNIQUE_NAME` of the Oracle Database being backed up.
-                        type: str
                     database_software_image_id:
                         description:
                             - The database software image L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
@@ -300,12 +232,6 @@ options:
                               alphanumeric characters. Special characters are not permitted. Pluggable database should not be same as database name.
                             - Applicable when source is 'NONE'
                         type: str
-                    admin_password:
-                        description:
-                            - "A strong password for SYS, SYSTEM, and PDB Admin. The password must be at least nine characters and contain at least two
-                              uppercase, two lowercase, two numbers, and two special characters. The special characters must be _, #, or -."
-                        type: str
-                        required: true
                     tde_wallet_password:
                         description:
                             - "The optional password to open the TDE wallet. The password must be at least nine characters and contain at least two uppercase,
@@ -342,6 +268,12 @@ options:
                         choices:
                             - "OLTP"
                             - "DSS"
+                    db_domain:
+                        description:
+                            - The database domain. In a distributed database system, DB_DOMAIN specifies the logical location of the database within the network
+                              structure.
+                            - Applicable when source is 'DB_SYSTEM'
+                        type: str
                     db_backup_config:
                         description:
                             - ""
@@ -438,26 +370,10 @@ options:
                               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
                             - Applicable when source is one of ['DB_SYSTEM', 'NONE']
                         type: dict
-                    sid_prefix:
-                        description:
-                            - Specifies a prefix for the `Oracle SID` of the database to be created.
-                            - Applicable when source is one of ['NONE', 'DB_BACKUP']
-                        type: str
-                    db_domain:
-                        description:
-                            - The database domain. In a distributed database system, DB_DOMAIN specifies the logical location of the database within the network
-                              structure.
-                            - Applicable when source is 'DB_SYSTEM'
-                        type: str
                     database_id:
                         description:
                             - The database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
                             - Required when source is 'DATABASE'
-                        type: str
-                    backup_tde_password:
-                        description:
-                            - The password to open the TDE wallet.
-                            - Applicable when source is one of ['DATABASE', 'DB_BACKUP']
                         type: str
                     time_stamp_for_point_in_time_recovery:
                         description:
@@ -470,19 +386,32 @@ options:
                             - The backup L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
                             - Required when source is 'DB_BACKUP'
                         type: str
-            freeform_tags:
-                description:
-                    - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
-                      For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                    - "Example: `{\\"Department\\": \\"Finance\\"}`"
-                    - Applicable when source is 'DB_SYSTEM'
-                type: dict
-            defined_tags:
-                description:
-                    - Defined tags for this resource. Each key is predefined and scoped to a namespace.
-                      For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-                    - Applicable when source is 'DB_SYSTEM'
-                type: dict
+                    backup_tde_password:
+                        description:
+                            - The password to open the TDE wallet.
+                            - Applicable when source is one of ['DATABASE', 'DB_BACKUP']
+                        type: str
+                    admin_password:
+                        description:
+                            - "A strong password for SYS, SYSTEM, and PDB Admin. The password must be at least nine characters and contain at least two
+                              uppercase, two lowercase, two numbers, and two special characters. The special characters must be _, #, or -."
+                        type: str
+                        required: true
+                    db_unique_name:
+                        description:
+                            - The `DB_UNIQUE_NAME` of the Oracle Database being backed up.
+                        type: str
+                    db_name:
+                        description:
+                            - The database name. The name must begin with an alphabetic character and can contain a maximum of eight alphanumeric characters.
+                              Special characters are not permitted.
+                            - Required when source is 'NONE'
+                        type: str
+                    sid_prefix:
+                        description:
+                            - Specifies a prefix for the `Oracle SID` of the database to be created.
+                            - Applicable when source is one of ['NONE', 'DB_BACKUP']
+                        type: str
     database_edition:
         description:
             - The Oracle Database Edition that applies to all the databases on the DB system.
@@ -504,6 +433,106 @@ options:
         choices:
             - "HIGH"
             - "NORMAL"
+    cpu_core_count:
+        description:
+            - "The number of CPU cores to enable for a bare metal or Exadata DB system. The valid values depend on the specified shape:"
+            - "- BM.DenseIO1.36 - Specify a multiple of 2, from 2 to 36.
+              - BM.DenseIO2.52 - Specify a multiple of 2, from 2 to 52.
+              - Exadata.Base.48 - Specify a multiple of 2, from 0 to 48.
+              - Exadata.Quarter1.84 - Specify a multiple of 2, from 22 to 84.
+              - Exadata.Half1.168 - Specify a multiple of 4, from 44 to 168.
+              - Exadata.Full1.336 - Specify a multiple of 8, from 88 to 336.
+              - Exadata.Quarter2.92 - Specify a multiple of 2, from 0 to 92.
+              - Exadata.Half2.184 - Specify a multiple of 4, from 0 to 184.
+              - Exadata.Full2.368 - Specify a multiple of 8, from 0 to 368."
+            - This parameter is not used for virtual machine DB systems because virtual machine DB systems have a set number of cores for each shape.
+              For information about the number of cores for a virtual machine DB system shape, see L(Virtual Machine DB
+              Systems,https://docs.cloud.oracle.com/Content/Database/Concepts/overview.htm#virtualmachine)
+            - Required for create using I(state=present).
+            - This parameter is updatable.
+        type: int
+    version:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            patch_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the patch.
+                    - This parameter is updatable.
+                type: str
+            database_software_image_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database software image.
+                    - This parameter is updatable.
+                type: str
+            action:
+                description:
+                    - The action to perform on the patch.
+                    - This parameter is updatable.
+                type: str
+                choices:
+                    - "APPLY"
+                    - "PRECHECK"
+    ssh_public_keys:
+        description:
+            - The public key portion of the key pair to use for SSH access to the DB system. Multiple public keys can be provided. The length of the combined
+              keys cannot exceed 40,000 characters.
+            - Required for create using I(state=present).
+            - This parameter is updatable.
+        type: list
+        elements: str
+    data_storage_size_in_gbs:
+        description:
+            - Size (in GB) of the initial data volume that will be created and attached to a virtual machine DB system. You can scale up storage after
+              provisioning, as needed. Note that the total storage size attached will be more than the amount you specify to allow for REDO/RECO space and
+              software volume.
+            - This parameter is updatable.
+        type: int
+        aliases: ["initial_data_storage_size_in_gb"]
+    freeform_tags:
+        description:
+            - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
+        type: dict
+    defined_tags:
+        description:
+            - Defined tags for this resource. Each key is predefined and scoped to a namespace.
+              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+            - This parameter is updatable.
+        type: dict
+    shape:
+        description:
+            - "The shape of the DB system. The shape determines resources allocated to the DB system.
+              - For virtual machine shapes, the number of CPU cores and memory
+              - For bare metal and Exadata shapes, the number of CPU cores, memory, and storage"
+            - To get a list of shapes, use the L(ListDbSystemShapes,https://docs.cloud.oracle.com/en-
+              us/iaas/api/#/en/database/latest/DbSystemShapeSummary/ListDbSystemShapes) operation.
+            - Required for create using I(state=present).
+            - This parameter is updatable.
+        type: str
+    nsg_ids:
+        description:
+            - "A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this
+              resource belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs,
+              see L(Security Rules,https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
+              **NsgIds restrictions:**
+              - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds array cannot be empty."
+            - This parameter is updatable.
+        type: list
+        elements: str
+    backup_network_nsg_ids:
+        description:
+            - A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that the
+              backup network of this DB system belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more
+              information about NSGs, see L(Security Rules,https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm). Applicable only to Exadata
+              systems.
+            - This parameter is updatable.
+        type: list
+        elements: str
     license_model:
         description:
             - The Oracle license model that applies to all the databases on the DB system. The default is LICENSE_INCLUDED.
@@ -599,11 +628,6 @@ options:
                     - Lead time window allows user to set a lead time to prepare for a down time. The lead time is in weeks and valid value is between 1 to 4.
                     - Applicable when source is 'NONE'
                 type: int
-    source_db_system_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB system.
-            - Required when source is 'DB_SYSTEM'
-        type: str
     db_system_id:
         description:
             - The DB system L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -611,30 +635,6 @@ options:
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["id"]
-    version:
-        description:
-            - ""
-            - This parameter is updatable.
-        type: dict
-        suboptions:
-            patch_id:
-                description:
-                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the patch.
-                    - This parameter is updatable.
-                type: str
-            database_software_image_id:
-                description:
-                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database software image.
-                    - This parameter is updatable.
-                type: str
-            action:
-                description:
-                    - The action to perform on the patch.
-                    - This parameter is updatable.
-                type: str
-                choices:
-                    - "APPLY"
-                    - "PRECHECK"
     state:
         description:
             - The state of the DbSystem.
@@ -654,10 +654,7 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     availability_domain: Uocm:PHX-AD-1
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-    shape: shape_example
-    ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
     hostname: hostname_example
-    cpu_core_count: 56
     db_home:
       # required
       database:
@@ -665,14 +662,13 @@ EXAMPLES = """
         admin_password: example-password
 
         # optional
-        db_name: db_name_example
-        db_unique_name: db_unique_name_example
         database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
         pdb_name: pdb_name_example
         tde_wallet_password: example-password
         character_set: character_set_example
         ncharacter_set: ncharacter_set_example
         db_workload: OLTP
+        db_domain: db_domain_example
         db_backup_config:
           # optional
           auto_backup_enabled: true
@@ -689,27 +685,29 @@ EXAMPLES = """
             internet_proxy: internet_proxy_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        sid_prefix: sid_prefix_example
-        db_domain: db_domain_example
         database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-        backup_tde_password: example-password
         time_stamp_for_point_in_time_recovery: time_stamp_for_point_in_time_recovery_example
         backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
+        backup_tde_password: example-password
+        db_unique_name: db_unique_name_example
+        db_name: db_name_example
+        sid_prefix: sid_prefix_example
 
             # optional
-      display_name: display_name_example
       db_version: db_version_example
-      database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
       freeform_tags: {'Department': 'Finance'}
       defined_tags: {'Operations': {'CostCenter': 'US'}}
+      display_name: display_name_example
+      database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
     database_edition: STANDARD_EDITION
+    cpu_core_count: 56
+    ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
+    shape: shape_example
 
     # optional
     fault_domains: [ "fault_domains_example" ]
     display_name: display_name_example
     backup_subnet_id: "ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx"
-    nsg_ids: [ "nsg_ids_example" ]
-    backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
     time_zone: time_zone_example
     db_system_options:
       # optional
@@ -718,15 +716,17 @@ EXAMPLES = """
     domain: domain_example
     cluster_name: cluster_name_example
     data_storage_percentage: 56
-    data_storage_size_in_gbs: 56
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
     node_count: 56
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
     source: NONE
     private_ip: private_ip_example
     disk_redundancy: HIGH
+    data_storage_size_in_gbs: 56
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    nsg_ids: [ "nsg_ids_example" ]
+    backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
     license_model: LICENSE_INCLUDED
     maintenance_window_details:
       # required
@@ -746,13 +746,11 @@ EXAMPLES = """
 - name: Create db_system with source = DB_SYSTEM
   oci_database_db_system:
     # required
+    source_db_system_id: "ocid1.sourcedbsystem.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     availability_domain: Uocm:PHX-AD-1
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-    shape: shape_example
-    ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
     hostname: hostname_example
-    cpu_core_count: 56
     source: DB_SYSTEM
     db_home:
       # required
@@ -761,14 +759,13 @@ EXAMPLES = """
         admin_password: example-password
 
         # optional
-        db_name: db_name_example
-        db_unique_name: db_unique_name_example
         database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
         pdb_name: pdb_name_example
         tde_wallet_password: example-password
         character_set: character_set_example
         ncharacter_set: ncharacter_set_example
         db_workload: OLTP
+        db_domain: db_domain_example
         db_backup_config:
           # optional
           auto_backup_enabled: true
@@ -785,27 +782,28 @@ EXAMPLES = """
             internet_proxy: internet_proxy_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        sid_prefix: sid_prefix_example
-        db_domain: db_domain_example
         database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-        backup_tde_password: example-password
         time_stamp_for_point_in_time_recovery: time_stamp_for_point_in_time_recovery_example
         backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
+        backup_tde_password: example-password
+        db_unique_name: db_unique_name_example
+        db_name: db_name_example
+        sid_prefix: sid_prefix_example
 
             # optional
-      display_name: display_name_example
       db_version: db_version_example
-      database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
       freeform_tags: {'Department': 'Finance'}
       defined_tags: {'Operations': {'CostCenter': 'US'}}
-    source_db_system_id: "ocid1.sourcedbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+      display_name: display_name_example
+      database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+    cpu_core_count: 56
+    ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
+    shape: shape_example
 
     # optional
     fault_domains: [ "fault_domains_example" ]
     display_name: display_name_example
     backup_subnet_id: "ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx"
-    nsg_ids: [ "nsg_ids_example" ]
-    backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
     time_zone: time_zone_example
     db_system_options:
       # optional
@@ -814,13 +812,15 @@ EXAMPLES = """
     domain: domain_example
     cluster_name: cluster_name_example
     data_storage_percentage: 56
-    data_storage_size_in_gbs: 56
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
     node_count: 56
+    private_ip: private_ip_example
+    data_storage_size_in_gbs: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    private_ip: private_ip_example
+    nsg_ids: [ "nsg_ids_example" ]
+    backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
     license_model: LICENSE_INCLUDED
 
 - name: Create db_system with source = DATABASE
@@ -829,10 +829,7 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     availability_domain: Uocm:PHX-AD-1
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-    shape: shape_example
-    ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
     hostname: hostname_example
-    cpu_core_count: 56
     source: DATABASE
     db_home:
       # required
@@ -841,14 +838,13 @@ EXAMPLES = """
         admin_password: example-password
 
         # optional
-        db_name: db_name_example
-        db_unique_name: db_unique_name_example
         database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
         pdb_name: pdb_name_example
         tde_wallet_password: example-password
         character_set: character_set_example
         ncharacter_set: ncharacter_set_example
         db_workload: OLTP
+        db_domain: db_domain_example
         db_backup_config:
           # optional
           auto_backup_enabled: true
@@ -865,27 +861,29 @@ EXAMPLES = """
             internet_proxy: internet_proxy_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        sid_prefix: sid_prefix_example
-        db_domain: db_domain_example
         database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-        backup_tde_password: example-password
         time_stamp_for_point_in_time_recovery: time_stamp_for_point_in_time_recovery_example
         backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
+        backup_tde_password: example-password
+        db_unique_name: db_unique_name_example
+        db_name: db_name_example
+        sid_prefix: sid_prefix_example
 
             # optional
-      display_name: display_name_example
       db_version: db_version_example
-      database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
       freeform_tags: {'Department': 'Finance'}
       defined_tags: {'Operations': {'CostCenter': 'US'}}
+      display_name: display_name_example
+      database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
     database_edition: STANDARD_EDITION
+    cpu_core_count: 56
+    ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
+    shape: shape_example
 
     # optional
     fault_domains: [ "fault_domains_example" ]
     display_name: display_name_example
     backup_subnet_id: "ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx"
-    nsg_ids: [ "nsg_ids_example" ]
-    backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
     time_zone: time_zone_example
     db_system_options:
       # optional
@@ -894,14 +892,16 @@ EXAMPLES = """
     domain: domain_example
     cluster_name: cluster_name_example
     data_storage_percentage: 56
-    data_storage_size_in_gbs: 56
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
     node_count: 56
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
     private_ip: private_ip_example
     disk_redundancy: HIGH
+    data_storage_size_in_gbs: 56
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    nsg_ids: [ "nsg_ids_example" ]
+    backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
     license_model: LICENSE_INCLUDED
 
 - name: Create db_system with source = DB_BACKUP
@@ -910,10 +910,7 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     availability_domain: Uocm:PHX-AD-1
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-    shape: shape_example
-    ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
     hostname: hostname_example
-    cpu_core_count: 56
     source: DB_BACKUP
     db_home:
       # required
@@ -922,14 +919,13 @@ EXAMPLES = """
         admin_password: example-password
 
         # optional
-        db_name: db_name_example
-        db_unique_name: db_unique_name_example
         database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
         pdb_name: pdb_name_example
         tde_wallet_password: example-password
         character_set: character_set_example
         ncharacter_set: ncharacter_set_example
         db_workload: OLTP
+        db_domain: db_domain_example
         db_backup_config:
           # optional
           auto_backup_enabled: true
@@ -946,27 +942,29 @@ EXAMPLES = """
             internet_proxy: internet_proxy_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        sid_prefix: sid_prefix_example
-        db_domain: db_domain_example
         database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-        backup_tde_password: example-password
         time_stamp_for_point_in_time_recovery: time_stamp_for_point_in_time_recovery_example
         backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
+        backup_tde_password: example-password
+        db_unique_name: db_unique_name_example
+        db_name: db_name_example
+        sid_prefix: sid_prefix_example
 
             # optional
-      display_name: display_name_example
       db_version: db_version_example
-      database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
       freeform_tags: {'Department': 'Finance'}
       defined_tags: {'Operations': {'CostCenter': 'US'}}
+      display_name: display_name_example
+      database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
     database_edition: STANDARD_EDITION
+    cpu_core_count: 56
+    ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
+    shape: shape_example
 
     # optional
     fault_domains: [ "fault_domains_example" ]
     display_name: display_name_example
     backup_subnet_id: "ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx"
-    nsg_ids: [ "nsg_ids_example" ]
-    backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
     time_zone: time_zone_example
     db_system_options:
       # optional
@@ -975,14 +973,16 @@ EXAMPLES = """
     domain: domain_example
     cluster_name: cluster_name_example
     data_storage_percentage: 56
-    data_storage_size_in_gbs: 56
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
     node_count: 56
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
     private_ip: private_ip_example
     disk_redundancy: HIGH
+    data_storage_size_in_gbs: 56
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    nsg_ids: [ "nsg_ids_example" ]
+    backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
     license_model: LICENSE_INCLUDED
 
 - name: Update db_system
@@ -991,14 +991,19 @@ EXAMPLES = """
     db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    nsg_ids: [ "nsg_ids_example" ]
-    backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
-    shape: shape_example
-    ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
     cpu_core_count: 56
+    version:
+      # optional
+      patch_id: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
+      database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+      action: APPLY
+    ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
     data_storage_size_in_gbs: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    shape: shape_example
+    nsg_ids: [ "nsg_ids_example" ]
+    backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
     license_model: LICENSE_INCLUDED
     maintenance_window_details:
       # required
@@ -1014,11 +1019,6 @@ EXAMPLES = """
         name: MONDAY
       hours_of_day: [ "hours_of_day_example" ]
       lead_time_in_weeks: 56
-    version:
-      # optional
-      patch_id: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
-      database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
-      action: APPLY
 
 - name: Update db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_db_system:
@@ -1027,14 +1027,19 @@ EXAMPLES = """
     display_name: display_name_example
 
     # optional
-    nsg_ids: [ "nsg_ids_example" ]
-    backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
-    shape: shape_example
-    ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
     cpu_core_count: 56
+    version:
+      # optional
+      patch_id: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
+      database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+      action: APPLY
+    ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
     data_storage_size_in_gbs: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    shape: shape_example
+    nsg_ids: [ "nsg_ids_example" ]
+    backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
     license_model: LICENSE_INCLUDED
     maintenance_window_details:
       # required
@@ -1050,11 +1055,6 @@ EXAMPLES = """
         name: MONDAY
       hours_of_day: [ "hours_of_day_example" ]
       lead_time_in_weeks: 56
-    version:
-      # optional
-      patch_id: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
-      database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
-      action: APPLY
 
 - name: Delete db_system
   oci_database_db_system:
@@ -1732,15 +1732,13 @@ def main():
     )
     module_args.update(
         dict(
+            source_db_system_id=dict(type="str"),
             compartment_id=dict(type="str"),
             fault_domains=dict(type="list", elements="str"),
             display_name=dict(aliases=["name"], type="str"),
             availability_domain=dict(type="str"),
             subnet_id=dict(type="str"),
             backup_subnet_id=dict(type="str"),
-            nsg_ids=dict(type="list", elements="str"),
-            backup_network_nsg_ids=dict(type="list", elements="str"),
-            shape=dict(type="str"),
             time_zone=dict(type="str"),
             db_system_options=dict(
                 type="dict",
@@ -1749,20 +1747,13 @@ def main():
                 ),
             ),
             sparse_diskgroup=dict(type="bool"),
-            ssh_public_keys=dict(type="list", elements="str", no_log=True),
             hostname=dict(type="str"),
             domain=dict(type="str"),
-            cpu_core_count=dict(type="int"),
             cluster_name=dict(type="str"),
             data_storage_percentage=dict(type="int"),
-            data_storage_size_in_gbs=dict(
-                aliases=["initial_data_storage_size_in_gb"], type="int"
-            ),
             kms_key_id=dict(type="str"),
             kms_key_version_id=dict(type="str"),
             node_count=dict(type="int"),
-            freeform_tags=dict(type="dict"),
-            defined_tags=dict(type="dict"),
             source=dict(
                 type="str",
                 default="NONE",
@@ -1772,22 +1763,22 @@ def main():
             db_home=dict(
                 type="dict",
                 options=dict(
-                    display_name=dict(aliases=["name"], type="str"),
                     db_version=dict(type="str"),
+                    freeform_tags=dict(type="dict"),
+                    defined_tags=dict(type="dict"),
+                    display_name=dict(aliases=["name"], type="str"),
                     database_software_image_id=dict(type="str"),
                     database=dict(
                         type="dict",
                         required=True,
                         options=dict(
-                            db_name=dict(type="str"),
-                            db_unique_name=dict(type="str"),
                             database_software_image_id=dict(type="str"),
                             pdb_name=dict(type="str"),
-                            admin_password=dict(type="str", required=True, no_log=True),
                             tde_wallet_password=dict(type="str", no_log=True),
                             character_set=dict(type="str"),
                             ncharacter_set=dict(type="str"),
                             db_workload=dict(type="str", choices=["OLTP", "DSS"]),
+                            db_domain=dict(type="str"),
                             db_backup_config=dict(
                                 type="dict",
                                 options=dict(
@@ -1834,16 +1825,16 @@ def main():
                             ),
                             freeform_tags=dict(type="dict"),
                             defined_tags=dict(type="dict"),
-                            sid_prefix=dict(type="str"),
-                            db_domain=dict(type="str"),
                             database_id=dict(type="str"),
-                            backup_tde_password=dict(type="str", no_log=True),
                             time_stamp_for_point_in_time_recovery=dict(type="str"),
                             backup_id=dict(type="str"),
+                            backup_tde_password=dict(type="str", no_log=True),
+                            admin_password=dict(type="str", required=True, no_log=True),
+                            db_unique_name=dict(type="str"),
+                            db_name=dict(type="str"),
+                            sid_prefix=dict(type="str"),
                         ),
                     ),
-                    freeform_tags=dict(type="dict"),
-                    defined_tags=dict(type="dict"),
                 ),
             ),
             database_edition=dict(
@@ -1856,6 +1847,24 @@ def main():
                 ],
             ),
             disk_redundancy=dict(type="str", choices=["HIGH", "NORMAL"]),
+            cpu_core_count=dict(type="int"),
+            version=dict(
+                type="dict",
+                options=dict(
+                    patch_id=dict(type="str"),
+                    database_software_image_id=dict(type="str"),
+                    action=dict(type="str", choices=["APPLY", "PRECHECK"]),
+                ),
+            ),
+            ssh_public_keys=dict(type="list", elements="str", no_log=True),
+            data_storage_size_in_gbs=dict(
+                aliases=["initial_data_storage_size_in_gb"], type="int"
+            ),
+            freeform_tags=dict(type="dict"),
+            defined_tags=dict(type="dict"),
+            shape=dict(type="str"),
+            nsg_ids=dict(type="list", elements="str"),
+            backup_network_nsg_ids=dict(type="list", elements="str"),
             license_model=dict(
                 type="str", choices=["LICENSE_INCLUDED", "BRING_YOUR_OWN_LICENSE"]
             ),
@@ -1915,16 +1924,7 @@ def main():
                     lead_time_in_weeks=dict(type="int"),
                 ),
             ),
-            source_db_system_id=dict(type="str"),
             db_system_id=dict(aliases=["id"], type="str"),
-            version=dict(
-                type="dict",
-                options=dict(
-                    patch_id=dict(type="str"),
-                    database_software_image_id=dict(type="str"),
-                    action=dict(type="str", choices=["APPLY", "PRECHECK"]),
-                ),
-            ),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

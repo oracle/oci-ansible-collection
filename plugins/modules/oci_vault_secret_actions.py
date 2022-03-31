@@ -35,18 +35,18 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    secret_id:
-        description:
-            - The OCID of the secret.
-        type: str
-        aliases: ["id"]
-        required: true
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment
               into which the resource should be moved.
             - Required for I(action=change_compartment).
         type: str
+    secret_id:
+        description:
+            - The OCID of the secret.
+        type: str
+        aliases: ["id"]
+        required: true
     time_of_deletion:
         description:
             - An optional property indicating when to delete the secret version, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
@@ -74,8 +74,8 @@ EXAMPLES = """
 - name: Perform action change_compartment on secret
   oci_vault_secret_actions:
     # required
-    secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action schedule_secret_deletion on secret
@@ -390,8 +390,8 @@ def main():
     )
     module_args.update(
         dict(
-            secret_id=dict(aliases=["id"], type="str", required=True),
             compartment_id=dict(type="str"),
+            secret_id=dict(aliases=["id"], type="str", required=True),
             time_of_deletion=dict(type="str"),
             action=dict(
                 type="str",

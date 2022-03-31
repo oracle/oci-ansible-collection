@@ -29,11 +29,11 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    catalog_id:
+    type_key:
         description:
-            - Unique catalog identifier.
+            - The key of the data asset type. This can be obtained via the '/types' endpoint.
+            - Required for create using I(state=present).
         type: str
-        required: true
     display_name:
         description:
             - A user-friendly display name. Does not have to be unique, and it's changeable.
@@ -47,11 +47,6 @@ options:
         description:
             - Detailed description of the data asset.
             - This parameter is updatable.
-        type: str
-    type_key:
-        description:
-            - The key of the data asset type. This can be obtained via the '/types' endpoint.
-            - Required for create using I(state=present).
         type: str
     custom_property_members:
         description:
@@ -89,6 +84,11 @@ options:
               Example: `{\\"properties\\": { \\"default\\": { \\"host\\": \\"host1\\", \\"port\\": \\"1521\\", \\"database\\": \\"orcl\\"}}}`"
             - This parameter is updatable.
         type: dict
+    catalog_id:
+        description:
+            - Unique catalog identifier.
+        type: str
+        required: true
     data_asset_key:
         description:
             - Unique data asset key.
@@ -112,9 +112,9 @@ EXAMPLES = """
 - name: Create data_asset
   oci_data_catalog_data_asset:
     # required
-    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: display_name_example
     type_key: type_key_example
+    display_name: display_name_example
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     description: description_example
@@ -146,8 +146,8 @@ EXAMPLES = """
 - name: Update data_asset using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_catalog_data_asset:
     # required
-    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     description: description_example
@@ -169,8 +169,8 @@ EXAMPLES = """
 - name: Delete data_asset using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_catalog_data_asset:
     # required
-    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -626,10 +626,9 @@ def main():
     )
     module_args.update(
         dict(
-            catalog_id=dict(type="str", required=True),
+            type_key=dict(type="str", no_log=True),
             display_name=dict(aliases=["name"], type="str"),
             description=dict(type="str"),
-            type_key=dict(type="str", no_log=True),
             custom_property_members=dict(
                 type="list",
                 elements="dict",
@@ -641,6 +640,7 @@ def main():
                 ),
             ),
             properties=dict(type="dict"),
+            catalog_id=dict(type="str", required=True),
             data_asset_key=dict(aliases=["key"], type="str", no_log=True),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

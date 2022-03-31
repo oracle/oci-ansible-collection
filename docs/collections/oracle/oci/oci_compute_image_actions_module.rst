@@ -30,7 +30,7 @@ oracle.oci.oci_compute_image_actions -- Perform actions on an Image resource in 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -454,15 +454,15 @@ Examples
     - name: Perform action change_compartment on image
       oci_compute_image_actions:
         # required
-        image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
         action: change_compartment
 
     - name: Perform action export on image with destination_type = objectStorageUri
       oci_compute_image_actions:
         # required
-        destination_type: objectStorageUri
         destination_uri: destination_uri_example
+        destination_type: objectStorageUri
 
         # optional
         export_format: QCOW2

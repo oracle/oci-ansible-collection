@@ -35,41 +35,6 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
-    defined_tags:
-        description:
-            - Defined tags for this resource. Each key is predefined and scoped to a
-              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-            - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-            - This parameter is updatable.
-        type: dict
-    display_name:
-        description:
-            - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
-    freeform_tags:
-        description:
-            - Free-form tags for this resource. Each tag is a simple key-value pair with no
-              predefined name, type, or namespace. For more information, see L(Resource
-              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-            - "Example: `{\\"Department\\": \\"Finance\\"}`"
-            - This parameter is updatable.
-        type: dict
-    cool_down_in_seconds:
-        description:
-            - For threshold-based autoscaling policies, this value is the minimum period of time to wait between scaling actions.
-              The cooldown period gives the system time to stabilize before rescaling. The minimum value is 300 seconds, which
-              is also the default. The cooldown period starts when the instance pool reaches the running state.
-            - For schedule-based autoscaling policies, this value is not used.
-            - This parameter is updatable.
-        type: int
-    is_enabled:
-        description:
-            - Whether the autoscaling configuration is enabled.
-            - This parameter is updatable.
-        type: bool
     policies:
         description:
             - ""
@@ -77,52 +42,6 @@ options:
         type: list
         elements: dict
         suboptions:
-            capacity:
-                description:
-                    - The capacity requirements of the autoscaling policy.
-                type: dict
-                suboptions:
-                    max:
-                        description:
-                            - For a threshold-based autoscaling policy, this value is the maximum number of instances the instance pool is allowed
-                              to increase to (scale out).
-                            - For a schedule-based autoscaling policy, this value is not used.
-                            - Applicable when policy_type is 'scheduled'
-                        type: int
-                    min:
-                        description:
-                            - For a threshold-based autoscaling policy, this value is the minimum number of instances the instance pool is allowed
-                              to decrease to (scale in).
-                            - For a schedule-based autoscaling policy, this value is not used.
-                            - Applicable when policy_type is 'scheduled'
-                        type: int
-                    initial:
-                        description:
-                            - For a threshold-based autoscaling policy, this value is the initial number of instances to launch in the instance pool
-                              immediately after autoscaling is enabled. After autoscaling retrieves performance metrics, the number of
-                              instances is automatically adjusted from this initial number to a number that is based on the limits that
-                              you set.
-                            - For a schedule-based autoscaling policy, this value is the target pool size to scale to when executing the schedule
-                              that's defined in the autoscaling policy.
-                            - Applicable when policy_type is 'scheduled'
-                        type: int
-            display_name:
-                description:
-                    - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
-                type: str
-                aliases: ["name"]
-            policy_type:
-                description:
-                    - The type of autoscaling policy.
-                type: str
-                choices:
-                    - "scheduled"
-                    - "threshold"
-                required: true
-            is_enabled:
-                description:
-                    - Whether the autoscaling policy is enabled.
-                type: bool
             execution_schedule:
                 description:
                     - ""
@@ -175,6 +94,52 @@ options:
                             - "SOFTRESET"
                             - "RESET"
                         required: true
+            capacity:
+                description:
+                    - The capacity requirements of the autoscaling policy.
+                type: dict
+                suboptions:
+                    max:
+                        description:
+                            - For a threshold-based autoscaling policy, this value is the maximum number of instances the instance pool is allowed
+                              to increase to (scale out).
+                            - For a schedule-based autoscaling policy, this value is not used.
+                            - Applicable when policy_type is 'scheduled'
+                        type: int
+                    min:
+                        description:
+                            - For a threshold-based autoscaling policy, this value is the minimum number of instances the instance pool is allowed
+                              to decrease to (scale in).
+                            - For a schedule-based autoscaling policy, this value is not used.
+                            - Applicable when policy_type is 'scheduled'
+                        type: int
+                    initial:
+                        description:
+                            - For a threshold-based autoscaling policy, this value is the initial number of instances to launch in the instance pool
+                              immediately after autoscaling is enabled. After autoscaling retrieves performance metrics, the number of
+                              instances is automatically adjusted from this initial number to a number that is based on the limits that
+                              you set.
+                            - For a schedule-based autoscaling policy, this value is the target pool size to scale to when executing the schedule
+                              that's defined in the autoscaling policy.
+                            - Applicable when policy_type is 'scheduled'
+                        type: int
+            display_name:
+                description:
+                    - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
+                type: str
+                aliases: ["name"]
+            policy_type:
+                description:
+                    - The type of autoscaling policy.
+                type: str
+                choices:
+                    - "scheduled"
+                    - "threshold"
+                required: true
+            is_enabled:
+                description:
+                    - Whether the autoscaling policy is enabled.
+                type: bool
             rules:
                 description:
                     - ""
@@ -270,6 +235,41 @@ options:
                       configuration.
                 type: str
                 required: true
+    defined_tags:
+        description:
+            - Defined tags for this resource. Each key is predefined and scoped to a
+              namespace. For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
+        type: dict
+    display_name:
+        description:
+            - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
+    freeform_tags:
+        description:
+            - Free-form tags for this resource. Each tag is a simple key-value pair with no
+              predefined name, type, or namespace. For more information, see L(Resource
+              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
+        type: dict
+    is_enabled:
+        description:
+            - Whether the autoscaling configuration is enabled.
+            - This parameter is updatable.
+        type: bool
+    cool_down_in_seconds:
+        description:
+            - For threshold-based autoscaling policies, this value is the minimum period of time to wait between scaling actions.
+              The cooldown period gives the system time to stabilize before rescaling. The minimum value is 300 seconds, which
+              is also the default. The cooldown period starts when the instance pool reaches the running state.
+            - For schedule-based autoscaling policies, this value is not used.
+            - This parameter is updatable.
+        type: int
     auto_scaling_configuration_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the autoscaling configuration.
@@ -296,14 +296,18 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     policies:
     - # required
-      policy_type: scheduled
       execution_schedule:
         # required
         type: cron
         timezone: UTC
         expression: expression_example
+      policy_type: scheduled
 
       # optional
+      resource_action:
+        # required
+        action_type: power
+        action: STOP
       capacity:
         # optional
         max: 56
@@ -311,10 +315,6 @@ EXAMPLES = """
         initial: 56
       display_name: display_name_example
       is_enabled: true
-      resource_action:
-        # required
-        action_type: power
-        action: STOP
     resource:
       # required
       type: instancePool
@@ -324,8 +324,8 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
-    cool_down_in_seconds: 56
     is_enabled: true
+    cool_down_in_seconds: 56
 
 - name: Update auto_scaling_configuration
   oci_autoscaling_auto_scaling_configuration:
@@ -336,8 +336,8 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
-    cool_down_in_seconds: 56
     is_enabled: true
+    cool_down_in_seconds: 56
 
 - name: Update auto_scaling_configuration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_autoscaling_auto_scaling_configuration:
@@ -348,8 +348,8 @@ EXAMPLES = """
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
-    cool_down_in_seconds: 56
     is_enabled: true
+    cool_down_in_seconds: 56
 
 - name: Delete auto_scaling_configuration
   oci_autoscaling_auto_scaling_configuration:
@@ -874,28 +874,10 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
-            defined_tags=dict(type="dict"),
-            display_name=dict(aliases=["name"], type="str"),
-            freeform_tags=dict(type="dict"),
-            cool_down_in_seconds=dict(type="int"),
-            is_enabled=dict(type="bool"),
             policies=dict(
                 type="list",
                 elements="dict",
                 options=dict(
-                    capacity=dict(
-                        type="dict",
-                        options=dict(
-                            max=dict(type="int"),
-                            min=dict(type="int"),
-                            initial=dict(type="int"),
-                        ),
-                    ),
-                    display_name=dict(aliases=["name"], type="str"),
-                    policy_type=dict(
-                        type="str", required=True, choices=["scheduled", "threshold"]
-                    ),
-                    is_enabled=dict(type="bool"),
                     execution_schedule=dict(
                         type="dict",
                         options=dict(
@@ -917,6 +899,19 @@ def main():
                             ),
                         ),
                     ),
+                    capacity=dict(
+                        type="dict",
+                        options=dict(
+                            max=dict(type="int"),
+                            min=dict(type="int"),
+                            initial=dict(type="int"),
+                        ),
+                    ),
+                    display_name=dict(aliases=["name"], type="str"),
+                    policy_type=dict(
+                        type="str", required=True, choices=["scheduled", "threshold"]
+                    ),
+                    is_enabled=dict(type="bool"),
                     rules=dict(
                         type="list",
                         elements="dict",
@@ -971,6 +966,11 @@ def main():
                     id=dict(type="str", required=True),
                 ),
             ),
+            defined_tags=dict(type="dict"),
+            display_name=dict(aliases=["name"], type="str"),
+            freeform_tags=dict(type="dict"),
+            is_enabled=dict(type="bool"),
+            cool_down_in_seconds=dict(type="int"),
             auto_scaling_configuration_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

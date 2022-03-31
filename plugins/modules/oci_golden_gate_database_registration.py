@@ -28,6 +28,43 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment being referenced.
+            - Required for create using I(state=present).
+            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+        type: str
+    ip_address:
+        description:
+            - The private IP address in the customer's VCN of the customer's endpoint, typically a database.
+        type: str
+    subnet_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet being referenced.
+        type: str
+    database_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database being referenced.
+        type: str
+    vault_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer vault being referenced. If provided, this will
+              reference a vault which the customer will be required to ensure the policies are established to permit the GoldenGate Service to manage secrets
+              contained within this vault.
+        type: str
+    key_id:
+        description:
+            - "The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer \\"Master\\" key being referenced. If
+              provided, this will reference a key which the customer will be required to ensure the policies are established to permit the GoldenGate Service to
+              utilize this key to manage secrets."
+        type: str
+    secret_compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment where the the GGS Secret will be created. If
+              provided, this will reference a key which the customer will be required to ensure the policies are established to permit the GoldenGate Service to
+              utilize this Compartment in which to create a Secret.
+        type: str
     display_name:
         description:
             - An object's Display Name.
@@ -40,13 +77,6 @@ options:
         description:
             - Metadata about this specific object.
             - This parameter is updatable.
-        type: str
-    compartment_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment being referenced.
-            - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
     freeform_tags:
         description:
@@ -65,18 +95,6 @@ options:
             - A three-label Fully Qualified Domain Name (FQDN) for a resource.
             - Required for create using I(state=present).
             - This parameter is updatable.
-        type: str
-    ip_address:
-        description:
-            - The private IP address in the customer's VCN of the customer's endpoint, typically a database.
-        type: str
-    subnet_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet being referenced.
-        type: str
-    database_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database being referenced.
         type: str
     username:
         description:
@@ -118,24 +136,6 @@ options:
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
-    vault_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer vault being referenced. If provided, this will
-              reference a vault which the customer will be required to ensure the policies are established to permit the GoldenGate Service to manage secrets
-              contained within this vault.
-        type: str
-    key_id:
-        description:
-            - "The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer \\"Master\\" key being referenced. If
-              provided, this will reference a key which the customer will be required to ensure the policies are established to permit the GoldenGate Service to
-              utilize this key to manage secrets."
-        type: str
-    secret_compartment_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment where the the GGS Secret will be created. If
-              provided, this will reference a key which the customer will be required to ensure the policies are established to permit the GoldenGate Service to
-              utilize this Compartment in which to create a Secret.
-        type: str
     database_registration_id:
         description:
             - A unique DatabaseRegistration identifier.
@@ -159,26 +159,26 @@ EXAMPLES = """
 - name: Create database_registration
   oci_golden_gate_database_registration:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     fqdn: fqdn_example
     username: username_example
     password: example-password
     alias_name: alias_name_example
 
     # optional
-    description: description_example
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
     ip_address: ip_address_example
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-    connection_string: connection_string_example
-    session_mode: DIRECT
-    wallet: wallet_example
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
     secret_compartment_id: "ocid1.secretcompartment.oc1..xxxxxxEXAMPLExxxxxx"
+    description: description_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    connection_string: connection_string_example
+    session_mode: DIRECT
+    wallet: wallet_example
 
 - name: Update database_registration
   oci_golden_gate_database_registration:
@@ -201,8 +201,8 @@ EXAMPLES = """
 - name: Update database_registration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_golden_gate_database_registration:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     description: description_example
@@ -225,8 +225,8 @@ EXAMPLES = """
 - name: Delete database_registration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_golden_gate_database_registration:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -598,24 +598,24 @@ def main():
     )
     module_args.update(
         dict(
-            display_name=dict(aliases=["name"], type="str"),
-            description=dict(type="str"),
             compartment_id=dict(type="str"),
-            freeform_tags=dict(type="dict"),
-            defined_tags=dict(type="dict"),
-            fqdn=dict(type="str"),
             ip_address=dict(type="str"),
             subnet_id=dict(type="str"),
             database_id=dict(type="str"),
+            vault_id=dict(type="str"),
+            key_id=dict(type="str"),
+            secret_compartment_id=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
+            description=dict(type="str"),
+            freeform_tags=dict(type="dict"),
+            defined_tags=dict(type="dict"),
+            fqdn=dict(type="str"),
             username=dict(type="str"),
             password=dict(type="str", no_log=True),
             connection_string=dict(type="str"),
             session_mode=dict(type="str", choices=["DIRECT", "REDIRECT"]),
             wallet=dict(type="str"),
             alias_name=dict(type="str"),
-            vault_id=dict(type="str"),
-            key_id=dict(type="str"),
-            secret_compartment_id=dict(type="str"),
             database_registration_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

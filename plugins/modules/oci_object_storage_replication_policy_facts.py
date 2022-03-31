@@ -28,6 +28,12 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    replication_id:
+        description:
+            - The ID of the replication policy.
+            - Required to get a specific replication_policy.
+        type: str
+        aliases: ["id"]
     namespace_name:
         description:
             - The Object Storage namespace used for the request.
@@ -39,12 +45,6 @@ options:
               Example: `my-new-bucket1`"
         type: str
         required: true
-    replication_id:
-        description:
-            - The ID of the replication policy.
-            - Required to get a specific replication_policy.
-        type: str
-        aliases: ["id"]
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]
 """
 
@@ -52,9 +52,9 @@ EXAMPLES = """
 - name: Get a specific replication_policy
   oci_object_storage_replication_policy_facts:
     # required
+    replication_id: "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"
     namespace_name: namespace_name_example
     bucket_name: bucket_name_example
-    replication_id: "ocid1.replication.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List replication_policies
   oci_object_storage_replication_policy_facts:
@@ -204,9 +204,9 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
+            replication_id=dict(aliases=["id"], type="str"),
             namespace_name=dict(type="str", required=True),
             bucket_name=dict(type="str", required=True),
-            replication_id=dict(aliases=["id"], type="str"),
             name=dict(type="str"),
         )
     )

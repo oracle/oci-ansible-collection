@@ -35,20 +35,6 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
-    display_name:
-        description:
-            - Network load balancer identifier, which can be renamed.
-            - Required for create using I(state=present).
-            - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
-    is_preserve_source_destination:
-        description:
-            - This parameter can be enabled only if backends are compute OCIDs. When enabled, the skipSourceDestinationCheck parameter is automatically
-              enabled on the load balancer VNIC, and packets are sent to the backend with the entire IP header intact.
-            - This parameter is updatable.
-        type: bool
     reserved_ips:
         description:
             - An array of reserved Ips.
@@ -85,6 +71,20 @@ options:
             - The subnet in which the network load balancer is spawned L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
             - Required for create using I(state=present).
         type: str
+    display_name:
+        description:
+            - Network load balancer identifier, which can be renamed.
+            - Required for create using I(state=present).
+            - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
+    is_preserve_source_destination:
+        description:
+            - This parameter can be enabled only if backends are compute OCIDs. When enabled, the skipSourceDestinationCheck parameter is automatically
+              enabled on the load balancer VNIC, and packets are sent to the backend with the entire IP header intact.
+            - This parameter is updatable.
+        type: bool
     nlb_ip_version:
         description:
             - IP version associated with the NLB.
@@ -129,15 +129,15 @@ EXAMPLES = """
   oci_network_load_balancer:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: display_name_example
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
-    is_preserve_source_destination: true
     reserved_ips:
     - # optional
       id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
     is_private: true
+    is_preserve_source_destination: true
     nlb_ip_version: IPV4
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -808,13 +808,13 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
-            display_name=dict(aliases=["name"], type="str"),
-            is_preserve_source_destination=dict(type="bool"),
             reserved_ips=dict(
                 type="list", elements="dict", options=dict(id=dict(type="str"))
             ),
             is_private=dict(type="bool"),
             subnet_id=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
+            is_preserve_source_destination=dict(type="bool"),
             nlb_ip_version=dict(type="str", choices=["IPV4", "IPV4_AND_IPV6"]),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),

@@ -32,6 +32,15 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    zone_type:
+        description:
+            - The type of the zone. Must be either `PRIMARY` or `SECONDARY`. `SECONDARY` is only supported for GLOBAL
+              zones.
+            - Applicable when migration_source is 'NONE'
+        type: str
+        choices:
+            - "PRIMARY"
+            - "SECONDARY"
     migration_source:
         description:
             - Discriminator that is used to determine whether to create a new zone (NONE) or to migrate an existing DynECT zone (DYNECT).
@@ -47,78 +56,6 @@ options:
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
         aliases: ["zone_name"]
-    compartment_id:
-        description:
-            - The OCID of the compartment containing the zone.
-            - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable.
-        type: str
-    freeform_tags:
-        description:
-            - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
-              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-            - "**Example:** `{\\"Department\\": \\"Finance\\"}`"
-            - This parameter is updatable.
-        type: dict
-    defined_tags:
-        description:
-            - Defined tags for this resource. Each key is predefined and scoped to a namespace.
-              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-            - "**Example:** `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-            - This parameter is updatable.
-        type: dict
-    zone_type:
-        description:
-            - The type of the zone. Must be either `PRIMARY` or `SECONDARY`. `SECONDARY` is only supported for GLOBAL
-              zones.
-            - Applicable when migration_source is 'NONE'
-        type: str
-        choices:
-            - "PRIMARY"
-            - "SECONDARY"
-    view_id:
-        description:
-            - This value will be null for zones in the global DNS.
-            - This parameter is updatable.
-            - Applicable when migration_source is 'NONE'
-        type: str
-    scope:
-        description:
-            - The scope of the zone.
-            - This parameter is updatable.
-            - Applicable when migration_source is 'NONE'
-        type: str
-        choices:
-            - "GLOBAL"
-            - "PRIVATE"
-    external_masters:
-        description:
-            - External master servers for the zone. `externalMasters` becomes a
-              required parameter when the `zoneType` value is `SECONDARY`.
-            - This parameter is updatable.
-            - Applicable when migration_source is 'NONE'
-        type: list
-        elements: dict
-        suboptions:
-            address:
-                description:
-                    - The server's IP address (IPv4 or IPv6).
-                    - Required when migration_source is 'NONE'
-                type: str
-                required: true
-            port:
-                description:
-                    - The server's port. Port value must be a value of 53, otherwise omit
-                      the port value.
-                    - Applicable when migration_source is 'NONE'
-                type: int
-            tsig_key_id:
-                description:
-                    - The OCID of the TSIG key.
-                    - Applicable when migration_source is 'NONE'
-                type: str
     dynect_migration_details:
         description:
             - ""
@@ -148,6 +85,46 @@ options:
                     - A map of fully-qualified domain names (FQDNs) to an array of `MigrationReplacement` objects.
                     - Applicable when migration_source is 'DYNECT'
                 type: dict
+    freeform_tags:
+        description:
+            - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+            - "**Example:** `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
+        type: dict
+    defined_tags:
+        description:
+            - Defined tags for this resource. Each key is predefined and scoped to a namespace.
+              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+            - "**Example:** `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
+        type: dict
+    external_masters:
+        description:
+            - External master servers for the zone. `externalMasters` becomes a
+              required parameter when the `zoneType` value is `SECONDARY`.
+            - This parameter is updatable.
+            - Applicable when migration_source is 'NONE'
+        type: list
+        elements: dict
+        suboptions:
+            address:
+                description:
+                    - The server's IP address (IPv4 or IPv6).
+                    - Required when migration_source is 'NONE'
+                type: str
+                required: true
+            port:
+                description:
+                    - The server's port. Port value must be a value of 53, otherwise omit
+                      the port value.
+                    - Applicable when migration_source is 'NONE'
+                type: int
+            tsig_key_id:
+                description:
+                    - The OCID of the TSIG key.
+                    - Applicable when migration_source is 'NONE'
+                type: str
     zone_name_or_id:
         description:
             - The name or OCID of the target zone.
@@ -162,6 +139,29 @@ options:
               earlier than or equal to the date provided in the field-value.  This
               field accomplishes the same purpose as If-Match for cases where the user
               agent does not have an entity-tag for the representation.
+            - This parameter is updatable.
+        type: str
+    scope:
+        description:
+            - The scope of the zone.
+            - This parameter is updatable.
+            - Applicable when migration_source is 'NONE'
+        type: str
+        choices:
+            - "GLOBAL"
+            - "PRIVATE"
+    view_id:
+        description:
+            - This value will be null for zones in the global DNS.
+            - This parameter is updatable.
+            - Applicable when migration_source is 'NONE'
+        type: str
+    compartment_id:
+        description:
+            - The OCID of the compartment containing the zone.
+            - Required for create using I(state=present).
+            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable.
         type: str
     state:
@@ -184,12 +184,10 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    zone_type: PRIMARY
     migration_source: NONE
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    zone_type: PRIMARY
-    view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
-    scope: GLOBAL
     external_masters:
     - # required
       address: address_example
@@ -197,6 +195,8 @@ EXAMPLES = """
       # optional
       port: 56
       tsig_key_id: "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
+    scope: GLOBAL
+    view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Create zone with migration_source = DYNECT
   oci_dns_zone:
@@ -206,8 +206,6 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
     dynect_migration_details:
       # required
       customer_name: customer_name_example
@@ -216,6 +214,8 @@ EXAMPLES = """
 
       # optional
       http_redirect_replacements: null
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update zone
   oci_dns_zone:
@@ -223,11 +223,8 @@ EXAMPLES = """
     zone_name_or_id: "ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
-    scope: GLOBAL
     external_masters:
     - # required
       address: address_example
@@ -236,6 +233,9 @@ EXAMPLES = """
       port: 56
       tsig_key_id: "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
     if_unmodified_since: if_unmodified_since_example
+    scope: GLOBAL
+    view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update zone using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_dns_zone:
@@ -246,8 +246,6 @@ EXAMPLES = """
     # optional
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
-    scope: GLOBAL
     external_masters:
     - # required
       address: address_example
@@ -256,6 +254,8 @@ EXAMPLES = """
       port: 56
       tsig_key_id: "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
     if_unmodified_since: if_unmodified_since_example
+    scope: GLOBAL
+    view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete zone
   oci_dns_zone:
@@ -264,10 +264,10 @@ EXAMPLES = """
     state: absent
 
     # optional
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
-    scope: GLOBAL
     if_unmodified_since: if_unmodified_since_example
+    scope: GLOBAL
+    view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete zone using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_dns_zone:
@@ -680,25 +680,11 @@ def main():
     )
     module_args.update(
         dict(
+            zone_type=dict(type="str", choices=["PRIMARY", "SECONDARY"]),
             migration_source=dict(
                 type="str", default="NONE", choices=["NONE", "DYNECT"]
             ),
             name=dict(aliases=["zone_name"], type="str"),
-            compartment_id=dict(type="str"),
-            freeform_tags=dict(type="dict"),
-            defined_tags=dict(type="dict"),
-            zone_type=dict(type="str", choices=["PRIMARY", "SECONDARY"]),
-            view_id=dict(type="str"),
-            scope=dict(type="str", choices=["GLOBAL", "PRIVATE"]),
-            external_masters=dict(
-                type="list",
-                elements="dict",
-                options=dict(
-                    address=dict(type="str", required=True),
-                    port=dict(type="int"),
-                    tsig_key_id=dict(type="str"),
-                ),
-            ),
             dynect_migration_details=dict(
                 type="dict",
                 options=dict(
@@ -708,8 +694,22 @@ def main():
                     http_redirect_replacements=dict(type="dict"),
                 ),
             ),
+            freeform_tags=dict(type="dict"),
+            defined_tags=dict(type="dict"),
+            external_masters=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    address=dict(type="str", required=True),
+                    port=dict(type="int"),
+                    tsig_key_id=dict(type="str"),
+                ),
+            ),
             zone_name_or_id=dict(aliases=["zone_id", "id"], type="str"),
             if_unmodified_since=dict(type="str"),
+            scope=dict(type="str", choices=["GLOBAL", "PRIVATE"]),
+            view_id=dict(type="str"),
+            compartment_id=dict(type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

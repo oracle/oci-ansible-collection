@@ -30,7 +30,7 @@ oracle.oci.oci_database_migration_migration -- Manage a Migration resource in Or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -1930,8 +1930,8 @@ Examples
     - name: Create migration
       oci_database_migration_migration:
         # required
-        type: ONLINE
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        type: ONLINE
         source_database_connection_id: "ocid1.sourcedatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx"
         target_database_connection_id: "ocid1.targetdatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx"
 
@@ -2172,8 +2172,8 @@ Examples
     - name: Update migration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_migration_migration:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
 
         # optional
         type: ONLINE
@@ -2299,8 +2299,8 @@ Examples
     - name: Delete migration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_migration_migration:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
         state: absent
 
 

@@ -30,7 +30,7 @@ oracle.oci.oci_loadbalancer_path_route_set_facts -- Fetches details about one or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -290,8 +290,8 @@ Examples
     - name: Get a specific path_route_set
       oci_loadbalancer_path_route_set_facts:
         # required
-        load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
         path_route_set_name: path_route_set_name_example
+        load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: List path_route_sets
       oci_loadbalancer_path_route_set_facts:

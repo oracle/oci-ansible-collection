@@ -28,17 +28,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    transcription_job_id:
-        description:
-            - Unique Transcription Job identifier.
-        type: str
-        required: true
     transcription_task_id:
         description:
             - Unique Transcription Task identifier.
             - Required to get a specific transcription_task.
         type: str
         aliases: ["id"]
+    transcription_job_id:
+        description:
+            - Unique Transcription Job identifier.
+        type: str
+        required: true
     lifecycle_state:
         description:
             - A filter to return only resources whose lifecycleState matches the given lifecycleState.
@@ -76,8 +76,8 @@ EXAMPLES = """
 - name: Get a specific transcription_task
   oci_ai_speech_transcription_task_facts:
     # required
-    transcription_job_id: "ocid1.transcriptionjob.oc1..xxxxxxEXAMPLExxxxxx"
     transcription_task_id: "ocid1.transcriptiontask.oc1..xxxxxxEXAMPLExxxxxx"
+    transcription_job_id: "ocid1.transcriptionjob.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List transcription_tasks
   oci_ai_speech_transcription_task_facts:
@@ -365,8 +365,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            transcription_job_id=dict(type="str", required=True),
             transcription_task_id=dict(aliases=["id"], type="str"),
+            transcription_job_id=dict(type="str", required=True),
             lifecycle_state=dict(
                 type="str",
                 choices=["ACCEPTED", "IN_PROGRESS", "SUCCEEDED", "FAILED", "CANCELED"],

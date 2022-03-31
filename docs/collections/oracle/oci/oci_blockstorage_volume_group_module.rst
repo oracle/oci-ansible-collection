@@ -30,7 +30,7 @@ oracle.oci.oci_blockstorage_volume_group -- Manage a VolumeGroup resource in Ora
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -663,8 +663,8 @@ Examples
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         source_details:
           # required
-          type: volumeGroupReplicaId
           volume_group_replica_id: "ocid1.volumegroupreplica.oc1..xxxxxxEXAMPLExxxxxx"
+          type: volumeGroupReplicaId
 
         # optional
         backup_policy_id: "ocid1.backuppolicy.oc1..xxxxxxEXAMPLExxxxxx"
@@ -687,13 +687,13 @@ Examples
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
+        volume_ids: [ "volume_ids_example" ]
         volume_group_replicas:
         - # required
           availability_domain: Uocm:PHX-AD-1
 
           # optional
           display_name: display_name_example
-        volume_ids: [ "volume_ids_example" ]
         preserve_volume_replica: true
 
     - name: Update volume_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -705,13 +705,13 @@ Examples
         # optional
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         freeform_tags: {'Department': 'Finance'}
+        volume_ids: [ "volume_ids_example" ]
         volume_group_replicas:
         - # required
           availability_domain: Uocm:PHX-AD-1
 
           # optional
           display_name: display_name_example
-        volume_ids: [ "volume_ids_example" ]
         preserve_volume_replica: true
 
     - name: Delete volume_group

@@ -29,17 +29,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The OCID of the compartment to move the the workspace to.
+            - Required for I(action=change_compartment).
+        type: str
     workspace_id:
         description:
             - The workspace ID.
         type: str
         aliases: ["id"]
         required: true
-    compartment_id:
-        description:
-            - The OCID of the compartment to move the the workspace to.
-            - Required for I(action=change_compartment).
-        type: str
     quiesce_timeout:
         description:
             - Used to set the timeout for Data Integration to gracefully close down any running jobs before stopping the workspace.
@@ -66,8 +66,8 @@ EXAMPLES = """
 - name: Perform action change_compartment on workspace
   oci_data_integration_workspace_actions:
     # required
-    workspace_id: "ocid1.workspace.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    workspace_id: "ocid1.workspace.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action start on workspace
@@ -332,8 +332,8 @@ def main():
     )
     module_args.update(
         dict(
-            workspace_id=dict(aliases=["id"], type="str", required=True),
             compartment_id=dict(type="str"),
+            workspace_id=dict(aliases=["id"], type="str", required=True),
             quiesce_timeout=dict(type="int"),
             is_force_operation=dict(type="bool"),
             action=dict(

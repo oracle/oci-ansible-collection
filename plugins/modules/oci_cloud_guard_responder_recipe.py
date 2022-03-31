@@ -28,6 +28,18 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    source_responder_recipe_id:
+        description:
+            - The id of the source responder recipe.
+            - Required for create using I(state=present).
+        type: str
+    compartment_id:
+        description:
+            - Compartment Identifier
+            - Required for create using I(state=present).
+            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+        type: str
     display_name:
         description:
             - Responder recipe display name.
@@ -41,18 +53,6 @@ options:
             - Responder recipe description.
             - Avoid entering confidential information.
             - This parameter is updatable.
-        type: str
-    source_responder_recipe_id:
-        description:
-            - The id of the source responder recipe.
-            - Required for create using I(state=present).
-        type: str
-    compartment_id:
-        description:
-            - Compartment Identifier
-            - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
     responder_rules:
         description:
@@ -113,9 +113,9 @@ EXAMPLES = """
 - name: Create responder_recipe
   oci_cloud_guard_responder_recipe:
     # required
-    display_name: display_name_example
     source_responder_recipe_id: "ocid1.sourceresponderrecipe.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     description: description_example
@@ -148,8 +148,8 @@ EXAMPLES = """
 - name: Update responder_recipe using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_cloud_guard_responder_recipe:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     description: description_example
@@ -171,8 +171,8 @@ EXAMPLES = """
 - name: Delete responder_recipe using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_cloud_guard_responder_recipe:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -883,10 +883,10 @@ def main():
     )
     module_args.update(
         dict(
-            display_name=dict(aliases=["name"], type="str"),
-            description=dict(type="str"),
             source_responder_recipe_id=dict(type="str"),
             compartment_id=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
+            description=dict(type="str"),
             responder_rules=dict(
                 type="list",
                 elements="dict",

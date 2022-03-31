@@ -30,7 +30,7 @@ oracle.oci.oci_loadbalancer_listener -- Manage a Listener resource in Oracle Clo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -720,12 +720,13 @@ Examples
         default_backend_set_name: default_backend_set_name_example
         port: 56
         protocol: protocol_example
-        name: name_example
         load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+        name: name_example
 
         # optional
         hostname_names: [ "hostname_names_example" ]
         path_route_set_name: path_route_set_name_example
+        routing_policy_name: routing_policy_name_example
         ssl_configuration:
           # optional
           verify_depth: 56
@@ -742,7 +743,6 @@ Examples
 
           # optional
           backend_tcp_proxy_protocol_version: 56
-        routing_policy_name: routing_policy_name_example
         rule_set_names: [ "rule_set_names_example" ]
 
     - name: Update listener
@@ -751,12 +751,13 @@ Examples
         default_backend_set_name: default_backend_set_name_example
         port: 56
         protocol: protocol_example
-        name: name_example
         load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+        name: name_example
 
         # optional
         hostname_names: [ "hostname_names_example" ]
         path_route_set_name: path_route_set_name_example
+        routing_policy_name: routing_policy_name_example
         ssl_configuration:
           # optional
           verify_depth: 56
@@ -773,14 +774,13 @@ Examples
 
           # optional
           backend_tcp_proxy_protocol_version: 56
-        routing_policy_name: routing_policy_name_example
         rule_set_names: [ "rule_set_names_example" ]
 
     - name: Delete listener
       oci_loadbalancer_listener:
         # required
-        name: name_example
         load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+        name: name_example
         state: absent
 
 

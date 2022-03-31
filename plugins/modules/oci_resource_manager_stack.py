@@ -60,31 +60,27 @@ options:
             - This parameter is updatable.
         type: dict
         suboptions:
-            config_source_type:
+            compartment_id:
                 description:
-                    - Specifies the `configSourceType` for uploading the Terraform configuration.
-                    - This parameter is updatable.
+                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to use for creating the stack.
+                      The new stack will include definitions for supported resource types in scope of the specified compartment OCID (tenancy level for root
+                      compartment, compartment level otherwise).
+                    - Required when config_source_type is 'COMPARTMENT_CONFIG_SOURCE'
                 type: str
-                choices:
-                    - "ZIP_UPLOAD"
-                    - "GIT_CONFIG_SOURCE"
-                    - "OBJECT_STORAGE_CONFIG_SOURCE"
-                    - "COMPARTMENT_CONFIG_SOURCE"
-                    - "TEMPLATE_CONFIG_SOURCE"
-                required: true
-            working_directory:
+            services_to_discover:
                 description:
-                    - File path to the directory from which Terraform runs.
-                      If not specified, the root directory is used.
-                      This parameter is ignored for the `configSourceType` value of `COMPARTMENT_CONFIG_SOURCE`.
-                    - This parameter is updatable.
-                type: str
-            zip_file_base64_encoded:
+                    - "Filter for L(services to use with Resource
+                      Discovery,https://www.terraform.io/docs/providers/oci/guides/resource_discovery.html#services).
+                      For example, \\"database\\" limits resource discovery to resource types within the Database service.
+                      The specified services must be in scope of the given compartment OCID (tenancy level for root compartment, compartment level otherwise).
+                      If not specified, then all services at the scope of the given compartment OCID are used."
+                    - Applicable when config_source_type is 'COMPARTMENT_CONFIG_SOURCE'
+                type: list
+                elements: str
+            template_id:
                 description:
                     - ""
-                    - This parameter is updatable.
-                    - Applicable when config_source_type is 'ZIP_UPLOAD'
-                    - Required when config_source_type is 'ZIP_UPLOAD'
+                    - Required when config_source_type is 'TEMPLATE_CONFIG_SOURCE'
                 type: str
             configuration_source_provider_id:
                 description:
@@ -108,7 +104,7 @@ options:
             region:
                 description:
                     - "The name of the bucket's region.
-                      Example: `PHX`"
+                      Example: `us-phoenix-1`"
                     - This parameter is updatable.
                     - Applicable when config_source_type is 'OBJECT_STORAGE_CONFIG_SOURCE'
                     - Required when config_source_type is one of ['COMPARTMENT_CONFIG_SOURCE', 'OBJECT_STORAGE_CONFIG_SOURCE']
@@ -127,27 +123,35 @@ options:
                     - Applicable when config_source_type is 'OBJECT_STORAGE_CONFIG_SOURCE'
                     - Required when config_source_type is 'OBJECT_STORAGE_CONFIG_SOURCE'
                 type: str
-            compartment_id:
+            config_source_type:
                 description:
-                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to use for creating the stack.
-                      The new stack will include definitions for supported resource types in scope of the specified compartment OCID (tenancy level for root
-                      compartment, compartment level otherwise).
-                    - Required when config_source_type is 'COMPARTMENT_CONFIG_SOURCE'
+                    - Specifies the `configSourceType` for uploading the Terraform configuration.
+                    - This parameter is updatable.
                 type: str
-            services_to_discover:
+                choices:
+                    - "ZIP_UPLOAD"
+                    - "GIT_CONFIG_SOURCE"
+                    - "OBJECT_STORAGE_CONFIG_SOURCE"
+                    - "COMPARTMENT_CONFIG_SOURCE"
+                    - "TEMPLATE_CONFIG_SOURCE"
+                required: true
+            working_directory:
                 description:
-                    - "Filter for L(services to use with Resource
-                      Discovery,https://www.terraform.io/docs/providers/oci/guides/resource_discovery.html#services).
-                      For example, \\"database\\" limits resource discovery to resource types within the Database service.
-                      The specified services must be in scope of the given compartment OCID (tenancy level for root compartment, compartment level otherwise).
-                      If not specified, then all services at the scope of the given compartment OCID are used."
-                    - Applicable when config_source_type is 'COMPARTMENT_CONFIG_SOURCE'
-                type: list
-                elements: str
-            template_id:
+                    - File path to the directory to use for running Terraform.
+                      If not specified, the root directory is used.
+                      Required when using a zip Terraform configuration (`configSourceType` value of `ZIP_UPLOAD`) that contains folders.
+                      Ignored for the `configSourceType` value of `COMPARTMENT_CONFIG_SOURCE`.
+                      For more information about required and recommended file structure, see
+                      L(File Structure (Terraform Configurations for Resource
+                      Manager),https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/terraformconfigresourcemanager.htm#filestructure).
+                    - This parameter is updatable.
+                type: str
+            zip_file_base64_encoded:
                 description:
                     - ""
-                    - Required when config_source_type is 'TEMPLATE_CONFIG_SOURCE'
+                    - This parameter is updatable.
+                    - Applicable when config_source_type is 'ZIP_UPLOAD'
+                    - Required when config_source_type is 'ZIP_UPLOAD'
                 type: str
     variables:
         description:
@@ -390,7 +394,11 @@ stack:
                     description:
                         - File path to the directory to use for running Terraform.
                           If not specified, the root directory is used.
-                          This parameter is ignored for the `configSourceType` value of `COMPARTMENT_CONFIG_SOURCE`.
+                          Required when using a zip Terraform configuration (`configSourceType` value of `ZIP_UPLOAD`) that contains folders.
+                          Ignored for the `configSourceType` value of `COMPARTMENT_CONFIG_SOURCE`.
+                          For more information about required and recommended file structure, see
+                          L(File Structure (Terraform Configurations for Resource
+                          Manager),https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/terraformconfigresourcemanager.htm#filestructure).
                     returned: on success
                     type: str
                     sample: working_directory_example
@@ -627,6 +635,15 @@ def main():
             config_source=dict(
                 type="dict",
                 options=dict(
+                    compartment_id=dict(type="str"),
+                    services_to_discover=dict(type="list", elements="str"),
+                    template_id=dict(type="str"),
+                    configuration_source_provider_id=dict(type="str"),
+                    repository_url=dict(type="str"),
+                    branch_name=dict(type="str"),
+                    region=dict(type="str"),
+                    namespace=dict(type="str"),
+                    bucket_name=dict(type="str"),
                     config_source_type=dict(
                         type="str",
                         required=True,
@@ -640,15 +657,6 @@ def main():
                     ),
                     working_directory=dict(type="str"),
                     zip_file_base64_encoded=dict(type="str"),
-                    configuration_source_provider_id=dict(type="str"),
-                    repository_url=dict(type="str"),
-                    branch_name=dict(type="str"),
-                    region=dict(type="str"),
-                    namespace=dict(type="str"),
-                    bucket_name=dict(type="str"),
-                    compartment_id=dict(type="str"),
-                    services_to_discover=dict(type="list", elements="str"),
-                    template_id=dict(type="str"),
                 ),
             ),
             variables=dict(type="dict"),

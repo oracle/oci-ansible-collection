@@ -30,7 +30,7 @@ oracle.oci.oci_devops_repository -- Manage a Repository resource in Oracle Cloud
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -582,10 +582,11 @@ Examples
     - name: Create repository
       oci_devops_repository:
         # required
-        name: name_example
         project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+        name: name_example
 
         # optional
+        description: description_example
         default_branch: default_branch_example
         repository_type: repository_type_example
         mirror_repository_config:
@@ -598,7 +599,6 @@ Examples
 
             # optional
             custom_schedule: custom_schedule_example
-        description: description_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -609,6 +609,7 @@ Examples
 
         # optional
         name: name_example
+        description: description_example
         default_branch: default_branch_example
         repository_type: repository_type_example
         mirror_repository_config:
@@ -621,7 +622,6 @@ Examples
 
             # optional
             custom_schedule: custom_schedule_example
-        description: description_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -631,6 +631,7 @@ Examples
         name: name_example
 
         # optional
+        description: description_example
         default_branch: default_branch_example
         repository_type: repository_type_example
         mirror_repository_config:
@@ -643,7 +644,6 @@ Examples
 
             # optional
             custom_schedule: custom_schedule_example
-        description: description_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 

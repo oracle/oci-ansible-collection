@@ -28,17 +28,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    namespace_name:
-        description:
-            - The Object Storage namespace used for the request.
-        type: str
-        required: true
-    bucket_name:
-        description:
-            - "The name of the bucket. Avoid entering confidential information.
-              Example: `my-new-bucket1`"
-        type: str
-        required: true
     display_name:
         description:
             - A user-specified name for the retention rule. Names can be helpful in identifying retention rules.
@@ -75,6 +64,17 @@ options:
               locked state. Specifying it when a duration is not specified is considered an error.
             - This parameter is updatable.
         type: str
+    namespace_name:
+        description:
+            - The Object Storage namespace used for the request.
+        type: str
+        required: true
+    bucket_name:
+        description:
+            - "The name of the bucket. Avoid entering confidential information.
+              Example: `my-new-bucket1`"
+        type: str
+        required: true
     retention_rule_id:
         description:
             - The ID of the retention rule.
@@ -127,9 +127,9 @@ EXAMPLES = """
 - name: Update retention_rule using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_object_storage_retention_rule:
     # required
+    display_name: display_name_example
     namespace_name: namespace_name_example
     bucket_name: bucket_name_example
-    display_name: display_name_example
 
     # optional
     duration:
@@ -149,9 +149,9 @@ EXAMPLES = """
 - name: Delete retention_rule using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_object_storage_retention_rule:
     # required
+    display_name: display_name_example
     namespace_name: namespace_name_example
     bucket_name: bucket_name_example
-    display_name: display_name_example
     state: absent
 
 """
@@ -391,8 +391,6 @@ def main():
     )
     module_args.update(
         dict(
-            namespace_name=dict(type="str", required=True),
-            bucket_name=dict(type="str", required=True),
             display_name=dict(aliases=["name"], type="str"),
             duration=dict(
                 type="dict",
@@ -404,6 +402,8 @@ def main():
                 ),
             ),
             time_rule_locked=dict(type="str"),
+            namespace_name=dict(type="str", required=True),
+            bucket_name=dict(type="str", required=True),
             retention_rule_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

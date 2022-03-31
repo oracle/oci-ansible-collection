@@ -30,7 +30,7 @@ oracle.oci.oci_database_exadata_infrastructure_actions -- Perform actions on an 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -377,8 +377,8 @@ Examples
     - name: Perform action activate on exadata_infrastructure
       oci_database_exadata_infrastructure_actions:
         # required
-        exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
         activation_file: activation_file_example
+        exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
         action: activate
 
     - name: Perform action add_storage_capacity on exadata_infrastructure
@@ -390,15 +390,15 @@ Examples
     - name: Perform action change_compartment on exadata_infrastructure
       oci_database_exadata_infrastructure_actions:
         # required
-        exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
         action: change_compartment
 
     - name: Perform action download_exadata_infrastructure_config_file on exadata_infrastructure
       oci_database_exadata_infrastructure_actions:
         # required
-        exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
         config_file_dest: /tmp/exadata_config_file.zip
+        exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
         action: download_exadata_infrastructure_config_file
 
 

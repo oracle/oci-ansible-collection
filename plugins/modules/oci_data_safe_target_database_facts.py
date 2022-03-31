@@ -28,12 +28,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    target_database_id:
-        description:
-            - The OCID of the Data Safe target database.
-            - Required to get a specific target_database.
-        type: str
-        aliases: ["id"]
     compartment_id:
         description:
             - A filter to return only resources that match the specified compartment OCID.
@@ -43,6 +37,12 @@ options:
         description:
             - A filter to return the target databases that are associated to the resource id passed in as a parameter value.
         type: str
+    target_database_id:
+        description:
+            - The OCID of the Data Safe target database.
+            - Required to get a specific target_database.
+        type: str
+        aliases: ["id"]
     display_name:
         description:
             - A filter to return only resources that match the specified display name.
@@ -125,8 +125,8 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    target_database_id: "ocid1.targetdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     associated_resource_id: "ocid1.associatedresource.oc1..xxxxxxEXAMPLExxxxxx"
+    target_database_id: "ocid1.targetdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     lifecycle_state: CREATING
     database_type: DATABASE_CLOUD_SERVICE
@@ -501,9 +501,9 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            target_database_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
             associated_resource_id=dict(type="str"),
+            target_database_id=dict(aliases=["id"], type="str"),
             display_name=dict(aliases=["name"], type="str"),
             lifecycle_state=dict(
                 type="str",

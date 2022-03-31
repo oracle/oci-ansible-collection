@@ -42,11 +42,6 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
-    description:
-        description:
-            - Platform Instance Description
-            - This parameter is updatable.
-        type: str
     platform_role:
         description:
             - "Role of platform - founder or participant"
@@ -84,18 +79,11 @@ options:
               the 1st in the chain is always the root CA certificate.
               File list in zip file [ca-cert.pem,ca-key.pem,ca-chain.pem(optional)].
         type: str
-    freeform_tags:
+    description:
         description:
-            - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-              Example: `{\\"bar-key\\": \\"value\\"}`"
+            - Platform Instance Description
             - This parameter is updatable.
-        type: dict
-    defined_tags:
-        description:
-            - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
-              Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
-            - This parameter is updatable.
-        type: dict
+        type: str
     storage_size_in_tbs:
         description:
             - Storage size in TBs
@@ -132,6 +120,18 @@ options:
             - "Type of Load Balancer shape - LB_100_MBPS or LB_400_MBPS. Default is LB_100_MBPS."
             - This parameter is updatable.
         type: str
+    freeform_tags:
+        description:
+            - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+              Example: `{\\"bar-key\\": \\"value\\"}`"
+            - This parameter is updatable.
+        type: dict
+    defined_tags:
+        description:
+            - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
+              Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+            - This parameter is updatable.
+        type: dict
     blockchain_platform_id:
         description:
             - Unique service identifier.
@@ -162,11 +162,11 @@ EXAMPLES = """
     idcs_access_token: idcs_access_token_example
 
     # optional
-    description: description_example
     is_byol: true
     platform_version: platform_version_example
     federated_user_id: "ocid1.federateduser.oc1..xxxxxxEXAMPLExxxxxx"
     ca_cert_archive_text: ca_cert_archive_text_example
+    description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -177,8 +177,6 @@ EXAMPLES = """
 
     # optional
     description: description_example
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
     storage_size_in_tbs: 3.4
     replicas:
       # optional
@@ -187,6 +185,8 @@ EXAMPLES = """
       console_count: 56
     total_ocpu_capacity: 56
     load_balancer_shape: load_balancer_shape_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update blockchain_platform using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_blockchain_platform:
@@ -196,8 +196,6 @@ EXAMPLES = """
 
     # optional
     description: description_example
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
     storage_size_in_tbs: 3.4
     replicas:
       # optional
@@ -206,6 +204,8 @@ EXAMPLES = """
       console_count: 56
     total_ocpu_capacity: 56
     load_balancer_shape: load_balancer_shape_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete blockchain_platform
   oci_blockchain_platform:
@@ -722,7 +722,6 @@ def main():
         dict(
             display_name=dict(aliases=["name"], type="str"),
             compartment_id=dict(type="str"),
-            description=dict(type="str"),
             platform_role=dict(type="str"),
             compute_shape=dict(type="str"),
             is_byol=dict(type="bool"),
@@ -730,8 +729,7 @@ def main():
             idcs_access_token=dict(type="str", no_log=True),
             federated_user_id=dict(type="str"),
             ca_cert_archive_text=dict(type="str"),
-            freeform_tags=dict(type="dict"),
-            defined_tags=dict(type="dict"),
+            description=dict(type="str"),
             storage_size_in_tbs=dict(type="float"),
             replicas=dict(
                 type="dict",
@@ -743,6 +741,8 @@ def main():
             ),
             total_ocpu_capacity=dict(type="int"),
             load_balancer_shape=dict(type="str"),
+            freeform_tags=dict(type="dict"),
+            defined_tags=dict(type="dict"),
             blockchain_platform_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

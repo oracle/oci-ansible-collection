@@ -32,13 +32,6 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the stack that is associated with the current job.
             - Required for create using I(state=present).
         type: str
-    display_name:
-        description:
-            - Description of the job.
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
     operation:
         description:
             - Terraform-specific operation to execute.
@@ -48,6 +41,17 @@ options:
             - ""
         type: dict
         suboptions:
+            tf_state_base64_encoded:
+                description:
+                    - Base64-encoded state file
+                    - Required when operation is 'IMPORT_TF_STATE'
+                type: str
+            execution_plan_job_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of a plan job, for use when specifying
+                      `FROM_PLAN_JOB_ID` as the `executionPlanStrategy`.
+                    - Applicable when operation is 'APPLY'
+                type: str
             operation:
                 description:
                     - Terraform-specific operation to execute.
@@ -58,11 +62,6 @@ options:
                     - "PLAN"
                     - "DESTROY"
                 required: true
-            tf_state_base64_encoded:
-                description:
-                    - Base64-encoded state file
-                    - Required when operation is 'IMPORT_TF_STATE'
-                type: str
             terraform_advanced_options:
                 description:
                     - ""
@@ -104,12 +103,6 @@ options:
                     - Applicable when operation is 'APPLY'
                     - Required when operation is 'DESTROY'
                 type: str
-            execution_plan_job_id:
-                description:
-                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of a plan job, for use when specifying
-                      `FROM_PLAN_JOB_ID` as the `executionPlanStrategy`.
-                    - Applicable when operation is 'APPLY'
-                type: str
     apply_job_plan_resolution:
         description:
             - ""
@@ -133,6 +126,13 @@ options:
                       `True` if using the configuration directly. Note that it is not necessary
                       for a Plan job to have run successfully.
                 type: bool
+    display_name:
+        description:
+            - Description of the job.
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
     freeform_tags:
         description:
             - "Free-form tags associated with this resource. Each tag is a key-value pair with no predefined name, type, or namespace.
@@ -179,17 +179,17 @@ EXAMPLES = """
     stack_id: "ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: display_name_example
     operation: operation_example
     job_operation_details:
       # required
-      operation: IMPORT_TF_STATE
       tf_state_base64_encoded: tf_state_base64_encoded_example
+      operation: IMPORT_TF_STATE
     apply_job_plan_resolution:
       # optional
       plan_job_id: "ocid1.planjob.oc1..xxxxxxEXAMPLExxxxxx"
       is_use_latest_job_id: true
       is_auto_approved: true
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -421,9 +421,13 @@ job:
                     sample: true
         working_directory:
             description:
-                - File path to the directory from which Terraform runs.
+                - File path to the directory to use for running Terraform.
                   If not specified, the root directory is used.
-                  This parameter is ignored for the `configSourceType` value of `COMPARTMENT_CONFIG_SOURCE`.
+                  Required when using a zip Terraform configuration (`configSourceType` value of `ZIP_UPLOAD`) that contains folders.
+                  Ignored for the `configSourceType` value of `COMPARTMENT_CONFIG_SOURCE`.
+                  For more information about required and recommended file structure, see
+                  L(File Structure (Terraform Configurations for Resource
+                  Manager),https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/terraformconfigresourcemanager.htm#filestructure).
             returned: on success
             type: str
             sample: working_directory_example
@@ -470,7 +474,7 @@ job:
                 region:
                     description:
                         - "The name of the bucket's region.
-                          Example: `PHX`"
+                          Example: `us-phoenix-1`"
                     returned: on success
                     type: str
                     sample: us-phoenix-1
@@ -710,17 +714,17 @@ def main():
     module_args.update(
         dict(
             stack_id=dict(type="str"),
-            display_name=dict(aliases=["name"], type="str"),
             operation=dict(type="str"),
             job_operation_details=dict(
                 type="dict",
                 options=dict(
+                    tf_state_base64_encoded=dict(type="str"),
+                    execution_plan_job_id=dict(type="str"),
                     operation=dict(
                         type="str",
                         required=True,
                         choices=["IMPORT_TF_STATE", "APPLY", "PLAN", "DESTROY"],
                     ),
-                    tf_state_base64_encoded=dict(type="str"),
                     terraform_advanced_options=dict(
                         type="dict",
                         options=dict(
@@ -733,7 +737,6 @@ def main():
                         ),
                     ),
                     execution_plan_strategy=dict(type="str"),
-                    execution_plan_job_id=dict(type="str"),
                 ),
             ),
             apply_job_plan_resolution=dict(
@@ -744,6 +747,7 @@ def main():
                     is_auto_approved=dict(type="bool"),
                 ),
             ),
+            display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             job_id=dict(aliases=["id"], type="str"),

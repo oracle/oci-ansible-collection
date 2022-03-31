@@ -28,11 +28,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    autonomous_database_id:
-        description:
-            - The database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-        type: str
-        required: true
     autonomous_database_dataguard_association_id:
         description:
             - The Autonomous Container Database-Autonomous Data Guard association
@@ -40,6 +35,11 @@ options:
             - Required to get a specific autonomous_database_dataguard_association.
         type: str
         aliases: ["id"]
+    autonomous_database_id:
+        description:
+            - The database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+        type: str
+        required: true
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -47,8 +47,8 @@ EXAMPLES = """
 - name: Get a specific autonomous_database_dataguard_association
   oci_database_autonomous_database_dataguard_association_facts:
     # required
-    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     autonomous_database_dataguard_association_id: "ocid1.autonomousdatabasedataguardassociation.oc1..xxxxxxEXAMPLExxxxxx"
+    autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List autonomous_database_dataguard_associations
   oci_database_autonomous_database_dataguard_association_facts:
@@ -256,10 +256,10 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            autonomous_database_id=dict(type="str", required=True),
             autonomous_database_dataguard_association_id=dict(
                 aliases=["id"], type="str"
             ),
+            autonomous_database_id=dict(type="str", required=True),
         )
     )
 

@@ -38,16 +38,16 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    user_id:
-        description:
-            - The OCID of the user.
-        type: str
-        required: true
     key:
         description:
             - The public key.  Must be an RSA key in PEM format.
             - Required for create using I(state=present).
         type: str
+    user_id:
+        description:
+            - The OCID of the user.
+        type: str
+        required: true
     fingerprint:
         description:
             - The key's fingerprint.
@@ -69,8 +69,8 @@ EXAMPLES = """
 - name: Create api_key
   oci_identity_api_key:
     # required
-    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
     key: key_example
+    user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete api_key
   oci_identity_api_key:
@@ -265,8 +265,8 @@ def main():
     )
     module_args.update(
         dict(
-            user_id=dict(type="str", required=True),
             key=dict(type="str", no_log=True),
+            user_id=dict(type="str", required=True),
             fingerprint=dict(type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

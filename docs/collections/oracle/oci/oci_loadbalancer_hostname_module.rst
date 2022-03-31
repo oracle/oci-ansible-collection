@@ -30,7 +30,7 @@ oracle.oci.oci_loadbalancer_hostname -- Manage a Hostname resource in Oracle Clo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -394,15 +394,15 @@ Examples
     - name: Create hostname
       oci_loadbalancer_hostname:
         # required
-        name: name_example
         hostname: hostname_example
         load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+        name: name_example
 
     - name: Update hostname
       oci_loadbalancer_hostname:
         # required
-        name: name_example
         load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+        name: name_example
 
         # optional
         hostname: hostname_example
@@ -410,8 +410,8 @@ Examples
     - name: Delete hostname
       oci_loadbalancer_hostname:
         # required
-        name: name_example
         load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+        name: name_example
         state: absent
 
 

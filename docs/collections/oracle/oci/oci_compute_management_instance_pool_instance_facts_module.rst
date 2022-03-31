@@ -30,7 +30,7 @@ oracle.oci.oci_compute_management_instance_pool_instance_facts -- Fetches detail
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -359,14 +359,14 @@ Examples
     - name: Get a specific instance_pool_instance
       oci_compute_management_instance_pool_instance_facts:
         # required
-        instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
         instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
+        instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: List instance_pool_instances
       oci_compute_management_instance_pool_instance_facts:
         # required
-        instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        instance_pool_id: "ocid1.instancepool.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         display_name: display_name_example

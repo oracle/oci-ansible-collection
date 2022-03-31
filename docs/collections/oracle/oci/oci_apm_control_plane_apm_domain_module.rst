@@ -30,7 +30,7 @@ oracle.oci.oci_apm_control_plane_apm_domain -- Manage an ApmDomain resource in O
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -467,14 +467,14 @@ Examples
     - name: Create apm_domain
       oci_apm_control_plane_apm_domain:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
 
         # optional
+        is_free_tier: true
         description: description_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        is_free_tier: true
 
     - name: Update apm_domain
       oci_apm_control_plane_apm_domain:
@@ -490,8 +490,8 @@ Examples
     - name: Update apm_domain using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_apm_control_plane_apm_domain:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
 
         # optional
         description: description_example
@@ -507,8 +507,8 @@ Examples
     - name: Delete apm_domain using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_apm_control_plane_apm_domain:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
         state: absent
 
 

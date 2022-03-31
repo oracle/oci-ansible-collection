@@ -30,7 +30,7 @@ oracle.oci.oci_compute_management_cluster_network -- Manage a ClusterNetwork res
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -660,14 +660,6 @@ Examples
       oci_compute_management_cluster_network:
         # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        instance_pools:
-        - # optional
-          defined_tags: {'Operations': {'CostCenter': 'US'}}
-          display_name: display_name_example
-          freeform_tags: {'Department': 'Finance'}
-          instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
-          size: 56
-          id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         placement_configuration:
           # required
           availability_domain: Uocm:PHX-AD-1
@@ -680,6 +672,14 @@ Examples
 
             # optional
             display_name: display_name_example
+        instance_pools:
+        - # optional
+          id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+          defined_tags: {'Operations': {'CostCenter': 'US'}}
+          display_name: display_name_example
+          freeform_tags: {'Department': 'Finance'}
+          size: 56
+          instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -697,12 +697,12 @@ Examples
         freeform_tags: {'Department': 'Finance'}
         instance_pools:
         - # optional
+          id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
           defined_tags: {'Operations': {'CostCenter': 'US'}}
           display_name: display_name_example
           freeform_tags: {'Department': 'Finance'}
-          instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
           size: 56
-          id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+          instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update cluster_network using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_compute_management_cluster_network:
@@ -715,12 +715,12 @@ Examples
         freeform_tags: {'Department': 'Finance'}
         instance_pools:
         - # optional
+          id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
           defined_tags: {'Operations': {'CostCenter': 'US'}}
           display_name: display_name_example
           freeform_tags: {'Department': 'Finance'}
-          instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
           size: 56
-          id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+          instance_configuration_id: "ocid1.instanceconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete cluster_network
       oci_compute_management_cluster_network:

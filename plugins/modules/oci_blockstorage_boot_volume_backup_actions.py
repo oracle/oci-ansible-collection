@@ -31,17 +31,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the boot volume backup to.
+            - Required for I(action=change_compartment).
+        type: str
     boot_volume_backup_id:
         description:
             - The OCID of the boot volume backup.
         type: str
         aliases: ["id"]
         required: true
-    compartment_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the boot volume backup to.
-            - Required for I(action=change_compartment).
-        type: str
     destination_region:
         description:
             - The name of the destination region.
@@ -80,8 +80,8 @@ EXAMPLES = """
 - name: Perform action change_compartment on boot_volume_backup
   oci_blockstorage_boot_volume_backup_actions:
     # required
-    boot_volume_backup_id: "ocid1.bootvolumebackup.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    boot_volume_backup_id: "ocid1.bootvolumebackup.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action copy on boot_volume_backup
@@ -362,8 +362,8 @@ def main():
     )
     module_args.update(
         dict(
-            boot_volume_backup_id=dict(aliases=["id"], type="str", required=True),
             compartment_id=dict(type="str"),
+            boot_volume_backup_id=dict(aliases=["id"], type="str", required=True),
             destination_region=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             kms_key_id=dict(type="str"),

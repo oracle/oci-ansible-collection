@@ -33,17 +33,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The compartment L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+            - Required to list multiple configurations.
+        type: str
     configuration_id:
         description:
             - The OCID of the Configuration.
             - Required to get a specific configuration.
         type: str
         aliases: ["id"]
-    compartment_id:
-        description:
-            - The compartment L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-            - Required to list multiple configurations.
-        type: str
     lifecycle_state:
         description:
             - Configuration Lifecycle State
@@ -711,8 +711,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            configuration_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
+            configuration_id=dict(aliases=["id"], type="str"),
             lifecycle_state=dict(type="str", choices=["ACTIVE", "DELETED"]),
             type=dict(type="list", elements="str", choices=["DEFAULT", "CUSTOM"]),
             display_name=dict(aliases=["name"], type="str"),

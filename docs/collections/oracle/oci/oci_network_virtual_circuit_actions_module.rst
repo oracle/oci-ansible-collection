@@ -30,7 +30,7 @@ oracle.oci.oci_network_virtual_circuit_actions -- Perform actions on a VirtualCi
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -342,19 +342,19 @@ Examples
     - name: Perform action bulk_add_virtual_circuit_public_prefixes on virtual_circuit
       oci_network_virtual_circuit_actions:
         # required
-        virtual_circuit_id: "ocid1.virtualcircuit.oc1..xxxxxxEXAMPLExxxxxx"
         public_prefixes:
         - # required
           cidr_block: cidr_block_example
+        virtual_circuit_id: "ocid1.virtualcircuit.oc1..xxxxxxEXAMPLExxxxxx"
         action: bulk_add_virtual_circuit_public_prefixes
 
     - name: Perform action bulk_delete_virtual_circuit_public_prefixes on virtual_circuit
       oci_network_virtual_circuit_actions:
         # required
-        virtual_circuit_id: "ocid1.virtualcircuit.oc1..xxxxxxEXAMPLExxxxxx"
         public_prefixes:
         - # required
           cidr_block: cidr_block_example
+        virtual_circuit_id: "ocid1.virtualcircuit.oc1..xxxxxxEXAMPLExxxxxx"
         action: bulk_delete_virtual_circuit_public_prefixes
 
     - name: Perform action change_compartment on virtual_circuit

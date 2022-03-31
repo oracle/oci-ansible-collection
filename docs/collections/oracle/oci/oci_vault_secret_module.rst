@@ -30,7 +30,7 @@ oracle.oci.oci_vault_secret -- Manage a Secret resource in Oracle Cloud Infrastr
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -707,6 +707,8 @@ Examples
       oci_vault_secret:
         # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        secret_name: secret_name_example
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         secret_content:
           # required
           content_type: BASE64
@@ -715,14 +717,12 @@ Examples
           name: name_example
           stage: CURRENT
           content: content_example
-        secret_name: secret_name_example
-        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         description: description_example
         freeform_tags: {'Department': 'Finance'}
-        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         metadata: null
         secret_rules:
         - # required
@@ -739,6 +739,7 @@ Examples
         secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
+        current_version_number: 56
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         description: description_example
         freeform_tags: {'Department': 'Finance'}
@@ -759,7 +760,6 @@ Examples
           secret_version_expiry_interval: secret_version_expiry_interval_example
           time_of_absolute_expiry: time_of_absolute_expiry_example
           is_secret_content_retrieval_blocked_on_expiry: true
-        current_version_number: 56
 
 
 

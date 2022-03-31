@@ -32,17 +32,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The OCID of a compartment.
+            - Required for I(action=change_compartment).
+        type: str
     run_id:
         description:
             - The unique ID for the run
         type: str
         aliases: ["id"]
         required: true
-    compartment_id:
-        description:
-            - The OCID of a compartment.
-            - Required for I(action=change_compartment).
-        type: str
     action:
         description:
             - The action to perform on the Run.
@@ -58,8 +58,8 @@ EXAMPLES = """
 - name: Perform action change_compartment on run
   oci_data_flow_run_actions:
     # required
-    run_id: "ocid1.run.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    run_id: "ocid1.run.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action cancel on run
@@ -498,8 +498,8 @@ def main():
     )
     module_args.update(
         dict(
-            run_id=dict(aliases=["id"], type="str", required=True),
             compartment_id=dict(type="str"),
+            run_id=dict(aliases=["id"], type="str", required=True),
             action=dict(
                 type="str", required=True, choices=["change_compartment", "cancel"]
             ),

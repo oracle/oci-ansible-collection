@@ -50,6 +50,43 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    source_details:
+        description:
+            - ""
+            - Required for create using I(state=present).
+        type: dict
+        suboptions:
+            volume_group_replica_id:
+                description:
+                    - The OCID of the volume group replica.
+                    - Required when type is 'volumeGroupReplicaId'
+                type: str
+            volume_group_id:
+                description:
+                    - The OCID of the volume group to clone from.
+                    - Required when type is 'volumeGroupId'
+                type: str
+            volume_ids:
+                description:
+                    - OCIDs for the volumes in this volume group.
+                    - Required when type is 'volumeIds'
+                type: list
+                elements: str
+            type:
+                description:
+                    - ""
+                type: str
+                choices:
+                    - "volumeGroupReplicaId"
+                    - "volumeGroupId"
+                    - "volumeIds"
+                    - "volumeGroupBackupId"
+                required: true
+            volume_group_backup_id:
+                description:
+                    - The OCID of the volume group backup to restore from.
+                    - Required when type is 'volumeGroupBackupId'
+                type: str
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
@@ -73,43 +110,12 @@ options:
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
-    source_details:
+    volume_ids:
         description:
-            - ""
-            - Required for create using I(state=present).
-        type: dict
-        suboptions:
-            type:
-                description:
-                    - ""
-                type: str
-                choices:
-                    - "volumeGroupReplicaId"
-                    - "volumeGroupId"
-                    - "volumeIds"
-                    - "volumeGroupBackupId"
-                required: true
-            volume_group_replica_id:
-                description:
-                    - The OCID of the volume group replica.
-                    - Required when type is 'volumeGroupReplicaId'
-                type: str
-            volume_group_id:
-                description:
-                    - The OCID of the volume group to clone from.
-                    - Required when type is 'volumeGroupId'
-                type: str
-            volume_ids:
-                description:
-                    - OCIDs for the volumes in this volume group.
-                    - Required when type is 'volumeIds'
-                type: list
-                elements: str
-            volume_group_backup_id:
-                description:
-                    - The OCID of the volume group backup to restore from.
-                    - Required when type is 'volumeGroupBackupId'
-                type: str
+            - OCIDs for the volumes in this volume group.
+            - This parameter is updatable.
+        type: list
+        elements: str
     volume_group_replicas:
         description:
             - The list of volume group replicas that this volume group will be enabled to have
@@ -130,19 +136,6 @@ options:
                     - "Example: `Uocm:PHX-AD-1`"
                 type: str
                 required: true
-    volume_group_id:
-        description:
-            - The Oracle Cloud ID (OCID) that uniquely identifies the volume group.
-            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-            - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["id"]
-    volume_ids:
-        description:
-            - OCIDs for the volumes in this volume group.
-            - This parameter is updatable.
-        type: list
-        elements: str
     preserve_volume_replica:
         description:
             - Specifies whether to disable or preserve the individual volume replication when removing a volume from the
@@ -150,6 +143,13 @@ options:
               value is `true`.
             - This parameter is updatable.
         type: bool
+    volume_group_id:
+        description:
+            - The Oracle Cloud ID (OCID) that uniquely identifies the volume group.
+            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+            - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["id"]
     state:
         description:
             - The state of the VolumeGroup.
@@ -170,8 +170,8 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     source_details:
       # required
-      type: volumeGroupReplicaId
       volume_group_replica_id: "ocid1.volumegroupreplica.oc1..xxxxxxEXAMPLExxxxxx"
+      type: volumeGroupReplicaId
 
     # optional
     backup_policy_id: "ocid1.backuppolicy.oc1..xxxxxxEXAMPLExxxxxx"
@@ -194,13 +194,13 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
+    volume_ids: [ "volume_ids_example" ]
     volume_group_replicas:
     - # required
       availability_domain: Uocm:PHX-AD-1
 
       # optional
       display_name: display_name_example
-    volume_ids: [ "volume_ids_example" ]
     preserve_volume_replica: true
 
 - name: Update volume_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -212,13 +212,13 @@ EXAMPLES = """
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
+    volume_ids: [ "volume_ids_example" ]
     volume_group_replicas:
     - # required
       availability_domain: Uocm:PHX-AD-1
 
       # optional
       display_name: display_name_example
-    volume_ids: [ "volume_ids_example" ]
     preserve_volume_replica: true
 
 - name: Delete volume_group
@@ -573,12 +573,12 @@ def main():
             availability_domain=dict(type="str"),
             backup_policy_id=dict(type="str"),
             compartment_id=dict(type="str"),
-            defined_tags=dict(type="dict"),
-            display_name=dict(aliases=["name"], type="str"),
-            freeform_tags=dict(type="dict"),
             source_details=dict(
                 type="dict",
                 options=dict(
+                    volume_group_replica_id=dict(type="str"),
+                    volume_group_id=dict(type="str"),
+                    volume_ids=dict(type="list", elements="str"),
                     type=dict(
                         type="str",
                         required=True,
@@ -589,12 +589,13 @@ def main():
                             "volumeGroupBackupId",
                         ],
                     ),
-                    volume_group_replica_id=dict(type="str"),
-                    volume_group_id=dict(type="str"),
-                    volume_ids=dict(type="list", elements="str"),
                     volume_group_backup_id=dict(type="str"),
                 ),
             ),
+            defined_tags=dict(type="dict"),
+            display_name=dict(aliases=["name"], type="str"),
+            freeform_tags=dict(type="dict"),
+            volume_ids=dict(type="list", elements="str"),
             volume_group_replicas=dict(
                 type="list",
                 elements="dict",
@@ -603,9 +604,8 @@ def main():
                     availability_domain=dict(type="str", required=True),
                 ),
             ),
-            volume_group_id=dict(aliases=["id"], type="str"),
-            volume_ids=dict(type="list", elements="str"),
             preserve_volume_replica=dict(type="bool"),
+            volume_group_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

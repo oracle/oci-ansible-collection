@@ -30,7 +30,7 @@ oracle.oci.oci_database_software_image -- Manage a DatabaseSoftwareImage resourc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -557,9 +557,9 @@ Examples
         patch_set: patch_set_example
         database_software_image_one_off_patches: [ "database_software_image_one_off_patches_example" ]
         ls_inventory: ls_inventory_example
+        source_db_home_id: "ocid1.sourcedbhome.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        source_db_home_id: "ocid1.sourcedbhome.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update database_software_image
       oci_database_software_image:

@@ -30,7 +30,7 @@ oracle.oci.oci_autoscaling_auto_scaling_configuration_policy -- Manage an AutoSc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -781,13 +781,6 @@ Examples
         policy_type: threshold
 
         # optional
-        display_name: display_name_example
-        capacity:
-          # optional
-          max: 56
-          min: 56
-          initial: 56
-        is_enabled: true
         rules:
         - # required
           action:
@@ -804,6 +797,13 @@ Examples
 
           # optional
           display_name: display_name_example
+        display_name: display_name_example
+        capacity:
+          # optional
+          max: 56
+          min: 56
+          initial: 56
+        is_enabled: true
 
     - name: Update auto_scaling_configuration_policy with policy_type = scheduled
       oci_autoscaling_auto_scaling_configuration_policy:
@@ -834,13 +834,6 @@ Examples
         policy_type: threshold
 
         # optional
-        display_name: display_name_example
-        capacity:
-          # optional
-          max: 56
-          min: 56
-          initial: 56
-        is_enabled: true
         rules:
         - # required
           action:
@@ -857,6 +850,13 @@ Examples
 
           # optional
           display_name: display_name_example
+        display_name: display_name_example
+        capacity:
+          # optional
+          max: 56
+          min: 56
+          initial: 56
+        is_enabled: true
 
     - name: Update auto_scaling_configuration_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with policy_type = scheduled
       oci_autoscaling_auto_scaling_configuration_policy:

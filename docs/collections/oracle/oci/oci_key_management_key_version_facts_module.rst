@@ -30,7 +30,7 @@ oracle.oci.oci_key_management_key_version_facts -- Fetches details about one or 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -342,8 +342,8 @@ Examples
     - name: Get a specific key_version
       oci_key_management_key_version_facts:
         # required
-        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         key_version_id: "ocid1.keyversion.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
     - name: List key_versions

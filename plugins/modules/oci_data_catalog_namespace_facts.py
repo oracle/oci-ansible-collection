@@ -28,32 +28,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    catalog_id:
-        description:
-            - Unique catalog identifier.
-        type: str
-        required: true
     namespace_id:
         description:
             - Unique namespace identifier.
             - Required to get a specific namespace.
         type: str
         aliases: ["id"]
-    fields:
+    catalog_id:
         description:
-            - Specifies the fields to return in a namespace response.
-        type: list
-        elements: str
-        choices:
-            - "key"
-            - "displayName"
-            - "description"
-            - "lifecycleState"
-            - "timeCreated"
-            - "timeUpdated"
-            - "createdById"
-            - "updatedById"
-            - "properties"
+            - Unique catalog identifier.
+        type: str
+        required: true
     display_name:
         description:
             - A filter to return only resources that match the entire display name given. The match is not case sensitive.
@@ -109,6 +94,21 @@ options:
         choices:
             - "ASC"
             - "DESC"
+    fields:
+        description:
+            - Specifies the fields to return in a namespace response.
+        type: list
+        elements: str
+        choices:
+            - "key"
+            - "displayName"
+            - "description"
+            - "lifecycleState"
+            - "timeCreated"
+            - "timeUpdated"
+            - "createdById"
+            - "updatedById"
+            - "properties"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -116,8 +116,8 @@ EXAMPLES = """
 - name: Get a specific namespace
   oci_data_catalog_namespace_facts:
     # required
-    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     namespace_id: "ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx"
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     fields: [ "key" ]
@@ -128,7 +128,6 @@ EXAMPLES = """
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    fields: [ "key" ]
     display_name: display_name_example
     display_name_contains: display_name_contains_example
     lifecycle_state: CREATING
@@ -138,6 +137,7 @@ EXAMPLES = """
     updated_by_id: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
     sort_by: TIMECREATED
     sort_order: ASC
+    fields: [ "key" ]
 
 """
 
@@ -304,23 +304,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            catalog_id=dict(type="str", required=True),
             namespace_id=dict(aliases=["id"], type="str"),
-            fields=dict(
-                type="list",
-                elements="str",
-                choices=[
-                    "key",
-                    "displayName",
-                    "description",
-                    "lifecycleState",
-                    "timeCreated",
-                    "timeUpdated",
-                    "createdById",
-                    "updatedById",
-                    "properties",
-                ],
-            ),
+            catalog_id=dict(type="str", required=True),
             display_name=dict(aliases=["name"], type="str"),
             display_name_contains=dict(type="str"),
             lifecycle_state=dict(
@@ -342,6 +327,21 @@ def main():
             updated_by_id=dict(type="str"),
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
+            fields=dict(
+                type="list",
+                elements="str",
+                choices=[
+                    "key",
+                    "displayName",
+                    "description",
+                    "lifecycleState",
+                    "timeCreated",
+                    "timeUpdated",
+                    "createdById",
+                    "updatedById",
+                    "properties",
+                ],
+            ),
         )
     )
 

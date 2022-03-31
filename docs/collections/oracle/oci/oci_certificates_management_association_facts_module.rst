@@ -30,7 +30,7 @@ oracle.oci.oci_certificates_management_association_facts -- Fetches details abou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -397,10 +397,10 @@ Examples
       oci_certificates_management_association_facts:
 
         # optional
-        association_id: "ocid1.association.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         certificates_resource_id: "ocid1.certificatesresource.oc1..xxxxxxEXAMPLExxxxxx"
         associated_resource_id: "ocid1.associatedresource.oc1..xxxxxxEXAMPLExxxxxx"
+        association_id: "ocid1.association.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
         sort_by: NAME
         sort_order: ASC

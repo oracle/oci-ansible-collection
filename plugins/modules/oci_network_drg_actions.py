@@ -32,12 +32,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    drg_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DRG.
-        type: str
-        aliases: ["id"]
-        required: true
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the
@@ -60,6 +54,12 @@ options:
             - Whether the DRG attachment lives in a different tenancy than the DRG.
             - Applicable only for I(action=get_all_drg_attachments).
         type: bool
+    drg_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DRG.
+        type: str
+        aliases: ["id"]
+        required: true
     action:
         description:
             - The action to perform on the Drg.
@@ -76,8 +76,8 @@ EXAMPLES = """
 - name: Perform action change_compartment on drg
   oci_network_drg_actions:
     # required
-    drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    drg_id: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action get_all_drg_attachments on drg
@@ -337,7 +337,6 @@ def main():
     )
     module_args.update(
         dict(
-            drg_id=dict(aliases=["id"], type="str", required=True),
             compartment_id=dict(type="str"),
             attachment_type=dict(
                 type="str",
@@ -350,6 +349,7 @@ def main():
                 ],
             ),
             is_cross_tenancy=dict(type="bool"),
+            drg_id=dict(aliases=["id"], type="str", required=True),
             action=dict(
                 type="str",
                 required=True,

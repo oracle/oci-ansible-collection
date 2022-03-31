@@ -39,14 +39,6 @@ options:
         description:
             - The database version with which the database software image is to be built.
         type: str
-    display_name:
-        description:
-            - The user-friendly name for the database software image. The name does not have to be unique.
-            - Required for create using I(state=present).
-            - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
     image_shape_family:
         description:
             - To what shape the image is meant for.
@@ -76,6 +68,18 @@ options:
         description:
             - output from lsinventory which will get passed as a string
         type: str
+    source_db_home_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Home.
+        type: str
+    display_name:
+        description:
+            - The user-friendly name for the database software image. The name does not have to be unique.
+            - Required for create using I(state=present).
+            - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -89,10 +93,6 @@ options:
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - This parameter is updatable.
         type: dict
-    source_db_home_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Home.
-        type: str
     database_software_image_id:
         description:
             - The DB system L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -126,9 +126,9 @@ EXAMPLES = """
     patch_set: patch_set_example
     database_software_image_one_off_patches: [ "database_software_image_one_off_patches_example" ]
     ls_inventory: ls_inventory_example
+    source_db_home_id: "ocid1.sourcedbhome.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    source_db_home_id: "ocid1.sourcedbhome.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update database_software_image
   oci_database_software_image:
@@ -479,7 +479,6 @@ def main():
         dict(
             compartment_id=dict(type="str"),
             database_version=dict(type="str"),
-            display_name=dict(aliases=["name"], type="str"),
             image_shape_family=dict(
                 type="str", choices=["VM_BM_SHAPE", "EXADATA_SHAPE", "EXACC_SHAPE"]
             ),
@@ -487,9 +486,10 @@ def main():
             patch_set=dict(type="str"),
             database_software_image_one_off_patches=dict(type="list", elements="str"),
             ls_inventory=dict(type="str"),
+            source_db_home_id=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
-            source_db_home_id=dict(type="str"),
             database_software_image_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

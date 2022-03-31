@@ -30,7 +30,7 @@ oracle.oci.oci_oda_instance_actions -- Perform actions on an OdaInstance resourc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -343,8 +343,8 @@ Examples
     - name: Perform action change_compartment on oda_instance
       oci_oda_instance_actions:
         # required
-        oda_instance_id: "ocid1.odainstance.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        oda_instance_id: "ocid1.odainstance.oc1..xxxxxxEXAMPLExxxxxx"
         action: change_compartment
 
     - name: Perform action start on oda_instance

@@ -30,7 +30,7 @@ oracle.oci.oci_database_upgrade_history_entry_facts -- Fetches details about one
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -365,8 +365,8 @@ Examples
     - name: Get a specific database_upgrade_history_entry
       oci_database_upgrade_history_entry_facts:
         # required
-        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         upgrade_history_entry_id: "ocid1.upgradehistoryentry.oc1..xxxxxxEXAMPLExxxxxx"
+        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: List database_upgrade_history_entries
       oci_database_upgrade_history_entry_facts:

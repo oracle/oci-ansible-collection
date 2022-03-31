@@ -30,7 +30,7 @@ oracle.oci.oci_resource_manager_stack_facts -- Fetches details about one or mult
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -632,7 +632,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>File path to the directory to use for running Terraform. If not specified, the root directory is used. This parameter is ignored for the `configSourceType` value of `COMPARTMENT_CONFIG_SOURCE`.</div>
+                                            <div>File path to the directory to use for running Terraform. If not specified, the root directory is used. Required when using a zip Terraform configuration (`configSourceType` value of `ZIP_UPLOAD`) that contains folders. Ignored for the `configSourceType` value of `COMPARTMENT_CONFIG_SOURCE`. For more information about required and recommended file structure, see L(File Structure (Terraform Configurations for Resource Manager),https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/terraformconfigresourcemanager.htm#filestructure).</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">working_directory_example</div>

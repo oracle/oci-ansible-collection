@@ -28,13 +28,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    name:
-        description:
-            - The name for this set of path route rules. It must be unique and it cannot be changed. Avoid entering
-              confidential information.
-            - "Example: `example_path_route_set`"
-        type: str
-        required: true
     path_routes:
         description:
             - The set of path route rules.
@@ -88,6 +81,13 @@ options:
         type: str
         aliases: ["id"]
         required: true
+    name:
+        description:
+            - The name for this set of path route rules. It must be unique and it cannot be changed. Avoid entering
+              confidential information.
+            - "Example: `example_path_route_set`"
+        type: str
+        required: true
     state:
         description:
             - The state of the PathRouteSet.
@@ -104,7 +104,6 @@ EXAMPLES = """
 - name: Create path_route_set
   oci_loadbalancer_path_route_set:
     # required
-    name: name_example
     path_routes:
     - # required
       path: path_example
@@ -113,11 +112,11 @@ EXAMPLES = """
         match_type: EXACT_MATCH
       backend_set_name: backend_set_name_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
 
 - name: Update path_route_set
   oci_loadbalancer_path_route_set:
     # required
-    name: name_example
     path_routes:
     - # required
       path: path_example
@@ -126,12 +125,13 @@ EXAMPLES = """
         match_type: EXACT_MATCH
       backend_set_name: backend_set_name_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
 
 - name: Delete path_route_set
   oci_loadbalancer_path_route_set:
     # required
-    name: name_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
     state: absent
 
 """
@@ -357,7 +357,6 @@ def main():
     )
     module_args.update(
         dict(
-            name=dict(type="str", required=True),
             path_routes=dict(
                 type="list",
                 elements="dict",
@@ -383,6 +382,7 @@ def main():
                 ),
             ),
             load_balancer_id=dict(aliases=["id"], type="str", required=True),
+            name=dict(type="str", required=True),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

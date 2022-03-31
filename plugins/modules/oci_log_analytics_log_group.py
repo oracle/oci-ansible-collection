@@ -29,11 +29,13 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    namespace_name:
+    compartment_id:
         description:
-            - The Logging Analytics namespace used for the request.
+            - Compartment Identifier L(OCID],https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
+            - Required for create using I(state=present).
+            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
-        required: true
     display_name:
         description:
             - "A user-friendly name that is changeable and that does not have to be unique.
@@ -50,13 +52,6 @@ options:
             - Description for this resource.
             - This parameter is updatable.
         type: str
-    compartment_id:
-        description:
-            - Compartment Identifier L(OCID],https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
-            - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-        type: str
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -69,6 +64,11 @@ options:
               Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             - This parameter is updatable.
         type: dict
+    namespace_name:
+        description:
+            - The Logging Analytics namespace used for the request.
+        type: str
+        required: true
     log_analytics_log_group_id:
         description:
             - unique logAnalytics log group identifier
@@ -92,9 +92,9 @@ EXAMPLES = """
 - name: Create log_analytics_log_group
   oci_log_analytics_log_group:
     # required
-    namespace_name: namespace_name_example
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    namespace_name: namespace_name_example
 
     # optional
     description: description_example
@@ -116,9 +116,9 @@ EXAMPLES = """
 - name: Update log_analytics_log_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_log_analytics_log_group:
     # required
-    namespace_name: namespace_name_example
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    namespace_name: namespace_name_example
 
     # optional
     description: description_example
@@ -135,9 +135,9 @@ EXAMPLES = """
 - name: Delete log_analytics_log_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_log_analytics_log_group:
     # required
-    namespace_name: namespace_name_example
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    namespace_name: namespace_name_example
     state: absent
 
 """
@@ -389,12 +389,12 @@ def main():
     )
     module_args.update(
         dict(
-            namespace_name=dict(type="str", required=True),
+            compartment_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             description=dict(type="str"),
-            compartment_id=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
+            namespace_name=dict(type="str", required=True),
             log_analytics_log_group_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

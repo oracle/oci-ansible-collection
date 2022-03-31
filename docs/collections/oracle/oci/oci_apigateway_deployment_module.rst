@@ -30,7 +30,7 @@ oracle.oci.oci_apigateway_deployment -- Manage a Deployment resource in Oracle C
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -3565,7 +3565,6 @@ Examples
             # optional
             authentication:
               # required
-              type: JWT_AUTHENTICATION
               issuers: [ "issuers_example" ]
               audiences: [ "audiences_example" ]
               public_keys:
@@ -3575,21 +3574,19 @@ Examples
                 # optional
                 keys:
                 - # required
-                  kid: kid_example
-                  format: JSON_WEB_KEY
                   kty: RSA
                   alg: alg_example
                   n: n_example
                   e: e_example
+                  kid: kid_example
+                  format: JSON_WEB_KEY
 
                   # optional
                   use: sig
                   key_ops: [ "verify" ]
+              type: JWT_AUTHENTICATION
 
                   # optional
-              is_anonymous_access_allowed: true
-              token_header: token_header_example
-              token_query_param: token_query_param_example
               token_auth_scheme: token_auth_scheme_example
               verify_claims:
               - # required
@@ -3599,6 +3596,9 @@ Examples
                 values: [ "values_example" ]
                 is_required: true
               max_clock_skew_in_seconds: 3.4
+              is_anonymous_access_allowed: true
+              token_header: token_header_example
+              token_query_param: token_query_param_example
             rate_limiting:
               # required
               rate_in_requests_per_second: 56
@@ -3631,8 +3631,8 @@ Examples
             path: path_example
             backend:
               # required
-              type: HTTP_BACKEND
               url: url_example
+              type: HTTP_BACKEND
 
               # optional
               connect_timeout_in_seconds: 3.4
@@ -3646,8 +3646,8 @@ Examples
               # optional
               authorization:
                 # required
-                type: ANY_OF
                 allowed_scope: [ "allowed_scope_example" ]
+                type: ANY_OF
               cors:
                 # required
                 allowed_origins: [ "allowed_origins_example" ]
@@ -3792,7 +3792,6 @@ Examples
             # optional
             authentication:
               # required
-              type: JWT_AUTHENTICATION
               issuers: [ "issuers_example" ]
               audiences: [ "audiences_example" ]
               public_keys:
@@ -3802,21 +3801,19 @@ Examples
                 # optional
                 keys:
                 - # required
-                  kid: kid_example
-                  format: JSON_WEB_KEY
                   kty: RSA
                   alg: alg_example
                   n: n_example
                   e: e_example
+                  kid: kid_example
+                  format: JSON_WEB_KEY
 
                   # optional
                   use: sig
                   key_ops: [ "verify" ]
+              type: JWT_AUTHENTICATION
 
                   # optional
-              is_anonymous_access_allowed: true
-              token_header: token_header_example
-              token_query_param: token_query_param_example
               token_auth_scheme: token_auth_scheme_example
               verify_claims:
               - # required
@@ -3826,6 +3823,9 @@ Examples
                 values: [ "values_example" ]
                 is_required: true
               max_clock_skew_in_seconds: 3.4
+              is_anonymous_access_allowed: true
+              token_header: token_header_example
+              token_query_param: token_query_param_example
             rate_limiting:
               # required
               rate_in_requests_per_second: 56
@@ -3858,8 +3858,8 @@ Examples
             path: path_example
             backend:
               # required
-              type: HTTP_BACKEND
               url: url_example
+              type: HTTP_BACKEND
 
               # optional
               connect_timeout_in_seconds: 3.4
@@ -3873,8 +3873,8 @@ Examples
               # optional
               authorization:
                 # required
-                type: ANY_OF
                 allowed_scope: [ "allowed_scope_example" ]
+                type: ANY_OF
               cors:
                 # required
                 allowed_origins: [ "allowed_origins_example" ]
@@ -4009,8 +4009,8 @@ Examples
     - name: Update deployment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_apigateway_deployment:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
 
         # optional
         specification:
@@ -4019,7 +4019,6 @@ Examples
             # optional
             authentication:
               # required
-              type: JWT_AUTHENTICATION
               issuers: [ "issuers_example" ]
               audiences: [ "audiences_example" ]
               public_keys:
@@ -4029,21 +4028,19 @@ Examples
                 # optional
                 keys:
                 - # required
-                  kid: kid_example
-                  format: JSON_WEB_KEY
                   kty: RSA
                   alg: alg_example
                   n: n_example
                   e: e_example
+                  kid: kid_example
+                  format: JSON_WEB_KEY
 
                   # optional
                   use: sig
                   key_ops: [ "verify" ]
+              type: JWT_AUTHENTICATION
 
                   # optional
-              is_anonymous_access_allowed: true
-              token_header: token_header_example
-              token_query_param: token_query_param_example
               token_auth_scheme: token_auth_scheme_example
               verify_claims:
               - # required
@@ -4053,6 +4050,9 @@ Examples
                 values: [ "values_example" ]
                 is_required: true
               max_clock_skew_in_seconds: 3.4
+              is_anonymous_access_allowed: true
+              token_header: token_header_example
+              token_query_param: token_query_param_example
             rate_limiting:
               # required
               rate_in_requests_per_second: 56
@@ -4085,8 +4085,8 @@ Examples
             path: path_example
             backend:
               # required
-              type: HTTP_BACKEND
               url: url_example
+              type: HTTP_BACKEND
 
               # optional
               connect_timeout_in_seconds: 3.4
@@ -4100,8 +4100,8 @@ Examples
               # optional
               authorization:
                 # required
-                type: ANY_OF
                 allowed_scope: [ "allowed_scope_example" ]
+                type: ANY_OF
               cors:
                 # required
                 allowed_origins: [ "allowed_origins_example" ]
@@ -4242,8 +4242,8 @@ Examples
     - name: Delete deployment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_apigateway_deployment:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
         state: absent
 
 

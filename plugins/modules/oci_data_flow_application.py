@@ -28,6 +28,49 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The OCID of a compartment.
+            - Required for create using I(state=present).
+            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+        type: str
+    type:
+        description:
+            - The Spark application processing type.
+        type: str
+        choices:
+            - "BATCH"
+            - "STREAMING"
+    class_name:
+        description:
+            - The class for the application.
+            - This parameter is updatable.
+        type: str
+    file_uri:
+        description:
+            - An Oracle Cloud Infrastructure URI of the file containing the application to execute.
+              See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat.
+            - Required for create using I(state=present).
+            - This parameter is updatable.
+        type: str
+    spark_version:
+        description:
+            - The Spark version utilized to run the application.
+            - Required for create using I(state=present).
+            - This parameter is updatable.
+        type: str
+    language:
+        description:
+            - The Spark language.
+            - Required for create using I(state=present).
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "SCALA"
+            - "JAVA"
+            - "PYTHON"
+            - "SQL"
     archive_uri:
         description:
             - An Oracle Cloud Infrastructure URI of an archive.zip file containing custom dependencies that may be used to support the execution a Python, Java,
@@ -48,18 +91,6 @@ options:
             - This parameter is updatable.
         type: list
         elements: str
-    class_name:
-        description:
-            - The class for the application.
-            - This parameter is updatable.
-        type: str
-    compartment_id:
-        description:
-            - The OCID of a compartment.
-            - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-        type: str
     configuration:
         description:
             - "The Spark configuration passed to the running process.
@@ -114,13 +145,6 @@ options:
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
-    file_uri:
-        description:
-            - An Oracle Cloud Infrastructure URI of the file containing the application to execute.
-              See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat.
-            - Required for create using I(state=present).
-            - This parameter is updatable.
-        type: str
     freeform_tags:
         description:
             - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -128,17 +152,6 @@ options:
               Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
-    language:
-        description:
-            - The Spark language.
-            - Required for create using I(state=present).
-            - This parameter is updatable.
-        type: str
-        choices:
-            - "SCALA"
-            - "JAVA"
-            - "PYTHON"
-            - "SQL"
     logs_bucket_uri:
         description:
             - An Oracle Cloud Infrastructure URI of the bucket where the Spark job logs are to be uploaded.
@@ -185,19 +198,6 @@ options:
             - The OCID of a private endpoint.
             - This parameter is updatable.
         type: str
-    spark_version:
-        description:
-            - The Spark version utilized to run the application.
-            - Required for create using I(state=present).
-            - This parameter is updatable.
-        type: str
-    type:
-        description:
-            - The Spark application processing type.
-        type: str
-        choices:
-            - "BATCH"
-            - "STREAMING"
     warehouse_bucket_uri:
         description:
             - An Oracle Cloud Infrastructure URI of the bucket to be used as default warehouse directory
@@ -229,18 +229,19 @@ EXAMPLES = """
   oci_data_flow_application:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    file_uri: file_uri_example
+    spark_version: spark_version_example
+    language: SCALA
     display_name: display_name_example
     driver_shape: driver_shape_example
     executor_shape: executor_shape_example
-    file_uri: file_uri_example
-    language: SCALA
     num_executors: 56
-    spark_version: spark_version_example
 
     # optional
+    type: BATCH
+    class_name: class_name_example
     archive_uri: archive_uri_example
     arguments: [ "arguments_example" ]
-    class_name: class_name_example
     configuration: null
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     description: description_example
@@ -253,7 +254,6 @@ EXAMPLES = """
       name: name_example
       value: value_example
     private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
-    type: BATCH
     warehouse_bucket_uri: warehouse_bucket_uri_example
 
 - name: Update application
@@ -262,9 +262,12 @@ EXAMPLES = """
     application_id: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    class_name: class_name_example
+    file_uri: file_uri_example
+    spark_version: spark_version_example
+    language: SCALA
     archive_uri: archive_uri_example
     arguments: [ "arguments_example" ]
-    class_name: class_name_example
     configuration: null
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     description: description_example
@@ -272,9 +275,7 @@ EXAMPLES = """
     driver_shape: driver_shape_example
     execute: execute_example
     executor_shape: executor_shape_example
-    file_uri: file_uri_example
     freeform_tags: {'Department': 'Finance'}
-    language: SCALA
     logs_bucket_uri: logs_bucket_uri_example
     metastore_id: "ocid1.metastore.oc1..xxxxxxEXAMPLExxxxxx"
     num_executors: 56
@@ -283,7 +284,6 @@ EXAMPLES = """
       name: name_example
       value: value_example
     private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
-    spark_version: spark_version_example
     warehouse_bucket_uri: warehouse_bucket_uri_example
 
 - name: Update application using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -293,18 +293,19 @@ EXAMPLES = """
     display_name: display_name_example
 
     # optional
+    class_name: class_name_example
+    file_uri: file_uri_example
+    spark_version: spark_version_example
+    language: SCALA
     archive_uri: archive_uri_example
     arguments: [ "arguments_example" ]
-    class_name: class_name_example
     configuration: null
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     description: description_example
     driver_shape: driver_shape_example
     execute: execute_example
     executor_shape: executor_shape_example
-    file_uri: file_uri_example
     freeform_tags: {'Department': 'Finance'}
-    language: SCALA
     logs_bucket_uri: logs_bucket_uri_example
     metastore_id: "ocid1.metastore.oc1..xxxxxxEXAMPLExxxxxx"
     num_executors: 56
@@ -313,7 +314,6 @@ EXAMPLES = """
       name: name_example
       value: value_example
     private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
-    spark_version: spark_version_example
     warehouse_bucket_uri: warehouse_bucket_uri_example
 
 - name: Delete application
@@ -759,10 +759,14 @@ def main():
     )
     module_args.update(
         dict(
+            compartment_id=dict(type="str"),
+            type=dict(type="str", choices=["BATCH", "STREAMING"]),
+            class_name=dict(type="str"),
+            file_uri=dict(type="str"),
+            spark_version=dict(type="str"),
+            language=dict(type="str", choices=["SCALA", "JAVA", "PYTHON", "SQL"]),
             archive_uri=dict(type="str"),
             arguments=dict(type="list", elements="str"),
-            class_name=dict(type="str"),
-            compartment_id=dict(type="str"),
             configuration=dict(type="dict"),
             defined_tags=dict(type="dict"),
             description=dict(type="str"),
@@ -770,9 +774,7 @@ def main():
             driver_shape=dict(type="str"),
             execute=dict(type="str"),
             executor_shape=dict(type="str"),
-            file_uri=dict(type="str"),
             freeform_tags=dict(type="dict"),
-            language=dict(type="str", choices=["SCALA", "JAVA", "PYTHON", "SQL"]),
             logs_bucket_uri=dict(type="str"),
             metastore_id=dict(type="str"),
             num_executors=dict(type="int"),
@@ -785,8 +787,6 @@ def main():
                 ),
             ),
             private_endpoint_id=dict(type="str"),
-            spark_version=dict(type="str"),
-            type=dict(type="str", choices=["BATCH", "STREAMING"]),
             warehouse_bucket_uri=dict(type="str"),
             application_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),

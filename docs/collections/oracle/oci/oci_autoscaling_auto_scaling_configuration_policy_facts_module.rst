@@ -30,7 +30,7 @@ oracle.oci.oci_autoscaling_auto_scaling_configuration_policy_facts -- Fetches de
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -342,8 +342,8 @@ Examples
     - name: Get a specific auto_scaling_configuration_policy
       oci_autoscaling_auto_scaling_configuration_policy_facts:
         # required
-        auto_scaling_configuration_id: "ocid1.autoscalingconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
         auto_scaling_policy_id: "ocid1.autoscalingpolicy.oc1..xxxxxxEXAMPLExxxxxx"
+        auto_scaling_configuration_id: "ocid1.autoscalingconfiguration.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: List auto_scaling_configuration_policies
       oci_autoscaling_auto_scaling_configuration_policy_facts:

@@ -39,11 +39,6 @@ options:
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
-    description:
-        description:
-            - The information specified by the user about the Managed Database Group.
-            - This parameter is updatable.
-        type: str
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment
@@ -51,6 +46,11 @@ options:
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+        type: str
+    description:
+        description:
+            - The information specified by the user about the Managed Database Group.
+            - This parameter is updatable.
         type: str
     managed_database_group_id:
         description:
@@ -406,8 +406,8 @@ def main():
     module_args.update(
         dict(
             name=dict(type="str"),
-            description=dict(type="str"),
             compartment_id=dict(type="str"),
+            description=dict(type="str"),
             managed_database_group_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

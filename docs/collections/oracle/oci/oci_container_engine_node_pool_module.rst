@@ -30,7 +30,7 @@ oracle.oci.oci_container_engine_node_pool -- Manage a NodePool resource in Oracl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -926,24 +926,11 @@ Examples
         node_shape: node_shape_example
 
         # optional
-        node_metadata: null
         node_image_name: node_image_name_example
-        node_source_details:
-          # required
-          source_type: IMAGE
-          image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
-
-          # optional
-          boot_volume_size_in_gbs: 56
-        node_shape_config:
-          # optional
-          ocpus: 3.4
-          memory_in_gbs: 3.4
         initial_node_labels:
         - # optional
           key: key_example
           value: value_example
-        ssh_public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
         quantity_per_subnet: 56
         subnet_ids: [ "subnet_ids_example" ]
         node_config_details:
@@ -961,6 +948,19 @@ Examples
 
             # optional
             capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+        node_metadata: null
+        node_source_details:
+          # required
+          source_type: IMAGE
+          image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
+
+          # optional
+          boot_volume_size_in_gbs: 56
+        ssh_public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
+        node_shape_config:
+          # optional
+          ocpus: 3.4
+          memory_in_gbs: 3.4
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -972,24 +972,10 @@ Examples
         # optional
         name: name_example
         kubernetes_version: kubernetes_version_example
-        node_metadata: null
-        node_source_details:
-          # required
-          source_type: IMAGE
-          image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
-
-          # optional
-          boot_volume_size_in_gbs: 56
-        node_shape: node_shape_example
-        node_shape_config:
-          # optional
-          ocpus: 3.4
-          memory_in_gbs: 3.4
         initial_node_labels:
         - # optional
           key: key_example
           value: value_example
-        ssh_public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
         quantity_per_subnet: 56
         subnet_ids: [ "subnet_ids_example" ]
         node_config_details:
@@ -1007,6 +993,20 @@ Examples
 
             # optional
             capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+        node_metadata: null
+        node_source_details:
+          # required
+          source_type: IMAGE
+          image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
+
+          # optional
+          boot_volume_size_in_gbs: 56
+        ssh_public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
+        node_shape: node_shape_example
+        node_shape_config:
+          # optional
+          ocpus: 3.4
+          memory_in_gbs: 3.4
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -1018,24 +1018,10 @@ Examples
 
         # optional
         kubernetes_version: kubernetes_version_example
-        node_metadata: null
-        node_source_details:
-          # required
-          source_type: IMAGE
-          image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
-
-          # optional
-          boot_volume_size_in_gbs: 56
-        node_shape: node_shape_example
-        node_shape_config:
-          # optional
-          ocpus: 3.4
-          memory_in_gbs: 3.4
         initial_node_labels:
         - # optional
           key: key_example
           value: value_example
-        ssh_public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
         quantity_per_subnet: 56
         subnet_ids: [ "subnet_ids_example" ]
         node_config_details:
@@ -1053,6 +1039,20 @@ Examples
 
             # optional
             capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+        node_metadata: null
+        node_source_details:
+          # required
+          source_type: IMAGE
+          image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
+
+          # optional
+          boot_volume_size_in_gbs: 56
+        ssh_public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
+        node_shape: node_shape_example
+        node_shape_config:
+          # optional
+          ocpus: 3.4
+          memory_in_gbs: 3.4
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 

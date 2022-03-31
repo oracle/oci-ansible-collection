@@ -30,7 +30,7 @@ oracle.oci.oci_compute_instance_agent_instance_agent_command -- Manage an Instan
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -701,16 +701,16 @@ Examples
           # required
           source:
             # required
-            source_type: OBJECT_STORAGE_TUPLE
             bucket_name: bucket_name_example
             namespace_name: namespace_name_example
             object_name: object_name_example
+            source_type: OBJECT_STORAGE_TUPLE
 
             # optional
           output:
             # required
-            output_type: OBJECT_STORAGE_URI
             output_uri: output_uri_example
+            output_type: OBJECT_STORAGE_URI
 
         # optional
         display_name: display_name_example

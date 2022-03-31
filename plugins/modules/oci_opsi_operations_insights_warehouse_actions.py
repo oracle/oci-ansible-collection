@@ -35,17 +35,17 @@ options:
               overwritten.
             - Required for I(action=download_operations_insights_warehouse_wallet).
         type: str
+    operations_insights_warehouse_wallet_password:
+        description:
+            - User provided ADW wallet password for the Operations Insights Warehouse.
+            - Required for I(action=download_operations_insights_warehouse_wallet).
+        type: str
     operations_insights_warehouse_id:
         description:
             - Unique Operations Insights Warehouse identifier
         type: str
         aliases: ["id"]
         required: true
-    operations_insights_warehouse_wallet_password:
-        description:
-            - User provided ADW wallet password for the Operations Insights Warehouse.
-            - Required for I(action=download_operations_insights_warehouse_wallet).
-        type: str
     action:
         description:
             - The action to perform on the OperationsInsightsWarehouse.
@@ -62,8 +62,8 @@ EXAMPLES = """
   oci_opsi_operations_insights_warehouse_actions:
     # required
     dest: /tmp/myfile
-    operations_insights_warehouse_id: "ocid1.operationsinsightswarehouse.oc1..xxxxxxEXAMPLExxxxxx"
     operations_insights_warehouse_wallet_password: example-password
+    operations_insights_warehouse_id: "ocid1.operationsinsightswarehouse.oc1..xxxxxxEXAMPLExxxxxx"
     action: download_operations_insights_warehouse_wallet
 
 - name: Perform action rotate_operations_insights_warehouse_wallet on operations_insights_warehouse
@@ -323,10 +323,10 @@ def main():
     module_args.update(
         dict(
             dest=dict(type="str"),
+            operations_insights_warehouse_wallet_password=dict(type="str", no_log=True),
             operations_insights_warehouse_id=dict(
                 aliases=["id"], type="str", required=True
             ),
-            operations_insights_warehouse_wallet_password=dict(type="str", no_log=True),
             action=dict(
                 type="str",
                 required=True,

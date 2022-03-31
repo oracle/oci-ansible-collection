@@ -48,6 +48,29 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    vcn_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN the route table belongs to.
+            - Required for create using I(state=present).
+        type: str
+    purge_route_rules:
+        description:
+            - Purge route rules from route table which are not present in the provided route table.
+              If I(purge_route_rules=no), provided route rules would be appended to existing route
+              rules. I(purge_route_rules) and I(delete_route_rules) are mutually exclusive.
+            - This parameter is updatable.
+        type: bool
+        default: "true"
+    delete_route_rules:
+        description:
+            - Delete route rules from existing route table which are present in the
+              route rules provided by I(route_rules). If I(delete_route_rules=yes), route rules provided by
+              I(route_rules) would be deleted, if they are part of existing route table. If they are not
+              part of existing route table, they will be ignored. I(purge_route_rules) and I(delete_route_rules)
+              are mutually exclusive.
+            - This parameter is updatable.
+        type: bool
+        default: "false"
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
@@ -125,29 +148,6 @@ options:
                 description:
                     - An optional description of your choice for the rule.
                 type: str
-    vcn_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN the route table belongs to.
-            - Required for create using I(state=present).
-        type: str
-    purge_route_rules:
-        description:
-            - Purge route rules from route table which are not present in the provided route table.
-              If I(purge_route_rules=no), provided route rules would be appended to existing route
-              rules. I(purge_route_rules) and I(delete_route_rules) are mutually exclusive.
-            - This parameter is updatable.
-        type: bool
-        default: "true"
-    delete_route_rules:
-        description:
-            - Delete route rules from existing route table which are present in the
-              route rules provided by I(route_rules). If I(delete_route_rules=yes), route rules provided by
-              I(route_rules) would be deleted, if they are part of existing route table. If they are not
-              part of existing route table, they will be ignored. I(purge_route_rules) and I(delete_route_rules)
-              are mutually exclusive.
-            - This parameter is updatable.
-        type: bool
-        default: "false"
     rt_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the route table.
@@ -172,6 +172,7 @@ EXAMPLES = """
   oci_network_route_table:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     route_rules:
     - # required
       network_entity_id: "ocid1.networkentity.oc1..xxxxxxEXAMPLExxxxxx"
@@ -181,7 +182,6 @@ EXAMPLES = """
       destination: destination_example
       destination_type: CIDR_BLOCK
       description: description_example
-    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -194,6 +194,8 @@ EXAMPLES = """
     rt_id: "ocid1.rt.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    purge_route_rules: false
+    delete_route_rules: true
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
@@ -206,8 +208,6 @@ EXAMPLES = """
       destination: destination_example
       destination_type: CIDR_BLOCK
       description: description_example
-    purge_route_rules: false
-    delete_route_rules: true
 
 - name: Update route_table using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_route_table:
@@ -216,6 +216,8 @@ EXAMPLES = """
     display_name: display_name_example
 
     # optional
+    purge_route_rules: false
+    delete_route_rules: true
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
     route_rules:
@@ -227,8 +229,6 @@ EXAMPLES = """
       destination: destination_example
       destination_type: CIDR_BLOCK
       description: description_example
-    purge_route_rules: false
-    delete_route_rules: true
 
 - name: Delete route_table
   oci_network_route_table:
@@ -534,6 +534,9 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
+            vcn_id=dict(type="str"),
+            purge_route_rules=dict(type="bool", default="true"),
+            delete_route_rules=dict(type="bool", default="false"),
             defined_tags=dict(type="dict"),
             display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
@@ -550,9 +553,6 @@ def main():
                     description=dict(type="str"),
                 ),
             ),
-            vcn_id=dict(type="str"),
-            purge_route_rules=dict(type="bool", default="true"),
-            delete_route_rules=dict(type="bool", default="false"),
             rt_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

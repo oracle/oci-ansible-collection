@@ -28,17 +28,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    resource_version:
+        description:
+            - Listing Resource Version.
+            - Required to get a specific app_catalog_listing_resource_version.
+        type: str
     listing_id:
         description:
             - The OCID of the listing.
         type: str
         aliases: ["id"]
         required: true
-    resource_version:
-        description:
-            - Listing Resource Version.
-            - Required to get a specific app_catalog_listing_resource_version.
-        type: str
     sort_order:
         description:
             - The sort order to use, either ascending (`ASC`) or descending (`DESC`). The DISPLAYNAME sort order
@@ -54,8 +54,8 @@ EXAMPLES = """
 - name: Get a specific app_catalog_listing_resource_version
   oci_compute_app_catalog_listing_resource_version_facts:
     # required
-    listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
     resource_version: resource_version_example
+    listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List app_catalog_listing_resource_versions
   oci_compute_app_catalog_listing_resource_version_facts:
@@ -212,8 +212,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            listing_id=dict(aliases=["id"], type="str", required=True),
             resource_version=dict(type="str"),
+            listing_id=dict(aliases=["id"], type="str", required=True),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
         )
     )

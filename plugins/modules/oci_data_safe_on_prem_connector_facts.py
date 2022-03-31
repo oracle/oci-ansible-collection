@@ -28,17 +28,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - A filter to return only resources that match the specified compartment OCID.
+            - Required to list multiple on_prem_connectors.
+        type: str
     on_prem_connector_id:
         description:
             - The OCID of the on-premises connector.
             - Required to get a specific on_prem_connector.
         type: str
         aliases: ["id"]
-    compartment_id:
-        description:
-            - A filter to return only resources that match the specified compartment OCID.
-            - Required to list multiple on_prem_connectors.
-        type: str
     display_name:
         description:
             - A filter to return only resources that match the specified display name.
@@ -285,8 +285,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            on_prem_connector_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
+            on_prem_connector_id=dict(aliases=["id"], type="str"),
             display_name=dict(aliases=["name"], type="str"),
             on_prem_connector_lifecycle_state=dict(
                 type="str",

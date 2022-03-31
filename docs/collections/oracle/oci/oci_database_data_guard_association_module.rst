@@ -30,7 +30,7 @@ oracle.oci.oci_database_data_guard_association -- Manage a DataGuardAssociation 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -697,16 +697,12 @@ Examples
     - name: Create data_guard_association with creation_type = NewDbSystem
       oci_database_data_guard_association:
         # required
+        creation_type: NewDbSystem
         database_admin_password: example-password
         protection_mode: MAXIMUM_AVAILABILITY
         transport_type: SYNC
-        creation_type: NewDbSystem
 
         # optional
-        database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
-        is_active_data_guard_enabled: true
-        peer_db_unique_name: peer_db_unique_name_example
-        peer_sid_prefix: peer_sid_prefix_example
         display_name: display_name_example
         availability_domain: Uocm:PHX-AD-1
         shape: shape_example
@@ -714,38 +710,42 @@ Examples
         nsg_ids: [ "nsg_ids_example" ]
         backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
         hostname: hostname_example
+        database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+        peer_db_unique_name: peer_db_unique_name_example
+        peer_sid_prefix: peer_sid_prefix_example
+        is_active_data_guard_enabled: true
 
     - name: Create data_guard_association with creation_type = ExistingVmCluster
       oci_database_data_guard_association:
         # required
+        creation_type: ExistingVmCluster
         database_admin_password: example-password
         protection_mode: MAXIMUM_AVAILABILITY
         transport_type: SYNC
-        creation_type: ExistingVmCluster
 
         # optional
+        peer_vm_cluster_id: "ocid1.peervmcluster.oc1..xxxxxxEXAMPLExxxxxx"
         database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
-        is_active_data_guard_enabled: true
         peer_db_unique_name: peer_db_unique_name_example
         peer_sid_prefix: peer_sid_prefix_example
-        peer_vm_cluster_id: "ocid1.peervmcluster.oc1..xxxxxxEXAMPLExxxxxx"
         peer_db_home_id: "ocid1.peerdbhome.oc1..xxxxxxEXAMPLExxxxxx"
+        is_active_data_guard_enabled: true
 
     - name: Create data_guard_association with creation_type = ExistingDbSystem
       oci_database_data_guard_association:
         # required
+        creation_type: ExistingDbSystem
         database_admin_password: example-password
         protection_mode: MAXIMUM_AVAILABILITY
         transport_type: SYNC
-        creation_type: ExistingDbSystem
 
         # optional
         database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
-        is_active_data_guard_enabled: true
         peer_db_unique_name: peer_db_unique_name_example
         peer_sid_prefix: peer_sid_prefix_example
-        peer_db_home_id: "ocid1.peerdbhome.oc1..xxxxxxEXAMPLExxxxxx"
         peer_db_system_id: "ocid1.peerdbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+        peer_db_home_id: "ocid1.peerdbhome.oc1..xxxxxxEXAMPLExxxxxx"
+        is_active_data_guard_enabled: true
 
     - name: Update data_guard_association
       oci_database_data_guard_association:
@@ -762,8 +762,8 @@ Examples
     - name: Update data_guard_association using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_data_guard_association:
         # required
-        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
+        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         database_admin_password: example-password

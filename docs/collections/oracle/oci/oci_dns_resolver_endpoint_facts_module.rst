@@ -30,7 +30,7 @@ oracle.oci.oci_dns_resolver_endpoint_facts -- Fetches details about one or multi
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -397,8 +397,8 @@ Examples
     - name: Get a specific resolver_endpoint
       oci_dns_resolver_endpoint_facts:
         # required
-        resolver_id: "ocid1.resolver.oc1..xxxxxxEXAMPLExxxxxx"
         resolver_endpoint_name: resolver_endpoint_name_example
+        resolver_id: "ocid1.resolver.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         if_modified_since: if_modified_since_example
@@ -410,11 +410,11 @@ Examples
         resolver_id: "ocid1.resolver.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        scope: GLOBAL
         name: name_example
         sort_order: ASC
         sort_by: name
         lifecycle_state: ACTIVE
+        scope: GLOBAL
 
 
 

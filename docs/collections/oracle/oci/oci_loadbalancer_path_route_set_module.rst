@@ -30,7 +30,7 @@ oracle.oci.oci_loadbalancer_path_route_set -- Manage a PathRouteSet resource in 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -475,7 +475,6 @@ Examples
     - name: Create path_route_set
       oci_loadbalancer_path_route_set:
         # required
-        name: name_example
         path_routes:
         - # required
           path: path_example
@@ -484,11 +483,11 @@ Examples
             match_type: EXACT_MATCH
           backend_set_name: backend_set_name_example
         load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+        name: name_example
 
     - name: Update path_route_set
       oci_loadbalancer_path_route_set:
         # required
-        name: name_example
         path_routes:
         - # required
           path: path_example
@@ -497,12 +496,13 @@ Examples
             match_type: EXACT_MATCH
           backend_set_name: backend_set_name_example
         load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+        name: name_example
 
     - name: Delete path_route_set
       oci_loadbalancer_path_route_set:
         # required
-        name: name_example
         load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+        name: name_example
         state: absent
 
 

@@ -28,16 +28,16 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    table_name_or_id:
-        description:
-            - A table name within the compartment, or a table OCID.
-        type: str
-        required: true
     index_name:
         description:
             - The name of a table's index.
             - Required to get a specific index.
         type: str
+    table_name_or_id:
+        description:
+            - A table name within the compartment, or a table OCID.
+        type: str
+        required: true
     compartment_id:
         description:
             - The ID of a table's compartment. When a table is identified
@@ -85,8 +85,8 @@ EXAMPLES = """
 - name: Get a specific index
   oci_nosql_index_facts:
     # required
-    table_name_or_id: "ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx"
     index_name: index_name_example
+    table_name_or_id: "ocid1.tablenameor.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -269,8 +269,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            table_name_or_id=dict(type="str", required=True),
             index_name=dict(type="str"),
+            table_name_or_id=dict(type="str", required=True),
             compartment_id=dict(type="str"),
             name=dict(type="str"),
             lifecycle_state=dict(

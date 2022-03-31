@@ -30,7 +30,7 @@ oracle.oci.oci_network_security_group_security_rule_actions -- Perform actions o
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -824,6 +824,7 @@ Examples
 
             # optional
             code: 56
+          id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
           is_stateless: true
           source: source_example
           source_type: CIDR_BLOCK
@@ -847,7 +848,6 @@ Examples
               # required
               max: 56
               min: 56
-          id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Perform action remove on network_security_group_security_rule
       oci_network_security_group_security_rule_actions:
@@ -880,6 +880,7 @@ Examples
 
             # optional
             code: 56
+          id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
           is_stateless: true
           source: source_example
           source_type: CIDR_BLOCK
@@ -903,7 +904,6 @@ Examples
               # required
               max: 56
               min: 56
-          id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

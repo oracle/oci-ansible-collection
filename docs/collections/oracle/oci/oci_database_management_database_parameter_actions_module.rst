@@ -30,7 +30,7 @@ oracle.oci.oci_database_management_database_parameter_actions -- Perform actions
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -477,6 +477,13 @@ Examples
     - name: Perform action change on database_parameter
       oci_database_management_database_parameter_actions:
         # required
+        change_parameters:
+        - # required
+          name: name_example
+          value: value_example
+
+          # optional
+          update_comment: update_comment_example
         managed_database_id: "ocid1.manageddatabase.oc1..xxxxxxEXAMPLExxxxxx"
         credentials:
           # optional
@@ -485,13 +492,6 @@ Examples
           secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
           role: NORMAL
         scope: MEMORY
-        change_parameters:
-        - # required
-          name: name_example
-          value: value_example
-
-          # optional
-          update_comment: update_comment_example
         action: change
 
     - name: Perform action reset on database_parameter

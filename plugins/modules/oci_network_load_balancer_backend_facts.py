@@ -28,6 +28,15 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    backend_name:
+        description:
+            - The name of the backend server to retrieve.
+              If the backend was created with an explicitly specified name, that name should be used here.
+              If the backend was created without explicitly specifying the name, but was created using ipAddress, this is specified as <ipAddress>:<port>.
+              If the backend was created without explicitly specifying the name, but was created using targetId, this is specified as <targetId>:<port>.
+            - "Example: `10.0.0.3:8080` or `ocid1.privateip..oc1.<var>&lt;unique_ID&gt;</var>:8080`"
+            - Required to get a specific backend.
+        type: str
     network_load_balancer_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network load balancer to update.
@@ -40,15 +49,6 @@ options:
             - "Example: `example_backend_set`"
         type: str
         required: true
-    backend_name:
-        description:
-            - The name of the backend server to retrieve.
-              If the backend was created with an explicitly specified name, that name should be used here.
-              If the backend was created without explicitly specifying the name, but was created using ipAddress, this is specified as <ipAddress>:<port>.
-              If the backend was created without explicitly specifying the name, but was created using targetId, this is specified as <targetId>:<port>.
-            - "Example: `10.0.0.3:8080` or `ocid1.privateip..oc1.<var>&lt;unique_ID&gt;</var>:8080`"
-            - Required to get a specific backend.
-        type: str
     sort_order:
         description:
             - The sort order to use, either 'asc' (ascending) or 'desc' (descending).
@@ -71,9 +71,9 @@ EXAMPLES = """
 - name: Get a specific backend
   oci_network_load_balancer_backend_facts:
     # required
+    backend_name: backend_name_example
     network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     backend_set_name: backend_set_name_example
-    backend_name: backend_name_example
 
 - name: List backends
   oci_network_load_balancer_backend_facts:
@@ -242,9 +242,9 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
+            backend_name=dict(type="str"),
             network_load_balancer_id=dict(aliases=["id"], type="str", required=True),
             backend_set_name=dict(type="str", required=True),
-            backend_name=dict(type="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["timeCreated", "displayName"]),
         )

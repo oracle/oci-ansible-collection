@@ -30,7 +30,7 @@ oracle.oci.oci_cloud_guard_managed_list -- Manage a ManagedList resource in Orac
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -511,13 +511,13 @@ Examples
     - name: Create managed_list
       oci_cloud_guard_managed_list:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
 
         # optional
         source_managed_list_id: "ocid1.sourcemanagedlist.oc1..xxxxxxEXAMPLExxxxxx"
-        description: description_example
         list_type: CIDR_BLOCK
+        description: description_example
         list_items: [ "list_items_example" ]
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -537,8 +537,8 @@ Examples
     - name: Update managed_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_cloud_guard_managed_list:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
 
         # optional
         description: description_example
@@ -555,8 +555,8 @@ Examples
     - name: Delete managed_list using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_cloud_guard_managed_list:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
         state: absent
 
 

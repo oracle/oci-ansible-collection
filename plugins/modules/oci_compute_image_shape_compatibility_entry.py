@@ -26,16 +26,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    image_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the image.
-        type: str
-        required: true
-    shape_name:
-        description:
-            - Shape name.
-        type: str
-        required: true
     memory_constraints:
         description:
             - ""
@@ -68,6 +58,16 @@ options:
                     - The maximum number of OCPUs supported for this image and shape.
                     - This parameter is updatable.
                 type: int
+    image_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the image.
+        type: str
+        required: true
+    shape_name:
+        description:
+            - Shape name.
+        type: str
+        required: true
     state:
         description:
             - The state of the ImageShapeCompatibilityEntry.
@@ -329,8 +329,6 @@ def main():
     )
     module_args.update(
         dict(
-            image_id=dict(type="str", required=True),
-            shape_name=dict(type="str", required=True),
             memory_constraints=dict(
                 type="dict",
                 options=dict(min_in_gbs=dict(type="int"), max_in_gbs=dict(type="int")),
@@ -338,6 +336,8 @@ def main():
             ocpu_constraints=dict(
                 type="dict", options=dict(min=dict(type="int"), max=dict(type="int"))
             ),
+            image_id=dict(type="str", required=True),
+            shape_name=dict(type="str", required=True),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

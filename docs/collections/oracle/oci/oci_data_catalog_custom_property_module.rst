@@ -30,7 +30,7 @@ oracle.oci.oci_data_catalog_custom_property -- Manage a CustomProperty resource 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -640,13 +640,13 @@ Examples
     - name: Create custom_property
       oci_data_catalog_custom_property:
         # required
+        display_name: display_name_example
         catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         namespace_id: "ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name: display_name_example
 
         # optional
-        description: description_example
         data_type: TEXT
+        description: description_example
         is_sortable: true
         is_filterable: true
         is_multi_valued: true
@@ -682,9 +682,9 @@ Examples
     - name: Update custom_property using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_data_catalog_custom_property:
         # required
+        display_name: display_name_example
         catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         namespace_id: "ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name: display_name_example
 
         # optional
         description: description_example
@@ -710,9 +710,9 @@ Examples
     - name: Delete custom_property using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_data_catalog_custom_property:
         # required
+        display_name: display_name_example
         catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         namespace_id: "ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name: display_name_example
         state: absent
 
 

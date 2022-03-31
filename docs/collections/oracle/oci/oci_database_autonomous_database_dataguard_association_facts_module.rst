@@ -30,7 +30,7 @@ oracle.oci.oci_database_autonomous_database_dataguard_association_facts -- Fetch
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -288,8 +288,8 @@ Examples
     - name: Get a specific autonomous_database_dataguard_association
       oci_database_autonomous_database_dataguard_association_facts:
         # required
-        autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         autonomous_database_dataguard_association_id: "ocid1.autonomousdatabasedataguardassociation.oc1..xxxxxxEXAMPLExxxxxx"
+        autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: List autonomous_database_dataguard_associations
       oci_database_autonomous_database_dataguard_association_facts:

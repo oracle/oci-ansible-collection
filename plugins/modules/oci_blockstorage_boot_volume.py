@@ -52,6 +52,31 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    kms_key_id:
+        description:
+            - The OCID of the Key Management key to assign as the master encryption key
+              for the boot volume.
+        type: str
+    source_details:
+        description:
+            - ""
+            - Required for create using I(state=present).
+        type: dict
+        suboptions:
+            type:
+                description:
+                    - ""
+                type: str
+                choices:
+                    - "bootVolumeBackup"
+                    - "bootVolume"
+                    - "bootVolumeReplica"
+                required: true
+            id:
+                description:
+                    - The OCID of the boot volume backup.
+                type: str
+                required: true
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
@@ -75,11 +100,6 @@ options:
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
-    kms_key_id:
-        description:
-            - The OCID of the Key Management key to assign as the master encryption key
-              for the boot volume.
-        type: str
     size_in_gbs:
         description:
             - The size of the volume in GBs.
@@ -97,26 +117,6 @@ options:
             - For performance autotune enabled volumes, It would be the Default(Minimum) VPUs/GB.
             - This parameter is updatable.
         type: int
-    source_details:
-        description:
-            - ""
-            - Required for create using I(state=present).
-        type: dict
-        suboptions:
-            type:
-                description:
-                    - ""
-                type: str
-                choices:
-                    - "bootVolumeBackup"
-                    - "bootVolume"
-                    - "bootVolumeReplica"
-                required: true
-            id:
-                description:
-                    - The OCID of the boot volume backup.
-                type: str
-                required: true
     is_auto_tune_enabled:
         description:
             - Specifies whether the auto-tune performance is enabled for this boot volume. This field is deprecated.
@@ -175,10 +175,10 @@ EXAMPLES = """
 
     # optional
     backup_policy_id: "ocid1.backuppolicy.oc1..xxxxxxEXAMPLExxxxxx"
+    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
-    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     size_in_gbs: 56
     vpus_per_gb: 56
     is_auto_tune_enabled: true
@@ -599,12 +599,7 @@ def main():
             availability_domain=dict(type="str"),
             backup_policy_id=dict(type="str"),
             compartment_id=dict(type="str"),
-            defined_tags=dict(type="dict"),
-            display_name=dict(aliases=["name"], type="str"),
-            freeform_tags=dict(type="dict"),
             kms_key_id=dict(type="str"),
-            size_in_gbs=dict(type="int"),
-            vpus_per_gb=dict(type="int"),
             source_details=dict(
                 type="dict",
                 options=dict(
@@ -616,6 +611,11 @@ def main():
                     id=dict(type="str", required=True),
                 ),
             ),
+            defined_tags=dict(type="dict"),
+            display_name=dict(aliases=["name"], type="str"),
+            freeform_tags=dict(type="dict"),
+            size_in_gbs=dict(type="int"),
+            vpus_per_gb=dict(type="int"),
             is_auto_tune_enabled=dict(type="bool"),
             boot_volume_replicas=dict(
                 type="list",

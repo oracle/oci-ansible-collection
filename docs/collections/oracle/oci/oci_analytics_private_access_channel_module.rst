@@ -30,7 +30,7 @@ oracle.oci.oci_analytics_private_access_channel -- Manage a PrivateAccessChannel
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -479,7 +479,6 @@ Examples
     - name: Create private_access_channel
       oci_analytics_private_access_channel:
         # required
-        analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
@@ -489,12 +488,13 @@ Examples
 
           # optional
           description: description_example
+        analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update private_access_channel
       oci_analytics_private_access_channel:
         # required
-        analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         private_access_channel_key: private_access_channel_key_example
+        analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         display_name: display_name_example
@@ -510,8 +510,8 @@ Examples
     - name: Delete private_access_channel
       oci_analytics_private_access_channel:
         # required
-        analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         private_access_channel_key: private_access_channel_key_example
+        analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

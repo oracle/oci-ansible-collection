@@ -28,6 +28,11 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment of the Fleet.
+            - Required for create using I(state=present).
+        type: str
     display_name:
         description:
             - The name of the Fleet. The displayName must be unique for Fleets in the same compartment.
@@ -36,11 +41,6 @@ options:
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
-    compartment_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment of the Fleet.
-            - Required for create using I(state=present).
-        type: str
     description:
         description:
             - The Fleet's description. If nothing is provided, the Fleet description will be null.
@@ -83,8 +83,8 @@ EXAMPLES = """
 - name: Create fleet
   oci_jms_fleet:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     description: description_example
@@ -383,8 +383,8 @@ def main():
     )
     module_args.update(
         dict(
-            display_name=dict(aliases=["name"], type="str"),
             compartment_id=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
             description=dict(type="str"),
             defined_tags=dict(type="dict"),
             freeform_tags=dict(type="dict"),

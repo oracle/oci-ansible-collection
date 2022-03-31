@@ -30,7 +30,7 @@ oracle.oci.oci_network_load_balancer_backend_facts -- Fetches details about one 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -343,9 +343,9 @@ Examples
     - name: Get a specific backend
       oci_network_load_balancer_backend_facts:
         # required
+        backend_name: backend_name_example
         network_load_balancer_id: "ocid1.networkloadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
         backend_set_name: backend_set_name_example
-        backend_name: backend_name_example
 
     - name: List backends
       oci_network_load_balancer_backend_facts:

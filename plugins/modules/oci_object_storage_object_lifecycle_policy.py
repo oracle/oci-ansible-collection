@@ -26,17 +26,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    namespace_name:
-        description:
-            - The Object Storage namespace used for the request.
-        type: str
-        required: true
-    bucket_name:
-        description:
-            - "The name of the bucket. Avoid entering confidential information.
-              Example: `my-new-bucket1`"
-        type: str
-        required: true
     items:
         description:
             - The bucket's set of lifecycle policy rules.
@@ -155,6 +144,17 @@ options:
                             - This parameter is updatable.
                         type: list
                         elements: str
+    namespace_name:
+        description:
+            - The Object Storage namespace used for the request.
+        type: str
+        required: true
+    bucket_name:
+        description:
+            - "The name of the bucket. Avoid entering confidential information.
+              Example: `my-new-bucket1`"
+        type: str
+        required: true
     state:
         description:
             - The state of the ObjectLifecyclePolicy.
@@ -463,8 +463,6 @@ def main():
     )
     module_args.update(
         dict(
-            namespace_name=dict(type="str", required=True),
-            bucket_name=dict(type="str", required=True),
             items=dict(
                 type="list",
                 elements="dict",
@@ -487,6 +485,8 @@ def main():
                     ),
                 ),
             ),
+            namespace_name=dict(type="str", required=True),
+            bucket_name=dict(type="str", required=True),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

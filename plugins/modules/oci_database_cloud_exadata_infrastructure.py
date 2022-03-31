@@ -41,6 +41,11 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    shape:
+        description:
+            - The shape of the cloud Exadata infrastructure resource.
+            - Required for create using I(state=present).
+        type: str
     display_name:
         description:
             - The user-friendly name for the cloud Exadata infrastructure resource. The name does not need to be unique.
@@ -49,21 +54,6 @@ options:
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
-    shape:
-        description:
-            - The shape of the cloud Exadata infrastructure resource.
-            - Required for create using I(state=present).
-        type: str
-    compute_count:
-        description:
-            - The number of compute servers for the cloud Exadata infrastructure.
-            - This parameter is updatable.
-        type: int
-    storage_count:
-        description:
-            - The number of storage servers for the cloud Exadata infrastructure.
-            - This parameter is updatable.
-        type: int
     maintenance_window:
         description:
             - ""
@@ -142,6 +132,16 @@ options:
                 description:
                     - Lead time window allows user to set a lead time to prepare for a down time. The lead time is in weeks and valid value is between 1 to 4.
                 type: int
+    compute_count:
+        description:
+            - The number of compute servers for the cloud Exadata infrastructure.
+            - This parameter is updatable.
+        type: int
+    storage_count:
+        description:
+            - The number of storage servers for the cloud Exadata infrastructure.
+            - This parameter is updatable.
+        type: int
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -196,12 +196,10 @@ EXAMPLES = """
     # required
     availability_domain: Uocm:PHX-AD-1
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: display_name_example
     shape: shape_example
+    display_name: display_name_example
 
     # optional
-    compute_count: 56
-    storage_count: 56
     maintenance_window:
       # required
       preference: NO_PREFERENCE
@@ -216,6 +214,8 @@ EXAMPLES = """
         name: MONDAY
       hours_of_day: [ "hours_of_day_example" ]
       lead_time_in_weeks: 56
+    compute_count: 56
+    storage_count: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     customer_contacts:
@@ -229,8 +229,6 @@ EXAMPLES = """
 
     # optional
     display_name: display_name_example
-    compute_count: 56
-    storage_count: 56
     maintenance_window:
       # required
       preference: NO_PREFERENCE
@@ -245,6 +243,8 @@ EXAMPLES = """
         name: MONDAY
       hours_of_day: [ "hours_of_day_example" ]
       lead_time_in_weeks: 56
+    compute_count: 56
+    storage_count: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     customer_contacts:
@@ -258,8 +258,6 @@ EXAMPLES = """
     display_name: display_name_example
 
     # optional
-    compute_count: 56
-    storage_count: 56
     maintenance_window:
       # required
       preference: NO_PREFERENCE
@@ -274,6 +272,8 @@ EXAMPLES = """
         name: MONDAY
       hours_of_day: [ "hours_of_day_example" ]
       lead_time_in_weeks: 56
+    compute_count: 56
+    storage_count: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     customer_contacts:
@@ -693,10 +693,8 @@ def main():
         dict(
             availability_domain=dict(type="str"),
             compartment_id=dict(type="str"),
-            display_name=dict(aliases=["name"], type="str"),
             shape=dict(type="str"),
-            compute_count=dict(type="int"),
-            storage_count=dict(type="int"),
+            display_name=dict(aliases=["name"], type="str"),
             maintenance_window=dict(
                 type="dict",
                 options=dict(
@@ -753,6 +751,8 @@ def main():
                     lead_time_in_weeks=dict(type="int"),
                 ),
             ),
+            compute_count=dict(type="int"),
+            storage_count=dict(type="int"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             customer_contacts=dict(

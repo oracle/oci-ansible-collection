@@ -36,18 +36,18 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    remote_peering_connection_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the remote peering connection (RPC).
-        type: str
-        aliases: ["id"]
-        required: true
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the
               remote peering connection to.
             - Required for I(action=change_compartment).
         type: str
+    remote_peering_connection_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the remote peering connection (RPC).
+        type: str
+        aliases: ["id"]
+        required: true
     peer_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the RPC you want to peer with.
@@ -74,8 +74,8 @@ EXAMPLES = """
 - name: Perform action change_compartment on remote_peering_connection
   oci_network_remote_peering_connection_actions:
     # required
-    remote_peering_connection_id: "ocid1.remotepeeringconnection.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    remote_peering_connection_id: "ocid1.remotepeeringconnection.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action connect on remote_peering_connection
@@ -315,10 +315,10 @@ def main():
     )
     module_args.update(
         dict(
+            compartment_id=dict(type="str"),
             remote_peering_connection_id=dict(
                 aliases=["id"], type="str", required=True
             ),
-            compartment_id=dict(type="str"),
             peer_id=dict(type="str"),
             peer_region_name=dict(type="str"),
             action=dict(

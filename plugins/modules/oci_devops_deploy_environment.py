@@ -27,6 +27,60 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    project_id:
+        description:
+            - The OCID of a project.
+            - Required for create using I(state=present).
+        type: str
+    function_id:
+        description:
+            - The OCID of the Function.
+            - This parameter is updatable.
+            - Applicable when deploy_environment_type is 'FUNCTION'
+            - Required when deploy_environment_type is 'FUNCTION'
+        type: str
+    compute_instance_group_selectors:
+        description:
+            - ""
+            - This parameter is updatable.
+            - Applicable when deploy_environment_type is 'COMPUTE_INSTANCE_GROUP'
+            - Required when deploy_environment_type is 'COMPUTE_INSTANCE_GROUP'
+        type: dict
+        suboptions:
+            items:
+                description:
+                    - A list of selectors for the instance group. UNION operator is used for combining the instances selected by each selector.
+                    - Required when deploy_environment_type is 'COMPUTE_INSTANCE_GROUP'
+                type: list
+                elements: dict
+                required: true
+                suboptions:
+                    compute_instance_ids:
+                        description:
+                            - Compute instance OCID identifiers that are members of this group.
+                            - Required when selector_type is 'INSTANCE_IDS'
+                        type: list
+                        elements: str
+                    selector_type:
+                        description:
+                            - Defines the type of the instance selector for the group.
+                        type: str
+                        choices:
+                            - "INSTANCE_IDS"
+                            - "INSTANCE_QUERY"
+                        required: true
+                    region:
+                        description:
+                            - Region identifier referred by the deployment environment. Region identifiers are listed at https://docs.oracle.com/en-
+                              us/iaas/Content/General/Concepts/regions.htm
+                            - Required when selector_type is 'INSTANCE_QUERY'
+                        type: str
+                    query:
+                        description:
+                            - Query expression confirming to the OCI Search Language syntax to select compute instances for the group. The language is
+                              documented at https://docs.oracle.com/en-us/iaas/Content/Search/Concepts/querysyntax.htm
+                            - Required when selector_type is 'INSTANCE_QUERY'
+                        type: str
     description:
         description:
             - Optional description about the deployment environment.
@@ -48,11 +102,6 @@ options:
             - "COMPUTE_INSTANCE_GROUP"
             - "OKE_CLUSTER"
             - "FUNCTION"
-    project_id:
-        description:
-            - The OCID of a project.
-            - Required for create using I(state=present).
-        type: str
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.  See L(Resource
@@ -65,61 +114,12 @@ options:
               Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm). Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             - This parameter is updatable.
         type: dict
-    compute_instance_group_selectors:
-        description:
-            - ""
-            - This parameter is updatable.
-            - Applicable when deploy_environment_type is 'COMPUTE_INSTANCE_GROUP'
-            - Required when deploy_environment_type is 'COMPUTE_INSTANCE_GROUP'
-        type: dict
-        suboptions:
-            items:
-                description:
-                    - A list of selectors for the instance group. UNION operator is used for combining the instances selected by each selector.
-                    - Required when deploy_environment_type is 'COMPUTE_INSTANCE_GROUP'
-                type: list
-                elements: dict
-                required: true
-                suboptions:
-                    selector_type:
-                        description:
-                            - Defines the type of the instance selector for the group.
-                        type: str
-                        choices:
-                            - "INSTANCE_IDS"
-                            - "INSTANCE_QUERY"
-                        required: true
-                    compute_instance_ids:
-                        description:
-                            - Compute instance OCID identifiers that are members of this group.
-                            - Required when selector_type is 'INSTANCE_IDS'
-                        type: list
-                        elements: str
-                    region:
-                        description:
-                            - Region identifier referred by the deployment environment. Region identifiers are listed at https://docs.oracle.com/en-
-                              us/iaas/Content/General/Concepts/regions.htm
-                            - Required when selector_type is 'INSTANCE_QUERY'
-                        type: str
-                    query:
-                        description:
-                            - Query expression confirming to the OCI Search Language syntax to select compute instances for the group. The language is
-                              documented at https://docs.oracle.com/en-us/iaas/Content/Search/Concepts/querysyntax.htm
-                            - Required when selector_type is 'INSTANCE_QUERY'
-                        type: str
     cluster_id:
         description:
             - The OCID of the Kubernetes cluster.
             - This parameter is updatable.
             - Applicable when deploy_environment_type is 'OKE_CLUSTER'
             - Required when deploy_environment_type is 'OKE_CLUSTER'
-        type: str
-    function_id:
-        description:
-            - The OCID of the Function.
-            - This parameter is updatable.
-            - Applicable when deploy_environment_type is 'FUNCTION'
-            - Required when deploy_environment_type is 'FUNCTION'
         type: str
     deploy_environment_id:
         description:
@@ -144,26 +144,26 @@ EXAMPLES = """
 - name: Create deploy_environment with deploy_environment_type = COMPUTE_INSTANCE_GROUP
   oci_devops_deploy_environment:
     # required
-    deploy_environment_type: COMPUTE_INSTANCE_GROUP
     project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_environment_type: COMPUTE_INSTANCE_GROUP
 
     # optional
-    description: description_example
-    display_name: display_name_example
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
     compute_instance_group_selectors:
       # required
       items:
       - # required
-        selector_type: INSTANCE_IDS
         compute_instance_ids: [ "compute_instance_ids_example" ]
+        selector_type: INSTANCE_IDS
+    description: description_example
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Create deploy_environment with deploy_environment_type = OKE_CLUSTER
   oci_devops_deploy_environment:
     # required
-    deploy_environment_type: OKE_CLUSTER
     project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_environment_type: OKE_CLUSTER
 
     # optional
     description: description_example
@@ -175,15 +175,15 @@ EXAMPLES = """
 - name: Create deploy_environment with deploy_environment_type = FUNCTION
   oci_devops_deploy_environment:
     # required
-    deploy_environment_type: FUNCTION
     project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_environment_type: FUNCTION
 
     # optional
+    function_id: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
     description: description_example
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    function_id: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update deploy_environment with deploy_environment_type = COMPUTE_INSTANCE_GROUP
   oci_devops_deploy_environment:
@@ -191,16 +191,16 @@ EXAMPLES = """
     deploy_environment_type: COMPUTE_INSTANCE_GROUP
 
     # optional
-    description: description_example
-    display_name: display_name_example
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
     compute_instance_group_selectors:
       # required
       items:
       - # required
-        selector_type: INSTANCE_IDS
         compute_instance_ids: [ "compute_instance_ids_example" ]
+        selector_type: INSTANCE_IDS
+    description: description_example
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update deploy_environment with deploy_environment_type = OKE_CLUSTER
   oci_devops_deploy_environment:
@@ -220,11 +220,11 @@ EXAMPLES = """
     deploy_environment_type: FUNCTION
 
     # optional
+    function_id: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
     description: description_example
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    function_id: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update deploy_environment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_environment_type = COMPUTE_INSTANCE_GROUP
   oci_devops_deploy_environment:
@@ -232,16 +232,16 @@ EXAMPLES = """
     deploy_environment_type: COMPUTE_INSTANCE_GROUP
 
     # optional
-    description: description_example
-    display_name: display_name_example
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
     compute_instance_group_selectors:
       # required
       items:
       - # required
-        selector_type: INSTANCE_IDS
         compute_instance_ids: [ "compute_instance_ids_example" ]
+        selector_type: INSTANCE_IDS
+    description: description_example
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Update deploy_environment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_environment_type = OKE_CLUSTER
   oci_devops_deploy_environment:
@@ -261,11 +261,11 @@ EXAMPLES = """
     deploy_environment_type: FUNCTION
 
     # optional
+    function_id: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
     description: description_example
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    function_id: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete deploy_environment
   oci_devops_deploy_environment:
@@ -597,15 +597,8 @@ def main():
     )
     module_args.update(
         dict(
-            description=dict(type="str"),
-            display_name=dict(aliases=["name"], type="str"),
-            deploy_environment_type=dict(
-                type="str",
-                choices=["COMPUTE_INSTANCE_GROUP", "OKE_CLUSTER", "FUNCTION"],
-            ),
             project_id=dict(type="str"),
-            freeform_tags=dict(type="dict"),
-            defined_tags=dict(type="dict"),
+            function_id=dict(type="str"),
             compute_instance_group_selectors=dict(
                 type="dict",
                 options=dict(
@@ -614,20 +607,27 @@ def main():
                         elements="dict",
                         required=True,
                         options=dict(
+                            compute_instance_ids=dict(type="list", elements="str"),
                             selector_type=dict(
                                 type="str",
                                 required=True,
                                 choices=["INSTANCE_IDS", "INSTANCE_QUERY"],
                             ),
-                            compute_instance_ids=dict(type="list", elements="str"),
                             region=dict(type="str"),
                             query=dict(type="str"),
                         ),
                     )
                 ),
             ),
+            description=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
+            deploy_environment_type=dict(
+                type="str",
+                choices=["COMPUTE_INSTANCE_GROUP", "OKE_CLUSTER", "FUNCTION"],
+            ),
+            freeform_tags=dict(type="dict"),
+            defined_tags=dict(type="dict"),
             cluster_id=dict(type="str"),
-            function_id=dict(type="str"),
             deploy_environment_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

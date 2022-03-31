@@ -28,6 +28,11 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    custom_property_key:
+        description:
+            - Unique Custom Property key
+            - Required to get a specific custom_property.
+        type: str
     catalog_id:
         description:
             - Unique catalog identifier.
@@ -38,28 +43,6 @@ options:
             - Unique namespace identifier.
         type: str
         required: true
-    custom_property_key:
-        description:
-            - Unique Custom Property key
-            - Required to get a specific custom_property.
-        type: str
-    fields:
-        description:
-            - Specifies the fields to return in a custom property response.
-        type: list
-        elements: str
-        choices:
-            - "key"
-            - "displayName"
-            - "description"
-            - "dataType"
-            - "namespaceName"
-            - "lifecycleState"
-            - "timeCreated"
-            - "timeUpdated"
-            - "createdById"
-            - "updatedById"
-            - "properties"
     display_name:
         description:
             - A filter to return only resources that match the entire display name given. The match is not case sensitive.
@@ -160,6 +143,23 @@ options:
         description:
             - OCID of the user who updated the resource.
         type: str
+    fields:
+        description:
+            - Specifies the fields to return in a custom property response.
+        type: list
+        elements: str
+        choices:
+            - "key"
+            - "displayName"
+            - "description"
+            - "dataType"
+            - "namespaceName"
+            - "lifecycleState"
+            - "timeCreated"
+            - "timeUpdated"
+            - "createdById"
+            - "updatedById"
+            - "properties"
     sort_order:
         description:
             - The sort order to use, either 'asc' or 'desc'.
@@ -181,9 +181,9 @@ EXAMPLES = """
 - name: Get a specific custom_property
   oci_data_catalog_custom_property_facts:
     # required
+    custom_property_key: custom_property_key_example
     catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     namespace_id: "ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx"
-    custom_property_key: custom_property_key_example
 
     # optional
     fields: [ "key" ]
@@ -195,7 +195,6 @@ EXAMPLES = """
     namespace_id: "ocid1.namespace.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    fields: [ "key" ]
     display_name: display_name_example
     display_name_contains: display_name_contains_example
     data_types: [ "TEXT" ]
@@ -205,6 +204,7 @@ EXAMPLES = """
     time_updated: 2013-10-20T19:20:30+01:00
     created_by_id: "ocid1.createdby.oc1..xxxxxxEXAMPLExxxxxx"
     updated_by_id: "ocid1.updatedby.oc1..xxxxxxEXAMPLExxxxxx"
+    fields: [ "key" ]
     sort_order: ASC
     sort_by: DISPLAYNAME
 
@@ -589,26 +589,9 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
+            custom_property_key=dict(type="str", no_log=True),
             catalog_id=dict(type="str", required=True),
             namespace_id=dict(type="str", required=True),
-            custom_property_key=dict(type="str", no_log=True),
-            fields=dict(
-                type="list",
-                elements="str",
-                choices=[
-                    "key",
-                    "displayName",
-                    "description",
-                    "dataType",
-                    "namespaceName",
-                    "lifecycleState",
-                    "timeCreated",
-                    "timeUpdated",
-                    "createdById",
-                    "updatedById",
-                    "properties",
-                ],
-            ),
             display_name=dict(aliases=["name"], type="str"),
             display_name_contains=dict(type="str"),
             data_types=dict(
@@ -682,6 +665,23 @@ def main():
             time_updated=dict(type="str"),
             created_by_id=dict(type="str"),
             updated_by_id=dict(type="str"),
+            fields=dict(
+                type="list",
+                elements="str",
+                choices=[
+                    "key",
+                    "displayName",
+                    "description",
+                    "dataType",
+                    "namespaceName",
+                    "lifecycleState",
+                    "timeCreated",
+                    "timeUpdated",
+                    "createdById",
+                    "updatedById",
+                    "properties",
+                ],
+            ),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["DISPLAYNAME", "USAGECOUNT"]),
         )

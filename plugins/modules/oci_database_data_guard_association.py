@@ -36,79 +36,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    database_id:
-        description:
-            - The database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
-        type: str
-        required: true
-    database_software_image_id:
-        description:
-            - The database software image L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
-        type: str
-    database_admin_password:
-        description:
-            - A strong password for the `SYS`, `SYSTEM`, and `PDB Admin` users to apply during standby creation.
-            - "The password must contain no fewer than nine characters and include:"
-            - "* At least two uppercase characters."
-            - "* At least two lowercase characters."
-            - "* At least two numeric characters."
-            - "* At least two special characters. Valid special characters include \\"_\\", \\"#\\", and \\"-\\" only."
-            - "**The password MUST be the same as the primary admin password.**"
-            - Required for create using I(state=present).
-            - This parameter is updatable.
-        type: str
-    protection_mode:
-        description:
-            - The protection mode to set up between the primary and standby databases. For more information, see
-              L(Oracle Data Guard Protection Modes,http://docs.oracle.com/database/122/SBYDB/oracle-data-guard-protection-modes.htm#SBYDB02000)
-              in the Oracle Data Guard documentation.
-            - "**IMPORTANT** - The only protection mode currently supported by the Database service is MAXIMUM_PERFORMANCE."
-            - Required for create using I(state=present).
-            - This parameter is updatable.
-        type: str
-        choices:
-            - "MAXIMUM_AVAILABILITY"
-            - "MAXIMUM_PERFORMANCE"
-            - "MAXIMUM_PROTECTION"
-    transport_type:
-        description:
-            - "The redo transport type to use for this Data Guard association.  Valid values depend on the specified `protectionMode`:"
-            - "* MAXIMUM_AVAILABILITY - SYNC or FASTSYNC
-              * MAXIMUM_PERFORMANCE - ASYNC
-              * MAXIMUM_PROTECTION - SYNC"
-            - For more information, see
-              L(Redo Transport Services,http://docs.oracle.com/database/122/SBYDB/oracle-data-guard-redo-transport-services.htm#SBYDB00400)
-              in the Oracle Data Guard documentation.
-            - "**IMPORTANT** - The only transport type currently supported by the Database service is ASYNC."
-            - Required for create using I(state=present).
-            - This parameter is updatable.
-        type: str
-        choices:
-            - "SYNC"
-            - "ASYNC"
-            - "FASTSYNC"
-    creation_type:
-        description:
-            - Specifies whether to create the peer database in an existing DB system or in a new DB system.
-            - Required for create using I(state=present).
-        type: str
-        choices:
-            - "NewDbSystem"
-            - "ExistingVmCluster"
-            - "ExistingDbSystem"
-    is_active_data_guard_enabled:
-        description:
-            - True if active Data Guard is enabled.
-            - This parameter is updatable.
-        type: bool
-    peer_db_unique_name:
-        description:
-            - Specifies the `DB_UNIQUE_NAME` of the peer database to be created.
-        type: str
-    peer_sid_prefix:
-        description:
-            - Specifies a prefix for the `Oracle SID` of the database to be created.
-        type: str
     display_name:
         description:
             - The user-friendly name of the DB system that will contain the the standby database. The display name does not have to be unique.
@@ -170,11 +97,26 @@ options:
               You must supply this value if creationType is `ExistingVmCluster`.
             - Applicable when creation_type is 'ExistingVmCluster'
         type: str
-    peer_db_home_id:
+    database_software_image_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB home in which to create the standby database.
-              You must supply this value to create standby database with an existing DB home
-            - Applicable when creation_type is one of ['ExistingDbSystem', 'ExistingVmCluster']
+            - The database software image L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+        type: str
+    creation_type:
+        description:
+            - Specifies whether to create the peer database in an existing DB system or in a new DB system.
+            - Required for create using I(state=present).
+        type: str
+        choices:
+            - "NewDbSystem"
+            - "ExistingVmCluster"
+            - "ExistingDbSystem"
+    peer_db_unique_name:
+        description:
+            - Specifies the `DB_UNIQUE_NAME` of the peer database to be created.
+        type: str
+    peer_sid_prefix:
+        description:
+            - Specifies a prefix for the `Oracle SID` of the database to be created.
         type: str
     peer_db_system_id:
         description:
@@ -182,12 +124,70 @@ options:
               You must supply this value if creationType is `ExistingDbSystem`.
             - Applicable when creation_type is 'ExistingDbSystem'
         type: str
+    peer_db_home_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DB home in which to create the standby database.
+              You must supply this value to create standby database with an existing DB home
+            - Applicable when creation_type is one of ['ExistingDbSystem', 'ExistingVmCluster']
+        type: str
+    database_id:
+        description:
+            - The database L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
+        type: str
+        required: true
     data_guard_association_id:
         description:
             - The Data Guard association's L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["id"]
+    database_admin_password:
+        description:
+            - A strong password for the `SYS`, `SYSTEM`, and `PDB Admin` users to apply during standby creation.
+            - "The password must contain no fewer than nine characters and include:"
+            - "* At least two uppercase characters."
+            - "* At least two lowercase characters."
+            - "* At least two numeric characters."
+            - "* At least two special characters. Valid special characters include \\"_\\", \\"#\\", and \\"-\\" only."
+            - "**The password MUST be the same as the primary admin password.**"
+            - Required for create using I(state=present).
+            - This parameter is updatable.
+        type: str
+    protection_mode:
+        description:
+            - The protection mode to set up between the primary and standby databases. For more information, see
+              L(Oracle Data Guard Protection Modes,http://docs.oracle.com/database/122/SBYDB/oracle-data-guard-protection-modes.htm#SBYDB02000)
+              in the Oracle Data Guard documentation.
+            - "**IMPORTANT** - The only protection mode currently supported by the Database service is MAXIMUM_PERFORMANCE."
+            - Required for create using I(state=present).
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "MAXIMUM_AVAILABILITY"
+            - "MAXIMUM_PERFORMANCE"
+            - "MAXIMUM_PROTECTION"
+    transport_type:
+        description:
+            - "The redo transport type to use for this Data Guard association.  Valid values depend on the specified `protectionMode`:"
+            - "* MAXIMUM_AVAILABILITY - SYNC or FASTSYNC
+              * MAXIMUM_PERFORMANCE - ASYNC
+              * MAXIMUM_PROTECTION - SYNC"
+            - For more information, see
+              L(Redo Transport Services,http://docs.oracle.com/database/122/SBYDB/oracle-data-guard-redo-transport-services.htm#SBYDB00400)
+              in the Oracle Data Guard documentation.
+            - "**IMPORTANT** - The only transport type currently supported by the Database service is ASYNC."
+            - Required for create using I(state=present).
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "SYNC"
+            - "ASYNC"
+            - "FASTSYNC"
+    is_active_data_guard_enabled:
+        description:
+            - True if active Data Guard is enabled.
+            - This parameter is updatable.
+        type: bool
     state:
         description:
             - The state of the DataGuardAssociation.
@@ -203,16 +203,12 @@ EXAMPLES = """
 - name: Create data_guard_association with creation_type = NewDbSystem
   oci_database_data_guard_association:
     # required
+    creation_type: NewDbSystem
     database_admin_password: example-password
     protection_mode: MAXIMUM_AVAILABILITY
     transport_type: SYNC
-    creation_type: NewDbSystem
 
     # optional
-    database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
-    is_active_data_guard_enabled: true
-    peer_db_unique_name: peer_db_unique_name_example
-    peer_sid_prefix: peer_sid_prefix_example
     display_name: display_name_example
     availability_domain: Uocm:PHX-AD-1
     shape: shape_example
@@ -220,38 +216,42 @@ EXAMPLES = """
     nsg_ids: [ "nsg_ids_example" ]
     backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
     hostname: hostname_example
+    database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
+    peer_db_unique_name: peer_db_unique_name_example
+    peer_sid_prefix: peer_sid_prefix_example
+    is_active_data_guard_enabled: true
 
 - name: Create data_guard_association with creation_type = ExistingVmCluster
   oci_database_data_guard_association:
     # required
+    creation_type: ExistingVmCluster
     database_admin_password: example-password
     protection_mode: MAXIMUM_AVAILABILITY
     transport_type: SYNC
-    creation_type: ExistingVmCluster
 
     # optional
+    peer_vm_cluster_id: "ocid1.peervmcluster.oc1..xxxxxxEXAMPLExxxxxx"
     database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
-    is_active_data_guard_enabled: true
     peer_db_unique_name: peer_db_unique_name_example
     peer_sid_prefix: peer_sid_prefix_example
-    peer_vm_cluster_id: "ocid1.peervmcluster.oc1..xxxxxxEXAMPLExxxxxx"
     peer_db_home_id: "ocid1.peerdbhome.oc1..xxxxxxEXAMPLExxxxxx"
+    is_active_data_guard_enabled: true
 
 - name: Create data_guard_association with creation_type = ExistingDbSystem
   oci_database_data_guard_association:
     # required
+    creation_type: ExistingDbSystem
     database_admin_password: example-password
     protection_mode: MAXIMUM_AVAILABILITY
     transport_type: SYNC
-    creation_type: ExistingDbSystem
 
     # optional
     database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
-    is_active_data_guard_enabled: true
     peer_db_unique_name: peer_db_unique_name_example
     peer_sid_prefix: peer_sid_prefix_example
-    peer_db_home_id: "ocid1.peerdbhome.oc1..xxxxxxEXAMPLExxxxxx"
     peer_db_system_id: "ocid1.peerdbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+    peer_db_home_id: "ocid1.peerdbhome.oc1..xxxxxxEXAMPLExxxxxx"
+    is_active_data_guard_enabled: true
 
 - name: Update data_guard_association
   oci_database_data_guard_association:
@@ -268,8 +268,8 @@ EXAMPLES = """
 - name: Update data_guard_association using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_data_guard_association:
     # required
-    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     database_admin_password: example-password
@@ -572,8 +572,25 @@ def main():
     )
     module_args.update(
         dict(
-            database_id=dict(type="str", required=True),
+            display_name=dict(aliases=["name"], type="str"),
+            availability_domain=dict(type="str"),
+            shape=dict(type="str"),
+            subnet_id=dict(type="str"),
+            nsg_ids=dict(type="list", elements="str"),
+            backup_network_nsg_ids=dict(type="list", elements="str"),
+            hostname=dict(type="str"),
+            peer_vm_cluster_id=dict(type="str"),
             database_software_image_id=dict(type="str"),
+            creation_type=dict(
+                type="str",
+                choices=["NewDbSystem", "ExistingVmCluster", "ExistingDbSystem"],
+            ),
+            peer_db_unique_name=dict(type="str"),
+            peer_sid_prefix=dict(type="str"),
+            peer_db_system_id=dict(type="str"),
+            peer_db_home_id=dict(type="str"),
+            database_id=dict(type="str", required=True),
+            data_guard_association_id=dict(aliases=["id"], type="str"),
             database_admin_password=dict(type="str", no_log=True),
             protection_mode=dict(
                 type="str",
@@ -584,24 +601,7 @@ def main():
                 ],
             ),
             transport_type=dict(type="str", choices=["SYNC", "ASYNC", "FASTSYNC"]),
-            creation_type=dict(
-                type="str",
-                choices=["NewDbSystem", "ExistingVmCluster", "ExistingDbSystem"],
-            ),
             is_active_data_guard_enabled=dict(type="bool"),
-            peer_db_unique_name=dict(type="str"),
-            peer_sid_prefix=dict(type="str"),
-            display_name=dict(aliases=["name"], type="str"),
-            availability_domain=dict(type="str"),
-            shape=dict(type="str"),
-            subnet_id=dict(type="str"),
-            nsg_ids=dict(type="list", elements="str"),
-            backup_network_nsg_ids=dict(type="list", elements="str"),
-            hostname=dict(type="str"),
-            peer_vm_cluster_id=dict(type="str"),
-            peer_db_home_id=dict(type="str"),
-            peer_db_system_id=dict(type="str"),
-            data_guard_association_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present"]),
         )
     )

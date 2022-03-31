@@ -30,7 +30,7 @@ oracle.oci.oci_blockstorage_volume -- Manage a Volume resource in Oracle Cloud I
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -677,18 +677,18 @@ Examples
         # optional
         availability_domain: Uocm:PHX-AD-1
         backup_policy_id: "ocid1.backuppolicy.oc1..xxxxxxEXAMPLExxxxxx"
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
-        display_name: display_name_example
-        freeform_tags: {'Department': 'Finance'}
         kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
-        vpus_per_gb: 56
-        size_in_gbs: 56
         size_in_mbs: 56
         source_details:
           # required
           type: blockVolumeReplica
           id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         volume_backup_id: "ocid1.volumebackup.oc1..xxxxxxEXAMPLExxxxxx"
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        display_name: display_name_example
+        freeform_tags: {'Department': 'Finance'}
+        vpus_per_gb: 56
+        size_in_gbs: 56
         is_auto_tune_enabled: true
         block_volume_replicas:
         - # required

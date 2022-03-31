@@ -36,11 +36,6 @@ options:
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
-    description:
-        description:
-            - Optional description.
-            - This parameter is updatable.
-        type: str
     compartment_id:
         description:
             - The OCID of the compartment.
@@ -76,33 +71,11 @@ options:
                       number of CPUs, amount of memory or other resources allocated to the instance."
                 type: int
                 required: true
-    license_type:
-        description:
-            - The license used for the service.
-            - Required for create using I(state=present).
-            - This parameter is updatable.
-        type: str
-        choices:
-            - "LICENSE_INCLUDED"
-            - "BRING_YOUR_OWN_LICENSE"
-    email_notification:
-        description:
-            - Email address receiving notifications.
-            - This parameter is updatable.
-        type: str
     network_endpoint_details:
         description:
             - ""
         type: dict
         suboptions:
-            network_endpoint_type:
-                description:
-                    - The type of network endpoint.
-                type: str
-                choices:
-                    - "PRIVATE"
-                    - "PUBLIC"
-                required: true
             vcn_id:
                 description:
                     - The VCN OCID for the private endpoint.
@@ -113,6 +86,14 @@ options:
                     - The subnet OCID for the private endpoint.
                     - Required when network_endpoint_type is 'PRIVATE'
                 type: str
+            network_endpoint_type:
+                description:
+                    - The type of network endpoint.
+                type: str
+                choices:
+                    - "PRIVATE"
+                    - "PUBLIC"
+                required: true
             whitelisted_ips:
                 description:
                     - Source IP addresses or IP address ranges igress rules.
@@ -142,6 +123,30 @@ options:
         description:
             - IDCS access token identifying a stripe and service administrator user.
         type: str
+    kms_key_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the OCI Vault Key encrypting the customer data stored in
+              this Analytics instance. A null value indicates Oracle managed default encryption.
+        type: str
+    description:
+        description:
+            - Optional description.
+            - This parameter is updatable.
+        type: str
+    email_notification:
+        description:
+            - Email address receiving notifications.
+            - This parameter is updatable.
+        type: str
+    license_type:
+        description:
+            - The license used for the service.
+            - Required for create using I(state=present).
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "LICENSE_INCLUDED"
+            - "BRING_YOUR_OWN_LICENSE"
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
@@ -157,11 +162,6 @@ options:
             - "Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
-    kms_key_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the OCI Vault Key encrypting the customer data stored in
-              this Analytics instance. A null value indicates Oracle managed default encryption.
-        type: str
     analytics_instance_id:
         description:
             - The OCID of the AnalyticsInstance.
@@ -195,17 +195,17 @@ EXAMPLES = """
     license_type: LICENSE_INCLUDED
 
     # optional
-    description: description_example
-    email_notification: email_notification_example
     network_endpoint_details:
       # required
-      network_endpoint_type: PRIVATE
       vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
       subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+      network_endpoint_type: PRIVATE
     idcs_access_token: idcs_access_token_example
+    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+    description: description_example
+    email_notification: email_notification_example
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
-    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update analytics_instance
   oci_analytics_instance:
@@ -214,8 +214,8 @@ EXAMPLES = """
 
     # optional
     description: description_example
-    license_type: LICENSE_INCLUDED
     email_notification: email_notification_example
+    license_type: LICENSE_INCLUDED
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
 
@@ -227,8 +227,8 @@ EXAMPLES = """
 
     # optional
     description: description_example
-    license_type: LICENSE_INCLUDED
     email_notification: email_notification_example
+    license_type: LICENSE_INCLUDED
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
 
@@ -721,7 +721,6 @@ def main():
     module_args.update(
         dict(
             name=dict(type="str"),
-            description=dict(type="str"),
             compartment_id=dict(type="str"),
             feature_set=dict(
                 type="str", choices=["SELF_SERVICE_ANALYTICS", "ENTERPRISE_ANALYTICS"]
@@ -735,18 +734,14 @@ def main():
                     capacity_value=dict(type="int", required=True),
                 ),
             ),
-            license_type=dict(
-                type="str", choices=["LICENSE_INCLUDED", "BRING_YOUR_OWN_LICENSE"]
-            ),
-            email_notification=dict(type="str"),
             network_endpoint_details=dict(
                 type="dict",
                 options=dict(
+                    vcn_id=dict(type="str"),
+                    subnet_id=dict(type="str"),
                     network_endpoint_type=dict(
                         type="str", required=True, choices=["PRIVATE", "PUBLIC"]
                     ),
-                    vcn_id=dict(type="str"),
-                    subnet_id=dict(type="str"),
                     whitelisted_ips=dict(type="list", elements="str"),
                     whitelisted_vcns=dict(
                         type="list",
@@ -759,9 +754,14 @@ def main():
                 ),
             ),
             idcs_access_token=dict(type="str", no_log=True),
+            kms_key_id=dict(type="str"),
+            description=dict(type="str"),
+            email_notification=dict(type="str"),
+            license_type=dict(
+                type="str", choices=["LICENSE_INCLUDED", "BRING_YOUR_OWN_LICENSE"]
+            ),
             defined_tags=dict(type="dict"),
             freeform_tags=dict(type="dict"),
-            kms_key_id=dict(type="str"),
             analytics_instance_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

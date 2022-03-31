@@ -36,6 +36,12 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the
+              compartment to which the Managed Database Group should be moved.
+            - Required for I(action=change_compartment).
+        type: str
     managed_database_group_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Managed Database Group.
@@ -46,12 +52,6 @@ options:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Managed Database.
             - Required for I(action=add_managed_database), I(action=remove_managed_database).
-        type: str
-    compartment_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the
-              compartment to which the Managed Database Group should be moved.
-            - Required for I(action=change_compartment).
         type: str
     action:
         description:
@@ -76,8 +76,8 @@ EXAMPLES = """
 - name: Perform action change_compartment on managed_database_group
   oci_database_management_managed_database_group_actions:
     # required
-    managed_database_group_id: "ocid1.manageddatabasegroup.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    managed_database_group_id: "ocid1.manageddatabasegroup.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action remove_managed_database on managed_database_group
@@ -361,9 +361,9 @@ def main():
     )
     module_args.update(
         dict(
+            compartment_id=dict(type="str"),
             managed_database_group_id=dict(aliases=["id"], type="str", required=True),
             managed_database_id=dict(type="str"),
-            compartment_id=dict(type="str"),
             action=dict(
                 type="str",
                 required=True,

@@ -28,11 +28,31 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    namespace_name:
+    task_type:
         description:
-            - The Logging Analytics namespace used for the request.
+            - Task type.
+            - Required for create using I(state=present).
+            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - Required when kind is 'STANDARD'
         type: str
-        required: true
+        choices:
+            - "SAVED_SEARCH"
+            - "ACCELERATION"
+            - "PURGE"
+            - "ACCELERATION_MAINTENANCE"
+    compartment_id:
+        description:
+            - Compartment Identifier L(OCID],https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
+            - Required for create using I(state=present).
+            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+        type: str
+    saved_search_id:
+        description:
+            - The ManagementSavedSearch id [OCID] to be accelerated.
+            - Required when kind is 'ACCELERATION'
+        type: str
     kind:
         description:
             - Discriminator.
@@ -41,13 +61,6 @@ options:
         choices:
             - "STANDARD"
             - "ACCELERATION"
-    compartment_id:
-        description:
-            - Compartment Identifier L(OCID],https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
-            - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-        type: str
     display_name:
         description:
             - "A user-friendly name that is changeable and that does not have to be unique.
@@ -70,19 +83,6 @@ options:
               Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             - This parameter is updatable.
         type: dict
-    task_type:
-        description:
-            - Task type.
-            - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required when kind is 'STANDARD'
-        type: str
-        choices:
-            - "SAVED_SEARCH"
-            - "ACCELERATION"
-            - "PURGE"
-            - "ACCELERATION_MAINTENANCE"
     schedules:
         description:
             - Schedules, typically a single schedule.
@@ -92,6 +92,16 @@ options:
         type: list
         elements: dict
         suboptions:
+            expression:
+                description:
+                    - Value in cron format.
+                    - Required when type is 'CRON'
+                type: str
+            time_zone:
+                description:
+                    - Time zone, by default UTC.
+                    - Required when type is 'CRON'
+                type: str
             type:
                 description:
                     - Schedule type discriminator.
@@ -112,16 +122,6 @@ options:
                 description:
                     - The date and time the scheduled task should execute first time after create or update;
                       thereafter the task will execute as specified in the schedule.
-                type: str
-            expression:
-                description:
-                    - Value in cron format.
-                    - Required when type is 'CRON'
-                type: str
-            time_zone:
-                description:
-                    - Time zone, by default UTC.
-                    - Required when type is 'CRON'
                 type: str
             recurring_interval:
                 description:
@@ -145,14 +145,6 @@ options:
             - Required when kind is 'STANDARD'
         type: dict
         suboptions:
-            type:
-                description:
-                    - Action type discriminator.
-                type: str
-                choices:
-                    - "PURGE"
-                    - "STREAM"
-                required: true
             query_string:
                 description:
                     - Purge query string.
@@ -186,6 +178,14 @@ options:
                     - if true, purge child compartments data
                     - Applicable when type is 'PURGE'
                 type: bool
+            type:
+                description:
+                    - Action type discriminator.
+                type: str
+                choices:
+                    - "PURGE"
+                    - "STREAM"
+                required: true
             saved_search_id:
                 description:
                     - The ManagementSavedSearch id [OCID] utilized in the action.
@@ -249,11 +249,11 @@ options:
                       if the schedule is every 3 weeks then the savedSearchDuration will be \\"P21D\\"."
                     - Applicable when type is 'STREAM'
                 type: str
-    saved_search_id:
+    namespace_name:
         description:
-            - The ManagementSavedSearch id [OCID] to be accelerated.
-            - Required when kind is 'ACCELERATION'
+            - The Logging Analytics namespace used for the request.
         type: str
+        required: true
     scheduled_task_id:
         description:
             - Unique scheduledTask id returned from task create.
@@ -278,9 +278,9 @@ EXAMPLES = """
 - name: Create scheduled_task with kind = STANDARD
   oci_log_analytics_scheduled_task:
     # required
-    kind: STANDARD
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     task_type: SAVED_SEARCH
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    kind: STANDARD
 
     # optional
     display_name: display_name_example
@@ -288,20 +288,20 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     schedules:
     - # required
-      type: CRON
       expression: expression_example
       time_zone: time_zone_example
+      type: CRON
 
       # optional
       misfire_policy: RETRY_ONCE
       time_of_first_execution: time_of_first_execution_example
     action:
       # required
-      type: PURGE
       query_string: query_string_example
       data_type: LOG
       purge_duration: purge_duration_example
       purge_compartment_id: "ocid1.purgecompartment.oc1..xxxxxxEXAMPLExxxxxx"
+      type: PURGE
 
       # optional
       compartment_id_in_subtree: true
@@ -309,9 +309,9 @@ EXAMPLES = """
 - name: Create scheduled_task with kind = ACCELERATION
   oci_log_analytics_scheduled_task:
     # required
-    kind: ACCELERATION
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     saved_search_id: "ocid1.savedsearch.oc1..xxxxxxEXAMPLExxxxxx"
+    kind: ACCELERATION
 
     # optional
     display_name: display_name_example
@@ -329,20 +329,20 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     schedules:
     - # required
-      type: CRON
       expression: expression_example
       time_zone: time_zone_example
+      type: CRON
 
       # optional
       misfire_policy: RETRY_ONCE
       time_of_first_execution: time_of_first_execution_example
     action:
       # required
-      type: PURGE
       query_string: query_string_example
       data_type: LOG
       purge_duration: purge_duration_example
       purge_compartment_id: "ocid1.purgecompartment.oc1..xxxxxxEXAMPLExxxxxx"
+      type: PURGE
 
       # optional
       compartment_id_in_subtree: true
@@ -360,9 +360,9 @@ EXAMPLES = """
 - name: Update scheduled_task using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with kind = STANDARD
   oci_log_analytics_scheduled_task:
     # required
-    kind: STANDARD
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     task_type: SAVED_SEARCH
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    kind: STANDARD
 
     # optional
     display_name: display_name_example
@@ -370,20 +370,20 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     schedules:
     - # required
-      type: CRON
       expression: expression_example
       time_zone: time_zone_example
+      type: CRON
 
       # optional
       misfire_policy: RETRY_ONCE
       time_of_first_execution: time_of_first_execution_example
     action:
       # required
-      type: PURGE
       query_string: query_string_example
       data_type: LOG
       purge_duration: purge_duration_example
       purge_compartment_id: "ocid1.purgecompartment.oc1..xxxxxxEXAMPLExxxxxx"
+      type: PURGE
 
       # optional
       compartment_id_in_subtree: true
@@ -391,8 +391,8 @@ EXAMPLES = """
 - name: Update scheduled_task using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with kind = ACCELERATION
   oci_log_analytics_scheduled_task:
     # required
-    kind: ACCELERATION
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    kind: ACCELERATION
 
     # optional
     display_name: display_name_example
@@ -409,10 +409,10 @@ EXAMPLES = """
 - name: Delete scheduled_task using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_log_analytics_scheduled_task:
     # required
-    namespace_name: namespace_name_example
+    task_type: SAVED_SEARCH
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
-    task_type: SAVED_SEARCH
+    namespace_name: namespace_name_example
     state: absent
 
 """
@@ -916,12 +916,6 @@ def main():
     )
     module_args.update(
         dict(
-            namespace_name=dict(type="str", required=True),
-            kind=dict(type="str", choices=["STANDARD", "ACCELERATION"]),
-            compartment_id=dict(type="str"),
-            display_name=dict(aliases=["name"], type="str"),
-            freeform_tags=dict(type="dict"),
-            defined_tags=dict(type="dict"),
             task_type=dict(
                 type="str",
                 choices=[
@@ -931,10 +925,18 @@ def main():
                     "ACCELERATION_MAINTENANCE",
                 ],
             ),
+            compartment_id=dict(type="str"),
+            saved_search_id=dict(type="str"),
+            kind=dict(type="str", choices=["STANDARD", "ACCELERATION"]),
+            display_name=dict(aliases=["name"], type="str"),
+            freeform_tags=dict(type="dict"),
+            defined_tags=dict(type="dict"),
             schedules=dict(
                 type="list",
                 elements="dict",
                 options=dict(
+                    expression=dict(type="str"),
+                    time_zone=dict(type="str"),
                     type=dict(
                         type="str", required=True, choices=["CRON", "FIXED_FREQUENCY"]
                     ),
@@ -942,8 +944,6 @@ def main():
                         type="str", choices=["RETRY_ONCE", "RETRY_INDEFINITELY", "SKIP"]
                     ),
                     time_of_first_execution=dict(type="str"),
-                    expression=dict(type="str"),
-                    time_zone=dict(type="str"),
                     recurring_interval=dict(type="str"),
                     repeat_count=dict(type="int"),
                 ),
@@ -951,12 +951,12 @@ def main():
             action=dict(
                 type="dict",
                 options=dict(
-                    type=dict(type="str", required=True, choices=["PURGE", "STREAM"]),
                     query_string=dict(type="str"),
                     data_type=dict(type="str", choices=["LOG", "LOOKUP"]),
                     purge_duration=dict(type="str"),
                     purge_compartment_id=dict(type="str"),
                     compartment_id_in_subtree=dict(type="bool"),
+                    type=dict(type="str", required=True, choices=["PURGE", "STREAM"]),
                     saved_search_id=dict(type="str"),
                     metric_extraction=dict(
                         type="dict",
@@ -970,7 +970,7 @@ def main():
                     saved_search_duration=dict(type="str"),
                 ),
             ),
-            saved_search_id=dict(type="str"),
+            namespace_name=dict(type="str", required=True),
             scheduled_task_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

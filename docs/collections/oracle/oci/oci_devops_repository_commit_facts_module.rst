@@ -30,7 +30,7 @@ oracle.oci.oci_devops_repository_commit_facts -- Fetches details about one or mu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -393,8 +393,8 @@ Examples
     - name: Get a specific repository_commit
       oci_devops_repository_commit_facts:
         # required
-        repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
         commit_id: "ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx"
+        repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: List repository_commits
       oci_devops_repository_commit_facts:

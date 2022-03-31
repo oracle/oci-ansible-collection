@@ -36,6 +36,28 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    package_details:
+        description:
+            - ""
+            - Required for create using I(state=present).
+        type: dict
+        suboptions:
+            package_type:
+                description:
+                    - The package's type.
+                type: str
+                choices:
+                    - "STACK"
+                required: true
+            version:
+                description:
+                    - The package version.
+                type: str
+                required: true
+            zip_file_base64_encoded:
+                description:
+                    - Base-64 payload of the Terraform zip package.
+                type: str
     display_name:
         description:
             - The name of the private application.
@@ -61,28 +83,6 @@ options:
               Template icon file requirements: PNG format, 50 KB maximum, 130 x 130 pixels."
             - This parameter is updatable.
         type: str
-    package_details:
-        description:
-            - ""
-            - Required for create using I(state=present).
-        type: dict
-        suboptions:
-            package_type:
-                description:
-                    - The package's type.
-                type: str
-                choices:
-                    - "STACK"
-                required: true
-            version:
-                description:
-                    - The package version.
-                type: str
-                required: true
-            zip_file_base64_encoded:
-                description:
-                    - Base-64 payload of the Terraform zip package.
-                type: str
     defined_tags:
         description:
             - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
@@ -119,8 +119,6 @@ EXAMPLES = """
   oci_service_catalog_private_application:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: display_name_example
-    short_description: short_description_example
     package_details:
       # required
       package_type: STACK
@@ -128,6 +126,8 @@ EXAMPLES = """
 
       # optional
       zip_file_base64_encoded: zip_file_base64_encoded_example
+    display_name: display_name_example
+    short_description: short_description_example
 
     # optional
     long_description: long_description_example
@@ -455,10 +455,6 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
-            display_name=dict(aliases=["name"], type="str"),
-            short_description=dict(type="str"),
-            long_description=dict(type="str"),
-            logo_file_base64_encoded=dict(type="str"),
             package_details=dict(
                 type="dict",
                 options=dict(
@@ -467,6 +463,10 @@ def main():
                     zip_file_base64_encoded=dict(type="str"),
                 ),
             ),
+            display_name=dict(aliases=["name"], type="str"),
+            short_description=dict(type="str"),
+            long_description=dict(type="str"),
+            logo_file_base64_encoded=dict(type="str"),
             defined_tags=dict(type="dict"),
             freeform_tags=dict(type="dict"),
             private_application_id=dict(aliases=["id"], type="str"),

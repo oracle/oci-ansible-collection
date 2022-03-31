@@ -26,13 +26,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    artifact_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the artifact.
-            - "Example: `ocid1.genericartifact.oc1..exampleuniqueID`"
-        type: str
-        aliases: ["id"]
-        required: true
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -48,6 +41,13 @@ options:
             - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             - This parameter is updatable.
         type: dict
+    artifact_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the artifact.
+            - "Example: `ocid1.genericartifact.oc1..exampleuniqueID`"
+        type: str
+        aliases: ["id"]
+        required: true
     state:
         description:
             - The state of the GenericArtifact.
@@ -313,9 +313,9 @@ def main():
     )
     module_args.update(
         dict(
-            artifact_id=dict(aliases=["id"], type="str", required=True),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
+            artifact_id=dict(aliases=["id"], type="str", required=True),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

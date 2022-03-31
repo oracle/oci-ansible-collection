@@ -30,7 +30,7 @@ oracle.oci.oci_log_analytics_log_group -- Manage a LogAnalyticsLogGroup resource
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -429,9 +429,9 @@ Examples
     - name: Create log_analytics_log_group
       oci_log_analytics_log_group:
         # required
-        namespace_name: namespace_name_example
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
+        namespace_name: namespace_name_example
 
         # optional
         description: description_example
@@ -453,9 +453,9 @@ Examples
     - name: Update log_analytics_log_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_log_analytics_log_group:
         # required
-        namespace_name: namespace_name_example
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
+        namespace_name: namespace_name_example
 
         # optional
         description: description_example
@@ -472,9 +472,9 @@ Examples
     - name: Delete log_analytics_log_group using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_log_analytics_log_group:
         # required
-        namespace_name: namespace_name_example
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
+        namespace_name: namespace_name_example
         state: absent
 
 

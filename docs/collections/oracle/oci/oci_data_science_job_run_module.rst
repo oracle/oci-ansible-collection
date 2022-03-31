@@ -30,7 +30,7 @@ oracle.oci.oci_data_science_job_run -- Manage a JobRun resource in Oracle Cloud 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -639,7 +639,6 @@ Examples
         job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        display_name: display_name_example
         job_configuration_override_details:
           # required
           job_type: DEFAULT
@@ -654,6 +653,7 @@ Examples
           enable_auto_log_creation: true
           log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
           log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 

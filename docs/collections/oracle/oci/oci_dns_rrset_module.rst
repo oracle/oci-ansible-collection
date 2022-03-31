@@ -30,7 +30,7 @@ oracle.oci.oci_dns_rrset -- Manage a Rrset resource in Oracle Cloud Infrastructu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -705,9 +705,9 @@ Examples
           is_protected: true
           rrset_version: rrset_version_example
         if_unmodified_since: if_unmodified_since_example
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         scope: GLOBAL
         view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete rrset
       oci_dns_rrset:
@@ -719,9 +719,9 @@ Examples
 
         # optional
         if_unmodified_since: if_unmodified_since_example
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         scope: GLOBAL
         view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

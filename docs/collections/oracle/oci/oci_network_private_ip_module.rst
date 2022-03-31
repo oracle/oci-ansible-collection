@@ -30,7 +30,7 @@ oracle.oci.oci_network_private_ip -- Manage a PrivateIp resource in Oracle Cloud
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -447,13 +447,13 @@ Examples
       oci_network_private_ip:
 
         # optional
+        ip_address: ip_address_example
+        vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
         hostname_label: hostname_label_example
-        ip_address: ip_address_example
         vnic_id: "ocid1.vnic.oc1..xxxxxxEXAMPLExxxxxx"
-        vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update private_ip
       oci_network_private_ip:

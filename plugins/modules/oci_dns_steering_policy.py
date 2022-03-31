@@ -204,6 +204,14 @@ options:
         type: list
         elements: dict
         suboptions:
+            default_count:
+                description:
+                    - "Defines a default count if `cases` is not defined for the rule or a matching case does
+                      not define `count`. `defaultCount` is **not** applied if `cases` is defined and there
+                      are no matching cases. In this scenario, the next rule will be processed. If no rules
+                      remain to be processed, the answer will be chosen from the remaining list of answers."
+                    - Applicable when rule_type is 'LIMIT'
+                type: int
             description:
                 description:
                     - A user-defined description of the rule's purpose or behavior.
@@ -245,6 +253,14 @@ options:
                 type: list
                 elements: dict
                 suboptions:
+                    count:
+                        description:
+                            - "The number of answers allowed to remain after the limit rule has been processed, keeping only the
+                              first of the remaining answers in the list. Example: If the `count` property is set to `2` and
+                              four answers remain before the limit rule is processed, only the first two answers in the list will
+                              remain after the limit rule has been processed."
+                            - Required when rule_type is 'LIMIT'
+                        type: int
                     case_condition:
                         description:
                             - "An expression that uses conditions at the time of a DNS query to indicate
@@ -261,31 +277,23 @@ options:
                         type: list
                         elements: dict
                         suboptions:
+                            should_keep:
+                                description:
+                                    - Keeps the answer only if the value is `true`.
+                                    - Applicable when rule_type is 'FILTER'
+                                type: bool
                             answer_condition:
                                 description:
                                     - An expression that is used to select a set of answers that match a condition. For example, answers with matching pool
                                       properties.
                                     - Applicable when rule_type is one of ['FILTER', 'WEIGHTED', 'PRIORITY']
                                 type: str
-                            should_keep:
-                                description:
-                                    - Keeps the answer only if the value is `true`.
-                                    - Applicable when rule_type is 'FILTER'
-                                type: bool
                             value:
                                 description:
                                     - The weight assigned to the set of selected answers. Answers with a higher weight will be served
                                       more frequently. Answers can be given a value between `0` and `255`.
                                     - Required when rule_type is one of ['WEIGHTED', 'PRIORITY']
                                 type: int
-                    count:
-                        description:
-                            - "The number of answers allowed to remain after the limit rule has been processed, keeping only the
-                              first of the remaining answers in the list. Example: If the `count` property is set to `2` and
-                              four answers remain before the limit rule is processed, only the first two answers in the list will
-                              remain after the limit rule has been processed."
-                            - Required when rule_type is 'LIMIT'
-                        type: int
             default_answer_data:
                 description:
                     - Defines a default set of answer conditions and values that are applied to an answer when
@@ -296,38 +304,22 @@ options:
                 type: list
                 elements: dict
                 suboptions:
-                    answer_condition:
-                        description:
-                            - An expression that is used to select a set of answers that match a condition. For example, answers with matching pool properties.
-                            - Applicable when rule_type is one of ['FILTER', 'WEIGHTED', 'PRIORITY']
-                        type: str
                     should_keep:
                         description:
                             - Keeps the answer only if the value is `true`.
                             - Applicable when rule_type is 'FILTER'
                         type: bool
+                    answer_condition:
+                        description:
+                            - An expression that is used to select a set of answers that match a condition. For example, answers with matching pool properties.
+                            - Applicable when rule_type is one of ['FILTER', 'WEIGHTED', 'PRIORITY']
+                        type: str
                     value:
                         description:
                             - The weight assigned to the set of selected answers. Answers with a higher weight will be served
                               more frequently. Answers can be given a value between `0` and `255`.
                             - Required when rule_type is one of ['WEIGHTED', 'PRIORITY']
                         type: int
-            default_count:
-                description:
-                    - "Defines a default count if `cases` is not defined for the rule or a matching case does
-                      not define `count`. `defaultCount` is **not** applied if `cases` is defined and there
-                      are no matching cases. In this scenario, the next rule will be processed. If no rules
-                      remain to be processed, the answer will be chosen from the remaining list of answers."
-                    - Applicable when rule_type is 'LIMIT'
-                type: int
-    scope:
-        description:
-            - Specifies to operate only on resources that have a matching DNS scope.
-            - This parameter is updatable.
-        type: str
-        choices:
-            - "GLOBAL"
-            - "PRIVATE"
     steering_policy_id:
         description:
             - The OCID of the target steering policy.
@@ -344,6 +336,14 @@ options:
               agent does not have an entity-tag for the representation.
             - This parameter is updatable.
         type: str
+    scope:
+        description:
+            - Specifies to operate only on resources that have a matching DNS scope.
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "GLOBAL"
+            - "PRIVATE"
     state:
         description:
             - The state of the SteeringPolicy.
@@ -386,17 +386,17 @@ EXAMPLES = """
       description: description_example
       cases:
       - # optional
+        count: 56
         case_condition: case_condition_example
         answer_data:
         - # optional
-          answer_condition: answer_condition_example
           should_keep: true
+          answer_condition: answer_condition_example
           value: 56
-        count: 56
       default_answer_data:
       - # optional
-        answer_condition: answer_condition_example
         should_keep: true
+        answer_condition: answer_condition_example
         value: 56
     scope: GLOBAL
 
@@ -429,20 +429,20 @@ EXAMPLES = """
       description: description_example
       cases:
       - # optional
+        count: 56
         case_condition: case_condition_example
         answer_data:
         - # optional
-          answer_condition: answer_condition_example
           should_keep: true
+          answer_condition: answer_condition_example
           value: 56
-        count: 56
       default_answer_data:
       - # optional
-        answer_condition: answer_condition_example
         should_keep: true
+        answer_condition: answer_condition_example
         value: 56
-    scope: GLOBAL
     if_unmodified_since: if_unmodified_since_example
+    scope: GLOBAL
 
 - name: Update steering_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_dns_steering_policy:
@@ -473,20 +473,20 @@ EXAMPLES = """
       description: description_example
       cases:
       - # optional
+        count: 56
         case_condition: case_condition_example
         answer_data:
         - # optional
-          answer_condition: answer_condition_example
           should_keep: true
+          answer_condition: answer_condition_example
           value: 56
-        count: 56
       default_answer_data:
       - # optional
-        answer_condition: answer_condition_example
         should_keep: true
+        answer_condition: answer_condition_example
         value: 56
-    scope: GLOBAL
     if_unmodified_since: if_unmodified_since_example
+    scope: GLOBAL
 
 - name: Delete steering_policy
   oci_dns_steering_policy:
@@ -495,8 +495,8 @@ EXAMPLES = """
     state: absent
 
     # optional
-    scope: GLOBAL
     if_unmodified_since: if_unmodified_since_example
+    scope: GLOBAL
 
 - name: Delete steering_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_dns_steering_policy:
@@ -1106,6 +1106,7 @@ def main():
                 type="list",
                 elements="dict",
                 options=dict(
+                    default_count=dict(type="int"),
                     description=dict(type="str"),
                     rule_type=dict(
                         type="str",
@@ -1116,34 +1117,33 @@ def main():
                         type="list",
                         elements="dict",
                         options=dict(
+                            count=dict(type="int"),
                             case_condition=dict(type="str"),
                             answer_data=dict(
                                 type="list",
                                 elements="dict",
                                 options=dict(
-                                    answer_condition=dict(type="str"),
                                     should_keep=dict(type="bool"),
+                                    answer_condition=dict(type="str"),
                                     value=dict(type="int"),
                                 ),
                             ),
-                            count=dict(type="int"),
                         ),
                     ),
                     default_answer_data=dict(
                         type="list",
                         elements="dict",
                         options=dict(
-                            answer_condition=dict(type="str"),
                             should_keep=dict(type="bool"),
+                            answer_condition=dict(type="str"),
                             value=dict(type="int"),
                         ),
                     ),
-                    default_count=dict(type="int"),
                 ),
             ),
-            scope=dict(type="str", choices=["GLOBAL", "PRIVATE"]),
             steering_policy_id=dict(aliases=["id"], type="str"),
             if_unmodified_since=dict(type="str"),
+            scope=dict(type="str", choices=["GLOBAL", "PRIVATE"]),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

@@ -30,7 +30,7 @@ oracle.oci.oci_identity_domain -- Manage a Domain resource in Oracle Cloud Infra
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -603,19 +603,19 @@ Examples
       oci_identity_domain:
         # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name: display_name_example
-        description: description_example
         home_region: us-phoenix-1
         license_type: license_type_example
+        description: description_example
+        display_name: display_name_example
 
         # optional
-        is_hidden_on_login: true
         admin_first_name: admin_first_name_example
         admin_last_name: admin_last_name_example
         admin_user_name: admin_user_name_example
         admin_email: admin_email_example
         is_notification_bypassed: true
         is_primary_email_required: true
+        is_hidden_on_login: true
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -625,8 +625,8 @@ Examples
         domain_id: "ocid1.domain.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        display_name: display_name_example
         description: description_example
+        display_name: display_name_example
         is_hidden_on_login: true
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}

@@ -30,7 +30,7 @@ oracle.oci.oci_data_flow_private_endpoint -- Manage a PrivateEndpoint resource i
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -513,8 +513,8 @@ Examples
       oci_data_flow_private_endpoint:
         # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        dns_zones: [ "dns_zones_example" ]
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        dns_zones: [ "dns_zones_example" ]
 
         # optional
         defined_tags: {'Operations': {'CostCenter': 'US'}}

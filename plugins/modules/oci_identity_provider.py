@@ -58,14 +58,6 @@ options:
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
-    description:
-        description:
-            - The description you assign to the `IdentityProvider` during creation.
-              Does not have to be unique, and it's changeable.
-            - Required for create using I(state=present).
-            - This parameter is updatable.
-            - Applicable when protocol is 'SAML2'
-        type: str
     product_type:
         description:
             - The identity provider service or product.
@@ -86,6 +78,14 @@ options:
         type: str
         choices:
             - "SAML2"
+    description:
+        description:
+            - The description you assign to the `IdentityProvider` during creation.
+              Does not have to be unique, and it's changeable.
+            - Required for create using I(state=present).
+            - This parameter is updatable.
+            - Applicable when protocol is 'SAML2'
+        type: str
     freeform_tags:
         description:
             - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -500,9 +500,9 @@ def main():
         dict(
             compartment_id=dict(type="str"),
             name=dict(type="str"),
-            description=dict(type="str"),
             product_type=dict(type="str", choices=["IDCS", "ADFS"]),
             protocol=dict(type="str", choices=["SAML2"]),
+            description=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             metadata_url=dict(type="str"),

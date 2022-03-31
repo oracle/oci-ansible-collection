@@ -27,17 +27,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    namespace_name:
-        description:
-            - The Object Storage namespace used for the request.
-        type: str
-        required: true
-    bucket_name:
-        description:
-            - "The name of the bucket. Avoid entering confidential information.
-              Example: `my-new-bucket1`"
-        type: str
-        required: true
     name:
         description:
             - The name of the policy. Avoid entering confidential information.
@@ -55,6 +44,17 @@ options:
               create a destination bucket. Create the destination bucket before creating the policy.
             - Required for create using I(state=present).
         type: str
+    namespace_name:
+        description:
+            - The Object Storage namespace used for the request.
+        type: str
+        required: true
+    bucket_name:
+        description:
+            - "The name of the bucket. Avoid entering confidential information.
+              Example: `my-new-bucket1`"
+        type: str
+        required: true
     replication_id:
         description:
             - The ID of the replication policy.
@@ -77,11 +77,11 @@ EXAMPLES = """
 - name: Create replication_policy
   oci_object_storage_replication_policy:
     # required
-    namespace_name: namespace_name_example
-    bucket_name: bucket_name_example
     name: name_example
     destination_region_name: us-phoenix-1
     destination_bucket_name: destination_bucket_name_example
+    namespace_name: namespace_name_example
+    bucket_name: bucket_name_example
 
 - name: Delete replication_policy
   oci_object_storage_replication_policy:
@@ -94,9 +94,9 @@ EXAMPLES = """
 - name: Delete replication_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_object_storage_replication_policy:
     # required
+    name: name_example
     namespace_name: namespace_name_example
     bucket_name: bucket_name_example
-    name: name_example
     state: absent
 
 """
@@ -304,11 +304,11 @@ def main():
     )
     module_args.update(
         dict(
-            namespace_name=dict(type="str", required=True),
-            bucket_name=dict(type="str", required=True),
             name=dict(type="str"),
             destination_region_name=dict(type="str"),
             destination_bucket_name=dict(type="str"),
+            namespace_name=dict(type="str", required=True),
+            bucket_name=dict(type="str", required=True),
             replication_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

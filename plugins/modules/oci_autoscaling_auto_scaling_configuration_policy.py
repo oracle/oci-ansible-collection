@@ -37,59 +37,6 @@ options:
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["id"]
-    display_name:
-        description:
-            - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
-    capacity:
-        description:
-            - The capacity requirements of the autoscaling policy.
-            - This parameter is updatable.
-        type: dict
-        suboptions:
-            max:
-                description:
-                    - For a threshold-based autoscaling policy, this value is the maximum number of instances the instance pool is allowed
-                      to increase to (scale out).
-                    - For a schedule-based autoscaling policy, this value is not used.
-                    - This parameter is updatable.
-                    - Applicable when policy_type is 'threshold'
-                type: int
-            min:
-                description:
-                    - For a threshold-based autoscaling policy, this value is the minimum number of instances the instance pool is allowed
-                      to decrease to (scale in).
-                    - For a schedule-based autoscaling policy, this value is not used.
-                    - This parameter is updatable.
-                    - Applicable when policy_type is 'threshold'
-                type: int
-            initial:
-                description:
-                    - For a threshold-based autoscaling policy, this value is the initial number of instances to launch in the instance pool
-                      immediately after autoscaling is enabled. After autoscaling retrieves performance metrics, the number of
-                      instances is automatically adjusted from this initial number to a number that is based on the limits that
-                      you set.
-                    - For a schedule-based autoscaling policy, this value is the target pool size to scale to when executing the schedule
-                      that's defined in the autoscaling policy.
-                    - This parameter is updatable.
-                    - Applicable when policy_type is 'threshold'
-                type: int
-    policy_type:
-        description:
-            - Indicates the type of autoscaling policy.
-        type: str
-        choices:
-            - "threshold"
-            - "scheduled"
-        required: true
-    is_enabled:
-        description:
-            - Whether the autoscaling policy is enabled.
-            - This parameter is updatable.
-        type: bool
     rules:
         description:
             - ""
@@ -173,6 +120,59 @@ options:
                                     - Required when policy_type is 'threshold'
                                 type: int
                                 required: true
+    display_name:
+        description:
+            - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.
+            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
+    capacity:
+        description:
+            - The capacity requirements of the autoscaling policy.
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            max:
+                description:
+                    - For a threshold-based autoscaling policy, this value is the maximum number of instances the instance pool is allowed
+                      to increase to (scale out).
+                    - For a schedule-based autoscaling policy, this value is not used.
+                    - This parameter is updatable.
+                    - Applicable when policy_type is 'threshold'
+                type: int
+            min:
+                description:
+                    - For a threshold-based autoscaling policy, this value is the minimum number of instances the instance pool is allowed
+                      to decrease to (scale in).
+                    - For a schedule-based autoscaling policy, this value is not used.
+                    - This parameter is updatable.
+                    - Applicable when policy_type is 'threshold'
+                type: int
+            initial:
+                description:
+                    - For a threshold-based autoscaling policy, this value is the initial number of instances to launch in the instance pool
+                      immediately after autoscaling is enabled. After autoscaling retrieves performance metrics, the number of
+                      instances is automatically adjusted from this initial number to a number that is based on the limits that
+                      you set.
+                    - For a schedule-based autoscaling policy, this value is the target pool size to scale to when executing the schedule
+                      that's defined in the autoscaling policy.
+                    - This parameter is updatable.
+                    - Applicable when policy_type is 'threshold'
+                type: int
+    policy_type:
+        description:
+            - Indicates the type of autoscaling policy.
+        type: str
+        choices:
+            - "threshold"
+            - "scheduled"
+        required: true
+    is_enabled:
+        description:
+            - Whether the autoscaling policy is enabled.
+            - This parameter is updatable.
+        type: bool
     execution_schedule:
         description:
             - The schedule for executing the autoscaling policy.
@@ -250,13 +250,6 @@ EXAMPLES = """
     policy_type: threshold
 
     # optional
-    display_name: display_name_example
-    capacity:
-      # optional
-      max: 56
-      min: 56
-      initial: 56
-    is_enabled: true
     rules:
     - # required
       action:
@@ -273,6 +266,13 @@ EXAMPLES = """
 
       # optional
       display_name: display_name_example
+    display_name: display_name_example
+    capacity:
+      # optional
+      max: 56
+      min: 56
+      initial: 56
+    is_enabled: true
 
 - name: Update auto_scaling_configuration_policy with policy_type = scheduled
   oci_autoscaling_auto_scaling_configuration_policy:
@@ -303,13 +303,6 @@ EXAMPLES = """
     policy_type: threshold
 
     # optional
-    display_name: display_name_example
-    capacity:
-      # optional
-      max: 56
-      min: 56
-      initial: 56
-    is_enabled: true
     rules:
     - # required
       action:
@@ -326,6 +319,13 @@ EXAMPLES = """
 
       # optional
       display_name: display_name_example
+    display_name: display_name_example
+    capacity:
+      # optional
+      max: 56
+      min: 56
+      initial: 56
+    is_enabled: true
 
 - name: Update auto_scaling_configuration_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with policy_type = scheduled
   oci_autoscaling_auto_scaling_configuration_policy:
@@ -721,17 +721,6 @@ def main():
         dict(
             auto_scaling_configuration_id=dict(type="str", required=True),
             auto_scaling_policy_id=dict(aliases=["id"], type="str"),
-            display_name=dict(aliases=["name"], type="str"),
-            capacity=dict(
-                type="dict",
-                options=dict(
-                    max=dict(type="int"), min=dict(type="int"), initial=dict(type="int")
-                ),
-            ),
-            policy_type=dict(
-                type="str", required=True, choices=["threshold", "scheduled"]
-            ),
-            is_enabled=dict(type="bool"),
             rules=dict(
                 type="list",
                 elements="dict",
@@ -772,6 +761,17 @@ def main():
                     ),
                 ),
             ),
+            display_name=dict(aliases=["name"], type="str"),
+            capacity=dict(
+                type="dict",
+                options=dict(
+                    max=dict(type="int"), min=dict(type="int"), initial=dict(type="int")
+                ),
+            ),
+            policy_type=dict(
+                type="str", required=True, choices=["threshold", "scheduled"]
+            ),
+            is_enabled=dict(type="bool"),
             execution_schedule=dict(
                 type="dict",
                 options=dict(

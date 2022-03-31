@@ -38,6 +38,21 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    arch_type:
+        description:
+            - The architecture type supported by the Software Source
+            - Required for create using I(state=present).
+        type: str
+        choices:
+            - "IA_32"
+            - "X86_64"
+            - "AARCH64"
+            - "SPARC"
+            - "AMD64_DEBIAN"
+    parent_id:
+        description:
+            - OCID for the parent software source, if there is one
+        type: str
     display_name:
         description:
             - User friendly name for the software source
@@ -51,17 +66,6 @@ options:
             - Information specified by the user about the software source
             - This parameter is updatable.
         type: str
-    arch_type:
-        description:
-            - The architecture type supported by the Software Source
-            - Required for create using I(state=present).
-        type: str
-        choices:
-            - "IA_32"
-            - "X86_64"
-            - "AARCH64"
-            - "SPARC"
-            - "AMD64_DEBIAN"
     maintainer_name:
         description:
             - Name of the person maintaining this software source
@@ -87,10 +91,6 @@ options:
             - "SHA256"
             - "SHA384"
             - "SHA512"
-    parent_id:
-        description:
-            - OCID for the parent software source, if there is one
-        type: str
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -127,16 +127,16 @@ EXAMPLES = """
   oci_os_management_software_source:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: display_name_example
     arch_type: IA_32
+    display_name: display_name_example
 
     # optional
+    parent_id: "ocid1.parent.oc1..xxxxxxEXAMPLExxxxxx"
     description: description_example
     maintainer_name: maintainer_name_example
     maintainer_email: maintainer_email_example
     maintainer_phone: maintainer_phone_example
     checksum_type: SHA1
-    parent_id: "ocid1.parent.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -525,19 +525,19 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
-            display_name=dict(aliases=["name"], type="str"),
-            description=dict(type="str"),
             arch_type=dict(
                 type="str",
                 choices=["IA_32", "X86_64", "AARCH64", "SPARC", "AMD64_DEBIAN"],
             ),
+            parent_id=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
+            description=dict(type="str"),
             maintainer_name=dict(type="str"),
             maintainer_email=dict(type="str"),
             maintainer_phone=dict(type="str"),
             checksum_type=dict(
                 type="str", choices=["SHA1", "SHA256", "SHA384", "SHA512"]
             ),
-            parent_id=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             software_source_id=dict(aliases=["id"], type="str"),

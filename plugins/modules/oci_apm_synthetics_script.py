@@ -27,11 +27,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    apm_domain_id:
-        description:
-            - The APM domain ID the request is intended for.
-        type: str
-        required: true
     display_name:
         description:
             - Unique name that can be edited. The name should not contain any confidential information.
@@ -99,6 +94,11 @@ options:
               Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             - This parameter is updatable.
         type: dict
+    apm_domain_id:
+        description:
+            - The APM domain ID the request is intended for.
+        type: str
+        required: true
     script_id:
         description:
             - The OCID of the script.
@@ -122,10 +122,10 @@ EXAMPLES = """
 - name: Create script
   oci_apm_synthetics_script:
     # required
-    apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     content_type: SIDE
     content: content_example
+    apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     content_file_name: content_file_name_example
@@ -163,8 +163,8 @@ EXAMPLES = """
 - name: Update script using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apm_synthetics_script:
     # required
-    apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
+    apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     content_type: SIDE
@@ -190,8 +190,8 @@ EXAMPLES = """
 - name: Delete script using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apm_synthetics_script:
     # required
-    apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
+    apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -546,7 +546,6 @@ def main():
     )
     module_args.update(
         dict(
-            apm_domain_id=dict(type="str", required=True),
             display_name=dict(aliases=["name"], type="str"),
             content_type=dict(type="str", choices=["SIDE", "JS"]),
             content=dict(type="str"),
@@ -562,6 +561,7 @@ def main():
             ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
+            apm_domain_id=dict(type="str", required=True),
             script_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

@@ -33,17 +33,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    key_id:
-        description:
-            - The OCID of the key.
-        type: str
-        required: true
     key_version_id:
         description:
             - The OCID of the key version.
             - Required to get a specific key_version.
         type: str
         aliases: ["id"]
+    key_id:
+        description:
+            - The OCID of the key.
+        type: str
+        required: true
     sort_by:
         description:
             - The field to sort by. You can specify only one sort order. The default
@@ -72,8 +72,8 @@ EXAMPLES = """
 - name: Get a specific key_version
   oci_key_management_key_version_facts:
     # required
-    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
     key_version_id: "ocid1.keyversion.oc1..xxxxxxEXAMPLExxxxxx"
+    key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
     service_endpoint: "https://xxx.kms.{region}.oraclecloud.com"
 
 - name: List key_versions
@@ -257,8 +257,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            key_id=dict(type="str", required=True),
             key_version_id=dict(aliases=["id"], type="str"),
+            key_id=dict(type="str", required=True),
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             service_endpoint=dict(type="str", required=True),

@@ -30,13 +30,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    display_name:
-        description:
-            - Data catalog identifier.
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
     compartment_id:
         description:
             - Compartment identifier.
@@ -44,6 +37,13 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    display_name:
+        description:
+            - Data catalog identifier.
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type, or scope. Exists for cross-compatibility only.
@@ -99,8 +99,8 @@ EXAMPLES = """
 - name: Update catalog using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_catalog_catalog:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     freeform_tags: {'Department': 'Finance'}
@@ -115,8 +115,8 @@ EXAMPLES = """
 - name: Delete catalog using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_catalog_catalog:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -375,8 +375,8 @@ def main():
     )
     module_args.update(
         dict(
-            display_name=dict(aliases=["name"], type="str"),
             compartment_id=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             catalog_id=dict(aliases=["id"], type="str"),

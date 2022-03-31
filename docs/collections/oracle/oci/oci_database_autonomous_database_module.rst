@@ -30,7 +30,7 @@ oracle.oci.oci_database_autonomous_database -- Manage an AutonomousDatabase reso
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -1259,44 +1259,44 @@ Examples
     - name: Create autonomous_database with source = DATABASE
       oci_database_autonomous_database:
         # required
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        db_name: db_name_example
-        source: DATABASE
-        source_id: "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx"
         clone_type: FULL
+        source_id: "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        source: DATABASE
+        db_name: db_name_example
 
         # optional
-        cpu_core_count: 56
-        ocpu_count: 3.4
-        db_workload: OLTP
-        data_storage_size_in_tbs: 56
-        data_storage_size_in_gbs: 56
-        is_free_tier: true
         kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
-        admin_password: example-password
-        display_name: display_name_example
-        license_model: LICENSE_INCLUDED
         is_preview_version_with_service_terms_accepted: true
-        is_auto_scaling_enabled: true
         is_dedicated: true
         autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+        autonomous_maintenance_schedule_type: EARLY
+        cpu_core_count: 56
+        ocpu_count: 3.4
+        data_storage_size_in_tbs: 56
+        data_storage_size_in_gbs: 56
+        display_name: display_name_example
+        is_free_tier: true
+        admin_password: example-password
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        db_workload: OLTP
+        license_model: LICENSE_INCLUDED
         is_access_control_enabled: true
         whitelisted_ips: [ "whitelisted_ips_example" ]
         are_primary_whitelisted_ips_used: true
         standby_whitelisted_ips: [ "standby_whitelisted_ips_example" ]
+        is_auto_scaling_enabled: true
         is_data_guard_enabled: true
-        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-        nsg_ids: [ "nsg_ids_example" ]
-        private_endpoint_label: private_endpoint_label_example
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
         db_version: db_version_example
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        private_endpoint_label: private_endpoint_label_example
+        nsg_ids: [ "nsg_ids_example" ]
         customer_contacts:
         - # optional
           email: email_example
         is_mtls_connection_required: true
-        autonomous_maintenance_schedule_type: EARLY
         scheduled_operations:
         - # required
           day_of_week:
@@ -1311,43 +1311,44 @@ Examples
     - name: Create autonomous_database with source = CLONE_TO_REFRESHABLE
       oci_database_autonomous_database:
         # required
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        db_name: db_name_example
-        source: CLONE_TO_REFRESHABLE
         source_id: "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        source: CLONE_TO_REFRESHABLE
+        db_name: db_name_example
 
         # optional
-        cpu_core_count: 56
-        ocpu_count: 3.4
-        db_workload: OLTP
-        data_storage_size_in_tbs: 56
-        data_storage_size_in_gbs: 56
-        is_free_tier: true
         kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
-        admin_password: example-password
-        display_name: display_name_example
-        license_model: LICENSE_INCLUDED
         is_preview_version_with_service_terms_accepted: true
-        is_auto_scaling_enabled: true
         is_dedicated: true
         autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+        autonomous_maintenance_schedule_type: EARLY
+        cpu_core_count: 56
+        ocpu_count: 3.4
+        data_storage_size_in_tbs: 56
+        data_storage_size_in_gbs: 56
+        display_name: display_name_example
+        is_free_tier: true
+        admin_password: example-password
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        db_workload: OLTP
+        license_model: LICENSE_INCLUDED
         is_access_control_enabled: true
         whitelisted_ips: [ "whitelisted_ips_example" ]
         are_primary_whitelisted_ips_used: true
         standby_whitelisted_ips: [ "standby_whitelisted_ips_example" ]
+        is_auto_scaling_enabled: true
+        refreshable_mode: AUTOMATIC
         is_data_guard_enabled: true
-        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-        nsg_ids: [ "nsg_ids_example" ]
-        private_endpoint_label: private_endpoint_label_example
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
         db_version: db_version_example
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        private_endpoint_label: private_endpoint_label_example
+        nsg_ids: [ "nsg_ids_example" ]
         customer_contacts:
         - # optional
           email: email_example
         is_mtls_connection_required: true
-        autonomous_maintenance_schedule_type: EARLY
         scheduled_operations:
         - # required
           day_of_week:
@@ -1358,49 +1359,48 @@ Examples
           scheduled_start_time: scheduled_start_time_example
           scheduled_stop_time: scheduled_stop_time_example
         is_auto_scaling_for_storage_enabled: true
-        refreshable_mode: AUTOMATIC
 
     - name: Create autonomous_database with source = BACKUP_FROM_ID
       oci_database_autonomous_database:
         # required
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        db_name: db_name_example
-        source: BACKUP_FROM_ID
-        clone_type: FULL
         autonomous_database_backup_id: "ocid1.autonomousdatabasebackup.oc1..xxxxxxEXAMPLExxxxxx"
+        clone_type: FULL
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        source: BACKUP_FROM_ID
+        db_name: db_name_example
 
         # optional
-        cpu_core_count: 56
-        ocpu_count: 3.4
-        db_workload: OLTP
-        data_storage_size_in_tbs: 56
-        data_storage_size_in_gbs: 56
-        is_free_tier: true
         kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
-        admin_password: example-password
-        display_name: display_name_example
-        license_model: LICENSE_INCLUDED
         is_preview_version_with_service_terms_accepted: true
-        is_auto_scaling_enabled: true
         is_dedicated: true
         autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+        autonomous_maintenance_schedule_type: EARLY
+        cpu_core_count: 56
+        ocpu_count: 3.4
+        data_storage_size_in_tbs: 56
+        data_storage_size_in_gbs: 56
+        display_name: display_name_example
+        is_free_tier: true
+        admin_password: example-password
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        db_workload: OLTP
+        license_model: LICENSE_INCLUDED
         is_access_control_enabled: true
         whitelisted_ips: [ "whitelisted_ips_example" ]
         are_primary_whitelisted_ips_used: true
         standby_whitelisted_ips: [ "standby_whitelisted_ips_example" ]
+        is_auto_scaling_enabled: true
         is_data_guard_enabled: true
-        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-        nsg_ids: [ "nsg_ids_example" ]
-        private_endpoint_label: private_endpoint_label_example
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
         db_version: db_version_example
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        private_endpoint_label: private_endpoint_label_example
+        nsg_ids: [ "nsg_ids_example" ]
         customer_contacts:
         - # optional
           email: email_example
         is_mtls_connection_required: true
-        autonomous_maintenance_schedule_type: EARLY
         scheduled_operations:
         - # required
           day_of_week:
@@ -1415,45 +1415,45 @@ Examples
     - name: Create autonomous_database with source = BACKUP_FROM_TIMESTAMP
       oci_database_autonomous_database:
         # required
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        db_name: db_name_example
-        source: BACKUP_FROM_TIMESTAMP
-        clone_type: FULL
-        autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         timestamp: timestamp_example
+        clone_type: FULL
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        source: BACKUP_FROM_TIMESTAMP
+        db_name: db_name_example
+        autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        cpu_core_count: 56
-        ocpu_count: 3.4
-        db_workload: OLTP
-        data_storage_size_in_tbs: 56
-        data_storage_size_in_gbs: 56
-        is_free_tier: true
         kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
-        admin_password: example-password
-        display_name: display_name_example
-        license_model: LICENSE_INCLUDED
         is_preview_version_with_service_terms_accepted: true
-        is_auto_scaling_enabled: true
         is_dedicated: true
         autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+        autonomous_maintenance_schedule_type: EARLY
+        cpu_core_count: 56
+        ocpu_count: 3.4
+        data_storage_size_in_tbs: 56
+        data_storage_size_in_gbs: 56
+        display_name: display_name_example
+        is_free_tier: true
+        admin_password: example-password
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        db_workload: OLTP
+        license_model: LICENSE_INCLUDED
         is_access_control_enabled: true
         whitelisted_ips: [ "whitelisted_ips_example" ]
         are_primary_whitelisted_ips_used: true
         standby_whitelisted_ips: [ "standby_whitelisted_ips_example" ]
+        is_auto_scaling_enabled: true
         is_data_guard_enabled: true
-        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-        nsg_ids: [ "nsg_ids_example" ]
-        private_endpoint_label: private_endpoint_label_example
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
         db_version: db_version_example
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        private_endpoint_label: private_endpoint_label_example
+        nsg_ids: [ "nsg_ids_example" ]
         customer_contacts:
         - # optional
           email: email_example
         is_mtls_connection_required: true
-        autonomous_maintenance_schedule_type: EARLY
         scheduled_operations:
         - # required
           day_of_week:
@@ -1468,43 +1468,43 @@ Examples
     - name: Create autonomous_database with source = CROSS_REGION_DATAGUARD
       oci_database_autonomous_database:
         # required
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        db_name: db_name_example
-        source: CROSS_REGION_DATAGUARD
         source_id: "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        source: CROSS_REGION_DATAGUARD
+        db_name: db_name_example
 
         # optional
-        cpu_core_count: 56
-        ocpu_count: 3.4
-        db_workload: OLTP
-        data_storage_size_in_tbs: 56
-        data_storage_size_in_gbs: 56
-        is_free_tier: true
         kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
-        admin_password: example-password
-        display_name: display_name_example
-        license_model: LICENSE_INCLUDED
         is_preview_version_with_service_terms_accepted: true
-        is_auto_scaling_enabled: true
         is_dedicated: true
         autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+        autonomous_maintenance_schedule_type: EARLY
+        cpu_core_count: 56
+        ocpu_count: 3.4
+        data_storage_size_in_tbs: 56
+        data_storage_size_in_gbs: 56
+        display_name: display_name_example
+        is_free_tier: true
+        admin_password: example-password
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        db_workload: OLTP
+        license_model: LICENSE_INCLUDED
         is_access_control_enabled: true
         whitelisted_ips: [ "whitelisted_ips_example" ]
         are_primary_whitelisted_ips_used: true
         standby_whitelisted_ips: [ "standby_whitelisted_ips_example" ]
+        is_auto_scaling_enabled: true
         is_data_guard_enabled: true
-        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-        nsg_ids: [ "nsg_ids_example" ]
-        private_endpoint_label: private_endpoint_label_example
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
         db_version: db_version_example
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        private_endpoint_label: private_endpoint_label_example
+        nsg_ids: [ "nsg_ids_example" ]
         customer_contacts:
         - # optional
           email: email_example
         is_mtls_connection_required: true
-        autonomous_maintenance_schedule_type: EARLY
         scheduled_operations:
         - # required
           day_of_week:
@@ -1523,38 +1523,38 @@ Examples
         db_name: db_name_example
 
         # optional
-        cpu_core_count: 56
-        ocpu_count: 3.4
-        db_workload: OLTP
-        data_storage_size_in_tbs: 56
-        data_storage_size_in_gbs: 56
-        is_free_tier: true
         kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
-        admin_password: example-password
-        display_name: display_name_example
-        license_model: LICENSE_INCLUDED
         is_preview_version_with_service_terms_accepted: true
-        is_auto_scaling_enabled: true
         is_dedicated: true
         autonomous_container_database_id: "ocid1.autonomouscontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+        source: NONE
+        autonomous_maintenance_schedule_type: EARLY
+        cpu_core_count: 56
+        ocpu_count: 3.4
+        data_storage_size_in_tbs: 56
+        data_storage_size_in_gbs: 56
+        display_name: display_name_example
+        is_free_tier: true
+        admin_password: example-password
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        db_workload: OLTP
+        license_model: LICENSE_INCLUDED
         is_access_control_enabled: true
         whitelisted_ips: [ "whitelisted_ips_example" ]
         are_primary_whitelisted_ips_used: true
         standby_whitelisted_ips: [ "standby_whitelisted_ips_example" ]
+        is_auto_scaling_enabled: true
         is_data_guard_enabled: true
-        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-        nsg_ids: [ "nsg_ids_example" ]
-        private_endpoint_label: private_endpoint_label_example
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
         db_version: db_version_example
-        source: NONE
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        private_endpoint_label: private_endpoint_label_example
+        nsg_ids: [ "nsg_ids_example" ]
         customer_contacts:
         - # optional
           email: email_example
         is_mtls_connection_required: true
-        autonomous_maintenance_schedule_type: EARLY
         scheduled_operations:
         - # required
           day_of_week:
@@ -1572,28 +1572,33 @@ Examples
         autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        db_name: db_name_example
         cpu_core_count: 56
         ocpu_count: 3.4
-        db_workload: OLTP
         data_storage_size_in_tbs: 56
         data_storage_size_in_gbs: 56
+        display_name: display_name_example
         is_free_tier: true
         admin_password: example-password
-        display_name: display_name_example
+        db_name: db_name_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        db_workload: OLTP
         license_model: LICENSE_INCLUDED
-        is_auto_scaling_enabled: true
         is_access_control_enabled: true
         whitelisted_ips: [ "whitelisted_ips_example" ]
         are_primary_whitelisted_ips_used: true
         standby_whitelisted_ips: [ "standby_whitelisted_ips_example" ]
+        is_auto_scaling_enabled: true
+        is_refreshable_clone: true
+        refreshable_mode: AUTOMATIC
         is_data_guard_enabled: true
-        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-        nsg_ids: [ "nsg_ids_example" ]
-        private_endpoint_label: private_endpoint_label_example
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        peer_db_id: "ocid1.peerdb.oc1..xxxxxxEXAMPLExxxxxx"
         db_version: db_version_example
+        open_mode: READ_ONLY
+        permission_level: RESTRICTED
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        private_endpoint_label: private_endpoint_label_example
+        nsg_ids: [ "nsg_ids_example" ]
         customer_contacts:
         - # optional
           email: email_example
@@ -1608,11 +1613,6 @@ Examples
           scheduled_start_time: scheduled_start_time_example
           scheduled_stop_time: scheduled_stop_time_example
         is_auto_scaling_for_storage_enabled: true
-        refreshable_mode: AUTOMATIC
-        is_refreshable_clone: true
-        peer_db_id: "ocid1.peerdb.oc1..xxxxxxEXAMPLExxxxxx"
-        open_mode: READ_ONLY
-        permission_level: RESTRICTED
 
     - name: Update autonomous_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_autonomous_database:
@@ -1621,27 +1621,32 @@ Examples
         display_name: display_name_example
 
         # optional
-        db_name: db_name_example
         cpu_core_count: 56
         ocpu_count: 3.4
-        db_workload: OLTP
         data_storage_size_in_tbs: 56
         data_storage_size_in_gbs: 56
         is_free_tier: true
         admin_password: example-password
+        db_name: db_name_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        db_workload: OLTP
         license_model: LICENSE_INCLUDED
-        is_auto_scaling_enabled: true
         is_access_control_enabled: true
         whitelisted_ips: [ "whitelisted_ips_example" ]
         are_primary_whitelisted_ips_used: true
         standby_whitelisted_ips: [ "standby_whitelisted_ips_example" ]
+        is_auto_scaling_enabled: true
+        is_refreshable_clone: true
+        refreshable_mode: AUTOMATIC
         is_data_guard_enabled: true
-        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-        nsg_ids: [ "nsg_ids_example" ]
-        private_endpoint_label: private_endpoint_label_example
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        peer_db_id: "ocid1.peerdb.oc1..xxxxxxEXAMPLExxxxxx"
         db_version: db_version_example
+        open_mode: READ_ONLY
+        permission_level: RESTRICTED
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        private_endpoint_label: private_endpoint_label_example
+        nsg_ids: [ "nsg_ids_example" ]
         customer_contacts:
         - # optional
           email: email_example
@@ -1656,11 +1661,6 @@ Examples
           scheduled_start_time: scheduled_start_time_example
           scheduled_stop_time: scheduled_stop_time_example
         is_auto_scaling_for_storage_enabled: true
-        refreshable_mode: AUTOMATIC
-        is_refreshable_clone: true
-        peer_db_id: "ocid1.peerdb.oc1..xxxxxxEXAMPLExxxxxx"
-        open_mode: READ_ONLY
-        permission_level: RESTRICTED
 
     - name: Delete autonomous_database
       oci_database_autonomous_database:

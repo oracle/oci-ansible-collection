@@ -28,15 +28,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    display_name:
-        description:
-            - A user-friendly name. Does not have to be unique, and it's changeable.
-              Avoid entering confidential information.
-            - "Example: `My new resource`"
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which the
@@ -58,6 +49,15 @@ options:
               related resources are created.
             - Required for create using I(state=present).
         type: str
+    display_name:
+        description:
+            - A user-friendly name. Does not have to be unique, and it's changeable.
+              Avoid entering confidential information.
+            - "Example: `My new resource`"
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
     network_security_group_ids:
         description:
             - An array of Network Security Groups OCIDs associated with this API Gateway.
@@ -75,14 +75,6 @@ options:
             - This parameter is updatable.
         type: dict
         suboptions:
-            type:
-                description:
-                    - Type of the Response Cache.
-                type: str
-                choices:
-                    - "EXTERNAL_RESP_CACHE"
-                    - "NONE"
-                required: true
             servers:
                 description:
                     - The set of cache store members to connect to. At present only a single server is supported.
@@ -137,6 +129,14 @@ options:
                     - Defines the timeout for transmitting data to the Response Cache.
                     - Applicable when type is 'EXTERNAL_RESP_CACHE'
                 type: int
+            type:
+                description:
+                    - Type of the Response Cache.
+                type: str
+                choices:
+                    - "EXTERNAL_RESP_CACHE"
+                    - "NONE"
+                required: true
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair
@@ -160,6 +160,11 @@ options:
         type: list
         elements: dict
         suboptions:
+            ca_bundle_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
+                    - Applicable when type is 'CA_BUNDLE'
+                type: str
             type:
                 description:
                     - Type of the CA bundle
@@ -168,11 +173,6 @@ options:
                     - "CA_BUNDLE"
                     - "CERTIFICATE_AUTHORITY"
                 required: true
-            ca_bundle_id:
-                description:
-                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
-                    - Applicable when type is 'CA_BUNDLE'
-                type: str
             certificate_authority_id:
                 description:
                     - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the resource.
@@ -211,13 +211,13 @@ EXAMPLES = """
     certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
     response_cache_details:
       # required
-      type: EXTERNAL_RESP_CACHE
       servers:
       - # required
         host: host_example
         port: 56
       authentication_secret_id: "ocid1.authenticationsecret.oc1..xxxxxxEXAMPLExxxxxx"
       authentication_secret_version_number: 56
+      type: EXTERNAL_RESP_CACHE
 
         # optional
       is_ssl_enabled: true
@@ -245,13 +245,13 @@ EXAMPLES = """
     certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
     response_cache_details:
       # required
-      type: EXTERNAL_RESP_CACHE
       servers:
       - # required
         host: host_example
         port: 56
       authentication_secret_id: "ocid1.authenticationsecret.oc1..xxxxxxEXAMPLExxxxxx"
       authentication_secret_version_number: 56
+      type: EXTERNAL_RESP_CACHE
 
         # optional
       is_ssl_enabled: true
@@ -271,21 +271,21 @@ EXAMPLES = """
 - name: Update gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apigateway_gateway:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     network_security_group_ids: [ "network_security_group_ids_example" ]
     certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
     response_cache_details:
       # required
-      type: EXTERNAL_RESP_CACHE
       servers:
       - # required
         host: host_example
         port: 56
       authentication_secret_id: "ocid1.authenticationsecret.oc1..xxxxxxEXAMPLExxxxxx"
       authentication_secret_version_number: 56
+      type: EXTERNAL_RESP_CACHE
 
         # optional
       is_ssl_enabled: true
@@ -311,8 +311,8 @@ EXAMPLES = """
 - name: Delete gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apigateway_gateway:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -725,20 +725,15 @@ def main():
     )
     module_args.update(
         dict(
-            display_name=dict(aliases=["name"], type="str"),
             compartment_id=dict(type="str"),
             endpoint_type=dict(type="str"),
             subnet_id=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
             network_security_group_ids=dict(type="list", elements="str"),
             certificate_id=dict(type="str"),
             response_cache_details=dict(
                 type="dict",
                 options=dict(
-                    type=dict(
-                        type="str",
-                        required=True,
-                        choices=["EXTERNAL_RESP_CACHE", "NONE"],
-                    ),
                     servers=dict(
                         type="list",
                         elements="dict",
@@ -754,6 +749,11 @@ def main():
                     connect_timeout_in_ms=dict(type="int"),
                     read_timeout_in_ms=dict(type="int"),
                     send_timeout_in_ms=dict(type="int"),
+                    type=dict(
+                        type="str",
+                        required=True,
+                        choices=["EXTERNAL_RESP_CACHE", "NONE"],
+                    ),
                 ),
             ),
             freeform_tags=dict(type="dict"),
@@ -762,12 +762,12 @@ def main():
                 type="list",
                 elements="dict",
                 options=dict(
+                    ca_bundle_id=dict(type="str"),
                     type=dict(
                         type="str",
                         required=True,
                         choices=["CA_BUNDLE", "CERTIFICATE_AUTHORITY"],
                     ),
-                    ca_bundle_id=dict(type="str"),
                     certificate_authority_id=dict(type="str"),
                 ),
             ),

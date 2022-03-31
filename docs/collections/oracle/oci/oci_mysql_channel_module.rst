@@ -30,7 +30,7 @@ oracle.oci.oci_mysql_channel -- Manage a Channel resource in Oracle Cloud Infras
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -753,8 +753,8 @@ Examples
             contents: contents_example
         target:
           # required
-          target_type: DBSYSTEM
           db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+          target_type: DBSYSTEM
 
           # optional
           channel_name: channel_name_example
@@ -773,8 +773,6 @@ Examples
         channel_id: "ocid1.channel.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        display_name: display_name_example
-        is_enabled: true
         source:
           # required
           source_type: MYSQL
@@ -791,12 +789,14 @@ Examples
             contents: contents_example
         target:
           # required
-          target_type: DBSYSTEM
           db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+          target_type: DBSYSTEM
 
           # optional
           channel_name: channel_name_example
           applier_username: applier_username_example
+        display_name: display_name_example
+        is_enabled: true
         description: description_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -808,7 +808,6 @@ Examples
         display_name: display_name_example
 
         # optional
-        is_enabled: true
         source:
           # required
           source_type: MYSQL
@@ -825,12 +824,13 @@ Examples
             contents: contents_example
         target:
           # required
-          target_type: DBSYSTEM
           db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+          target_type: DBSYSTEM
 
           # optional
           channel_name: channel_name_example
           applier_username: applier_username_example
+        is_enabled: true
         description: description_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}

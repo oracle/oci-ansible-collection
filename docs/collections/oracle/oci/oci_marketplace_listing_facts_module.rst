@@ -30,7 +30,7 @@ oracle.oci.oci_marketplace_listing_facts -- Fetches details about one or multipl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -486,9 +486,8 @@ Examples
       oci_marketplace_listing_facts:
 
         # optional
-        listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         name: [ "name_example" ]
+        listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
         image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
         publisher_id: "ocid1.publisher.oc1..xxxxxxEXAMPLExxxxxx"
         package_type: package_type_example
@@ -499,6 +498,7 @@ Examples
         is_featured: true
         listing_types: [ "COMMUNITY" ]
         operating_systems: [ "operating_systems_example" ]
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

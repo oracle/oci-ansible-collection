@@ -28,6 +28,23 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    export_set_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of this export's export set.
+            - Required for create using I(state=present).
+        type: str
+    file_system_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of this export's file system.
+            - Required for create using I(state=present).
+        type: str
+    path:
+        description:
+            - Path used to access the associated file system.
+            - Avoid entering confidential information.
+            - "Example: `/mediafiles`"
+            - Required for create using I(state=present).
+        type: str
     export_options:
         description:
             - "Export options for the new export. If left unspecified,
@@ -101,23 +118,6 @@ options:
                       identitySquash for more details.) If unspecified defaults
                       to `65534`.
                 type: int
-    export_set_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of this export's export set.
-            - Required for create using I(state=present).
-        type: str
-    file_system_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of this export's file system.
-            - Required for create using I(state=present).
-        type: str
-    path:
-        description:
-            - Path used to access the associated file system.
-            - Avoid entering confidential information.
-            - "Example: `/mediafiles`"
-            - Required for create using I(state=present).
-        type: str
     export_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the export.
@@ -471,6 +471,9 @@ def main():
     )
     module_args.update(
         dict(
+            export_set_id=dict(type="str"),
+            file_system_id=dict(type="str"),
+            path=dict(type="str"),
             export_options=dict(
                 type="list",
                 elements="dict",
@@ -483,9 +486,6 @@ def main():
                     anonymous_gid=dict(type="int"),
                 ),
             ),
-            export_set_id=dict(type="str"),
-            file_system_id=dict(type="str"),
-            path=dict(type="str"),
             export_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

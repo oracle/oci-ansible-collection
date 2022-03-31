@@ -30,7 +30,7 @@ oracle.oci.oci_compute_app_catalog_subscription -- Manage an AppCatalogSubscript
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -418,12 +418,12 @@ Examples
     - name: Create app_catalog_subscription
       oci_compute_app_catalog_subscription:
         # required
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
-        listing_resource_version: listing_resource_version_example
         oracle_terms_of_use_link: oracle_terms_of_use_link_example
         time_retrieved: time_retrieved_example
         signature: signature_example
+        listing_resource_version: listing_resource_version_example
+        listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         eula_link: eula_link_example
@@ -431,9 +431,9 @@ Examples
     - name: Delete app_catalog_subscription
       oci_compute_app_catalog_subscription:
         # required
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
         listing_resource_version: listing_resource_version_example
+        listing_id: "ocid1.listing.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 

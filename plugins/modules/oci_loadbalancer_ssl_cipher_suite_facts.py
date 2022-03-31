@@ -28,17 +28,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    load_balancer_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the associated load balancer.
-        type: str
-        required: true
     name:
         description:
             - The name of the SSL cipher suite to retrieve.
             - "example: `example_cipher_suite`"
             - Required to get a specific ssl_cipher_suite.
         type: str
+    load_balancer_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the associated load balancer.
+        type: str
+        required: true
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -46,8 +46,8 @@ EXAMPLES = """
 - name: Get a specific ssl_cipher_suite
   oci_loadbalancer_ssl_cipher_suite_facts:
     # required
-    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
+    load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List ssl_cipher_suites
   oci_loadbalancer_ssl_cipher_suite_facts:
@@ -250,7 +250,7 @@ class ResourceFactsHelper(
 def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
-        dict(load_balancer_id=dict(type="str", required=True), name=dict(type="str"),)
+        dict(name=dict(type="str"), load_balancer_id=dict(type="str", required=True),)
     )
 
     module = AnsibleModule(argument_spec=module_args)

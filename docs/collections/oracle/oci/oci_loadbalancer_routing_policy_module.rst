@@ -30,7 +30,7 @@ oracle.oci.oci_loadbalancer_routing_policy -- Manage a RoutingPolicy resource in
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -499,7 +499,6 @@ Examples
     - name: Create routing_policy
       oci_loadbalancer_routing_policy:
         # required
-        name: name_example
         condition_language_version: V1
         rules:
         - # required
@@ -512,11 +511,11 @@ Examples
             # optional
             backend_set_name: backend_set_name_example
         load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+        name: name_example
 
     - name: Update routing_policy
       oci_loadbalancer_routing_policy:
         # required
-        name: name_example
         rules:
         - # required
           name: name_example
@@ -528,6 +527,7 @@ Examples
             # optional
             backend_set_name: backend_set_name_example
         load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+        name: name_example
 
         # optional
         condition_language_version: V1
@@ -535,8 +535,8 @@ Examples
     - name: Delete routing_policy
       oci_loadbalancer_routing_policy:
         # required
-        name: name_example
         load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+        name: name_example
         state: absent
 
 

@@ -42,6 +42,20 @@ options:
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    vault_type:
+        description:
+            - The type of vault to create. Each type of vault stores the key with different degrees of isolation and has different options and pricing.
+            - Required for create using I(state=present).
+        type: str
+        choices:
+            - "VIRTUAL_PRIVATE"
+            - "DEFAULT"
+    vault_id:
+        description:
+            - The OCID of the vault.
+            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["id"]
     defined_tags:
         description:
             - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
@@ -65,20 +79,6 @@ options:
               Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
-    vault_type:
-        description:
-            - The type of vault to create. Each type of vault stores the key with different degrees of isolation and has different options and pricing.
-            - Required for create using I(state=present).
-        type: str
-        choices:
-            - "VIRTUAL_PRIVATE"
-            - "DEFAULT"
-    vault_id:
-        description:
-            - The OCID of the vault.
-            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["id"]
     state:
         description:
             - The state of the Vault.
@@ -95,8 +95,8 @@ EXAMPLES = """
   oci_key_management_vault:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: display_name_example
     vault_type: VIRTUAL_PRIVATE
+    display_name: display_name_example
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -380,11 +380,11 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
+            vault_type=dict(type="str", choices=["VIRTUAL_PRIVATE", "DEFAULT"]),
+            vault_id=dict(aliases=["id"], type="str"),
             defined_tags=dict(type="dict"),
             display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
-            vault_type=dict(type="str", choices=["VIRTUAL_PRIVATE", "DEFAULT"]),
-            vault_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present"]),
         )
     )

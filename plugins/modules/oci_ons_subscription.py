@@ -73,27 +73,6 @@ options:
         description:
             - Metadata for the subscription.
         type: str
-    freeform_tags:
-        description:
-            - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see
-              L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-            - "Example: `{\\"Department\\": \\"Finance\\"}`"
-            - This parameter is updatable.
-        type: dict
-    defined_tags:
-        description:
-            - Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see L(Resource
-              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
-            - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
-            - This parameter is updatable.
-        type: dict
-    subscription_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the subscription to update.
-            - Required for update using I(state=present).
-            - Required for delete using I(state=absent).
-        type: str
-        aliases: ["id"]
     delivery_policy:
         description:
             - The delivery policy of the subscription. Stored as a JSON string.
@@ -119,6 +98,27 @@ options:
                         choices:
                             - "EXPONENTIAL"
                         required: true
+    freeform_tags:
+        description:
+            - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see
+              L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - This parameter is updatable.
+        type: dict
+    defined_tags:
+        description:
+            - Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see L(Resource
+              Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
+            - This parameter is updatable.
+        type: dict
+    subscription_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the subscription to update.
+            - Required for update using I(state=present).
+            - Required for delete using I(state=absent).
+        type: str
+        aliases: ["id"]
     state:
         description:
             - The state of the Subscription.
@@ -151,14 +151,14 @@ EXAMPLES = """
     subscription_id: "ocid1.subscription.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
     delivery_policy:
       # optional
       backoff_retry_policy:
         # required
         max_retry_duration: 56
         policy_type: EXPONENTIAL
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
 
 - name: Delete subscription
   oci_ons_subscription:
@@ -437,9 +437,6 @@ def main():
             protocol=dict(type="str"),
             endpoint=dict(type="str"),
             metadata=dict(type="str"),
-            freeform_tags=dict(type="dict"),
-            defined_tags=dict(type="dict"),
-            subscription_id=dict(aliases=["id"], type="str"),
             delivery_policy=dict(
                 type="dict",
                 options=dict(
@@ -454,6 +451,9 @@ def main():
                     )
                 ),
             ),
+            freeform_tags=dict(type="dict"),
+            defined_tags=dict(type="dict"),
+            subscription_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

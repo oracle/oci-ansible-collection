@@ -30,7 +30,7 @@ oracle.oci.oci_golden_gate_database_registration -- Manage a DatabaseRegistratio
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -658,26 +658,26 @@ Examples
     - name: Create database_registration
       oci_golden_gate_database_registration:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
         fqdn: fqdn_example
         username: username_example
         password: example-password
         alias_name: alias_name_example
 
         # optional
-        description: description_example
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
         ip_address: ip_address_example
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-        connection_string: connection_string_example
-        session_mode: DIRECT
-        wallet: wallet_example
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         secret_compartment_id: "ocid1.secretcompartment.oc1..xxxxxxEXAMPLExxxxxx"
+        description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        connection_string: connection_string_example
+        session_mode: DIRECT
+        wallet: wallet_example
 
     - name: Update database_registration
       oci_golden_gate_database_registration:
@@ -700,8 +700,8 @@ Examples
     - name: Update database_registration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_golden_gate_database_registration:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
 
         # optional
         description: description_example
@@ -724,8 +724,8 @@ Examples
     - name: Delete database_registration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_golden_gate_database_registration:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
         state: absent
 
 

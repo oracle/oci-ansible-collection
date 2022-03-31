@@ -34,6 +34,11 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The identifier of the compartment where the resource should be moved.
+            - Required for I(action=change_compartment).
+        type: str
     catalog_private_endpoint_id:
         description:
             - The identifier of the private endpoint to be attached to the catalog resource.
@@ -45,11 +50,6 @@ options:
         type: str
         aliases: ["id"]
         required: true
-    compartment_id:
-        description:
-            - The identifier of the compartment where the resource should be moved.
-            - Required for I(action=change_compartment).
-        type: str
     sort_by:
         description:
             - The field to sort by. Only one sort order may be provided. Default order for TIMECREATED is descending. Default order for DISPLAYNAME is
@@ -92,8 +92,8 @@ EXAMPLES = """
 - name: Perform action change_compartment on catalog
   oci_data_catalog_catalog_actions:
     # required
-    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action detach_catalog_private_endpoint on catalog
@@ -400,9 +400,9 @@ def main():
     )
     module_args.update(
         dict(
+            compartment_id=dict(type="str"),
             catalog_private_endpoint_id=dict(type="str"),
             catalog_id=dict(aliases=["id"], type="str", required=True),
-            compartment_id=dict(type="str"),
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             action=dict(

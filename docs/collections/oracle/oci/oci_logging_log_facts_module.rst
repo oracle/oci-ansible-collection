@@ -30,7 +30,7 @@ oracle.oci.oci_logging_log_facts -- Fetches details about one or multiple Log re
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -414,8 +414,8 @@ Examples
     - name: Get a specific log
       oci_logging_log_facts:
         # required
-        log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
         log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+        log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: List logs
       oci_logging_log_facts:

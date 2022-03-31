@@ -28,12 +28,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    cluster_id:
-        description:
-            - The OCID of the cluster.
-        type: str
-        aliases: ["id"]
-        required: true
     endpoint_config:
         description:
             - The network configuration for access to the Cluster control plane.
@@ -60,6 +54,12 @@ options:
             - The optional override of the non-native endpoint decommission time after migration is complete. Defaults to 30 days.
             - Applicable only for I(action=cluster_migrate_to_native_vcn).
         type: str
+    cluster_id:
+        description:
+            - The OCID of the cluster.
+        type: str
+        aliases: ["id"]
+        required: true
     nsg_ids:
         description:
             - A list of the OCIDs of the network security groups (NSGs) to apply to the cluster endpoint. For more information about NSGs, see
@@ -87,12 +87,12 @@ EXAMPLES = """
 - name: Perform action cluster_migrate_to_native_vcn on cluster
   oci_container_engine_cluster_actions:
     # required
-    cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
     endpoint_config:
       # optional
       subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
       nsg_ids: [ "nsg_ids_example" ]
       is_public_ip_enabled: true
+    cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
     action: cluster_migrate_to_native_vcn
 
     # optional
@@ -402,6 +402,13 @@ cluster:
                     returned: on success
                     type: str
                     sample: private_endpoint_example
+                vcn_hostname_endpoint:
+                    description:
+                        - "The FQDN assigned to the Kubernetes API private endpoint.
+                          Example: 'https://yourVcnHostnameEndpoint'"
+                    returned: on success
+                    type: str
+                    sample: vcn_hostname_endpoint_example
         available_kubernetes_upgrades:
             description:
                 - Available Kubernetes versions to which the clusters masters may be upgraded.
@@ -486,7 +493,8 @@ cluster:
         "endpoints": {
             "kubernetes": "kubernetes_example",
             "public_endpoint": "public_endpoint_example",
-            "private_endpoint": "private_endpoint_example"
+            "private_endpoint": "private_endpoint_example",
+            "vcn_hostname_endpoint": "vcn_hostname_endpoint_example"
         },
         "available_kubernetes_upgrades": [],
         "image_policy_config": {
@@ -596,7 +604,6 @@ def main():
     )
     module_args.update(
         dict(
-            cluster_id=dict(aliases=["id"], type="str", required=True),
             endpoint_config=dict(
                 type="dict",
                 options=dict(
@@ -606,6 +613,7 @@ def main():
                 ),
             ),
             decommission_delay_duration=dict(type="str"),
+            cluster_id=dict(aliases=["id"], type="str", required=True),
             nsg_ids=dict(type="list", elements="str"),
             is_public_ip_enabled=dict(type="bool"),
             action=dict(

@@ -30,7 +30,7 @@ oracle.oci.oci_marketplace_publication_facts -- Fetches details about one or mul
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -386,8 +386,8 @@ Examples
         listing_type: COMMUNITY
 
         # optional
-        publication_id: "ocid1.publication.oc1..xxxxxxEXAMPLExxxxxx"
         name: [ "name_example" ]
+        publication_id: "ocid1.publication.oc1..xxxxxxEXAMPLExxxxxx"
         operating_systems: [ "operating_systems_example" ]
         sort_by: TIMERELEASED
         sort_order: ASC

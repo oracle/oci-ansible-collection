@@ -38,12 +38,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    waas_policy_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the WAAS policy.
-        type: str
-        aliases: ["id"]
-        required: true
     protection_rule_keys:
         description:
             - ""
@@ -57,6 +51,12 @@ options:
               Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
             - Required for I(action=change_compartment).
         type: str
+    waas_policy_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the WAAS policy.
+        type: str
+        aliases: ["id"]
+        required: true
     resources:
         description:
             - "A resource to purge, specified by either a hostless absolute path starting with a single slash (Example: `/path/to/resource`) or by a relative
@@ -80,15 +80,15 @@ EXAMPLES = """
 - name: Perform action accept_recommendations on waas_policy
   oci_waas_policy_actions:
     # required
-    waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
     protection_rule_keys: [ "protection_rule_keys_example" ]
+    waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
     action: accept_recommendations
 
 - name: Perform action change_compartment on waas_policy
   oci_waas_policy_actions:
     # required
-    waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    waas_policy_id: "ocid1.waaspolicy.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action purge_cache on waas_policy
@@ -2072,9 +2072,9 @@ def main():
     )
     module_args.update(
         dict(
-            waas_policy_id=dict(aliases=["id"], type="str", required=True),
             protection_rule_keys=dict(type="list", elements="str", no_log=True),
             compartment_id=dict(type="str"),
+            waas_policy_id=dict(aliases=["id"], type="str", required=True),
             resources=dict(type="list", elements="str"),
             action=dict(
                 type="str",

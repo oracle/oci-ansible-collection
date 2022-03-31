@@ -28,11 +28,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    namespace_name:
-        description:
-            - The Logging Analytics namespace used for the request.
-        type: str
-        required: true
     scheduled_task_id:
         description:
             - Unique scheduledTask id returned from task create.
@@ -40,6 +35,11 @@ options:
             - Required to get a specific scheduled_task.
         type: str
         aliases: ["id"]
+    namespace_name:
+        description:
+            - The Logging Analytics namespace used for the request.
+        type: str
+        required: true
     task_type:
         description:
             - Required parameter to specify schedule task type.
@@ -92,8 +92,8 @@ EXAMPLES = """
 - name: Get a specific scheduled_task
   oci_log_analytics_scheduled_task_facts:
     # required
-    namespace_name: namespace_name_example
     scheduled_task_id: "ocid1.scheduledtask.oc1..xxxxxxEXAMPLExxxxxx"
+    namespace_name: namespace_name_example
 
 - name: List scheduled_tasks
   oci_log_analytics_scheduled_task_facts:
@@ -516,8 +516,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            namespace_name=dict(type="str", required=True),
             scheduled_task_id=dict(aliases=["id"], type="str"),
+            namespace_name=dict(type="str", required=True),
             task_type=dict(
                 type="str",
                 choices=[

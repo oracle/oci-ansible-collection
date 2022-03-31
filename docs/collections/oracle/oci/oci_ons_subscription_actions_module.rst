@@ -30,7 +30,7 @@ oracle.oci.oci_ons_subscription_actions -- Perform actions on a Subscription res
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -358,9 +358,9 @@ Examples
     - name: Perform action get_unsubscription on subscription
       oci_ons_subscription_actions:
         # required
-        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         token: token_example
         protocol: protocol_example
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         action: get_unsubscription
 
     - name: Perform action resend_subscription_confirmation on subscription

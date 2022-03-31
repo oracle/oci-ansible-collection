@@ -30,7 +30,7 @@ oracle.oci.oci_database_database_actions -- Perform actions on a Database resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -633,13 +633,13 @@ Examples
     - name: Perform action enable_database_management on database
       oci_database_database_actions:
         # required
-        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         credential_details:
           # required
           user_name: user_name_example
           password_secret_id: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
         private_end_point_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
         service_name: service_name_example
+        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         action: enable_database_management
 
         # optional
@@ -648,8 +648,8 @@ Examples
     - name: Perform action migrate_vault_key on database
       oci_database_database_actions:
         # required
-        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         action: migrate_vault_key
 
         # optional
@@ -696,8 +696,8 @@ Examples
         # optional
         database_upgrade_source_details:
           # required
-          source: DB_HOME
           db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
+          source: DB_HOME
 
           # optional
           options: options_example
@@ -711,8 +711,8 @@ Examples
         # optional
         database_upgrade_source_details:
           # required
-          source: DB_HOME
           db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
+          source: DB_HOME
 
           # optional
           options: options_example
@@ -726,8 +726,8 @@ Examples
         # optional
         database_upgrade_source_details:
           # required
-          source: DB_HOME
           db_home_id: "ocid1.dbhome.oc1..xxxxxxEXAMPLExxxxxx"
+          source: DB_HOME
 
           # optional
           options: options_example

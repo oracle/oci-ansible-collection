@@ -28,6 +28,12 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    internal_invoice_id:
+        description:
+            - The identifier of the invoice.
+            - Required to get a specific invoice.
+        type: str
+        aliases: ["id"]
     osp_home_region:
         description:
             - The home region's public name of the logged in user.
@@ -38,12 +44,6 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
         type: str
         required: true
-    internal_invoice_id:
-        description:
-            - The identifier of the invoice.
-            - Required to get a specific invoice.
-        type: str
-        aliases: ["id"]
     invoice_id:
         description:
             - The invoice query param (not unique).
@@ -123,9 +123,9 @@ EXAMPLES = """
 - name: Get a specific invoice
   oci_osp_gateway_invoice_facts:
     # required
+    internal_invoice_id: "ocid1.internalinvoice.oc1..xxxxxxEXAMPLExxxxxx"
     osp_home_region: us-phoenix-1
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    internal_invoice_id: "ocid1.internalinvoice.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List invoices
   oci_osp_gateway_invoice_facts:
@@ -653,9 +653,9 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
+            internal_invoice_id=dict(aliases=["id"], type="str"),
             osp_home_region=dict(type="str", required=True),
             compartment_id=dict(type="str", required=True),
-            internal_invoice_id=dict(aliases=["id"], type="str"),
             invoice_id=dict(type="str"),
             type=dict(
                 type="list",

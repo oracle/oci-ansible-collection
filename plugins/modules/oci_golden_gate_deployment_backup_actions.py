@@ -31,6 +31,11 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment being referenced.
+            - Required for I(action=change_compartment).
+        type: str
     deployment_backup_id:
         description:
             - A unique DeploymentBackup identifier.
@@ -44,11 +49,6 @@ options:
         type: str
         choices:
             - "DEFAULT"
-    compartment_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment being referenced.
-            - Required for I(action=change_compartment).
-        type: str
     action:
         description:
             - The action to perform on the DeploymentBackup.
@@ -70,8 +70,8 @@ EXAMPLES = """
 - name: Perform action change_compartment on deployment_backup
   oci_golden_gate_deployment_backup_actions:
     # required
-    deployment_backup_id: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    deployment_backup_id: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action restore_deployment on deployment_backup with type = DEFAULT
@@ -369,9 +369,9 @@ def main():
     )
     module_args.update(
         dict(
+            compartment_id=dict(type="str"),
             deployment_backup_id=dict(aliases=["id"], type="str", required=True),
             type=dict(type="str", choices=["DEFAULT"]),
-            compartment_id=dict(type="str"),
             action=dict(
                 type="str",
                 required=True,

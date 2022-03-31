@@ -30,7 +30,7 @@ oracle.oci.oci_compute_instance_agent_plugin_facts -- Fetches details about one 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -377,15 +377,15 @@ Examples
     - name: Get a specific plugin
       oci_compute_instance_agent_plugin_facts:
         # required
-        instanceagent_id: "ocid1.instanceagent.oc1..xxxxxxEXAMPLExxxxxx"
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         plugin_name: plugin_name_example
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        instanceagent_id: "ocid1.instanceagent.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: List plugins
       oci_compute_instance_agent_plugin_facts:
         # required
-        instanceagent_id: "ocid1.instanceagent.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        instanceagent_id: "ocid1.instanceagent.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         status: RUNNING

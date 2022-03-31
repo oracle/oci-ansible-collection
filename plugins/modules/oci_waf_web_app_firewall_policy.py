@@ -28,13 +28,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    display_name:
-        description:
-            - WebAppFirewallPolicy display name, can be renamed.
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
@@ -42,6 +35,13 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    display_name:
+        description:
+            - WebAppFirewallPolicy display name, can be renamed.
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
     actions:
         description:
             - Predefined actions for use in multiple different rules. Not all actions are supported in every module.
@@ -51,23 +51,6 @@ options:
         type: list
         elements: dict
         suboptions:
-            type:
-                description:
-                    - "* **CHECK** is a non-terminating action that does not stop the execution of rules in current module,
-                        just emits a log message documenting result of rule execution."
-                    - "* **ALLOW** is a non-terminating action which upon matching rule skips all remaining rules in the current module."
-                    - "* **RETURN_HTTP_RESPONSE** is a terminating action which is executed immediately, returns a defined HTTP response."
-                type: str
-                choices:
-                    - "RETURN_HTTP_RESPONSE"
-                    - "ALLOW"
-                    - "CHECK"
-                required: true
-            name:
-                description:
-                    - Action name. Can be used to reference the action.
-                type: str
-                required: true
             code:
                 description:
                     - Response code.
@@ -158,6 +141,23 @@ options:
                             - Static response body text.
                         type: str
                         required: true
+            type:
+                description:
+                    - "* **CHECK** is a non-terminating action that does not stop the execution of rules in current module,
+                        just emits a log message documenting result of rule execution."
+                    - "* **ALLOW** is a non-terminating action which upon matching rule skips all remaining rules in the current module."
+                    - "* **RETURN_HTTP_RESPONSE** is a terminating action which is executed immediately, returns a defined HTTP response."
+                type: str
+                choices:
+                    - "RETURN_HTTP_RESPONSE"
+                    - "ALLOW"
+                    - "CHECK"
+                required: true
+            name:
+                description:
+                    - Action name. Can be used to reference the action.
+                type: str
+                required: true
     request_access_control:
         description:
             - ""
@@ -645,9 +645,9 @@ EXAMPLES = """
     display_name: display_name_example
     actions:
     - # required
+      code: 56
       type: RETURN_HTTP_RESPONSE
       name: name_example
-      code: 56
 
       # optional
       headers:
@@ -784,9 +784,9 @@ EXAMPLES = """
     display_name: display_name_example
     actions:
     - # required
+      code: 56
       type: RETURN_HTTP_RESPONSE
       name: name_example
-      code: 56
 
       # optional
       headers:
@@ -917,15 +917,15 @@ EXAMPLES = """
 - name: Update web_app_firewall_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_waf_web_app_firewall_policy:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     actions:
     - # required
+      code: 56
       type: RETURN_HTTP_RESPONSE
       name: name_example
-      code: 56
 
       # optional
       headers:
@@ -1062,8 +1062,8 @@ EXAMPLES = """
 - name: Delete web_app_firewall_policy using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_waf_web_app_firewall_policy:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -2027,18 +2027,12 @@ def main():
     )
     module_args.update(
         dict(
-            display_name=dict(aliases=["name"], type="str"),
             compartment_id=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
             actions=dict(
                 type="list",
                 elements="dict",
                 options=dict(
-                    type=dict(
-                        type="str",
-                        required=True,
-                        choices=["RETURN_HTTP_RESPONSE", "ALLOW", "CHECK"],
-                    ),
-                    name=dict(type="str", required=True),
                     code=dict(type="int"),
                     headers=dict(
                         type="list",
@@ -2057,6 +2051,12 @@ def main():
                             text=dict(type="str", required=True),
                         ),
                     ),
+                    type=dict(
+                        type="str",
+                        required=True,
+                        choices=["RETURN_HTTP_RESPONSE", "ALLOW", "CHECK"],
+                    ),
+                    name=dict(type="str", required=True),
                 ),
             ),
             request_access_control=dict(

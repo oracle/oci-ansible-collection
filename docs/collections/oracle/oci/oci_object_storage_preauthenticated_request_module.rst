@@ -30,7 +30,7 @@ oracle.oci.oci_object_storage_preauthenticated_request -- Manage a Preauthentica
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -444,11 +444,11 @@ Examples
     - name: Create preauthenticated_request
       oci_object_storage_preauthenticated_request:
         # required
-        namespace_name: namespace_name_example
-        bucket_name: bucket_name_example
         name: name_example
         access_type: ObjectRead
         time_expires: time_expires_example
+        namespace_name: namespace_name_example
+        bucket_name: bucket_name_example
 
         # optional
         bucket_listing_action: bucket_listing_action_example
@@ -465,9 +465,9 @@ Examples
     - name: Delete preauthenticated_request using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_object_storage_preauthenticated_request:
         # required
+        name: name_example
         namespace_name: namespace_name_example
         bucket_name: bucket_name_example
-        name: name_example
         state: absent
 
 

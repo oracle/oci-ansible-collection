@@ -30,7 +30,7 @@ oracle.oci.oci_bastion_session -- Manage a Session resource in Oracle Cloud Infr
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -570,8 +570,8 @@ Examples
         bastion_id: "ocid1.bastion.oc1..xxxxxxEXAMPLExxxxxx"
         target_resource_details:
           # required
-          session_type: MANAGED_SSH
           target_resource_operating_system_user_name: target_resource_operating_system_user_name_example
+          session_type: MANAGED_SSH
           target_resource_id: "ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx"
 
           # optional
@@ -582,9 +582,9 @@ Examples
           public_key_content: public_key_content_example
 
         # optional
-        display_name: display_name_example
         key_type: PUB
         session_ttl_in_seconds: 56
+        display_name: display_name_example
 
     - name: Update session
       oci_bastion_session:
@@ -597,8 +597,8 @@ Examples
     - name: Update session using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_bastion_session:
         # required
-        display_name: display_name_example
         bastion_id: "ocid1.bastion.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
 
     - name: Delete session
       oci_bastion_session:
@@ -609,8 +609,8 @@ Examples
     - name: Delete session using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_bastion_session:
         # required
-        display_name: display_name_example
         bastion_id: "ocid1.bastion.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
         state: absent
 
 

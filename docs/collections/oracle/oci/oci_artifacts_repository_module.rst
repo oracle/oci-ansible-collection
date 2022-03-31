@@ -30,7 +30,7 @@ oracle.oci.oci_artifacts_repository -- Manage a Repository resource in Oracle Cl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -490,8 +490,8 @@ Examples
       oci_artifacts_repository:
         # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        repository_type: GENERIC
         is_immutable: true
+        repository_type: GENERIC
 
         # optional
         display_name: display_name_example
@@ -531,8 +531,8 @@ Examples
     - name: Delete repository using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_artifacts_repository:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
         state: absent
 
 

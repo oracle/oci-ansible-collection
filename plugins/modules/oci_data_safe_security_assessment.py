@@ -38,6 +38,11 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    target_id:
+        description:
+            - The OCID of the target database on which security assessment is to be run.
+            - Required for create using I(state=present).
+        type: str
     display_name:
         description:
             - The display name of the security assessment.
@@ -49,11 +54,6 @@ options:
         description:
             - Description of the security assessment.
             - This parameter is updatable.
-        type: str
-    target_id:
-        description:
-            - The OCID of the target database on which security assessment is to be run.
-            - Required for create using I(state=present).
         type: str
     schedule:
         description:
@@ -921,9 +921,9 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
+            target_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             description=dict(type="str"),
-            target_id=dict(type="str"),
             schedule=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),

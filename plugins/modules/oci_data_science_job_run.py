@@ -40,13 +40,6 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
-    display_name:
-        description:
-            - A user-friendly display name for the resource.
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
     job_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the job to create a run for.
@@ -97,6 +90,13 @@ options:
                 description:
                     - The log id the job run will push logs too.
                 type: str
+    display_name:
+        description:
+            - A user-friendly display name for the resource.
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
     freeform_tags:
         description:
             - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. See L(Resource
@@ -139,7 +139,6 @@ EXAMPLES = """
     job_id: "ocid1.job.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: display_name_example
     job_configuration_override_details:
       # required
       job_type: DEFAULT
@@ -154,6 +153,7 @@ EXAMPLES = """
       enable_auto_log_creation: true
       log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
       log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -582,7 +582,6 @@ def main():
         dict(
             project_id=dict(type="str"),
             compartment_id=dict(type="str"),
-            display_name=dict(aliases=["name"], type="str"),
             job_id=dict(type="str"),
             job_configuration_override_details=dict(
                 type="dict",
@@ -602,6 +601,7 @@ def main():
                     log_id=dict(type="str"),
                 ),
             ),
+            display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             job_run_id=dict(aliases=["id"], type="str"),

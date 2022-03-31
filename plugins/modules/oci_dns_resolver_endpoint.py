@@ -27,24 +27,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    resolver_id:
-        description:
-            - The OCID of the target resolver.
-        type: str
-        required: true
-    name:
-        description:
-            - The name of the resolver endpoint. Must be unique, case-insensitive, within the resolver.
-        type: str
-        required: true
-    endpoint_type:
-        description:
-            - The type of resolver endpoint. VNIC is currently the only supported type.
-            - This parameter is updatable.
-        type: str
-        choices:
-            - "VNIC"
-        default: "VNIC"
     forwarding_address:
         description:
             - An IP address from which forwarded queries may be sent. For VNIC endpoints, this IP address must be part
@@ -70,6 +52,14 @@ options:
             - The OCID of a subnet. Must be part of the VCN that the resolver is attached to.
             - Required for create using I(state=present).
         type: str
+    endpoint_type:
+        description:
+            - The type of resolver endpoint. VNIC is currently the only supported type.
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "VNIC"
+        default: "VNIC"
     nsg_ids:
         description:
             - An array of network security group OCIDs for the resolver endpoint. These must be part of the VCN that the
@@ -77,14 +67,16 @@ options:
             - This parameter is updatable.
         type: list
         elements: str
-    scope:
+    resolver_id:
         description:
-            - Specifies to operate only on resources that have a matching DNS scope.
-            - This parameter is updatable.
+            - The OCID of the target resolver.
         type: str
-        choices:
-            - "GLOBAL"
-            - "PRIVATE"
+        required: true
+    name:
+        description:
+            - The name of the resolver endpoint. Must be unique, case-insensitive, within the resolver.
+        type: str
+        required: true
     if_unmodified_since:
         description:
             - The `If-Unmodified-Since` header field makes the request method
@@ -94,6 +86,14 @@ options:
               agent does not have an entity-tag for the representation.
             - This parameter is updatable.
         type: str
+    scope:
+        description:
+            - Specifies to operate only on resources that have a matching DNS scope.
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "GLOBAL"
+            - "PRIVATE"
     state:
         description:
             - The state of the ResolverEndpoint.
@@ -110,15 +110,15 @@ EXAMPLES = """
 - name: Create resolver_endpoint with endpoint_type = VNIC
   oci_dns_resolver_endpoint:
     # required
-    name: name_example
     is_forwarding: true
     is_listening: true
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    name: name_example
 
     # optional
-    endpoint_type: VNIC
     forwarding_address: forwarding_address_example
     listening_address: listening_address_example
+    endpoint_type: VNIC
     nsg_ids: [ "nsg_ids_example" ]
 
 - name: Update resolver_endpoint with endpoint_type = VNIC
@@ -138,8 +138,8 @@ EXAMPLES = """
     state: absent
 
     # optional
-    scope: GLOBAL
     if_unmodified_since: if_unmodified_since_example
+    scope: GLOBAL
 
 """
 
@@ -467,17 +467,17 @@ def main():
     )
     module_args.update(
         dict(
-            resolver_id=dict(type="str", required=True),
-            name=dict(type="str", required=True),
-            endpoint_type=dict(type="str", default="VNIC", choices=["VNIC"]),
             forwarding_address=dict(type="str"),
             is_forwarding=dict(type="bool"),
             is_listening=dict(type="bool"),
             listening_address=dict(type="str"),
             subnet_id=dict(type="str"),
+            endpoint_type=dict(type="str", default="VNIC", choices=["VNIC"]),
             nsg_ids=dict(type="list", elements="str"),
-            scope=dict(type="str", choices=["GLOBAL", "PRIVATE"]),
+            resolver_id=dict(type="str", required=True),
+            name=dict(type="str", required=True),
             if_unmodified_since=dict(type="str"),
+            scope=dict(type="str", choices=["GLOBAL", "PRIVATE"]),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

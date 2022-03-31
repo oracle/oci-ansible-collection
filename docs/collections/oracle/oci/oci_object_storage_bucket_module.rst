@@ -30,7 +30,7 @@ oracle.oci.oci_object_storage_bucket -- Manage a Bucket resource in Oracle Cloud
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -539,14 +539,14 @@ Examples
     - name: Create bucket
       oci_object_storage_bucket:
         # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         namespace_name: namespace_name_example
         name: name_example
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
+        storage_tier: Standard
         metadata: null
         public_access_type: NoPublicAccess
-        storage_tier: Standard
         object_events_enabled: true
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}

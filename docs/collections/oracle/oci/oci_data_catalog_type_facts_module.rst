@@ -30,7 +30,7 @@ oracle.oci.oci_data_catalog_type_facts -- Fetches details about one or multiple 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -469,8 +469,8 @@ Examples
     - name: Get a specific type
       oci_data_catalog_type_facts:
         # required
-        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
         type_key: type_key_example
+        catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         fields: [ "key" ]
@@ -481,7 +481,6 @@ Examples
         catalog_id: "ocid1.catalog.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        fields: [ "key" ]
         name: name_example
         lifecycle_state: CREATING
         is_internal: is_internal_example
@@ -489,6 +488,7 @@ Examples
         is_approved: is_approved_example
         external_type_name: external_type_name_example
         type_category: type_category_example
+        fields: [ "key" ]
         sort_by: TIMECREATED
         sort_order: ASC
 

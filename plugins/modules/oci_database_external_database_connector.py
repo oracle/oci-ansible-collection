@@ -29,6 +29,19 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    external_database_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the external database resource.
+            - Required for create using I(state=present).
+            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+        type: str
+    connector_agent_id:
+        description:
+            - The ID of the agent used for the
+              L(external database connector,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/latest/datatypes/CreateExternalDatabaseConnectorDetails).
+            - Required for create using I(state=present).
+        type: str
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -61,13 +74,6 @@ options:
         choices:
             - "MACS"
         default: "MACS"
-    external_database_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the external database resource.
-            - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-        type: str
     connection_string:
         description:
             - ""
@@ -144,12 +150,6 @@ options:
                 choices:
                     - "SYSDBA"
                     - "NORMAL"
-    connector_agent_id:
-        description:
-            - The ID of the agent used for the
-              L(external database connector,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/latest/datatypes/CreateExternalDatabaseConnectorDetails).
-            - Required for create using I(state=present).
-        type: str
     external_database_connector_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the
@@ -249,8 +249,8 @@ EXAMPLES = """
 - name: Delete external_database_connector using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_external_database_connector:
     # required
-    display_name: display_name_example
     external_database_id: "ocid1.externaldatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
@@ -628,11 +628,12 @@ def main():
     )
     module_args.update(
         dict(
+            external_database_id=dict(type="str"),
+            connector_agent_id=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             display_name=dict(aliases=["name"], type="str"),
             connector_type=dict(type="str", default="MACS", choices=["MACS"]),
-            external_database_id=dict(type="str"),
             connection_string=dict(
                 type="dict",
                 options=dict(
@@ -656,7 +657,6 @@ def main():
                     role=dict(type="str", choices=["SYSDBA", "NORMAL"]),
                 ),
             ),
-            connector_agent_id=dict(type="str"),
             external_database_connector_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),

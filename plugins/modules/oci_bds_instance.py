@@ -36,14 +36,6 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
-    display_name:
-        description:
-            - Name of the Big Data Service cluster.
-            - Required for create using I(state=present).
-            - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
     cluster_version:
         description:
             - Version of the Hadoop distribution.
@@ -110,6 +102,14 @@ options:
                     - The OCID of the subnet in which the node will be created.
                 type: str
                 required: true
+    display_name:
+        description:
+            - Name of the Big Data Service cluster.
+            - Required for create using I(state=present).
+            - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type, or scope.
@@ -146,7 +146,6 @@ EXAMPLES = """
   oci_bds_instance:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-    display_name: display_name_example
     cluster_version: cluster_version_example
     cluster_public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..."
     cluster_admin_password: example-password
@@ -158,6 +157,7 @@ EXAMPLES = """
       shape: shape_example
       block_volume_size_in_gbs: 56
       subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     network_config:
@@ -781,7 +781,6 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
-            display_name=dict(aliases=["name"], type="str"),
             cluster_version=dict(type="str"),
             cluster_public_key=dict(type="str", no_log=True),
             cluster_admin_password=dict(type="str", no_log=True),
@@ -804,6 +803,7 @@ def main():
                     subnet_id=dict(type="str", required=True),
                 ),
             ),
+            display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             bds_instance_id=dict(aliases=["id"], type="str"),

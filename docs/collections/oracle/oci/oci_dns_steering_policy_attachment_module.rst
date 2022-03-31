@@ -30,7 +30,7 @@ oracle.oci.oci_dns_steering_policy_attachment -- Manage a SteeringPolicyAttachme
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -498,8 +498,8 @@ Examples
 
         # optional
         display_name: display_name_example
-        scope: GLOBAL
         if_unmodified_since: if_unmodified_since_example
+        scope: GLOBAL
 
     - name: Update steering_policy_attachment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_dns_steering_policy_attachment:
@@ -508,8 +508,8 @@ Examples
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        scope: GLOBAL
         if_unmodified_since: if_unmodified_since_example
+        scope: GLOBAL
 
     - name: Delete steering_policy_attachment
       oci_dns_steering_policy_attachment:
@@ -518,8 +518,8 @@ Examples
         state: absent
 
         # optional
-        scope: GLOBAL
         if_unmodified_since: if_unmodified_since_example
+        scope: GLOBAL
 
     - name: Delete steering_policy_attachment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_dns_steering_policy_attachment:

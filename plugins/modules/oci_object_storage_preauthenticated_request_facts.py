@@ -28,6 +28,13 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    par_id:
+        description:
+            - The unique identifier for the pre-authenticated request. This can be used to manage operations against
+              the pre-authenticated request, such as GET or DELETE.
+            - Required to get a specific preauthenticated_request.
+        type: str
+        aliases: ["id"]
     namespace_name:
         description:
             - The Object Storage namespace used for the request.
@@ -39,13 +46,6 @@ options:
               Example: `my-new-bucket1`"
         type: str
         required: true
-    par_id:
-        description:
-            - The unique identifier for the pre-authenticated request. This can be used to manage operations against
-              the pre-authenticated request, such as GET or DELETE.
-            - Required to get a specific preauthenticated_request.
-        type: str
-        aliases: ["id"]
     object_name_prefix:
         description:
             - User-specified object name prefixes can be used to query and return a list of pre-authenticated requests.
@@ -57,9 +57,9 @@ EXAMPLES = """
 - name: Get a specific preauthenticated_request
   oci_object_storage_preauthenticated_request_facts:
     # required
+    par_id: "ocid1.par.oc1..xxxxxxEXAMPLExxxxxx"
     namespace_name: namespace_name_example
     bucket_name: bucket_name_example
-    par_id: "ocid1.par.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List preauthenticated_requests
   oci_object_storage_preauthenticated_request_facts:
@@ -208,9 +208,9 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
+            par_id=dict(aliases=["id"], type="str"),
             namespace_name=dict(type="str", required=True),
             bucket_name=dict(type="str", required=True),
-            par_id=dict(aliases=["id"], type="str"),
             object_name_prefix=dict(type="str"),
             name=dict(type="str"),
         )

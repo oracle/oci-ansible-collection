@@ -30,7 +30,7 @@ oracle.oci.oci_database_backup_destination -- Manage a BackupDestination resourc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -648,15 +648,15 @@ Examples
         type: NFS
 
         # optional
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
-        local_mount_point_path: local_mount_point_path_example
         mount_type_details:
           # required
           local_mount_point_path: local_mount_point_path_example
 
           # optional
           mount_type: SELF_MOUNT
+        local_mount_point_path: local_mount_point_path_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
 
     - name: Create backup_destination with type = RECOVERY_APPLIANCE
       oci_database_backup_destination:
@@ -664,8 +664,8 @@ Examples
         display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         type: RECOVERY_APPLIANCE
-        connection_string: connection_string_example
         vpc_users: [ "vpc_users_example" ]
+        connection_string: connection_string_example
 
         # optional
         freeform_tags: {'Department': 'Finance'}
@@ -677,14 +677,14 @@ Examples
         backup_destination_id: "ocid1.backupdestination.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
-        local_mount_point_path: local_mount_point_path_example
-        connection_string: connection_string_example
         vpc_users: [ "vpc_users_example" ]
+        connection_string: connection_string_example
+        local_mount_point_path: local_mount_point_path_example
         nfs_mount_type: SELF_MOUNT
         nfs_server: [ "nfs_server_example" ]
         nfs_server_export: nfs_server_export_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
 
     - name: Update backup_destination using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_backup_destination:
@@ -693,14 +693,14 @@ Examples
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
-        local_mount_point_path: local_mount_point_path_example
-        connection_string: connection_string_example
         vpc_users: [ "vpc_users_example" ]
+        connection_string: connection_string_example
+        local_mount_point_path: local_mount_point_path_example
         nfs_mount_type: SELF_MOUNT
         nfs_server: [ "nfs_server_example" ]
         nfs_server_export: nfs_server_export_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
 
     - name: Delete backup_destination
       oci_database_backup_destination:

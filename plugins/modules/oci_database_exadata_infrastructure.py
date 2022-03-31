@@ -50,13 +50,14 @@ options:
             - The shape of the Exadata infrastructure. The shape determines the amount of CPU, storage, and memory resources allocated to the instance.
             - Required for create using I(state=present).
         type: str
-    time_zone:
+    storage_count:
         description:
-            - The time zone of the Exadata infrastructure. For details, see L(Exadata Infrastructure Time
-              Zones,https://docs.cloud.oracle.com/Content/Database/References/timezones.htm).
-            - Required for create using I(state=present).
-            - This parameter is updatable.
-        type: str
+            - The number of storage servers for the Exadata infrastructure.
+        type: int
+    compute_count:
+        description:
+            - The number of compute servers for the Exadata infrastructure.
+        type: int
     cloud_control_plane_server1:
         description:
             - The IP address for the first control plane server.
@@ -208,13 +209,10 @@ options:
                 description:
                     - Lead time window allows user to set a lead time to prepare for a down time. The lead time is in weeks and valid value is between 1 to 4.
                 type: int
-    storage_count:
+    additional_storage_count:
         description:
-            - The number of storage servers for the Exadata infrastructure.
-        type: int
-    compute_count:
-        description:
-            - The number of compute servers for the Exadata infrastructure.
+            - The requested number of additional storage servers for the Exadata infrastructure.
+            - This parameter is updatable.
         type: int
     dns_server:
         description:
@@ -230,6 +228,13 @@ options:
             - This parameter is updatable.
         type: list
         elements: str
+    time_zone:
+        description:
+            - The time zone of the Exadata infrastructure. For details, see L(Exadata Infrastructure Time
+              Zones,https://docs.cloud.oracle.com/Content/Database/References/timezones.htm).
+            - Required for create using I(state=present).
+            - This parameter is updatable.
+        type: str
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -250,11 +255,6 @@ options:
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["id"]
-    additional_storage_count:
-        description:
-            - The requested number of additional storage servers for the Exadata infrastructure.
-            - This parameter is updatable.
-        type: int
     state:
         description:
             - The state of the ExadataInfrastructure.
@@ -274,7 +274,6 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     shape: shape_example
-    time_zone: time_zone_example
     cloud_control_plane_server1: cloud_control_plane_server1_example
     cloud_control_plane_server2: cloud_control_plane_server2_example
     netmask: netmask_example
@@ -283,8 +282,11 @@ EXAMPLES = """
     infini_band_network_cidr: infini_band_network_cidr_example
     dns_server: [ "dns_server_example" ]
     ntp_server: [ "ntp_server_example" ]
+    time_zone: time_zone_example
 
     # optional
+    storage_count: 56
+    compute_count: 56
     corporate_proxy: corporate_proxy_example
     contacts:
     - # required
@@ -309,8 +311,6 @@ EXAMPLES = """
         name: MONDAY
       hours_of_day: [ "hours_of_day_example" ]
       lead_time_in_weeks: 56
-    storage_count: 56
-    compute_count: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -320,7 +320,6 @@ EXAMPLES = """
     exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    time_zone: time_zone_example
     cloud_control_plane_server1: cloud_control_plane_server1_example
     cloud_control_plane_server2: cloud_control_plane_server2_example
     netmask: netmask_example
@@ -351,11 +350,12 @@ EXAMPLES = """
         name: MONDAY
       hours_of_day: [ "hours_of_day_example" ]
       lead_time_in_weeks: 56
+    additional_storage_count: 56
     dns_server: [ "dns_server_example" ]
     ntp_server: [ "ntp_server_example" ]
+    time_zone: time_zone_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    additional_storage_count: 56
 
 - name: Update exadata_infrastructure using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_exadata_infrastructure:
@@ -364,7 +364,6 @@ EXAMPLES = """
     display_name: display_name_example
 
     # optional
-    time_zone: time_zone_example
     cloud_control_plane_server1: cloud_control_plane_server1_example
     cloud_control_plane_server2: cloud_control_plane_server2_example
     netmask: netmask_example
@@ -395,11 +394,12 @@ EXAMPLES = """
         name: MONDAY
       hours_of_day: [ "hours_of_day_example" ]
       lead_time_in_weeks: 56
+    additional_storage_count: 56
     dns_server: [ "dns_server_example" ]
     ntp_server: [ "ntp_server_example" ]
+    time_zone: time_zone_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    additional_storage_count: 56
 
 - name: Delete exadata_infrastructure
   oci_database_exadata_infrastructure:
@@ -968,7 +968,8 @@ def main():
             compartment_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             shape=dict(type="str"),
-            time_zone=dict(type="str"),
+            storage_count=dict(type="int"),
+            compute_count=dict(type="int"),
             cloud_control_plane_server1=dict(type="str"),
             cloud_control_plane_server2=dict(type="str"),
             netmask=dict(type="str"),
@@ -1043,14 +1044,13 @@ def main():
                     lead_time_in_weeks=dict(type="int"),
                 ),
             ),
-            storage_count=dict(type="int"),
-            compute_count=dict(type="int"),
+            additional_storage_count=dict(type="int"),
             dns_server=dict(type="list", elements="str"),
             ntp_server=dict(type="list", elements="str"),
+            time_zone=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             exadata_infrastructure_id=dict(aliases=["id"], type="str"),
-            additional_storage_count=dict(type="int"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

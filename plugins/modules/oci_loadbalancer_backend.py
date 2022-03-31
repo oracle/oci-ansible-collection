@@ -27,18 +27,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    ip_address:
-        description:
-            - The IP address of the backend server.
-            - "Example: `10.0.0.3`"
-        type: str
-        required: true
-    port:
-        description:
-            - The communication port for the backend server.
-            - "Example: `8080`"
-        type: int
-        required: true
     weight:
         description:
             - The load balancing policy weight assigned to the server. Backend servers with a higher weight receive a larger
@@ -71,6 +59,18 @@ options:
             - "Example: `false`"
             - Required for update using I(state=present) with  present.
         type: bool
+    port:
+        description:
+            - The communication port for the backend server.
+            - "Example: `8080`"
+        type: int
+        required: true
+    ip_address:
+        description:
+            - The IP address of the backend server.
+            - "Example: `10.0.0.3`"
+        type: str
+        required: true
     load_balancer_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the load balancer associated with the backend set and
@@ -100,8 +100,8 @@ EXAMPLES = """
 - name: Create backend
   oci_loadbalancer_backend:
     # required
-    ip_address: ip_address_example
     port: 56
+    ip_address: ip_address_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     backend_set_name: backend_set_name_example
 
@@ -114,20 +114,20 @@ EXAMPLES = """
 - name: Update backend
   oci_loadbalancer_backend:
     # required
-    ip_address: ip_address_example
-    port: 56
     weight: 56
     backup: true
     drain: true
     offline: true
+    port: 56
+    ip_address: ip_address_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     backend_set_name: backend_set_name_example
 
 - name: Delete backend
   oci_loadbalancer_backend:
     # required
-    ip_address: ip_address_example
     port: 56
+    ip_address: ip_address_example
     load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
     backend_set_name: backend_set_name_example
     state: absent
@@ -345,12 +345,12 @@ def main():
     )
     module_args.update(
         dict(
-            ip_address=dict(type="str", required=True),
-            port=dict(type="int", required=True),
             weight=dict(type="int"),
             backup=dict(type="bool"),
             drain=dict(type="bool"),
             offline=dict(type="bool"),
+            port=dict(type="int", required=True),
+            ip_address=dict(type="str", required=True),
             load_balancer_id=dict(aliases=["id"], type="str", required=True),
             backend_set_name=dict(type="str", required=True),
             state=dict(type="str", default="present", choices=["present", "absent"]),

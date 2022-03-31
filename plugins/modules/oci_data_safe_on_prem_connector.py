@@ -29,13 +29,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    display_name:
-        description:
-            - The display name of the on-premises connector. The name does not have to be unique, and it's changeable.
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
     compartment_id:
         description:
             - The OCID of the compartment where you want to create the on-premises connector.
@@ -43,6 +36,13 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    display_name:
+        description:
+            - The display name of the on-premises connector. The name does not have to be unique, and it's changeable.
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
     description:
         description:
             - The description of the on-premises connector.
@@ -107,8 +107,8 @@ EXAMPLES = """
 - name: Update on_prem_connector using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_safe_on_prem_connector:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     description: description_example
@@ -124,8 +124,8 @@ EXAMPLES = """
 - name: Delete on_prem_connector using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_safe_on_prem_connector:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -393,8 +393,8 @@ def main():
     )
     module_args.update(
         dict(
-            display_name=dict(aliases=["name"], type="str"),
             compartment_id=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
             description=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),

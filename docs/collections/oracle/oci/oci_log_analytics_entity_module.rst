@@ -30,7 +30,7 @@ oracle.oci.oci_log_analytics_entity -- Manage a LogAnalyticsEntity resource in O
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -556,17 +556,17 @@ Examples
     - name: Create log_analytics_entity
       oci_log_analytics_entity:
         # required
-        namespace_name: namespace_name_example
-        name: name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         entity_type_name: entity_type_name_example
+        name: name_example
+        namespace_name: namespace_name_example
 
         # optional
-        management_agent_id: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
         cloud_resource_id: "ocid1.cloudresource.oc1..xxxxxxEXAMPLExxxxxx"
+        source_id: "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx"
+        management_agent_id: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
         timezone_region: Asia/Kolkata
         hostname: hostname_example
-        source_id: "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx"
         properties: null
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -589,9 +589,9 @@ Examples
     - name: Update log_analytics_entity using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_log_analytics_entity:
         # required
-        namespace_name: namespace_name_example
-        name: name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        name: name_example
+        namespace_name: namespace_name_example
 
         # optional
         management_agent_id: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
@@ -611,9 +611,9 @@ Examples
     - name: Delete log_analytics_entity using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_log_analytics_entity:
         # required
-        namespace_name: namespace_name_example
-        name: name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        name: name_example
+        namespace_name: namespace_name_example
         state: absent
 
 

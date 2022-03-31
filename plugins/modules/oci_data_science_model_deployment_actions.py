@@ -30,17 +30,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment where the resource should be moved.
+            - Required for I(action=change_compartment).
+        type: str
     model_deployment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the model deployment.
         type: str
         aliases: ["id"]
         required: true
-    compartment_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment where the resource should be moved.
-            - Required for I(action=change_compartment).
-        type: str
     action:
         description:
             - The action to perform on the ModelDeployment.
@@ -63,8 +63,8 @@ EXAMPLES = """
 - name: Perform action change_compartment on model_deployment
   oci_data_science_model_deployment_actions:
     # required
-    model_deployment_id: "ocid1.modeldeployment.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    model_deployment_id: "ocid1.modeldeployment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
 
 - name: Perform action deactivate on model_deployment
@@ -421,8 +421,8 @@ def main():
     )
     module_args.update(
         dict(
-            model_deployment_id=dict(aliases=["id"], type="str", required=True),
             compartment_id=dict(type="str"),
+            model_deployment_id=dict(aliases=["id"], type="str", required=True),
             action=dict(
                 type="str",
                 required=True,

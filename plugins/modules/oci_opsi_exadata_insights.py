@@ -29,30 +29,11 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    entity_source:
-        description:
-            - Source of the Exadata system.
-            - Required for create using I(state=present), update using I(state=present) with exadata_insight_id present.
-        type: str
-        choices:
-            - "EM_MANAGED_EXTERNAL_EXADATA"
     compartment_id:
         description:
             - Compartment Identifier of Exadata insight
             - Required for create using I(state=present).
         type: str
-    freeform_tags:
-        description:
-            - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-              Example: `{\\"bar-key\\": \\"value\\"}`"
-            - This parameter is updatable.
-        type: dict
-    defined_tags:
-        description:
-            - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
-              Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
-            - This parameter is updatable.
-        type: dict
     enterprise_manager_identifier:
         description:
             - Enterprise Manager Unique Identifier
@@ -84,6 +65,25 @@ options:
                     - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
                 type: str
                 required: true
+    entity_source:
+        description:
+            - Source of the Exadata system.
+            - Required for create using I(state=present), update using I(state=present) with exadata_insight_id present.
+        type: str
+        choices:
+            - "EM_MANAGED_EXTERNAL_EXADATA"
+    freeform_tags:
+        description:
+            - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+              Example: `{\\"bar-key\\": \\"value\\"}`"
+            - This parameter is updatable.
+        type: dict
+    defined_tags:
+        description:
+            - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
+              Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+            - This parameter is updatable.
+        type: dict
     is_auto_sync_enabled:
         description:
             - Set to true to enable automatic enablement and disablement of related targets from Enterprise Manager. New resources (e.g. Database Insights) will
@@ -113,19 +113,19 @@ EXAMPLES = """
 - name: Create exadata_insights with entity_source = EM_MANAGED_EXTERNAL_EXADATA
   oci_opsi_exadata_insights:
     # required
-    entity_source: EM_MANAGED_EXTERNAL_EXADATA
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     enterprise_manager_identifier: enterprise_manager_identifier_example
     enterprise_manager_bridge_id: "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx"
     enterprise_manager_entity_identifier: enterprise_manager_entity_identifier_example
+    entity_source: EM_MANAGED_EXTERNAL_EXADATA
 
     # optional
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
     member_entity_details:
     - # required
       enterprise_manager_entity_identifier: enterprise_manager_entity_identifier_example
       compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
     is_auto_sync_enabled: true
 
 - name: Update exadata_insights with entity_source = EM_MANAGED_EXTERNAL_EXADATA
@@ -472,10 +472,7 @@ def main():
     )
     module_args.update(
         dict(
-            entity_source=dict(type="str", choices=["EM_MANAGED_EXTERNAL_EXADATA"]),
             compartment_id=dict(type="str"),
-            freeform_tags=dict(type="dict"),
-            defined_tags=dict(type="dict"),
             enterprise_manager_identifier=dict(type="str"),
             enterprise_manager_bridge_id=dict(type="str"),
             enterprise_manager_entity_identifier=dict(type="str"),
@@ -489,6 +486,9 @@ def main():
                     compartment_id=dict(type="str", required=True),
                 ),
             ),
+            entity_source=dict(type="str", choices=["EM_MANAGED_EXTERNAL_EXADATA"]),
+            freeform_tags=dict(type="dict"),
+            defined_tags=dict(type="dict"),
             is_auto_sync_enabled=dict(type="bool"),
             exadata_insight_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),

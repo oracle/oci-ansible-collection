@@ -30,7 +30,7 @@ oracle.oci.oci_dns_zone_facts -- Fetches details about one or multiple Zone reso
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -499,9 +499,9 @@ Examples
 
         # optional
         if_modified_since: if_modified_since_example
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         scope: GLOBAL
         view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: List zones
       oci_dns_zone_facts:
@@ -509,8 +509,6 @@ Examples
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        scope: GLOBAL
-        view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
         name_contains: name_contains_example
         zone_type: PRIMARY
@@ -519,6 +517,8 @@ Examples
         lifecycle_state: ACTIVE
         sort_by: name
         sort_order: ASC
+        scope: GLOBAL
+        view_id: "ocid1.view.oc1..xxxxxxEXAMPLExxxxxx"
         tsig_key_id: "ocid1.tsigkey.oc1..xxxxxxEXAMPLExxxxxx"
 
 

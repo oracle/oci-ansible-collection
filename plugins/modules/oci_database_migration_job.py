@@ -27,13 +27,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    job_id:
-        description:
-            - The OCID of the job
-            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-            - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["id"]
     display_name:
         description:
             - Name of the job.
@@ -53,6 +46,13 @@ options:
               Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             - This parameter is updatable.
         type: dict
+    job_id:
+        description:
+            - The OCID of the job
+            - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+            - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["id"]
     migration_id:
         description:
             - The ID of the migration in which to list resources.
@@ -477,10 +477,10 @@ def main():
     )
     module_args.update(
         dict(
-            job_id=dict(aliases=["id"], type="str"),
             display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
+            job_id=dict(aliases=["id"], type="str"),
             migration_id=dict(type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

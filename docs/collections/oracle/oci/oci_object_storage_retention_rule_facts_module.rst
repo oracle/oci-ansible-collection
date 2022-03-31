@@ -30,7 +30,7 @@ oracle.oci.oci_object_storage_retention_rule_facts -- Fetches details about one 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -318,9 +318,9 @@ Examples
     - name: Get a specific retention_rule
       oci_object_storage_retention_rule_facts:
         # required
+        retention_rule_id: "ocid1.retentionrule.oc1..xxxxxxEXAMPLExxxxxx"
         namespace_name: namespace_name_example
         bucket_name: bucket_name_example
-        retention_rule_id: "ocid1.retentionrule.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: List retention_rules
       oci_object_storage_retention_rule_facts:

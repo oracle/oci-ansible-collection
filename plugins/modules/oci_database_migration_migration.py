@@ -30,6 +30,13 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - OCID of the compartment
+            - Required for create using I(state=present).
+            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+        type: str
     type:
         description:
             - Migration type.
@@ -46,13 +53,6 @@ options:
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
-    compartment_id:
-        description:
-            - OCID of the compartment
-            - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-        type: str
     agent_id:
         description:
             - The OCID of the registered ODMS Agent. Only valid for Offline Logical Migrations.
@@ -549,8 +549,8 @@ EXAMPLES = """
 - name: Create migration
   oci_database_migration_migration:
     # required
-    type: ONLINE
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    type: ONLINE
     source_database_connection_id: "ocid1.sourcedatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx"
     target_database_connection_id: "ocid1.targetdatabaseconnection.oc1..xxxxxxEXAMPLExxxxxx"
 
@@ -791,8 +791,8 @@ EXAMPLES = """
 - name: Update migration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_migration_migration:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     type: ONLINE
@@ -918,8 +918,8 @@ EXAMPLES = """
 - name: Delete migration using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_migration_migration:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -1784,9 +1784,9 @@ def main():
     )
     module_args.update(
         dict(
+            compartment_id=dict(type="str"),
             type=dict(type="str", choices=["ONLINE", "OFFLINE"]),
             display_name=dict(aliases=["name"], type="str"),
-            compartment_id=dict(type="str"),
             agent_id=dict(type="str"),
             source_database_connection_id=dict(type="str"),
             source_container_database_connection_id=dict(type="str"),

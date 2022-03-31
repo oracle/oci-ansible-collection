@@ -30,7 +30,7 @@ oracle.oci.oci_ocvp_sddc -- Manage a Sddc resource in Oracle Cloud Infrastructur
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -777,11 +777,11 @@ Examples
       oci_ocvp_sddc:
         # required
         compute_availability_domain: Uocm:PHX-AD-1
-        vmware_software_version: vmware_software_version_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         esxi_hosts_count: 56
-        ssh_authorized_keys: ssh_authorized_keys_example
         provisioning_subnet_id: "ocid1.provisioningsubnet.oc1..xxxxxxEXAMPLExxxxxx"
+        vmware_software_version: vmware_software_version_example
+        ssh_authorized_keys: ssh_authorized_keys_example
         vsphere_vlan_id: "ocid1.vspherevlan.oc1..xxxxxxEXAMPLExxxxxx"
         vmotion_vlan_id: "ocid1.vmotionvlan.oc1..xxxxxxEXAMPLExxxxxx"
         vsan_vlan_id: "ocid1.vsanvlan.oc1..xxxxxxEXAMPLExxxxxx"
@@ -791,15 +791,15 @@ Examples
         nsx_edge_uplink2_vlan_id: "ocid1.nsxedgeuplink2vlan.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        display_name: display_name_example
         instance_display_name_prefix: instance_display_name_prefix_example
         initial_sku: HOUR
         is_hcx_enabled: true
-        hcx_vlan_id: "ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx"
         is_hcx_enterprise_enabled: true
         workload_network_cidr: workload_network_cidr_example
+        display_name: display_name_example
         replication_vlan_id: "ocid1.replicationvlan.oc1..xxxxxxEXAMPLExxxxxx"
         provisioning_vlan_id: "ocid1.provisioningvlan.oc1..xxxxxxEXAMPLExxxxxx"
+        hcx_vlan_id: "ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -811,7 +811,6 @@ Examples
         # optional
         display_name: display_name_example
         vmware_software_version: vmware_software_version_example
-        hcx_vlan_id: "ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx"
         ssh_authorized_keys: ssh_authorized_keys_example
         vsphere_vlan_id: "ocid1.vspherevlan.oc1..xxxxxxEXAMPLExxxxxx"
         vmotion_vlan_id: "ocid1.vmotionvlan.oc1..xxxxxxEXAMPLExxxxxx"
@@ -822,18 +821,18 @@ Examples
         nsx_edge_uplink2_vlan_id: "ocid1.nsxedgeuplink2vlan.oc1..xxxxxxEXAMPLExxxxxx"
         replication_vlan_id: "ocid1.replicationvlan.oc1..xxxxxxEXAMPLExxxxxx"
         provisioning_vlan_id: "ocid1.provisioningvlan.oc1..xxxxxxEXAMPLExxxxxx"
+        hcx_vlan_id: "ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
     - name: Update sddc using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_ocvp_sddc:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
 
         # optional
         vmware_software_version: vmware_software_version_example
-        hcx_vlan_id: "ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx"
         ssh_authorized_keys: ssh_authorized_keys_example
         vsphere_vlan_id: "ocid1.vspherevlan.oc1..xxxxxxEXAMPLExxxxxx"
         vmotion_vlan_id: "ocid1.vmotionvlan.oc1..xxxxxxEXAMPLExxxxxx"
@@ -844,6 +843,7 @@ Examples
         nsx_edge_uplink2_vlan_id: "ocid1.nsxedgeuplink2vlan.oc1..xxxxxxEXAMPLExxxxxx"
         replication_vlan_id: "ocid1.replicationvlan.oc1..xxxxxxEXAMPLExxxxxx"
         provisioning_vlan_id: "ocid1.provisioningvlan.oc1..xxxxxxEXAMPLExxxxxx"
+        hcx_vlan_id: "ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -856,8 +856,8 @@ Examples
     - name: Delete sddc using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_ocvp_sddc:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
         state: absent
 
 

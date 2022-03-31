@@ -37,36 +37,10 @@ options:
               ESXi host to.
             - Required for create using I(state=present).
         type: str
-    display_name:
-        description:
-            - "A descriptive name for the ESXi host. It's changeable.
-              Esxi Host name requirements are 1-16 character length limit, Must start with a letter, Must be English letters, numbers, - only, No repeating
-              hyphens, Must be unique within the SDDC."
-            - If this attribute is not specified, the SDDC's `instanceDisplayNamePrefix` attribute is used
-              to name and incrementally number the ESXi host. For example, if you're creating the fourth
-              ESXi host in the SDDC, and `instanceDisplayNamePrefix` is `MySDDC`, the host's display
-              name is `MySDDC-4`.
-            - Avoid entering confidential information.
-            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-        type: str
-        aliases: ["name"]
     current_sku:
         description:
             - The billing option currently used by the ESXi host.
               L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus).
-        type: str
-        choices:
-            - "HOUR"
-            - "MONTH"
-            - "ONE_YEAR"
-            - "THREE_YEARS"
-    next_sku:
-        description:
-            - The billing option to switch to after the existing billing cycle ends.
-              If `nextSku` is null or empty, `currentSku` continues to the next billing cycle.
-              L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus).
-            - This parameter is updatable.
         type: str
         choices:
             - "HOUR"
@@ -86,6 +60,32 @@ options:
               Host will be created to replace the failed one, and failedEsxiHostId field
               will be udpated in the newly created EsxiHost.
         type: str
+    display_name:
+        description:
+            - "A descriptive name for the ESXi host. It's changeable.
+              Esxi Host name requirements are 1-16 character length limit, Must start with a letter, Must be English letters, numbers, - only, No repeating
+              hyphens, Must be unique within the SDDC."
+            - If this attribute is not specified, the SDDC's `instanceDisplayNamePrefix` attribute is used
+              to name and incrementally number the ESXi host. For example, if you're creating the fourth
+              ESXi host in the SDDC, and `instanceDisplayNamePrefix` is `MySDDC`, the host's display
+              name is `MySDDC-4`.
+            - Avoid entering confidential information.
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
+        type: str
+        aliases: ["name"]
+    next_sku:
+        description:
+            - The billing option to switch to after the existing billing cycle ends.
+              If `nextSku` is null or empty, `currentSku` continues to the next billing cycle.
+              L(ListSupportedSkus,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedSkuSummary/ListSupportedSkus).
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "HOUR"
+            - "MONTH"
+            - "ONE_YEAR"
+            - "THREE_YEARS"
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -127,11 +127,11 @@ EXAMPLES = """
     sddc_id: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    display_name: display_name_example
     current_sku: HOUR
-    next_sku: HOUR
     compute_availability_domain: Uocm:PHX-AD-1
     failed_esxi_host_id: "ocid1.failedesxihost.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    next_sku: HOUR
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -473,15 +473,15 @@ def main():
     module_args.update(
         dict(
             sddc_id=dict(type="str"),
-            display_name=dict(aliases=["name"], type="str"),
             current_sku=dict(
-                type="str", choices=["HOUR", "MONTH", "ONE_YEAR", "THREE_YEARS"]
-            ),
-            next_sku=dict(
                 type="str", choices=["HOUR", "MONTH", "ONE_YEAR", "THREE_YEARS"]
             ),
             compute_availability_domain=dict(type="str"),
             failed_esxi_host_id=dict(type="str"),
+            display_name=dict(aliases=["name"], type="str"),
+            next_sku=dict(
+                type="str", choices=["HOUR", "MONTH", "ONE_YEAR", "THREE_YEARS"]
+            ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             esxi_host_id=dict(aliases=["id"], type="str"),

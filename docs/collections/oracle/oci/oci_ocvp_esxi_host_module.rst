@@ -30,7 +30,7 @@ oracle.oci.oci_ocvp_esxi_host -- Manage an EsxiHost resource in Oracle Cloud Inf
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -509,11 +509,11 @@ Examples
         sddc_id: "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        display_name: display_name_example
         current_sku: HOUR
-        next_sku: HOUR
         compute_availability_domain: Uocm:PHX-AD-1
         failed_esxi_host_id: "ocid1.failedesxihost.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
+        next_sku: HOUR
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 

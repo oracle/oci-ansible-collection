@@ -41,13 +41,6 @@ options:
               recent than the date provided in the field-value.  Transfer of the
               selected representation's data is avoided if that data has not changed.
         type: str
-    scope:
-        description:
-            - Specifies to operate only on resources that have a matching DNS scope.
-        type: str
-        choices:
-            - "GLOBAL"
-            - "PRIVATE"
     compartment_id:
         description:
             - The OCID of the compartment the resource belongs to.
@@ -107,6 +100,13 @@ options:
         choices:
             - "ASC"
             - "DESC"
+    scope:
+        description:
+            - Specifies to operate only on resources that have a matching DNS scope.
+        type: str
+        choices:
+            - "GLOBAL"
+            - "PRIVATE"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -126,7 +126,6 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    scope: GLOBAL
     display_name: display_name_example
     display_name_contains: display_name_contains_example
     health_check_monitor_id: "ocid1.healthcheckmonitor.oc1..xxxxxxEXAMPLExxxxxx"
@@ -136,6 +135,7 @@ EXAMPLES = """
     lifecycle_state: ACTIVE
     sort_by: displayName
     sort_order: ASC
+    scope: GLOBAL
 
 """
 
@@ -597,7 +597,6 @@ def main():
         dict(
             steering_policy_id=dict(aliases=["id"], type="str"),
             if_modified_since=dict(type="str"),
-            scope=dict(type="str", choices=["GLOBAL", "PRIVATE"]),
             compartment_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             display_name_contains=dict(type="str"),
@@ -612,6 +611,7 @@ def main():
                 type="str", choices=["displayName", "timeCreated", "template"]
             ),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
+            scope=dict(type="str", choices=["GLOBAL", "PRIVATE"]),
         )
     )
 

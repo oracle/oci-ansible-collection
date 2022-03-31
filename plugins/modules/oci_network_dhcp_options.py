@@ -45,6 +45,11 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    vcn_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN the set of DHCP options belongs to.
+            - Required for create using I(state=present).
+        type: str
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
@@ -76,16 +81,6 @@ options:
         type: list
         elements: dict
         suboptions:
-            type:
-                description:
-                    - The specific DHCP option. Either `DomainNameServer`
-                      (for L(DhcpDnsOption,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/DhcpDnsOption/)) or
-                      `SearchDomain` (for L(DhcpSearchDomainOption,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/DhcpSearchDomainOption/)).
-                type: str
-                choices:
-                    - "DomainNameServer"
-                    - "SearchDomain"
-                required: true
             custom_dns_servers:
                 description:
                     - If you set `serverType` to `CustomDnsServer`, specify the
@@ -114,6 +109,16 @@ options:
                     - "VcnLocal"
                     - "VcnLocalPlusInternet"
                     - "CustomDnsServer"
+            type:
+                description:
+                    - The specific DHCP option. Either `DomainNameServer`
+                      (for L(DhcpDnsOption,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/DhcpDnsOption/)) or
+                      `SearchDomain` (for L(DhcpSearchDomainOption,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/DhcpSearchDomainOption/)).
+                type: str
+                choices:
+                    - "DomainNameServer"
+                    - "SearchDomain"
+                required: true
             search_domain_names:
                 description:
                     - A single search domain name according to L(RFC 952,https://tools.ietf.org/html/rfc952)
@@ -130,11 +135,6 @@ options:
                     - Required when type is 'SearchDomain'
                 type: list
                 elements: str
-    vcn_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN the set of DHCP options belongs to.
-            - Required for create using I(state=present).
-        type: str
     domain_name_type:
         description:
             - The search domain name type of DHCP options
@@ -168,14 +168,14 @@ EXAMPLES = """
   oci_network_dhcp_options:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     options:
     - # required
-      type: DomainNameServer
       server_type: VcnLocal
+      type: DomainNameServer
 
       # optional
       custom_dns_servers: [ "custom_dns_servers_example" ]
-    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -194,8 +194,8 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     options:
     - # required
-      type: DomainNameServer
       server_type: VcnLocal
+      type: DomainNameServer
 
       # optional
       custom_dns_servers: [ "custom_dns_servers_example" ]
@@ -212,8 +212,8 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     options:
     - # required
-      type: DomainNameServer
       server_type: VcnLocal
+      type: DomainNameServer
 
       # optional
       custom_dns_servers: [ "custom_dns_servers_example" ]
@@ -532,6 +532,7 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
+            vcn_id=dict(type="str"),
             defined_tags=dict(type="dict"),
             display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
@@ -539,20 +540,19 @@ def main():
                 type="list",
                 elements="dict",
                 options=dict(
-                    type=dict(
-                        type="str",
-                        required=True,
-                        choices=["DomainNameServer", "SearchDomain"],
-                    ),
                     custom_dns_servers=dict(type="list", elements="str"),
                     server_type=dict(
                         type="str",
                         choices=["VcnLocal", "VcnLocalPlusInternet", "CustomDnsServer"],
                     ),
+                    type=dict(
+                        type="str",
+                        required=True,
+                        choices=["DomainNameServer", "SearchDomain"],
+                    ),
                     search_domain_names=dict(type="list", elements="str"),
                 ),
             ),
-            vcn_id=dict(type="str"),
             domain_name_type=dict(
                 type="str", choices=["SUBNET_DOMAIN", "VCN_DOMAIN", "CUSTOM_DOMAIN"]
             ),

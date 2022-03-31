@@ -28,17 +28,17 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    apm_domain_id:
-        description:
-            - The APM Domain ID the request is intended for.
-        type: str
-        required: true
     config_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the configuration item.
             - Required to get a specific config.
         type: str
         aliases: ["id"]
+    apm_domain_id:
+        description:
+            - The APM Domain ID the request is intended for.
+        type: str
+        required: true
     config_type:
         description:
             - A filter to match configuration items of a given type.
@@ -73,8 +73,8 @@ EXAMPLES = """
 - name: Get a specific config
   oci_apm_config_config_facts:
     # required
-    apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
     config_id: "ocid1.config.oc1..xxxxxxEXAMPLExxxxxx"
+    apm_domain_id: "ocid1.apmdomain.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: List configs
   oci_apm_config_config_facts:
@@ -382,8 +382,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            apm_domain_id=dict(type="str", required=True),
             config_id=dict(aliases=["id"], type="str"),
+            apm_domain_id=dict(type="str", required=True),
             config_type=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),

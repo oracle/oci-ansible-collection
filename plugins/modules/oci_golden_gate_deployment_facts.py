@@ -327,12 +327,23 @@ deployments:
             sample: "2013-10-20T19:20:30+01:00"
         deployment_type:
             description:
-                - "The type of deployment, the value determines the exact 'type' of service executed in the Deployment. NOTE: Use of the value OGG is maintained
-                  for backward compatibility purposes.  Its use is discouraged
-                        in favor of the equivalent DATABASE_ORACLE value."
+                - The deployment type.
             returned: on success
             type: str
             sample: OGG
+        storage_utilization_in_bytes:
+            description:
+                - The amount of storage being utilized (in bytes)
+            returned: on success
+            type: int
+            sample: 56
+        is_storage_utilization_limit_exceeded:
+            description:
+                - Indicator will be true if the amount of storage being utilized exceeds the allowable storage utilization limit.  Exceeding the limit may be an
+                  indication of a misconfiguration of the deployment's GoldenGate service.
+            returned: on success
+            type: bool
+            sample: true
     sample: [{
         "deployment_backup_id": "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx",
         "is_healthy": true,
@@ -366,7 +377,9 @@ deployments:
         "system_tags": {},
         "is_latest_version": true,
         "time_upgrade_required": "2013-10-20T19:20:30+01:00",
-        "deployment_type": "OGG"
+        "deployment_type": "OGG",
+        "storage_utilization_in_bytes": 56,
+        "is_storage_utilization_limit_exceeded": true
     }]
 """
 

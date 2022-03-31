@@ -30,7 +30,7 @@ oracle.oci.oci_devops_deployment -- Manage a Deployment resource in Oracle Cloud
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -641,10 +641,10 @@ Examples
         deployment_type: PIPELINE_REDEPLOYMENT
 
         # optional
+        previous_deployment_id: "ocid1.previousdeployment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        previous_deployment_id: "ocid1.previousdeployment.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Create deployment with deployment_type = PIPELINE_DEPLOYMENT
       oci_devops_deployment:
@@ -653,9 +653,6 @@ Examples
         deployment_type: PIPELINE_DEPLOYMENT
 
         # optional
-        display_name: display_name_example
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
         deployment_arguments:
           # required
           items:
@@ -669,6 +666,9 @@ Examples
             deploy_artifact_id: "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx"
             name: name_example
             value: value_example
+        display_name: display_name_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
 
     - name: Create deployment with deployment_type = SINGLE_STAGE_DEPLOYMENT
       oci_devops_deployment:
@@ -677,9 +677,7 @@ Examples
         deployment_type: SINGLE_STAGE_DEPLOYMENT
 
         # optional
-        display_name: display_name_example
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        deploy_stage_id: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
         deployment_arguments:
           # required
           items:
@@ -693,7 +691,9 @@ Examples
             deploy_artifact_id: "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx"
             name: name_example
             value: value_example
-        deploy_stage_id: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
 
     - name: Update deployment with deployment_type = PIPELINE_REDEPLOYMENT
       oci_devops_deployment:

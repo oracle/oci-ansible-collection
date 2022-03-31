@@ -30,7 +30,7 @@ oracle.oci.oci_service_catalog_private_application -- Manage a PrivateApplicatio
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -550,8 +550,6 @@ Examples
       oci_service_catalog_private_application:
         # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        display_name: display_name_example
-        short_description: short_description_example
         package_details:
           # required
           package_type: STACK
@@ -559,6 +557,8 @@ Examples
 
           # optional
           zip_file_base64_encoded: zip_file_base64_encoded_example
+        display_name: display_name_example
+        short_description: short_description_example
 
         # optional
         long_description: long_description_example

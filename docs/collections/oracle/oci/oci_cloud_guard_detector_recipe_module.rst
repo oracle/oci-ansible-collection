@@ -30,7 +30,7 @@ oracle.oci.oci_cloud_guard_detector_recipe -- Manage a DetectorRecipe resource i
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -984,9 +984,9 @@ Examples
     - name: Create detector_recipe
       oci_cloud_guard_detector_recipe:
         # required
-        display_name: display_name_example
         source_detector_recipe_id: "ocid1.sourcedetectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
 
         # optional
         description: description_example
@@ -1071,8 +1071,8 @@ Examples
     - name: Update detector_recipe using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_cloud_guard_detector_recipe:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
 
         # optional
         description: description_example
@@ -1120,8 +1120,8 @@ Examples
     - name: Delete detector_recipe using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_cloud_guard_detector_recipe:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
         state: absent
 
 

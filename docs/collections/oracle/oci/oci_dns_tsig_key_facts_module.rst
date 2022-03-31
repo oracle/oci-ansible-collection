@@ -30,7 +30,7 @@ oracle.oci.oci_dns_tsig_key_facts -- Fetches details about one or multiple TsigK
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.46.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -411,11 +411,11 @@ Examples
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        scope: GLOBAL
         name: name_example
         lifecycle_state: ACTIVE
         sort_by: name
         sort_order: ASC
+        scope: GLOBAL
 
 
 

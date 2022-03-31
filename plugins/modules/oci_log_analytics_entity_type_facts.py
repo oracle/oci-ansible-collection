@@ -28,16 +28,16 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    namespace_name:
-        description:
-            - The Logging Analytics namespace used for the request.
-        type: str
-        required: true
     entity_type_name:
         description:
             - Log analytics entity type name.
             - Required to get a specific log_analytics_entity_type.
         type: str
+    namespace_name:
+        description:
+            - The Logging Analytics namespace used for the request.
+        type: str
+        required: true
     name:
         description:
             - A filter to return only log analytics entity types whose name matches the entire name given. The match is
@@ -87,8 +87,8 @@ EXAMPLES = """
 - name: Get a specific log_analytics_entity_type
   oci_log_analytics_entity_type_facts:
     # required
-    namespace_name: namespace_name_example
     entity_type_name: entity_type_name_example
+    namespace_name: namespace_name_example
 
 - name: List log_analytics_entity_types
   oci_log_analytics_entity_type_facts:
@@ -275,8 +275,8 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            namespace_name=dict(type="str", required=True),
             entity_type_name=dict(type="str"),
+            namespace_name=dict(type="str", required=True),
             name=dict(type="str"),
             name_contains=dict(type="str"),
             cloud_type=dict(type="str", choices=["CLOUD", "NON_CLOUD", "ALL"]),
