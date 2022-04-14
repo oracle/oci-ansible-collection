@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 2.47.0
+Collection version 2.48.0
 
 .. toctree::
     :maxdepth: 1
@@ -615,11 +615,13 @@ Modules
 * :ref:`oci_devops_deployment_facts <ansible_collections.oracle.oci.oci_devops_deployment_facts_module>` -- Fetches details about one or multiple Deployment resources in Oracle Cloud Infrastructure
 * :ref:`oci_devops_diff_facts <ansible_collections.oracle.oci.oci_devops_diff_facts_module>` -- Fetches details about one or multiple Diff resources in Oracle Cloud Infrastructure
 * :ref:`oci_devops_diff_response_facts <ansible_collections.oracle.oci.oci_devops_diff_response_facts_module>` -- Fetches details about a DiffResponse resource in Oracle Cloud Infrastructure
+* :ref:`oci_devops_file_diff_facts <ansible_collections.oracle.oci.oci_devops_file_diff_facts_module>` -- Fetches details about a FileDiff resource in Oracle Cloud Infrastructure
 * :ref:`oci_devops_file_diff_response_facts <ansible_collections.oracle.oci.oci_devops_file_diff_response_facts_module>` -- Fetches details about a FileDiffResponse resource in Oracle Cloud Infrastructure
 * :ref:`oci_devops_object_content_facts <ansible_collections.oracle.oci.oci_devops_object_content_facts_module>` -- Fetches details about a ObjectContent resource in Oracle Cloud Infrastructure
 * :ref:`oci_devops_project <ansible_collections.oracle.oci.oci_devops_project_module>` -- Manage a Project resource in Oracle Cloud Infrastructure
 * :ref:`oci_devops_project_actions <ansible_collections.oracle.oci.oci_devops_project_actions_module>` -- Perform actions on a Project resource in Oracle Cloud Infrastructure
 * :ref:`oci_devops_project_facts <ansible_collections.oracle.oci.oci_devops_project_facts_module>` -- Fetches details about one or multiple Project resources in Oracle Cloud Infrastructure
+* :ref:`oci_devops_repo_file_lines_facts <ansible_collections.oracle.oci.oci_devops_repo_file_lines_facts_module>` -- Fetches details about a RepoFileLines resource in Oracle Cloud Infrastructure
 * :ref:`oci_devops_repository <ansible_collections.oracle.oci.oci_devops_repository_module>` -- Manage a Repository resource in Oracle Cloud Infrastructure
 * :ref:`oci_devops_repository_actions <ansible_collections.oracle.oci.oci_devops_repository_actions_module>` -- Perform actions on a Repository resource in Oracle Cloud Infrastructure
 * :ref:`oci_devops_repository_archive_content_facts <ansible_collections.oracle.oci.oci_devops_repository_archive_content_facts_module>` -- Fetches details about a RepositoryArchiveContent resource in Oracle Cloud Infrastructure
@@ -1115,6 +1117,7 @@ Modules
 * :ref:`oci_ocvp_sddc <ansible_collections.oracle.oci.oci_ocvp_sddc_module>` -- Manage a Sddc resource in Oracle Cloud Infrastructure
 * :ref:`oci_ocvp_sddc_actions <ansible_collections.oracle.oci.oci_ocvp_sddc_actions_module>` -- Perform actions on a Sddc resource in Oracle Cloud Infrastructure
 * :ref:`oci_ocvp_sddc_facts <ansible_collections.oracle.oci.oci_ocvp_sddc_facts_module>` -- Fetches details about one or multiple Sddc resources in Oracle Cloud Infrastructure
+* :ref:`oci_ocvp_supported_host_shape_facts <ansible_collections.oracle.oci.oci_ocvp_supported_host_shape_facts_module>` -- Fetches details about one or multiple SupportedHostShape resources in Oracle Cloud Infrastructure
 * :ref:`oci_ocvp_supported_sku_facts <ansible_collections.oracle.oci.oci_ocvp_supported_sku_facts_module>` -- Fetches details about one or multiple SupportedSku resources in Oracle Cloud Infrastructure
 * :ref:`oci_ocvp_supported_vmware_software_version_facts <ansible_collections.oracle.oci.oci_ocvp_supported_vmware_software_version_facts_module>` -- Fetches details about one or multiple SupportedVmwareSoftwareVersion resources in Oracle Cloud Infrastructure
 * :ref:`oci_oda_instance <ansible_collections.oracle.oci.oci_oda_instance_module>` -- Manage an OdaInstance resource in Oracle Cloud Infrastructure
@@ -1157,6 +1160,9 @@ Modules
 * :ref:`oci_opsi_host_insight_resource_utilization_insight_facts <ansible_collections.oracle.oci.oci_opsi_host_insight_resource_utilization_insight_facts_module>` -- Fetches details about a HostInsightResourceUtilizationInsight resource in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_importable_agent_entity_facts <ansible_collections.oracle.oci.oci_opsi_importable_agent_entity_facts_module>` -- Fetches details about one or multiple ImportableAgentEntity resources in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_importable_enterprise_manager_entity_facts <ansible_collections.oracle.oci.oci_opsi_importable_enterprise_manager_entity_facts_module>` -- Fetches details about one or multiple ImportableEnterpriseManagerEntity resources in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_operations_insights_private_endpoint <ansible_collections.oracle.oci.oci_opsi_operations_insights_private_endpoint_module>` -- Manage an OperationsInsightsPrivateEndpoint resource in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_operations_insights_private_endpoint_actions <ansible_collections.oracle.oci.oci_opsi_operations_insights_private_endpoint_actions_module>` -- Perform actions on an OperationsInsightsPrivateEndpoint resource in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_operations_insights_private_endpoint_facts <ansible_collections.oracle.oci.oci_opsi_operations_insights_private_endpoint_facts_module>` -- Fetches details about one or multiple OperationsInsightsPrivateEndpoint resources in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_operations_insights_warehouse <ansible_collections.oracle.oci.oci_opsi_operations_insights_warehouse_module>` -- Manage an OperationsInsightsWarehouse resource in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_operations_insights_warehouse_actions <ansible_collections.oracle.oci.oci_opsi_operations_insights_warehouse_actions_module>` -- Perform actions on an OperationsInsightsWarehouse resource in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_operations_insights_warehouse_facts <ansible_collections.oracle.oci.oci_opsi_operations_insights_warehouse_facts_module>` -- Fetches details about one or multiple OperationsInsightsWarehouse resources in Oracle Cloud Infrastructure
@@ -1991,11 +1997,13 @@ Modules
     oci_devops_deployment_facts_module
     oci_devops_diff_facts_module
     oci_devops_diff_response_facts_module
+    oci_devops_file_diff_facts_module
     oci_devops_file_diff_response_facts_module
     oci_devops_object_content_facts_module
     oci_devops_project_module
     oci_devops_project_actions_module
     oci_devops_project_facts_module
+    oci_devops_repo_file_lines_facts_module
     oci_devops_repository_module
     oci_devops_repository_actions_module
     oci_devops_repository_archive_content_facts_module
@@ -2491,6 +2499,7 @@ Modules
     oci_ocvp_sddc_module
     oci_ocvp_sddc_actions_module
     oci_ocvp_sddc_facts_module
+    oci_ocvp_supported_host_shape_facts_module
     oci_ocvp_supported_sku_facts_module
     oci_ocvp_supported_vmware_software_version_facts_module
     oci_oda_instance_module
@@ -2533,6 +2542,9 @@ Modules
     oci_opsi_host_insight_resource_utilization_insight_facts_module
     oci_opsi_importable_agent_entity_facts_module
     oci_opsi_importable_enterprise_manager_entity_facts_module
+    oci_opsi_operations_insights_private_endpoint_module
+    oci_opsi_operations_insights_private_endpoint_actions_module
+    oci_opsi_operations_insights_private_endpoint_facts_module
     oci_opsi_operations_insights_warehouse_module
     oci_opsi_operations_insights_warehouse_actions_module
     oci_opsi_operations_insights_warehouse_facts_module

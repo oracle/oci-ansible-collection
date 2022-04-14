@@ -30,7 +30,7 @@ oracle.oci.oci_ocvp_sddc -- Manage a Sddc resource in Oracle Cloud Infrastructur
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -411,6 +411,25 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Indicates whether to enable HCX Enterprise for this SDDC.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-is_shielded_instance_enabled"></div>
+                    <b>is_shielded_instance_enabled</b>
+                    <a class="ansibleOptionLink" href="#parameter-is_shielded_instance_enabled" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Indicates whether shielded instance is enabled for this SDDC.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -796,6 +815,7 @@ Examples
         is_hcx_enabled: true
         is_hcx_enterprise_enabled: true
         workload_network_cidr: workload_network_cidr_example
+        is_shielded_instance_enabled: true
         display_name: display_name_example
         replication_vlan_id: "ocid1.replicationvlan.oc1..xxxxxxEXAMPLExxxxxx"
         provisioning_vlan_id: "ocid1.provisioningvlan.oc1..xxxxxxEXAMPLExxxxxx"
@@ -895,7 +915,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Sddc resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;esxi_hosts_count&#x27;: 56, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hcx_fqdn&#x27;: &#x27;hcx_fqdn_example&#x27;, &#x27;hcx_initial_password&#x27;: &#x27;example-password&#x27;, &#x27;hcx_on_prem_key&#x27;: &#x27;hcx_on_prem_key_example&#x27;, &#x27;hcx_on_prem_licenses&#x27;: [{&#x27;activation_key&#x27;: &#x27;activation_key_example&#x27;, &#x27;status&#x27;: &#x27;AVAILABLE&#x27;, &#x27;system_name&#x27;: &#x27;system_name_example&#x27;}], &#x27;hcx_private_ip_id&#x27;: &#x27;ocid1.hcxprivateip.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;hcx_vlan_id&#x27;: &#x27;ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;initial_sku&#x27;: &#x27;HOUR&#x27;, &#x27;instance_display_name_prefix&#x27;: &#x27;instance_display_name_prefix_example&#x27;, &#x27;is_hcx_enabled&#x27;: True, &#x27;is_hcx_enterprise_enabled&#x27;: True, &#x27;is_hcx_pending_downgrade&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;nsx_edge_uplink1_vlan_id&#x27;: &#x27;ocid1.nsxedgeuplink1vlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_edge_uplink2_vlan_id&#x27;: &#x27;ocid1.nsxedgeuplink2vlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_edge_uplink_ip_id&#x27;: &#x27;ocid1.nsxedgeuplinkip.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_edge_v_tep_vlan_id&#x27;: &#x27;ocid1.nsxedgevtepvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_manager_fqdn&#x27;: &#x27;nsx_manager_fqdn_example&#x27;, &#x27;nsx_manager_initial_password&#x27;: &#x27;example-password&#x27;, &#x27;nsx_manager_private_ip_id&#x27;: &#x27;ocid1.nsxmanagerprivateip.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_manager_username&#x27;: &#x27;nsx_manager_username_example&#x27;, &#x27;nsx_overlay_segment_name&#x27;: &#x27;nsx_overlay_segment_name_example&#x27;, &#x27;nsx_v_tep_vlan_id&#x27;: &#x27;ocid1.nsxvtepvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;provisioning_subnet_id&#x27;: &#x27;ocid1.provisioningsubnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;provisioning_vlan_id&#x27;: &#x27;ocid1.provisioningvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;replication_vlan_id&#x27;: &#x27;ocid1.replicationvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ssh_authorized_keys&#x27;: &#x27;ssh_authorized_keys_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_hcx_billing_cycle_end&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_hcx_license_status_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vcenter_fqdn&#x27;: &#x27;vcenter_fqdn_example&#x27;, &#x27;vcenter_initial_password&#x27;: &#x27;example-password&#x27;, &#x27;vcenter_private_ip_id&#x27;: &#x27;ocid1.vcenterprivateip.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vcenter_username&#x27;: &#x27;vcenter_username_example&#x27;, &#x27;vmotion_vlan_id&#x27;: &#x27;ocid1.vmotionvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vmware_software_version&#x27;: &#x27;vmware_software_version_example&#x27;, &#x27;vsan_vlan_id&#x27;: &#x27;ocid1.vsanvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vsphere_vlan_id&#x27;: &#x27;ocid1.vspherevlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;workload_network_cidr&#x27;: &#x27;workload_network_cidr_example&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;esxi_hosts_count&#x27;: 56, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hcx_fqdn&#x27;: &#x27;hcx_fqdn_example&#x27;, &#x27;hcx_initial_password&#x27;: &#x27;example-password&#x27;, &#x27;hcx_on_prem_key&#x27;: &#x27;hcx_on_prem_key_example&#x27;, &#x27;hcx_on_prem_licenses&#x27;: [{&#x27;activation_key&#x27;: &#x27;activation_key_example&#x27;, &#x27;status&#x27;: &#x27;AVAILABLE&#x27;, &#x27;system_name&#x27;: &#x27;system_name_example&#x27;}], &#x27;hcx_private_ip_id&#x27;: &#x27;ocid1.hcxprivateip.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;hcx_vlan_id&#x27;: &#x27;ocid1.hcxvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;initial_sku&#x27;: &#x27;HOUR&#x27;, &#x27;instance_display_name_prefix&#x27;: &#x27;instance_display_name_prefix_example&#x27;, &#x27;is_hcx_enabled&#x27;: True, &#x27;is_hcx_enterprise_enabled&#x27;: True, &#x27;is_hcx_pending_downgrade&#x27;: True, &#x27;is_shielded_instance_enabled&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;nsx_edge_uplink1_vlan_id&#x27;: &#x27;ocid1.nsxedgeuplink1vlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_edge_uplink2_vlan_id&#x27;: &#x27;ocid1.nsxedgeuplink2vlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_edge_uplink_ip_id&#x27;: &#x27;ocid1.nsxedgeuplinkip.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_edge_v_tep_vlan_id&#x27;: &#x27;ocid1.nsxedgevtepvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_manager_fqdn&#x27;: &#x27;nsx_manager_fqdn_example&#x27;, &#x27;nsx_manager_initial_password&#x27;: &#x27;example-password&#x27;, &#x27;nsx_manager_private_ip_id&#x27;: &#x27;ocid1.nsxmanagerprivateip.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsx_manager_username&#x27;: &#x27;nsx_manager_username_example&#x27;, &#x27;nsx_overlay_segment_name&#x27;: &#x27;nsx_overlay_segment_name_example&#x27;, &#x27;nsx_v_tep_vlan_id&#x27;: &#x27;ocid1.nsxvtepvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;provisioning_subnet_id&#x27;: &#x27;ocid1.provisioningsubnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;provisioning_vlan_id&#x27;: &#x27;ocid1.provisioningvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;replication_vlan_id&#x27;: &#x27;ocid1.replicationvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ssh_authorized_keys&#x27;: &#x27;ssh_authorized_keys_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_hcx_billing_cycle_end&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_hcx_license_status_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vcenter_fqdn&#x27;: &#x27;vcenter_fqdn_example&#x27;, &#x27;vcenter_initial_password&#x27;: &#x27;example-password&#x27;, &#x27;vcenter_private_ip_id&#x27;: &#x27;ocid1.vcenterprivateip.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vcenter_username&#x27;: &#x27;vcenter_username_example&#x27;, &#x27;vmotion_vlan_id&#x27;: &#x27;ocid1.vmotionvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vmware_software_version&#x27;: &#x27;vmware_software_version_example&#x27;, &#x27;vsan_vlan_id&#x27;: &#x27;ocid1.vsanvlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vsphere_vlan_id&#x27;: &#x27;ocid1.vspherevlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;workload_network_cidr&#x27;: &#x27;workload_network_cidr_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1280,6 +1300,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Indicates whether SDDC is pending downgrade from HCX Enterprise to HCX Advanced.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-sddc/is_shielded_instance_enabled"></div>
+                    <b>is_shielded_instance_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-sddc/is_shielded_instance_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Indicates whether shielded instance is enabled at the SDDC level.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>

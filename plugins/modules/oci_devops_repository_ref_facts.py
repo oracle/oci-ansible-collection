@@ -117,7 +117,7 @@ repository_reves:
             sample: ref_name_example
         ref_type:
             description:
-                - The type of reference (Branch or Tag).
+                - The type of reference (BRANCH or TAG).
             returned: on success
             type: str
             sample: BRANCH
@@ -137,7 +137,6 @@ repository_reves:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.  See L(Resource
                   Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm). Example: `{\\"bar-key\\": \\"value\\"}`"
-                - Returned for list operation
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
@@ -145,7 +144,6 @@ repository_reves:
             description:
                 - "Defined tags for this resource. Each key is predefined and scoped to a namespace. See L(Resource
                   Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm). Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
-                - Returned for list operation
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}

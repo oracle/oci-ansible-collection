@@ -30,7 +30,7 @@ oracle.oci.oci_marketplace_launch_eligibility_facts -- Fetches details about a L
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -323,7 +323,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>LaunchEligibility resource</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_launch_allowed&#x27;: True, &#x27;meters&#x27;: &#x27;meters_example&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ineligibility_reason&#x27;: &#x27;INELIGIBLE_ACCOUNT_COUNTRY&#x27;, &#x27;is_launch_allowed&#x27;: True, &#x27;meters&#x27;: &#x27;meters_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -342,6 +342,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.image.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-launch_eligibility/ineligibility_reason"></div>
+                    <b>ineligibility_reason</b>
+                    <a class="ansibleOptionLink" href="#return-launch_eligibility/ineligibility_reason" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Reason the account is ineligible to launch paid listings</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">INELIGIBLE_ACCOUNT_COUNTRY</div>
                                     </td>
             </tr>
                                 <tr>

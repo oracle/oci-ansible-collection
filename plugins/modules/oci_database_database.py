@@ -202,6 +202,23 @@ options:
                       For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
                     - Applicable when source is 'NONE'
                 type: dict
+            kms_key_id:
+                description:
+                    - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
+                    - Applicable when source is 'NONE'
+                type: str
+            kms_key_version_id:
+                description:
+                    - The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key
+                      versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.
+                    - Applicable when source is 'NONE'
+                type: str
+            vault_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
+                      L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
+                    - Applicable when source is 'NONE'
+                type: str
             backup_id:
                 description:
                     - The backup L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -410,6 +427,9 @@ EXAMPLES = """
           internet_proxy: internet_proxy_example
       freeform_tags: {'Department': 'Finance'}
       defined_tags: {'Operations': {'CostCenter': 'US'}}
+      kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+      kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+      vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
       backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
       backup_tde_password: example-password
       db_unique_name: db_unique_name_example
@@ -454,6 +474,9 @@ EXAMPLES = """
           internet_proxy: internet_proxy_example
       freeform_tags: {'Department': 'Finance'}
       defined_tags: {'Operations': {'CostCenter': 'US'}}
+      kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+      kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+      vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
       backup_id: "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx"
       backup_tde_password: example-password
       db_unique_name: db_unique_name_example
@@ -718,6 +741,20 @@ database:
             returned: on success
             type: str
             sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        kms_key_version_id:
+            description:
+                - The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key
+                  versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.
+            returned: on success
+            type: str
+            sample: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+        vault_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
+                  L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
+            returned: on success
+            type: str
+            sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         source_database_point_in_time_recovery_timestamp:
             description:
                 - Point in time recovery timeStamp of the source database at which cloned database system is cloned from the source database system, as
@@ -797,6 +834,8 @@ database:
             "all_connection_strings": {}
         },
         "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
+        "kms_key_version_id": "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx",
+        "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
         "source_database_point_in_time_recovery_timestamp": "2013-10-20T19:20:30+01:00",
         "database_software_image_id": "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx",
         "is_cdb": true,
@@ -903,7 +942,7 @@ class DatabaseHelperGen(OCIResourceHelperBase):
         return CreateDatabaseBase
 
     def get_exclude_attributes(self):
-        return ["db_version", "database", "kms_key_version_id", "source"]
+        return ["db_version", "database", "source"]
 
     def create_resource(self):
         create_details = self.get_create_model()
@@ -1025,6 +1064,9 @@ def main():
                     ),
                     freeform_tags=dict(type="dict"),
                     defined_tags=dict(type="dict"),
+                    kms_key_id=dict(type="str"),
+                    kms_key_version_id=dict(type="str"),
+                    vault_id=dict(type="str"),
                     backup_id=dict(type="str"),
                     backup_tde_password=dict(type="str", no_log=True),
                     admin_password=dict(type="str", required=True, no_log=True),

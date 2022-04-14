@@ -30,7 +30,7 @@ oracle.oci.oci_management_agent_image_facts -- Fetches details about one or mult
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -411,7 +411,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of ManagementAgentImage resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;checksum&#x27;: &#x27;checksum_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;object_url&#x27;: &#x27;object_url_example&#x27;, &#x27;platform_name&#x27;: &#x27;platform_name_example&#x27;, &#x27;platform_type&#x27;: &#x27;LINUX&#x27;, &#x27;size&#x27;: 10, &#x27;version&#x27;: &#x27;version_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;checksum&#x27;: &#x27;checksum_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;object_url&#x27;: &#x27;object_url_example&#x27;, &#x27;package_architecture_type&#x27;: &#x27;X86_64&#x27;, &#x27;package_type&#x27;: &#x27;RPM&#x27;, &#x27;platform_name&#x27;: &#x27;platform_name_example&#x27;, &#x27;platform_type&#x27;: &#x27;LINUX&#x27;, &#x27;size&#x27;: 10, &#x27;version&#x27;: &#x27;version_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -484,6 +484,42 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">object_url_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_agent_images/package_architecture_type"></div>
+                    <b>package_architecture_type</b>
+                    <a class="ansibleOptionLink" href="#return-management_agent_images/package_architecture_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The installation package target architecture type</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">X86_64</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_agent_images/package_type"></div>
+                    <b>package_type</b>
+                    <a class="ansibleOptionLink" href="#return-management_agent_images/package_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The installation package type</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">RPM</div>
                                     </td>
             </tr>
                                 <tr>

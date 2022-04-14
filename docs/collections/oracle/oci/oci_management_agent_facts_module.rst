@@ -30,7 +30,7 @@ oracle.oci.oci_management_agent_facts -- Fetches details about one or multiple M
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple ManagementAgent resources in Oracle Cloud Infrastructure
-- Returns a list of Management Agent.
+- Returns a list of Management Agents. If no explicit page size limit is specified, it will default to 5000.
 - If *management_agent_id* is specified, the details of a single ManagementAgent will be returned.
 
 

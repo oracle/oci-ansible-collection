@@ -274,7 +274,7 @@ build_pipeline_stages:
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         build_pipeline_stage_type:
             description:
-                - "Defines the stage type, which is one of the following: Build, Deliver Artifacts, Wait, and Trigger Deployment."
+                - "Defines the stage type, which is one of the following: BUILD, DELIVER_ARTIFACT, WAIT, and TRIGGER_DEPLOYMENT_PIPELINE."
             returned: on success
             type: str
             sample: WAIT
@@ -323,7 +323,8 @@ build_pipeline_stages:
                     contains:
                         id:
                             description:
-                                - The ID of the predecessor stage. If a stage is the first stage in the pipeline, then the ID is the pipeline's ID.
+                                - The OCID of the predecessor stage. If a stage is the first stage in the pipeline, then
+                                  the ID is the pipeline's OCID.
                             returned: on success
                             type: str
                             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"

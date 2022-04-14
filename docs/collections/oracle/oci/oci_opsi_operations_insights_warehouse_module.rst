@@ -30,7 +30,7 @@ oracle.oci.oci_opsi_operations_insights_warehouse -- Manage an OperationsInsight
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete an OperationsInsightsWarehouse resource in Oracle Cloud Infrastructure
-- For *state=present*, create a Operations Insights Warehouse resource for the tenant in Operations Insights. New ADW will be provisioned for this tenant. There is only expected to be 1 warehouse per tenant. The warehouse is expected to be in the root compartment.
+- For *state=present*, create a Operations Insights Warehouse resource for the tenant in Operations Insights. New ADW will be provisioned for this tenant. There is only expected to be 1 warehouse per tenant. The warehouse is expected to be in the root compartment. If the 'opsi-warehouse-type' header is passed to the API, a warehouse resource without ADW or Schema provisioning is created.
 - This resource has the following action operations in the :ref:`oracle.oci.oci_opsi_operations_insights_warehouse_actions <ansible_collections.oracle.oci.oci_opsi_operations_insights_warehouse_actions_module>` module: download_operations_insights_warehouse_wallet, rotate_operations_insights_warehouse_wallet.
 
 

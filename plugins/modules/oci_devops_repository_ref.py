@@ -34,7 +34,7 @@ options:
         type: str
     ref_type:
         description:
-            - The type of reference (Branch or Tag).
+            - The type of reference (BRANCH or TAG).
             - Required for update using I(state=present) with ref_name present.
         type: str
         choices:
@@ -111,7 +111,7 @@ repository_ref:
             sample: ref_name_example
         ref_type:
             description:
-                - The type of reference (Branch or Tag).
+                - The type of reference (BRANCH or TAG).
             returned: on success
             type: str
             sample: BRANCH
@@ -127,6 +127,20 @@ repository_ref:
             returned: on success
             type: str
             sample: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags:
+            description:
+                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.  See L(Resource
+                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm). Example: `{\\"bar-key\\": \\"value\\"}`"
+            returned: on success
+            type: dict
+            sample: {'Department': 'Finance'}
+        defined_tags:
+            description:
+                - "Defined tags for this resource. Each key is predefined and scoped to a namespace. See L(Resource
+                  Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm). Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+            returned: on success
+            type: dict
+            sample: {'Operations': {'CostCenter': 'US'}}
         object_id:
             description:
                 - SHA-1 hash value of the object pointed to by the tag.
@@ -139,6 +153,8 @@ repository_ref:
         "ref_type": "BRANCH",
         "full_ref_name": "full_ref_name_example",
         "repository_id": "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx",
+        "freeform_tags": {'Department': 'Finance'},
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "object_id": "ocid1.object.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """

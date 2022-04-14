@@ -59,7 +59,7 @@ options:
         suboptions:
             repository_id:
                 description:
-                    - The OCID of a repository
+                    - The OCID of a repository.
                     - Required when deploy_artifact_source_type is 'GENERIC_ARTIFACT'
                 type: str
             deploy_artifact_path:
@@ -74,7 +74,7 @@ options:
                 type: str
             image_uri:
                 description:
-                    - "Specifies OCIR Image Path - optionally include tag."
+                    - "Specifies OCIR image path - optionally include tag."
                     - Required when deploy_artifact_source_type is 'OCIR'
                 type: str
             image_digest:
@@ -261,7 +261,7 @@ deploy_artifact:
             contains:
                 repository_id:
                     description:
-                        - The OCID of a repository
+                        - The OCID of a repository.
                     returned: on success
                     type: str
                     sample: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
@@ -292,7 +292,7 @@ deploy_artifact:
                     sample: INLINE
                 image_uri:
                     description:
-                        - "Specifies OCIR Image Path - optionally include tag."
+                        - "Specifies OCIR image path - optionally include tag."
                     returned: on success
                     type: str
                     sample: image_uri_example

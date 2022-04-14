@@ -79,6 +79,15 @@ options:
             - "ATP-D"
             - "EXTERNAL-PDB"
             - "EXTERNAL-NONCDB"
+            - "COMANAGED-VM-CDB"
+            - "COMANAGED-VM-PDB"
+            - "COMANAGED-VM-NONCDB"
+            - "COMANAGED-BM-CDB"
+            - "COMANAGED-BM-PDB"
+            - "COMANAGED-BM-NONCDB"
+            - "COMANAGED-EXACS-CDB"
+            - "COMANAGED-EXACS-PDB"
+            - "COMANAGED-EXACS-NONCDB"
     database_id:
         description:
             - Optional list of database L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the associated DBaaS entity.
@@ -121,6 +130,10 @@ options:
         description:
             - A flag to search all resources within a given compartment and all sub-compartments.
         type: bool
+    opsi_private_endpoint_id:
+        description:
+            - Unique Operations Insights PrivateEndpoint identifier
+        type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -145,6 +158,7 @@ EXAMPLES = """
     sort_by: databaseName
     exadata_insight_id: "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id_in_subtree: true
+    opsi_private_endpoint_id: "ocid1.opsiprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -218,6 +232,59 @@ database_insights:
             returned: on success
             type: str
             sample: "ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx"
+        connection_credential_details:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                credential_source_name:
+                    description:
+                        - Credential source name that had been added in Management Agent wallet. This is supplied in the External Database Service.
+                    returned: on success
+                    type: str
+                    sample: credential_source_name_example
+                credential_type:
+                    description:
+                        - Credential type.
+                    returned: on success
+                    type: str
+                    sample: CREDENTIALS_BY_SOURCE
+                user_name:
+                    description:
+                        - database user name.
+                    returned: on success
+                    type: str
+                    sample: user_name_example
+                password_secret_id:
+                    description:
+                        - The secret L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) mapping to the database credentials.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
+                role:
+                    description:
+                        - database user role.
+                    returned: on success
+                    type: str
+                    sample: NORMAL
+        db_additional_details:
+            description:
+                - Additional details of a database in JSON format. For autonomous databases, this is the AutonomousDatabase object serialized as a JSON string
+                  as defined in https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/20160918/AutonomousDatabase/. For EM, pass in null or an empty
+                  string. Note that this string needs to be escaped when specified in the curl command.
+                - Returned for get operation
+            returned: on success
+            type: dict
+            sample: {}
+        opsi_private_endpoint_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the OPSI private endpoint
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.opsiprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
         connection_details:
             description:
                 - ""
@@ -245,11 +312,29 @@ database_insights:
                     sample: 56
                 service_name:
                     description:
-                        - Service name used for connection requests.
+                        - Database service name used for connection requests.
                     returned: on success
                     type: str
                     sample: service_name_example
-        connection_credential_details:
+                hosts:
+                    description:
+                        - List of hosts and port for private endpoint accessed database resource.
+                    returned: on success
+                    type: complex
+                    contains:
+                        host_ip:
+                            description:
+                                - Host IP used for connection requests for Cloud DB resource.
+                            returned: on success
+                            type: str
+                            sample: host_ip_example
+                        port:
+                            description:
+                                - Listener port number used for connection requests for rivate endpoint accessed db resource.
+                            returned: on success
+                            type: int
+                            sample: 56
+        credential_details:
             description:
                 - ""
                 - Returned for get operation
@@ -268,6 +353,24 @@ database_insights:
                     returned: on success
                     type: str
                     sample: CREDENTIALS_BY_SOURCE
+                user_name:
+                    description:
+                        - database user name.
+                    returned: on success
+                    type: str
+                    sample: user_name_example
+                password_secret_id:
+                    description:
+                        - The secret L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) mapping to the database credentials.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
+                role:
+                    description:
+                        - database user role.
+                    returned: on success
+                    type: str
+                    sample: NORMAL
         database_resource_type:
             description:
                 - OCI database resource type
@@ -275,15 +378,6 @@ database_insights:
             returned: on success
             type: str
             sample: database_resource_type_example
-        db_additional_details:
-            description:
-                - Additional details of a database in JSON format. For autonomous databases, this is the AutonomousDatabase object serialized as a JSON string
-                  as defined in https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/20160918/AutonomousDatabase/. For EM, pass in null or an empty
-                  string. Note that this string needs to be escaped when specified in the curl command.
-                - Returned for get operation
-            returned: on success
-            type: dict
-            sample: {}
         id:
             description:
                 - Database insight identifier
@@ -397,6 +491,13 @@ database_insights:
             returned: on success
             type: str
             sample: lifecycle_details_example
+        database_connection_status_details:
+            description:
+                - A message describing the status of the database connection of this resource. For example, it can be used to provide actionable information
+                  about the permission and content validity of the database connection.
+            returned: on success
+            type: str
+            sample: database_connection_status_details_example
     sample: [{
         "enterprise_manager_identifier": "enterprise_manager_identifier_example",
         "enterprise_manager_entity_name": "enterprise_manager_entity_name_example",
@@ -407,18 +508,33 @@ database_insights:
         "exadata_insight_id": "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx",
         "management_agent_id": "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx",
         "connector_id": "ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx",
+        "connection_credential_details": {
+            "credential_source_name": "credential_source_name_example",
+            "credential_type": "CREDENTIALS_BY_SOURCE",
+            "user_name": "user_name_example",
+            "password_secret_id": "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx",
+            "role": "NORMAL"
+        },
+        "db_additional_details": {},
+        "opsi_private_endpoint_id": "ocid1.opsiprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx",
         "connection_details": {
             "host_name": "host_name_example",
             "protocol": "TCP",
             "port": 56,
-            "service_name": "service_name_example"
+            "service_name": "service_name_example",
+            "hosts": [{
+                "host_ip": "host_ip_example",
+                "port": 56
+            }]
         },
-        "connection_credential_details": {
+        "credential_details": {
             "credential_source_name": "credential_source_name_example",
-            "credential_type": "CREDENTIALS_BY_SOURCE"
+            "credential_type": "CREDENTIALS_BY_SOURCE",
+            "user_name": "user_name_example",
+            "password_secret_id": "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx",
+            "role": "NORMAL"
         },
         "database_resource_type": "database_resource_type_example",
-        "db_additional_details": {},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -436,7 +552,8 @@ database_insights:
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
-        "lifecycle_details": "lifecycle_details_example"
+        "lifecycle_details": "lifecycle_details_example",
+        "database_connection_status_details": "database_connection_status_details_example"
     }]
 """
 
@@ -485,6 +602,7 @@ class DatabaseInsightsFactsHelperGen(OCIResourceFactsHelperBase):
             "sort_by",
             "exadata_insight_id",
             "compartment_id_in_subtree",
+            "opsi_private_endpoint_id",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -542,6 +660,15 @@ def main():
                     "ATP-D",
                     "EXTERNAL-PDB",
                     "EXTERNAL-NONCDB",
+                    "COMANAGED-VM-CDB",
+                    "COMANAGED-VM-PDB",
+                    "COMANAGED-VM-NONCDB",
+                    "COMANAGED-BM-CDB",
+                    "COMANAGED-BM-PDB",
+                    "COMANAGED-BM-NONCDB",
+                    "COMANAGED-EXACS-CDB",
+                    "COMANAGED-EXACS-PDB",
+                    "COMANAGED-EXACS-NONCDB",
                 ],
             ),
             database_id=dict(type="list", elements="str"),
@@ -566,6 +693,7 @@ def main():
             ),
             exadata_insight_id=dict(type="str"),
             compartment_id_in_subtree=dict(type="bool"),
+            opsi_private_endpoint_id=dict(type="str"),
         )
     )
 

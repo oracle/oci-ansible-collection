@@ -123,6 +123,12 @@ options:
         choices:
             - "PRIMARY"
             - "NONPRIMARY"
+    add_on_features:
+        description:
+            - a list of add-on features for the ocm instance
+            - This parameter is updatable.
+        type: list
+        elements: str
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -177,6 +183,7 @@ EXAMPLES = """
     waf_primary_domain: waf_primary_domain_example
     instance_license_type: NEW
     instance_usage_type: PRIMARY
+    add_on_features: [ "add_on_features_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -190,6 +197,7 @@ EXAMPLES = """
     waf_primary_domain: waf_primary_domain_example
     instance_license_type: NEW
     instance_usage_type: PRIMARY
+    add_on_features: [ "add_on_features_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -204,6 +212,7 @@ EXAMPLES = """
     waf_primary_domain: waf_primary_domain_example
     instance_license_type: NEW
     instance_usage_type: PRIMARY
+    add_on_features: [ "add_on_features_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -310,6 +319,12 @@ oce_instance:
             returned: on success
             type: str
             sample: PRIMARY
+        add_on_features:
+            description:
+                - a list of add-on features for the ocm instance
+            returned: on success
+            type: list
+            sample: []
         object_storage_namespace:
             description:
                 - Object Storage Namespace of tenancy
@@ -354,10 +369,16 @@ oce_instance:
             sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
-                - The current state of the file system.
+                - The current state of the instance lifecycle.
             returned: on success
             type: str
             sample: CREATING
+        lifecycle_details:
+            description:
+                - Details of the current state of the instance lifecycle
+            returned: on success
+            type: str
+            sample: STANDBY
         state_message:
             description:
                 - An message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
@@ -408,6 +429,7 @@ oce_instance:
             "tenancy": "tenancy_example"
         },
         "instance_usage_type": "PRIMARY",
+        "add_on_features": [],
         "object_storage_namespace": "object_storage_namespace_example",
         "admin_email": "admin_email_example",
         "waf_primary_domain": "waf_primary_domain_example",
@@ -416,6 +438,7 @@ oce_instance:
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
+        "lifecycle_details": "STANDBY",
         "state_message": "state_message_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -600,6 +623,7 @@ def main():
                 type="str", choices=["NEW", "BYOL", "PREMIUM", "STARTER"]
             ),
             instance_usage_type=dict(type="str", choices=["PRIMARY", "NONPRIMARY"]),
+            add_on_features=dict(type="list", elements="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             oce_instance_id=dict(aliases=["id"], type="str"),

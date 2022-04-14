@@ -268,6 +268,23 @@ options:
                         choices:
                             - "OLTP"
                             - "DSS"
+                    kms_key_id:
+                        description:
+                            - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
+                            - Applicable when source is 'NONE'
+                        type: str
+                    kms_key_version_id:
+                        description:
+                            - The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have
+                              multiple key versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.
+                            - Applicable when source is 'NONE'
+                        type: str
+                    vault_id:
+                        description:
+                            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
+                              L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
+                            - Applicable when source is 'NONE'
+                        type: str
                     db_domain:
                         description:
                             - The database domain. In a distributed database system, DB_DOMAIN specifies the logical location of the database within the network
@@ -491,6 +508,13 @@ options:
             - This parameter is updatable.
         type: int
         aliases: ["initial_data_storage_size_in_gb"]
+    reco_storage_size_in_gb:
+        description:
+            - The size, in gigabytes, to scale the attached RECO storage up to for this virtual machine DB system. This value must be greater than current
+              storage size. Note that the resulting total storage size attached will be greater than the amount requested to allow for the software volume.
+              Applies only to virtual machine DB systems.
+            - This parameter is updatable.
+        type: int
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -557,6 +581,27 @@ options:
                     - "NO_PREFERENCE"
                     - "CUSTOM_PREFERENCE"
                 required: true
+            patching_mode:
+                description:
+                    - "Cloud Exadata infrastructure node patching method, either \\"ROLLING\\" or \\"NONROLLING\\". Default value is ROLLING."
+                    - "*IMPORTANT*: Non-rolling infrastructure patching involves system down time. See L(Oracle-Managed Infrastructure Maintenance
+                      Updates,https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/examaintenance.htm#Oracle) for more information."
+                    - Applicable when source is 'NONE'
+                type: str
+                choices:
+                    - "ROLLING"
+                    - "NONROLLING"
+            is_custom_action_timeout_enabled:
+                description:
+                    - If true, enables the configuration of a custom action timeout (waiting period) between database server patching operations.
+                    - Applicable when source is 'NONE'
+                type: bool
+            custom_action_timeout_in_mins:
+                description:
+                    - Determines the amount of time the system will wait before the start of each database server patching operation.
+                      Custom action timeout is in minutes and valid value is between 15 to 120 (inclusive).
+                    - Applicable when source is 'NONE'
+                type: int
             months:
                 description:
                     - Months during the year when maintenance should be performed.
@@ -668,6 +713,9 @@ EXAMPLES = """
         character_set: character_set_example
         ncharacter_set: ncharacter_set_example
         db_workload: OLTP
+        kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         db_domain: db_domain_example
         db_backup_config:
           # optional
@@ -733,6 +781,9 @@ EXAMPLES = """
       preference: NO_PREFERENCE
 
       # optional
+      patching_mode: ROLLING
+      is_custom_action_timeout_enabled: true
+      custom_action_timeout_in_mins: 56
       months:
       - # required
         name: JANUARY
@@ -765,6 +816,9 @@ EXAMPLES = """
         character_set: character_set_example
         ncharacter_set: ncharacter_set_example
         db_workload: OLTP
+        kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         db_domain: db_domain_example
         db_backup_config:
           # optional
@@ -844,6 +898,9 @@ EXAMPLES = """
         character_set: character_set_example
         ncharacter_set: ncharacter_set_example
         db_workload: OLTP
+        kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         db_domain: db_domain_example
         db_backup_config:
           # optional
@@ -925,6 +982,9 @@ EXAMPLES = """
         character_set: character_set_example
         ncharacter_set: ncharacter_set_example
         db_workload: OLTP
+        kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         db_domain: db_domain_example
         db_backup_config:
           # optional
@@ -999,6 +1059,7 @@ EXAMPLES = """
       action: APPLY
     ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
     data_storage_size_in_gbs: 56
+    reco_storage_size_in_gb: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     shape: shape_example
@@ -1010,6 +1071,9 @@ EXAMPLES = """
       preference: NO_PREFERENCE
 
       # optional
+      patching_mode: ROLLING
+      is_custom_action_timeout_enabled: true
+      custom_action_timeout_in_mins: 56
       months:
       - # required
         name: JANUARY
@@ -1035,6 +1099,7 @@ EXAMPLES = """
       action: APPLY
     ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
     data_storage_size_in_gbs: 56
+    reco_storage_size_in_gb: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     shape: shape_example
@@ -1046,6 +1111,9 @@ EXAMPLES = """
       preference: NO_PREFERENCE
 
       # optional
+      patching_mode: ROLLING
+      is_custom_action_timeout_enabled: true
+      custom_action_timeout_in_mins: 56
       months:
       - # required
         name: JANUARY
@@ -1404,6 +1472,27 @@ db_system:
                     returned: on success
                     type: str
                     sample: NO_PREFERENCE
+                patching_mode:
+                    description:
+                        - "Cloud Exadata infrastructure node patching method, either \\"ROLLING\\" or \\"NONROLLING\\". Default value is ROLLING."
+                        - "*IMPORTANT*: Non-rolling infrastructure patching involves system down time. See L(Oracle-Managed Infrastructure Maintenance
+                          Updates,https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/examaintenance.htm#Oracle) for more information."
+                    returned: on success
+                    type: str
+                    sample: ROLLING
+                is_custom_action_timeout_enabled:
+                    description:
+                        - If true, enables the configuration of a custom action timeout (waiting period) between database server patching operations.
+                    returned: on success
+                    type: bool
+                    sample: true
+                custom_action_timeout_in_mins:
+                    description:
+                        - Determines the amount of time the system will wait before the start of each database server patching operation.
+                          Custom action timeout is in minutes and valid value is between 15 to 120 (inclusive).
+                    returned: on success
+                    type: int
+                    sample: 56
                 months:
                     description:
                         - Months during the year when maintenance should be performed.
@@ -1547,6 +1636,9 @@ db_system:
         "license_model": "LICENSE_INCLUDED",
         "maintenance_window": {
             "preference": "NO_PREFERENCE",
+            "patching_mode": "ROLLING",
+            "is_custom_action_timeout_enabled": true,
+            "custom_action_timeout_in_mins": 56,
             "months": [{
                 "name": "JANUARY"
             }],
@@ -1778,6 +1870,9 @@ def main():
                             character_set=dict(type="str"),
                             ncharacter_set=dict(type="str"),
                             db_workload=dict(type="str", choices=["OLTP", "DSS"]),
+                            kms_key_id=dict(type="str"),
+                            kms_key_version_id=dict(type="str"),
+                            vault_id=dict(type="str"),
                             db_domain=dict(type="str"),
                             db_backup_config=dict(
                                 type="dict",
@@ -1860,6 +1955,7 @@ def main():
             data_storage_size_in_gbs=dict(
                 aliases=["initial_data_storage_size_in_gb"], type="int"
             ),
+            reco_storage_size_in_gb=dict(type="int"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             shape=dict(type="str"),
@@ -1876,6 +1972,9 @@ def main():
                         required=True,
                         choices=["NO_PREFERENCE", "CUSTOM_PREFERENCE"],
                     ),
+                    patching_mode=dict(type="str", choices=["ROLLING", "NONROLLING"]),
+                    is_custom_action_timeout_enabled=dict(type="bool"),
+                    custom_action_timeout_in_mins=dict(type="int"),
                     months=dict(
                         type="list",
                         elements="dict",

@@ -24,7 +24,8 @@ short_description: Manage a Dataset resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Dataset resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new Dataset.
-    - "This resource has the following action operations in the M(oracle.oci.oci_data_labeling_service_dataset_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_data_labeling_service_dataset_actions) module: add_dataset_labels,
+      change_compartment, generate_dataset_records, remove_dataset_labels, rename_dataset_labels, snapshot."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -121,6 +122,11 @@ options:
             - A user provided description of the dataset
             - This parameter is updatable.
         type: str
+    labeling_instructions:
+        description:
+            - The labeling instructions for human labelers in rich text format
+            - This parameter is updatable.
+        type: str
     freeform_tags:
         description:
             - "A simple key-value pair that is applied without any predefined name, type, or scope. It exists for cross-compatibility only.
@@ -181,6 +187,7 @@ EXAMPLES = """
       limit: 3.4
     display_name: display_name_example
     description: description_example
+    labeling_instructions: labeling_instructions_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -192,6 +199,7 @@ EXAMPLES = """
     # optional
     display_name: display_name_example
     description: description_example
+    labeling_instructions: labeling_instructions_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -203,6 +211,7 @@ EXAMPLES = """
 
     # optional
     description: description_example
+    labeling_instructions: labeling_instructions_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -364,6 +373,12 @@ dataset:
                     returned: on success
                     type: float
                     sample: 10
+        labeling_instructions:
+            description:
+                - The labeling instructions for human labelers in rich text format
+            returned: on success
+            type: str
+            sample: labeling_instructions_example
         freeform_tags:
             description:
                 - "A simple key-value pair that is applied without any predefined name, type, or scope. It exists for cross-compatibility only.
@@ -412,6 +427,7 @@ dataset:
         "initial_record_generation_configuration": {
             "limit": 10
         },
+        "labeling_instructions": "labeling_instructions_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "system_tags": {}
@@ -443,12 +459,6 @@ class DatasetHelperGen(OCIResourceHelperBase):
 
     def get_possible_entity_types(self):
         return super(DatasetHelperGen, self).get_possible_entity_types() + [
-            "datalabelingdataset",
-            "datalabelingdatasets",
-            "dataLabelingServicedatalabelingdataset",
-            "dataLabelingServicedatalabelingdatasets",
-            "datalabelingdatasetresource",
-            "datalabelingdatasetsresource",
             "dataset",
             "datasets",
             "dataLabelingServicedataset",
@@ -608,6 +618,7 @@ def main():
             ),
             display_name=dict(aliases=["name"], type="str"),
             description=dict(type="str"),
+            labeling_instructions=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             dataset_id=dict(aliases=["id"], type="str"),

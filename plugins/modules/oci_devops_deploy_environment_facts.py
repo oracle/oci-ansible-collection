@@ -53,6 +53,7 @@ options:
             - "DELETING"
             - "DELETED"
             - "FAILED"
+            - "NEEDS_ATTENTION"
     display_name:
         description:
             - A filter to return only resources that match the entire display name given.
@@ -111,7 +112,7 @@ deploy_environments:
             contains:
                 items:
                     description:
-                        - A list of selectors for the instance group. UNION operator is used for combining the instances selected by each selector.
+                        - A list of selectors for the instance group. Union operator is used for combining the instances selected by each selector.
                     returned: on success
                     type: complex
                     contains:
@@ -155,6 +156,31 @@ deploy_environments:
             returned: on success
             type: str
             sample: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
+        network_channel:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                network_channel_type:
+                    description:
+                        - Network channel type.
+                    returned: on success
+                    type: str
+                    sample: PRIVATE_ENDPOINT_CHANNEL
+                subnet_id:
+                    description:
+                        - The OCID of the subnet where Virtual Network Interface Cards (VNIC) resources are created for private endpoint access.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+                nsg_ids:
+                    description:
+                        - An array of network security group OCIDs.
+                    returned: on success
+                    type: list
+                    sample: []
         id:
             description:
                 - Unique identifier that is immutable on creation.
@@ -249,6 +275,11 @@ deploy_environments:
         },
         "function_id": "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx",
         "cluster_id": "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx",
+        "network_channel": {
+            "network_channel_type": "PRIVATE_ENDPOINT_CHANNEL",
+            "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+            "nsg_ids": []
+        },
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "description": "description_example",
         "display_name": "display_name_example",
@@ -343,6 +374,7 @@ def main():
                     "DELETING",
                     "DELETED",
                     "FAILED",
+                    "NEEDS_ATTENTION",
                 ],
             ),
             display_name=dict(aliases=["name"], type="str"),

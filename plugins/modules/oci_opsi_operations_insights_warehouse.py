@@ -24,7 +24,8 @@ short_description: Manage an OperationsInsightsWarehouse resource in Oracle Clou
 description:
     - This module allows the user to create, update and delete an OperationsInsightsWarehouse resource in Oracle Cloud Infrastructure
     - For I(state=present), create a Operations Insights Warehouse resource for the tenant in Operations Insights. New ADW will be provisioned for this tenant.
-      There is only expected to be 1 warehouse per tenant. The warehouse is expected to be in the root compartment.
+      There is only expected to be 1 warehouse per tenant. The warehouse is expected to be in the root compartment. If the 'opsi-warehouse-type'
+      header is passed to the API, a warehouse resource without ADW or Schema provisioning is created.
     - "This resource has the following action operations in the M(oracle.oci.oci_opsi_operations_insights_warehouse_actions) module:
       download_operations_insights_warehouse_wallet, rotate_operations_insights_warehouse_wallet."
 version_added: "2.9.0"

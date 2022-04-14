@@ -64,6 +64,118 @@ options:
             - If true, database backup on local Exadata storage is configured for the Autonomous VM cluster. If false, database backup on local Exadata storage
               is not available in the Autonomous VM cluster.
         type: bool
+    total_container_databases:
+        description:
+            - The total number of Autonomous Container Databases that can be created.
+        type: int
+    cpu_core_count_per_node:
+        description:
+            - The number of OCPU cores to enable per VM cluster node.
+        type: int
+    memory_per_oracle_compute_unit_in_gbs:
+        description:
+            - The amount of memory (in GBs) to be enabled per each OCPU core.
+        type: int
+    autonomous_data_storage_size_in_tbs:
+        description:
+            - The data disk group size to be allocated for Autonomous Databases, in TBs.
+        type: float
+    maintenance_window_details:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            preference:
+                description:
+                    - The maintenance window scheduling preference.
+                type: str
+                choices:
+                    - "NO_PREFERENCE"
+                    - "CUSTOM_PREFERENCE"
+                required: true
+            patching_mode:
+                description:
+                    - "Cloud Exadata infrastructure node patching method, either \\"ROLLING\\" or \\"NONROLLING\\". Default value is ROLLING."
+                    - "*IMPORTANT*: Non-rolling infrastructure patching involves system down time. See L(Oracle-Managed Infrastructure Maintenance
+                      Updates,https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/examaintenance.htm#Oracle) for more information."
+                type: str
+                choices:
+                    - "ROLLING"
+                    - "NONROLLING"
+            is_custom_action_timeout_enabled:
+                description:
+                    - If true, enables the configuration of a custom action timeout (waiting period) between database server patching operations.
+                type: bool
+            custom_action_timeout_in_mins:
+                description:
+                    - Determines the amount of time the system will wait before the start of each database server patching operation.
+                      Custom action timeout is in minutes and valid value is between 15 to 120 (inclusive).
+                type: int
+            months:
+                description:
+                    - Months during the year when maintenance should be performed.
+                type: list
+                elements: dict
+                suboptions:
+                    name:
+                        description:
+                            - Name of the month of the year.
+                        type: str
+                        choices:
+                            - "JANUARY"
+                            - "FEBRUARY"
+                            - "MARCH"
+                            - "APRIL"
+                            - "MAY"
+                            - "JUNE"
+                            - "JULY"
+                            - "AUGUST"
+                            - "SEPTEMBER"
+                            - "OCTOBER"
+                            - "NOVEMBER"
+                            - "DECEMBER"
+                        required: true
+            weeks_of_month:
+                description:
+                    - Weeks during the month when maintenance should be performed. Weeks start on the 1st, 8th, 15th, and 22nd days of the month, and have a
+                      duration of 7 days. Weeks start and end based on calendar dates, not days of the week.
+                      For example, to allow maintenance during the 2nd week of the month (from the 8th day to the 14th day of the month), use the value 2.
+                      Maintenance cannot be scheduled for the fifth week of months that contain more than 28 days.
+                      Note that this parameter works in conjunction with the  daysOfWeek and hoursOfDay parameters to allow you to specify specific days of the
+                      week and hours that maintenance will be performed.
+                type: list
+                elements: int
+            days_of_week:
+                description:
+                    - Days during the week when maintenance should be performed.
+                type: list
+                elements: dict
+                suboptions:
+                    name:
+                        description:
+                            - Name of the day of the week.
+                        type: str
+                        choices:
+                            - "MONDAY"
+                            - "TUESDAY"
+                            - "WEDNESDAY"
+                            - "THURSDAY"
+                            - "FRIDAY"
+                            - "SATURDAY"
+                            - "SUNDAY"
+                        required: true
+            hours_of_day:
+                description:
+                    - "The window of hours during the day when maintenance should be performed. The window is a 4 hour slot. Valid values are
+                      - 0 - represents time slot 0:00 - 3:59 UTC - 4 - represents time slot 4:00 - 7:59 UTC - 8 - represents time slot 8:00 - 11:59 UTC - 12 -
+                        represents time slot 12:00 - 15:59 UTC - 16 - represents time slot 16:00 - 19:59 UTC - 20 - represents time slot 20:00 - 23:59 UTC"
+                type: list
+                elements: int
+            lead_time_in_weeks:
+                description:
+                    - Lead time window allows user to set a lead time to prepare for a down time. The lead time is in weeks and valid value is between 1 to 4.
+                type: int
     license_model:
         description:
             - The Oracle license model that applies to the Autonomous VM cluster. The default is BRING_YOUR_OWN_LICENSE.
@@ -116,6 +228,27 @@ EXAMPLES = """
     # optional
     time_zone: time_zone_example
     is_local_backup_enabled: true
+    total_container_databases: 56
+    cpu_core_count_per_node: 56
+    memory_per_oracle_compute_unit_in_gbs: 56
+    autonomous_data_storage_size_in_tbs: 3.4
+    maintenance_window_details:
+      # required
+      preference: NO_PREFERENCE
+
+      # optional
+      patching_mode: ROLLING
+      is_custom_action_timeout_enabled: true
+      custom_action_timeout_in_mins: 56
+      months:
+      - # required
+        name: JANUARY
+      weeks_of_month: [ "weeks_of_month_example" ]
+      days_of_week:
+      - # required
+        name: MONDAY
+      hours_of_day: [ "hours_of_day_example" ]
+      lead_time_in_weeks: 56
     license_model: LICENSE_INCLUDED
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -126,6 +259,23 @@ EXAMPLES = """
     autonomous_vm_cluster_id: "ocid1.autonomousvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    maintenance_window_details:
+      # required
+      preference: NO_PREFERENCE
+
+      # optional
+      patching_mode: ROLLING
+      is_custom_action_timeout_enabled: true
+      custom_action_timeout_in_mins: 56
+      months:
+      - # required
+        name: JANUARY
+      weeks_of_month: [ "weeks_of_month_example" ]
+      days_of_week:
+      - # required
+        name: MONDAY
+      hours_of_day: [ "hours_of_day_example" ]
+      lead_time_in_weeks: 56
     license_model: LICENSE_INCLUDED
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -137,6 +287,23 @@ EXAMPLES = """
     display_name: display_name_example
 
     # optional
+    maintenance_window_details:
+      # required
+      preference: NO_PREFERENCE
+
+      # optional
+      patching_mode: ROLLING
+      is_custom_action_timeout_enabled: true
+      custom_action_timeout_in_mins: 56
+      months:
+      - # required
+        name: JANUARY
+      weeks_of_month: [ "weeks_of_month_example" ]
+      days_of_week:
+      - # required
+        name: MONDAY
+      hours_of_day: [ "hours_of_day_example" ]
+      lead_time_in_weeks: 56
     license_model: LICENSE_INCLUDED
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -243,6 +410,126 @@ autonomous_vm_cluster:
             returned: on success
             type: int
             sample: 56
+        total_container_databases:
+            description:
+                - The total number of Autonomous Container Databases that can be created.
+            returned: on success
+            type: int
+            sample: 56
+        memory_per_oracle_compute_unit_in_gbs:
+            description:
+                - The amount of memory (in GBs) enabled per each OCPU core.
+            returned: on success
+            type: int
+            sample: 56
+        cpu_core_count_per_node:
+            description:
+                - The number of OCPU cores enabled per VM cluster node.
+            returned: on success
+            type: int
+            sample: 56
+        autonomous_data_storage_size_in_tbs:
+            description:
+                - The data disk group size allocated for Autonomous Databases, in TBs.
+            returned: on success
+            type: float
+            sample: 1.2
+        maintenance_window:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                preference:
+                    description:
+                        - The maintenance window scheduling preference.
+                    returned: on success
+                    type: str
+                    sample: NO_PREFERENCE
+                patching_mode:
+                    description:
+                        - "Cloud Exadata infrastructure node patching method, either \\"ROLLING\\" or \\"NONROLLING\\". Default value is ROLLING."
+                        - "*IMPORTANT*: Non-rolling infrastructure patching involves system down time. See L(Oracle-Managed Infrastructure Maintenance
+                          Updates,https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/examaintenance.htm#Oracle) for more information."
+                    returned: on success
+                    type: str
+                    sample: ROLLING
+                is_custom_action_timeout_enabled:
+                    description:
+                        - If true, enables the configuration of a custom action timeout (waiting period) between database server patching operations.
+                    returned: on success
+                    type: bool
+                    sample: true
+                custom_action_timeout_in_mins:
+                    description:
+                        - Determines the amount of time the system will wait before the start of each database server patching operation.
+                          Custom action timeout is in minutes and valid value is between 15 to 120 (inclusive).
+                    returned: on success
+                    type: int
+                    sample: 56
+                months:
+                    description:
+                        - Months during the year when maintenance should be performed.
+                    returned: on success
+                    type: complex
+                    contains:
+                        name:
+                            description:
+                                - Name of the month of the year.
+                            returned: on success
+                            type: str
+                            sample: JANUARY
+                weeks_of_month:
+                    description:
+                        - Weeks during the month when maintenance should be performed. Weeks start on the 1st, 8th, 15th, and 22nd days of the month, and have a
+                          duration of 7 days. Weeks start and end based on calendar dates, not days of the week.
+                          For example, to allow maintenance during the 2nd week of the month (from the 8th day to the 14th day of the month), use the value 2.
+                          Maintenance cannot be scheduled for the fifth week of months that contain more than 28 days.
+                          Note that this parameter works in conjunction with the  daysOfWeek and hoursOfDay parameters to allow you to specify specific days of
+                          the week and hours that maintenance will be performed.
+                    returned: on success
+                    type: list
+                    sample: []
+                days_of_week:
+                    description:
+                        - Days during the week when maintenance should be performed.
+                    returned: on success
+                    type: complex
+                    contains:
+                        name:
+                            description:
+                                - Name of the day of the week.
+                            returned: on success
+                            type: str
+                            sample: MONDAY
+                hours_of_day:
+                    description:
+                        - "The window of hours during the day when maintenance should be performed. The window is a 4 hour slot. Valid values are
+                          - 0 - represents time slot 0:00 - 3:59 UTC - 4 - represents time slot 4:00 - 7:59 UTC - 8 - represents time slot 8:00 - 11:59 UTC - 12
+                            - represents time slot 12:00 - 15:59 UTC - 16 - represents time slot 16:00 - 19:59 UTC - 20 - represents time slot 20:00 - 23:59
+                            UTC"
+                    returned: on success
+                    type: list
+                    sample: []
+                lead_time_in_weeks:
+                    description:
+                        - Lead time window allows user to set a lead time to prepare for a down time. The lead time is in weeks and valid value is between 1 to
+                          4.
+                    returned: on success
+                    type: int
+                    sample: 56
+        last_maintenance_run_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last maintenance run.
+            returned: on success
+            type: str
+            sample: "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
+        next_maintenance_run_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the next maintenance run.
+            returned: on success
+            type: str
+            sample: "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
         memory_size_in_gbs:
             description:
                 - The memory allocated in GBs.
@@ -308,6 +595,27 @@ autonomous_vm_cluster:
         "cpus_enabled": 56,
         "ocpus_enabled": 3.4,
         "available_cpus": 56,
+        "total_container_databases": 56,
+        "memory_per_oracle_compute_unit_in_gbs": 56,
+        "cpu_core_count_per_node": 56,
+        "autonomous_data_storage_size_in_tbs": 1.2,
+        "maintenance_window": {
+            "preference": "NO_PREFERENCE",
+            "patching_mode": "ROLLING",
+            "is_custom_action_timeout_enabled": true,
+            "custom_action_timeout_in_mins": 56,
+            "months": [{
+                "name": "JANUARY"
+            }],
+            "weeks_of_month": [],
+            "days_of_week": [{
+                "name": "MONDAY"
+            }],
+            "hours_of_day": [],
+            "lead_time_in_weeks": 56
+        },
+        "last_maintenance_run_id": "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
+        "next_maintenance_run_id": "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
         "memory_size_in_gbs": 56,
         "db_node_storage_size_in_gbs": 56,
         "data_storage_size_in_tbs": 1.2,
@@ -418,6 +726,9 @@ class AutonomousVmClusterHelperGen(OCIResourceHelperBase):
     def get_create_model_class(self):
         return CreateAutonomousVmClusterDetails
 
+    def get_exclude_attributes(self):
+        return ["maintenance_window_details"]
+
     def create_resource(self):
         create_details = self.get_create_model()
         return oci_wait_utils.call_and_wait(
@@ -488,6 +799,69 @@ def main():
             vm_cluster_network_id=dict(type="str"),
             time_zone=dict(type="str"),
             is_local_backup_enabled=dict(type="bool"),
+            total_container_databases=dict(type="int"),
+            cpu_core_count_per_node=dict(type="int"),
+            memory_per_oracle_compute_unit_in_gbs=dict(type="int"),
+            autonomous_data_storage_size_in_tbs=dict(type="float"),
+            maintenance_window_details=dict(
+                type="dict",
+                options=dict(
+                    preference=dict(
+                        type="str",
+                        required=True,
+                        choices=["NO_PREFERENCE", "CUSTOM_PREFERENCE"],
+                    ),
+                    patching_mode=dict(type="str", choices=["ROLLING", "NONROLLING"]),
+                    is_custom_action_timeout_enabled=dict(type="bool"),
+                    custom_action_timeout_in_mins=dict(type="int"),
+                    months=dict(
+                        type="list",
+                        elements="dict",
+                        options=dict(
+                            name=dict(
+                                type="str",
+                                required=True,
+                                choices=[
+                                    "JANUARY",
+                                    "FEBRUARY",
+                                    "MARCH",
+                                    "APRIL",
+                                    "MAY",
+                                    "JUNE",
+                                    "JULY",
+                                    "AUGUST",
+                                    "SEPTEMBER",
+                                    "OCTOBER",
+                                    "NOVEMBER",
+                                    "DECEMBER",
+                                ],
+                            )
+                        ),
+                    ),
+                    weeks_of_month=dict(type="list", elements="int"),
+                    days_of_week=dict(
+                        type="list",
+                        elements="dict",
+                        options=dict(
+                            name=dict(
+                                type="str",
+                                required=True,
+                                choices=[
+                                    "MONDAY",
+                                    "TUESDAY",
+                                    "WEDNESDAY",
+                                    "THURSDAY",
+                                    "FRIDAY",
+                                    "SATURDAY",
+                                    "SUNDAY",
+                                ],
+                            )
+                        ),
+                    ),
+                    hours_of_day=dict(type="list", elements="int"),
+                    lead_time_in_weeks=dict(type="int"),
+                ),
+            ),
             license_model=dict(
                 type="str", choices=["LICENSE_INCLUDED", "BRING_YOUR_OWN_LICENSE"]
             ),

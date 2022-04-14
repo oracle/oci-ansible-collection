@@ -343,6 +343,27 @@ exadata_infrastructures:
                     returned: on success
                     type: str
                     sample: NO_PREFERENCE
+                patching_mode:
+                    description:
+                        - "Cloud Exadata infrastructure node patching method, either \\"ROLLING\\" or \\"NONROLLING\\". Default value is ROLLING."
+                        - "*IMPORTANT*: Non-rolling infrastructure patching involves system down time. See L(Oracle-Managed Infrastructure Maintenance
+                          Updates,https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/examaintenance.htm#Oracle) for more information."
+                    returned: on success
+                    type: str
+                    sample: ROLLING
+                is_custom_action_timeout_enabled:
+                    description:
+                        - If true, enables the configuration of a custom action timeout (waiting period) between database server patching operations.
+                    returned: on success
+                    type: bool
+                    sample: true
+                custom_action_timeout_in_mins:
+                    description:
+                        - Determines the amount of time the system will wait before the start of each database server patching operation.
+                          Custom action timeout is in minutes and valid value is between 15 to 120 (inclusive).
+                    returned: on success
+                    type: int
+                    sample: 56
                 months:
                     description:
                         - Months during the year when maintenance should be performed.
@@ -394,6 +415,18 @@ exadata_infrastructures:
                     returned: on success
                     type: int
                     sample: 56
+        storage_server_version:
+            description:
+                - The software version of the storage servers (cells) in the Exadata infrastructure.
+            returned: on success
+            type: str
+            sample: storage_server_version_example
+        db_server_version:
+            description:
+                - The software version of the database servers (dom0) in the Exadata infrastructure.
+            returned: on success
+            type: str
+            sample: db_server_version_example
         last_maintenance_run_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last maintenance run.
@@ -406,6 +439,16 @@ exadata_infrastructures:
             returned: on success
             type: str
             sample: "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
+        is_cps_offline_report_enabled:
+            description:
+                - Indicates whether cps offline diagnostic report is enabled for this Exadata infrastructure. This will allow a customer to quickly check status
+                  themselves and fix problems on their end, saving time and frustration
+                  for both Oracle and the customer when they find the CPS in a disconnected state.You can enable offline diagnostic report during Exadata
+                  infrastructure provisioning. You can also disable or enable it at any time
+                  using the UpdateExadatainfrastructure API.
+            returned: on success
+            type: bool
+            sample: true
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -462,6 +505,9 @@ exadata_infrastructures:
         "maintenance_slo_status": "OK",
         "maintenance_window": {
             "preference": "NO_PREFERENCE",
+            "patching_mode": "ROLLING",
+            "is_custom_action_timeout_enabled": true,
+            "custom_action_timeout_in_mins": 56,
             "months": [{
                 "name": "JANUARY"
             }],
@@ -472,8 +518,11 @@ exadata_infrastructures:
             "hours_of_day": [],
             "lead_time_in_weeks": 56
         },
+        "storage_server_version": "storage_server_version_example",
+        "db_server_version": "db_server_version_example",
         "last_maintenance_run_id": "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
         "next_maintenance_run_id": "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
+        "is_cps_offline_report_enabled": true,
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]

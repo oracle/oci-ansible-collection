@@ -30,7 +30,7 @@ oracle.oci.oci_database_db_server_facts -- Fetches details about one or multiple
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -412,12 +412,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="2">Key</th>
+            <th colspan="3">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-db_servers"></div>
                     <b>db_servers</b>
                     <a class="ansibleOptionLink" href="#return-db_servers" title="Permalink to this return value"></a>
@@ -430,12 +430,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of DbServer resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cpu_core_count&#x27;: 56, &#x27;db_node_ids&#x27;: [], &#x27;db_node_storage_size_in_gbs&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;exadata_infrastructure_id&#x27;: &#x27;ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;max_cpu_count&#x27;: 56, &#x27;max_db_node_storage_in_gbs&#x27;: 56, &#x27;max_memory_in_gbs&#x27;: 56, &#x27;memory_size_in_gbs&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vm_cluster_ids&#x27;: []}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cpu_core_count&#x27;: 56, &#x27;db_node_ids&#x27;: [], &#x27;db_node_storage_size_in_gbs&#x27;: 56, &#x27;db_server_patching_details&#x27;: {&#x27;estimated_patch_duration&#x27;: 56, &#x27;patching_status&#x27;: &#x27;SCHEDULED&#x27;, &#x27;time_patching_ended&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_patching_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;exadata_infrastructure_id&#x27;: &#x27;ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;max_cpu_count&#x27;: 56, &#x27;max_db_node_storage_in_gbs&#x27;: 56, &#x27;max_memory_in_gbs&#x27;: 56, &#x27;memory_size_in_gbs&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vm_cluster_ids&#x27;: []}]</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-db_servers/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-db_servers/compartment_id" title="Permalink to this return value"></a>
@@ -453,7 +453,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-db_servers/cpu_core_count"></div>
                     <b>cpu_core_count</b>
                     <a class="ansibleOptionLink" href="#return-db_servers/cpu_core_count" title="Permalink to this return value"></a>
@@ -471,7 +471,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-db_servers/db_node_ids"></div>
                     <b>db_node_ids</b>
                     <a class="ansibleOptionLink" href="#return-db_servers/db_node_ids" title="Permalink to this return value"></a>
@@ -487,7 +487,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-db_servers/db_node_storage_size_in_gbs"></div>
                     <b>db_node_storage_size_in_gbs</b>
                     <a class="ansibleOptionLink" href="#return-db_servers/db_node_storage_size_in_gbs" title="Permalink to this return value"></a>
@@ -505,7 +505,100 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-db_servers/db_server_patching_details"></div>
+                    <b>db_server_patching_details</b>
+                    <a class="ansibleOptionLink" href="#return-db_servers/db_server_patching_details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-db_servers/db_server_patching_details/estimated_patch_duration"></div>
+                    <b>estimated_patch_duration</b>
+                    <a class="ansibleOptionLink" href="#return-db_servers/db_server_patching_details/estimated_patch_duration" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Estimated time, in minutes, to patch one database server.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-db_servers/db_server_patching_details/patching_status"></div>
+                    <b>patching_status</b>
+                    <a class="ansibleOptionLink" href="#return-db_servers/db_server_patching_details/patching_status" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The status of the patching operation.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">SCHEDULED</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-db_servers/db_server_patching_details/time_patching_ended"></div>
+                    <b>time_patching_ended</b>
+                    <a class="ansibleOptionLink" href="#return-db_servers/db_server_patching_details/time_patching_ended" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The time when the patching operation ended.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-db_servers/db_server_patching_details/time_patching_started"></div>
+                    <b>time_patching_started</b>
+                    <a class="ansibleOptionLink" href="#return-db_servers/db_server_patching_details/time_patching_started" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The time when the patching operation started.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-db_servers/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-db_servers/defined_tags" title="Permalink to this return value"></a>
@@ -523,7 +616,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-db_servers/display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#return-db_servers/display_name" title="Permalink to this return value"></a>
@@ -541,7 +634,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-db_servers/exadata_infrastructure_id"></div>
                     <b>exadata_infrastructure_id</b>
                     <a class="ansibleOptionLink" href="#return-db_servers/exadata_infrastructure_id" title="Permalink to this return value"></a>
@@ -559,7 +652,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-db_servers/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-db_servers/freeform_tags" title="Permalink to this return value"></a>
@@ -578,7 +671,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-db_servers/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-db_servers/id" title="Permalink to this return value"></a>
@@ -596,7 +689,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-db_servers/lifecycle_details"></div>
                     <b>lifecycle_details</b>
                     <a class="ansibleOptionLink" href="#return-db_servers/lifecycle_details" title="Permalink to this return value"></a>
@@ -614,7 +707,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-db_servers/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-db_servers/lifecycle_state" title="Permalink to this return value"></a>
@@ -632,7 +725,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-db_servers/max_cpu_count"></div>
                     <b>max_cpu_count</b>
                     <a class="ansibleOptionLink" href="#return-db_servers/max_cpu_count" title="Permalink to this return value"></a>
@@ -650,7 +743,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-db_servers/max_db_node_storage_in_gbs"></div>
                     <b>max_db_node_storage_in_gbs</b>
                     <a class="ansibleOptionLink" href="#return-db_servers/max_db_node_storage_in_gbs" title="Permalink to this return value"></a>
@@ -668,7 +761,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-db_servers/max_memory_in_gbs"></div>
                     <b>max_memory_in_gbs</b>
                     <a class="ansibleOptionLink" href="#return-db_servers/max_memory_in_gbs" title="Permalink to this return value"></a>
@@ -686,7 +779,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-db_servers/memory_size_in_gbs"></div>
                     <b>memory_size_in_gbs</b>
                     <a class="ansibleOptionLink" href="#return-db_servers/memory_size_in_gbs" title="Permalink to this return value"></a>
@@ -704,7 +797,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-db_servers/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-db_servers/time_created" title="Permalink to this return value"></a>
@@ -722,7 +815,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-db_servers/vm_cluster_ids"></div>
                     <b>vm_cluster_ids</b>
                     <a class="ansibleOptionLink" href="#return-db_servers/vm_cluster_ids" title="Permalink to this return value"></a>

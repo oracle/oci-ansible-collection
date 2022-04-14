@@ -533,6 +533,12 @@ sddc:
             returned: on success
             type: str
             sample: CREATING
+        is_shielded_instance_enabled:
+            description:
+                - Indicates whether shielded instance is enabled at the SDDC level.
+            returned: on success
+            type: bool
+            sample: true
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -599,6 +605,7 @@ sddc:
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
+        "is_shielded_instance_enabled": true,
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }

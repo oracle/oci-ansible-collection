@@ -23,7 +23,8 @@ module: oci_management_agent_facts
 short_description: Fetches details about one or multiple ManagementAgent resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple ManagementAgent resources in Oracle Cloud Infrastructure
-    - Returns a list of Management Agent.
+    - Returns a list of Management Agents.
+      If no explicit page size limit is specified, it will default to 5000.
     - If I(management_agent_id) is specified, the details of a single ManagementAgent will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)

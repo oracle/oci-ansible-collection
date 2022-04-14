@@ -45,6 +45,13 @@ options:
             - "MANUAL"
             - "AUTONOMOUS"
             - "USER_MANAGED_OCI"
+    manual_database_sub_type:
+        description:
+            - Database manual connection subtype. This value can only be specified for manual connections.
+        type: str
+        choices:
+            - "ORACLE"
+            - "RDS_ORACLE"
     display_name:
         description:
             - Database Connection display name identifier.
@@ -240,6 +247,7 @@ EXAMPLES = """
       key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    manual_database_sub_type: ORACLE
     display_name: display_name_example
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     connect_descriptor:
@@ -385,6 +393,18 @@ connection:
             returned: on success
             type: str
             sample: MANUAL
+        manual_database_sub_type:
+            description:
+                - Database manual connection subtype. This value can only be specified for manual connections.
+            returned: on success
+            type: str
+            sample: ORACLE
+        is_dedicated:
+            description:
+                - True if the Autonomous Connection is dedicated. Not provided for Non-Autonomous Connections.
+            returned: on success
+            type: bool
+            sample: true
         display_name:
             description:
                 - Database Connection display name identifier.
@@ -582,6 +602,8 @@ connection:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "database_type": "MANUAL",
+        "manual_database_sub_type": "ORACLE",
+        "is_dedicated": true,
         "display_name": "display_name_example",
         "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
         "connect_descriptor": {
@@ -788,6 +810,7 @@ def main():
             database_type=dict(
                 type="str", choices=["MANUAL", "AUTONOMOUS", "USER_MANAGED_OCI"]
             ),
+            manual_database_sub_type=dict(type="str", choices=["ORACLE", "RDS_ORACLE"]),
             display_name=dict(aliases=["name"], type="str"),
             database_id=dict(type="str"),
             connect_descriptor=dict(

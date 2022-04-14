@@ -30,7 +30,7 @@ oracle.oci.oci_marketplace_search_listings_facts -- Fetches details about one or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -390,7 +390,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of SearchListings resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;categories&#x27;: [], &#x27;icon&#x27;: {&#x27;content_url&#x27;: &#x27;content_url_example&#x27;, &#x27;file_extension&#x27;: &#x27;file_extension_example&#x27;, &#x27;mime_type&#x27;: &#x27;mime_type_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_featured&#x27;: True, &#x27;is_rover_exportable&#x27;: True, &#x27;listing_type&#x27;: &#x27;COMMUNITY&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;package_type&#x27;: &#x27;ORCHESTRATION&#x27;, &#x27;pricing_types&#x27;: [], &#x27;publisher&#x27;: {&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}, &#x27;regions&#x27;: [{&#x27;code&#x27;: &#x27;code_example&#x27;, &#x27;countries&#x27;: [{&#x27;code&#x27;: &#x27;code_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;short_description&#x27;: &#x27;short_description_example&#x27;, &#x27;supported_operating_systems&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;tagline&#x27;: &#x27;tagline_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;categories&#x27;: [], &#x27;compatible_architectures&#x27;: [], &#x27;icon&#x27;: {&#x27;content_url&#x27;: &#x27;content_url_example&#x27;, &#x27;file_extension&#x27;: &#x27;file_extension_example&#x27;, &#x27;mime_type&#x27;: &#x27;mime_type_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_featured&#x27;: True, &#x27;is_rover_exportable&#x27;: True, &#x27;listing_type&#x27;: &#x27;COMMUNITY&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;package_type&#x27;: &#x27;ORCHESTRATION&#x27;, &#x27;pricing_types&#x27;: [], &#x27;publisher&#x27;: {&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}, &#x27;regions&#x27;: [{&#x27;code&#x27;: &#x27;code_example&#x27;, &#x27;countries&#x27;: [{&#x27;code&#x27;: &#x27;code_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;short_description&#x27;: &#x27;short_description_example&#x27;, &#x27;supported_operating_systems&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;tagline&#x27;: &#x27;tagline_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -406,6 +406,22 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Product categories that the listing belongs to.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-search_listings/compatible_architectures"></div>
+                    <b>compatible_architectures</b>
+                    <a class="ansibleOptionLink" href="#return-search_listings/compatible_architectures" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The list of compatible architectures supported by the listing</div>
                                         <br/>
                                                         </td>
             </tr>

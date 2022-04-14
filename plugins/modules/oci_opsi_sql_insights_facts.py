@@ -46,6 +46,15 @@ options:
             - "ATP-D"
             - "EXTERNAL-PDB"
             - "EXTERNAL-NONCDB"
+            - "COMANAGED-VM-CDB"
+            - "COMANAGED-VM-PDB"
+            - "COMANAGED-VM-NONCDB"
+            - "COMANAGED-BM-CDB"
+            - "COMANAGED-BM-PDB"
+            - "COMANAGED-BM-NONCDB"
+            - "COMANAGED-EXACS-CDB"
+            - "COMANAGED-EXACS-PDB"
+            - "COMANAGED-EXACS-NONCDB"
     database_id:
         description:
             - Optional list of database L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the associated DBaaS entity.
@@ -414,6 +423,15 @@ def main():
                     "ATP-D",
                     "EXTERNAL-PDB",
                     "EXTERNAL-NONCDB",
+                    "COMANAGED-VM-CDB",
+                    "COMANAGED-VM-PDB",
+                    "COMANAGED-VM-NONCDB",
+                    "COMANAGED-BM-CDB",
+                    "COMANAGED-BM-PDB",
+                    "COMANAGED-BM-NONCDB",
+                    "COMANAGED-EXACS-CDB",
+                    "COMANAGED-EXACS-PDB",
+                    "COMANAGED-EXACS-NONCDB",
                 ],
             ),
             database_id=dict(type="list", elements="str"),

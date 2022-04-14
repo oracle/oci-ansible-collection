@@ -547,6 +547,20 @@ class ExadataInfrastructureActionsHelperCustom:
         ).is_action_necessary(action, resource)
 
 
+class AutonomousExadataInfrastructureHelperCustom:
+    # resource `AutonomousExadataInfrastructure` has attribute `maintenance_window` which gives the scheduling details for
+    # the quarterly maintenance window. However object `UpdateAutonomousExadataInfrastructure` represents it with different
+    # name 'maintenance_window_details'.
+    def is_update_necessary(self, existing_resource_dict):
+        resource_dict = dict(existing_resource_dict)
+        resource_dict["maintenance_window_details"] = resource_dict.pop(
+            "maintenance_window", None
+        )
+        return super(
+            AutonomousExadataInfrastructureHelperCustom, self
+        ).is_update_necessary(resource_dict)
+
+
 class AutonomousContainerDatabaseHelperCustom:
     # resource `AutonomousContainerDatabase` has attribute `maintenance_window` which gives the scheduling details for
     # the quarterly maintenance window. However object `UpdateAutonomousContainerDatabase` represents it with different
@@ -769,34 +783,6 @@ class DatabaseHelperCustom:
         ]
 
         return exclude_attributes
-
-
-class AutonomousVmClusterHelperCustom:
-    # work requests generated for `UpdateAutonomousVmCluster` operation never gets completed however attributes get
-    # updated with values passed in request.
-    def update_resource(self):
-        operation_response = oci_common_utils.call_with_backoff(
-            self.client.update_autonomous_vm_cluster,
-            autonomous_vm_cluster_id=self.module.params.get("autonomous_vm_cluster_id"),
-            update_autonomous_vm_cluster_details=self.get_update_model(),
-        )
-
-        # Delete `opc-work-request-id` from operation_response to allow falling back to lifecycle based waiting.
-        if (
-            operation_response
-            and operation_response.headers
-            and oci_wait_utils.WORK_REQUEST_HEADER in operation_response.headers
-        ):
-            del operation_response.headers[oci_wait_utils.WORK_REQUEST_HEADER]
-
-        return oci_wait_utils.get_waiter(
-            oci_wait_utils.WORK_REQUEST_WAITER_KEY,
-            oci_common_utils.UPDATE_OPERATION_KEY,
-            self.work_request_client,
-            self,
-            operation_response=operation_response,
-            wait_for_states=oci_common_utils.get_work_request_completed_states(),
-        ).wait()
 
 
 class BackupDestinationHelperCustom:

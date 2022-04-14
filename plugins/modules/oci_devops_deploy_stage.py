@@ -27,26 +27,139 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    oke_canary_deploy_stage_id:
+        description:
+            - The OCID of an upstream OKE canary deployment stage in this pipeline.
+            - Required when deploy_stage_type is 'OKE_CANARY_TRAFFIC_SHIFT'
+        type: str
+    oke_blue_green_deploy_stage_id:
+        description:
+            - The OCID of the upstream OKE blue-green deployment stage in this pipeline.
+            - Required when deploy_stage_type is 'OKE_BLUE_GREEN_TRAFFIC_SHIFT'
+        type: str
+    compute_instance_group_blue_green_deployment_deploy_stage_id:
+        description:
+            - The OCID of the upstream compute instance group blue-green deployment stage in this pipeline.
+            - Required when deploy_stage_type is 'COMPUTE_INSTANCE_GROUP_BLUE_GREEN_TRAFFIC_SHIFT'
+        type: str
+    blue_green_strategy:
+        description:
+            - ""
+            - Required when deploy_stage_type is 'OKE_BLUE_GREEN_DEPLOYMENT'
+        type: dict
+        suboptions:
+            strategy_type:
+                description:
+                    - Blue-Green strategy type.
+                type: str
+                choices:
+                    - "NGINX_BLUE_GREEN_STRATEGY"
+                required: true
+            namespace_a:
+                description:
+                    - Namespace A for deployment.
+                type: str
+                required: true
+            namespace_b:
+                description:
+                    - Namespace B for deployment.
+                type: str
+                required: true
+            ingress_name:
+                description:
+                    - Name of the Ingress resource.
+                type: str
+                required: true
+    canary_strategy:
+        description:
+            - ""
+            - Required when deploy_stage_type is 'OKE_CANARY_DEPLOYMENT'
+        type: dict
+        suboptions:
+            strategy_type:
+                description:
+                    - Canary strategy type.
+                type: str
+                choices:
+                    - "NGINX_CANARY_STRATEGY"
+                required: true
+            namespace:
+                description:
+                    - Canary namespace to be used for Kubernetes canary deployment.
+                type: str
+                required: true
+            ingress_name:
+                description:
+                    - Name of the Ingress resource.
+                type: str
+                required: true
+    compute_instance_group_canary_deploy_stage_id:
+        description:
+            - A compute instance group canary stage OCID for load balancer.
+            - Required when deploy_stage_type is 'COMPUTE_INSTANCE_GROUP_CANARY_TRAFFIC_SHIFT'
+        type: str
+    compute_instance_group_canary_traffic_shift_deploy_stage_id:
+        description:
+            - A compute instance group canary traffic shift stage OCID for load balancer.
+            - Required when deploy_stage_type is 'COMPUTE_INSTANCE_GROUP_CANARY_APPROVAL'
+        type: str
+    deploy_environment_id_a:
+        description:
+            - First compute instance group environment OCID for deployment.
+            - Required when deploy_stage_type is 'COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT'
+        type: str
+    deploy_environment_id_b:
+        description:
+            - Second compute instance group environment OCID for deployment.
+            - Required when deploy_stage_type is 'COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT'
+        type: str
+    production_load_balancer_config:
+        description:
+            - ""
+            - Required when deploy_stage_type is one of ['COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT', 'COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT']
+        type: dict
+        suboptions:
+            load_balancer_id:
+                description:
+                    - The OCID of the load balancer.
+                    - Required when deploy_stage_type is 'COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT'
+                type: str
+                required: true
+            listener_name:
+                description:
+                    - Name of the load balancer listener.
+                    - Required when deploy_stage_type is 'COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT'
+                type: str
+                required: true
+            backend_port:
+                description:
+                    - Listen port for the backend server.
+                    - Applicable when deploy_stage_type is 'COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT'
+                type: int
     deploy_pipeline_id:
         description:
             - The OCID of a pipeline.
             - Required for create using I(state=present).
+        type: str
+    oke_canary_traffic_shift_deploy_stage_id:
+        description:
+            - The OCID of an upstream OKE canary deployment traffic shift stage in this pipeline.
+            - Required when deploy_stage_type is 'OKE_CANARY_APPROVAL'
+        type: str
+    compute_instance_group_deploy_environment_id:
+        description:
+            - A compute instance group environment OCID for Canary deployment.
+            - This parameter is updatable.
+            - Applicable when deploy_stage_type is 'COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT'
+            - Required when deploy_stage_type is one of ['COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT', 'COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT']
         type: str
     oke_cluster_deploy_environment_id:
         description:
             - Kubernetes cluster environment OCID for deployment.
             - This parameter is updatable.
             - Applicable when deploy_stage_type is 'OKE_DEPLOYMENT'
-            - Required when deploy_stage_type is 'OKE_DEPLOYMENT'
+            - Required when deploy_stage_type is one of ['OKE_DEPLOYMENT', 'OKE_CANARY_DEPLOYMENT', 'OKE_BLUE_GREEN_DEPLOYMENT']
         type: str
-    kubernetes_manifest_deploy_artifact_ids:
-        description:
-            - List of Kubernetes manifest artifact OCIDs, the manifests should not include any job resource.
-            - This parameter is updatable.
-            - Applicable when deploy_stage_type is 'OKE_DEPLOYMENT'
-            - Required when deploy_stage_type is 'OKE_DEPLOYMENT'
-        type: list
-        elements: str
     namespace:
         description:
             - Default namespace to be used for Kubernetes deployment when not specified in the manifest.
@@ -88,104 +201,6 @@ options:
             - Applicable when deploy_stage_type is 'LOAD_BALANCER_TRAFFIC_SHIFT'
             - Required when deploy_stage_type is 'LOAD_BALANCER_TRAFFIC_SHIFT'
         type: str
-    compute_instance_group_deploy_environment_id:
-        description:
-            - A compute instance group environment OCID for rolling deployment.
-            - This parameter is updatable.
-            - Applicable when deploy_stage_type is 'COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT'
-            - Required when deploy_stage_type is 'COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT'
-        type: str
-    deployment_spec_deploy_artifact_id:
-        description:
-            - The OCID of the artifact that contains the deployment specification.
-            - This parameter is updatable.
-            - Applicable when deploy_stage_type is 'COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT'
-            - Required when deploy_stage_type is 'COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT'
-        type: str
-    deploy_artifact_ids:
-        description:
-            - Additional file artifact OCIDs.
-            - This parameter is updatable.
-            - Applicable when deploy_stage_type is 'COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT'
-        type: list
-        elements: str
-    rollout_policy:
-        description:
-            - ""
-            - This parameter is updatable.
-            - Applicable when deploy_stage_type is one of ['COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT', 'LOAD_BALANCER_TRAFFIC_SHIFT']
-            - Required when deploy_stage_type is one of ['COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT', 'LOAD_BALANCER_TRAFFIC_SHIFT']
-        type: dict
-        suboptions:
-            ramp_limit_percent:
-                description:
-                    - Indicates the criteria to stop.
-                    - Applicable when deploy_stage_type is 'LOAD_BALANCER_TRAFFIC_SHIFT'
-                type: float
-            batch_percentage:
-                description:
-                    - The percentage that will be used to determine how many instances will be deployed concurrently.
-                    - Required when policy_type is 'COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE'
-                type: int
-            policy_type:
-                description:
-                    - The type of policy used for rolling out a deployment stage.
-                type: str
-                choices:
-                    - "COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE"
-                    - "COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_COUNT"
-            batch_delay_in_seconds:
-                description:
-                    - Specifies delay in seconds between batches. The default delay is 1 minute.
-                    - Applicable when deploy_stage_type is one of ['COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE',
-                      'COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_COUNT', 'LOAD_BALANCER_TRAFFIC_SHIFT']
-                type: int
-            batch_count:
-                description:
-                    - Specifies number of batches for this stage.
-                    - Required when deploy_stage_type is one of ['COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_COUNT', 'LOAD_BALANCER_TRAFFIC_SHIFT']
-                type: int
-    rollback_policy:
-        description:
-            - ""
-            - This parameter is updatable.
-            - Applicable when deploy_stage_type is one of ['COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT', 'OKE_DEPLOYMENT', 'LOAD_BALANCER_TRAFFIC_SHIFT']
-        type: dict
-        suboptions:
-            policy_type:
-                description:
-                    - Specifies type of the deployment stage rollback policy.
-                type: str
-                choices:
-                    - "NO_STAGE_ROLLBACK_POLICY"
-                    - "AUTOMATED_STAGE_ROLLBACK_POLICY"
-                required: true
-    failure_policy:
-        description:
-            - ""
-            - This parameter is updatable.
-            - Applicable when deploy_stage_type is 'COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT'
-        type: dict
-        suboptions:
-            failure_percentage:
-                description:
-                    - The failure percentage threshold, which when reached or exceeded sets the stage as FAILED. Percentage is computed as the ceiling value of
-                      the number of failed instances over the total count of the instances in the group.
-                    - Required when policy_type is 'COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE'
-                type: int
-            policy_type:
-                description:
-                    - Specifies if the failure instance size is given by absolute number or by percentage.
-                type: str
-                choices:
-                    - "COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE"
-                    - "COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_COUNT"
-                required: true
-            failure_count:
-                description:
-                    - The threshold count of failed instances in the group, which when reached or exceeded sets the stage as FAILED.
-                    - Required when policy_type is 'COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_COUNT'
-                type: int
     load_balancer_config:
         description:
             - ""
@@ -211,6 +226,29 @@ options:
                     - Listen port for the backend server.
                     - Applicable when deploy_stage_type is 'LOAD_BALANCER_TRAFFIC_SHIFT'
                 type: int
+    rollback_policy:
+        description:
+            - ""
+            - This parameter is updatable.
+            - Applicable when deploy_stage_type is one of ['COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT', 'OKE_DEPLOYMENT', 'LOAD_BALANCER_TRAFFIC_SHIFT']
+        type: dict
+        suboptions:
+            policy_type:
+                description:
+                    - Specifies type of the deployment stage rollback policy.
+                type: str
+                choices:
+                    - "NO_STAGE_ROLLBACK_POLICY"
+                    - "AUTOMATED_STAGE_ROLLBACK_POLICY"
+                required: true
+    kubernetes_manifest_deploy_artifact_ids:
+        description:
+            - List of Kubernetes manifest artifact OCIDs.
+            - This parameter is updatable.
+            - Applicable when deploy_stage_type is one of ['OKE_DEPLOYMENT', 'OKE_CANARY_DEPLOYMENT', 'OKE_BLUE_GREEN_DEPLOYMENT']
+            - Required when deploy_stage_type is one of ['OKE_DEPLOYMENT', 'OKE_CANARY_DEPLOYMENT', 'OKE_BLUE_GREEN_DEPLOYMENT']
+        type: list
+        elements: str
     wait_criteria:
         description:
             - ""
@@ -236,8 +274,8 @@ options:
         description:
             - ""
             - This parameter is updatable.
-            - Applicable when deploy_stage_type is 'MANUAL_APPROVAL'
-            - Required when deploy_stage_type is 'MANUAL_APPROVAL'
+            - Applicable when deploy_stage_type is one of ['COMPUTE_INSTANCE_GROUP_CANARY_APPROVAL', 'MANUAL_APPROVAL', 'OKE_CANARY_APPROVAL']
+            - Required when deploy_stage_type is one of ['COMPUTE_INSTANCE_GROUP_CANARY_APPROVAL', 'MANUAL_APPROVAL', 'OKE_CANARY_APPROVAL']
         type: dict
         suboptions:
             approval_policy_type:
@@ -252,6 +290,73 @@ options:
                     - A minimum number of approvals required for stage to proceed.
                 type: int
                 required: true
+    failure_policy:
+        description:
+            - ""
+            - This parameter is updatable.
+            - Applicable when deploy_stage_type is one of ['COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT', 'COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT']
+        type: dict
+        suboptions:
+            failure_percentage:
+                description:
+                    - The failure percentage threshold, which when reached or exceeded sets the stage as Failed. Percentage is computed as the ceiling value of
+                      the number of failed instances over the total count of the instances in the group.
+                    - Required when policy_type is 'COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE'
+                type: int
+            policy_type:
+                description:
+                    - Specifies if the failure instance size is given by absolute number or by percentage.
+                type: str
+                choices:
+                    - "COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE"
+                    - "COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_COUNT"
+                required: true
+            failure_count:
+                description:
+                    - The threshold count of failed instances in the group, which when reached or exceeded sets the stage as Failed.
+                    - Required when policy_type is 'COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_COUNT'
+                type: int
+    deployment_spec_deploy_artifact_id:
+        description:
+            - The OCID of the artifact that contains the deployment specification.
+            - This parameter is updatable.
+            - Applicable when deploy_stage_type is one of ['COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT', 'COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT',
+              'COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT']
+            - Required when deploy_stage_type is one of ['COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT', 'COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT',
+              'COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT']
+        type: str
+    deploy_artifact_ids:
+        description:
+            - The list of file artifact OCIDs to deploy.
+            - This parameter is updatable.
+            - Applicable when deploy_stage_type is one of ['COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT', 'COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT',
+              'COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT']
+        type: list
+        elements: str
+    test_load_balancer_config:
+        description:
+            - ""
+            - This parameter is updatable.
+            - Applicable when deploy_stage_type is one of ['COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT', 'COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT']
+        type: dict
+        suboptions:
+            load_balancer_id:
+                description:
+                    - The OCID of the load balancer.
+                    - Required when deploy_stage_type is 'COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT'
+                type: str
+                required: true
+            listener_name:
+                description:
+                    - Name of the load balancer listener.
+                    - Required when deploy_stage_type is 'COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT'
+                type: str
+                required: true
+            backend_port:
+                description:
+                    - Listen port for the backend server.
+                    - Applicable when deploy_stage_type is 'COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT'
+                type: int
     docker_image_deploy_artifact_id:
         description:
             - A Docker image artifact OCID.
@@ -277,6 +382,46 @@ options:
             - This parameter is updatable.
             - Applicable when deploy_stage_type is 'DEPLOY_FUNCTION'
         type: int
+    rollout_policy:
+        description:
+            - ""
+            - This parameter is updatable.
+            - Applicable when deploy_stage_type is one of ['COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT', 'COMPUTE_INSTANCE_GROUP_CANARY_TRAFFIC_SHIFT',
+              'COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT', 'OKE_CANARY_TRAFFIC_SHIFT', 'COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT',
+              'LOAD_BALANCER_TRAFFIC_SHIFT']
+            - Required when deploy_stage_type is one of ['COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT', 'COMPUTE_INSTANCE_GROUP_CANARY_TRAFFIC_SHIFT',
+              'COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT', 'OKE_CANARY_TRAFFIC_SHIFT', 'COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT',
+              'LOAD_BALANCER_TRAFFIC_SHIFT']
+        type: dict
+        suboptions:
+            ramp_limit_percent:
+                description:
+                    - Indicates the criteria to stop.
+                    - Applicable when deploy_stage_type is 'OKE_CANARY_TRAFFIC_SHIFT'
+                type: float
+            batch_percentage:
+                description:
+                    - The percentage that will be used to determine how many instances will be deployed concurrently.
+                    - Required when policy_type is 'COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE'
+                type: int
+            policy_type:
+                description:
+                    - The type of policy used for rolling out a deployment stage.
+                type: str
+                choices:
+                    - "COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE"
+                    - "COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_COUNT"
+            batch_delay_in_seconds:
+                description:
+                    - Specifies delay in seconds between batches. The default delay is 1 minute.
+                    - Applicable when deploy_stage_type is one of ['OKE_CANARY_TRAFFIC_SHIFT', 'COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE',
+                      'COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_COUNT']
+                type: int
+            batch_count:
+                description:
+                    - Specifies number of batches for this stage.
+                    - Required when deploy_stage_type is one of ['OKE_CANARY_TRAFFIC_SHIFT', 'COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_COUNT']
+                type: int
     description:
         description:
             - Optional description about the deployment stage.
@@ -295,26 +440,39 @@ options:
             - Required for create using I(state=present), update using I(state=present) with deploy_stage_id present.
         type: str
         choices:
-            - "MANUAL_APPROVAL"
+            - "OKE_CANARY_TRAFFIC_SHIFT"
+            - "OKE_BLUE_GREEN_TRAFFIC_SHIFT"
+            - "COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT"
             - "WAIT"
-            - "OKE_DEPLOYMENT"
             - "LOAD_BALANCER_TRAFFIC_SHIFT"
+            - "COMPUTE_INSTANCE_GROUP_BLUE_GREEN_TRAFFIC_SHIFT"
+            - "OKE_BLUE_GREEN_DEPLOYMENT"
             - "COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT"
             - "INVOKE_FUNCTION"
             - "DEPLOY_FUNCTION"
+            - "OKE_CANARY_DEPLOYMENT"
+            - "COMPUTE_INSTANCE_GROUP_CANARY_TRAFFIC_SHIFT"
+            - "COMPUTE_INSTANCE_GROUP_CANARY_APPROVAL"
+            - "MANUAL_APPROVAL"
+            - "OKE_DEPLOYMENT"
+            - "COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT"
+            - "OKE_CANARY_APPROVAL"
     deploy_stage_predecessor_collection:
         description:
             - ""
             - Required for create using I(state=present).
             - This parameter is updatable.
-            - Applicable when deploy_stage_type is one of ['COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT', 'OKE_DEPLOYMENT', 'DEPLOY_FUNCTION', 'MANUAL_APPROVAL',
+            - Applicable when deploy_stage_type is one of ['COMPUTE_INSTANCE_GROUP_CANARY_TRAFFIC_SHIFT', 'OKE_BLUE_GREEN_TRAFFIC_SHIFT', 'OKE_DEPLOYMENT',
+              'DEPLOY_FUNCTION', 'OKE_CANARY_DEPLOYMENT', 'COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT', 'OKE_BLUE_GREEN_DEPLOYMENT',
+              'COMPUTE_INSTANCE_GROUP_BLUE_GREEN_TRAFFIC_SHIFT', 'OKE_CANARY_APPROVAL', 'COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT',
+              'COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT', 'OKE_CANARY_TRAFFIC_SHIFT', 'COMPUTE_INSTANCE_GROUP_CANARY_APPROVAL', 'MANUAL_APPROVAL',
               'LOAD_BALANCER_TRAFFIC_SHIFT', 'WAIT', 'INVOKE_FUNCTION']
         type: dict
         suboptions:
             items:
                 description:
                     - A list of stage predecessors for a stage.
-                    - Required when deploy_stage_type is 'MANUAL_APPROVAL'
+                    - Required when deploy_stage_type is 'OKE_CANARY_TRAFFIC_SHIFT'
                 type: list
                 elements: dict
                 required: true
@@ -322,7 +480,7 @@ options:
                     id:
                         description:
                             - The OCID of the predecessor stage. If a stage is the first stage in the pipeline, then the ID is the pipeline's OCID.
-                            - Required when deploy_stage_type is 'MANUAL_APPROVAL'
+                            - Required when deploy_stage_type is 'OKE_CANARY_TRAFFIC_SHIFT'
                         type: str
                         required: true
     freeform_tags:
@@ -384,17 +542,80 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 """
 
 EXAMPLES = """
-- name: Create deploy_stage with deploy_stage_type = MANUAL_APPROVAL
+- name: Create deploy_stage with deploy_stage_type = OKE_CANARY_TRAFFIC_SHIFT
   oci_devops_deploy_stage:
     # required
+    oke_canary_deploy_stage_id: "ocid1.okecanarydeploystage.oc1..xxxxxxEXAMPLExxxxxx"
     deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
-    deploy_stage_type: MANUAL_APPROVAL
+    deploy_stage_type: OKE_CANARY_TRAFFIC_SHIFT
 
     # optional
-    approval_policy:
+    rollout_policy:
       # required
-      approval_policy_type: COUNT_BASED_APPROVAL
-      number_of_approvals_required: 56
+      batch_percentage: 56
+      policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
+
+      # optional
+      batch_delay_in_seconds: 56
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Create deploy_stage with deploy_stage_type = OKE_BLUE_GREEN_TRAFFIC_SHIFT
+  oci_devops_deploy_stage:
+    # required
+    oke_blue_green_deploy_stage_id: "ocid1.okebluegreendeploystage.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_stage_type: OKE_BLUE_GREEN_TRAFFIC_SHIFT
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Create deploy_stage with deploy_stage_type = COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT
+  oci_devops_deploy_stage:
+    # required
+    production_load_balancer_config:
+      # required
+      load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+      listener_name: listener_name_example
+
+      # optional
+      backend_port: 56
+    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+    compute_instance_group_deploy_environment_id: "ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_stage_type: COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT
+
+    # optional
+    deployment_spec_deploy_artifact_id: "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_artifact_ids: [ "deploy_artifact_ids_example" ]
+    test_load_balancer_config:
+      # required
+      load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+      listener_name: listener_name_example
+
+      # optional
+      backend_port: 56
+    rollout_policy:
+      # required
+      batch_percentage: 56
+      policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
+
+      # optional
+      batch_delay_in_seconds: 56
     description: description_example
     display_name: display_name_example
     deploy_stage_predecessor_collection:
@@ -426,29 +647,6 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
-- name: Create deploy_stage with deploy_stage_type = OKE_DEPLOYMENT
-  oci_devops_deploy_stage:
-    # required
-    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
-    deploy_stage_type: OKE_DEPLOYMENT
-
-    # optional
-    oke_cluster_deploy_environment_id: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
-    kubernetes_manifest_deploy_artifact_ids: [ "kubernetes_manifest_deploy_artifact_ids_example" ]
-    namespace: namespace_example
-    rollback_policy:
-      # required
-      policy_type: NO_STAGE_ROLLBACK_POLICY
-    description: description_example
-    display_name: display_name_example
-    deploy_stage_predecessor_collection:
-      # required
-      items:
-      - # required
-        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
-
 - name: Create deploy_stage with deploy_stage_type = LOAD_BALANCER_TRAFFIC_SHIFT
   oci_devops_deploy_stage:
     # required
@@ -463,16 +661,6 @@ EXAMPLES = """
       # optional
       items: [ "items_example" ]
     traffic_shift_target: traffic_shift_target_example
-    rollout_policy:
-      # required
-      batch_percentage: 56
-      policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
-
-      # optional
-      batch_delay_in_seconds: 56
-    rollback_policy:
-      # required
-      policy_type: NO_STAGE_ROLLBACK_POLICY
     load_balancer_config:
       # required
       load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
@@ -480,6 +668,59 @@ EXAMPLES = """
 
       # optional
       backend_port: 56
+    rollback_policy:
+      # required
+      policy_type: NO_STAGE_ROLLBACK_POLICY
+    rollout_policy:
+      # required
+      batch_percentage: 56
+      policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
+
+      # optional
+      batch_delay_in_seconds: 56
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Create deploy_stage with deploy_stage_type = COMPUTE_INSTANCE_GROUP_BLUE_GREEN_TRAFFIC_SHIFT
+  oci_devops_deploy_stage:
+    # required
+    compute_instance_group_blue_green_deployment_deploy_stage_id: "ocid1.computeinstancegroupbluegreendeploymentdeploystage.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_stage_type: COMPUTE_INSTANCE_GROUP_BLUE_GREEN_TRAFFIC_SHIFT
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Create deploy_stage with deploy_stage_type = OKE_BLUE_GREEN_DEPLOYMENT
+  oci_devops_deploy_stage:
+    # required
+    blue_green_strategy:
+      # required
+      strategy_type: NGINX_BLUE_GREEN_STRATEGY
+      namespace_a: namespace_a_example
+      namespace_b: namespace_b_example
+      ingress_name: ingress_name_example
+    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+    oke_cluster_deploy_environment_id: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_stage_type: OKE_BLUE_GREEN_DEPLOYMENT
+
+    # optional
+    kubernetes_manifest_deploy_artifact_ids: [ "kubernetes_manifest_deploy_artifact_ids_example" ]
     description: description_example
     display_name: display_name_example
     deploy_stage_predecessor_collection:
@@ -498,6 +739,20 @@ EXAMPLES = """
 
     # optional
     compute_instance_group_deploy_environment_id: "ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+    load_balancer_config:
+      # required
+      load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+      listener_name: listener_name_example
+
+      # optional
+      backend_port: 56
+    rollback_policy:
+      # required
+      policy_type: NO_STAGE_ROLLBACK_POLICY
+    failure_policy:
+      # required
+      failure_percentage: 56
+      policy_type: COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE
     deployment_spec_deploy_artifact_id: "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
     deploy_artifact_ids: [ "deploy_artifact_ids_example" ]
     rollout_policy:
@@ -507,20 +762,6 @@ EXAMPLES = """
 
       # optional
       batch_delay_in_seconds: 56
-    rollback_policy:
-      # required
-      policy_type: NO_STAGE_ROLLBACK_POLICY
-    failure_policy:
-      # required
-      failure_percentage: 56
-      policy_type: COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE
-    load_balancer_config:
-      # required
-      load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-      listener_name: listener_name_example
-
-      # optional
-      backend_port: 56
     description: description_example
     display_name: display_name_example
     deploy_stage_predecessor_collection:
@@ -574,9 +815,81 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     function_deploy_environment_id: "ocid1.functiondeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update deploy_stage with deploy_stage_type = MANUAL_APPROVAL
+- name: Create deploy_stage with deploy_stage_type = OKE_CANARY_DEPLOYMENT
   oci_devops_deploy_stage:
     # required
+    canary_strategy:
+      # required
+      strategy_type: NGINX_CANARY_STRATEGY
+      namespace: namespace_example
+      ingress_name: ingress_name_example
+    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+    oke_cluster_deploy_environment_id: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_stage_type: OKE_CANARY_DEPLOYMENT
+
+    # optional
+    kubernetes_manifest_deploy_artifact_ids: [ "kubernetes_manifest_deploy_artifact_ids_example" ]
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Create deploy_stage with deploy_stage_type = COMPUTE_INSTANCE_GROUP_CANARY_TRAFFIC_SHIFT
+  oci_devops_deploy_stage:
+    # required
+    compute_instance_group_canary_deploy_stage_id: "ocid1.computeinstancegroupcanarydeploystage.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_stage_type: COMPUTE_INSTANCE_GROUP_CANARY_TRAFFIC_SHIFT
+
+    # optional
+    rollout_policy:
+      # required
+      batch_percentage: 56
+      policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
+
+      # optional
+      batch_delay_in_seconds: 56
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Create deploy_stage with deploy_stage_type = COMPUTE_INSTANCE_GROUP_CANARY_APPROVAL
+  oci_devops_deploy_stage:
+    # required
+    compute_instance_group_canary_traffic_shift_deploy_stage_id: "ocid1.computeinstancegroupcanarytrafficshiftdeploystage.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_stage_type: COMPUTE_INSTANCE_GROUP_CANARY_APPROVAL
+
+    # optional
+    approval_policy:
+      # required
+      approval_policy_type: COUNT_BASED_APPROVAL
+      number_of_approvals_required: 56
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Create deploy_stage with deploy_stage_type = MANUAL_APPROVAL
+  oci_devops_deploy_stage:
+    # required
+    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
     deploy_stage_type: MANUAL_APPROVAL
 
     # optional
@@ -584,6 +897,169 @@ EXAMPLES = """
       # required
       approval_policy_type: COUNT_BASED_APPROVAL
       number_of_approvals_required: 56
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Create deploy_stage with deploy_stage_type = OKE_DEPLOYMENT
+  oci_devops_deploy_stage:
+    # required
+    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_stage_type: OKE_DEPLOYMENT
+
+    # optional
+    oke_cluster_deploy_environment_id: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+    namespace: namespace_example
+    rollback_policy:
+      # required
+      policy_type: NO_STAGE_ROLLBACK_POLICY
+    kubernetes_manifest_deploy_artifact_ids: [ "kubernetes_manifest_deploy_artifact_ids_example" ]
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Create deploy_stage with deploy_stage_type = COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT
+  oci_devops_deploy_stage:
+    # required
+    deploy_environment_id_a: deploy_environment_id_a_example
+    deploy_environment_id_b: deploy_environment_id_b_example
+    production_load_balancer_config:
+      # required
+      load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+      listener_name: listener_name_example
+
+      # optional
+      backend_port: 56
+    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_stage_type: COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT
+
+    # optional
+    failure_policy:
+      # required
+      failure_percentage: 56
+      policy_type: COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE
+    deployment_spec_deploy_artifact_id: "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_artifact_ids: [ "deploy_artifact_ids_example" ]
+    test_load_balancer_config:
+      # required
+      load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+      listener_name: listener_name_example
+
+      # optional
+      backend_port: 56
+    rollout_policy:
+      # required
+      batch_percentage: 56
+      policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
+
+      # optional
+      batch_delay_in_seconds: 56
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Create deploy_stage with deploy_stage_type = OKE_CANARY_APPROVAL
+  oci_devops_deploy_stage:
+    # required
+    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+    oke_canary_traffic_shift_deploy_stage_id: "ocid1.okecanarytrafficshiftdeploystage.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_stage_type: OKE_CANARY_APPROVAL
+
+    # optional
+    approval_policy:
+      # required
+      approval_policy_type: COUNT_BASED_APPROVAL
+      number_of_approvals_required: 56
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update deploy_stage with deploy_stage_type = OKE_CANARY_TRAFFIC_SHIFT
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: OKE_CANARY_TRAFFIC_SHIFT
+
+    # optional
+    rollout_policy:
+      # required
+      batch_percentage: 56
+      policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
+
+      # optional
+      batch_delay_in_seconds: 56
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update deploy_stage with deploy_stage_type = OKE_BLUE_GREEN_TRAFFIC_SHIFT
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: OKE_BLUE_GREEN_TRAFFIC_SHIFT
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update deploy_stage with deploy_stage_type = COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT
+  oci_devops_deploy_stage:
+    # required
+    compute_instance_group_deploy_environment_id: "ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_stage_type: COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT
+
+    # optional
+    deployment_spec_deploy_artifact_id: "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_artifact_ids: [ "deploy_artifact_ids_example" ]
+    test_load_balancer_config:
+      # required
+      load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+      listener_name: listener_name_example
+
+      # optional
+      backend_port: 56
+    rollout_policy:
+      # required
+      batch_percentage: 56
+      policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
+
+      # optional
+      batch_delay_in_seconds: 56
     description: description_example
     display_name: display_name_example
     deploy_stage_predecessor_collection:
@@ -614,28 +1090,6 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
-- name: Update deploy_stage with deploy_stage_type = OKE_DEPLOYMENT
-  oci_devops_deploy_stage:
-    # required
-    deploy_stage_type: OKE_DEPLOYMENT
-
-    # optional
-    oke_cluster_deploy_environment_id: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
-    kubernetes_manifest_deploy_artifact_ids: [ "kubernetes_manifest_deploy_artifact_ids_example" ]
-    namespace: namespace_example
-    rollback_policy:
-      # required
-      policy_type: NO_STAGE_ROLLBACK_POLICY
-    description: description_example
-    display_name: display_name_example
-    deploy_stage_predecessor_collection:
-      # required
-      items:
-      - # required
-        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
-
 - name: Update deploy_stage with deploy_stage_type = LOAD_BALANCER_TRAFFIC_SHIFT
   oci_devops_deploy_stage:
     # required
@@ -649,16 +1103,6 @@ EXAMPLES = """
       # optional
       items: [ "items_example" ]
     traffic_shift_target: traffic_shift_target_example
-    rollout_policy:
-      # required
-      batch_percentage: 56
-      policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
-
-      # optional
-      batch_delay_in_seconds: 56
-    rollback_policy:
-      # required
-      policy_type: NO_STAGE_ROLLBACK_POLICY
     load_balancer_config:
       # required
       load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
@@ -666,6 +1110,50 @@ EXAMPLES = """
 
       # optional
       backend_port: 56
+    rollback_policy:
+      # required
+      policy_type: NO_STAGE_ROLLBACK_POLICY
+    rollout_policy:
+      # required
+      batch_percentage: 56
+      policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
+
+      # optional
+      batch_delay_in_seconds: 56
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update deploy_stage with deploy_stage_type = COMPUTE_INSTANCE_GROUP_BLUE_GREEN_TRAFFIC_SHIFT
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: COMPUTE_INSTANCE_GROUP_BLUE_GREEN_TRAFFIC_SHIFT
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update deploy_stage with deploy_stage_type = OKE_BLUE_GREEN_DEPLOYMENT
+  oci_devops_deploy_stage:
+    # required
+    oke_cluster_deploy_environment_id: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_stage_type: OKE_BLUE_GREEN_DEPLOYMENT
+
+    # optional
+    kubernetes_manifest_deploy_artifact_ids: [ "kubernetes_manifest_deploy_artifact_ids_example" ]
     description: description_example
     display_name: display_name_example
     deploy_stage_predecessor_collection:
@@ -683,6 +1171,20 @@ EXAMPLES = """
 
     # optional
     compute_instance_group_deploy_environment_id: "ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+    load_balancer_config:
+      # required
+      load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+      listener_name: listener_name_example
+
+      # optional
+      backend_port: 56
+    rollback_policy:
+      # required
+      policy_type: NO_STAGE_ROLLBACK_POLICY
+    failure_policy:
+      # required
+      failure_percentage: 56
+      policy_type: COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE
     deployment_spec_deploy_artifact_id: "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
     deploy_artifact_ids: [ "deploy_artifact_ids_example" ]
     rollout_policy:
@@ -692,20 +1194,6 @@ EXAMPLES = """
 
       # optional
       batch_delay_in_seconds: 56
-    rollback_policy:
-      # required
-      policy_type: NO_STAGE_ROLLBACK_POLICY
-    failure_policy:
-      # required
-      failure_percentage: 56
-      policy_type: COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE
-    load_balancer_config:
-      # required
-      load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-      listener_name: listener_name_example
-
-      # optional
-      backend_port: 56
     description: description_example
     display_name: display_name_example
     deploy_stage_predecessor_collection:
@@ -757,7 +1245,68 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     function_deploy_environment_id: "ocid1.functiondeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
 
-- name: Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_stage_type = MANUAL_APPROVAL
+- name: Update deploy_stage with deploy_stage_type = OKE_CANARY_DEPLOYMENT
+  oci_devops_deploy_stage:
+    # required
+    oke_cluster_deploy_environment_id: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_stage_type: OKE_CANARY_DEPLOYMENT
+
+    # optional
+    kubernetes_manifest_deploy_artifact_ids: [ "kubernetes_manifest_deploy_artifact_ids_example" ]
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update deploy_stage with deploy_stage_type = COMPUTE_INSTANCE_GROUP_CANARY_TRAFFIC_SHIFT
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: COMPUTE_INSTANCE_GROUP_CANARY_TRAFFIC_SHIFT
+
+    # optional
+    rollout_policy:
+      # required
+      batch_percentage: 56
+      policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
+
+      # optional
+      batch_delay_in_seconds: 56
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update deploy_stage with deploy_stage_type = COMPUTE_INSTANCE_GROUP_CANARY_APPROVAL
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: COMPUTE_INSTANCE_GROUP_CANARY_APPROVAL
+
+    # optional
+    approval_policy:
+      # required
+      approval_policy_type: COUNT_BASED_APPROVAL
+      number_of_approvals_required: 56
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update deploy_stage with deploy_stage_type = MANUAL_APPROVAL
   oci_devops_deploy_stage:
     # required
     deploy_stage_type: MANUAL_APPROVAL
@@ -767,6 +1316,158 @@ EXAMPLES = """
       # required
       approval_policy_type: COUNT_BASED_APPROVAL
       number_of_approvals_required: 56
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update deploy_stage with deploy_stage_type = OKE_DEPLOYMENT
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: OKE_DEPLOYMENT
+
+    # optional
+    oke_cluster_deploy_environment_id: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+    namespace: namespace_example
+    rollback_policy:
+      # required
+      policy_type: NO_STAGE_ROLLBACK_POLICY
+    kubernetes_manifest_deploy_artifact_ids: [ "kubernetes_manifest_deploy_artifact_ids_example" ]
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update deploy_stage with deploy_stage_type = COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT
+
+    # optional
+    failure_policy:
+      # required
+      failure_percentage: 56
+      policy_type: COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE
+    deployment_spec_deploy_artifact_id: "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_artifact_ids: [ "deploy_artifact_ids_example" ]
+    test_load_balancer_config:
+      # required
+      load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+      listener_name: listener_name_example
+
+      # optional
+      backend_port: 56
+    rollout_policy:
+      # required
+      batch_percentage: 56
+      policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
+
+      # optional
+      batch_delay_in_seconds: 56
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update deploy_stage with deploy_stage_type = OKE_CANARY_APPROVAL
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: OKE_CANARY_APPROVAL
+
+    # optional
+    approval_policy:
+      # required
+      approval_policy_type: COUNT_BASED_APPROVAL
+      number_of_approvals_required: 56
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_stage_type = OKE_CANARY_TRAFFIC_SHIFT
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: OKE_CANARY_TRAFFIC_SHIFT
+
+    # optional
+    rollout_policy:
+      # required
+      batch_percentage: 56
+      policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
+
+      # optional
+      batch_delay_in_seconds: 56
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_stage_type = OKE_BLUE_GREEN_TRAFFIC_SHIFT
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: OKE_BLUE_GREEN_TRAFFIC_SHIFT
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: >
+    Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    with deploy_stage_type = COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT
+  oci_devops_deploy_stage:
+    # required
+    compute_instance_group_deploy_environment_id: "ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_stage_type: COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT
+
+    # optional
+    deployment_spec_deploy_artifact_id: "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_artifact_ids: [ "deploy_artifact_ids_example" ]
+    test_load_balancer_config:
+      # required
+      load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+      listener_name: listener_name_example
+
+      # optional
+      backend_port: 56
+    rollout_policy:
+      # required
+      batch_percentage: 56
+      policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
+
+      # optional
+      batch_delay_in_seconds: 56
     description: description_example
     display_name: display_name_example
     deploy_stage_predecessor_collection:
@@ -797,28 +1498,6 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
-- name: Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_stage_type = OKE_DEPLOYMENT
-  oci_devops_deploy_stage:
-    # required
-    deploy_stage_type: OKE_DEPLOYMENT
-
-    # optional
-    oke_cluster_deploy_environment_id: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
-    kubernetes_manifest_deploy_artifact_ids: [ "kubernetes_manifest_deploy_artifact_ids_example" ]
-    namespace: namespace_example
-    rollback_policy:
-      # required
-      policy_type: NO_STAGE_ROLLBACK_POLICY
-    description: description_example
-    display_name: display_name_example
-    deploy_stage_predecessor_collection:
-      # required
-      items:
-      - # required
-        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-    freeform_tags: {'Department': 'Finance'}
-    defined_tags: {'Operations': {'CostCenter': 'US'}}
-
 - name: Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_stage_type = LOAD_BALANCER_TRAFFIC_SHIFT
   oci_devops_deploy_stage:
     # required
@@ -832,16 +1511,6 @@ EXAMPLES = """
       # optional
       items: [ "items_example" ]
     traffic_shift_target: traffic_shift_target_example
-    rollout_policy:
-      # required
-      batch_percentage: 56
-      policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
-
-      # optional
-      batch_delay_in_seconds: 56
-    rollback_policy:
-      # required
-      policy_type: NO_STAGE_ROLLBACK_POLICY
     load_balancer_config:
       # required
       load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
@@ -849,6 +1518,52 @@ EXAMPLES = """
 
       # optional
       backend_port: 56
+    rollback_policy:
+      # required
+      policy_type: NO_STAGE_ROLLBACK_POLICY
+    rollout_policy:
+      # required
+      batch_percentage: 56
+      policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
+
+      # optional
+      batch_delay_in_seconds: 56
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: >
+    Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    with deploy_stage_type = COMPUTE_INSTANCE_GROUP_BLUE_GREEN_TRAFFIC_SHIFT
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: COMPUTE_INSTANCE_GROUP_BLUE_GREEN_TRAFFIC_SHIFT
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_stage_type = OKE_BLUE_GREEN_DEPLOYMENT
+  oci_devops_deploy_stage:
+    # required
+    oke_cluster_deploy_environment_id: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_stage_type: OKE_BLUE_GREEN_DEPLOYMENT
+
+    # optional
+    kubernetes_manifest_deploy_artifact_ids: [ "kubernetes_manifest_deploy_artifact_ids_example" ]
     description: description_example
     display_name: display_name_example
     deploy_stage_predecessor_collection:
@@ -868,6 +1583,20 @@ EXAMPLES = """
 
     # optional
     compute_instance_group_deploy_environment_id: "ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+    load_balancer_config:
+      # required
+      load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+      listener_name: listener_name_example
+
+      # optional
+      backend_port: 56
+    rollback_policy:
+      # required
+      policy_type: NO_STAGE_ROLLBACK_POLICY
+    failure_policy:
+      # required
+      failure_percentage: 56
+      policy_type: COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE
     deployment_spec_deploy_artifact_id: "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
     deploy_artifact_ids: [ "deploy_artifact_ids_example" ]
     rollout_policy:
@@ -877,20 +1606,6 @@ EXAMPLES = """
 
       # optional
       batch_delay_in_seconds: 56
-    rollback_policy:
-      # required
-      policy_type: NO_STAGE_ROLLBACK_POLICY
-    failure_policy:
-      # required
-      failure_percentage: 56
-      policy_type: COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE
-    load_balancer_config:
-      # required
-      load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-      listener_name: listener_name_example
-
-      # optional
-      backend_port: 56
     description: description_example
     display_name: display_name_example
     deploy_stage_predecessor_collection:
@@ -942,6 +1657,171 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     function_deploy_environment_id: "ocid1.functiondeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
 
+- name: Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_stage_type = OKE_CANARY_DEPLOYMENT
+  oci_devops_deploy_stage:
+    # required
+    oke_cluster_deploy_environment_id: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_stage_type: OKE_CANARY_DEPLOYMENT
+
+    # optional
+    kubernetes_manifest_deploy_artifact_ids: [ "kubernetes_manifest_deploy_artifact_ids_example" ]
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: >
+    Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    with deploy_stage_type = COMPUTE_INSTANCE_GROUP_CANARY_TRAFFIC_SHIFT
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: COMPUTE_INSTANCE_GROUP_CANARY_TRAFFIC_SHIFT
+
+    # optional
+    rollout_policy:
+      # required
+      batch_percentage: 56
+      policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
+
+      # optional
+      batch_delay_in_seconds: 56
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: >
+    Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    with deploy_stage_type = COMPUTE_INSTANCE_GROUP_CANARY_APPROVAL
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: COMPUTE_INSTANCE_GROUP_CANARY_APPROVAL
+
+    # optional
+    approval_policy:
+      # required
+      approval_policy_type: COUNT_BASED_APPROVAL
+      number_of_approvals_required: 56
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_stage_type = MANUAL_APPROVAL
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: MANUAL_APPROVAL
+
+    # optional
+    approval_policy:
+      # required
+      approval_policy_type: COUNT_BASED_APPROVAL
+      number_of_approvals_required: 56
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_stage_type = OKE_DEPLOYMENT
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: OKE_DEPLOYMENT
+
+    # optional
+    oke_cluster_deploy_environment_id: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+    namespace: namespace_example
+    rollback_policy:
+      # required
+      policy_type: NO_STAGE_ROLLBACK_POLICY
+    kubernetes_manifest_deploy_artifact_ids: [ "kubernetes_manifest_deploy_artifact_ids_example" ]
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: >
+    Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+    with deploy_stage_type = COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT
+
+    # optional
+    failure_policy:
+      # required
+      failure_percentage: 56
+      policy_type: COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE
+    deployment_spec_deploy_artifact_id: "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_artifact_ids: [ "deploy_artifact_ids_example" ]
+    test_load_balancer_config:
+      # required
+      load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+      listener_name: listener_name_example
+
+      # optional
+      backend_port: 56
+    rollout_policy:
+      # required
+      batch_percentage: 56
+      policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
+
+      # optional
+      batch_delay_in_seconds: 56
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_stage_type = OKE_CANARY_APPROVAL
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: OKE_CANARY_APPROVAL
+
+    # optional
+    approval_policy:
+      # required
+      approval_policy_type: COUNT_BASED_APPROVAL
+      number_of_approvals_required: 56
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
 - name: Delete deploy_stage
   oci_devops_deploy_stage:
     # required
@@ -963,9 +1843,87 @@ deploy_stage:
     returned: on success
     type: complex
     contains:
+        deploy_environment_id_a:
+            description:
+                - First compute instance group environment OCID for deployment.
+            returned: on success
+            type: str
+            sample: deploy_environment_id_a_example
+        deploy_environment_id_b:
+            description:
+                - Second compute instance group environment OCID for deployment.
+            returned: on success
+            type: str
+            sample: deploy_environment_id_b_example
+        compute_instance_group_blue_green_deployment_deploy_stage_id:
+            description:
+                - The OCID of the upstream compute instance group blue-green deployment stage in this pipeline.
+            returned: on success
+            type: str
+            sample: "ocid1.computeinstancegroupbluegreendeploymentdeploystage.oc1..xxxxxxEXAMPLExxxxxx"
+        compute_instance_group_canary_traffic_shift_deploy_stage_id:
+            description:
+                - A compute instance group canary traffic shift stage OCID for load balancer.
+            returned: on success
+            type: str
+            sample: "ocid1.computeinstancegroupcanarytrafficshiftdeploystage.oc1..xxxxxxEXAMPLExxxxxx"
+        test_load_balancer_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                load_balancer_id:
+                    description:
+                        - The OCID of the load balancer.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+                listener_name:
+                    description:
+                        - Name of the load balancer listener.
+                    returned: on success
+                    type: str
+                    sample: listener_name_example
+                backend_port:
+                    description:
+                        - Listen port for the backend server.
+                    returned: on success
+                    type: int
+                    sample: 56
+        production_load_balancer_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                load_balancer_id:
+                    description:
+                        - The OCID of the load balancer.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+                listener_name:
+                    description:
+                        - Name of the load balancer listener.
+                    returned: on success
+                    type: str
+                    sample: listener_name_example
+                backend_port:
+                    description:
+                        - Listen port for the backend server.
+                    returned: on success
+                    type: int
+                    sample: 56
+        compute_instance_group_canary_deploy_stage_id:
+            description:
+                - The OCID of an upstream compute instance group canary deployment stage ID in this pipeline.
+            returned: on success
+            type: str
+            sample: "ocid1.computeinstancegroupcanarydeploystage.oc1..xxxxxxEXAMPLExxxxxx"
         compute_instance_group_deploy_environment_id:
             description:
-                - A compute instance group environment OCID for rolling deployment.
+                - A compute instance group environment OCID for Canary deployment.
             returned: on success
             type: str
             sample: "ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -977,7 +1935,7 @@ deploy_stage:
             sample: "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
         deploy_artifact_ids:
             description:
-                - Additional file artifact OCIDs.
+                - The list of file artifact OCIDs to deploy.
             returned: on success
             type: list
             sample: []
@@ -989,7 +1947,7 @@ deploy_stage:
             contains:
                 failure_count:
                     description:
-                        - The threshold count of failed instances in the group, which when reached or exceeded sets the stage as FAILED.
+                        - The threshold count of failed instances in the group, which when reached or exceeded sets the stage as Failed.
                     returned: on success
                     type: int
                     sample: 56
@@ -1001,7 +1959,7 @@ deploy_stage:
                     sample: COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_COUNT
                 failure_percentage:
                     description:
-                        - The failure percentage threshold, which when reached or exceeded sets the stage as FAILED. Percentage is computed as the ceiling value
+                        - The failure percentage threshold, which when reached or exceeded sets the stage as Failed. Percentage is computed as the ceiling value
                           of the number of failed instances over the total count of the instances in the group.
                     returned: on success
                     type: int
@@ -1084,6 +2042,120 @@ deploy_stage:
             returned: on success
             type: str
             sample: AUTO_SELECT
+        load_balancer_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                load_balancer_id:
+                    description:
+                        - The OCID of the load balancer.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+                listener_name:
+                    description:
+                        - Name of the load balancer listener.
+                    returned: on success
+                    type: str
+                    sample: listener_name_example
+                backend_port:
+                    description:
+                        - Listen port for the backend server.
+                    returned: on success
+                    type: int
+                    sample: 56
+        blue_green_strategy:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                strategy_type:
+                    description:
+                        - Blue-Green strategy type.
+                    returned: on success
+                    type: str
+                    sample: NGINX_BLUE_GREEN_STRATEGY
+                namespace_a:
+                    description:
+                        - Namespace A for deployment.
+                    returned: on success
+                    type: str
+                    sample: namespace_a_example
+                namespace_b:
+                    description:
+                        - Namespace B for deployment.
+                    returned: on success
+                    type: str
+                    sample: namespace_b_example
+                ingress_name:
+                    description:
+                        - Name of the Ingress resource.
+                    returned: on success
+                    type: str
+                    sample: ingress_name_example
+        oke_blue_green_deploy_stage_id:
+            description:
+                - The OCID of the upstream OKE blue-green deployment stage in this pipeline.
+            returned: on success
+            type: str
+            sample: "ocid1.okebluegreendeploystage.oc1..xxxxxxEXAMPLExxxxxx"
+        oke_canary_traffic_shift_deploy_stage_id:
+            description:
+                - The OCID of an upstream OKE canary deployment traffic shift stage in this pipeline.
+            returned: on success
+            type: str
+            sample: "ocid1.okecanarytrafficshiftdeploystage.oc1..xxxxxxEXAMPLExxxxxx"
+        approval_policy:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                approval_policy_type:
+                    description:
+                        - Approval policy type.
+                    returned: on success
+                    type: str
+                    sample: COUNT_BASED_APPROVAL
+                number_of_approvals_required:
+                    description:
+                        - A minimum number of approvals required for stage to proceed.
+                    returned: on success
+                    type: int
+                    sample: 56
+        canary_strategy:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                strategy_type:
+                    description:
+                        - Canary strategy type.
+                    returned: on success
+                    type: str
+                    sample: NGINX_CANARY_STRATEGY
+                namespace:
+                    description:
+                        - Canary namespace to be used for Kubernetes canary deployment.
+                    returned: on success
+                    type: str
+                    sample: namespace_example
+                ingress_name:
+                    description:
+                        - Name of the Ingress resource.
+                    returned: on success
+                    type: str
+                    sample: ingress_name_example
+        oke_canary_deploy_stage_id:
+            description:
+                - The OCID of an upstream OKE canary deployment stage in this pipeline.
+            returned: on success
+            type: str
+            sample: "ocid1.okecanarydeploystage.oc1..xxxxxxEXAMPLExxxxxx"
         rollout_policy:
             description:
                 - ""
@@ -1120,48 +2192,6 @@ deploy_stage:
                     returned: on success
                     type: float
                     sample: 3.4
-        load_balancer_config:
-            description:
-                - ""
-            returned: on success
-            type: complex
-            contains:
-                load_balancer_id:
-                    description:
-                        - The OCID of the load balancer.
-                    returned: on success
-                    type: str
-                    sample: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-                listener_name:
-                    description:
-                        - Name of the load balancer listener.
-                    returned: on success
-                    type: str
-                    sample: listener_name_example
-                backend_port:
-                    description:
-                        - Listen port for the backend server.
-                    returned: on success
-                    type: int
-                    sample: 56
-        approval_policy:
-            description:
-                - ""
-            returned: on success
-            type: complex
-            contains:
-                approval_policy_type:
-                    description:
-                        - Approval policy type.
-                    returned: on success
-                    type: str
-                    sample: COUNT_BASED_APPROVAL
-                number_of_approvals_required:
-                    description:
-                        - A minimum number of approvals required for stage to proceed.
-                    returned: on success
-                    type: int
-                    sample: 56
         oke_cluster_deploy_environment_id:
             description:
                 - Kubernetes cluster environment OCID for deployment.
@@ -1170,13 +2200,13 @@ deploy_stage:
             sample: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
         kubernetes_manifest_deploy_artifact_ids:
             description:
-                - List of Kubernetes manifest artifact OCIDs, the manifests should not include any job resource.
+                - List of Kubernetes manifest artifact OCIDs
             returned: on success
             type: list
             sample: []
         namespace:
             description:
-                - Default Namespace to be used for Kubernetes deployment when not specified in the manifest.
+                - Default namespace to be used for Kubernetes deployment when not specified in the manifest.
             returned: on success
             type: str
             sample: namespace_example
@@ -1319,6 +2349,21 @@ deploy_stage:
                     type: str
                     sample: wait_duration_example
     sample: {
+        "deploy_environment_id_a": "deploy_environment_id_a_example",
+        "deploy_environment_id_b": "deploy_environment_id_b_example",
+        "compute_instance_group_blue_green_deployment_deploy_stage_id": "ocid1.computeinstancegroupbluegreendeploymentdeploystage.oc1..xxxxxxEXAMPLExxxxxx",
+        "compute_instance_group_canary_traffic_shift_deploy_stage_id": "ocid1.computeinstancegroupcanarytrafficshiftdeploystage.oc1..xxxxxxEXAMPLExxxxxx",
+        "test_load_balancer_config": {
+            "load_balancer_id": "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx",
+            "listener_name": "listener_name_example",
+            "backend_port": 56
+        },
+        "production_load_balancer_config": {
+            "load_balancer_id": "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx",
+            "listener_name": "listener_name_example",
+            "backend_port": 56
+        },
+        "compute_instance_group_canary_deploy_stage_id": "ocid1.computeinstancegroupcanarydeploystage.oc1..xxxxxxEXAMPLExxxxxx",
         "compute_instance_group_deploy_environment_id": "ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx",
         "deployment_spec_deploy_artifact_id": "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx",
         "deploy_artifact_ids": [],
@@ -1342,21 +2387,35 @@ deploy_stage:
             "items": []
         },
         "traffic_shift_target": "AUTO_SELECT",
+        "load_balancer_config": {
+            "load_balancer_id": "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx",
+            "listener_name": "listener_name_example",
+            "backend_port": 56
+        },
+        "blue_green_strategy": {
+            "strategy_type": "NGINX_BLUE_GREEN_STRATEGY",
+            "namespace_a": "namespace_a_example",
+            "namespace_b": "namespace_b_example",
+            "ingress_name": "ingress_name_example"
+        },
+        "oke_blue_green_deploy_stage_id": "ocid1.okebluegreendeploystage.oc1..xxxxxxEXAMPLExxxxxx",
+        "oke_canary_traffic_shift_deploy_stage_id": "ocid1.okecanarytrafficshiftdeploystage.oc1..xxxxxxEXAMPLExxxxxx",
+        "approval_policy": {
+            "approval_policy_type": "COUNT_BASED_APPROVAL",
+            "number_of_approvals_required": 56
+        },
+        "canary_strategy": {
+            "strategy_type": "NGINX_CANARY_STRATEGY",
+            "namespace": "namespace_example",
+            "ingress_name": "ingress_name_example"
+        },
+        "oke_canary_deploy_stage_id": "ocid1.okecanarydeploystage.oc1..xxxxxxEXAMPLExxxxxx",
         "rollout_policy": {
             "batch_count": 56,
             "policy_type": "COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_COUNT",
             "batch_delay_in_seconds": 56,
             "batch_percentage": 56,
             "ramp_limit_percent": 3.4
-        },
-        "load_balancer_config": {
-            "load_balancer_id": "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx",
-            "listener_name": "listener_name_example",
-            "backend_port": 56
-        },
-        "approval_policy": {
-            "approval_policy_type": "COUNT_BASED_APPROVAL",
-            "number_of_approvals_required": 56
         },
         "oke_cluster_deploy_environment_id": "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx",
         "kubernetes_manifest_deploy_artifact_ids": [],
@@ -1539,9 +2598,50 @@ def main():
     )
     module_args.update(
         dict(
+            oke_canary_deploy_stage_id=dict(type="str"),
+            oke_blue_green_deploy_stage_id=dict(type="str"),
+            compute_instance_group_blue_green_deployment_deploy_stage_id=dict(
+                type="str"
+            ),
+            blue_green_strategy=dict(
+                type="dict",
+                options=dict(
+                    strategy_type=dict(
+                        type="str", required=True, choices=["NGINX_BLUE_GREEN_STRATEGY"]
+                    ),
+                    namespace_a=dict(type="str", required=True),
+                    namespace_b=dict(type="str", required=True),
+                    ingress_name=dict(type="str", required=True),
+                ),
+            ),
+            canary_strategy=dict(
+                type="dict",
+                options=dict(
+                    strategy_type=dict(
+                        type="str", required=True, choices=["NGINX_CANARY_STRATEGY"]
+                    ),
+                    namespace=dict(type="str", required=True),
+                    ingress_name=dict(type="str", required=True),
+                ),
+            ),
+            compute_instance_group_canary_deploy_stage_id=dict(type="str"),
+            compute_instance_group_canary_traffic_shift_deploy_stage_id=dict(
+                type="str"
+            ),
+            deploy_environment_id_a=dict(type="str"),
+            deploy_environment_id_b=dict(type="str"),
+            production_load_balancer_config=dict(
+                type="dict",
+                options=dict(
+                    load_balancer_id=dict(type="str", required=True),
+                    listener_name=dict(type="str", required=True),
+                    backend_port=dict(type="int"),
+                ),
+            ),
             deploy_pipeline_id=dict(type="str"),
+            oke_canary_traffic_shift_deploy_stage_id=dict(type="str"),
+            compute_instance_group_deploy_environment_id=dict(type="str"),
             oke_cluster_deploy_environment_id=dict(type="str"),
-            kubernetes_manifest_deploy_artifact_ids=dict(type="list", elements="str"),
             namespace=dict(type="str"),
             blue_backend_ips=dict(
                 type="dict", options=dict(items=dict(type="list", elements="str"))
@@ -1550,23 +2650,12 @@ def main():
                 type="dict", options=dict(items=dict(type="list", elements="str"))
             ),
             traffic_shift_target=dict(type="str"),
-            compute_instance_group_deploy_environment_id=dict(type="str"),
-            deployment_spec_deploy_artifact_id=dict(type="str"),
-            deploy_artifact_ids=dict(type="list", elements="str"),
-            rollout_policy=dict(
+            load_balancer_config=dict(
                 type="dict",
                 options=dict(
-                    ramp_limit_percent=dict(type="float"),
-                    batch_percentage=dict(type="int"),
-                    policy_type=dict(
-                        type="str",
-                        choices=[
-                            "COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE",
-                            "COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_COUNT",
-                        ],
-                    ),
-                    batch_delay_in_seconds=dict(type="int"),
-                    batch_count=dict(type="int"),
+                    load_balancer_id=dict(type="str", required=True),
+                    listener_name=dict(type="str", required=True),
+                    backend_port=dict(type="int"),
                 ),
             ),
             rollback_policy=dict(
@@ -1582,29 +2671,7 @@ def main():
                     )
                 ),
             ),
-            failure_policy=dict(
-                type="dict",
-                options=dict(
-                    failure_percentage=dict(type="int"),
-                    policy_type=dict(
-                        type="str",
-                        required=True,
-                        choices=[
-                            "COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE",
-                            "COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_COUNT",
-                        ],
-                    ),
-                    failure_count=dict(type="int"),
-                ),
-            ),
-            load_balancer_config=dict(
-                type="dict",
-                options=dict(
-                    load_balancer_id=dict(type="str", required=True),
-                    listener_name=dict(type="str", required=True),
-                    backend_port=dict(type="int"),
-                ),
-            ),
+            kubernetes_manifest_deploy_artifact_ids=dict(type="list", elements="str"),
             wait_criteria=dict(
                 type="dict",
                 options=dict(
@@ -1623,22 +2690,73 @@ def main():
                     number_of_approvals_required=dict(type="int", required=True),
                 ),
             ),
+            failure_policy=dict(
+                type="dict",
+                options=dict(
+                    failure_percentage=dict(type="int"),
+                    policy_type=dict(
+                        type="str",
+                        required=True,
+                        choices=[
+                            "COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE",
+                            "COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_COUNT",
+                        ],
+                    ),
+                    failure_count=dict(type="int"),
+                ),
+            ),
+            deployment_spec_deploy_artifact_id=dict(type="str"),
+            deploy_artifact_ids=dict(type="list", elements="str"),
+            test_load_balancer_config=dict(
+                type="dict",
+                options=dict(
+                    load_balancer_id=dict(type="str", required=True),
+                    listener_name=dict(type="str", required=True),
+                    backend_port=dict(type="int"),
+                ),
+            ),
             docker_image_deploy_artifact_id=dict(type="str"),
             config=dict(type="dict"),
             max_memory_in_mbs=dict(type="int"),
             function_timeout_in_seconds=dict(type="int"),
+            rollout_policy=dict(
+                type="dict",
+                options=dict(
+                    ramp_limit_percent=dict(type="float"),
+                    batch_percentage=dict(type="int"),
+                    policy_type=dict(
+                        type="str",
+                        choices=[
+                            "COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE",
+                            "COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_COUNT",
+                        ],
+                    ),
+                    batch_delay_in_seconds=dict(type="int"),
+                    batch_count=dict(type="int"),
+                ),
+            ),
             description=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             deploy_stage_type=dict(
                 type="str",
                 choices=[
-                    "MANUAL_APPROVAL",
+                    "OKE_CANARY_TRAFFIC_SHIFT",
+                    "OKE_BLUE_GREEN_TRAFFIC_SHIFT",
+                    "COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT",
                     "WAIT",
-                    "OKE_DEPLOYMENT",
                     "LOAD_BALANCER_TRAFFIC_SHIFT",
+                    "COMPUTE_INSTANCE_GROUP_BLUE_GREEN_TRAFFIC_SHIFT",
+                    "OKE_BLUE_GREEN_DEPLOYMENT",
                     "COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT",
                     "INVOKE_FUNCTION",
                     "DEPLOY_FUNCTION",
+                    "OKE_CANARY_DEPLOYMENT",
+                    "COMPUTE_INSTANCE_GROUP_CANARY_TRAFFIC_SHIFT",
+                    "COMPUTE_INSTANCE_GROUP_CANARY_APPROVAL",
+                    "MANUAL_APPROVAL",
+                    "OKE_DEPLOYMENT",
+                    "COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT",
+                    "OKE_CANARY_APPROVAL",
                 ],
             ),
             deploy_stage_predecessor_collection=dict(

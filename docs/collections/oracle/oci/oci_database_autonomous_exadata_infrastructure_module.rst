@@ -30,7 +30,7 @@ oracle.oci.oci_database_autonomous_exadata_infrastructure -- Manage an Autonomou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -388,6 +388,22 @@ Parameters
                                         <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-maintenance_window_details/custom_action_timeout_in_mins"></div>
+                    <b>custom_action_timeout_in_mins</b>
+                    <a class="ansibleOptionLink" href="#parameter-maintenance_window_details/custom_action_timeout_in_mins" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Determines the amount of time the system will wait before the start of each database server patching operation. Custom action timeout is in minutes and valid value is between 15 to 120 (inclusive).</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-maintenance_window_details/days_of_week"></div>
                     <b>days_of_week</b>
                     <a class="ansibleOptionLink" href="#parameter-maintenance_window_details/days_of_week" title="Permalink to this option"></a>
@@ -442,6 +458,26 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The window of hours during the day when maintenance should be performed. The window is a 4 hour slot. Valid values are - 0 - represents time slot 0:00 - 3:59 UTC - 4 - represents time slot 4:00 - 7:59 UTC - 8 - represents time slot 8:00 - 11:59 UTC - 12 - represents time slot 12:00 - 15:59 UTC - 16 - represents time slot 16:00 - 19:59 UTC - 20 - represents time slot 20:00 - 23:59 UTC</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-maintenance_window_details/is_custom_action_timeout_enabled"></div>
+                    <b>is_custom_action_timeout_enabled</b>
+                    <a class="ansibleOptionLink" href="#parameter-maintenance_window_details/is_custom_action_timeout_enabled" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>If true, enables the configuration of a custom action timeout (waiting period) between database server patching operations.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -508,6 +544,27 @@ Parameters
                                                         </td>
             </tr>
                     
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-maintenance_window_details/patching_mode"></div>
+                    <b>patching_mode</b>
+                    <a class="ansibleOptionLink" href="#parameter-maintenance_window_details/patching_mode" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>ROLLING</li>
+                                                                                                                                                                                                <li>NONROLLING</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Cloud Exadata infrastructure node patching method, either &quot;ROLLING&quot; or &quot;NONROLLING&quot;. Default value is ROLLING.</div>
+                                            <div>*IMPORTANT*: Non-rolling infrastructure patching involves system down time. See <a href='https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/examaintenance.htm#Oracle'>Oracle-Managed Infrastructure Maintenance Updates</a> for more information.</div>
+                                                        </td>
+            </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="2">
@@ -722,6 +779,9 @@ Examples
           preference: NO_PREFERENCE
 
           # optional
+          patching_mode: ROLLING
+          is_custom_action_timeout_enabled: true
+          custom_action_timeout_in_mins: 56
           months:
           - # required
             name: JANUARY
@@ -747,6 +807,9 @@ Examples
           preference: NO_PREFERENCE
 
           # optional
+          patching_mode: ROLLING
+          is_custom_action_timeout_enabled: true
+          custom_action_timeout_in_mins: 56
           months:
           - # required
             name: JANUARY
@@ -772,6 +835,9 @@ Examples
           preference: NO_PREFERENCE
 
           # optional
+          patching_mode: ROLLING
+          is_custom_action_timeout_enabled: true
+          custom_action_timeout_in_mins: 56
           months:
           - # required
             name: JANUARY
@@ -833,7 +899,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the AutonomousExadataInfrastructure resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;domain&#x27;: &#x27;domain_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;last_maintenance_run_id&#x27;: &#x27;ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;license_model&#x27;: &#x27;LICENSE_INCLUDED&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;maintenance_window&#x27;: {&#x27;days_of_week&#x27;: [{&#x27;name&#x27;: &#x27;MONDAY&#x27;}], &#x27;hours_of_day&#x27;: [], &#x27;lead_time_in_weeks&#x27;: 56, &#x27;months&#x27;: [{&#x27;name&#x27;: &#x27;JANUARY&#x27;}], &#x27;preference&#x27;: &#x27;NO_PREFERENCE&#x27;, &#x27;weeks_of_month&#x27;: []}, &#x27;next_maintenance_run_id&#x27;: &#x27;ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;scan_dns_name&#x27;: &#x27;scan_dns_name_example&#x27;, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;zone_id&#x27;: &#x27;ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;domain&#x27;: &#x27;domain_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;last_maintenance_run_id&#x27;: &#x27;ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;license_model&#x27;: &#x27;LICENSE_INCLUDED&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;maintenance_window&#x27;: {&#x27;custom_action_timeout_in_mins&#x27;: 56, &#x27;days_of_week&#x27;: [{&#x27;name&#x27;: &#x27;MONDAY&#x27;}], &#x27;hours_of_day&#x27;: [], &#x27;is_custom_action_timeout_enabled&#x27;: True, &#x27;lead_time_in_weeks&#x27;: 56, &#x27;months&#x27;: [{&#x27;name&#x27;: &#x27;JANUARY&#x27;}], &#x27;patching_mode&#x27;: &#x27;ROLLING&#x27;, &#x27;preference&#x27;: &#x27;NO_PREFERENCE&#x27;, &#x27;weeks_of_month&#x27;: []}, &#x27;next_maintenance_run_id&#x27;: &#x27;ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;scan_dns_name&#x27;: &#x27;scan_dns_name_example&#x27;, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;zone_id&#x27;: &#x27;ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1073,6 +1139,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_exadata_infrastructure/maintenance_window/custom_action_timeout_in_mins"></div>
+                    <b>custom_action_timeout_in_mins</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_exadata_infrastructure/maintenance_window/custom_action_timeout_in_mins" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Determines the amount of time the system will wait before the start of each database server patching operation. Custom action timeout is in minutes and valid value is between 15 to 120 (inclusive).</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-autonomous_exadata_infrastructure/maintenance_window/days_of_week"></div>
                     <b>days_of_week</b>
                     <a class="ansibleOptionLink" href="#return-autonomous_exadata_infrastructure/maintenance_window/days_of_week" title="Permalink to this return value"></a>
@@ -1123,6 +1208,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The window of hours during the day when maintenance should be performed. The window is a 4 hour slot. Valid values are - 0 - represents time slot 0:00 - 3:59 UTC - 4 - represents time slot 4:00 - 7:59 UTC - 8 - represents time slot 8:00 - 11:59 UTC - 12 - represents time slot 12:00 - 15:59 UTC - 16 - represents time slot 16:00 - 19:59 UTC - 20 - represents time slot 20:00 - 23:59 UTC</div>
                                         <br/>
                                                         </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_exadata_infrastructure/maintenance_window/is_custom_action_timeout_enabled"></div>
+                    <b>is_custom_action_timeout_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_exadata_infrastructure/maintenance_window/is_custom_action_timeout_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>If true, enables the configuration of a custom action timeout (waiting period) between database server patching operations.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1181,6 +1285,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                     
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-autonomous_exadata_infrastructure/maintenance_window/patching_mode"></div>
+                    <b>patching_mode</b>
+                    <a class="ansibleOptionLink" href="#return-autonomous_exadata_infrastructure/maintenance_window/patching_mode" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Cloud Exadata infrastructure node patching method, either &quot;ROLLING&quot; or &quot;NONROLLING&quot;. Default value is ROLLING.</div>
+                                            <div>*IMPORTANT*: Non-rolling infrastructure patching involves system down time. See <a href='https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/examaintenance.htm#Oracle'>Oracle-Managed Infrastructure Maintenance Updates</a> for more information.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ROLLING</div>
+                                    </td>
+            </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>

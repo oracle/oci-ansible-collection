@@ -30,7 +30,7 @@ oracle.oci.oci_devops_repository_facts -- Fetches details about one or multiple 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -776,7 +776,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Different types of trigger schedule: None - No automated synchronization schedule. Default - Trigger schedule is every 30 minutes. Custom - Custom triggering schedule.</div>
+                                            <div>Different types of trigger schedule: NONE - No automated synchronization schedule. DEFAULT - Trigger schedule is every 30 minutes. CUSTOM - Custom triggering schedule.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">NONE</div>
@@ -868,7 +868,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Type of repository: Mirrored - Repository created by mirroring an existing repository. Hosted - Repository created and hosted using OCI DevOps code repository.</div>
+                                            <div>Type of repository: MIRRORED - Repository created by mirroring an existing repository. HOSTED - Repository created and hosted using OCI DevOps code repository.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">MIRRORED</div>
@@ -975,7 +975,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Trigger build events supported for this repository: Push - Build is triggered when a push event occurs. Commit updates - Build is triggered when new commits are mirrored into a repository.</div>
+                                            <div>Trigger build events supported for this repository: PUSH - Build is triggered when a push event occurs. COMMIT_UPDATES - Build is triggered when new commits are mirrored into a repository.</div>
                                             <div>Returned for get operation</div>
                                         <br/>
                                                         </td>

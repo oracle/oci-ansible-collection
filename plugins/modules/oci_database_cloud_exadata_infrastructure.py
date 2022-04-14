@@ -68,6 +68,24 @@ options:
                     - "NO_PREFERENCE"
                     - "CUSTOM_PREFERENCE"
                 required: true
+            patching_mode:
+                description:
+                    - "Cloud Exadata infrastructure node patching method, either \\"ROLLING\\" or \\"NONROLLING\\". Default value is ROLLING."
+                    - "*IMPORTANT*: Non-rolling infrastructure patching involves system down time. See L(Oracle-Managed Infrastructure Maintenance
+                      Updates,https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/examaintenance.htm#Oracle) for more information."
+                type: str
+                choices:
+                    - "ROLLING"
+                    - "NONROLLING"
+            is_custom_action_timeout_enabled:
+                description:
+                    - If true, enables the configuration of a custom action timeout (waiting period) between database server patching operations.
+                type: bool
+            custom_action_timeout_in_mins:
+                description:
+                    - Determines the amount of time the system will wait before the start of each database server patching operation.
+                      Custom action timeout is in minutes and valid value is between 15 to 120 (inclusive).
+                type: int
             months:
                 description:
                     - Months during the year when maintenance should be performed.
@@ -205,6 +223,9 @@ EXAMPLES = """
       preference: NO_PREFERENCE
 
       # optional
+      patching_mode: ROLLING
+      is_custom_action_timeout_enabled: true
+      custom_action_timeout_in_mins: 56
       months:
       - # required
         name: JANUARY
@@ -234,6 +255,9 @@ EXAMPLES = """
       preference: NO_PREFERENCE
 
       # optional
+      patching_mode: ROLLING
+      is_custom_action_timeout_enabled: true
+      custom_action_timeout_in_mins: 56
       months:
       - # required
         name: JANUARY
@@ -263,6 +287,9 @@ EXAMPLES = """
       preference: NO_PREFERENCE
 
       # optional
+      patching_mode: ROLLING
+      is_custom_action_timeout_enabled: true
+      custom_action_timeout_in_mins: 56
       months:
       - # required
         name: JANUARY
@@ -389,6 +416,27 @@ cloud_exadata_infrastructure:
                     returned: on success
                     type: str
                     sample: NO_PREFERENCE
+                patching_mode:
+                    description:
+                        - "Cloud Exadata infrastructure node patching method, either \\"ROLLING\\" or \\"NONROLLING\\". Default value is ROLLING."
+                        - "*IMPORTANT*: Non-rolling infrastructure patching involves system down time. See L(Oracle-Managed Infrastructure Maintenance
+                          Updates,https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/examaintenance.htm#Oracle) for more information."
+                    returned: on success
+                    type: str
+                    sample: ROLLING
+                is_custom_action_timeout_enabled:
+                    description:
+                        - If true, enables the configuration of a custom action timeout (waiting period) between database server patching operations.
+                    returned: on success
+                    type: bool
+                    sample: true
+                custom_action_timeout_in_mins:
+                    description:
+                        - Determines the amount of time the system will wait before the start of each database server patching operation.
+                          Custom action timeout is in minutes and valid value is between 15 to 120 (inclusive).
+                    returned: on success
+                    type: int
+                    sample: 56
                 months:
                     description:
                         - Months during the year when maintenance should be performed.
@@ -497,6 +545,9 @@ cloud_exadata_infrastructure:
         "lifecycle_details": "lifecycle_details_example",
         "maintenance_window": {
             "preference": "NO_PREFERENCE",
+            "patching_mode": "ROLLING",
+            "is_custom_action_timeout_enabled": true,
+            "custom_action_timeout_in_mins": 56,
             "months": [{
                 "name": "JANUARY"
             }],
@@ -703,6 +754,9 @@ def main():
                         required=True,
                         choices=["NO_PREFERENCE", "CUSTOM_PREFERENCE"],
                     ),
+                    patching_mode=dict(type="str", choices=["ROLLING", "NONROLLING"]),
+                    is_custom_action_timeout_enabled=dict(type="bool"),
+                    custom_action_timeout_in_mins=dict(type="int"),
                     months=dict(
                         type="list",
                         elements="dict",

@@ -145,6 +145,24 @@ options:
                     - "NO_PREFERENCE"
                     - "CUSTOM_PREFERENCE"
                 required: true
+            patching_mode:
+                description:
+                    - "Cloud Exadata infrastructure node patching method, either \\"ROLLING\\" or \\"NONROLLING\\". Default value is ROLLING."
+                    - "*IMPORTANT*: Non-rolling infrastructure patching involves system down time. See L(Oracle-Managed Infrastructure Maintenance
+                      Updates,https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/examaintenance.htm#Oracle) for more information."
+                type: str
+                choices:
+                    - "ROLLING"
+                    - "NONROLLING"
+            is_custom_action_timeout_enabled:
+                description:
+                    - If true, enables the configuration of a custom action timeout (waiting period) between database server patching operations.
+                type: bool
+            custom_action_timeout_in_mins:
+                description:
+                    - Determines the amount of time the system will wait before the start of each database server patching operation.
+                      Custom action timeout is in minutes and valid value is between 15 to 120 (inclusive).
+                type: int
             months:
                 description:
                     - Months during the year when maintenance should be performed.
@@ -235,6 +253,15 @@ options:
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
+    is_cps_offline_report_enabled:
+        description:
+            - Indicates whether cps offline diagnostic report is enabled for this Exadata infrastructure. This will allow a customer to quickly check status
+              themselves and fix problems on their end, saving time and frustration
+              for both Oracle and the customer when they find the CPS in a disconnected state.You can enable offline diagnostic report during Exadata
+              infrastructure provisioning. You can also disable or enable it at any time
+              using the UpdateExadatainfrastructure API.
+            - This parameter is updatable.
+        type: bool
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -302,6 +329,9 @@ EXAMPLES = """
       preference: NO_PREFERENCE
 
       # optional
+      patching_mode: ROLLING
+      is_custom_action_timeout_enabled: true
+      custom_action_timeout_in_mins: 56
       months:
       - # required
         name: JANUARY
@@ -311,6 +341,7 @@ EXAMPLES = """
         name: MONDAY
       hours_of_day: [ "hours_of_day_example" ]
       lead_time_in_weeks: 56
+    is_cps_offline_report_enabled: true
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -341,6 +372,9 @@ EXAMPLES = """
       preference: NO_PREFERENCE
 
       # optional
+      patching_mode: ROLLING
+      is_custom_action_timeout_enabled: true
+      custom_action_timeout_in_mins: 56
       months:
       - # required
         name: JANUARY
@@ -354,6 +388,7 @@ EXAMPLES = """
     dns_server: [ "dns_server_example" ]
     ntp_server: [ "ntp_server_example" ]
     time_zone: time_zone_example
+    is_cps_offline_report_enabled: true
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -385,6 +420,9 @@ EXAMPLES = """
       preference: NO_PREFERENCE
 
       # optional
+      patching_mode: ROLLING
+      is_custom_action_timeout_enabled: true
+      custom_action_timeout_in_mins: 56
       months:
       - # required
         name: JANUARY
@@ -398,6 +436,7 @@ EXAMPLES = """
     dns_server: [ "dns_server_example" ]
     ntp_server: [ "ntp_server_example" ]
     time_zone: time_zone_example
+    is_cps_offline_report_enabled: true
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -643,8 +682,8 @@ exadata_infrastructure:
                     sample: true
         maintenance_slo_status:
             description:
-                - A field to capture 'Maintenance SLO Status' for the Exadata infrastructure with values 'OK', 'DEGRADED'. Default is 'OK' when the
-                  infrastructure is provisioned.
+                - A field to capture ???Maintenance SLO Status??? for the Exadata infrastructure with values ???OK???, ???DEGRADED???. Default is ???OK??? when
+                  the infrastructure is provisioned.
             returned: on success
             type: str
             sample: OK
@@ -660,6 +699,27 @@ exadata_infrastructure:
                     returned: on success
                     type: str
                     sample: NO_PREFERENCE
+                patching_mode:
+                    description:
+                        - "Cloud Exadata infrastructure node patching method, either \\"ROLLING\\" or \\"NONROLLING\\". Default value is ROLLING."
+                        - "*IMPORTANT*: Non-rolling infrastructure patching involves system down time. See L(Oracle-Managed Infrastructure Maintenance
+                          Updates,https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/examaintenance.htm#Oracle) for more information."
+                    returned: on success
+                    type: str
+                    sample: ROLLING
+                is_custom_action_timeout_enabled:
+                    description:
+                        - If true, enables the configuration of a custom action timeout (waiting period) between database server patching operations.
+                    returned: on success
+                    type: bool
+                    sample: true
+                custom_action_timeout_in_mins:
+                    description:
+                        - Determines the amount of time the system will wait before the start of each database server patching operation.
+                          Custom action timeout is in minutes and valid value is between 15 to 120 (inclusive).
+                    returned: on success
+                    type: int
+                    sample: 56
                 months:
                     description:
                         - Months during the year when maintenance should be performed.
@@ -711,6 +771,18 @@ exadata_infrastructure:
                     returned: on success
                     type: int
                     sample: 56
+        storage_server_version:
+            description:
+                - The software version of the storage servers (cells) in the Exadata infrastructure.
+            returned: on success
+            type: str
+            sample: storage_server_version_example
+        db_server_version:
+            description:
+                - The software version of the database servers (dom0) in the Exadata infrastructure.
+            returned: on success
+            type: str
+            sample: db_server_version_example
         last_maintenance_run_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last maintenance run.
@@ -723,6 +795,16 @@ exadata_infrastructure:
             returned: on success
             type: str
             sample: "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
+        is_cps_offline_report_enabled:
+            description:
+                - Indicates whether cps offline diagnostic report is enabled for this Exadata infrastructure. This will allow a customer to quickly check status
+                  themselves and fix problems on their end, saving time and frustration
+                  for both Oracle and the customer when they find the CPS in a disconnected state.You can enable offline diagnostic report during Exadata
+                  infrastructure provisioning. You can also disable or enable it at any time
+                  using the UpdateExadatainfrastructure API.
+            returned: on success
+            type: bool
+            sample: true
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -779,6 +861,9 @@ exadata_infrastructure:
         "maintenance_slo_status": "OK",
         "maintenance_window": {
             "preference": "NO_PREFERENCE",
+            "patching_mode": "ROLLING",
+            "is_custom_action_timeout_enabled": true,
+            "custom_action_timeout_in_mins": 56,
             "months": [{
                 "name": "JANUARY"
             }],
@@ -789,8 +874,11 @@ exadata_infrastructure:
             "hours_of_day": [],
             "lead_time_in_weeks": 56
         },
+        "storage_server_version": "storage_server_version_example",
+        "db_server_version": "db_server_version_example",
         "last_maintenance_run_id": "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
         "next_maintenance_run_id": "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
+        "is_cps_offline_report_enabled": true,
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }
@@ -996,6 +1084,9 @@ def main():
                         required=True,
                         choices=["NO_PREFERENCE", "CUSTOM_PREFERENCE"],
                     ),
+                    patching_mode=dict(type="str", choices=["ROLLING", "NONROLLING"]),
+                    is_custom_action_timeout_enabled=dict(type="bool"),
+                    custom_action_timeout_in_mins=dict(type="int"),
                     months=dict(
                         type="list",
                         elements="dict",
@@ -1048,6 +1139,7 @@ def main():
             dns_server=dict(type="list", elements="str"),
             ntp_server=dict(type="list", elements="str"),
             time_zone=dict(type="str"),
+            is_cps_offline_report_enabled=dict(type="bool"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             exadata_infrastructure_id=dict(aliases=["id"], type="str"),

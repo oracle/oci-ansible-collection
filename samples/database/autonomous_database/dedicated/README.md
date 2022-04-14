@@ -35,4 +35,3 @@ Note: The sample, by default, sets up an Autonomous Transaction Processing Datab
 runs a few tests to show that it is working and tears down the Autonomous Transaction Processing Database. If you want
 to experiment with the Autonomous Transaction Processing Database after it is setup, comment out the invocation
 to `teardown.yaml` at the end of `sample.yaml`.
-

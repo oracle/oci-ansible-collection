@@ -194,6 +194,36 @@ db_servers:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        db_server_patching_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                estimated_patch_duration:
+                    description:
+                        - Estimated time, in minutes, to patch one database server.
+                    returned: on success
+                    type: int
+                    sample: 56
+                patching_status:
+                    description:
+                        - The status of the patching operation.
+                    returned: on success
+                    type: str
+                    sample: SCHEDULED
+                time_patching_started:
+                    description:
+                        - The time when the patching operation started.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
+                time_patching_ended:
+                    description:
+                        - The time when the patching operation ended.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -225,6 +255,12 @@ db_servers:
         "max_memory_in_gbs": 56,
         "max_db_node_storage_in_gbs": 56,
         "time_created": "2013-10-20T19:20:30+01:00",
+        "db_server_patching_details": {
+            "estimated_patch_duration": 56,
+            "patching_status": "SCHEDULED",
+            "time_patching_started": "2013-10-20T19:20:30+01:00",
+            "time_patching_ended": "2013-10-20T19:20:30+01:00"
+        },
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]

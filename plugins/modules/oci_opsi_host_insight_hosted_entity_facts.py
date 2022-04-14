@@ -62,12 +62,15 @@ options:
         type: str
     platform_type:
         description:
-            - Filter by one or more platform types.
-              Possible value is LINUX.
+            - "Filter by one or more platform types.
+              Supported platformType(s) for MACS-managed external host insight: [LINUX].
+              Supported platformType(s) for EM-managed external host insight: [LINUX, SOLARIS, SUNOS]."
         type: list
         elements: str
         choices:
             - "LINUX"
+            - "SOLARIS"
+            - "SUNOS"
     exadata_insight_id:
         description:
             - L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of exadata insight resource.
@@ -206,7 +209,9 @@ def main():
             analysis_time_interval=dict(type="str"),
             time_interval_start=dict(type="str"),
             time_interval_end=dict(type="str"),
-            platform_type=dict(type="list", elements="str", choices=["LINUX"]),
+            platform_type=dict(
+                type="list", elements="str", choices=["LINUX", "SOLARIS", "SUNOS"]
+            ),
             exadata_insight_id=dict(type="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["entityName", "entityType"]),

@@ -46,6 +46,38 @@ options:
             - The Fleet's description. If nothing is provided, the Fleet description will be null.
             - This parameter is updatable.
         type: str
+    inventory_log:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            log_group_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the log group.
+                type: str
+                required: true
+            log_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the log.
+                type: str
+                required: true
+    operation_log:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            log_group_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the log group.
+                type: str
+                required: true
+            log_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the log.
+                type: str
+                required: true
     defined_tags:
         description:
             - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
@@ -88,6 +120,14 @@ EXAMPLES = """
 
     # optional
     description: description_example
+    inventory_log:
+      # required
+      log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
+      log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+    operation_log:
+      # required
+      log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
+      log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
 
@@ -99,6 +139,14 @@ EXAMPLES = """
     # optional
     display_name: display_name_example
     description: description_example
+    inventory_log:
+      # required
+      log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
+      log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+    operation_log:
+      # required
+      log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
+      log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
 
@@ -109,6 +157,14 @@ EXAMPLES = """
 
     # optional
     description: description_example
+    inventory_log:
+      # required
+      log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
+      log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+    operation_log:
+      # required
+      log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
+      log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
 
@@ -185,6 +241,42 @@ fleet:
             returned: on success
             type: int
             sample: 56
+        inventory_log:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                log_group_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the log group.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
+                log_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the log.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+        operation_log:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                log_group_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the log group.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
+                log_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the log.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The creation date and time of the Fleet (formatted according to L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339)).
@@ -231,6 +323,14 @@ fleet:
         "approximate_installation_count": 56,
         "approximate_application_count": 56,
         "approximate_managed_instance_count": 56,
+        "inventory_log": {
+            "log_group_id": "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx",
+            "log_id": "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+        },
+        "operation_log": {
+            "log_group_id": "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx",
+            "log_id": "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+        },
         "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "ACTIVE",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -386,6 +486,20 @@ def main():
             compartment_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             description=dict(type="str"),
+            inventory_log=dict(
+                type="dict",
+                options=dict(
+                    log_group_id=dict(type="str", required=True),
+                    log_id=dict(type="str", required=True),
+                ),
+            ),
+            operation_log=dict(
+                type="dict",
+                options=dict(
+                    log_group_id=dict(type="str", required=True),
+                    log_id=dict(type="str", required=True),
+                ),
+            ),
             defined_tags=dict(type="dict"),
             freeform_tags=dict(type="dict"),
             fleet_id=dict(aliases=["id"], type="str"),

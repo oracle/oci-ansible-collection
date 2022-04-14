@@ -30,7 +30,7 @@ oracle.oci.oci_database_maintenance_run_facts -- Fetches details about one or mu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -392,6 +392,7 @@ Parameters
                                                                                                                                                                                                 <li>EXADATA_DB_SYSTEM</li>
                                                                                                                                                                                                 <li>CLOUD_EXADATA_INFRASTRUCTURE</li>
                                                                                                                                                                                                 <li>EXACC_INFRASTRUCTURE</li>
+                                                                                                                                                                                                <li>AUTONOMOUS_VM_CLUSTER</li>
                                                                                                                                                                                                 <li>AUTONOMOUS_DATABASE</li>
                                                                                     </ul>
                                                                             </td>
@@ -475,12 +476,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="2">Key</th>
+            <th colspan="3">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-maintenance_runs"></div>
                     <b>maintenance_runs</b>
                     <a class="ansibleOptionLink" href="#return-maintenance_runs" title="Permalink to this return value"></a>
@@ -493,12 +494,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of MaintenanceRun resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;SCHEDULED&#x27;, &#x27;maintenance_subtype&#x27;: &#x27;QUARTERLY&#x27;, &#x27;maintenance_type&#x27;: &#x27;PLANNED&#x27;, &#x27;patch_failure_count&#x27;: 56, &#x27;patch_id&#x27;: &#x27;ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;patching_mode&#x27;: &#x27;ROLLING&#x27;, &#x27;peer_maintenance_run_id&#x27;: &#x27;ocid1.peermaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;target_resource_id&#x27;: &#x27;ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;target_resource_type&#x27;: &#x27;AUTONOMOUS_EXADATA_INFRASTRUCTURE&#x27;, &#x27;time_ended&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_scheduled&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;current_custom_action_timeout_in_mins&#x27;: 56, &#x27;current_patching_component&#x27;: &#x27;current_patching_component_example&#x27;, &#x27;custom_action_timeout_in_mins&#x27;: 56, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;estimated_component_patching_start_time&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;estimated_patching_time&#x27;: {&#x27;estimated_db_server_patching_time&#x27;: 56, &#x27;estimated_network_switches_patching_time&#x27;: 56, &#x27;estimated_storage_server_patching_time&#x27;: 56, &#x27;total_estimated_patching_time&#x27;: 56}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_custom_action_timeout_enabled&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;SCHEDULED&#x27;, &#x27;maintenance_subtype&#x27;: &#x27;QUARTERLY&#x27;, &#x27;maintenance_type&#x27;: &#x27;PLANNED&#x27;, &#x27;patch_failure_count&#x27;: 56, &#x27;patch_id&#x27;: &#x27;ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;patching_end_time&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;patching_mode&#x27;: &#x27;ROLLING&#x27;, &#x27;patching_start_time&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;patching_status&#x27;: &#x27;PATCHING&#x27;, &#x27;peer_maintenance_run_id&#x27;: &#x27;ocid1.peermaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;target_db_server_version&#x27;: &#x27;target_db_server_version_example&#x27;, &#x27;target_resource_id&#x27;: &#x27;ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;target_resource_type&#x27;: &#x27;AUTONOMOUS_EXADATA_INFRASTRUCTURE&#x27;, &#x27;target_storage_server_version&#x27;: &#x27;target_storage_server_version_example&#x27;, &#x27;time_ended&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_scheduled&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-maintenance_runs/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-maintenance_runs/compartment_id" title="Permalink to this return value"></a>
@@ -516,7 +517,61 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-maintenance_runs/current_custom_action_timeout_in_mins"></div>
+                    <b>current_custom_action_timeout_in_mins</b>
+                    <a class="ansibleOptionLink" href="#return-maintenance_runs/current_custom_action_timeout_in_mins" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Extend current custom action timeout between the current database servers during waiting state, from 0 (zero) to 30 minutes.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-maintenance_runs/current_patching_component"></div>
+                    <b>current_patching_component</b>
+                    <a class="ansibleOptionLink" href="#return-maintenance_runs/current_patching_component" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The name of the current infrastruture component that is getting patched.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">current_patching_component_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-maintenance_runs/custom_action_timeout_in_mins"></div>
+                    <b>custom_action_timeout_in_mins</b>
+                    <a class="ansibleOptionLink" href="#return-maintenance_runs/custom_action_timeout_in_mins" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Determines the amount of time the system will wait before the start of each database server patching operation. Specify a number of minutes, from 15 to 120.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-maintenance_runs/description"></div>
                     <b>description</b>
                     <a class="ansibleOptionLink" href="#return-maintenance_runs/description" title="Permalink to this return value"></a>
@@ -534,7 +589,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-maintenance_runs/display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#return-maintenance_runs/display_name" title="Permalink to this return value"></a>
@@ -552,7 +607,118 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-maintenance_runs/estimated_component_patching_start_time"></div>
+                    <b>estimated_component_patching_start_time</b>
+                    <a class="ansibleOptionLink" href="#return-maintenance_runs/estimated_component_patching_start_time" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The estimated start time of the next infrastruture component patching operation.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-maintenance_runs/estimated_patching_time"></div>
+                    <b>estimated_patching_time</b>
+                    <a class="ansibleOptionLink" href="#return-maintenance_runs/estimated_patching_time" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-maintenance_runs/estimated_patching_time/estimated_db_server_patching_time"></div>
+                    <b>estimated_db_server_patching_time</b>
+                    <a class="ansibleOptionLink" href="#return-maintenance_runs/estimated_patching_time/estimated_db_server_patching_time" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The estimated time required in minutes for database server patching.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-maintenance_runs/estimated_patching_time/estimated_network_switches_patching_time"></div>
+                    <b>estimated_network_switches_patching_time</b>
+                    <a class="ansibleOptionLink" href="#return-maintenance_runs/estimated_patching_time/estimated_network_switches_patching_time" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The estimated time required in minutes for network switch patching.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-maintenance_runs/estimated_patching_time/estimated_storage_server_patching_time"></div>
+                    <b>estimated_storage_server_patching_time</b>
+                    <a class="ansibleOptionLink" href="#return-maintenance_runs/estimated_patching_time/estimated_storage_server_patching_time" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The estimated time required in minutes for storage server patching.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-maintenance_runs/estimated_patching_time/total_estimated_patching_time"></div>
+                    <b>total_estimated_patching_time</b>
+                    <a class="ansibleOptionLink" href="#return-maintenance_runs/estimated_patching_time/total_estimated_patching_time" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The estimated total time required in minutes for all patching operations.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-maintenance_runs/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-maintenance_runs/id" title="Permalink to this return value"></a>
@@ -570,7 +736,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-maintenance_runs/is_custom_action_timeout_enabled"></div>
+                    <b>is_custom_action_timeout_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-maintenance_runs/is_custom_action_timeout_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>If true, enables the configuration of a custom action timeout (waiting period) between database servers patching operations.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-maintenance_runs/lifecycle_details"></div>
                     <b>lifecycle_details</b>
                     <a class="ansibleOptionLink" href="#return-maintenance_runs/lifecycle_details" title="Permalink to this return value"></a>
@@ -588,7 +772,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-maintenance_runs/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-maintenance_runs/lifecycle_state" title="Permalink to this return value"></a>
@@ -606,7 +790,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-maintenance_runs/maintenance_subtype"></div>
                     <b>maintenance_subtype</b>
                     <a class="ansibleOptionLink" href="#return-maintenance_runs/maintenance_subtype" title="Permalink to this return value"></a>
@@ -624,7 +808,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-maintenance_runs/maintenance_type"></div>
                     <b>maintenance_type</b>
                     <a class="ansibleOptionLink" href="#return-maintenance_runs/maintenance_type" title="Permalink to this return value"></a>
@@ -642,7 +826,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-maintenance_runs/patch_failure_count"></div>
                     <b>patch_failure_count</b>
                     <a class="ansibleOptionLink" href="#return-maintenance_runs/patch_failure_count" title="Permalink to this return value"></a>
@@ -660,7 +844,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-maintenance_runs/patch_id"></div>
                     <b>patch_id</b>
                     <a class="ansibleOptionLink" href="#return-maintenance_runs/patch_id" title="Permalink to this return value"></a>
@@ -678,7 +862,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-maintenance_runs/patching_end_time"></div>
+                    <b>patching_end_time</b>
+                    <a class="ansibleOptionLink" href="#return-maintenance_runs/patching_end_time" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The time when the patching operation ended.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-maintenance_runs/patching_mode"></div>
                     <b>patching_mode</b>
                     <a class="ansibleOptionLink" href="#return-maintenance_runs/patching_mode" title="Permalink to this return value"></a>
@@ -697,7 +899,43 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-maintenance_runs/patching_start_time"></div>
+                    <b>patching_start_time</b>
+                    <a class="ansibleOptionLink" href="#return-maintenance_runs/patching_start_time" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The time when the patching operation started.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-maintenance_runs/patching_status"></div>
+                    <b>patching_status</b>
+                    <a class="ansibleOptionLink" href="#return-maintenance_runs/patching_status" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The status of the patching operation.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PATCHING</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-maintenance_runs/peer_maintenance_run_id"></div>
                     <b>peer_maintenance_run_id</b>
                     <a class="ansibleOptionLink" href="#return-maintenance_runs/peer_maintenance_run_id" title="Permalink to this return value"></a>
@@ -715,7 +953,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-maintenance_runs/target_db_server_version"></div>
+                    <b>target_db_server_version</b>
+                    <a class="ansibleOptionLink" href="#return-maintenance_runs/target_db_server_version" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The target software version for the database server patching operation.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">target_db_server_version_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-maintenance_runs/target_resource_id"></div>
                     <b>target_resource_id</b>
                     <a class="ansibleOptionLink" href="#return-maintenance_runs/target_resource_id" title="Permalink to this return value"></a>
@@ -733,7 +989,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-maintenance_runs/target_resource_type"></div>
                     <b>target_resource_type</b>
                     <a class="ansibleOptionLink" href="#return-maintenance_runs/target_resource_type" title="Permalink to this return value"></a>
@@ -751,7 +1007,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-maintenance_runs/target_storage_server_version"></div>
+                    <b>target_storage_server_version</b>
+                    <a class="ansibleOptionLink" href="#return-maintenance_runs/target_storage_server_version" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The target Cell version that is to be patched to.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">target_storage_server_version_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-maintenance_runs/time_ended"></div>
                     <b>time_ended</b>
                     <a class="ansibleOptionLink" href="#return-maintenance_runs/time_ended" title="Permalink to this return value"></a>
@@ -769,7 +1043,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-maintenance_runs/time_scheduled"></div>
                     <b>time_scheduled</b>
                     <a class="ansibleOptionLink" href="#return-maintenance_runs/time_scheduled" title="Permalink to this return value"></a>
@@ -787,7 +1061,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-maintenance_runs/time_started"></div>
                     <b>time_started</b>
                     <a class="ansibleOptionLink" href="#return-maintenance_runs/time_started" title="Permalink to this return value"></a>

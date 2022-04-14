@@ -42,6 +42,10 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    is_unlimited:
+        description:
+            - If set to true, the install key has no expiration date or usage limit. Defaults to false
+        type: bool
     is_key_active:
         description:
             - if set to true the install key state would be set to Active and if false to Inactive
@@ -84,6 +88,7 @@ EXAMPLES = """
     # optional
     allowed_key_install_count: 56
     time_expires: time_expires_example
+    is_unlimited: true
 
 - name: Update management_agent_install_key
   oci_management_agent_install_key:
@@ -198,6 +203,12 @@ management_agent_install_key:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        is_unlimited:
+            description:
+                - If set to true, the install key has no expiration date or usage limit. Defaults to false
+            returned: on success
+            type: bool
+            sample: true
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -210,7 +221,8 @@ management_agent_install_key:
         "lifecycle_details": "lifecycle_details_example",
         "time_expires": "2013-10-20T19:20:30+01:00",
         "time_created": "2013-10-20T19:20:30+01:00",
-        "time_updated": "2013-10-20T19:20:30+01:00"
+        "time_updated": "2013-10-20T19:20:30+01:00",
+        "is_unlimited": true
     }
 """
 
@@ -389,6 +401,7 @@ def main():
             allowed_key_install_count=dict(type="int"),
             time_expires=dict(type="str"),
             compartment_id=dict(type="str"),
+            is_unlimited=dict(type="bool"),
             is_key_active=dict(type="bool", no_log=True),
             display_name=dict(aliases=["name"], type="str"),
             management_agent_install_key_id=dict(aliases=["id"], type="str"),

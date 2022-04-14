@@ -262,6 +262,23 @@ options:
                       For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
                     - Applicable when source is one of ['VM_CLUSTER_NEW', 'NONE']
                 type: dict
+            kms_key_id:
+                description:
+                    - The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.
+                    - Applicable when source is one of ['VM_CLUSTER_NEW', 'NONE']
+                type: str
+            kms_key_version_id:
+                description:
+                    - The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key
+                      versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.
+                    - Applicable when source is one of ['VM_CLUSTER_NEW', 'NONE']
+                type: str
+            vault_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
+                      L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
+                    - Applicable when source is one of ['VM_CLUSTER_NEW', 'NONE']
+                type: str
             sid_prefix:
                 description:
                     - Specifies a prefix for the `Oracle SID` of the database to be created.
@@ -370,6 +387,9 @@ EXAMPLES = """
           internet_proxy: internet_proxy_example
       freeform_tags: {'Department': 'Finance'}
       defined_tags: {'Operations': {'CostCenter': 'US'}}
+      kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+      kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+      vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
       sid_prefix: sid_prefix_example
 
     # optional
@@ -417,6 +437,9 @@ EXAMPLES = """
           internet_proxy: internet_proxy_example
       freeform_tags: {'Department': 'Finance'}
       defined_tags: {'Operations': {'CostCenter': 'US'}}
+      kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+      kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+      vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
       sid_prefix: sid_prefix_example
 
     # optional
@@ -464,6 +487,9 @@ EXAMPLES = """
           internet_proxy: internet_proxy_example
       freeform_tags: {'Department': 'Finance'}
       defined_tags: {'Operations': {'CostCenter': 'US'}}
+      kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+      kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+      vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
       sid_prefix: sid_prefix_example
 
     # optional
@@ -519,6 +545,9 @@ EXAMPLES = """
           internet_proxy: internet_proxy_example
       freeform_tags: {'Department': 'Finance'}
       defined_tags: {'Operations': {'CostCenter': 'US'}}
+      kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+      kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+      vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
       sid_prefix: sid_prefix_example
 
 - name: Create db_home with source = VM_CLUSTER_NEW
@@ -567,6 +596,9 @@ EXAMPLES = """
           internet_proxy: internet_proxy_example
       freeform_tags: {'Department': 'Finance'}
       defined_tags: {'Operations': {'CostCenter': 'US'}}
+      kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+      kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+      vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
       sid_prefix: sid_prefix_example
 
 - name: Update db_home
@@ -970,6 +1002,9 @@ def main():
                     ),
                     freeform_tags=dict(type="dict"),
                     defined_tags=dict(type="dict"),
+                    kms_key_id=dict(type="str"),
+                    kms_key_version_id=dict(type="str"),
+                    vault_id=dict(type="str"),
                     sid_prefix=dict(type="str"),
                 ),
             ),

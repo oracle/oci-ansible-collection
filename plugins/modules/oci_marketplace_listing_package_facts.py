@@ -258,6 +258,30 @@ listing_packages:
                     returned: on success
                     type: float
                     sample: 10
+                international_market_price:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        currency_code:
+                            description:
+                                - The currency of the pricing model.
+                            returned: on success
+                            type: str
+                            sample: USD
+                        currency_symbol:
+                            description:
+                                - The symbol of the currency
+                            returned: on success
+                            type: str
+                            sample: currency_symbol_example
+                        rate:
+                            description:
+                                - The pricing rate.
+                            returned: on success
+                            type: float
+                            sample: 1.2
         regions:
             description:
                 - The regions where you can deploy the listing package. (Some packages have restrictions that limit their deployment to United States regions
@@ -334,7 +358,12 @@ listing_packages:
             "type": "FREE",
             "pay_go_strategy": "PER_OCPU_LINEAR",
             "currency": "USD",
-            "rate": 10
+            "rate": 10,
+            "international_market_price": {
+                "currency_code": "USD",
+                "currency_symbol": "currency_symbol_example",
+                "rate": 1.2
+            }
         },
         "regions": [{
             "name": "name_example",
