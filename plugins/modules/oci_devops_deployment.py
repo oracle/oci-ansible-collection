@@ -27,21 +27,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    previous_deployment_id:
-        description:
-            - Specifies the OCID of the previous deployment to be redeployed.
-            - Applicable when deployment_type is 'PIPELINE_REDEPLOYMENT'
-        type: str
-    deploy_pipeline_id:
-        description:
-            - The OCID of a pipeline.
-            - Required for create using I(state=present).
-        type: str
-    deploy_stage_id:
-        description:
-            - Specifies the OCID of the stage to be redeployed.
-            - Applicable when deployment_type is 'SINGLE_STAGE_DEPLOYMENT'
-        type: str
     deployment_arguments:
         description:
             - ""
@@ -100,6 +85,21 @@ options:
                             - Required when deployment_type is 'PIPELINE_DEPLOYMENT'
                         type: str
                         required: true
+    deploy_pipeline_id:
+        description:
+            - The OCID of a pipeline.
+            - Required for create using I(state=present).
+        type: str
+    previous_deployment_id:
+        description:
+            - Specifies the OCID of the previous deployment to be redeployed.
+            - Applicable when deployment_type is one of ['SINGLE_STAGE_REDEPLOYMENT', 'PIPELINE_REDEPLOYMENT']
+        type: str
+    deploy_stage_id:
+        description:
+            - Specifies the OCID of the stage to be redeployed.
+            - Applicable when deployment_type is one of ['SINGLE_STAGE_REDEPLOYMENT', 'SINGLE_STAGE_DEPLOYMENT']
+        type: str
     deployment_id:
         description:
             - Unique deployment identifier.
@@ -114,6 +114,7 @@ options:
             - "PIPELINE_REDEPLOYMENT"
             - "PIPELINE_DEPLOYMENT"
             - "SINGLE_STAGE_DEPLOYMENT"
+            - "SINGLE_STAGE_REDEPLOYMENT"
         required: true
     display_name:
         description:
@@ -189,7 +190,6 @@ EXAMPLES = """
     deployment_type: SINGLE_STAGE_DEPLOYMENT
 
     # optional
-    deploy_stage_id: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
     deployment_arguments:
       # required
       items:
@@ -203,6 +203,20 @@ EXAMPLES = """
         deploy_artifact_id: "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
         value: value_example
+    deploy_stage_id: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Create deployment with deployment_type = SINGLE_STAGE_REDEPLOYMENT
+  oci_devops_deployment:
+    # required
+    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+    deployment_type: SINGLE_STAGE_REDEPLOYMENT
+
+    # optional
+    previous_deployment_id: "ocid1.previousdeployment.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_stage_id: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -231,6 +245,16 @@ EXAMPLES = """
   oci_devops_deployment:
     # required
     deployment_type: SINGLE_STAGE_DEPLOYMENT
+
+    # optional
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update deployment with deployment_type = SINGLE_STAGE_REDEPLOYMENT
+  oci_devops_deployment:
+    # required
+    deployment_type: SINGLE_STAGE_REDEPLOYMENT
 
     # optional
     display_name: display_name_example
@@ -267,6 +291,16 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
+- name: Update deployment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deployment_type = SINGLE_STAGE_REDEPLOYMENT
+  oci_devops_deployment:
+    # required
+    deployment_type: SINGLE_STAGE_REDEPLOYMENT
+
+    # optional
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
 """
 
 RETURN = """
@@ -276,12 +310,6 @@ deployment:
     returned: on success
     type: complex
     contains:
-        previous_deployment_id:
-            description:
-                - Specifies the OCID of the previous deployment to be redeployed.
-            returned: on success
-            type: str
-            sample: "ocid1.previousdeployment.oc1..xxxxxxEXAMPLExxxxxx"
         deploy_pipeline_artifacts:
             description:
                 - ""
@@ -380,7 +408,7 @@ deployment:
                                             sample: display_name_example
         deployment_type:
             description:
-                - Specifies type of Deployment
+                - Specifies type of deployment.
             returned: on success
             type: str
             sample: PIPELINE_DEPLOYMENT
@@ -517,6 +545,18 @@ deployment:
                     returned: on success
                     type: complex
                     contains:
+                        environment_id:
+                            description:
+                                - The OCID of the environment where the artifacts were deployed.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.environment.oc1..xxxxxxEXAMPLExxxxxx"
+                        namespace:
+                            description:
+                                - Namespace either environment A or environment B where artifacts are deployed.
+                            returned: on success
+                            type: str
+                            sample: namespace_example
                         approval_actions:
                             description:
                                 - ""
@@ -535,6 +575,12 @@ deployment:
                                     returned: on success
                                     type: str
                                     sample: APPROVE
+                                reason:
+                                    description:
+                                        - The reason for approving or rejecting the deployment.
+                                    returned: on success
+                                    type: str
+                                    sample: reason_example
                         deploy_stage_display_name:
                             description:
                                 - Stage display name. Avoid entering confidential information.
@@ -546,7 +592,7 @@ deployment:
                                 - Deployment stage type.
                             returned: on success
                             type: str
-                            sample: COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT
+                            sample: COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT
                         deploy_stage_id:
                             description:
                                 - The OCID of the stage.
@@ -690,6 +736,12 @@ deployment:
             returned: on success
             type: dict
             sample: {}
+        previous_deployment_id:
+            description:
+                - Specifies the OCID of the previous deployment to be redeployed.
+            returned: on success
+            type: str
+            sample: "ocid1.previousdeployment.oc1..xxxxxxEXAMPLExxxxxx"
         deploy_stage_id:
             description:
                 - Specifies the OCID of the stage to be deployed.
@@ -697,7 +749,6 @@ deployment:
             type: str
             sample: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
-        "previous_deployment_id": "ocid1.previousdeployment.oc1..xxxxxxEXAMPLExxxxxx",
         "deploy_pipeline_artifacts": {
             "items": [{
                 "deploy_artifact_id": "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx",
@@ -749,12 +800,15 @@ deployment:
             "time_started": "2013-10-20T19:20:30+01:00",
             "time_finished": "2013-10-20T19:20:30+01:00",
             "deploy_stage_execution_progress": {
+                "environment_id": "ocid1.environment.oc1..xxxxxxEXAMPLExxxxxx",
+                "namespace": "namespace_example",
                 "approval_actions": [{
                     "subject_id": "ocid1.subject.oc1..xxxxxxEXAMPLExxxxxx",
-                    "action": "APPROVE"
+                    "action": "APPROVE",
+                    "reason": "reason_example"
                 }],
                 "deploy_stage_display_name": "deploy_stage_display_name_example",
-                "deploy_stage_type": "COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT",
+                "deploy_stage_type": "COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT",
                 "deploy_stage_id": "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx",
                 "time_started": "2013-10-20T19:20:30+01:00",
                 "time_finished": "2013-10-20T19:20:30+01:00",
@@ -785,6 +839,7 @@ deployment:
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "system_tags": {},
+        "previous_deployment_id": "ocid1.previousdeployment.oc1..xxxxxxEXAMPLExxxxxx",
         "deploy_stage_id": "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """
@@ -928,9 +983,6 @@ def main():
     )
     module_args.update(
         dict(
-            previous_deployment_id=dict(type="str"),
-            deploy_pipeline_id=dict(type="str"),
-            deploy_stage_id=dict(type="str"),
             deployment_arguments=dict(
                 type="dict",
                 options=dict(
@@ -960,6 +1012,9 @@ def main():
                     )
                 ),
             ),
+            deploy_pipeline_id=dict(type="str"),
+            previous_deployment_id=dict(type="str"),
+            deploy_stage_id=dict(type="str"),
             deployment_id=dict(aliases=["id"], type="str"),
             deployment_type=dict(
                 type="str",
@@ -968,6 +1023,7 @@ def main():
                     "PIPELINE_REDEPLOYMENT",
                     "PIPELINE_DEPLOYMENT",
                     "SINGLE_STAGE_DEPLOYMENT",
+                    "SINGLE_STAGE_REDEPLOYMENT",
                 ],
             ),
             display_name=dict(aliases=["name"], type="str"),

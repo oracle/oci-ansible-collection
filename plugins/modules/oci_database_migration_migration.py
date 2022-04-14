@@ -26,7 +26,8 @@ description:
     - For I(state=present), create a Migration resource that contains all the details to perform the
       database migration operation, such as source and destination database
       details, credentials, etc.
-    - "This resource has the following action operations in the M(oracle.oci.oci_database_migration_migration_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_database_migration_migration_actions) module: add_migration_objects,
+      change_compartment, remove_migration_objects."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -120,6 +121,35 @@ options:
                     bucket_name:
                         description:
                             - Bucket name.
+                            - This parameter is updatable.
+                        type: str
+            aws_s3_details:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    name:
+                        description:
+                            - S3 bucket name.
+                            - This parameter is updatable.
+                        type: str
+                    region:
+                        description:
+                            - "AWS region code where the S3 bucket is located.
+                              Region code should match the documented available regions:
+                              https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions"
+                            - This parameter is updatable.
+                        type: str
+                    access_key_id:
+                        description:
+                            - "AWS access key credentials identifier
+                              Details: https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys"
+                            - This parameter is updatable.
+                        type: str
+                    secret_access_key:
+                        description:
+                            - "AWS secret access key credentials
+                              Details: https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys"
                             - This parameter is updatable.
                         type: str
     dump_transfer_details:
@@ -258,6 +288,49 @@ options:
                         description:
                             - Specifies the new value that oldValue should be translated into.
                         type: str
+                        required: true
+            tablespace_details:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    remap_target:
+                        description:
+                            - Name of tablespace at target to which the source database tablespace need to be remapped.
+                            - This parameter is updatable.
+                            - Applicable when target_type is one of ['ADB_D_REMAP', 'NON_ADB_REMAP']
+                        type: str
+                    is_auto_create:
+                        description:
+                            - True to auto-create tablespace in the target Database.
+                            - This parameter is updatable.
+                            - Applicable when target_type is one of ['ADB_D_AUTOCREATE', 'NON_ADB_AUTOCREATE']
+                        type: bool
+                    is_big_file:
+                        description:
+                            - True set tablespace to big file.
+                            - This parameter is updatable.
+                            - Applicable when target_type is one of ['ADB_D_AUTOCREATE', 'NON_ADB_AUTOCREATE']
+                        type: bool
+                    extend_size_in_mbs:
+                        description:
+                            - Size of extend in MB. Can only be specified if 'isBigFile' property is set to true.
+                            - This parameter is updatable.
+                            - Applicable when target_type is one of ['ADB_D_AUTOCREATE', 'NON_ADB_AUTOCREATE']
+                        type: int
+                    target_type:
+                        description:
+                            - Type of Database Base Migration Target.
+                            - This parameter is updatable.
+                        type: str
+                        choices:
+                            - "NON_ADB_AUTOCREATE"
+                            - "NON_ADB_REMAP"
+                            - "ADB_D_REMAP"
+                            - "ADB_S_REMAP"
+                            - "ADB_D_AUTOCREATE"
+                            - "TARGET_DEFAULTS_REMAP"
+                            - "TARGET_DEFAULTS_AUTOCREATE"
                         required: true
             export_directory_object:
                 description:
@@ -571,6 +644,12 @@ EXAMPLES = """
         # optional
         namespace_name: namespace_name_example
         bucket_name: bucket_name_example
+      aws_s3_details:
+        # optional
+        name: name_example
+        region: us-phoenix-1
+        access_key_id: "ocid1.accesskey.oc1..xxxxxxEXAMPLExxxxxx"
+        secret_access_key: secret_access_key_example
     dump_transfer_details:
       # optional
       source:
@@ -597,6 +676,14 @@ EXAMPLES = """
         type: SCHEMA
         old_value: old_value_example
         new_value: new_value_example
+      tablespace_details:
+        # required
+        target_type: NON_ADB_AUTOCREATE
+
+        # optional
+        is_auto_create: true
+        is_big_file: true
+        extend_size_in_mbs: 56
       export_directory_object:
         # optional
         name: name_example
@@ -692,6 +779,12 @@ EXAMPLES = """
         # optional
         namespace_name: namespace_name_example
         bucket_name: bucket_name_example
+      aws_s3_details:
+        # optional
+        name: name_example
+        region: us-phoenix-1
+        access_key_id: "ocid1.accesskey.oc1..xxxxxxEXAMPLExxxxxx"
+        secret_access_key: secret_access_key_example
     dump_transfer_details:
       # optional
       source:
@@ -718,6 +811,14 @@ EXAMPLES = """
         type: SCHEMA
         old_value: old_value_example
         new_value: new_value_example
+      tablespace_details:
+        # required
+        target_type: NON_ADB_AUTOCREATE
+
+        # optional
+        is_auto_create: true
+        is_big_file: true
+        extend_size_in_mbs: 56
       export_directory_object:
         # optional
         name: name_example
@@ -813,6 +914,12 @@ EXAMPLES = """
         # optional
         namespace_name: namespace_name_example
         bucket_name: bucket_name_example
+      aws_s3_details:
+        # optional
+        name: name_example
+        region: us-phoenix-1
+        access_key_id: "ocid1.accesskey.oc1..xxxxxxEXAMPLExxxxxx"
+        secret_access_key: secret_access_key_example
     dump_transfer_details:
       # optional
       source:
@@ -839,6 +946,14 @@ EXAMPLES = """
         type: SCHEMA
         old_value: old_value_example
         new_value: new_value_example
+      tablespace_details:
+        # required
+        target_type: NON_ADB_AUTOCREATE
+
+        # optional
+        is_auto_create: true
+        is_big_file: true
+        extend_size_in_mbs: 56
       export_directory_object:
         # optional
         name: name_example
@@ -1052,6 +1167,26 @@ migration:
                             returned: on success
                             type: str
                             sample: bucket_name_example
+                aws_s3_details:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        name:
+                            description:
+                                - S3 bucket name.
+                            returned: on success
+                            type: str
+                            sample: name_example
+                        region:
+                            description:
+                                - "AWS region code where the S3 bucket is located.
+                                  Region code should match the documented available regions:
+                                  https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions"
+                            returned: on success
+                            type: str
+                            sample: us-phoenix-1
         dump_transfer_details:
             description:
                 - ""
@@ -1178,6 +1313,42 @@ migration:
                             returned: on success
                             type: str
                             sample: new_value_example
+                tablespace_details:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        is_auto_create:
+                            description:
+                                - True to auto-create tablespace in the target Database.
+                            returned: on success
+                            type: bool
+                            sample: true
+                        is_big_file:
+                            description:
+                                - True set tablespace to big file.
+                            returned: on success
+                            type: bool
+                            sample: true
+                        extend_size_in_mbs:
+                            description:
+                                - Size of extend in MB. Can only be specified if 'isBigFile' property is set to true.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        target_type:
+                            description:
+                                - Type of Database Base Migration Target.
+                            returned: on success
+                            type: str
+                            sample: ADB_S_REMAP
+                        remap_target:
+                            description:
+                                - Name of tablespace at target to which the source database tablespace need to be remapped.
+                            returned: on success
+                            type: str
+                            sample: remap_target_example
                 export_directory_object:
                     description:
                         - ""
@@ -1523,6 +1694,10 @@ migration:
             "object_storage_details": {
                 "namespace_name": "namespace_name_example",
                 "bucket_name": "bucket_name_example"
+            },
+            "aws_s3_details": {
+                "name": "name_example",
+                "region": "us-phoenix-1"
             }
         },
         "dump_transfer_details": {
@@ -1550,6 +1725,13 @@ migration:
                 "old_value": "old_value_example",
                 "new_value": "new_value_example"
             }],
+            "tablespace_details": {
+                "is_auto_create": true,
+                "is_big_file": true,
+                "extend_size_in_mbs": 56,
+                "target_type": "ADB_S_REMAP",
+                "remap_target": "remap_target_example"
+            },
             "export_directory_object": {
                 "name": "name_example",
                 "path": "path_example"
@@ -1720,8 +1902,10 @@ class MigrationHelperGen(OCIResourceHelperBase):
 
     def get_exclude_attributes(self):
         return [
+            "data_transfer_medium_details.aws_s3_details.secret_access_key",
             "golden_gate_details.hub.source_container_db_admin_credentials.password",
             "golden_gate_details.hub.target_db_admin_credentials.password",
+            "data_transfer_medium_details.aws_s3_details.access_key_id",
             "golden_gate_details.hub.source_db_admin_credentials.password",
             "golden_gate_details.hub.rest_admin_credentials.password",
         ]
@@ -1814,6 +1998,15 @@ def main():
                             bucket_name=dict(type="str"),
                         ),
                     ),
+                    aws_s3_details=dict(
+                        type="dict",
+                        options=dict(
+                            name=dict(type="str"),
+                            region=dict(type="str"),
+                            access_key_id=dict(type="str"),
+                            secret_access_key=dict(type="str", no_log=True),
+                        ),
+                    ),
                 ),
             ),
             dump_transfer_details=dict(
@@ -1873,6 +2066,28 @@ def main():
                             ),
                             old_value=dict(type="str", required=True),
                             new_value=dict(type="str", required=True),
+                        ),
+                    ),
+                    tablespace_details=dict(
+                        type="dict",
+                        options=dict(
+                            remap_target=dict(type="str"),
+                            is_auto_create=dict(type="bool"),
+                            is_big_file=dict(type="bool"),
+                            extend_size_in_mbs=dict(type="int"),
+                            target_type=dict(
+                                type="str",
+                                required=True,
+                                choices=[
+                                    "NON_ADB_AUTOCREATE",
+                                    "NON_ADB_REMAP",
+                                    "ADB_D_REMAP",
+                                    "ADB_S_REMAP",
+                                    "ADB_D_AUTOCREATE",
+                                    "TARGET_DEFAULTS_REMAP",
+                                    "TARGET_DEFAULTS_AUTOCREATE",
+                                ],
+                            ),
                         ),
                     ),
                     export_directory_object=dict(

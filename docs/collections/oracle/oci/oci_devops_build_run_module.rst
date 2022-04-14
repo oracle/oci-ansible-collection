@@ -30,7 +30,7 @@ oracle.oci.oci_devops_build_run -- Manage a BuildRun resource in Oracle Cloud In
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -1439,7 +1439,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The ID of the predecessor stage. If a stage is the first stage in the pipeline, then the ID is the pipeline&#x27;s ID.</div>
+                                            <div>The OCID of the predecessor stage. If a stage is the first stage in the pipeline, then the ID is the pipeline&#x27;s OCID.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>

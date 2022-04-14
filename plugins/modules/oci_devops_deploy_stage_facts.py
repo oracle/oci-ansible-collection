@@ -102,9 +102,94 @@ deploy_stages:
     returned: on success
     type: complex
     contains:
+        deploy_environment_id_a:
+            description:
+                - First compute instance group environment OCID for deployment.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: deploy_environment_id_a_example
+        deploy_environment_id_b:
+            description:
+                - Second compute instance group environment OCID for deployment.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: deploy_environment_id_b_example
+        compute_instance_group_blue_green_deployment_deploy_stage_id:
+            description:
+                - The OCID of the upstream compute instance group blue-green deployment stage in this pipeline.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.computeinstancegroupbluegreendeploymentdeploystage.oc1..xxxxxxEXAMPLExxxxxx"
+        compute_instance_group_canary_traffic_shift_deploy_stage_id:
+            description:
+                - A compute instance group canary traffic shift stage OCID for load balancer.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.computeinstancegroupcanarytrafficshiftdeploystage.oc1..xxxxxxEXAMPLExxxxxx"
+        test_load_balancer_config:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                load_balancer_id:
+                    description:
+                        - The OCID of the load balancer.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+                listener_name:
+                    description:
+                        - Name of the load balancer listener.
+                    returned: on success
+                    type: str
+                    sample: listener_name_example
+                backend_port:
+                    description:
+                        - Listen port for the backend server.
+                    returned: on success
+                    type: int
+                    sample: 56
+        production_load_balancer_config:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                load_balancer_id:
+                    description:
+                        - The OCID of the load balancer.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+                listener_name:
+                    description:
+                        - Name of the load balancer listener.
+                    returned: on success
+                    type: str
+                    sample: listener_name_example
+                backend_port:
+                    description:
+                        - Listen port for the backend server.
+                    returned: on success
+                    type: int
+                    sample: 56
+        compute_instance_group_canary_deploy_stage_id:
+            description:
+                - The OCID of an upstream compute instance group canary deployment stage ID in this pipeline.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.computeinstancegroupcanarydeploystage.oc1..xxxxxxEXAMPLExxxxxx"
         compute_instance_group_deploy_environment_id:
             description:
-                - A compute instance group environment OCID for rolling deployment.
+                - A compute instance group environment OCID for Canary deployment.
                 - Returned for get operation
             returned: on success
             type: str
@@ -118,7 +203,7 @@ deploy_stages:
             sample: "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
         deploy_artifact_ids:
             description:
-                - Additional file artifact OCIDs.
+                - The list of file artifact OCIDs to deploy.
                 - Returned for get operation
             returned: on success
             type: list
@@ -132,7 +217,7 @@ deploy_stages:
             contains:
                 failure_count:
                     description:
-                        - The threshold count of failed instances in the group, which when reached or exceeded sets the stage as FAILED.
+                        - The threshold count of failed instances in the group, which when reached or exceeded sets the stage as Failed.
                     returned: on success
                     type: int
                     sample: 56
@@ -144,7 +229,7 @@ deploy_stages:
                     sample: COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_COUNT
                 failure_percentage:
                     description:
-                        - The failure percentage threshold, which when reached or exceeded sets the stage as FAILED. Percentage is computed as the ceiling value
+                        - The failure percentage threshold, which when reached or exceeded sets the stage as Failed. Percentage is computed as the ceiling value
                           of the number of failed instances over the total count of the instances in the group.
                     returned: on success
                     type: int
@@ -238,6 +323,127 @@ deploy_stages:
             returned: on success
             type: str
             sample: AUTO_SELECT
+        load_balancer_config:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                load_balancer_id:
+                    description:
+                        - The OCID of the load balancer.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+                listener_name:
+                    description:
+                        - Name of the load balancer listener.
+                    returned: on success
+                    type: str
+                    sample: listener_name_example
+                backend_port:
+                    description:
+                        - Listen port for the backend server.
+                    returned: on success
+                    type: int
+                    sample: 56
+        blue_green_strategy:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                strategy_type:
+                    description:
+                        - Blue-Green strategy type.
+                    returned: on success
+                    type: str
+                    sample: NGINX_BLUE_GREEN_STRATEGY
+                namespace_a:
+                    description:
+                        - Namespace A for deployment.
+                    returned: on success
+                    type: str
+                    sample: namespace_a_example
+                namespace_b:
+                    description:
+                        - Namespace B for deployment.
+                    returned: on success
+                    type: str
+                    sample: namespace_b_example
+                ingress_name:
+                    description:
+                        - Name of the Ingress resource.
+                    returned: on success
+                    type: str
+                    sample: ingress_name_example
+        oke_blue_green_deploy_stage_id:
+            description:
+                - The OCID of the upstream OKE blue-green deployment stage in this pipeline.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.okebluegreendeploystage.oc1..xxxxxxEXAMPLExxxxxx"
+        oke_canary_traffic_shift_deploy_stage_id:
+            description:
+                - The OCID of an upstream OKE canary deployment traffic shift stage in this pipeline.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.okecanarytrafficshiftdeploystage.oc1..xxxxxxEXAMPLExxxxxx"
+        approval_policy:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                approval_policy_type:
+                    description:
+                        - Approval policy type.
+                    returned: on success
+                    type: str
+                    sample: COUNT_BASED_APPROVAL
+                number_of_approvals_required:
+                    description:
+                        - A minimum number of approvals required for stage to proceed.
+                    returned: on success
+                    type: int
+                    sample: 56
+        canary_strategy:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                strategy_type:
+                    description:
+                        - Canary strategy type.
+                    returned: on success
+                    type: str
+                    sample: NGINX_CANARY_STRATEGY
+                namespace:
+                    description:
+                        - Canary namespace to be used for Kubernetes canary deployment.
+                    returned: on success
+                    type: str
+                    sample: namespace_example
+                ingress_name:
+                    description:
+                        - Name of the Ingress resource.
+                    returned: on success
+                    type: str
+                    sample: ingress_name_example
+        oke_canary_deploy_stage_id:
+            description:
+                - The OCID of an upstream OKE canary deployment stage in this pipeline.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.okecanarydeploystage.oc1..xxxxxxEXAMPLExxxxxx"
         rollout_policy:
             description:
                 - ""
@@ -275,50 +481,6 @@ deploy_stages:
                     returned: on success
                     type: float
                     sample: 3.4
-        load_balancer_config:
-            description:
-                - ""
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                load_balancer_id:
-                    description:
-                        - The OCID of the load balancer.
-                    returned: on success
-                    type: str
-                    sample: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-                listener_name:
-                    description:
-                        - Name of the load balancer listener.
-                    returned: on success
-                    type: str
-                    sample: listener_name_example
-                backend_port:
-                    description:
-                        - Listen port for the backend server.
-                    returned: on success
-                    type: int
-                    sample: 56
-        approval_policy:
-            description:
-                - ""
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                approval_policy_type:
-                    description:
-                        - Approval policy type.
-                    returned: on success
-                    type: str
-                    sample: COUNT_BASED_APPROVAL
-                number_of_approvals_required:
-                    description:
-                        - A minimum number of approvals required for stage to proceed.
-                    returned: on success
-                    type: int
-                    sample: 56
         oke_cluster_deploy_environment_id:
             description:
                 - Kubernetes cluster environment OCID for deployment.
@@ -328,14 +490,14 @@ deploy_stages:
             sample: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
         kubernetes_manifest_deploy_artifact_ids:
             description:
-                - List of Kubernetes manifest artifact OCIDs, the manifests should not include any job resource.
+                - List of Kubernetes manifest artifact OCIDs
                 - Returned for get operation
             returned: on success
             type: list
             sample: []
         namespace:
             description:
-                - Default Namespace to be used for Kubernetes deployment when not specified in the manifest.
+                - Default namespace to be used for Kubernetes deployment when not specified in the manifest.
                 - Returned for get operation
             returned: on success
             type: str
@@ -481,6 +643,21 @@ deploy_stages:
             type: dict
             sample: {}
     sample: [{
+        "deploy_environment_id_a": "deploy_environment_id_a_example",
+        "deploy_environment_id_b": "deploy_environment_id_b_example",
+        "compute_instance_group_blue_green_deployment_deploy_stage_id": "ocid1.computeinstancegroupbluegreendeploymentdeploystage.oc1..xxxxxxEXAMPLExxxxxx",
+        "compute_instance_group_canary_traffic_shift_deploy_stage_id": "ocid1.computeinstancegroupcanarytrafficshiftdeploystage.oc1..xxxxxxEXAMPLExxxxxx",
+        "test_load_balancer_config": {
+            "load_balancer_id": "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx",
+            "listener_name": "listener_name_example",
+            "backend_port": 56
+        },
+        "production_load_balancer_config": {
+            "load_balancer_id": "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx",
+            "listener_name": "listener_name_example",
+            "backend_port": 56
+        },
+        "compute_instance_group_canary_deploy_stage_id": "ocid1.computeinstancegroupcanarydeploystage.oc1..xxxxxxEXAMPLExxxxxx",
         "compute_instance_group_deploy_environment_id": "ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx",
         "deployment_spec_deploy_artifact_id": "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx",
         "deploy_artifact_ids": [],
@@ -504,21 +681,35 @@ deploy_stages:
             "items": []
         },
         "traffic_shift_target": "AUTO_SELECT",
+        "load_balancer_config": {
+            "load_balancer_id": "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx",
+            "listener_name": "listener_name_example",
+            "backend_port": 56
+        },
+        "blue_green_strategy": {
+            "strategy_type": "NGINX_BLUE_GREEN_STRATEGY",
+            "namespace_a": "namespace_a_example",
+            "namespace_b": "namespace_b_example",
+            "ingress_name": "ingress_name_example"
+        },
+        "oke_blue_green_deploy_stage_id": "ocid1.okebluegreendeploystage.oc1..xxxxxxEXAMPLExxxxxx",
+        "oke_canary_traffic_shift_deploy_stage_id": "ocid1.okecanarytrafficshiftdeploystage.oc1..xxxxxxEXAMPLExxxxxx",
+        "approval_policy": {
+            "approval_policy_type": "COUNT_BASED_APPROVAL",
+            "number_of_approvals_required": 56
+        },
+        "canary_strategy": {
+            "strategy_type": "NGINX_CANARY_STRATEGY",
+            "namespace": "namespace_example",
+            "ingress_name": "ingress_name_example"
+        },
+        "oke_canary_deploy_stage_id": "ocid1.okecanarydeploystage.oc1..xxxxxxEXAMPLExxxxxx",
         "rollout_policy": {
             "batch_count": 56,
             "policy_type": "COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_COUNT",
             "batch_delay_in_seconds": 56,
             "batch_percentage": 56,
             "ramp_limit_percent": 3.4
-        },
-        "load_balancer_config": {
-            "load_balancer_id": "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx",
-            "listener_name": "listener_name_example",
-            "backend_port": 56
-        },
-        "approval_policy": {
-            "approval_policy_type": "COUNT_BASED_APPROVAL",
-            "number_of_approvals_required": 56
         },
         "oke_cluster_deploy_environment_id": "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx",
         "kubernetes_manifest_deploy_artifact_ids": [],

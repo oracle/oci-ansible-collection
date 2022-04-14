@@ -36,21 +36,6 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class InstanceConfigurationActionsHelperCustom:
-
-    # The generated code now returns "instance" as the default response field name which was earlier returning "instance_configuration"
-    # "instance" response fieldm name is used only for "launch" action
-    # "instance_configuration" is used for change_compartment
-    def prepare_result(self, *args, **kwargs):
-        super_result = super(
-            InstanceConfigurationActionsHelperCustom, self
-        ).prepare_result(*args, **kwargs)
-        action = self.module.params.get("action")
-        if action == "change_compartment":
-            super_result["instance_configuration"] = super_result.pop("instance", None)
-        return super_result
-
-
 class InstancePoolActionsHelperCustom:
     LIFECYCLE_STATE_ATTACHED = "ATTACHED"
     LIFECYCLE_STATE_DETACHED = "DETACHED"

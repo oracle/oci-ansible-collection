@@ -146,7 +146,7 @@ deploy_artifacts:
             contains:
                 repository_id:
                     description:
-                        - The OCID of a repository
+                        - The OCID of a repository.
                     returned: on success
                     type: str
                     sample: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
@@ -177,7 +177,7 @@ deploy_artifacts:
                     sample: INLINE
                 image_uri:
                     description:
-                        - "Specifies OCIR Image Path - optionally include tag."
+                        - "Specifies OCIR image path - optionally include tag."
                     returned: on success
                     type: str
                     sample: image_uri_example

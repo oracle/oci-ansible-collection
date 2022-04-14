@@ -189,6 +189,26 @@ migrations:
                             returned: on success
                             type: str
                             sample: bucket_name_example
+                aws_s3_details:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        name:
+                            description:
+                                - S3 bucket name.
+                            returned: on success
+                            type: str
+                            sample: name_example
+                        region:
+                            description:
+                                - "AWS region code where the S3 bucket is located.
+                                  Region code should match the documented available regions:
+                                  https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions"
+                            returned: on success
+                            type: str
+                            sample: us-phoenix-1
         dump_transfer_details:
             description:
                 - ""
@@ -317,6 +337,42 @@ migrations:
                             returned: on success
                             type: str
                             sample: new_value_example
+                tablespace_details:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        is_auto_create:
+                            description:
+                                - True to auto-create tablespace in the target Database.
+                            returned: on success
+                            type: bool
+                            sample: true
+                        is_big_file:
+                            description:
+                                - True set tablespace to big file.
+                            returned: on success
+                            type: bool
+                            sample: true
+                        extend_size_in_mbs:
+                            description:
+                                - Size of extend in MB. Can only be specified if 'isBigFile' property is set to true.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        target_type:
+                            description:
+                                - Type of Database Base Migration Target.
+                            returned: on success
+                            type: str
+                            sample: ADB_S_REMAP
+                        remap_target:
+                            description:
+                                - Name of tablespace at target to which the source database tablespace need to be remapped.
+                            returned: on success
+                            type: str
+                            sample: remap_target_example
                 export_directory_object:
                     description:
                         - ""
@@ -711,6 +767,10 @@ migrations:
             "object_storage_details": {
                 "namespace_name": "namespace_name_example",
                 "bucket_name": "bucket_name_example"
+            },
+            "aws_s3_details": {
+                "name": "name_example",
+                "region": "us-phoenix-1"
             }
         },
         "dump_transfer_details": {
@@ -738,6 +798,13 @@ migrations:
                 "old_value": "old_value_example",
                 "new_value": "new_value_example"
             }],
+            "tablespace_details": {
+                "is_auto_create": true,
+                "is_big_file": true,
+                "extend_size_in_mbs": 56,
+                "target_type": "ADB_S_REMAP",
+                "remap_target": "remap_target_example"
+            },
             "export_directory_object": {
                 "name": "name_example",
                 "path": "path_example"

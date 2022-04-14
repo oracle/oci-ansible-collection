@@ -157,6 +157,20 @@ backups:
             returned: on success
             type: str
             sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        kms_key_version_id:
+            description:
+                - The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key
+                  versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.
+            returned: on success
+            type: str
+            sample: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+        vault_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
+                  L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
+            returned: on success
+            type: str
+            sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -172,7 +186,9 @@ backups:
         "database_size_in_gbs": 1.2,
         "shape": "shape_example",
         "version": "version_example",
-        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
+        "kms_key_version_id": "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx",
+        "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     }]
 """
 

@@ -25,33 +25,24 @@ description:
     - This module allows the user to create, update and delete a DatabaseInsights resource in Oracle Cloud Infrastructure
     - For I(state=present), create a Database Insight resource for a database in Operations Insights. The database will be enabled in Operations Insights.
       Database metric collection and analysis will be started.
-    - "This resource has the following action operations in the M(oracle.oci.oci_opsi_database_insights_actions) module: change, disable, enable,
-      ingest_database_configuration, ingest_sql_bucket, ingest_sql_plan_lines, ingest_sql_stats, ingest_sql_text."
+    - "This resource has the following action operations in the M(oracle.oci.oci_opsi_database_insights_actions) module: change, change_pe_comanaged, disable,
+      enable, ingest_database_configuration, ingest_sql_bucket, ingest_sql_plan_lines, ingest_sql_stats, ingest_sql_text."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    compartment_id:
-        description:
-            - Compartment Identifier of database
-            - Required for create using I(state=present).
-            - Required when entity_source is 'EM_MANAGED_EXTERNAL_DATABASE'
-        type: str
     enterprise_manager_identifier:
         description:
             - Enterprise Manager Unique Identifier
-            - Required for create using I(state=present).
             - Required when entity_source is 'EM_MANAGED_EXTERNAL_DATABASE'
         type: str
     enterprise_manager_bridge_id:
         description:
             - OPSI Enterprise Manager Bridge OCID
-            - Required for create using I(state=present).
             - Required when entity_source is 'EM_MANAGED_EXTERNAL_DATABASE'
         type: str
     enterprise_manager_entity_identifier:
         description:
             - Enterprise Manager Entity Unique Identifier
-            - Required for create using I(state=present).
             - Required when entity_source is 'EM_MANAGED_EXTERNAL_DATABASE'
         type: str
     exadata_insight_id:
@@ -59,6 +50,83 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Exadata insight.
             - Applicable when entity_source is 'EM_MANAGED_EXTERNAL_DATABASE'
         type: str
+    compartment_id:
+        description:
+            - Compartment Identifier of database
+            - Required for create using I(state=present).
+            - Required when entity_source is one of ['EM_MANAGED_EXTERNAL_DATABASE', 'PE_COMANAGED_DATABASE']
+        type: str
+    database_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database.
+            - Required when entity_source is 'PE_COMANAGED_DATABASE'
+        type: str
+    database_resource_type:
+        description:
+            - OCI database resource type
+            - Required when entity_source is 'PE_COMANAGED_DATABASE'
+        type: str
+    opsi_private_endpoint_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the OPSI private endpoint
+            - Required when entity_source is 'PE_COMANAGED_DATABASE'
+        type: str
+    service_name:
+        description:
+            - Database service name used for connection requests.
+            - Required when entity_source is 'PE_COMANAGED_DATABASE'
+        type: str
+    credential_details:
+        description:
+            - ""
+            - Required when entity_source is 'PE_COMANAGED_DATABASE'
+        type: dict
+        suboptions:
+            credential_source_name:
+                description:
+                    - Credential source name that had been added in Management Agent wallet. This is supplied in the External Database Service.
+                type: str
+                required: true
+            credential_type:
+                description:
+                    - Credential type.
+                type: str
+                choices:
+                    - "CREDENTIALS_BY_SOURCE"
+                    - "CREDENTIALS_BY_VAULT"
+                required: true
+            user_name:
+                description:
+                    - database user name.
+                    - Applicable when credential_type is 'CREDENTIALS_BY_VAULT'
+                type: str
+            password_secret_id:
+                description:
+                    - The secret L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) mapping to the database credentials.
+                    - Applicable when credential_type is 'CREDENTIALS_BY_VAULT'
+                type: str
+            role:
+                description:
+                    - database user role.
+                    - Applicable when credential_type is 'CREDENTIALS_BY_VAULT'
+                type: str
+                choices:
+                    - "NORMAL"
+    deployment_type:
+        description:
+            - Database Deployment Type
+            - Required when entity_source is 'PE_COMANAGED_DATABASE'
+        type: str
+        choices:
+            - "VIRTUAL_MACHINE"
+            - "BARE_METAL"
+            - "EXACS"
+    system_tags:
+        description:
+            - "System tags for this resource. Each key is predefined and scoped to a namespace.
+              Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
+            - Applicable when entity_source is 'PE_COMANAGED_DATABASE'
+        type: dict
     entity_source:
         description:
             - Source of the database entity.
@@ -66,6 +134,7 @@ options:
         type: str
         choices:
             - "EM_MANAGED_EXTERNAL_DATABASE"
+            - "PE_COMANAGED_DATABASE"
             - "MACS_MANAGED_EXTERNAL_DATABASE"
             - "AUTONOMOUS_DATABASE"
     freeform_tags:
@@ -103,14 +172,34 @@ EXAMPLES = """
 - name: Create database_insights with entity_source = EM_MANAGED_EXTERNAL_DATABASE
   oci_opsi_database_insights:
     # required
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     enterprise_manager_identifier: enterprise_manager_identifier_example
     enterprise_manager_bridge_id: "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx"
     enterprise_manager_entity_identifier: enterprise_manager_entity_identifier_example
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     entity_source: EM_MANAGED_EXTERNAL_DATABASE
 
     # optional
     exadata_insight_id: "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Create database_insights with entity_source = PE_COMANAGED_DATABASE
+  oci_opsi_database_insights:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+    database_resource_type: database_resource_type_example
+    opsi_private_endpoint_id: "ocid1.opsiprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+    service_name: service_name_example
+    credential_details:
+      # required
+      credential_source_name: credential_source_name_example
+      credential_type: CREDENTIALS_BY_SOURCE
+    deployment_type: VIRTUAL_MACHINE
+    entity_source: PE_COMANAGED_DATABASE
+
+    # optional
+    system_tags: null
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -136,6 +225,15 @@ EXAMPLES = """
   oci_opsi_database_insights:
     # required
     entity_source: EM_MANAGED_EXTERNAL_DATABASE
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update database_insights with entity_source = PE_COMANAGED_DATABASE
+  oci_opsi_database_insights:
+    # required
+    entity_source: PE_COMANAGED_DATABASE
 
     # optional
     freeform_tags: {'Department': 'Finance'}
@@ -216,6 +314,62 @@ database_insights:
             returned: on success
             type: str
             sample: "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx"
+        management_agent_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Management Agent
+            returned: on success
+            type: str
+            sample: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
+        connector_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of External Database Connector
+            returned: on success
+            type: str
+            sample: "ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx"
+        connection_credential_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                credential_source_name:
+                    description:
+                        - Credential source name that had been added in Management Agent wallet. This is supplied in the External Database Service.
+                    returned: on success
+                    type: str
+                    sample: credential_source_name_example
+                credential_type:
+                    description:
+                        - Credential type.
+                    returned: on success
+                    type: str
+                    sample: CREDENTIALS_BY_SOURCE
+                user_name:
+                    description:
+                        - database user name.
+                    returned: on success
+                    type: str
+                    sample: user_name_example
+                password_secret_id:
+                    description:
+                        - The secret L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) mapping to the database credentials.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
+                role:
+                    description:
+                        - database user role.
+                    returned: on success
+                    type: str
+                    sample: NORMAL
+        db_additional_details:
+            description:
+                - Additional details of a database in JSON format. For autonomous databases, this is the AutonomousDatabase object serialized as a JSON string
+                  as defined in https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/20160918/AutonomousDatabase/. For EM, pass in null or an empty
+                  string. Note that this string needs to be escaped when specified in the curl command.
+            returned: on success
+            type: dict
+            sample: {}
         entity_source:
             description:
                 - Source of the database entity.
@@ -304,18 +458,19 @@ database_insights:
             returned: on success
             type: str
             sample: lifecycle_details_example
-        management_agent_id:
+        database_connection_status_details:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Management Agent
+                - A message describing the status of the database connection of this resource. For example, it can be used to provide actionable information
+                  about the permission and content validity of the database connection.
             returned: on success
             type: str
-            sample: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
-        connector_id:
+            sample: database_connection_status_details_example
+        opsi_private_endpoint_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of External Database Connector
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the OPSI private endpoint
             returned: on success
             type: str
-            sample: "ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx"
+            sample: "ocid1.opsiprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
         connection_details:
             description:
                 - ""
@@ -342,11 +497,29 @@ database_insights:
                     sample: 56
                 service_name:
                     description:
-                        - Service name used for connection requests.
+                        - Database service name used for connection requests.
                     returned: on success
                     type: str
                     sample: service_name_example
-        connection_credential_details:
+                hosts:
+                    description:
+                        - List of hosts and port for private endpoint accessed database resource.
+                    returned: on success
+                    type: complex
+                    contains:
+                        host_ip:
+                            description:
+                                - Host IP used for connection requests for Cloud DB resource.
+                            returned: on success
+                            type: str
+                            sample: host_ip_example
+                        port:
+                            description:
+                                - Listener port number used for connection requests for rivate endpoint accessed db resource.
+                            returned: on success
+                            type: int
+                            sample: 56
+        credential_details:
             description:
                 - ""
             returned: on success
@@ -364,6 +537,24 @@ database_insights:
                     returned: on success
                     type: str
                     sample: CREDENTIALS_BY_SOURCE
+                user_name:
+                    description:
+                        - database user name.
+                    returned: on success
+                    type: str
+                    sample: user_name_example
+                password_secret_id:
+                    description:
+                        - The secret L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) mapping to the database credentials.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
+                role:
+                    description:
+                        - database user role.
+                    returned: on success
+                    type: str
+                    sample: NORMAL
         database_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database.
@@ -388,14 +579,6 @@ database_insights:
             returned: on success
             type: str
             sample: database_resource_type_example
-        db_additional_details:
-            description:
-                - Additional details of a database in JSON format. For autonomous databases, this is the AutonomousDatabase object serialized as a JSON string
-                  as defined in https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/20160918/AutonomousDatabase/. For EM, pass in null or an empty
-                  string. Note that this string needs to be escaped when specified in the curl command.
-            returned: on success
-            type: dict
-            sample: {}
     sample: {
         "enterprise_manager_identifier": "enterprise_manager_identifier_example",
         "enterprise_manager_entity_name": "enterprise_manager_entity_name_example",
@@ -404,6 +587,16 @@ database_insights:
         "enterprise_manager_entity_display_name": "enterprise_manager_entity_display_name_example",
         "enterprise_manager_bridge_id": "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx",
         "exadata_insight_id": "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx",
+        "management_agent_id": "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx",
+        "connector_id": "ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx",
+        "connection_credential_details": {
+            "credential_source_name": "credential_source_name_example",
+            "credential_type": "CREDENTIALS_BY_SOURCE",
+            "user_name": "user_name_example",
+            "password_secret_id": "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx",
+            "role": "NORMAL"
+        },
+        "db_additional_details": {},
         "entity_source": "AUTONOMOUS_DATABASE",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -418,23 +611,29 @@ database_insights:
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
-        "management_agent_id": "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx",
-        "connector_id": "ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx",
+        "database_connection_status_details": "database_connection_status_details_example",
+        "opsi_private_endpoint_id": "ocid1.opsiprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx",
         "connection_details": {
             "host_name": "host_name_example",
             "protocol": "TCP",
             "port": 56,
-            "service_name": "service_name_example"
+            "service_name": "service_name_example",
+            "hosts": [{
+                "host_ip": "host_ip_example",
+                "port": 56
+            }]
         },
-        "connection_credential_details": {
+        "credential_details": {
             "credential_source_name": "credential_source_name_example",
-            "credential_type": "CREDENTIALS_BY_SOURCE"
+            "credential_type": "CREDENTIALS_BY_SOURCE",
+            "user_name": "user_name_example",
+            "password_secret_id": "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx",
+            "role": "NORMAL"
         },
         "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
         "database_name": "database_name_example",
         "database_display_name": "database_display_name_example",
-        "database_resource_type": "database_resource_type_example",
-        "db_additional_details": {}
+        "database_resource_type": "database_resource_type_example"
     }
 """
 
@@ -499,7 +698,9 @@ class DatabaseInsightsHelperGen(OCIResourceHelperBase):
         optional_list_method_params = [
             "compartment_id",
             "enterprise_manager_bridge_id",
+            "database_id",
             "exadata_insight_id",
+            "opsi_private_endpoint_id",
         ]
 
         return dict(
@@ -526,6 +727,9 @@ class DatabaseInsightsHelperGen(OCIResourceHelperBase):
 
     def get_create_model_class(self):
         return CreateDatabaseInsightDetails
+
+    def get_exclude_attributes(self):
+        return ["deployment_type", "service_name"]
 
     def create_resource(self):
         create_details = self.get_create_model()
@@ -587,15 +791,38 @@ def main():
     )
     module_args.update(
         dict(
-            compartment_id=dict(type="str"),
             enterprise_manager_identifier=dict(type="str"),
             enterprise_manager_bridge_id=dict(type="str"),
             enterprise_manager_entity_identifier=dict(type="str"),
             exadata_insight_id=dict(type="str"),
+            compartment_id=dict(type="str"),
+            database_id=dict(type="str"),
+            database_resource_type=dict(type="str"),
+            opsi_private_endpoint_id=dict(type="str"),
+            service_name=dict(type="str"),
+            credential_details=dict(
+                type="dict",
+                options=dict(
+                    credential_source_name=dict(type="str", required=True),
+                    credential_type=dict(
+                        type="str",
+                        required=True,
+                        choices=["CREDENTIALS_BY_SOURCE", "CREDENTIALS_BY_VAULT"],
+                    ),
+                    user_name=dict(type="str"),
+                    password_secret_id=dict(type="str"),
+                    role=dict(type="str", choices=["NORMAL"]),
+                ),
+            ),
+            deployment_type=dict(
+                type="str", choices=["VIRTUAL_MACHINE", "BARE_METAL", "EXACS"]
+            ),
+            system_tags=dict(type="dict"),
             entity_source=dict(
                 type="str",
                 choices=[
                     "EM_MANAGED_EXTERNAL_DATABASE",
+                    "PE_COMANAGED_DATABASE",
                     "MACS_MANAGED_EXTERNAL_DATABASE",
                     "AUTONOMOUS_DATABASE",
                 ],

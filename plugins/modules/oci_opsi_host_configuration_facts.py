@@ -50,12 +50,15 @@ options:
         elements: str
     platform_type:
         description:
-            - Filter by one or more platform types.
-              Possible value is LINUX.
+            - "Filter by one or more platform types.
+              Supported platformType(s) for MACS-managed external host insight: [LINUX].
+              Supported platformType(s) for EM-managed external host insight: [LINUX, SOLARIS, SUNOS]."
         type: list
         elements: str
         choices:
             - "LINUX"
+            - "SOLARIS"
+            - "SUNOS"
     sort_order:
         description:
             - The sort order to use, either ascending (`ASC`) or descending (`DESC`).
@@ -163,7 +166,9 @@ host_configurations:
             sample: host_name_example
         platform_type:
             description:
-                - Platform type.
+                - "Platform type.
+                  Supported platformType(s) for MACS-managed external host insight: [LINUX].
+                  Supported platformType(s) for EM-managed external host insight: [LINUX, SOLARIS, SUNOS]."
             returned: on success
             type: str
             sample: LINUX
@@ -348,7 +353,9 @@ def main():
             enterprise_manager_bridge_id=dict(type="str"),
             id=dict(type="list", elements="str"),
             exadata_insight_id=dict(type="list", elements="str"),
-            platform_type=dict(type="list", elements="str", choices=["LINUX"]),
+            platform_type=dict(
+                type="list", elements="str", choices=["LINUX", "SOLARIS", "SUNOS"]
+            ),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["hostName", "platformType"]),
             defined_tag_equals=dict(type="list", elements="str"),

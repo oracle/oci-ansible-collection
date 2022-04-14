@@ -714,3 +714,6 @@ The inventory plugin makes API calls for the following operations:
 -  ListDBSystems
 -  ListRegionSubscriptions
 
+Troubleshooting Guides
+----------------------
+`Inventory Plugin Troubleshooting guides <http://oci-ansible-collection.readthedocs.io/en/latest/guides/troubleshooting-guide.html#inventory-plugin-errors>`_

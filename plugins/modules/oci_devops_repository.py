@@ -53,6 +53,7 @@ options:
     repository_type:
         description:
             - Type of repository.
+            - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
     mirror_repository_config:
@@ -77,9 +78,9 @@ options:
                     schedule_type:
                         description:
                             - "Different types of trigger schedule:
-                              None - No automated synchronization schedule.
-                              Default - Trigger schedule is every 30 minutes.
-                              Custom - Custom triggering schedule."
+                              NONE - No automated synchronization schedule.
+                              DEFAULT - Trigger schedule is every 30 minutes.
+                              CUSTOM - Custom triggering schedule."
                         type: str
                         choices:
                             - "NONE"
@@ -131,11 +132,11 @@ EXAMPLES = """
     # required
     project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
+    repository_type: repository_type_example
 
     # optional
     description: description_example
     default_branch: default_branch_example
-    repository_type: repository_type_example
     mirror_repository_config:
       # optional
       connector_id: "ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx"
@@ -278,8 +279,8 @@ repository:
         repository_type:
             description:
                 - "Type of repository:
-                  Mirrored - Repository created by mirroring an existing repository.
-                  Hosted - Repository created and hosted using OCI DevOps code repository."
+                  MIRRORED - Repository created by mirroring an existing repository.
+                  HOSTED - Repository created and hosted using OCI DevOps code repository."
             returned: on success
             type: str
             sample: MIRRORED
@@ -310,9 +311,9 @@ repository:
                         schedule_type:
                             description:
                                 - "Different types of trigger schedule:
-                                  None - No automated synchronization schedule.
-                                  Default - Trigger schedule is every 30 minutes.
-                                  Custom - Custom triggering schedule."
+                                  NONE - No automated synchronization schedule.
+                                  DEFAULT - Trigger schedule is every 30 minutes.
+                                  CUSTOM - Custom triggering schedule."
                             returned: on success
                             type: str
                             sample: NONE
@@ -372,8 +373,8 @@ repository:
         trigger_build_events:
             description:
                 - "Trigger build events supported for this repository:
-                  Push - Build is triggered when a push event occurs.
-                  Commit updates - Build is triggered when new commits are mirrored into a repository."
+                  PUSH - Build is triggered when a push event occurs.
+                  COMMIT_UPDATES - Build is triggered when new commits are mirrored into a repository."
             returned: on success
             type: list
             sample: []

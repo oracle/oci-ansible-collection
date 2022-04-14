@@ -30,7 +30,7 @@ oracle.oci.oci_opsi_resource_utilization_insight_facts -- Fetches details about 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -278,6 +278,15 @@ Parameters
                                                                                                                                                                                                 <li>ATP-D</li>
                                                                                                                                                                                                 <li>EXTERNAL-PDB</li>
                                                                                                                                                                                                 <li>EXTERNAL-NONCDB</li>
+                                                                                                                                                                                                <li>COMANAGED-VM-CDB</li>
+                                                                                                                                                                                                <li>COMANAGED-VM-PDB</li>
+                                                                                                                                                                                                <li>COMANAGED-VM-NONCDB</li>
+                                                                                                                                                                                                <li>COMANAGED-BM-CDB</li>
+                                                                                                                                                                                                <li>COMANAGED-BM-PDB</li>
+                                                                                                                                                                                                <li>COMANAGED-BM-NONCDB</li>
+                                                                                                                                                                                                <li>COMANAGED-EXACS-CDB</li>
+                                                                                                                                                                                                <li>COMANAGED-EXACS-PDB</li>
+                                                                                                                                                                                                <li>COMANAGED-EXACS-NONCDB</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>

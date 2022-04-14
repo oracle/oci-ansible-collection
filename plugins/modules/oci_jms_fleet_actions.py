@@ -118,6 +118,42 @@ fleet:
             returned: on success
             type: int
             sample: 56
+        inventory_log:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                log_group_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the log group.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
+                log_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the log.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+        operation_log:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                log_group_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the log group.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
+                log_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the log.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
                 - The creation date and time of the Fleet (formatted according to L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339)).
@@ -164,6 +200,14 @@ fleet:
         "approximate_installation_count": 56,
         "approximate_application_count": 56,
         "approximate_managed_instance_count": 56,
+        "inventory_log": {
+            "log_group_id": "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx",
+            "log_id": "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+        },
+        "operation_log": {
+            "log_group_id": "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx",
+            "log_id": "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+        },
         "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "ACTIVE",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},

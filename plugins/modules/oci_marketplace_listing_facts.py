@@ -57,7 +57,7 @@ options:
         aliases: ["id"]
     image_id:
         description:
-            - Image ID of the listing
+            - The image identifier of the listing.
         type: str
     publisher_id:
         description:
@@ -496,6 +496,12 @@ listings:
             returned: on success
             type: list
             sample: []
+        compatible_architectures:
+            description:
+                - The list of compatible architectures supported by the listing
+            returned: on success
+            type: list
+            sample: []
         regions:
             description:
                 - The regions where you can deploy the listing. (Some listings have restrictions that limit their deployment to United States regions only.)
@@ -727,6 +733,7 @@ listings:
         },
         "package_type": "ORCHESTRATION",
         "pricing_types": [],
+        "compatible_architectures": [],
         "regions": [{
             "name": "name_example",
             "code": "code_example",

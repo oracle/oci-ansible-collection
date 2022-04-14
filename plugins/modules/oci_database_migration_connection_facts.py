@@ -260,6 +260,18 @@ connections:
             returned: on success
             type: str
             sample: MANUAL
+        manual_database_sub_type:
+            description:
+                - Database manual connection subtype. This value can only be specified for manual connections.
+            returned: on success
+            type: str
+            sample: ORACLE
+        is_dedicated:
+            description:
+                - True if the Autonomous Connection is dedicated. Not provided for Non-Autonomous Connections.
+            returned: on success
+            type: bool
+            sample: true
         display_name:
             description:
                 - Database Connection display name identifier.
@@ -349,6 +361,8 @@ connections:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "database_type": "MANUAL",
+        "manual_database_sub_type": "ORACLE",
+        "is_dedicated": true,
         "display_name": "display_name_example",
         "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2013-10-20T19:20:30+01:00",

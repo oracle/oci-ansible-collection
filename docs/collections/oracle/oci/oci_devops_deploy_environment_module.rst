@@ -30,7 +30,7 @@ oracle.oci.oci_devops_deploy_environment -- Manage a DeployEnvironment resource 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -216,7 +216,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A list of selectors for the instance group. UNION operator is used for combining the instances selected by each selector.</div>
+                                            <div>A list of selectors for the instance group. Union operator is used for combining the instances selected by each selector.</div>
                                             <div>Required when deploy_environment_type is &#x27;COMPUTE_INSTANCE_GROUP&#x27;</div>
                                                         </td>
             </tr>
@@ -486,6 +486,75 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-network_channel"></div>
+                    <b>network_channel</b>
+                    <a class="ansibleOptionLink" href="#parameter-network_channel" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when deploy_environment_type is &#x27;OKE_CLUSTER&#x27;</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-network_channel/network_channel_type"></div>
+                    <b>network_channel_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-network_channel/network_channel_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>PRIVATE_ENDPOINT_CHANNEL</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Network channel type.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-network_channel/nsg_ids"></div>
+                    <b>nsg_ids</b>
+                    <a class="ansibleOptionLink" href="#parameter-network_channel/nsg_ids" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>An array of network security group OCIDs.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-network_channel/subnet_id"></div>
+                    <b>subnet_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-network_channel/subnet_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The OCID of the subnet where Virtual Network Interface Cards (VNIC) resources are created for private endpoint access.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-project_id"></div>
                     <b>project_id</b>
                     <a class="ansibleOptionLink" href="#parameter-project_id" title="Permalink to this option"></a>
@@ -640,6 +709,13 @@ Examples
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
+        network_channel:
+          # required
+          network_channel_type: PRIVATE_ENDPOINT_CHANNEL
+          subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+
+          # optional
+          nsg_ids: [ "nsg_ids_example" ]
 
     - name: Create deploy_environment with deploy_environment_type = FUNCTION
       oci_devops_deploy_environment:
@@ -682,6 +758,13 @@ Examples
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
+        network_channel:
+          # required
+          network_channel_type: PRIVATE_ENDPOINT_CHANNEL
+          subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+
+          # optional
+          nsg_ids: [ "nsg_ids_example" ]
 
     - name: Update deploy_environment with deploy_environment_type = FUNCTION
       oci_devops_deploy_environment:
@@ -723,6 +806,13 @@ Examples
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
+        network_channel:
+          # required
+          network_channel_type: PRIVATE_ENDPOINT_CHANNEL
+          subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+
+          # optional
+          nsg_ids: [ "nsg_ids_example" ]
 
     - name: Update deploy_environment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_environment_type = FUNCTION
       oci_devops_deploy_environment:
@@ -783,7 +873,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the DeployEnvironment resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;cluster_id&#x27;: &#x27;ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_instance_group_selectors&#x27;: {&#x27;items&#x27;: [{&#x27;compute_instance_ids&#x27;: [], &#x27;query&#x27;: &#x27;query_example&#x27;, &#x27;region&#x27;: &#x27;us-phoenix-1&#x27;, &#x27;selector_type&#x27;: &#x27;INSTANCE_IDS&#x27;}]}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deploy_environment_type&#x27;: &#x27;OKE_CLUSTER&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;function_id&#x27;: &#x27;ocid1.function.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;cluster_id&#x27;: &#x27;ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_instance_group_selectors&#x27;: {&#x27;items&#x27;: [{&#x27;compute_instance_ids&#x27;: [], &#x27;query&#x27;: &#x27;query_example&#x27;, &#x27;region&#x27;: &#x27;us-phoenix-1&#x27;, &#x27;selector_type&#x27;: &#x27;INSTANCE_IDS&#x27;}]}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deploy_environment_type&#x27;: &#x27;OKE_CLUSTER&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;function_id&#x27;: &#x27;ocid1.function.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;network_channel&#x27;: {&#x27;network_channel_type&#x27;: &#x27;PRIVATE_ENDPOINT_CHANNEL&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -851,7 +941,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A list of selectors for the instance group. UNION operator is used for combining the instances selected by each selector.</div>
+                                            <div>A list of selectors for the instance group. Union operator is used for combining the instances selected by each selector.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1097,6 +1187,78 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deploy_environment/network_channel"></div>
+                    <b>network_channel</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_environment/network_channel" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deploy_environment/network_channel/network_channel_type"></div>
+                    <b>network_channel_type</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_environment/network_channel/network_channel_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Network channel type.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PRIVATE_ENDPOINT_CHANNEL</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deploy_environment/network_channel/nsg_ids"></div>
+                    <b>nsg_ids</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_environment/network_channel/nsg_ids" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>An array of network security group OCIDs.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deploy_environment/network_channel/subnet_id"></div>
+                    <b>subnet_id</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_environment/network_channel/subnet_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the subnet where Virtual Network Interface Cards (VNIC) resources are created for private endpoint access.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">

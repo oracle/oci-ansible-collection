@@ -46,6 +46,22 @@ options:
               versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.
             - Applicable only for I(action=migrate_vault_key).
         type: str
+    vault_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
+              L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
+            - Applicable only for I(action=migrate_vault_key).
+        type: str
+    tde_wallet_password:
+        description:
+            - The existing TDE wallet password of the database.
+            - Applicable only for I(action=migrate_vault_key).
+        type: str
+    admin_password:
+        description:
+            - The existing admin password of the database.
+            - Applicable only for I(action=migrate_vault_key).
+        type: str
     credential_details:
         description:
             - ""
@@ -193,6 +209,9 @@ EXAMPLES = """
 
     # optional
     kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+    vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+    tde_wallet_password: example-password
+    admin_password: example-password
 
 - name: Perform action modify_database_management on database
   oci_database_database_actions:
@@ -487,6 +506,20 @@ database:
             returned: on success
             type: str
             sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        kms_key_version_id:
+            description:
+                - The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key
+                  versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.
+            returned: on success
+            type: str
+            sample: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+        vault_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
+                  L(vault,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
+            returned: on success
+            type: str
+            sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         source_database_point_in_time_recovery_timestamp:
             description:
                 - Point in time recovery timeStamp of the source database at which cloned database system is cloned from the source database system, as
@@ -566,6 +599,8 @@ database:
             "all_connection_strings": {}
         },
         "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
+        "kms_key_version_id": "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx",
+        "vault_id": "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx",
         "source_database_point_in_time_recovery_timestamp": "2013-10-20T19:20:30+01:00",
         "database_software_image_id": "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx",
         "is_cdb": true,
@@ -785,6 +820,9 @@ def main():
         dict(
             kms_key_id=dict(type="str"),
             kms_key_version_id=dict(type="str"),
+            vault_id=dict(type="str"),
+            tde_wallet_password=dict(type="str", no_log=True),
+            admin_password=dict(type="str", no_log=True),
             credential_details=dict(
                 type="dict",
                 options=dict(

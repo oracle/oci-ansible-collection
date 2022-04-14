@@ -30,7 +30,7 @@ oracle.oci.oci_data_labeling_service_dataset -- Manage a Dataset resource in Ora
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -58,7 +58,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a Dataset resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new Dataset.
-- This resource has the following action operations in the :ref:`oracle.oci.oci_data_labeling_service_dataset_actions <ansible_collections.oracle.oci.oci_data_labeling_service_dataset_actions_module>` module: change_compartment.
+- This resource has the following action operations in the :ref:`oracle.oci.oci_data_labeling_service_dataset_actions <ansible_collections.oracle.oci.oci_data_labeling_service_dataset_actions_module>` module: add_dataset_labels, change_compartment, generate_dataset_records, remove_dataset_labels, rename_dataset_labels, snapshot.
 
 
 .. Aliases
@@ -557,6 +557,22 @@ Parameters
                     
                                 <tr>
                                                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-labeling_instructions"></div>
+                    <b>labeling_instructions</b>
+                    <a class="ansibleOptionLink" href="#parameter-labeling_instructions" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The labeling instructions for human labelers in rich text format</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#parameter-region" title="Permalink to this option"></a>
@@ -693,6 +709,7 @@ Examples
           limit: 3.4
         display_name: display_name_example
         description: description_example
+        labeling_instructions: labeling_instructions_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -704,6 +721,7 @@ Examples
         # optional
         display_name: display_name_example
         description: description_example
+        labeling_instructions: labeling_instructions_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -715,6 +733,7 @@ Examples
 
         # optional
         description: description_example
+        labeling_instructions: labeling_instructions_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -766,7 +785,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Dataset resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;annotation_format&#x27;: &#x27;annotation_format_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;dataset_format_details&#x27;: {&#x27;format_type&#x27;: &#x27;DOCUMENT&#x27;}, &#x27;dataset_source_details&#x27;: {&#x27;bucket&#x27;: &#x27;bucket_example&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;prefix&#x27;: &#x27;prefix_example&#x27;, &#x27;source_type&#x27;: &#x27;OBJECT_STORAGE&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;initial_record_generation_configuration&#x27;: {&#x27;limit&#x27;: 10}, &#x27;label_set&#x27;: {&#x27;items&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;}]}, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;annotation_format&#x27;: &#x27;annotation_format_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;dataset_format_details&#x27;: {&#x27;format_type&#x27;: &#x27;DOCUMENT&#x27;}, &#x27;dataset_source_details&#x27;: {&#x27;bucket&#x27;: &#x27;bucket_example&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;prefix&#x27;: &#x27;prefix_example&#x27;, &#x27;source_type&#x27;: &#x27;OBJECT_STORAGE&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;initial_record_generation_configuration&#x27;: {&#x27;limit&#x27;: 10}, &#x27;label_set&#x27;: {&#x27;items&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;}]}, &#x27;labeling_instructions&#x27;: &#x27;labeling_instructions_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1115,6 +1134,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                     
                     
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-dataset/labeling_instructions"></div>
+                    <b>labeling_instructions</b>
+                    <a class="ansibleOptionLink" href="#return-dataset/labeling_instructions" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The labeling instructions for human labelers in rich text format</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">labeling_instructions_example</div>
+                                    </td>
+            </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">

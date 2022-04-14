@@ -30,7 +30,7 @@ oracle.oci.oci_devops_build_pipeline_stage -- Manage a BuildPipelineStage resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -250,7 +250,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The ID of the predecessor stage. If a stage is the first stage in the pipeline, then the ID is the pipeline&#x27;s ID.</div>
+                                            <div>The OCID of the predecessor stage. If a stage is the first stage in the pipeline, then the ID is the pipeline&#x27;s OCID.</div>
                                             <div>Required when build_pipeline_stage_type is &#x27;DELIVER_ARTIFACT&#x27;</div>
                                                         </td>
             </tr>
@@ -274,7 +274,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Defines the stage type, which is one of the following: Build, Deliver Artifacts, Wait, and Trigger Deployment.</div>
+                                            <div>Defines the stage type, which is one of the following: BUILD, DELIVER_ARTIFACT, WAIT, and TRIGGER_DEPLOYMENT_PIPELINE.</div>
                                             <div>Required for create using <em>state=present</em>, update using <em>state=present</em> with build_pipeline_stage_id present.</div>
                                                         </td>
             </tr>
@@ -1291,7 +1291,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The ID of the predecessor stage. If a stage is the first stage in the pipeline, then the ID is the pipeline&#x27;s ID.</div>
+                                            <div>The OCID of the predecessor stage. If a stage is the first stage in the pipeline, then the ID is the pipeline&#x27;s OCID.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1311,7 +1311,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Defines the stage type, which is one of the following: Build, Deliver Artifacts, Wait, and Trigger Deployment.</div>
+                                            <div>Defines the stage type, which is one of the following: BUILD, DELIVER_ARTIFACT, WAIT, and TRIGGER_DEPLOYMENT_PIPELINE.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">WAIT</div>

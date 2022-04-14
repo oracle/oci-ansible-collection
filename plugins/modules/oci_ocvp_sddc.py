@@ -92,6 +92,10 @@ options:
               for provisioning the SDDC.
             - Required for create using I(state=present).
         type: str
+    is_shielded_instance_enabled:
+        description:
+            - Indicates whether shielded instance is enabled for this SDDC.
+        type: bool
     display_name:
         description:
             - "A descriptive name for the SDDC.
@@ -245,6 +249,7 @@ EXAMPLES = """
     is_hcx_enabled: true
     is_hcx_enterprise_enabled: true
     workload_network_cidr: workload_network_cidr_example
+    is_shielded_instance_enabled: true
     display_name: display_name_example
     replication_vlan_id: "ocid1.replicationvlan.oc1..xxxxxxEXAMPLExxxxxx"
     provisioning_vlan_id: "ocid1.provisioningvlan.oc1..xxxxxxEXAMPLExxxxxx"
@@ -740,6 +745,12 @@ sddc:
             returned: on success
             type: str
             sample: CREATING
+        is_shielded_instance_enabled:
+            description:
+                - Indicates whether shielded instance is enabled at the SDDC level.
+            returned: on success
+            type: bool
+            sample: true
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -806,6 +817,7 @@ sddc:
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
+        "is_shielded_instance_enabled": true,
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }
@@ -981,6 +993,7 @@ def main():
             is_hcx_enterprise_enabled=dict(type="bool"),
             workload_network_cidr=dict(type="str"),
             provisioning_subnet_id=dict(type="str"),
+            is_shielded_instance_enabled=dict(type="bool"),
             display_name=dict(aliases=["name"], type="str"),
             vmware_software_version=dict(type="str"),
             ssh_authorized_keys=dict(type="str", no_log=True),

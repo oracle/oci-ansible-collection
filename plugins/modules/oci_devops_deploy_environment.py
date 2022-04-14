@@ -49,7 +49,7 @@ options:
         suboptions:
             items:
                 description:
-                    - A list of selectors for the instance group. UNION operator is used for combining the instances selected by each selector.
+                    - A list of selectors for the instance group. Union operator is used for combining the instances selected by each selector.
                     - Required when deploy_environment_type is 'COMPUTE_INSTANCE_GROUP'
                 type: list
                 elements: dict
@@ -121,6 +121,30 @@ options:
             - Applicable when deploy_environment_type is 'OKE_CLUSTER'
             - Required when deploy_environment_type is 'OKE_CLUSTER'
         type: str
+    network_channel:
+        description:
+            - ""
+            - This parameter is updatable.
+            - Applicable when deploy_environment_type is 'OKE_CLUSTER'
+        type: dict
+        suboptions:
+            network_channel_type:
+                description:
+                    - Network channel type.
+                type: str
+                choices:
+                    - "PRIVATE_ENDPOINT_CHANNEL"
+                required: true
+            subnet_id:
+                description:
+                    - The OCID of the subnet where Virtual Network Interface Cards (VNIC) resources are created for private endpoint access.
+                type: str
+                required: true
+            nsg_ids:
+                description:
+                    - An array of network security group OCIDs.
+                type: list
+                elements: str
     deploy_environment_id:
         description:
             - Unique environment identifier.
@@ -171,6 +195,13 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
+    network_channel:
+      # required
+      network_channel_type: PRIVATE_ENDPOINT_CHANNEL
+      subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      nsg_ids: [ "nsg_ids_example" ]
 
 - name: Create deploy_environment with deploy_environment_type = FUNCTION
   oci_devops_deploy_environment:
@@ -213,6 +244,13 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
+    network_channel:
+      # required
+      network_channel_type: PRIVATE_ENDPOINT_CHANNEL
+      subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      nsg_ids: [ "nsg_ids_example" ]
 
 - name: Update deploy_environment with deploy_environment_type = FUNCTION
   oci_devops_deploy_environment:
@@ -254,6 +292,13 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
+    network_channel:
+      # required
+      network_channel_type: PRIVATE_ENDPOINT_CHANNEL
+      subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      nsg_ids: [ "nsg_ids_example" ]
 
 - name: Update deploy_environment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_environment_type = FUNCTION
   oci_devops_deploy_environment:
@@ -296,7 +341,7 @@ deploy_environment:
             contains:
                 items:
                     description:
-                        - A list of selectors for the instance group. UNION operator is used for combining the instances selected by each selector.
+                        - A list of selectors for the instance group. Union operator is used for combining the instances selected by each selector.
                     returned: on success
                     type: complex
                     contains:
@@ -421,6 +466,30 @@ deploy_environment:
             returned: on success
             type: str
             sample: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
+        network_channel:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                network_channel_type:
+                    description:
+                        - Network channel type.
+                    returned: on success
+                    type: str
+                    sample: PRIVATE_ENDPOINT_CHANNEL
+                subnet_id:
+                    description:
+                        - The OCID of the subnet where Virtual Network Interface Cards (VNIC) resources are created for private endpoint access.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+                nsg_ids:
+                    description:
+                        - An array of network security group OCIDs.
+                    returned: on success
+                    type: list
+                    sample: []
     sample: {
         "compute_instance_group_selectors": {
             "items": [{
@@ -444,7 +513,12 @@ deploy_environment:
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "system_tags": {},
-        "cluster_id": "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
+        "cluster_id": "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx",
+        "network_channel": {
+            "network_channel_type": "PRIVATE_ENDPOINT_CHANNEL",
+            "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+            "nsg_ids": []
+        }
     }
 """
 
@@ -628,6 +702,16 @@ def main():
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             cluster_id=dict(type="str"),
+            network_channel=dict(
+                type="dict",
+                options=dict(
+                    network_channel_type=dict(
+                        type="str", required=True, choices=["PRIVATE_ENDPOINT_CHANNEL"]
+                    ),
+                    subnet_id=dict(type="str", required=True),
+                    nsg_ids=dict(type="list", elements="str"),
+                ),
+            ),
             deploy_environment_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

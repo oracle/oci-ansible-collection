@@ -5,8 +5,8 @@
 # Apache License v2.0
 # See LICENSE.TXT for details.
 
-# NOTE: Running `teardown.yaml` alone will not delete the autonomous db and autonomous container database created in `sample_dedicated.yaml`.
-# This playbook uses the `autonomous_database_id` and `autonomous_container_database_id` parameter that is being set in `sample_dedicated.yaml`.
+# NOTE: Running `teardown.yaml` alone will not delete the autonomous db and autonomous container database created in `sample.yaml`.
+# This playbook uses the `autonomous_database_id` and `autonomous_container_database_id` parameter that is being set in `sample.yaml`.
 
 # Delete the ADB
 - name: Delete Autonomous Database

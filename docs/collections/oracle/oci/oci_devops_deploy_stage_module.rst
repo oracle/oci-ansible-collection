@@ -30,7 +30,7 @@ oracle.oci.oci_devops_deploy_stage -- Manage a DeployStage resource in Oracle Cl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -160,8 +160,8 @@ Parameters
                                                                 <td>
                                             <div></div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when deploy_stage_type is &#x27;MANUAL_APPROVAL&#x27;</div>
-                                            <div>Required when deploy_stage_type is &#x27;MANUAL_APPROVAL&#x27;</div>
+                                            <div>Applicable when deploy_stage_type is one of [&#x27;COMPUTE_INSTANCE_GROUP_CANARY_APPROVAL&#x27;, &#x27;MANUAL_APPROVAL&#x27;, &#x27;OKE_CANARY_APPROVAL&#x27;]</div>
+                                            <div>Required when deploy_stage_type is one of [&#x27;COMPUTE_INSTANCE_GROUP_CANARY_APPROVAL&#x27;, &#x27;MANUAL_APPROVAL&#x27;, &#x27;OKE_CANARY_APPROVAL&#x27;]</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -259,6 +259,206 @@ Parameters
                     
                                 <tr>
                                                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-blue_green_strategy"></div>
+                    <b>blue_green_strategy</b>
+                    <a class="ansibleOptionLink" href="#parameter-blue_green_strategy" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Required when deploy_stage_type is &#x27;OKE_BLUE_GREEN_DEPLOYMENT&#x27;</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-blue_green_strategy/ingress_name"></div>
+                    <b>ingress_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-blue_green_strategy/ingress_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Name of the Ingress resource.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-blue_green_strategy/namespace_a"></div>
+                    <b>namespace_a</b>
+                    <a class="ansibleOptionLink" href="#parameter-blue_green_strategy/namespace_a" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Namespace A for deployment.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-blue_green_strategy/namespace_b"></div>
+                    <b>namespace_b</b>
+                    <a class="ansibleOptionLink" href="#parameter-blue_green_strategy/namespace_b" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Namespace B for deployment.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-blue_green_strategy/strategy_type"></div>
+                    <b>strategy_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-blue_green_strategy/strategy_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>NGINX_BLUE_GREEN_STRATEGY</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Blue-Green strategy type.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-canary_strategy"></div>
+                    <b>canary_strategy</b>
+                    <a class="ansibleOptionLink" href="#parameter-canary_strategy" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Required when deploy_stage_type is &#x27;OKE_CANARY_DEPLOYMENT&#x27;</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-canary_strategy/ingress_name"></div>
+                    <b>ingress_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-canary_strategy/ingress_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Name of the Ingress resource.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-canary_strategy/namespace"></div>
+                    <b>namespace</b>
+                    <a class="ansibleOptionLink" href="#parameter-canary_strategy/namespace" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Canary namespace to be used for Kubernetes canary deployment.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-canary_strategy/strategy_type"></div>
+                    <b>strategy_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-canary_strategy/strategy_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>NGINX_CANARY_STRATEGY</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Canary strategy type.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-compute_instance_group_blue_green_deployment_deploy_stage_id"></div>
+                    <b>compute_instance_group_blue_green_deployment_deploy_stage_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-compute_instance_group_blue_green_deployment_deploy_stage_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The OCID of the upstream compute instance group blue-green deployment stage in this pipeline.</div>
+                                            <div>Required when deploy_stage_type is &#x27;COMPUTE_INSTANCE_GROUP_BLUE_GREEN_TRAFFIC_SHIFT&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-compute_instance_group_canary_deploy_stage_id"></div>
+                    <b>compute_instance_group_canary_deploy_stage_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-compute_instance_group_canary_deploy_stage_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A compute instance group canary stage OCID for load balancer.</div>
+                                            <div>Required when deploy_stage_type is &#x27;COMPUTE_INSTANCE_GROUP_CANARY_TRAFFIC_SHIFT&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-compute_instance_group_canary_traffic_shift_deploy_stage_id"></div>
+                    <b>compute_instance_group_canary_traffic_shift_deploy_stage_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-compute_instance_group_canary_traffic_shift_deploy_stage_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A compute instance group canary traffic shift stage OCID for load balancer.</div>
+                                            <div>Required when deploy_stage_type is &#x27;COMPUTE_INSTANCE_GROUP_CANARY_APPROVAL&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-compute_instance_group_deploy_environment_id"></div>
                     <b>compute_instance_group_deploy_environment_id</b>
                     <a class="ansibleOptionLink" href="#parameter-compute_instance_group_deploy_environment_id" title="Permalink to this option"></a>
@@ -269,10 +469,10 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A compute instance group environment OCID for rolling deployment.</div>
+                                            <div>A compute instance group environment OCID for Canary deployment.</div>
                                             <div>This parameter is updatable.</div>
                                             <div>Applicable when deploy_stage_type is &#x27;COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT&#x27;</div>
-                                            <div>Required when deploy_stage_type is &#x27;COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT&#x27;</div>
+                                            <div>Required when deploy_stage_type is one of [&#x27;COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT&#x27;, &#x27;COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -367,9 +567,41 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Additional file artifact OCIDs.</div>
+                                            <div>The list of file artifact OCIDs to deploy.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when deploy_stage_type is &#x27;COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT&#x27;</div>
+                                            <div>Applicable when deploy_stage_type is one of [&#x27;COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT&#x27;, &#x27;COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT&#x27;, &#x27;COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT&#x27;]</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-deploy_environment_id_a"></div>
+                    <b>deploy_environment_id_a</b>
+                    <a class="ansibleOptionLink" href="#parameter-deploy_environment_id_a" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>First compute instance group environment OCID for deployment.</div>
+                                            <div>Required when deploy_stage_type is &#x27;COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-deploy_environment_id_b"></div>
+                    <b>deploy_environment_id_b</b>
+                    <a class="ansibleOptionLink" href="#parameter-deploy_environment_id_b" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Second compute instance group environment OCID for deployment.</div>
+                                            <div>Required when deploy_stage_type is &#x27;COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -421,7 +653,7 @@ Parameters
                                             <div></div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when deploy_stage_type is one of [&#x27;COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT&#x27;, &#x27;OKE_DEPLOYMENT&#x27;, &#x27;DEPLOY_FUNCTION&#x27;, &#x27;MANUAL_APPROVAL&#x27;, &#x27;LOAD_BALANCER_TRAFFIC_SHIFT&#x27;, &#x27;WAIT&#x27;, &#x27;INVOKE_FUNCTION&#x27;]</div>
+                                            <div>Applicable when deploy_stage_type is one of [&#x27;COMPUTE_INSTANCE_GROUP_CANARY_TRAFFIC_SHIFT&#x27;, &#x27;OKE_BLUE_GREEN_TRAFFIC_SHIFT&#x27;, &#x27;OKE_DEPLOYMENT&#x27;, &#x27;DEPLOY_FUNCTION&#x27;, &#x27;OKE_CANARY_DEPLOYMENT&#x27;, &#x27;COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT&#x27;, &#x27;OKE_BLUE_GREEN_DEPLOYMENT&#x27;, &#x27;COMPUTE_INSTANCE_GROUP_BLUE_GREEN_TRAFFIC_SHIFT&#x27;, &#x27;OKE_CANARY_APPROVAL&#x27;, &#x27;COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT&#x27;, &#x27;COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT&#x27;, &#x27;OKE_CANARY_TRAFFIC_SHIFT&#x27;, &#x27;COMPUTE_INSTANCE_GROUP_CANARY_APPROVAL&#x27;, &#x27;MANUAL_APPROVAL&#x27;, &#x27;LOAD_BALANCER_TRAFFIC_SHIFT&#x27;, &#x27;WAIT&#x27;, &#x27;INVOKE_FUNCTION&#x27;]</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -438,7 +670,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A list of stage predecessors for a stage.</div>
-                                            <div>Required when deploy_stage_type is &#x27;MANUAL_APPROVAL&#x27;</div>
+                                            <div>Required when deploy_stage_type is &#x27;OKE_CANARY_TRAFFIC_SHIFT&#x27;</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -456,7 +688,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The OCID of the predecessor stage. If a stage is the first stage in the pipeline, then the ID is the pipeline&#x27;s OCID.</div>
-                                            <div>Required when deploy_stage_type is &#x27;MANUAL_APPROVAL&#x27;</div>
+                                            <div>Required when deploy_stage_type is &#x27;OKE_CANARY_TRAFFIC_SHIFT&#x27;</div>
                                                         </td>
             </tr>
                     
@@ -472,13 +704,23 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>MANUAL_APPROVAL</li>
+                                                                                                                                                                <li>OKE_CANARY_TRAFFIC_SHIFT</li>
+                                                                                                                                                                                                <li>OKE_BLUE_GREEN_TRAFFIC_SHIFT</li>
+                                                                                                                                                                                                <li>COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT</li>
                                                                                                                                                                                                 <li>WAIT</li>
-                                                                                                                                                                                                <li>OKE_DEPLOYMENT</li>
                                                                                                                                                                                                 <li>LOAD_BALANCER_TRAFFIC_SHIFT</li>
+                                                                                                                                                                                                <li>COMPUTE_INSTANCE_GROUP_BLUE_GREEN_TRAFFIC_SHIFT</li>
+                                                                                                                                                                                                <li>OKE_BLUE_GREEN_DEPLOYMENT</li>
                                                                                                                                                                                                 <li>COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT</li>
                                                                                                                                                                                                 <li>INVOKE_FUNCTION</li>
                                                                                                                                                                                                 <li>DEPLOY_FUNCTION</li>
+                                                                                                                                                                                                <li>OKE_CANARY_DEPLOYMENT</li>
+                                                                                                                                                                                                <li>COMPUTE_INSTANCE_GROUP_CANARY_TRAFFIC_SHIFT</li>
+                                                                                                                                                                                                <li>COMPUTE_INSTANCE_GROUP_CANARY_APPROVAL</li>
+                                                                                                                                                                                                <li>MANUAL_APPROVAL</li>
+                                                                                                                                                                                                <li>OKE_DEPLOYMENT</li>
+                                                                                                                                                                                                <li>COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT</li>
+                                                                                                                                                                                                <li>OKE_CANARY_APPROVAL</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -500,8 +742,8 @@ Parameters
                                                                 <td>
                                             <div>The OCID of the artifact that contains the deployment specification.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when deploy_stage_type is &#x27;COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT&#x27;</div>
-                                            <div>Required when deploy_stage_type is &#x27;COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT&#x27;</div>
+                                            <div>Applicable when deploy_stage_type is one of [&#x27;COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT&#x27;, &#x27;COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT&#x27;, &#x27;COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT&#x27;]</div>
+                                            <div>Required when deploy_stage_type is one of [&#x27;COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT&#x27;, &#x27;COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT&#x27;, &#x27;COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -570,7 +812,7 @@ Parameters
                                                                 <td>
                                             <div></div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when deploy_stage_type is &#x27;COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT&#x27;</div>
+                                            <div>Applicable when deploy_stage_type is one of [&#x27;COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT&#x27;, &#x27;COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT&#x27;]</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -586,7 +828,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The threshold count of failed instances in the group, which when reached or exceeded sets the stage as FAILED.</div>
+                                            <div>The threshold count of failed instances in the group, which when reached or exceeded sets the stage as Failed.</div>
                                             <div>Required when policy_type is &#x27;COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_COUNT&#x27;</div>
                                                         </td>
             </tr>
@@ -603,7 +845,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The failure percentage threshold, which when reached or exceeded sets the stage as FAILED. Percentage is computed as the ceiling value of the number of failed instances over the total count of the instances in the group.</div>
+                                            <div>The failure percentage threshold, which when reached or exceeded sets the stage as Failed. Percentage is computed as the ceiling value of the number of failed instances over the total count of the instances in the group.</div>
                                             <div>Required when policy_type is &#x27;COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE&#x27;</div>
                                                         </td>
             </tr>
@@ -805,10 +1047,10 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>List of Kubernetes manifest artifact OCIDs, the manifests should not include any job resource.</div>
+                                            <div>List of Kubernetes manifest artifact OCIDs.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when deploy_stage_type is &#x27;OKE_DEPLOYMENT&#x27;</div>
-                                            <div>Required when deploy_stage_type is &#x27;OKE_DEPLOYMENT&#x27;</div>
+                                            <div>Applicable when deploy_stage_type is one of [&#x27;OKE_DEPLOYMENT&#x27;, &#x27;OKE_CANARY_DEPLOYMENT&#x27;, &#x27;OKE_BLUE_GREEN_DEPLOYMENT&#x27;]</div>
+                                            <div>Required when deploy_stage_type is one of [&#x27;OKE_DEPLOYMENT&#x27;, &#x27;OKE_CANARY_DEPLOYMENT&#x27;, &#x27;OKE_BLUE_GREEN_DEPLOYMENT&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -917,6 +1159,54 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-oke_blue_green_deploy_stage_id"></div>
+                    <b>oke_blue_green_deploy_stage_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-oke_blue_green_deploy_stage_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The OCID of the upstream OKE blue-green deployment stage in this pipeline.</div>
+                                            <div>Required when deploy_stage_type is &#x27;OKE_BLUE_GREEN_TRAFFIC_SHIFT&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-oke_canary_deploy_stage_id"></div>
+                    <b>oke_canary_deploy_stage_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-oke_canary_deploy_stage_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The OCID of an upstream OKE canary deployment stage in this pipeline.</div>
+                                            <div>Required when deploy_stage_type is &#x27;OKE_CANARY_TRAFFIC_SHIFT&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-oke_canary_traffic_shift_deploy_stage_id"></div>
+                    <b>oke_canary_traffic_shift_deploy_stage_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-oke_canary_traffic_shift_deploy_stage_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The OCID of an upstream OKE canary deployment traffic shift stage in this pipeline.</div>
+                                            <div>Required when deploy_stage_type is &#x27;OKE_CANARY_APPROVAL&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-oke_cluster_deploy_environment_id"></div>
                     <b>oke_cluster_deploy_environment_id</b>
                     <a class="ansibleOptionLink" href="#parameter-oke_cluster_deploy_environment_id" title="Permalink to this option"></a>
@@ -930,9 +1220,77 @@ Parameters
                                             <div>Kubernetes cluster environment OCID for deployment.</div>
                                             <div>This parameter is updatable.</div>
                                             <div>Applicable when deploy_stage_type is &#x27;OKE_DEPLOYMENT&#x27;</div>
-                                            <div>Required when deploy_stage_type is &#x27;OKE_DEPLOYMENT&#x27;</div>
+                                            <div>Required when deploy_stage_type is one of [&#x27;OKE_DEPLOYMENT&#x27;, &#x27;OKE_CANARY_DEPLOYMENT&#x27;, &#x27;OKE_BLUE_GREEN_DEPLOYMENT&#x27;]</div>
                                                         </td>
             </tr>
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-production_load_balancer_config"></div>
+                    <b>production_load_balancer_config</b>
+                    <a class="ansibleOptionLink" href="#parameter-production_load_balancer_config" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Required when deploy_stage_type is one of [&#x27;COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT&#x27;, &#x27;COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT&#x27;]</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-production_load_balancer_config/backend_port"></div>
+                    <b>backend_port</b>
+                    <a class="ansibleOptionLink" href="#parameter-production_load_balancer_config/backend_port" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Listen port for the backend server.</div>
+                                            <div>Applicable when deploy_stage_type is &#x27;COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-production_load_balancer_config/listener_name"></div>
+                    <b>listener_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-production_load_balancer_config/listener_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Name of the load balancer listener.</div>
+                                            <div>Required when deploy_stage_type is &#x27;COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-production_load_balancer_config/load_balancer_id"></div>
+                    <b>load_balancer_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-production_load_balancer_config/load_balancer_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The OCID of the load balancer.</div>
+                                            <div>Required when deploy_stage_type is &#x27;COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT&#x27;</div>
+                                                        </td>
+            </tr>
+                    
                                 <tr>
                                                                 <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-region"></div>
@@ -1000,8 +1358,8 @@ Parameters
                                                                 <td>
                                             <div></div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when deploy_stage_type is one of [&#x27;COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT&#x27;, &#x27;LOAD_BALANCER_TRAFFIC_SHIFT&#x27;]</div>
-                                            <div>Required when deploy_stage_type is one of [&#x27;COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT&#x27;, &#x27;LOAD_BALANCER_TRAFFIC_SHIFT&#x27;]</div>
+                                            <div>Applicable when deploy_stage_type is one of [&#x27;COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT&#x27;, &#x27;COMPUTE_INSTANCE_GROUP_CANARY_TRAFFIC_SHIFT&#x27;, &#x27;COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT&#x27;, &#x27;OKE_CANARY_TRAFFIC_SHIFT&#x27;, &#x27;COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT&#x27;, &#x27;LOAD_BALANCER_TRAFFIC_SHIFT&#x27;]</div>
+                                            <div>Required when deploy_stage_type is one of [&#x27;COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT&#x27;, &#x27;COMPUTE_INSTANCE_GROUP_CANARY_TRAFFIC_SHIFT&#x27;, &#x27;COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT&#x27;, &#x27;OKE_CANARY_TRAFFIC_SHIFT&#x27;, &#x27;COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT&#x27;, &#x27;LOAD_BALANCER_TRAFFIC_SHIFT&#x27;]</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -1018,7 +1376,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Specifies number of batches for this stage.</div>
-                                            <div>Required when deploy_stage_type is one of [&#x27;COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_COUNT&#x27;, &#x27;LOAD_BALANCER_TRAFFIC_SHIFT&#x27;]</div>
+                                            <div>Required when deploy_stage_type is one of [&#x27;OKE_CANARY_TRAFFIC_SHIFT&#x27;, &#x27;COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_COUNT&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1035,7 +1393,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Specifies delay in seconds between batches. The default delay is 1 minute.</div>
-                                            <div>Applicable when deploy_stage_type is one of [&#x27;COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE&#x27;, &#x27;COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_COUNT&#x27;, &#x27;LOAD_BALANCER_TRAFFIC_SHIFT&#x27;]</div>
+                                            <div>Applicable when deploy_stage_type is one of [&#x27;OKE_CANARY_TRAFFIC_SHIFT&#x27;, &#x27;COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE&#x27;, &#x27;COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_COUNT&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1089,7 +1447,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Indicates the criteria to stop.</div>
-                                            <div>Applicable when deploy_stage_type is &#x27;LOAD_BALANCER_TRAFFIC_SHIFT&#x27;</div>
+                                            <div>Applicable when deploy_stage_type is &#x27;OKE_CANARY_TRAFFIC_SHIFT&#x27;</div>
                                                         </td>
             </tr>
                     
@@ -1129,6 +1487,75 @@ Parameters
                                             <div>OCID of your tenancy. If not set, then the value of the OCI_TENANCY variable, if any, is used. This option is required if the tenancy OCID is not specified through a configuration file (See <code>config_file_location</code>). To get the tenancy OCID, please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a></div>
                                                         </td>
             </tr>
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-test_load_balancer_config"></div>
+                    <b>test_load_balancer_config</b>
+                    <a class="ansibleOptionLink" href="#parameter-test_load_balancer_config" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when deploy_stage_type is one of [&#x27;COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT&#x27;, &#x27;COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT&#x27;]</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-test_load_balancer_config/backend_port"></div>
+                    <b>backend_port</b>
+                    <a class="ansibleOptionLink" href="#parameter-test_load_balancer_config/backend_port" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Listen port for the backend server.</div>
+                                            <div>Applicable when deploy_stage_type is &#x27;COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-test_load_balancer_config/listener_name"></div>
+                    <b>listener_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-test_load_balancer_config/listener_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Name of the load balancer listener.</div>
+                                            <div>Required when deploy_stage_type is &#x27;COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-test_load_balancer_config/load_balancer_id"></div>
+                    <b>load_balancer_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-test_load_balancer_config/load_balancer_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The OCID of the load balancer.</div>
+                                            <div>Required when deploy_stage_type is &#x27;COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT&#x27;</div>
+                                                        </td>
+            </tr>
+                    
                                 <tr>
                                                                 <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-traffic_shift_target"></div>
@@ -1260,17 +1687,80 @@ Examples
 .. code-block:: yaml+jinja
 
     
-    - name: Create deploy_stage with deploy_stage_type = MANUAL_APPROVAL
+    - name: Create deploy_stage with deploy_stage_type = OKE_CANARY_TRAFFIC_SHIFT
       oci_devops_deploy_stage:
         # required
+        oke_canary_deploy_stage_id: "ocid1.okecanarydeploystage.oc1..xxxxxxEXAMPLExxxxxx"
         deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
-        deploy_stage_type: MANUAL_APPROVAL
+        deploy_stage_type: OKE_CANARY_TRAFFIC_SHIFT
 
         # optional
-        approval_policy:
+        rollout_policy:
           # required
-          approval_policy_type: COUNT_BASED_APPROVAL
-          number_of_approvals_required: 56
+          batch_percentage: 56
+          policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
+
+          # optional
+          batch_delay_in_seconds: 56
+        description: description_example
+        display_name: display_name_example
+        deploy_stage_predecessor_collection:
+          # required
+          items:
+          - # required
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+    - name: Create deploy_stage with deploy_stage_type = OKE_BLUE_GREEN_TRAFFIC_SHIFT
+      oci_devops_deploy_stage:
+        # required
+        oke_blue_green_deploy_stage_id: "ocid1.okebluegreendeploystage.oc1..xxxxxxEXAMPLExxxxxx"
+        deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+        deploy_stage_type: OKE_BLUE_GREEN_TRAFFIC_SHIFT
+
+        # optional
+        description: description_example
+        display_name: display_name_example
+        deploy_stage_predecessor_collection:
+          # required
+          items:
+          - # required
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+    - name: Create deploy_stage with deploy_stage_type = COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT
+      oci_devops_deploy_stage:
+        # required
+        production_load_balancer_config:
+          # required
+          load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+          listener_name: listener_name_example
+
+          # optional
+          backend_port: 56
+        deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+        compute_instance_group_deploy_environment_id: "ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+        deploy_stage_type: COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT
+
+        # optional
+        deployment_spec_deploy_artifact_id: "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+        deploy_artifact_ids: [ "deploy_artifact_ids_example" ]
+        test_load_balancer_config:
+          # required
+          load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+          listener_name: listener_name_example
+
+          # optional
+          backend_port: 56
+        rollout_policy:
+          # required
+          batch_percentage: 56
+          policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
+
+          # optional
+          batch_delay_in_seconds: 56
         description: description_example
         display_name: display_name_example
         deploy_stage_predecessor_collection:
@@ -1302,29 +1792,6 @@ Examples
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
-    - name: Create deploy_stage with deploy_stage_type = OKE_DEPLOYMENT
-      oci_devops_deploy_stage:
-        # required
-        deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
-        deploy_stage_type: OKE_DEPLOYMENT
-
-        # optional
-        oke_cluster_deploy_environment_id: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
-        kubernetes_manifest_deploy_artifact_ids: [ "kubernetes_manifest_deploy_artifact_ids_example" ]
-        namespace: namespace_example
-        rollback_policy:
-          # required
-          policy_type: NO_STAGE_ROLLBACK_POLICY
-        description: description_example
-        display_name: display_name_example
-        deploy_stage_predecessor_collection:
-          # required
-          items:
-          - # required
-            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
-
     - name: Create deploy_stage with deploy_stage_type = LOAD_BALANCER_TRAFFIC_SHIFT
       oci_devops_deploy_stage:
         # required
@@ -1339,16 +1806,6 @@ Examples
           # optional
           items: [ "items_example" ]
         traffic_shift_target: traffic_shift_target_example
-        rollout_policy:
-          # required
-          batch_percentage: 56
-          policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
-
-          # optional
-          batch_delay_in_seconds: 56
-        rollback_policy:
-          # required
-          policy_type: NO_STAGE_ROLLBACK_POLICY
         load_balancer_config:
           # required
           load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1356,6 +1813,59 @@ Examples
 
           # optional
           backend_port: 56
+        rollback_policy:
+          # required
+          policy_type: NO_STAGE_ROLLBACK_POLICY
+        rollout_policy:
+          # required
+          batch_percentage: 56
+          policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
+
+          # optional
+          batch_delay_in_seconds: 56
+        description: description_example
+        display_name: display_name_example
+        deploy_stage_predecessor_collection:
+          # required
+          items:
+          - # required
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+    - name: Create deploy_stage with deploy_stage_type = COMPUTE_INSTANCE_GROUP_BLUE_GREEN_TRAFFIC_SHIFT
+      oci_devops_deploy_stage:
+        # required
+        compute_instance_group_blue_green_deployment_deploy_stage_id: "ocid1.computeinstancegroupbluegreendeploymentdeploystage.oc1..xxxxxxEXAMPLExxxxxx"
+        deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+        deploy_stage_type: COMPUTE_INSTANCE_GROUP_BLUE_GREEN_TRAFFIC_SHIFT
+
+        # optional
+        description: description_example
+        display_name: display_name_example
+        deploy_stage_predecessor_collection:
+          # required
+          items:
+          - # required
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+    - name: Create deploy_stage with deploy_stage_type = OKE_BLUE_GREEN_DEPLOYMENT
+      oci_devops_deploy_stage:
+        # required
+        blue_green_strategy:
+          # required
+          strategy_type: NGINX_BLUE_GREEN_STRATEGY
+          namespace_a: namespace_a_example
+          namespace_b: namespace_b_example
+          ingress_name: ingress_name_example
+        deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+        oke_cluster_deploy_environment_id: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+        deploy_stage_type: OKE_BLUE_GREEN_DEPLOYMENT
+
+        # optional
+        kubernetes_manifest_deploy_artifact_ids: [ "kubernetes_manifest_deploy_artifact_ids_example" ]
         description: description_example
         display_name: display_name_example
         deploy_stage_predecessor_collection:
@@ -1374,6 +1884,20 @@ Examples
 
         # optional
         compute_instance_group_deploy_environment_id: "ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+        load_balancer_config:
+          # required
+          load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+          listener_name: listener_name_example
+
+          # optional
+          backend_port: 56
+        rollback_policy:
+          # required
+          policy_type: NO_STAGE_ROLLBACK_POLICY
+        failure_policy:
+          # required
+          failure_percentage: 56
+          policy_type: COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE
         deployment_spec_deploy_artifact_id: "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
         deploy_artifact_ids: [ "deploy_artifact_ids_example" ]
         rollout_policy:
@@ -1383,20 +1907,6 @@ Examples
 
           # optional
           batch_delay_in_seconds: 56
-        rollback_policy:
-          # required
-          policy_type: NO_STAGE_ROLLBACK_POLICY
-        failure_policy:
-          # required
-          failure_percentage: 56
-          policy_type: COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE
-        load_balancer_config:
-          # required
-          load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-          listener_name: listener_name_example
-
-          # optional
-          backend_port: 56
         description: description_example
         display_name: display_name_example
         deploy_stage_predecessor_collection:
@@ -1450,9 +1960,81 @@ Examples
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         function_deploy_environment_id: "ocid1.functiondeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
 
-    - name: Update deploy_stage with deploy_stage_type = MANUAL_APPROVAL
+    - name: Create deploy_stage with deploy_stage_type = OKE_CANARY_DEPLOYMENT
       oci_devops_deploy_stage:
         # required
+        canary_strategy:
+          # required
+          strategy_type: NGINX_CANARY_STRATEGY
+          namespace: namespace_example
+          ingress_name: ingress_name_example
+        deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+        oke_cluster_deploy_environment_id: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+        deploy_stage_type: OKE_CANARY_DEPLOYMENT
+
+        # optional
+        kubernetes_manifest_deploy_artifact_ids: [ "kubernetes_manifest_deploy_artifact_ids_example" ]
+        description: description_example
+        display_name: display_name_example
+        deploy_stage_predecessor_collection:
+          # required
+          items:
+          - # required
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+    - name: Create deploy_stage with deploy_stage_type = COMPUTE_INSTANCE_GROUP_CANARY_TRAFFIC_SHIFT
+      oci_devops_deploy_stage:
+        # required
+        compute_instance_group_canary_deploy_stage_id: "ocid1.computeinstancegroupcanarydeploystage.oc1..xxxxxxEXAMPLExxxxxx"
+        deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+        deploy_stage_type: COMPUTE_INSTANCE_GROUP_CANARY_TRAFFIC_SHIFT
+
+        # optional
+        rollout_policy:
+          # required
+          batch_percentage: 56
+          policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
+
+          # optional
+          batch_delay_in_seconds: 56
+        description: description_example
+        display_name: display_name_example
+        deploy_stage_predecessor_collection:
+          # required
+          items:
+          - # required
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+    - name: Create deploy_stage with deploy_stage_type = COMPUTE_INSTANCE_GROUP_CANARY_APPROVAL
+      oci_devops_deploy_stage:
+        # required
+        compute_instance_group_canary_traffic_shift_deploy_stage_id: "ocid1.computeinstancegroupcanarytrafficshiftdeploystage.oc1..xxxxxxEXAMPLExxxxxx"
+        deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+        deploy_stage_type: COMPUTE_INSTANCE_GROUP_CANARY_APPROVAL
+
+        # optional
+        approval_policy:
+          # required
+          approval_policy_type: COUNT_BASED_APPROVAL
+          number_of_approvals_required: 56
+        description: description_example
+        display_name: display_name_example
+        deploy_stage_predecessor_collection:
+          # required
+          items:
+          - # required
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+    - name: Create deploy_stage with deploy_stage_type = MANUAL_APPROVAL
+      oci_devops_deploy_stage:
+        # required
+        deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
         deploy_stage_type: MANUAL_APPROVAL
 
         # optional
@@ -1460,6 +2042,169 @@ Examples
           # required
           approval_policy_type: COUNT_BASED_APPROVAL
           number_of_approvals_required: 56
+        description: description_example
+        display_name: display_name_example
+        deploy_stage_predecessor_collection:
+          # required
+          items:
+          - # required
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+    - name: Create deploy_stage with deploy_stage_type = OKE_DEPLOYMENT
+      oci_devops_deploy_stage:
+        # required
+        deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+        deploy_stage_type: OKE_DEPLOYMENT
+
+        # optional
+        oke_cluster_deploy_environment_id: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+        namespace: namespace_example
+        rollback_policy:
+          # required
+          policy_type: NO_STAGE_ROLLBACK_POLICY
+        kubernetes_manifest_deploy_artifact_ids: [ "kubernetes_manifest_deploy_artifact_ids_example" ]
+        description: description_example
+        display_name: display_name_example
+        deploy_stage_predecessor_collection:
+          # required
+          items:
+          - # required
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+    - name: Create deploy_stage with deploy_stage_type = COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT
+      oci_devops_deploy_stage:
+        # required
+        deploy_environment_id_a: deploy_environment_id_a_example
+        deploy_environment_id_b: deploy_environment_id_b_example
+        production_load_balancer_config:
+          # required
+          load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+          listener_name: listener_name_example
+
+          # optional
+          backend_port: 56
+        deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+        deploy_stage_type: COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT
+
+        # optional
+        failure_policy:
+          # required
+          failure_percentage: 56
+          policy_type: COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE
+        deployment_spec_deploy_artifact_id: "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+        deploy_artifact_ids: [ "deploy_artifact_ids_example" ]
+        test_load_balancer_config:
+          # required
+          load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+          listener_name: listener_name_example
+
+          # optional
+          backend_port: 56
+        rollout_policy:
+          # required
+          batch_percentage: 56
+          policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
+
+          # optional
+          batch_delay_in_seconds: 56
+        description: description_example
+        display_name: display_name_example
+        deploy_stage_predecessor_collection:
+          # required
+          items:
+          - # required
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+    - name: Create deploy_stage with deploy_stage_type = OKE_CANARY_APPROVAL
+      oci_devops_deploy_stage:
+        # required
+        deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+        oke_canary_traffic_shift_deploy_stage_id: "ocid1.okecanarytrafficshiftdeploystage.oc1..xxxxxxEXAMPLExxxxxx"
+        deploy_stage_type: OKE_CANARY_APPROVAL
+
+        # optional
+        approval_policy:
+          # required
+          approval_policy_type: COUNT_BASED_APPROVAL
+          number_of_approvals_required: 56
+        description: description_example
+        display_name: display_name_example
+        deploy_stage_predecessor_collection:
+          # required
+          items:
+          - # required
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+    - name: Update deploy_stage with deploy_stage_type = OKE_CANARY_TRAFFIC_SHIFT
+      oci_devops_deploy_stage:
+        # required
+        deploy_stage_type: OKE_CANARY_TRAFFIC_SHIFT
+
+        # optional
+        rollout_policy:
+          # required
+          batch_percentage: 56
+          policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
+
+          # optional
+          batch_delay_in_seconds: 56
+        description: description_example
+        display_name: display_name_example
+        deploy_stage_predecessor_collection:
+          # required
+          items:
+          - # required
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+    - name: Update deploy_stage with deploy_stage_type = OKE_BLUE_GREEN_TRAFFIC_SHIFT
+      oci_devops_deploy_stage:
+        # required
+        deploy_stage_type: OKE_BLUE_GREEN_TRAFFIC_SHIFT
+
+        # optional
+        description: description_example
+        display_name: display_name_example
+        deploy_stage_predecessor_collection:
+          # required
+          items:
+          - # required
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+    - name: Update deploy_stage with deploy_stage_type = COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT
+      oci_devops_deploy_stage:
+        # required
+        compute_instance_group_deploy_environment_id: "ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+        deploy_stage_type: COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT
+
+        # optional
+        deployment_spec_deploy_artifact_id: "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+        deploy_artifact_ids: [ "deploy_artifact_ids_example" ]
+        test_load_balancer_config:
+          # required
+          load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+          listener_name: listener_name_example
+
+          # optional
+          backend_port: 56
+        rollout_policy:
+          # required
+          batch_percentage: 56
+          policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
+
+          # optional
+          batch_delay_in_seconds: 56
         description: description_example
         display_name: display_name_example
         deploy_stage_predecessor_collection:
@@ -1490,28 +2235,6 @@ Examples
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
-    - name: Update deploy_stage with deploy_stage_type = OKE_DEPLOYMENT
-      oci_devops_deploy_stage:
-        # required
-        deploy_stage_type: OKE_DEPLOYMENT
-
-        # optional
-        oke_cluster_deploy_environment_id: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
-        kubernetes_manifest_deploy_artifact_ids: [ "kubernetes_manifest_deploy_artifact_ids_example" ]
-        namespace: namespace_example
-        rollback_policy:
-          # required
-          policy_type: NO_STAGE_ROLLBACK_POLICY
-        description: description_example
-        display_name: display_name_example
-        deploy_stage_predecessor_collection:
-          # required
-          items:
-          - # required
-            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
-
     - name: Update deploy_stage with deploy_stage_type = LOAD_BALANCER_TRAFFIC_SHIFT
       oci_devops_deploy_stage:
         # required
@@ -1525,16 +2248,6 @@ Examples
           # optional
           items: [ "items_example" ]
         traffic_shift_target: traffic_shift_target_example
-        rollout_policy:
-          # required
-          batch_percentage: 56
-          policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
-
-          # optional
-          batch_delay_in_seconds: 56
-        rollback_policy:
-          # required
-          policy_type: NO_STAGE_ROLLBACK_POLICY
         load_balancer_config:
           # required
           load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1542,6 +2255,50 @@ Examples
 
           # optional
           backend_port: 56
+        rollback_policy:
+          # required
+          policy_type: NO_STAGE_ROLLBACK_POLICY
+        rollout_policy:
+          # required
+          batch_percentage: 56
+          policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
+
+          # optional
+          batch_delay_in_seconds: 56
+        description: description_example
+        display_name: display_name_example
+        deploy_stage_predecessor_collection:
+          # required
+          items:
+          - # required
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+    - name: Update deploy_stage with deploy_stage_type = COMPUTE_INSTANCE_GROUP_BLUE_GREEN_TRAFFIC_SHIFT
+      oci_devops_deploy_stage:
+        # required
+        deploy_stage_type: COMPUTE_INSTANCE_GROUP_BLUE_GREEN_TRAFFIC_SHIFT
+
+        # optional
+        description: description_example
+        display_name: display_name_example
+        deploy_stage_predecessor_collection:
+          # required
+          items:
+          - # required
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+    - name: Update deploy_stage with deploy_stage_type = OKE_BLUE_GREEN_DEPLOYMENT
+      oci_devops_deploy_stage:
+        # required
+        oke_cluster_deploy_environment_id: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+        deploy_stage_type: OKE_BLUE_GREEN_DEPLOYMENT
+
+        # optional
+        kubernetes_manifest_deploy_artifact_ids: [ "kubernetes_manifest_deploy_artifact_ids_example" ]
         description: description_example
         display_name: display_name_example
         deploy_stage_predecessor_collection:
@@ -1559,6 +2316,20 @@ Examples
 
         # optional
         compute_instance_group_deploy_environment_id: "ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+        load_balancer_config:
+          # required
+          load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+          listener_name: listener_name_example
+
+          # optional
+          backend_port: 56
+        rollback_policy:
+          # required
+          policy_type: NO_STAGE_ROLLBACK_POLICY
+        failure_policy:
+          # required
+          failure_percentage: 56
+          policy_type: COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE
         deployment_spec_deploy_artifact_id: "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
         deploy_artifact_ids: [ "deploy_artifact_ids_example" ]
         rollout_policy:
@@ -1568,20 +2339,6 @@ Examples
 
           # optional
           batch_delay_in_seconds: 56
-        rollback_policy:
-          # required
-          policy_type: NO_STAGE_ROLLBACK_POLICY
-        failure_policy:
-          # required
-          failure_percentage: 56
-          policy_type: COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE
-        load_balancer_config:
-          # required
-          load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-          listener_name: listener_name_example
-
-          # optional
-          backend_port: 56
         description: description_example
         display_name: display_name_example
         deploy_stage_predecessor_collection:
@@ -1633,7 +2390,68 @@ Examples
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         function_deploy_environment_id: "ocid1.functiondeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
 
-    - name: Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_stage_type = MANUAL_APPROVAL
+    - name: Update deploy_stage with deploy_stage_type = OKE_CANARY_DEPLOYMENT
+      oci_devops_deploy_stage:
+        # required
+        oke_cluster_deploy_environment_id: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+        deploy_stage_type: OKE_CANARY_DEPLOYMENT
+
+        # optional
+        kubernetes_manifest_deploy_artifact_ids: [ "kubernetes_manifest_deploy_artifact_ids_example" ]
+        description: description_example
+        display_name: display_name_example
+        deploy_stage_predecessor_collection:
+          # required
+          items:
+          - # required
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+    - name: Update deploy_stage with deploy_stage_type = COMPUTE_INSTANCE_GROUP_CANARY_TRAFFIC_SHIFT
+      oci_devops_deploy_stage:
+        # required
+        deploy_stage_type: COMPUTE_INSTANCE_GROUP_CANARY_TRAFFIC_SHIFT
+
+        # optional
+        rollout_policy:
+          # required
+          batch_percentage: 56
+          policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
+
+          # optional
+          batch_delay_in_seconds: 56
+        description: description_example
+        display_name: display_name_example
+        deploy_stage_predecessor_collection:
+          # required
+          items:
+          - # required
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+    - name: Update deploy_stage with deploy_stage_type = COMPUTE_INSTANCE_GROUP_CANARY_APPROVAL
+      oci_devops_deploy_stage:
+        # required
+        deploy_stage_type: COMPUTE_INSTANCE_GROUP_CANARY_APPROVAL
+
+        # optional
+        approval_policy:
+          # required
+          approval_policy_type: COUNT_BASED_APPROVAL
+          number_of_approvals_required: 56
+        description: description_example
+        display_name: display_name_example
+        deploy_stage_predecessor_collection:
+          # required
+          items:
+          - # required
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+    - name: Update deploy_stage with deploy_stage_type = MANUAL_APPROVAL
       oci_devops_deploy_stage:
         # required
         deploy_stage_type: MANUAL_APPROVAL
@@ -1643,6 +2461,158 @@ Examples
           # required
           approval_policy_type: COUNT_BASED_APPROVAL
           number_of_approvals_required: 56
+        description: description_example
+        display_name: display_name_example
+        deploy_stage_predecessor_collection:
+          # required
+          items:
+          - # required
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+    - name: Update deploy_stage with deploy_stage_type = OKE_DEPLOYMENT
+      oci_devops_deploy_stage:
+        # required
+        deploy_stage_type: OKE_DEPLOYMENT
+
+        # optional
+        oke_cluster_deploy_environment_id: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+        namespace: namespace_example
+        rollback_policy:
+          # required
+          policy_type: NO_STAGE_ROLLBACK_POLICY
+        kubernetes_manifest_deploy_artifact_ids: [ "kubernetes_manifest_deploy_artifact_ids_example" ]
+        description: description_example
+        display_name: display_name_example
+        deploy_stage_predecessor_collection:
+          # required
+          items:
+          - # required
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+    - name: Update deploy_stage with deploy_stage_type = COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT
+      oci_devops_deploy_stage:
+        # required
+        deploy_stage_type: COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT
+
+        # optional
+        failure_policy:
+          # required
+          failure_percentage: 56
+          policy_type: COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE
+        deployment_spec_deploy_artifact_id: "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+        deploy_artifact_ids: [ "deploy_artifact_ids_example" ]
+        test_load_balancer_config:
+          # required
+          load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+          listener_name: listener_name_example
+
+          # optional
+          backend_port: 56
+        rollout_policy:
+          # required
+          batch_percentage: 56
+          policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
+
+          # optional
+          batch_delay_in_seconds: 56
+        description: description_example
+        display_name: display_name_example
+        deploy_stage_predecessor_collection:
+          # required
+          items:
+          - # required
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+    - name: Update deploy_stage with deploy_stage_type = OKE_CANARY_APPROVAL
+      oci_devops_deploy_stage:
+        # required
+        deploy_stage_type: OKE_CANARY_APPROVAL
+
+        # optional
+        approval_policy:
+          # required
+          approval_policy_type: COUNT_BASED_APPROVAL
+          number_of_approvals_required: 56
+        description: description_example
+        display_name: display_name_example
+        deploy_stage_predecessor_collection:
+          # required
+          items:
+          - # required
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+    - name: Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_stage_type = OKE_CANARY_TRAFFIC_SHIFT
+      oci_devops_deploy_stage:
+        # required
+        deploy_stage_type: OKE_CANARY_TRAFFIC_SHIFT
+
+        # optional
+        rollout_policy:
+          # required
+          batch_percentage: 56
+          policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
+
+          # optional
+          batch_delay_in_seconds: 56
+        description: description_example
+        display_name: display_name_example
+        deploy_stage_predecessor_collection:
+          # required
+          items:
+          - # required
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+    - name: Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_stage_type = OKE_BLUE_GREEN_TRAFFIC_SHIFT
+      oci_devops_deploy_stage:
+        # required
+        deploy_stage_type: OKE_BLUE_GREEN_TRAFFIC_SHIFT
+
+        # optional
+        description: description_example
+        display_name: display_name_example
+        deploy_stage_predecessor_collection:
+          # required
+          items:
+          - # required
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+    - name: >
+        Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+        with deploy_stage_type = COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT
+      oci_devops_deploy_stage:
+        # required
+        compute_instance_group_deploy_environment_id: "ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+        deploy_stage_type: COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT
+
+        # optional
+        deployment_spec_deploy_artifact_id: "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+        deploy_artifact_ids: [ "deploy_artifact_ids_example" ]
+        test_load_balancer_config:
+          # required
+          load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+          listener_name: listener_name_example
+
+          # optional
+          backend_port: 56
+        rollout_policy:
+          # required
+          batch_percentage: 56
+          policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
+
+          # optional
+          batch_delay_in_seconds: 56
         description: description_example
         display_name: display_name_example
         deploy_stage_predecessor_collection:
@@ -1673,28 +2643,6 @@ Examples
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
-    - name: Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_stage_type = OKE_DEPLOYMENT
-      oci_devops_deploy_stage:
-        # required
-        deploy_stage_type: OKE_DEPLOYMENT
-
-        # optional
-        oke_cluster_deploy_environment_id: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
-        kubernetes_manifest_deploy_artifact_ids: [ "kubernetes_manifest_deploy_artifact_ids_example" ]
-        namespace: namespace_example
-        rollback_policy:
-          # required
-          policy_type: NO_STAGE_ROLLBACK_POLICY
-        description: description_example
-        display_name: display_name_example
-        deploy_stage_predecessor_collection:
-          # required
-          items:
-          - # required
-            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        freeform_tags: {'Department': 'Finance'}
-        defined_tags: {'Operations': {'CostCenter': 'US'}}
-
     - name: Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_stage_type = LOAD_BALANCER_TRAFFIC_SHIFT
       oci_devops_deploy_stage:
         # required
@@ -1708,16 +2656,6 @@ Examples
           # optional
           items: [ "items_example" ]
         traffic_shift_target: traffic_shift_target_example
-        rollout_policy:
-          # required
-          batch_percentage: 56
-          policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
-
-          # optional
-          batch_delay_in_seconds: 56
-        rollback_policy:
-          # required
-          policy_type: NO_STAGE_ROLLBACK_POLICY
         load_balancer_config:
           # required
           load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1725,6 +2663,52 @@ Examples
 
           # optional
           backend_port: 56
+        rollback_policy:
+          # required
+          policy_type: NO_STAGE_ROLLBACK_POLICY
+        rollout_policy:
+          # required
+          batch_percentage: 56
+          policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
+
+          # optional
+          batch_delay_in_seconds: 56
+        description: description_example
+        display_name: display_name_example
+        deploy_stage_predecessor_collection:
+          # required
+          items:
+          - # required
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+    - name: >
+        Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+        with deploy_stage_type = COMPUTE_INSTANCE_GROUP_BLUE_GREEN_TRAFFIC_SHIFT
+      oci_devops_deploy_stage:
+        # required
+        deploy_stage_type: COMPUTE_INSTANCE_GROUP_BLUE_GREEN_TRAFFIC_SHIFT
+
+        # optional
+        description: description_example
+        display_name: display_name_example
+        deploy_stage_predecessor_collection:
+          # required
+          items:
+          - # required
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+    - name: Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_stage_type = OKE_BLUE_GREEN_DEPLOYMENT
+      oci_devops_deploy_stage:
+        # required
+        oke_cluster_deploy_environment_id: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+        deploy_stage_type: OKE_BLUE_GREEN_DEPLOYMENT
+
+        # optional
+        kubernetes_manifest_deploy_artifact_ids: [ "kubernetes_manifest_deploy_artifact_ids_example" ]
         description: description_example
         display_name: display_name_example
         deploy_stage_predecessor_collection:
@@ -1744,6 +2728,20 @@ Examples
 
         # optional
         compute_instance_group_deploy_environment_id: "ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+        load_balancer_config:
+          # required
+          load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+          listener_name: listener_name_example
+
+          # optional
+          backend_port: 56
+        rollback_policy:
+          # required
+          policy_type: NO_STAGE_ROLLBACK_POLICY
+        failure_policy:
+          # required
+          failure_percentage: 56
+          policy_type: COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE
         deployment_spec_deploy_artifact_id: "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
         deploy_artifact_ids: [ "deploy_artifact_ids_example" ]
         rollout_policy:
@@ -1753,20 +2751,6 @@ Examples
 
           # optional
           batch_delay_in_seconds: 56
-        rollback_policy:
-          # required
-          policy_type: NO_STAGE_ROLLBACK_POLICY
-        failure_policy:
-          # required
-          failure_percentage: 56
-          policy_type: COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE
-        load_balancer_config:
-          # required
-          load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
-          listener_name: listener_name_example
-
-          # optional
-          backend_port: 56
         description: description_example
         display_name: display_name_example
         deploy_stage_predecessor_collection:
@@ -1818,6 +2802,171 @@ Examples
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         function_deploy_environment_id: "ocid1.functiondeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
 
+    - name: Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_stage_type = OKE_CANARY_DEPLOYMENT
+      oci_devops_deploy_stage:
+        # required
+        oke_cluster_deploy_environment_id: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+        deploy_stage_type: OKE_CANARY_DEPLOYMENT
+
+        # optional
+        kubernetes_manifest_deploy_artifact_ids: [ "kubernetes_manifest_deploy_artifact_ids_example" ]
+        description: description_example
+        display_name: display_name_example
+        deploy_stage_predecessor_collection:
+          # required
+          items:
+          - # required
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+    - name: >
+        Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+        with deploy_stage_type = COMPUTE_INSTANCE_GROUP_CANARY_TRAFFIC_SHIFT
+      oci_devops_deploy_stage:
+        # required
+        deploy_stage_type: COMPUTE_INSTANCE_GROUP_CANARY_TRAFFIC_SHIFT
+
+        # optional
+        rollout_policy:
+          # required
+          batch_percentage: 56
+          policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
+
+          # optional
+          batch_delay_in_seconds: 56
+        description: description_example
+        display_name: display_name_example
+        deploy_stage_predecessor_collection:
+          # required
+          items:
+          - # required
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+    - name: >
+        Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+        with deploy_stage_type = COMPUTE_INSTANCE_GROUP_CANARY_APPROVAL
+      oci_devops_deploy_stage:
+        # required
+        deploy_stage_type: COMPUTE_INSTANCE_GROUP_CANARY_APPROVAL
+
+        # optional
+        approval_policy:
+          # required
+          approval_policy_type: COUNT_BASED_APPROVAL
+          number_of_approvals_required: 56
+        description: description_example
+        display_name: display_name_example
+        deploy_stage_predecessor_collection:
+          # required
+          items:
+          - # required
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+    - name: Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_stage_type = MANUAL_APPROVAL
+      oci_devops_deploy_stage:
+        # required
+        deploy_stage_type: MANUAL_APPROVAL
+
+        # optional
+        approval_policy:
+          # required
+          approval_policy_type: COUNT_BASED_APPROVAL
+          number_of_approvals_required: 56
+        description: description_example
+        display_name: display_name_example
+        deploy_stage_predecessor_collection:
+          # required
+          items:
+          - # required
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+    - name: Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_stage_type = OKE_DEPLOYMENT
+      oci_devops_deploy_stage:
+        # required
+        deploy_stage_type: OKE_DEPLOYMENT
+
+        # optional
+        oke_cluster_deploy_environment_id: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+        namespace: namespace_example
+        rollback_policy:
+          # required
+          policy_type: NO_STAGE_ROLLBACK_POLICY
+        kubernetes_manifest_deploy_artifact_ids: [ "kubernetes_manifest_deploy_artifact_ids_example" ]
+        description: description_example
+        display_name: display_name_example
+        deploy_stage_predecessor_collection:
+          # required
+          items:
+          - # required
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+    - name: >
+        Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
+        with deploy_stage_type = COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT
+      oci_devops_deploy_stage:
+        # required
+        deploy_stage_type: COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT
+
+        # optional
+        failure_policy:
+          # required
+          failure_percentage: 56
+          policy_type: COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_PERCENTAGE
+        deployment_spec_deploy_artifact_id: "ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+        deploy_artifact_ids: [ "deploy_artifact_ids_example" ]
+        test_load_balancer_config:
+          # required
+          load_balancer_id: "ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx"
+          listener_name: listener_name_example
+
+          # optional
+          backend_port: 56
+        rollout_policy:
+          # required
+          batch_percentage: 56
+          policy_type: COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_PERCENTAGE
+
+          # optional
+          batch_delay_in_seconds: 56
+        description: description_example
+        display_name: display_name_example
+        deploy_stage_predecessor_collection:
+          # required
+          items:
+          - # required
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+    - name: Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_stage_type = OKE_CANARY_APPROVAL
+      oci_devops_deploy_stage:
+        # required
+        deploy_stage_type: OKE_CANARY_APPROVAL
+
+        # optional
+        approval_policy:
+          # required
+          approval_policy_type: COUNT_BASED_APPROVAL
+          number_of_approvals_required: 56
+        description: description_example
+        display_name: display_name_example
+        deploy_stage_predecessor_collection:
+          # required
+          items:
+          - # required
+            id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+
     - name: Delete deploy_stage
       oci_devops_deploy_stage:
         # required
@@ -1865,7 +3014,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the DeployStage resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;approval_policy&#x27;: {&#x27;approval_policy_type&#x27;: &#x27;COUNT_BASED_APPROVAL&#x27;, &#x27;number_of_approvals_required&#x27;: 56}, &#x27;blue_backend_ips&#x27;: {&#x27;items&#x27;: []}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_instance_group_deploy_environment_id&#x27;: &#x27;ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config&#x27;: {}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deploy_artifact_id&#x27;: &#x27;ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_artifact_ids&#x27;: [], &#x27;deploy_pipeline_id&#x27;: &#x27;ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_stage_predecessor_collection&#x27;: {&#x27;items&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}, &#x27;deploy_stage_type&#x27;: &#x27;WAIT&#x27;, &#x27;deployment_spec_deploy_artifact_id&#x27;: &#x27;ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;docker_image_deploy_artifact_id&#x27;: &#x27;ocid1.dockerimagedeployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;failure_policy&#x27;: {&#x27;failure_count&#x27;: 56, &#x27;failure_percentage&#x27;: 56, &#x27;policy_type&#x27;: &#x27;COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_COUNT&#x27;}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;function_deploy_environment_id&#x27;: &#x27;ocid1.functiondeployenvironment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;function_timeout_in_seconds&#x27;: 56, &#x27;green_backend_ips&#x27;: {&#x27;items&#x27;: []}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_async&#x27;: True, &#x27;is_validation_enabled&#x27;: True, &#x27;kubernetes_manifest_deploy_artifact_ids&#x27;: [], &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;load_balancer_config&#x27;: {&#x27;backend_port&#x27;: 56, &#x27;listener_name&#x27;: &#x27;listener_name_example&#x27;, &#x27;load_balancer_id&#x27;: &#x27;ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;max_memory_in_mbs&#x27;: 56, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;oke_cluster_deploy_environment_id&#x27;: &#x27;ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;rollback_policy&#x27;: {&#x27;policy_type&#x27;: &#x27;AUTOMATED_STAGE_ROLLBACK_POLICY&#x27;}, &#x27;rollout_policy&#x27;: {&#x27;batch_count&#x27;: 56, &#x27;batch_delay_in_seconds&#x27;: 56, &#x27;batch_percentage&#x27;: 56, &#x27;policy_type&#x27;: &#x27;COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_COUNT&#x27;, &#x27;ramp_limit_percent&#x27;: 3.4}, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;traffic_shift_target&#x27;: &#x27;AUTO_SELECT&#x27;, &#x27;wait_criteria&#x27;: {&#x27;wait_duration&#x27;: &#x27;wait_duration_example&#x27;, &#x27;wait_type&#x27;: &#x27;ABSOLUTE_WAIT&#x27;}}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;approval_policy&#x27;: {&#x27;approval_policy_type&#x27;: &#x27;COUNT_BASED_APPROVAL&#x27;, &#x27;number_of_approvals_required&#x27;: 56}, &#x27;blue_backend_ips&#x27;: {&#x27;items&#x27;: []}, &#x27;blue_green_strategy&#x27;: {&#x27;ingress_name&#x27;: &#x27;ingress_name_example&#x27;, &#x27;namespace_a&#x27;: &#x27;namespace_a_example&#x27;, &#x27;namespace_b&#x27;: &#x27;namespace_b_example&#x27;, &#x27;strategy_type&#x27;: &#x27;NGINX_BLUE_GREEN_STRATEGY&#x27;}, &#x27;canary_strategy&#x27;: {&#x27;ingress_name&#x27;: &#x27;ingress_name_example&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;strategy_type&#x27;: &#x27;NGINX_CANARY_STRATEGY&#x27;}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_instance_group_blue_green_deployment_deploy_stage_id&#x27;: &#x27;ocid1.computeinstancegroupbluegreendeploymentdeploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_instance_group_canary_deploy_stage_id&#x27;: &#x27;ocid1.computeinstancegroupcanarydeploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_instance_group_canary_traffic_shift_deploy_stage_id&#x27;: &#x27;ocid1.computeinstancegroupcanarytrafficshiftdeploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_instance_group_deploy_environment_id&#x27;: &#x27;ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config&#x27;: {}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deploy_artifact_id&#x27;: &#x27;ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_artifact_ids&#x27;: [], &#x27;deploy_environment_id_a&#x27;: &#x27;deploy_environment_id_a_example&#x27;, &#x27;deploy_environment_id_b&#x27;: &#x27;deploy_environment_id_b_example&#x27;, &#x27;deploy_pipeline_id&#x27;: &#x27;ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_stage_predecessor_collection&#x27;: {&#x27;items&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}, &#x27;deploy_stage_type&#x27;: &#x27;WAIT&#x27;, &#x27;deployment_spec_deploy_artifact_id&#x27;: &#x27;ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;docker_image_deploy_artifact_id&#x27;: &#x27;ocid1.dockerimagedeployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;failure_policy&#x27;: {&#x27;failure_count&#x27;: 56, &#x27;failure_percentage&#x27;: 56, &#x27;policy_type&#x27;: &#x27;COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_COUNT&#x27;}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;function_deploy_environment_id&#x27;: &#x27;ocid1.functiondeployenvironment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;function_timeout_in_seconds&#x27;: 56, &#x27;green_backend_ips&#x27;: {&#x27;items&#x27;: []}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_async&#x27;: True, &#x27;is_validation_enabled&#x27;: True, &#x27;kubernetes_manifest_deploy_artifact_ids&#x27;: [], &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;load_balancer_config&#x27;: {&#x27;backend_port&#x27;: 56, &#x27;listener_name&#x27;: &#x27;listener_name_example&#x27;, &#x27;load_balancer_id&#x27;: &#x27;ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;max_memory_in_mbs&#x27;: 56, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;oke_blue_green_deploy_stage_id&#x27;: &#x27;ocid1.okebluegreendeploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;oke_canary_deploy_stage_id&#x27;: &#x27;ocid1.okecanarydeploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;oke_canary_traffic_shift_deploy_stage_id&#x27;: &#x27;ocid1.okecanarytrafficshiftdeploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;oke_cluster_deploy_environment_id&#x27;: &#x27;ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;production_load_balancer_config&#x27;: {&#x27;backend_port&#x27;: 56, &#x27;listener_name&#x27;: &#x27;listener_name_example&#x27;, &#x27;load_balancer_id&#x27;: &#x27;ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;rollback_policy&#x27;: {&#x27;policy_type&#x27;: &#x27;AUTOMATED_STAGE_ROLLBACK_POLICY&#x27;}, &#x27;rollout_policy&#x27;: {&#x27;batch_count&#x27;: 56, &#x27;batch_delay_in_seconds&#x27;: 56, &#x27;batch_percentage&#x27;: 56, &#x27;policy_type&#x27;: &#x27;COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_COUNT&#x27;, &#x27;ramp_limit_percent&#x27;: 3.4}, &#x27;system_tags&#x27;: {}, &#x27;test_load_balancer_config&#x27;: {&#x27;backend_port&#x27;: 56, &#x27;listener_name&#x27;: &#x27;listener_name_example&#x27;, &#x27;load_balancer_id&#x27;: &#x27;ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;traffic_shift_target&#x27;: &#x27;AUTO_SELECT&#x27;, &#x27;wait_criteria&#x27;: {&#x27;wait_duration&#x27;: &#x27;wait_duration_example&#x27;, &#x27;wait_type&#x27;: &#x27;ABSOLUTE_WAIT&#x27;}}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1960,6 +3109,173 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stage/blue_green_strategy"></div>
+                    <b>blue_green_strategy</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stage/blue_green_strategy" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stage/blue_green_strategy/ingress_name"></div>
+                    <b>ingress_name</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stage/blue_green_strategy/ingress_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name of the Ingress resource.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ingress_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stage/blue_green_strategy/namespace_a"></div>
+                    <b>namespace_a</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stage/blue_green_strategy/namespace_a" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Namespace A for deployment.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">namespace_a_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stage/blue_green_strategy/namespace_b"></div>
+                    <b>namespace_b</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stage/blue_green_strategy/namespace_b" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Namespace B for deployment.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">namespace_b_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stage/blue_green_strategy/strategy_type"></div>
+                    <b>strategy_type</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stage/blue_green_strategy/strategy_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Blue-Green strategy type.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">NGINX_BLUE_GREEN_STRATEGY</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stage/canary_strategy"></div>
+                    <b>canary_strategy</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stage/canary_strategy" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stage/canary_strategy/ingress_name"></div>
+                    <b>ingress_name</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stage/canary_strategy/ingress_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name of the Ingress resource.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ingress_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stage/canary_strategy/namespace"></div>
+                    <b>namespace</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stage/canary_strategy/namespace" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Canary namespace to be used for Kubernetes canary deployment.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">namespace_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stage/canary_strategy/strategy_type"></div>
+                    <b>strategy_type</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stage/canary_strategy/strategy_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Canary strategy type.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">NGINX_CANARY_STRATEGY</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-deploy_stage/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-deploy_stage/compartment_id" title="Permalink to this return value"></a>
@@ -1978,6 +3294,60 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stage/compute_instance_group_blue_green_deployment_deploy_stage_id"></div>
+                    <b>compute_instance_group_blue_green_deployment_deploy_stage_id</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stage/compute_instance_group_blue_green_deployment_deploy_stage_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the upstream compute instance group blue-green deployment stage in this pipeline.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.computeinstancegroupbluegreendeploymentdeploystage.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stage/compute_instance_group_canary_deploy_stage_id"></div>
+                    <b>compute_instance_group_canary_deploy_stage_id</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stage/compute_instance_group_canary_deploy_stage_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of an upstream compute instance group canary deployment stage ID in this pipeline.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.computeinstancegroupcanarydeploystage.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stage/compute_instance_group_canary_traffic_shift_deploy_stage_id"></div>
+                    <b>compute_instance_group_canary_traffic_shift_deploy_stage_id</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stage/compute_instance_group_canary_traffic_shift_deploy_stage_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A compute instance group canary traffic shift stage OCID for load balancer.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.computeinstancegroupcanarytrafficshiftdeploystage.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-deploy_stage/compute_instance_group_deploy_environment_id"></div>
                     <b>compute_instance_group_deploy_environment_id</b>
                     <a class="ansibleOptionLink" href="#return-deploy_stage/compute_instance_group_deploy_environment_id" title="Permalink to this return value"></a>
@@ -1987,7 +3357,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A compute instance group environment OCID for rolling deployment.</div>
+                                            <div>A compute instance group environment OCID for Canary deployment.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -2057,9 +3427,45 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Additional file artifact OCIDs.</div>
+                                            <div>The list of file artifact OCIDs to deploy.</div>
                                         <br/>
                                                         </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stage/deploy_environment_id_a"></div>
+                    <b>deploy_environment_id_a</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stage/deploy_environment_id_a" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>First compute instance group environment OCID for deployment.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">deploy_environment_id_a_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stage/deploy_environment_id_b"></div>
+                    <b>deploy_environment_id_b</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stage/deploy_environment_id_b" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Second compute instance group environment OCID for deployment.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">deploy_environment_id_b_example</div>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -2253,7 +3659,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The threshold count of failed instances in the group, which when reached or exceeded sets the stage as FAILED.</div>
+                                            <div>The threshold count of failed instances in the group, which when reached or exceeded sets the stage as Failed.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -2272,7 +3678,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The failure percentage threshold, which when reached or exceeded sets the stage as FAILED. Percentage is computed as the ceiling value of the number of failed instances over the total count of the instances in the group.</div>
+                                            <div>The failure percentage threshold, which when reached or exceeded sets the stage as Failed. Percentage is computed as the ceiling value of the number of failed instances over the total count of the instances in the group.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -2452,7 +3858,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>List of Kubernetes manifest artifact OCIDs, the manifests should not include any job resource.</div>
+                                            <div>List of Kubernetes manifest artifact OCIDs</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -2596,10 +4002,64 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Default Namespace to be used for Kubernetes deployment when not specified in the manifest.</div>
+                                            <div>Default namespace to be used for Kubernetes deployment when not specified in the manifest.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">namespace_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stage/oke_blue_green_deploy_stage_id"></div>
+                    <b>oke_blue_green_deploy_stage_id</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stage/oke_blue_green_deploy_stage_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the upstream OKE blue-green deployment stage in this pipeline.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.okebluegreendeploystage.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stage/oke_canary_deploy_stage_id"></div>
+                    <b>oke_canary_deploy_stage_id</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stage/oke_canary_deploy_stage_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of an upstream OKE canary deployment stage in this pipeline.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.okecanarydeploystage.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stage/oke_canary_traffic_shift_deploy_stage_id"></div>
+                    <b>oke_canary_traffic_shift_deploy_stage_id</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stage/oke_canary_traffic_shift_deploy_stage_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of an upstream OKE canary deployment traffic shift stage in this pipeline.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.okecanarytrafficshiftdeploystage.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                                 <tr>
@@ -2620,6 +4080,80 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stage/production_load_balancer_config"></div>
+                    <b>production_load_balancer_config</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stage/production_load_balancer_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stage/production_load_balancer_config/backend_port"></div>
+                    <b>backend_port</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stage/production_load_balancer_config/backend_port" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Listen port for the backend server.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stage/production_load_balancer_config/listener_name"></div>
+                    <b>listener_name</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stage/production_load_balancer_config/listener_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name of the load balancer listener.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">listener_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stage/production_load_balancer_config/load_balancer_id"></div>
+                    <b>load_balancer_id</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stage/production_load_balancer_config/load_balancer_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the load balancer.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
@@ -2802,6 +4336,80 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                         </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stage/test_load_balancer_config"></div>
+                    <b>test_load_balancer_config</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stage/test_load_balancer_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stage/test_load_balancer_config/backend_port"></div>
+                    <b>backend_port</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stage/test_load_balancer_config/backend_port" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Listen port for the backend server.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stage/test_load_balancer_config/listener_name"></div>
+                    <b>listener_name</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stage/test_load_balancer_config/listener_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name of the load balancer listener.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">listener_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stage/test_load_balancer_config/load_balancer_id"></div>
+                    <b>load_balancer_id</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stage/test_load_balancer_config/load_balancer_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the load balancer.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">

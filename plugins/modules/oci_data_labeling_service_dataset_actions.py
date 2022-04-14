@@ -23,39 +23,242 @@ module: oci_data_labeling_service_dataset_actions
 short_description: Perform actions on a Dataset resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a Dataset resource in Oracle Cloud Infrastructure
+    - For I(action=add_dataset_labels), add Labels to the Dataset LabelSet until the maximum number of Labels has been reached.
     - For I(action=change_compartment), moves a Dataset resource from one compartment identifier to another. When provided, If-Match is checked against ETag
       values of the resource.
+    - For I(action=generate_dataset_records), generates Record resources from the Dataset's data source
+    - For I(action=remove_dataset_labels), removes the labels from the Dataset Labelset.  Labels can only be removed if there are no Annotations associated with
+      the Dataset that reference the Label names.
+    - For I(action=rename_dataset_labels), renames the labels from the Dataset Labelset.  Labels that are renamed will be reflected in Annotations associated
+      with the Dataset that reference the Label names.
+    - For I(action=snapshot), writes the dataset records and annotations in a consolidated format out to an object storage reference for consumption.
+      While the snapshot takes place, there may be a time while records and annotations cannot be created to ensure the snapshot is a point in time.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The OCID of the compartment where the resource should be moved.
+            - Required for I(action=change_compartment).
+        type: str
+    limit:
+        description:
+            - the maximum number of records to generate.
+            - Applicable only for I(action=generate_dataset_records).
+        type: float
+    label_set:
+        description:
+            - ""
+            - Applicable only for I(action=add_dataset_labels)I(action=remove_dataset_labels).
+        type: dict
+        suboptions:
+            items:
+                description:
+                    - An ordered collection of Labels that are unique by name.
+                type: list
+                elements: dict
+                suboptions:
+                    name:
+                        description:
+                            - An unique name for a label within its dataset.
+                        type: str
+    source_label_set:
+        description:
+            - ""
+            - Applicable only for I(action=rename_dataset_labels).
+        type: dict
+        suboptions:
+            items:
+                description:
+                    - An ordered collection of Labels that are unique by name.
+                type: list
+                elements: dict
+                suboptions:
+                    name:
+                        description:
+                            - An unique name for a label within its dataset.
+                        type: str
+    target_label_set:
+        description:
+            - ""
+            - Applicable only for I(action=rename_dataset_labels).
+        type: dict
+        suboptions:
+            items:
+                description:
+                    - An ordered collection of Labels that are unique by name.
+                type: list
+                elements: dict
+                suboptions:
+                    name:
+                        description:
+                            - An unique name for a label within its dataset.
+                        type: str
     dataset_id:
         description:
             - Unique Dataset OCID
         type: str
         aliases: ["id"]
         required: true
-    compartment_id:
+    are_annotations_included:
         description:
-            - The OCID of the compartment where the resource should be moved.
-        type: str
-        required: true
+            - Whether annotations are to be included in the export dataset digest.
+            - Required for I(action=snapshot).
+        type: bool
+    are_unannotated_records_included:
+        description:
+            - Whether to include records that have yet to be annotated in the export dataset digest.
+            - Required for I(action=snapshot).
+        type: bool
+    export_details:
+        description:
+            - ""
+            - Required for I(action=snapshot).
+        type: dict
+        suboptions:
+            export_type:
+                description:
+                    - The target destination for the snapshot.  Using OBJECT_STORAGE means the snapshot will be written to Object Storage.
+                type: str
+                choices:
+                    - "OBJECT_STORAGE"
+                required: true
+            namespace:
+                description:
+                    - Bucket namespace name
+                type: str
+                required: true
+            bucket:
+                description:
+                    - Bucket name
+                type: str
+                required: true
+            prefix:
+                description:
+                    - Object path prefix to put snapshot file(s)
+                type: str
+    export_format:
+        description:
+            - ""
+            - Applicable only for I(action=snapshot).
+        type: dict
+        suboptions:
+            name:
+                description:
+                    - Name of export format.
+                type: str
+                choices:
+                    - "JSONL"
+                    - "JSONL_CONSOLIDATED"
+                    - "CONLL"
+                    - "SPACY"
+                    - "COCO"
+                    - "YOLO"
+                    - "PASCAL_VOC"
+            version:
+                description:
+                    - Version of export format.
+                type: str
+                choices:
+                    - "V2003"
+                    - "V5"
     action:
         description:
             - The action to perform on the Dataset.
         type: str
         required: true
         choices:
+            - "add_dataset_labels"
             - "change_compartment"
+            - "generate_dataset_records"
+            - "remove_dataset_labels"
+            - "rename_dataset_labels"
+            - "snapshot"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
 EXAMPLES = """
-- name: Perform action change_compartment on dataset
+- name: Perform action add_dataset_labels on dataset
   oci_data_labeling_service_dataset_actions:
     # required
     dataset_id: "ocid1.dataset.oc1..xxxxxxEXAMPLExxxxxx"
+    action: add_dataset_labels
+
+    # optional
+    label_set:
+      # optional
+      items:
+      - # optional
+        name: name_example
+
+- name: Perform action change_compartment on dataset
+  oci_data_labeling_service_dataset_actions:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    dataset_id: "ocid1.dataset.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
+
+- name: Perform action generate_dataset_records on dataset
+  oci_data_labeling_service_dataset_actions:
+    # required
+    dataset_id: "ocid1.dataset.oc1..xxxxxxEXAMPLExxxxxx"
+    action: generate_dataset_records
+
+    # optional
+    limit: 3.4
+
+- name: Perform action remove_dataset_labels on dataset
+  oci_data_labeling_service_dataset_actions:
+    # required
+    dataset_id: "ocid1.dataset.oc1..xxxxxxEXAMPLExxxxxx"
+    action: remove_dataset_labels
+
+    # optional
+    label_set:
+      # optional
+      items:
+      - # optional
+        name: name_example
+
+- name: Perform action rename_dataset_labels on dataset
+  oci_data_labeling_service_dataset_actions:
+    # required
+    dataset_id: "ocid1.dataset.oc1..xxxxxxEXAMPLExxxxxx"
+    action: rename_dataset_labels
+
+    # optional
+    source_label_set:
+      # optional
+      items:
+      - # optional
+        name: name_example
+    target_label_set:
+      # optional
+      items:
+      - # optional
+        name: name_example
+
+- name: Perform action snapshot on dataset
+  oci_data_labeling_service_dataset_actions:
+    # required
+    dataset_id: "ocid1.dataset.oc1..xxxxxxEXAMPLExxxxxx"
+    are_annotations_included: true
+    are_unannotated_records_included: true
+    export_details:
+      # required
+      export_type: OBJECT_STORAGE
+      namespace: namespace_example
+      bucket: bucket_example
+
+      # optional
+      prefix: prefix_example
+    action: snapshot
+
+    # optional
+    export_format:
+      # optional
+      name: JSONL
+      version: V2003
 
 """
 
@@ -202,6 +405,12 @@ dataset:
                     returned: on success
                     type: float
                     sample: 10
+        labeling_instructions:
+            description:
+                - The labeling instructions for human labelers in rich text format
+            returned: on success
+            type: str
+            sample: labeling_instructions_example
         freeform_tags:
             description:
                 - "A simple key-value pair that is applied without any predefined name, type, or scope. It exists for cross-compatibility only.
@@ -250,6 +459,7 @@ dataset:
         "initial_record_generation_configuration": {
             "limit": 10
         },
+        "labeling_instructions": "labeling_instructions_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "system_tags": {}
@@ -268,7 +478,12 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.data_labeling_service import DataLabelingManagementClient
+    from oci.data_labeling_service.models import AddDatasetLabelsDetails
     from oci.data_labeling_service.models import ChangeDatasetCompartmentDetails
+    from oci.data_labeling_service.models import GenerateDatasetRecordsDetails
+    from oci.data_labeling_service.models import RemoveDatasetLabelsDetails
+    from oci.data_labeling_service.models import RenameDatasetLabelsDetails
+    from oci.data_labeling_service.models import SnapshotDatasetDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -278,7 +493,12 @@ except ImportError:
 class DatasetActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        add_dataset_labels
         change_compartment
+        generate_dataset_records
+        remove_dataset_labels
+        rename_dataset_labels
+        snapshot
     """
 
     @staticmethod
@@ -296,6 +516,27 @@ class DatasetActionsHelperGen(OCIActionsHelperBase):
             self.client.get_dataset, dataset_id=self.module.params.get("dataset_id"),
         )
 
+    def add_dataset_labels(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, AddDatasetLabelsDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.add_dataset_labels,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                dataset_id=self.module.params.get("dataset_id"),
+                add_dataset_labels_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
     def change_compartment(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, ChangeDatasetCompartmentDetails
@@ -306,6 +547,90 @@ class DatasetActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 dataset_id=self.module.params.get("dataset_id"),
                 change_dataset_compartment_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def generate_dataset_records(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, GenerateDatasetRecordsDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.generate_dataset_records,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                dataset_id=self.module.params.get("dataset_id"),
+                generate_dataset_records_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def remove_dataset_labels(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, RemoveDatasetLabelsDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.remove_dataset_labels,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                dataset_id=self.module.params.get("dataset_id"),
+                remove_dataset_labels_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def rename_dataset_labels(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, RenameDatasetLabelsDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.rename_dataset_labels,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                dataset_id=self.module.params.get("dataset_id"),
+                rename_dataset_labels_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def snapshot(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, SnapshotDatasetDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.snapshot_dataset,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                dataset_id=self.module.params.get("dataset_id"),
+                snapshot_dataset_details=action_details,
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -331,9 +656,82 @@ def main():
     )
     module_args.update(
         dict(
+            compartment_id=dict(type="str"),
+            limit=dict(type="float"),
+            label_set=dict(
+                type="dict",
+                options=dict(
+                    items=dict(
+                        type="list",
+                        elements="dict",
+                        options=dict(name=dict(type="str")),
+                    )
+                ),
+            ),
+            source_label_set=dict(
+                type="dict",
+                options=dict(
+                    items=dict(
+                        type="list",
+                        elements="dict",
+                        options=dict(name=dict(type="str")),
+                    )
+                ),
+            ),
+            target_label_set=dict(
+                type="dict",
+                options=dict(
+                    items=dict(
+                        type="list",
+                        elements="dict",
+                        options=dict(name=dict(type="str")),
+                    )
+                ),
+            ),
             dataset_id=dict(aliases=["id"], type="str", required=True),
-            compartment_id=dict(type="str", required=True),
-            action=dict(type="str", required=True, choices=["change_compartment"]),
+            are_annotations_included=dict(type="bool"),
+            are_unannotated_records_included=dict(type="bool"),
+            export_details=dict(
+                type="dict",
+                options=dict(
+                    export_type=dict(
+                        type="str", required=True, choices=["OBJECT_STORAGE"]
+                    ),
+                    namespace=dict(type="str", required=True),
+                    bucket=dict(type="str", required=True),
+                    prefix=dict(type="str"),
+                ),
+            ),
+            export_format=dict(
+                type="dict",
+                options=dict(
+                    name=dict(
+                        type="str",
+                        choices=[
+                            "JSONL",
+                            "JSONL_CONSOLIDATED",
+                            "CONLL",
+                            "SPACY",
+                            "COCO",
+                            "YOLO",
+                            "PASCAL_VOC",
+                        ],
+                    ),
+                    version=dict(type="str", choices=["V2003", "V5"]),
+                ),
+            ),
+            action=dict(
+                type="str",
+                required=True,
+                choices=[
+                    "add_dataset_labels",
+                    "change_compartment",
+                    "generate_dataset_records",
+                    "remove_dataset_labels",
+                    "rename_dataset_labels",
+                    "snapshot",
+                ],
+            ),
         )
     )
 

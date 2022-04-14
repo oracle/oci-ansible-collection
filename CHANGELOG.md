@@ -4,6 +4,42 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.48.0]
+
+## Added
+
+- Support for creating database systems and database homes using customer-managed keys in the Database service
+- Support for virtual machines, bare metal machines, and Exadata databases with private endpoints in the Operations Insights service
+- Support for CPS offline reports in the Database service
+- Support for multi-AVM on Exadata Cloud at Customer infrastructure in the Database service
+- Support for heterogeneous (VM and AVM) clusters on Exadata Cloud at Customer infrastructure in the Database service
+- Support for custom maintenance schedules for AVM clusters on Exadata Cloud at Customer infrastructure in the Database service
+- Support for setting the RECO storage size when updating a database system in the Database service
+- Support for infrastructure patching v2 features in the Database service
+- Support for auto-scaling the storage of an autonomous database in the Database service
+- Support for cross-region cloning in the Database service
+- Support for reporting excluded objects based on static exclusion rules and dynamic exclusion settings in the Database Migration service
+- Updated documentation for Cross Region ADG feature for Autonomous Database in the Database service
+- Support for international customers to consume and launch third-party paid listings in the Marketplace service
+- Support for Ubuntu platforms and unlimited installation keys in the Management Agent Cloud service
+- Support for creating Enterprise Manager-based Solaris/SunOS Host targets in the Operations Insights service
+- Support for automatic tablespace creation on non-autonomous and autonomous database dedicated targets in the Database Migration service
+- Support for removing, listing, and adding database objects reported by the Cloud Premigration Advisor Tool (CPAT) in the Database Migration service
+- Support for dataset actions and global export formats in snapshot datasets in the Data Labeling service
+- Support for adding labeling instructions to datasets in the Data Labeling service
+- Support for custom logs in the Java Management service
+- Support for Private OKE Clusters and Blue-Green Deployments in Devops Service
+- Support for shielded instances in the VMWare Solution service
+- Support for the Sales Accelerator license option in the Content Management service
+- Support for specifying an image count when creating or updating container scan recipes in the Vulnerability Scanning service
+- Troubleshooting guides for common errors faced in inventory plugin and service errors.
+
+## Breaking
+- Optional argument `repository_type` has been made required in `oci_devops_repository` module
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.63.0
+
 ## [2.47.0]
 
 ## Added

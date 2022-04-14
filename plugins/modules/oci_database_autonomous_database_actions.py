@@ -488,6 +488,12 @@ autonomous_database:
             returned: on success
             type: int
             sample: 56
+        memory_per_oracle_compute_unit_in_gbs:
+            description:
+                - The amount of memory (in GBs) enabled per each OCPU core in Autonomous VM Cluster.
+            returned: on success
+            type: int
+            sample: 56
         data_storage_size_in_gbs:
             description:
                 - The quantity of data in the database, in gigabytes.
@@ -1008,7 +1014,7 @@ autonomous_database:
             sample: key_store_wallet_name_example
         supported_regions_to_clone_to:
             description:
-                - The list of regions that support the creation of Autonomous Data Guard standby database.
+                - The list of regions that support the creation of an Autonomous Database clone or an Autonomous Data Guard standby database.
             returned: on success
             type: list
             sample: []
@@ -1163,6 +1169,7 @@ autonomous_database:
         "cpu_core_count": 56,
         "ocpu_count": 3.4,
         "data_storage_size_in_tbs": 56,
+        "memory_per_oracle_compute_unit_in_gbs": 56,
         "data_storage_size_in_gbs": 56,
         "infrastructure_type": "CLOUD",
         "is_dedicated": true,

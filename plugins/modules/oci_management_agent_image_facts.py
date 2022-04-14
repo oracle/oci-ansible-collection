@@ -114,6 +114,18 @@ management_agent_images:
             returned: on success
             type: str
             sample: platform_name_example
+        package_type:
+            description:
+                - The installation package type
+            returned: on success
+            type: str
+            sample: RPM
+        package_architecture_type:
+            description:
+                - The installation package target architecture type
+            returned: on success
+            type: str
+            sample: X86_64
         version:
             description:
                 - Agent image version
@@ -148,6 +160,8 @@ management_agent_images:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "platform_type": "LINUX",
         "platform_name": "platform_name_example",
+        "package_type": "RPM",
+        "package_architecture_type": "X86_64",
         "version": "version_example",
         "size": 10,
         "checksum": "checksum_example",

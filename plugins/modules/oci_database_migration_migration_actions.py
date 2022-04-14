@@ -23,38 +23,99 @@ module: oci_database_migration_migration_actions
 short_description: Perform actions on a Migration resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a Migration resource in Oracle Cloud Infrastructure
+    - For I(action=add_migration_objects), add excluded/included object to the list.
     - For I(action=change_compartment), used to change the Migration compartment.
+    - For I(action=remove_migration_objects), remove excluded/included objects.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The OCID of the compartment to move the resource to.
+            - Required for I(action=change_compartment).
+        type: str
     migration_id:
         description:
             - The OCID of the migration
         type: str
         aliases: ["id"]
         required: true
-    compartment_id:
+    items:
         description:
-            - The OCID of the compartment to move the resource to.
-        type: str
-        required: true
+            - Database objects to exclude/include from migration
+            - Required for I(action=add_migration_objects), I(action=remove_migration_objects).
+        type: list
+        elements: dict
+        suboptions:
+            owner:
+                description:
+                    - Owner of the object (regular expression is allowed)
+                type: str
+                required: true
+            object_name:
+                description:
+                    - Name of the object (regular expression is allowed)
+                type: str
+                required: true
+            type:
+                description:
+                    - Type of object to exclude.
+                      If not specified, matching owners and object names of type TABLE would be excluded.
+                type: str
+            object_status:
+                description:
+                    - Object status.
+                type: str
+                choices:
+                    - "EXCLUDE"
+                    - "INCLUDE"
     action:
         description:
             - The action to perform on the Migration.
         type: str
         required: true
         choices:
+            - "add_migration_objects"
             - "change_compartment"
+            - "remove_migration_objects"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: Perform action change_compartment on migration
+- name: Perform action add_migration_objects on migration
   oci_database_migration_migration_actions:
     # required
     migration_id: "ocid1.migration.oc1..xxxxxxEXAMPLExxxxxx"
+    items:
+    - # required
+      owner: owner_example
+      object_name: object_name_example
+
+      # optional
+      type: type_example
+      object_status: EXCLUDE
+    action: add_migration_objects
+
+- name: Perform action change_compartment on migration
+  oci_database_migration_migration_actions:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    migration_id: "ocid1.migration.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
+
+- name: Perform action remove_migration_objects on migration
+  oci_database_migration_migration_actions:
+    # required
+    migration_id: "ocid1.migration.oc1..xxxxxxEXAMPLExxxxxx"
+    items:
+    - # required
+      owner: owner_example
+      object_name: object_name_example
+
+      # optional
+      type: type_example
+      object_status: EXCLUDE
+    action: remove_migration_objects
 
 """
 
@@ -186,6 +247,26 @@ migration:
                             returned: on success
                             type: str
                             sample: bucket_name_example
+                aws_s3_details:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        name:
+                            description:
+                                - S3 bucket name.
+                            returned: on success
+                            type: str
+                            sample: name_example
+                        region:
+                            description:
+                                - "AWS region code where the S3 bucket is located.
+                                  Region code should match the documented available regions:
+                                  https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions"
+                            returned: on success
+                            type: str
+                            sample: us-phoenix-1
         dump_transfer_details:
             description:
                 - ""
@@ -312,6 +393,42 @@ migration:
                             returned: on success
                             type: str
                             sample: new_value_example
+                tablespace_details:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        is_auto_create:
+                            description:
+                                - True to auto-create tablespace in the target Database.
+                            returned: on success
+                            type: bool
+                            sample: true
+                        is_big_file:
+                            description:
+                                - True set tablespace to big file.
+                            returned: on success
+                            type: bool
+                            sample: true
+                        extend_size_in_mbs:
+                            description:
+                                - Size of extend in MB. Can only be specified if 'isBigFile' property is set to true.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        target_type:
+                            description:
+                                - Type of Database Base Migration Target.
+                            returned: on success
+                            type: str
+                            sample: ADB_S_REMAP
+                        remap_target:
+                            description:
+                                - Name of tablespace at target to which the source database tablespace need to be remapped.
+                            returned: on success
+                            type: str
+                            sample: remap_target_example
                 export_directory_object:
                     description:
                         - ""
@@ -657,6 +774,10 @@ migration:
             "object_storage_details": {
                 "namespace_name": "namespace_name_example",
                 "bucket_name": "bucket_name_example"
+            },
+            "aws_s3_details": {
+                "name": "name_example",
+                "region": "us-phoenix-1"
             }
         },
         "dump_transfer_details": {
@@ -684,6 +805,13 @@ migration:
                 "old_value": "old_value_example",
                 "new_value": "new_value_example"
             }],
+            "tablespace_details": {
+                "is_auto_create": true,
+                "is_big_file": true,
+                "extend_size_in_mbs": 56,
+                "target_type": "ADB_S_REMAP",
+                "remap_target": "remap_target_example"
+            },
             "export_directory_object": {
                 "name": "name_example",
                 "path": "path_example"
@@ -767,6 +895,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.database_migration import DatabaseMigrationClient
+    from oci.database_migration.models import MigrationObjectCollection
     from oci.database_migration.models import ChangeMigrationCompartmentDetails
 
     HAS_OCI_PY_SDK = True
@@ -777,7 +906,9 @@ except ImportError:
 class MigrationActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        add_migration_objects
         change_compartment
+        remove_migration_objects
     """
 
     @staticmethod
@@ -796,6 +927,29 @@ class MigrationActionsHelperGen(OCIActionsHelperBase):
             migration_id=self.module.params.get("migration_id"),
         )
 
+    def add_migration_objects(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, MigrationObjectCollection
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.add_migration_objects,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                migration_id=self.module.params.get("migration_id"),
+                add_migration_objects_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
+
     def change_compartment(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, ChangeMigrationCompartmentDetails
@@ -806,6 +960,29 @@ class MigrationActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 migration_id=self.module.params.get("migration_id"),
                 change_migration_compartment_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
+
+    def remove_migration_objects(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, MigrationObjectCollection
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.remove_migration_objects,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                migration_id=self.module.params.get("migration_id"),
+                remove_migration_objects_details=action_details,
             ),
             waiter_type=oci_wait_utils.NONE_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -833,9 +1010,27 @@ def main():
     )
     module_args.update(
         dict(
+            compartment_id=dict(type="str"),
             migration_id=dict(aliases=["id"], type="str", required=True),
-            compartment_id=dict(type="str", required=True),
-            action=dict(type="str", required=True, choices=["change_compartment"]),
+            items=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    owner=dict(type="str", required=True),
+                    object_name=dict(type="str", required=True),
+                    type=dict(type="str"),
+                    object_status=dict(type="str", choices=["EXCLUDE", "INCLUDE"]),
+                ),
+            ),
+            action=dict(
+                type="str",
+                required=True,
+                choices=[
+                    "add_migration_objects",
+                    "change_compartment",
+                    "remove_migration_objects",
+                ],
+            ),
         )
     )
 

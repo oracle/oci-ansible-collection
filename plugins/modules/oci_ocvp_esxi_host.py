@@ -55,10 +55,10 @@ options:
         type: str
     failed_esxi_host_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the esxi host that
-              is failed. It is an optional param, when user supplies this param, new Esxi
-              Host will be created to replace the failed one, and failedEsxiHostId field
-              will be udpated in the newly created EsxiHost.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the ESXi host that
+              is failed. This is an optional parameter. If this parameter is specified, a new ESXi
+              host will be created to replace the failed one, and the `failedEsxiHostId` field
+              will be udpated in the newly created Esxi host.
         type: str
     display_name:
         description:
@@ -258,15 +258,14 @@ esxi_host:
             sample: "2013-10-20T19:20:30+01:00"
         failed_esxi_host_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the esxi host that
-                  is failed.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the ESXi host that failed.
             returned: on success
             type: str
             sample: "ocid1.failedesxihost.oc1..xxxxxxEXAMPLExxxxxx"
         replacement_esxi_host_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the esxi host that
-                  is newly created to replace the failed node.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the ESXi host that
+                  is created to replace the failed host.
             returned: on success
             type: str
             sample: "ocid1.replacementesxihost.oc1..xxxxxxEXAMPLExxxxxx"

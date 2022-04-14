@@ -41,7 +41,7 @@ options:
         type: str
     compartment_id_in_subtree:
         description:
-            - if set to true then it fetches install key for all compartments where user has access to else only on the compartment specified.
+            - if set to true then it fetches resources for all compartments where user has access to else only on the compartment specified.
         type: bool
     access_level:
         description:
@@ -186,6 +186,12 @@ management_agent_install_keys:
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        is_unlimited:
+            description:
+                - If set to true, the install key has no expiration date or usage limit. Defaults to false
+            returned: on success
+            type: bool
+            sample: true
     sample: [{
         "key": "key_example",
         "time_updated": "2013-10-20T19:20:30+01:00",
@@ -198,7 +204,8 @@ management_agent_install_keys:
         "lifecycle_details": "lifecycle_details_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_expires": "2013-10-20T19:20:30+01:00",
-        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "is_unlimited": true
     }]
 """
 

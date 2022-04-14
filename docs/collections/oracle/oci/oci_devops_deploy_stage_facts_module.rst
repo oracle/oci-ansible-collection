@@ -30,7 +30,7 @@ oracle.oci.oci_devops_deploy_stage_facts -- Fetches details about one or multipl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -428,7 +428,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of DeployStage resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;approval_policy&#x27;: {&#x27;approval_policy_type&#x27;: &#x27;COUNT_BASED_APPROVAL&#x27;, &#x27;number_of_approvals_required&#x27;: 56}, &#x27;blue_backend_ips&#x27;: {&#x27;items&#x27;: []}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_instance_group_deploy_environment_id&#x27;: &#x27;ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config&#x27;: {}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deploy_artifact_id&#x27;: &#x27;ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_artifact_ids&#x27;: [], &#x27;deploy_pipeline_id&#x27;: &#x27;ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_stage_predecessor_collection&#x27;: {&#x27;items&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}, &#x27;deploy_stage_type&#x27;: &#x27;WAIT&#x27;, &#x27;deployment_spec_deploy_artifact_id&#x27;: &#x27;ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;docker_image_deploy_artifact_id&#x27;: &#x27;ocid1.dockerimagedeployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;failure_policy&#x27;: {&#x27;failure_count&#x27;: 56, &#x27;failure_percentage&#x27;: 56, &#x27;policy_type&#x27;: &#x27;COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_COUNT&#x27;}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;function_deploy_environment_id&#x27;: &#x27;ocid1.functiondeployenvironment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;function_timeout_in_seconds&#x27;: 56, &#x27;green_backend_ips&#x27;: {&#x27;items&#x27;: []}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_async&#x27;: True, &#x27;is_validation_enabled&#x27;: True, &#x27;kubernetes_manifest_deploy_artifact_ids&#x27;: [], &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;load_balancer_config&#x27;: {&#x27;backend_port&#x27;: 56, &#x27;listener_name&#x27;: &#x27;listener_name_example&#x27;, &#x27;load_balancer_id&#x27;: &#x27;ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;max_memory_in_mbs&#x27;: 56, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;oke_cluster_deploy_environment_id&#x27;: &#x27;ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;rollback_policy&#x27;: {&#x27;policy_type&#x27;: &#x27;AUTOMATED_STAGE_ROLLBACK_POLICY&#x27;}, &#x27;rollout_policy&#x27;: {&#x27;batch_count&#x27;: 56, &#x27;batch_delay_in_seconds&#x27;: 56, &#x27;batch_percentage&#x27;: 56, &#x27;policy_type&#x27;: &#x27;COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_COUNT&#x27;, &#x27;ramp_limit_percent&#x27;: 3.4}, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;traffic_shift_target&#x27;: &#x27;AUTO_SELECT&#x27;, &#x27;wait_criteria&#x27;: {&#x27;wait_duration&#x27;: &#x27;wait_duration_example&#x27;, &#x27;wait_type&#x27;: &#x27;ABSOLUTE_WAIT&#x27;}}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;approval_policy&#x27;: {&#x27;approval_policy_type&#x27;: &#x27;COUNT_BASED_APPROVAL&#x27;, &#x27;number_of_approvals_required&#x27;: 56}, &#x27;blue_backend_ips&#x27;: {&#x27;items&#x27;: []}, &#x27;blue_green_strategy&#x27;: {&#x27;ingress_name&#x27;: &#x27;ingress_name_example&#x27;, &#x27;namespace_a&#x27;: &#x27;namespace_a_example&#x27;, &#x27;namespace_b&#x27;: &#x27;namespace_b_example&#x27;, &#x27;strategy_type&#x27;: &#x27;NGINX_BLUE_GREEN_STRATEGY&#x27;}, &#x27;canary_strategy&#x27;: {&#x27;ingress_name&#x27;: &#x27;ingress_name_example&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;strategy_type&#x27;: &#x27;NGINX_CANARY_STRATEGY&#x27;}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_instance_group_blue_green_deployment_deploy_stage_id&#x27;: &#x27;ocid1.computeinstancegroupbluegreendeploymentdeploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_instance_group_canary_deploy_stage_id&#x27;: &#x27;ocid1.computeinstancegroupcanarydeploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_instance_group_canary_traffic_shift_deploy_stage_id&#x27;: &#x27;ocid1.computeinstancegroupcanarytrafficshiftdeploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_instance_group_deploy_environment_id&#x27;: &#x27;ocid1.computeinstancegroupdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config&#x27;: {}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deploy_artifact_id&#x27;: &#x27;ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_artifact_ids&#x27;: [], &#x27;deploy_environment_id_a&#x27;: &#x27;deploy_environment_id_a_example&#x27;, &#x27;deploy_environment_id_b&#x27;: &#x27;deploy_environment_id_b_example&#x27;, &#x27;deploy_pipeline_id&#x27;: &#x27;ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_stage_predecessor_collection&#x27;: {&#x27;items&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}, &#x27;deploy_stage_type&#x27;: &#x27;WAIT&#x27;, &#x27;deployment_spec_deploy_artifact_id&#x27;: &#x27;ocid1.deploymentspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;docker_image_deploy_artifact_id&#x27;: &#x27;ocid1.dockerimagedeployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;failure_policy&#x27;: {&#x27;failure_count&#x27;: 56, &#x27;failure_percentage&#x27;: 56, &#x27;policy_type&#x27;: &#x27;COMPUTE_INSTANCE_GROUP_FAILURE_POLICY_BY_COUNT&#x27;}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;function_deploy_environment_id&#x27;: &#x27;ocid1.functiondeployenvironment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;function_timeout_in_seconds&#x27;: 56, &#x27;green_backend_ips&#x27;: {&#x27;items&#x27;: []}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_async&#x27;: True, &#x27;is_validation_enabled&#x27;: True, &#x27;kubernetes_manifest_deploy_artifact_ids&#x27;: [], &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;load_balancer_config&#x27;: {&#x27;backend_port&#x27;: 56, &#x27;listener_name&#x27;: &#x27;listener_name_example&#x27;, &#x27;load_balancer_id&#x27;: &#x27;ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;max_memory_in_mbs&#x27;: 56, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;oke_blue_green_deploy_stage_id&#x27;: &#x27;ocid1.okebluegreendeploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;oke_canary_deploy_stage_id&#x27;: &#x27;ocid1.okecanarydeploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;oke_canary_traffic_shift_deploy_stage_id&#x27;: &#x27;ocid1.okecanarytrafficshiftdeploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;oke_cluster_deploy_environment_id&#x27;: &#x27;ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;production_load_balancer_config&#x27;: {&#x27;backend_port&#x27;: 56, &#x27;listener_name&#x27;: &#x27;listener_name_example&#x27;, &#x27;load_balancer_id&#x27;: &#x27;ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;rollback_policy&#x27;: {&#x27;policy_type&#x27;: &#x27;AUTOMATED_STAGE_ROLLBACK_POLICY&#x27;}, &#x27;rollout_policy&#x27;: {&#x27;batch_count&#x27;: 56, &#x27;batch_delay_in_seconds&#x27;: 56, &#x27;batch_percentage&#x27;: 56, &#x27;policy_type&#x27;: &#x27;COMPUTE_INSTANCE_GROUP_LINEAR_ROLLOUT_POLICY_BY_COUNT&#x27;, &#x27;ramp_limit_percent&#x27;: 3.4}, &#x27;system_tags&#x27;: {}, &#x27;test_load_balancer_config&#x27;: {&#x27;backend_port&#x27;: 56, &#x27;listener_name&#x27;: &#x27;listener_name_example&#x27;, &#x27;load_balancer_id&#x27;: &#x27;ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;traffic_shift_target&#x27;: &#x27;AUTO_SELECT&#x27;, &#x27;wait_criteria&#x27;: {&#x27;wait_duration&#x27;: &#x27;wait_duration_example&#x27;, &#x27;wait_type&#x27;: &#x27;ABSOLUTE_WAIT&#x27;}}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -525,6 +525,175 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/blue_green_strategy"></div>
+                    <b>blue_green_strategy</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/blue_green_strategy" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/blue_green_strategy/ingress_name"></div>
+                    <b>ingress_name</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/blue_green_strategy/ingress_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name of the Ingress resource.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ingress_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/blue_green_strategy/namespace_a"></div>
+                    <b>namespace_a</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/blue_green_strategy/namespace_a" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Namespace A for deployment.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">namespace_a_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/blue_green_strategy/namespace_b"></div>
+                    <b>namespace_b</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/blue_green_strategy/namespace_b" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Namespace B for deployment.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">namespace_b_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/blue_green_strategy/strategy_type"></div>
+                    <b>strategy_type</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/blue_green_strategy/strategy_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Blue-Green strategy type.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">NGINX_BLUE_GREEN_STRATEGY</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/canary_strategy"></div>
+                    <b>canary_strategy</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/canary_strategy" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/canary_strategy/ingress_name"></div>
+                    <b>ingress_name</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/canary_strategy/ingress_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name of the Ingress resource.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ingress_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/canary_strategy/namespace"></div>
+                    <b>namespace</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/canary_strategy/namespace" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Canary namespace to be used for Kubernetes canary deployment.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">namespace_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/canary_strategy/strategy_type"></div>
+                    <b>strategy_type</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/canary_strategy/strategy_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Canary strategy type.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">NGINX_CANARY_STRATEGY</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-deploy_stages/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-deploy_stages/compartment_id" title="Permalink to this return value"></a>
@@ -543,6 +712,63 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/compute_instance_group_blue_green_deployment_deploy_stage_id"></div>
+                    <b>compute_instance_group_blue_green_deployment_deploy_stage_id</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/compute_instance_group_blue_green_deployment_deploy_stage_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the upstream compute instance group blue-green deployment stage in this pipeline.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.computeinstancegroupbluegreendeploymentdeploystage.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/compute_instance_group_canary_deploy_stage_id"></div>
+                    <b>compute_instance_group_canary_deploy_stage_id</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/compute_instance_group_canary_deploy_stage_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of an upstream compute instance group canary deployment stage ID in this pipeline.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.computeinstancegroupcanarydeploystage.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/compute_instance_group_canary_traffic_shift_deploy_stage_id"></div>
+                    <b>compute_instance_group_canary_traffic_shift_deploy_stage_id</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/compute_instance_group_canary_traffic_shift_deploy_stage_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A compute instance group canary traffic shift stage OCID for load balancer.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.computeinstancegroupcanarytrafficshiftdeploystage.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-deploy_stages/compute_instance_group_deploy_environment_id"></div>
                     <b>compute_instance_group_deploy_environment_id</b>
                     <a class="ansibleOptionLink" href="#return-deploy_stages/compute_instance_group_deploy_environment_id" title="Permalink to this return value"></a>
@@ -552,7 +778,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A compute instance group environment OCID for rolling deployment.</div>
+                                            <div>A compute instance group environment OCID for Canary deployment.</div>
                                             <div>Returned for get operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -625,10 +851,48 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Additional file artifact OCIDs.</div>
+                                            <div>The list of file artifact OCIDs to deploy.</div>
                                             <div>Returned for get operation</div>
                                         <br/>
                                                         </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/deploy_environment_id_a"></div>
+                    <b>deploy_environment_id_a</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/deploy_environment_id_a" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>First compute instance group environment OCID for deployment.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">deploy_environment_id_a_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/deploy_environment_id_b"></div>
+                    <b>deploy_environment_id_b</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/deploy_environment_id_b" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Second compute instance group environment OCID for deployment.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">deploy_environment_id_b_example</div>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -825,7 +1089,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The threshold count of failed instances in the group, which when reached or exceeded sets the stage as FAILED.</div>
+                                            <div>The threshold count of failed instances in the group, which when reached or exceeded sets the stage as Failed.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -844,7 +1108,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The failure percentage threshold, which when reached or exceeded sets the stage as FAILED. Percentage is computed as the ceiling value of the number of failed instances over the total count of the instances in the group.</div>
+                                            <div>The failure percentage threshold, which when reached or exceeded sets the stage as Failed. Percentage is computed as the ceiling value of the number of failed instances over the total count of the instances in the group.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -1029,7 +1293,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>List of Kubernetes manifest artifact OCIDs, the manifests should not include any job resource.</div>
+                                            <div>List of Kubernetes manifest artifact OCIDs</div>
                                             <div>Returned for get operation</div>
                                         <br/>
                                                         </td>
@@ -1176,11 +1440,68 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Default Namespace to be used for Kubernetes deployment when not specified in the manifest.</div>
+                                            <div>Default namespace to be used for Kubernetes deployment when not specified in the manifest.</div>
                                             <div>Returned for get operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">namespace_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/oke_blue_green_deploy_stage_id"></div>
+                    <b>oke_blue_green_deploy_stage_id</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/oke_blue_green_deploy_stage_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the upstream OKE blue-green deployment stage in this pipeline.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.okebluegreendeploystage.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/oke_canary_deploy_stage_id"></div>
+                    <b>oke_canary_deploy_stage_id</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/oke_canary_deploy_stage_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of an upstream OKE canary deployment stage in this pipeline.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.okecanarydeploystage.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/oke_canary_traffic_shift_deploy_stage_id"></div>
+                    <b>oke_canary_traffic_shift_deploy_stage_id</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/oke_canary_traffic_shift_deploy_stage_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of an upstream OKE canary deployment traffic shift stage in this pipeline.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.okecanarytrafficshiftdeploystage.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1202,6 +1523,81 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/production_load_balancer_config"></div>
+                    <b>production_load_balancer_config</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/production_load_balancer_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/production_load_balancer_config/backend_port"></div>
+                    <b>backend_port</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/production_load_balancer_config/backend_port" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Listen port for the backend server.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/production_load_balancer_config/listener_name"></div>
+                    <b>listener_name</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/production_load_balancer_config/listener_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name of the load balancer listener.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">listener_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/production_load_balancer_config/load_balancer_id"></div>
+                    <b>load_balancer_id</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/production_load_balancer_config/load_balancer_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the load balancer.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
@@ -1386,6 +1782,81 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                         </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/test_load_balancer_config"></div>
+                    <b>test_load_balancer_config</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/test_load_balancer_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/test_load_balancer_config/backend_port"></div>
+                    <b>backend_port</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/test_load_balancer_config/backend_port" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Listen port for the backend server.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/test_load_balancer_config/listener_name"></div>
+                    <b>listener_name</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/test_load_balancer_config/listener_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name of the load balancer listener.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">listener_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deploy_stages/test_load_balancer_config/load_balancer_id"></div>
+                    <b>load_balancer_id</b>
+                    <a class="ansibleOptionLink" href="#return-deploy_stages/test_load_balancer_config/load_balancer_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the load balancer.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.loadbalancer.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">

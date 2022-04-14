@@ -143,8 +143,8 @@ repositories:
         trigger_build_events:
             description:
                 - "Trigger build events supported for this repository:
-                  Push - Build is triggered when a push event occurs.
-                  Commit updates - Build is triggered when new commits are mirrored into a repository."
+                  PUSH - Build is triggered when a push event occurs.
+                  COMMIT_UPDATES - Build is triggered when new commits are mirrored into a repository."
                 - Returned for get operation
             returned: on success
             type: list
@@ -200,8 +200,8 @@ repositories:
         repository_type:
             description:
                 - "Type of repository:
-                  Mirrored - Repository created by mirroring an existing repository.
-                  Hosted - Repository created and hosted using OCI DevOps code repository."
+                  MIRRORED - Repository created by mirroring an existing repository.
+                  HOSTED - Repository created and hosted using OCI DevOps code repository."
             returned: on success
             type: str
             sample: MIRRORED
@@ -244,9 +244,9 @@ repositories:
                         schedule_type:
                             description:
                                 - "Different types of trigger schedule:
-                                  None - No automated synchronization schedule.
-                                  Default - Trigger schedule is every 30 minutes.
-                                  Custom - Custom triggering schedule."
+                                  NONE - No automated synchronization schedule.
+                                  DEFAULT - Trigger schedule is every 30 minutes.
+                                  CUSTOM - Custom triggering schedule."
                             returned: on success
                             type: str
                             sample: NONE

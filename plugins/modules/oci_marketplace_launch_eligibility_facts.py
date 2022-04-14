@@ -74,10 +74,17 @@ launch_eligibility:
             returned: on success
             type: str
             sample: meters_example
+        ineligibility_reason:
+            description:
+                - Reason the account is ineligible to launch paid listings
+            returned: on success
+            type: str
+            sample: INELIGIBLE_ACCOUNT_COUNTRY
     sample: {
         "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx",
         "is_launch_allowed": true,
-        "meters": "meters_example"
+        "meters": "meters_example",
+        "ineligibility_reason": "INELIGIBLE_ACCOUNT_COUNTRY"
     }
 """
 

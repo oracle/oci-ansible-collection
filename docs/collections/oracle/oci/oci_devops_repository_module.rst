@@ -30,7 +30,7 @@ oracle.oci.oci_devops_repository -- Manage a Repository resource in Oracle Cloud
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -396,7 +396,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Different types of trigger schedule: None - No automated synchronization schedule. Default - Trigger schedule is every 30 minutes. Custom - Custom triggering schedule.</div>
+                                            <div>Different types of trigger schedule: NONE - No automated synchronization schedule. DEFAULT - Trigger schedule is every 30 minutes. CUSTOM - Custom triggering schedule.</div>
                                                         </td>
             </tr>
                     
@@ -481,6 +481,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Type of repository.</div>
+                                            <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -584,11 +585,11 @@ Examples
         # required
         project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
+        repository_type: repository_type_example
 
         # optional
         description: description_example
         default_branch: default_branch_example
-        repository_type: repository_type_example
         mirror_repository_config:
           # optional
           connector_id: "ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1000,7 +1001,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Different types of trigger schedule: None - No automated synchronization schedule. Default - Trigger schedule is every 30 minutes. Custom - Custom triggering schedule.</div>
+                                            <div>Different types of trigger schedule: NONE - No automated synchronization schedule. DEFAULT - Trigger schedule is every 30 minutes. CUSTOM - Custom triggering schedule.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">NONE</div>
@@ -1092,7 +1093,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Type of repository: Mirrored - Repository created by mirroring an existing repository. Hosted - Repository created and hosted using OCI DevOps code repository.</div>
+                                            <div>Type of repository: MIRRORED - Repository created by mirroring an existing repository. HOSTED - Repository created and hosted using OCI DevOps code repository.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">MIRRORED</div>
@@ -1198,7 +1199,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Trigger build events supported for this repository: Push - Build is triggered when a push event occurs. Commit updates - Build is triggered when new commits are mirrored into a repository.</div>
+                                            <div>Trigger build events supported for this repository: PUSH - Build is triggered when a push event occurs. COMMIT_UPDATES - Build is triggered when new commits are mirrored into a repository.</div>
                                         <br/>
                                                         </td>
             </tr>

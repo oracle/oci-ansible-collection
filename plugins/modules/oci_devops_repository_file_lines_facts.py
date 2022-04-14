@@ -23,7 +23,8 @@ module: oci_devops_repository_file_lines_facts
 short_description: Fetches details about a RepositoryFileLines resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a RepositoryFileLines resource in Oracle Cloud Infrastructure
-    - Retrieve lines of a specified file. Supports starting line number and limit.
+    - "Retrieve lines of a specified file. Supports starting line number and limit. This API will be deprecated on Wed, 29 Mar 2023 01:00:00 GMT as it does not
+      get recognized when filePath has '/'. This will be replaced by \\"/repositories/{repositoryId}/file/lines\\""
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:

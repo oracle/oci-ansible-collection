@@ -176,6 +176,13 @@ datasets:
                     returned: on success
                     type: float
                     sample: 10
+        labeling_instructions:
+            description:
+                - The labeling instructions for human labelers in rich text format
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: labeling_instructions_example
         id:
             description:
                 - The OCID of the Dataset.
@@ -282,6 +289,7 @@ datasets:
         "initial_record_generation_configuration": {
             "limit": 10
         },
+        "labeling_instructions": "labeling_instructions_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

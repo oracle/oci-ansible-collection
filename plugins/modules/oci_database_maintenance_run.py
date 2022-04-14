@@ -62,6 +62,28 @@ options:
         choices:
             - "ROLLING"
             - "NONROLLING"
+    is_custom_action_timeout_enabled:
+        description:
+            - If true, enables the configuration of a custom action timeout (waiting period) between database servers patching operations.
+            - This parameter is updatable.
+        type: bool
+    custom_action_timeout_in_mins:
+        description:
+            - Determines the amount of time the system will wait before the start of each database server patching operation.
+              Specify a number of minutes from 15 to 120.
+            - This parameter is updatable.
+        type: int
+    current_custom_action_timeout_in_mins:
+        description:
+            - The current custom action timeout between the current database servers during waiting state in addition to custom action timeout, from 0 (zero) to
+              30 minutes.
+            - This parameter is updatable.
+        type: int
+    is_resume_patching:
+        description:
+            - If true, then the patching is resumed and the next component will be patched immediately.
+            - This parameter is updatable.
+        type: bool
     state:
         description:
             - The state of the MaintenanceRun.
@@ -85,6 +107,10 @@ EXAMPLES = """
     is_patch_now_enabled: true
     patch_id: "ocid1.patch.oc1..xxxxxxEXAMPLExxxxxx"
     patching_mode: ROLLING
+    is_custom_action_timeout_enabled: true
+    custom_action_timeout_in_mins: 56
+    current_custom_action_timeout_in_mins: 56
+    is_resume_patching: true
 
 """
 
@@ -203,6 +229,97 @@ maintenance_run:
             returned: on success
             type: int
             sample: 56
+        target_db_server_version:
+            description:
+                - The target software version for the database server patching operation.
+            returned: on success
+            type: str
+            sample: target_db_server_version_example
+        target_storage_server_version:
+            description:
+                - The target Cell version that is to be patched to.
+            returned: on success
+            type: str
+            sample: target_storage_server_version_example
+        is_custom_action_timeout_enabled:
+            description:
+                - If true, enables the configuration of a custom action timeout (waiting period) between database servers patching operations.
+            returned: on success
+            type: bool
+            sample: true
+        custom_action_timeout_in_mins:
+            description:
+                - Determines the amount of time the system will wait before the start of each database server patching operation.
+                  Specify a number of minutes, from 15 to 120.
+            returned: on success
+            type: int
+            sample: 56
+        current_custom_action_timeout_in_mins:
+            description:
+                - Extend current custom action timeout between the current database servers during waiting state, from 0 (zero) to 30 minutes.
+            returned: on success
+            type: int
+            sample: 56
+        patching_status:
+            description:
+                - The status of the patching operation.
+            returned: on success
+            type: str
+            sample: PATCHING
+        patching_start_time:
+            description:
+                - The time when the patching operation started.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        patching_end_time:
+            description:
+                - The time when the patching operation ended.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        estimated_patching_time:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                total_estimated_patching_time:
+                    description:
+                        - The estimated total time required in minutes for all patching operations.
+                    returned: on success
+                    type: int
+                    sample: 56
+                estimated_db_server_patching_time:
+                    description:
+                        - The estimated time required in minutes for database server patching.
+                    returned: on success
+                    type: int
+                    sample: 56
+                estimated_storage_server_patching_time:
+                    description:
+                        - The estimated time required in minutes for storage server patching.
+                    returned: on success
+                    type: int
+                    sample: 56
+                estimated_network_switches_patching_time:
+                    description:
+                        - The estimated time required in minutes for network switch patching.
+                    returned: on success
+                    type: int
+                    sample: 56
+        current_patching_component:
+            description:
+                - The name of the current infrastruture component that is getting patched.
+            returned: on success
+            type: str
+            sample: current_patching_component_example
+        estimated_component_patching_start_time:
+            description:
+                - The estimated start time of the next infrastruture component patching operation.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -220,7 +337,23 @@ maintenance_run:
         "maintenance_subtype": "QUARTERLY",
         "peer_maintenance_run_id": "ocid1.peermaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
         "patching_mode": "ROLLING",
-        "patch_failure_count": 56
+        "patch_failure_count": 56,
+        "target_db_server_version": "target_db_server_version_example",
+        "target_storage_server_version": "target_storage_server_version_example",
+        "is_custom_action_timeout_enabled": true,
+        "custom_action_timeout_in_mins": 56,
+        "current_custom_action_timeout_in_mins": 56,
+        "patching_status": "PATCHING",
+        "patching_start_time": "2013-10-20T19:20:30+01:00",
+        "patching_end_time": "2013-10-20T19:20:30+01:00",
+        "estimated_patching_time": {
+            "total_estimated_patching_time": 56,
+            "estimated_db_server_patching_time": 56,
+            "estimated_storage_server_patching_time": 56,
+            "estimated_network_switches_patching_time": 56
+        },
+        "current_patching_component": "current_patching_component_example",
+        "estimated_component_patching_start_time": "2013-10-20T19:20:30+01:00"
     }
 """
 
@@ -339,6 +472,10 @@ def main():
             is_patch_now_enabled=dict(type="bool"),
             patch_id=dict(type="str"),
             patching_mode=dict(type="str", choices=["ROLLING", "NONROLLING"]),
+            is_custom_action_timeout_enabled=dict(type="bool"),
+            custom_action_timeout_in_mins=dict(type="int"),
+            current_custom_action_timeout_in_mins=dict(type="int"),
+            is_resume_patching=dict(type="bool"),
             state=dict(type="str", default="present", choices=["present"]),
         )
     )

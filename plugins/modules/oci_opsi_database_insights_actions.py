@@ -25,6 +25,8 @@ description:
     - Perform actions on a DatabaseInsights resource in Oracle Cloud Infrastructure
     - For I(action=change), moves a DatabaseInsight resource from one compartment identifier to another. When provided, If-Match is checked against ETag values
       of the resource.
+    - For I(action=change_pe_comanaged), change the connection details of a co-managed  database insight. When provided, If-Match is checked against ETag values
+      of the resource.
     - For I(action=disable), disables a database in Operations Insights. Database metric collection and analysis will be stopped.
     - For I(action=enable), enables a database in Operations Insights. Database metric collection and analysis will be started.
     - For I(action=ingest_database_configuration), this is a generic ingest endpoint for all database configuration metrics.
@@ -48,10 +50,81 @@ options:
         type: str
         choices:
             - "EM_MANAGED_EXTERNAL_DATABASE"
+            - "PE_COMANAGED_DATABASE"
+    opsi_private_endpoint_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the OPSI private endpoint
+            - Required for I(action=change_pe_comanaged).
+            - Required when $p.relatedDiscriminatorFieldName is 'PE_COMANAGED_DATABASE'
+        type: str
+    service_name:
+        description:
+            - Database service name used for connection requests.
+            - Required for I(action=change_pe_comanaged).
+            - Required when $p.relatedDiscriminatorFieldName is 'PE_COMANAGED_DATABASE'
+        type: str
+    credential_details:
+        description:
+            - ""
+            - Required for I(action=change_pe_comanaged).
+            - Required when $p.relatedDiscriminatorFieldName is 'PE_COMANAGED_DATABASE'
+        type: dict
+        suboptions:
+            credential_source_name:
+                description:
+                    - Credential source name that had been added in Management Agent wallet. This is supplied in the External Database Service.
+                type: str
+                required: true
+            credential_type:
+                description:
+                    - Credential type.
+                type: str
+                choices:
+                    - "CREDENTIALS_BY_SOURCE"
+                    - "CREDENTIALS_BY_VAULT"
+                required: true
+            user_name:
+                description:
+                    - database user name.
+                    - Applicable when credential_type is 'CREDENTIALS_BY_VAULT'
+                type: str
+            password_secret_id:
+                description:
+                    - The secret L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) mapping to the database credentials.
+                    - Applicable when credential_type is 'CREDENTIALS_BY_VAULT'
+                type: str
+            role:
+                description:
+                    - database user role.
+                    - Applicable when credential_type is 'CREDENTIALS_BY_VAULT'
+                type: str
+                choices:
+                    - "NORMAL"
+    freeform_tags:
+        description:
+            - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+              Example: `{\\"bar-key\\": \\"value\\"}`"
+            - Applicable only for I(action=enable).
+            - Applicable when entity_source is 'PE_COMANAGED_DATABASE'
+        type: dict
+    defined_tags:
+        description:
+            - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
+              Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+            - Applicable only for I(action=enable).
+            - Applicable when entity_source is 'PE_COMANAGED_DATABASE'
+        type: dict
+    system_tags:
+        description:
+            - "System tags for this resource. Each key is predefined and scoped to a namespace.
+              Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
+            - Applicable only for I(action=enable).
+            - Applicable when entity_source is 'PE_COMANAGED_DATABASE'
+        type: dict
     database_insight_id:
         description:
             - Unique database insight identifier
-            - Required for I(action=change), I(action=disable), I(action=enable).
+            - Required for I(action=change), I(action=change_pe_comanaged), I(action=disable), I(action=enable).
         type: str
     items:
         description:
@@ -698,6 +771,7 @@ options:
         description:
             - The OCID of the compartment into which the resource should be moved.
             - Required for I(action=change).
+            - Required when $p.relatedDiscriminatorFieldName is 'PE_COMANAGED_DATABASE'
         type: str
     database_id:
         description:
@@ -718,6 +792,7 @@ options:
         required: true
         choices:
             - "change"
+            - "change_pe_comanaged"
             - "disable"
             - "enable"
             - "ingest_database_configuration"
@@ -736,6 +811,18 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change
 
+- name: Perform action change_pe_comanaged on database_insights
+  oci_opsi_database_insights_actions:
+    # required
+    opsi_private_endpoint_id: "ocid1.opsiprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+    service_name: service_name_example
+    credential_details:
+      # required
+      credential_source_name: credential_source_name_example
+      credential_type: CREDENTIALS_BY_SOURCE
+    database_insight_id: "ocid1.databaseinsight.oc1..xxxxxxEXAMPLExxxxxx"
+    action: change_pe_comanaged
+
 - name: Perform action disable on database_insights
   oci_opsi_database_insights_actions:
     # required
@@ -746,6 +833,23 @@ EXAMPLES = """
   oci_opsi_database_insights_actions:
     # required
     entity_source: EM_MANAGED_EXTERNAL_DATABASE
+
+- name: Perform action enable on database_insights with entity_source = PE_COMANAGED_DATABASE
+  oci_opsi_database_insights_actions:
+    # required
+    entity_source: PE_COMANAGED_DATABASE
+    opsi_private_endpoint_id: "ocid1.opsiprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+    service_name: service_name_example
+    credential_details:
+      # required
+      credential_source_name: credential_source_name_example
+      credential_type: CREDENTIALS_BY_SOURCE
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    system_tags: null
 
 - name: Perform action ingest_database_configuration on database_insights
   oci_opsi_database_insights_actions:
@@ -906,6 +1010,62 @@ database_insights:
             returned: on success
             type: str
             sample: "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx"
+        management_agent_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Management Agent
+            returned: on success
+            type: str
+            sample: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
+        connector_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of External Database Connector
+            returned: on success
+            type: str
+            sample: "ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx"
+        connection_credential_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                credential_source_name:
+                    description:
+                        - Credential source name that had been added in Management Agent wallet. This is supplied in the External Database Service.
+                    returned: on success
+                    type: str
+                    sample: credential_source_name_example
+                credential_type:
+                    description:
+                        - Credential type.
+                    returned: on success
+                    type: str
+                    sample: CREDENTIALS_BY_SOURCE
+                user_name:
+                    description:
+                        - database user name.
+                    returned: on success
+                    type: str
+                    sample: user_name_example
+                password_secret_id:
+                    description:
+                        - The secret L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) mapping to the database credentials.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
+                role:
+                    description:
+                        - database user role.
+                    returned: on success
+                    type: str
+                    sample: NORMAL
+        db_additional_details:
+            description:
+                - Additional details of a database in JSON format. For autonomous databases, this is the AutonomousDatabase object serialized as a JSON string
+                  as defined in https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/20160918/AutonomousDatabase/. For EM, pass in null or an empty
+                  string. Note that this string needs to be escaped when specified in the curl command.
+            returned: on success
+            type: dict
+            sample: {}
         entity_source:
             description:
                 - Source of the database entity.
@@ -994,18 +1154,19 @@ database_insights:
             returned: on success
             type: str
             sample: lifecycle_details_example
-        management_agent_id:
+        database_connection_status_details:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Management Agent
+                - A message describing the status of the database connection of this resource. For example, it can be used to provide actionable information
+                  about the permission and content validity of the database connection.
             returned: on success
             type: str
-            sample: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
-        connector_id:
+            sample: database_connection_status_details_example
+        opsi_private_endpoint_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of External Database Connector
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the OPSI private endpoint
             returned: on success
             type: str
-            sample: "ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx"
+            sample: "ocid1.opsiprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
         connection_details:
             description:
                 - ""
@@ -1032,11 +1193,29 @@ database_insights:
                     sample: 56
                 service_name:
                     description:
-                        - Service name used for connection requests.
+                        - Database service name used for connection requests.
                     returned: on success
                     type: str
                     sample: service_name_example
-        connection_credential_details:
+                hosts:
+                    description:
+                        - List of hosts and port for private endpoint accessed database resource.
+                    returned: on success
+                    type: complex
+                    contains:
+                        host_ip:
+                            description:
+                                - Host IP used for connection requests for Cloud DB resource.
+                            returned: on success
+                            type: str
+                            sample: host_ip_example
+                        port:
+                            description:
+                                - Listener port number used for connection requests for rivate endpoint accessed db resource.
+                            returned: on success
+                            type: int
+                            sample: 56
+        credential_details:
             description:
                 - ""
             returned: on success
@@ -1054,6 +1233,24 @@ database_insights:
                     returned: on success
                     type: str
                     sample: CREDENTIALS_BY_SOURCE
+                user_name:
+                    description:
+                        - database user name.
+                    returned: on success
+                    type: str
+                    sample: user_name_example
+                password_secret_id:
+                    description:
+                        - The secret L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) mapping to the database credentials.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
+                role:
+                    description:
+                        - database user role.
+                    returned: on success
+                    type: str
+                    sample: NORMAL
         database_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the database.
@@ -1078,14 +1275,6 @@ database_insights:
             returned: on success
             type: str
             sample: database_resource_type_example
-        db_additional_details:
-            description:
-                - Additional details of a database in JSON format. For autonomous databases, this is the AutonomousDatabase object serialized as a JSON string
-                  as defined in https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/20160918/AutonomousDatabase/. For EM, pass in null or an empty
-                  string. Note that this string needs to be escaped when specified in the curl command.
-            returned: on success
-            type: dict
-            sample: {}
     sample: {
         "enterprise_manager_identifier": "enterprise_manager_identifier_example",
         "enterprise_manager_entity_name": "enterprise_manager_entity_name_example",
@@ -1094,6 +1283,16 @@ database_insights:
         "enterprise_manager_entity_display_name": "enterprise_manager_entity_display_name_example",
         "enterprise_manager_bridge_id": "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx",
         "exadata_insight_id": "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx",
+        "management_agent_id": "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx",
+        "connector_id": "ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx",
+        "connection_credential_details": {
+            "credential_source_name": "credential_source_name_example",
+            "credential_type": "CREDENTIALS_BY_SOURCE",
+            "user_name": "user_name_example",
+            "password_secret_id": "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx",
+            "role": "NORMAL"
+        },
+        "db_additional_details": {},
         "entity_source": "AUTONOMOUS_DATABASE",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -1108,23 +1307,29 @@ database_insights:
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
-        "management_agent_id": "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx",
-        "connector_id": "ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx",
+        "database_connection_status_details": "database_connection_status_details_example",
+        "opsi_private_endpoint_id": "ocid1.opsiprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx",
         "connection_details": {
             "host_name": "host_name_example",
             "protocol": "TCP",
             "port": 56,
-            "service_name": "service_name_example"
+            "service_name": "service_name_example",
+            "hosts": [{
+                "host_ip": "host_ip_example",
+                "port": 56
+            }]
         },
-        "connection_credential_details": {
+        "credential_details": {
             "credential_source_name": "credential_source_name_example",
-            "credential_type": "CREDENTIALS_BY_SOURCE"
+            "credential_type": "CREDENTIALS_BY_SOURCE",
+            "user_name": "user_name_example",
+            "password_secret_id": "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx",
+            "role": "NORMAL"
         },
         "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
         "database_name": "database_name_example",
         "database_display_name": "database_display_name_example",
-        "database_resource_type": "database_resource_type_example",
-        "db_additional_details": {}
+        "database_resource_type": "database_resource_type_example"
     }
 """
 
@@ -1141,6 +1346,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 try:
     from oci.opsi import OperationsInsightsClient
     from oci.opsi.models import ChangeDatabaseInsightCompartmentDetails
+    from oci.opsi.models import ChangePeComanagedDatabaseInsightDetails
     from oci.opsi.models import EnableDatabaseInsightDetails
     from oci.opsi.models import IngestDatabaseConfigurationDetails
     from oci.opsi.models import IngestSqlBucketDetails
@@ -1157,6 +1363,7 @@ class DatabaseInsightsActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         change
+        change_pe_comanaged
         disable
         enable
         ingest_database_configuration
@@ -1185,6 +1392,27 @@ class DatabaseInsightsActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 database_insight_id=self.module.params.get("database_insight_id"),
                 change_database_insight_compartment_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def change_pe_comanaged(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ChangePeComanagedDatabaseInsightDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.change_pe_comanaged_database_insight,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                database_insight_id=self.module.params.get("database_insight_id"),
+                change_pe_comanaged_database_insight_details=action_details,
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -1375,7 +1603,29 @@ def main():
     )
     module_args.update(
         dict(
-            entity_source=dict(type="str", choices=["EM_MANAGED_EXTERNAL_DATABASE"]),
+            entity_source=dict(
+                type="str",
+                choices=["EM_MANAGED_EXTERNAL_DATABASE", "PE_COMANAGED_DATABASE"],
+            ),
+            opsi_private_endpoint_id=dict(type="str"),
+            service_name=dict(type="str"),
+            credential_details=dict(
+                type="dict",
+                options=dict(
+                    credential_source_name=dict(type="str", required=True),
+                    credential_type=dict(
+                        type="str",
+                        required=True,
+                        choices=["CREDENTIALS_BY_SOURCE", "CREDENTIALS_BY_VAULT"],
+                    ),
+                    user_name=dict(type="str"),
+                    password_secret_id=dict(type="str"),
+                    role=dict(type="str", choices=["NORMAL"]),
+                ),
+            ),
+            freeform_tags=dict(type="dict"),
+            defined_tags=dict(type="dict"),
+            system_tags=dict(type="dict"),
             database_insight_id=dict(type="str"),
             items=dict(
                 type="list",
@@ -1534,6 +1784,7 @@ def main():
                 required=True,
                 choices=[
                     "change",
+                    "change_pe_comanaged",
                     "disable",
                     "enable",
                     "ingest_database_configuration",

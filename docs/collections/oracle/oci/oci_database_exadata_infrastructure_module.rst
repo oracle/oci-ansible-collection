@@ -30,7 +30,7 @@ oracle.oci.oci_database_exadata_infrastructure -- Manage an ExadataInfrastructur
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -560,6 +560,26 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-is_cps_offline_report_enabled"></div>
+                    <b>is_cps_offline_report_enabled</b>
+                    <a class="ansibleOptionLink" href="#parameter-is_cps_offline_report_enabled" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Indicates whether cps offline diagnostic report is enabled for this Exadata infrastructure. This will allow a customer to quickly check status themselves and fix problems on their end, saving time and frustration for both Oracle and the customer when they find the CPS in a disconnected state.You can enable offline diagnostic report during Exadata infrastructure provisioning. You can also disable or enable it at any time using the UpdateExadatainfrastructure API.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-key_by"></div>
                     <b>key_by</b>
                     <a class="ansibleOptionLink" href="#parameter-key_by" title="Permalink to this option"></a>
@@ -590,6 +610,22 @@ Parameters
                                                         </td>
             </tr>
                                         <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-maintenance_window/custom_action_timeout_in_mins"></div>
+                    <b>custom_action_timeout_in_mins</b>
+                    <a class="ansibleOptionLink" href="#parameter-maintenance_window/custom_action_timeout_in_mins" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Determines the amount of time the system will wait before the start of each database server patching operation. Custom action timeout is in minutes and valid value is between 15 to 120 (inclusive).</div>
+                                                        </td>
+            </tr>
+                                <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-maintenance_window/days_of_week"></div>
@@ -646,6 +682,26 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The window of hours during the day when maintenance should be performed. The window is a 4 hour slot. Valid values are - 0 - represents time slot 0:00 - 3:59 UTC - 4 - represents time slot 4:00 - 7:59 UTC - 8 - represents time slot 8:00 - 11:59 UTC - 12 - represents time slot 12:00 - 15:59 UTC - 16 - represents time slot 16:00 - 19:59 UTC - 20 - represents time slot 20:00 - 23:59 UTC</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-maintenance_window/is_custom_action_timeout_enabled"></div>
+                    <b>is_custom_action_timeout_enabled</b>
+                    <a class="ansibleOptionLink" href="#parameter-maintenance_window/is_custom_action_timeout_enabled" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>If true, enables the configuration of a custom action timeout (waiting period) between database server patching operations.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -712,6 +768,27 @@ Parameters
                                                         </td>
             </tr>
                     
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-maintenance_window/patching_mode"></div>
+                    <b>patching_mode</b>
+                    <a class="ansibleOptionLink" href="#parameter-maintenance_window/patching_mode" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>ROLLING</li>
+                                                                                                                                                                                                <li>NONROLLING</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Cloud Exadata infrastructure node patching method, either &quot;ROLLING&quot; or &quot;NONROLLING&quot;. Default value is ROLLING.</div>
+                                            <div>*IMPORTANT*: Non-rolling infrastructure patching involves system down time. See <a href='https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/examaintenance.htm#Oracle'>Oracle-Managed Infrastructure Maintenance Updates</a> for more information.</div>
+                                                        </td>
+            </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="2">
@@ -975,6 +1052,9 @@ Examples
           preference: NO_PREFERENCE
 
           # optional
+          patching_mode: ROLLING
+          is_custom_action_timeout_enabled: true
+          custom_action_timeout_in_mins: 56
           months:
           - # required
             name: JANUARY
@@ -984,6 +1064,7 @@ Examples
             name: MONDAY
           hours_of_day: [ "hours_of_day_example" ]
           lead_time_in_weeks: 56
+        is_cps_offline_report_enabled: true
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -1014,6 +1095,9 @@ Examples
           preference: NO_PREFERENCE
 
           # optional
+          patching_mode: ROLLING
+          is_custom_action_timeout_enabled: true
+          custom_action_timeout_in_mins: 56
           months:
           - # required
             name: JANUARY
@@ -1027,6 +1111,7 @@ Examples
         dns_server: [ "dns_server_example" ]
         ntp_server: [ "ntp_server_example" ]
         time_zone: time_zone_example
+        is_cps_offline_report_enabled: true
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -1058,6 +1143,9 @@ Examples
           preference: NO_PREFERENCE
 
           # optional
+          patching_mode: ROLLING
+          is_custom_action_timeout_enabled: true
+          custom_action_timeout_in_mins: 56
           months:
           - # required
             name: JANUARY
@@ -1071,6 +1159,7 @@ Examples
         dns_server: [ "dns_server_example" ]
         ntp_server: [ "ntp_server_example" ]
         time_zone: time_zone_example
+        is_cps_offline_report_enabled: true
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -1122,7 +1211,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the ExadataInfrastructure resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;activated_storage_count&#x27;: 56, &#x27;additional_storage_count&#x27;: 56, &#x27;admin_network_cidr&#x27;: &#x27;admin_network_cidr_example&#x27;, &#x27;cloud_control_plane_server1&#x27;: &#x27;cloud_control_plane_server1_example&#x27;, &#x27;cloud_control_plane_server2&#x27;: &#x27;cloud_control_plane_server2_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_count&#x27;: 56, &#x27;contacts&#x27;: [{&#x27;email&#x27;: &#x27;email_example&#x27;, &#x27;is_contact_mos_validated&#x27;: True, &#x27;is_primary&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;phone_number&#x27;: &#x27;phone_number_example&#x27;}], &#x27;corporate_proxy&#x27;: &#x27;corporate_proxy_example&#x27;, &#x27;cpus_enabled&#x27;: 56, &#x27;csi_number&#x27;: &#x27;csi_number_example&#x27;, &#x27;data_storage_size_in_tbs&#x27;: 1.2, &#x27;db_node_storage_size_in_gbs&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;dns_server&#x27;: [], &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;gateway&#x27;: &#x27;gateway_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;infini_band_network_cidr&#x27;: &#x27;infini_band_network_cidr_example&#x27;, &#x27;last_maintenance_run_id&#x27;: &#x27;ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;maintenance_slo_status&#x27;: &#x27;OK&#x27;, &#x27;maintenance_window&#x27;: {&#x27;days_of_week&#x27;: [{&#x27;name&#x27;: &#x27;MONDAY&#x27;}], &#x27;hours_of_day&#x27;: [], &#x27;lead_time_in_weeks&#x27;: 56, &#x27;months&#x27;: [{&#x27;name&#x27;: &#x27;JANUARY&#x27;}], &#x27;preference&#x27;: &#x27;NO_PREFERENCE&#x27;, &#x27;weeks_of_month&#x27;: []}, &#x27;max_cpu_count&#x27;: 56, &#x27;max_data_storage_in_t_bs&#x27;: 1.2, &#x27;max_db_node_storage_in_g_bs&#x27;: 56, &#x27;max_memory_in_gbs&#x27;: 56, &#x27;memory_size_in_gbs&#x27;: 56, &#x27;netmask&#x27;: &#x27;netmask_example&#x27;, &#x27;next_maintenance_run_id&#x27;: &#x27;ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ntp_server&#x27;: [], &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;storage_count&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_zone&#x27;: &#x27;time_zone_example&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;activated_storage_count&#x27;: 56, &#x27;additional_storage_count&#x27;: 56, &#x27;admin_network_cidr&#x27;: &#x27;admin_network_cidr_example&#x27;, &#x27;cloud_control_plane_server1&#x27;: &#x27;cloud_control_plane_server1_example&#x27;, &#x27;cloud_control_plane_server2&#x27;: &#x27;cloud_control_plane_server2_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_count&#x27;: 56, &#x27;contacts&#x27;: [{&#x27;email&#x27;: &#x27;email_example&#x27;, &#x27;is_contact_mos_validated&#x27;: True, &#x27;is_primary&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;phone_number&#x27;: &#x27;phone_number_example&#x27;}], &#x27;corporate_proxy&#x27;: &#x27;corporate_proxy_example&#x27;, &#x27;cpus_enabled&#x27;: 56, &#x27;csi_number&#x27;: &#x27;csi_number_example&#x27;, &#x27;data_storage_size_in_tbs&#x27;: 1.2, &#x27;db_node_storage_size_in_gbs&#x27;: 56, &#x27;db_server_version&#x27;: &#x27;db_server_version_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;dns_server&#x27;: [], &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;gateway&#x27;: &#x27;gateway_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;infini_band_network_cidr&#x27;: &#x27;infini_band_network_cidr_example&#x27;, &#x27;is_cps_offline_report_enabled&#x27;: True, &#x27;last_maintenance_run_id&#x27;: &#x27;ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;maintenance_slo_status&#x27;: &#x27;OK&#x27;, &#x27;maintenance_window&#x27;: {&#x27;custom_action_timeout_in_mins&#x27;: 56, &#x27;days_of_week&#x27;: [{&#x27;name&#x27;: &#x27;MONDAY&#x27;}], &#x27;hours_of_day&#x27;: [], &#x27;is_custom_action_timeout_enabled&#x27;: True, &#x27;lead_time_in_weeks&#x27;: 56, &#x27;months&#x27;: [{&#x27;name&#x27;: &#x27;JANUARY&#x27;}], &#x27;patching_mode&#x27;: &#x27;ROLLING&#x27;, &#x27;preference&#x27;: &#x27;NO_PREFERENCE&#x27;, &#x27;weeks_of_month&#x27;: []}, &#x27;max_cpu_count&#x27;: 56, &#x27;max_data_storage_in_t_bs&#x27;: 1.2, &#x27;max_db_node_storage_in_g_bs&#x27;: 56, &#x27;max_memory_in_gbs&#x27;: 56, &#x27;memory_size_in_gbs&#x27;: 56, &#x27;netmask&#x27;: &#x27;netmask_example&#x27;, &#x27;next_maintenance_run_id&#x27;: &#x27;ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ntp_server&#x27;: [], &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;storage_count&#x27;: 56, &#x27;storage_server_version&#x27;: &#x27;storage_server_version_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_zone&#x27;: &#x27;time_zone_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1456,6 +1545,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-exadata_infrastructure/db_server_version"></div>
+                    <b>db_server_version</b>
+                    <a class="ansibleOptionLink" href="#return-exadata_infrastructure/db_server_version" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The software version of the database servers (dom0) in the Exadata infrastructure.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">db_server_version_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-exadata_infrastructure/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-exadata_infrastructure/defined_tags" title="Permalink to this return value"></a>
@@ -1581,6 +1688,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-exadata_infrastructure/is_cps_offline_report_enabled"></div>
+                    <b>is_cps_offline_report_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-exadata_infrastructure/is_cps_offline_report_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Indicates whether cps offline diagnostic report is enabled for this Exadata infrastructure. This will allow a customer to quickly check status themselves and fix problems on their end, saving time and frustration for both Oracle and the customer when they find the CPS in a disconnected state.You can enable offline diagnostic report during Exadata infrastructure provisioning. You can also disable or enable it at any time using the UpdateExadatainfrastructure API.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-exadata_infrastructure/last_maintenance_run_id"></div>
                     <b>last_maintenance_run_id</b>
                     <a class="ansibleOptionLink" href="#return-exadata_infrastructure/last_maintenance_run_id" title="Permalink to this return value"></a>
@@ -1644,7 +1769,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A field to capture &#x27;Maintenance SLO Status&#x27; for the Exadata infrastructure with values &#x27;OK&#x27;, &#x27;DEGRADED&#x27;. Default is &#x27;OK&#x27; when the infrastructure is provisioned.</div>
+                                            <div>A field to capture ???Maintenance SLO Status??? for the Exadata infrastructure with values ???OK???, ???DEGRADED???. Default is ???OK??? when the infrastructure is provisioned.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">OK</div>
@@ -1667,6 +1792,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                         </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-exadata_infrastructure/maintenance_window/custom_action_timeout_in_mins"></div>
+                    <b>custom_action_timeout_in_mins</b>
+                    <a class="ansibleOptionLink" href="#return-exadata_infrastructure/maintenance_window/custom_action_timeout_in_mins" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Determines the amount of time the system will wait before the start of each database server patching operation. Custom action timeout is in minutes and valid value is between 15 to 120 (inclusive).</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
@@ -1725,6 +1869,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-exadata_infrastructure/maintenance_window/is_custom_action_timeout_enabled"></div>
+                    <b>is_custom_action_timeout_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-exadata_infrastructure/maintenance_window/is_custom_action_timeout_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>If true, enables the configuration of a custom action timeout (waiting period) between database server patching operations.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-exadata_infrastructure/maintenance_window/lead_time_in_weeks"></div>
                     <b>lead_time_in_weeks</b>
                     <a class="ansibleOptionLink" href="#return-exadata_infrastructure/maintenance_window/lead_time_in_weeks" title="Permalink to this return value"></a>
@@ -1778,6 +1941,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                     
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-exadata_infrastructure/maintenance_window/patching_mode"></div>
+                    <b>patching_mode</b>
+                    <a class="ansibleOptionLink" href="#return-exadata_infrastructure/maintenance_window/patching_mode" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Cloud Exadata infrastructure node patching method, either &quot;ROLLING&quot; or &quot;NONROLLING&quot;. Default value is ROLLING.</div>
+                                            <div>*IMPORTANT*: Non-rolling infrastructure patching involves system down time. See <a href='https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/examaintenance.htm#Oracle'>Oracle-Managed Infrastructure Maintenance Updates</a> for more information.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ROLLING</div>
+                                    </td>
+            </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1991,6 +2174,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-exadata_infrastructure/storage_server_version"></div>
+                    <b>storage_server_version</b>
+                    <a class="ansibleOptionLink" href="#return-exadata_infrastructure/storage_server_version" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The software version of the storage servers (cells) in the Exadata infrastructure.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">storage_server_version_example</div>
                                     </td>
             </tr>
                                 <tr>

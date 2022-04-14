@@ -71,6 +71,15 @@ options:
             - "ATP-D"
             - "EXTERNAL-PDB"
             - "EXTERNAL-NONCDB"
+            - "COMANAGED-VM-CDB"
+            - "COMANAGED-VM-PDB"
+            - "COMANAGED-VM-NONCDB"
+            - "COMANAGED-BM-CDB"
+            - "COMANAGED-BM-PDB"
+            - "COMANAGED-BM-NONCDB"
+            - "COMANAGED-EXACS-CDB"
+            - "COMANAGED-EXACS-PDB"
+            - "COMANAGED-EXACS-NONCDB"
     sort_order:
         description:
             - The sort order to use, either ascending (`ASC`) or descending (`DESC`).
@@ -324,6 +333,15 @@ def main():
                     "ATP-D",
                     "EXTERNAL-PDB",
                     "EXTERNAL-NONCDB",
+                    "COMANAGED-VM-CDB",
+                    "COMANAGED-VM-PDB",
+                    "COMANAGED-VM-NONCDB",
+                    "COMANAGED-BM-CDB",
+                    "COMANAGED-BM-PDB",
+                    "COMANAGED-BM-NONCDB",
+                    "COMANAGED-EXACS-CDB",
+                    "COMANAGED-EXACS-PDB",
+                    "COMANAGED-EXACS-NONCDB",
                 ],
             ),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),

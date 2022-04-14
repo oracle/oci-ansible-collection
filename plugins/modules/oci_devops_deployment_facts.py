@@ -121,13 +121,6 @@ deployments:
     returned: on success
     type: complex
     contains:
-        previous_deployment_id:
-            description:
-                - Specifies the OCID of the previous deployment to be redeployed.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "ocid1.previousdeployment.oc1..xxxxxxEXAMPLExxxxxx"
         deploy_pipeline_artifacts:
             description:
                 - ""
@@ -251,6 +244,18 @@ deployments:
                     returned: on success
                     type: complex
                     contains:
+                        environment_id:
+                            description:
+                                - The OCID of the environment where the artifacts were deployed.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.environment.oc1..xxxxxxEXAMPLExxxxxx"
+                        namespace:
+                            description:
+                                - Namespace either environment A or environment B where artifacts are deployed.
+                            returned: on success
+                            type: str
+                            sample: namespace_example
                         approval_actions:
                             description:
                                 - ""
@@ -269,6 +274,12 @@ deployments:
                                     returned: on success
                                     type: str
                                     sample: APPROVE
+                                reason:
+                                    description:
+                                        - The reason for approving or rejecting the deployment.
+                                    returned: on success
+                                    type: str
+                                    sample: reason_example
                         deploy_stage_display_name:
                             description:
                                 - Stage display name. Avoid entering confidential information.
@@ -280,7 +291,7 @@ deployments:
                                 - Deployment stage type.
                             returned: on success
                             type: str
-                            sample: COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT
+                            sample: COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT
                         deploy_stage_id:
                             description:
                                 - The OCID of the stage.
@@ -402,6 +413,13 @@ deployments:
                                             returned: on success
                                             type: str
                                             sample: "2013-10-20T19:20:30+01:00"
+        previous_deployment_id:
+            description:
+                - Specifies the OCID of the previous deployment to be redeployed.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.previousdeployment.oc1..xxxxxxEXAMPLExxxxxx"
         deploy_stage_id:
             description:
                 - Specifies the OCID of the stage to be deployed.
@@ -411,7 +429,7 @@ deployments:
             sample: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
         deployment_type:
             description:
-                - Specifies type of Deployment
+                - Specifies type of deployment.
             returned: on success
             type: str
             sample: PIPELINE_DEPLOYMENT
@@ -547,7 +565,6 @@ deployments:
             type: dict
             sample: {}
     sample: [{
-        "previous_deployment_id": "ocid1.previousdeployment.oc1..xxxxxxEXAMPLExxxxxx",
         "deploy_pipeline_artifacts": {
             "items": [{
                 "deploy_artifact_id": "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx",
@@ -576,12 +593,15 @@ deployments:
             "time_started": "2013-10-20T19:20:30+01:00",
             "time_finished": "2013-10-20T19:20:30+01:00",
             "deploy_stage_execution_progress": {
+                "environment_id": "ocid1.environment.oc1..xxxxxxEXAMPLExxxxxx",
+                "namespace": "namespace_example",
                 "approval_actions": [{
                     "subject_id": "ocid1.subject.oc1..xxxxxxEXAMPLExxxxxx",
-                    "action": "APPROVE"
+                    "action": "APPROVE",
+                    "reason": "reason_example"
                 }],
                 "deploy_stage_display_name": "deploy_stage_display_name_example",
-                "deploy_stage_type": "COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT",
+                "deploy_stage_type": "COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT",
                 "deploy_stage_id": "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx",
                 "time_started": "2013-10-20T19:20:30+01:00",
                 "time_finished": "2013-10-20T19:20:30+01:00",
@@ -609,6 +629,7 @@ deployments:
                 }]
             }
         },
+        "previous_deployment_id": "ocid1.previousdeployment.oc1..xxxxxxEXAMPLExxxxxx",
         "deploy_stage_id": "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx",
         "deployment_type": "PIPELINE_DEPLOYMENT",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",

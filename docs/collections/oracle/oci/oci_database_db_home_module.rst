@@ -30,7 +30,7 @@ oracle.oci.oci_database_db_home -- Manage a DbHome resource in Oracle Cloud Infr
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.47.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -636,6 +636,40 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-database/kms_key_id"></div>
+                    <b>kms_key_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-database/kms_key_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The OCID of the key container that is used as the master encryption key in database transparent data encryption (TDE) operations.</div>
+                                            <div>Applicable when source is one of [&#x27;VM_CLUSTER_NEW&#x27;, &#x27;NONE&#x27;]</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-database/kms_key_version_id"></div>
+                    <b>kms_key_version_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-database/kms_key_version_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The OCID of the key container version that is used in database transparent data encryption (TDE) operations KMS Key can have multiple key versions. If none is specified, the current key version (latest) of the Key Id is used for the operation.</div>
+                                            <div>Applicable when source is one of [&#x27;VM_CLUSTER_NEW&#x27;, &#x27;NONE&#x27;]</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-database/ncharacter_set"></div>
                     <b>ncharacter_set</b>
                     <a class="ansibleOptionLink" href="#parameter-database/ncharacter_set" title="Permalink to this option"></a>
@@ -716,6 +750,23 @@ Parameters
                                                                 <td>
                                             <div>The point in time of the original database from which the new database is created. If not specifed, the latest backup is used to create the database.</div>
                                             <div>Applicable when source is &#x27;DATABASE&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-database/vault_id"></div>
+                    <b>vault_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-database/vault_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Oracle Cloud Infrastructure <a href='https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts'>vault</a>.</div>
+                                            <div>Applicable when source is one of [&#x27;VM_CLUSTER_NEW&#x27;, &#x27;NONE&#x27;]</div>
                                                         </td>
             </tr>
                     
@@ -1179,6 +1230,9 @@ Examples
               internet_proxy: internet_proxy_example
           freeform_tags: {'Department': 'Finance'}
           defined_tags: {'Operations': {'CostCenter': 'US'}}
+          kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+          kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+          vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
           sid_prefix: sid_prefix_example
 
         # optional
@@ -1226,6 +1280,9 @@ Examples
               internet_proxy: internet_proxy_example
           freeform_tags: {'Department': 'Finance'}
           defined_tags: {'Operations': {'CostCenter': 'US'}}
+          kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+          kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+          vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
           sid_prefix: sid_prefix_example
 
         # optional
@@ -1273,6 +1330,9 @@ Examples
               internet_proxy: internet_proxy_example
           freeform_tags: {'Department': 'Finance'}
           defined_tags: {'Operations': {'CostCenter': 'US'}}
+          kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+          kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+          vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
           sid_prefix: sid_prefix_example
 
         # optional
@@ -1328,6 +1388,9 @@ Examples
               internet_proxy: internet_proxy_example
           freeform_tags: {'Department': 'Finance'}
           defined_tags: {'Operations': {'CostCenter': 'US'}}
+          kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+          kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+          vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
           sid_prefix: sid_prefix_example
 
     - name: Create db_home with source = VM_CLUSTER_NEW
@@ -1376,6 +1439,9 @@ Examples
               internet_proxy: internet_proxy_example
           freeform_tags: {'Department': 'Finance'}
           defined_tags: {'Operations': {'CostCenter': 'US'}}
+          kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+          kms_key_version_id: "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx"
+          vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
           sid_prefix: sid_prefix_example
 
     - name: Update db_home
