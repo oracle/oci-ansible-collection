@@ -23,41 +23,67 @@ module: oci_network_subnet_actions
 short_description: Perform actions on a Subnet resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a Subnet resource in Oracle Cloud Infrastructure
+    - For I(action=add_ipv6_subnet_cidr), add an IPv6 CIDR to a subnet.
     - For I(action=change_compartment), moves a subnet into a different compartment within the same tenancy. For information
       about moving resources between compartments, see
       L(Moving Resources to a Different Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
+    - For I(action=remove_ipv6_subnet_cidr), remove an IPv6 CIDR from a subnet. At least one IPv6 CIDR should remain.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the
+              subnet to.
+            - Required for I(action=change_compartment).
+        type: str
     subnet_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet.
         type: str
         aliases: ["id"]
         required: true
-    compartment_id:
+    ipv6_cidr_block:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the
-              subnet to.
+            - This field is not required and should only be specified when adding an IPv6 CIDR
+              to a subnet's IPv6 address space.
+              SeeL(IPv6 Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm).
+            - "Example: `2001:0db8:0123::/64`"
+            - Required for I(action=add_ipv6_subnet_cidr), I(action=remove_ipv6_subnet_cidr).
         type: str
-        required: true
     action:
         description:
             - The action to perform on the Subnet.
         type: str
         required: true
         choices:
+            - "add_ipv6_subnet_cidr"
             - "change_compartment"
+            - "remove_ipv6_subnet_cidr"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
 EXAMPLES = """
-- name: Perform action change_compartment on subnet
+- name: Perform action add_ipv6_subnet_cidr on subnet
   oci_network_subnet_actions:
     # required
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    ipv6_cidr_block: ipv6_cidr_block_example
+    action: add_ipv6_subnet_cidr
+
+- name: Perform action change_compartment on subnet
+  oci_network_subnet_actions:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
+
+- name: Perform action remove_ipv6_subnet_cidr on subnet
+  oci_network_subnet_actions:
+    # required
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+    ipv6_cidr_block: ipv6_cidr_block_example
+    action: remove_ipv6_subnet_cidr
 
 """
 
@@ -148,6 +174,12 @@ subnet:
             returned: on success
             type: str
             sample: ipv6_cidr_block_example
+        ipv6_cidr_blocks:
+            description:
+                - The list of all IPv6 CIDR blocks (Oracle allocated IPv6 GUA, ULA or private IPv6 CIDR blocks, BYOIPv6 CIDR blocks) for the subnet.
+            returned: on success
+            type: list
+            sample: []
         ipv6_virtual_router_ip:
             description:
                 - For an IPv6-enabled subnet, this is the IPv6 address of the virtual router.
@@ -253,6 +285,7 @@ subnet:
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "ipv6_cidr_block": "ipv6_cidr_block_example",
+        "ipv6_cidr_blocks": [],
         "ipv6_virtual_router_ip": "ipv6_virtual_router_ip_example",
         "lifecycle_state": "PROVISIONING",
         "prohibit_internet_ingress": true,
@@ -280,7 +313,9 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 try:
     from oci.work_requests import WorkRequestClient
     from oci.core import VirtualNetworkClient
+    from oci.core.models import AddSubnetIpv6CidrDetails
     from oci.core.models import ChangeSubnetCompartmentDetails
+    from oci.core.models import RemoveSubnetIpv6CidrDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -290,7 +325,9 @@ except ImportError:
 class SubnetActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        add_ipv6_subnet_cidr
         change_compartment
+        remove_ipv6_subnet_cidr
     """
 
     def __init__(self, *args, **kwargs):
@@ -314,6 +351,27 @@ class SubnetActionsHelperGen(OCIActionsHelperBase):
             self.client.get_subnet, subnet_id=self.module.params.get("subnet_id"),
         )
 
+    def add_ipv6_subnet_cidr(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, AddSubnetIpv6CidrDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.add_ipv6_subnet_cidr,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                subnet_id=self.module.params.get("subnet_id"),
+                add_subnet_ipv6_cidr_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
     def change_compartment(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, ChangeSubnetCompartmentDetails
@@ -324,6 +382,27 @@ class SubnetActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 subnet_id=self.module.params.get("subnet_id"),
                 change_subnet_compartment_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def remove_ipv6_subnet_cidr(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, RemoveSubnetIpv6CidrDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.remove_ipv6_subnet_cidr,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                subnet_id=self.module.params.get("subnet_id"),
+                remove_subnet_ipv6_cidr_details=action_details,
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -349,9 +428,18 @@ def main():
     )
     module_args.update(
         dict(
+            compartment_id=dict(type="str"),
             subnet_id=dict(aliases=["id"], type="str", required=True),
-            compartment_id=dict(type="str", required=True),
-            action=dict(type="str", required=True, choices=["change_compartment"]),
+            ipv6_cidr_block=dict(type="str"),
+            action=dict(
+                type="str",
+                required=True,
+                choices=[
+                    "add_ipv6_subnet_cidr",
+                    "change_compartment",
+                    "remove_ipv6_subnet_cidr",
+                ],
+            ),
         )
     )
 

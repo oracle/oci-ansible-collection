@@ -263,6 +263,21 @@ vm_cluster:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        data_collection_options:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                is_diagnostics_events_enabled:
+                    description:
+                        - Indicates whether diagnostic collection is enabled for the VM cluster. Enabling diagnostic collection allows you to receive Events
+                          service notifications for guest VM issues. Diagnostic collection also allows Oracle to provide enhanced service and proactive support
+                          for your Exadata system. You can enable diagnostic collection during VM cluster provisioning. You can also disable or enable it at any
+                          time using the `UpdateVmCluster` API.
+                    returned: on success
+                    type: bool
+                    sample: true
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -289,7 +304,10 @@ vm_cluster:
         "license_model": "LICENSE_INCLUDED",
         "db_servers": [],
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}}
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "data_collection_options": {
+            "is_diagnostics_events_enabled": true
+        }
     }
 """
 

@@ -682,8 +682,8 @@ exadata_infrastructure:
                     sample: true
         maintenance_slo_status:
             description:
-                - A field to capture ???Maintenance SLO Status??? for the Exadata infrastructure with values ???OK???, ???DEGRADED???. Default is ???OK??? when
-                  the infrastructure is provisioned.
+                - A field to capture 'Maintenance SLO Status' for the Exadata infrastructure with values 'OK', 'DEGRADED'. Default is 'OK' when the
+                  infrastructure is provisioned.
             returned: on success
             type: str
             sample: OK

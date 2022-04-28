@@ -72,13 +72,14 @@ options:
         description:
             - "Filter by one or more platform types.
               Supported platformType(s) for MACS-managed external host insight: [LINUX].
-              Supported platformType(s) for EM-managed external host insight: [LINUX, SOLARIS, SUNOS]."
+              Supported platformType(s) for EM-managed external host insight: [LINUX, SOLARIS, SUNOS, ZLINUX]."
         type: list
         elements: str
         choices:
             - "LINUX"
             - "SOLARIS"
             - "SUNOS"
+            - "ZLINUX"
     sort_order:
         description:
             - The sort order to use, either ascending (`ASC`) or descending (`DESC`).
@@ -205,7 +206,7 @@ host_insights:
             description:
                 - "Platform type.
                   Supported platformType(s) for MACS-managed external host insight: [LINUX].
-                  Supported platformType(s) for EM-managed external host insight: [LINUX, SOLARIS, SUNOS]."
+                  Supported platformType(s) for EM-managed external host insight: [LINUX, SOLARIS, SUNOS, ZLINUX]."
                 - Returned for get operation
             returned: on success
             type: str
@@ -429,7 +430,9 @@ def main():
             ),
             host_type=dict(type="list", elements="str"),
             platform_type=dict(
-                type="list", elements="str", choices=["LINUX", "SOLARIS", "SUNOS"]
+                type="list",
+                elements="str",
+                choices=["LINUX", "SOLARIS", "SUNOS", "ZLINUX"],
             ),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["hostName", "hostType"]),

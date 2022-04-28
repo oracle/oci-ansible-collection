@@ -30,7 +30,7 @@ oracle.oci.oci_identity_customer_secret_key -- Manage a CustomerSecretKey resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a CustomerSecretKey resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a new secret key for the specified user. Secret keys are used for authentication with the Object Storage Service's Amazon S3 compatible API. The secret key consists of an Access Key/Secret Key pair. For information, see `Managing User Credentials <https://docs.cloud.oracle.com/Content/Identity/Tasks/managingcredentials.htm>`_.
+- For *state=present*, creates a new secret key for the specified user. Secret keys are used for authentication with the Object Storage Service's Amazon S3 compatible API. The secret key consists of an Access Key/Secret Key pair. For information, see `Managing User Credentials <https://docs.cloud.oracle.com/Content/Identity/access/managing-user-credentials.htm>`_.
 - You must specify a *description* for the secret key (although it can be an empty string). It does not have to be unique, and you can change it anytime with `UpdateCustomerSecretKey <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/CustomerSecretKeySummary/UpdateCustomerSecretKey>`_.
 - Every user has permission to create a secret key for *their own user ID*. An administrator in your organization does not need to write a policy to give users this ability. To compare, administrators who have permission to the tenancy can use this operation to create a secret key for any user, including themselves.
 
@@ -211,7 +211,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the secret key.</div>
+                                            <div>The access token of the secret key.</div>
                                             <div>Required for update using <em>state=present</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                             <div>Required for delete using <em>state=absent</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>

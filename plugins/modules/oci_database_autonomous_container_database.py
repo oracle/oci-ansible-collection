@@ -44,11 +44,13 @@ options:
             - "AUTONOMOUS_DATAGUARD"
     autonomous_exadata_infrastructure_id:
         description:
-            - The OCID of the Autonomous Exadata Infrastructure.
+            - "**No longer used.** This parameter is no longer used for Autonomous Database on dedicated Exadata infrasture. Specify a
+              `cloudAutonomousVmClusterId` instead. Using this parameter will cause the operation to fail."
         type: str
     peer_autonomous_exadata_infrastructure_id:
         description:
-            - The OCID of the peer Autonomous Exadata Infrastructure for Autonomous Data Guard.
+            - "*No longer used.* This parameter is no longer used for Autonomous Database on dedicated Exadata infrasture. Specify a
+              `peerCloudAutonomousVmClusterId` instead. Using this parameter will cause the operation to fail."
         type: str
     peer_autonomous_container_database_display_name:
         description:
@@ -569,7 +571,8 @@ autonomous_container_database:
             sample: STANDARD
         autonomous_exadata_infrastructure_id:
             description:
-                - The OCID of the Autonomous Exadata Infrastructure.
+                - "**No longer used.** For Autonomous Database on dedicated Exadata infrastructure, the container database is created within a specified
+                  `cloudAutonomousVmCluster`."
             returned: on success
             type: str
             sample: "ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"

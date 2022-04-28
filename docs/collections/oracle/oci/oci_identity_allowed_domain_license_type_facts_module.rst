@@ -30,7 +30,7 @@ oracle.oci.oci_identity_allowed_domain_license_type_facts -- Fetches details abo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,8 +57,8 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple AllowedDomainLicenseType resources in Oracle Cloud Infrastructure
-- List the allowed domain license types supported by OCI If {@code currentLicenseTypeName} provided, returns allowed license types a domain with the specified license type name can migrate to. If {@code name} is provided, it filters and returns resources that match the given license type name. Otherwise, returns all valid license types that are currently supported.
-- - If license type details are retrieved sucessfully, return 202 ACCEPTED. - If any internal error occurs, return 500 INTERNAL SERVER ERROR.
+- (For tenancies that support identity domains) Lists the license types for identity domains supported by Oracle Cloud Infrastructure. (License types are also referred to as domain types.)
+- If `currentLicenseTypeName` is provided, then the request returns license types that the identity domain with the specified license type name can change to. Otherwise, the request returns all valid license types currently supported.
 
 
 .. Aliases
@@ -210,7 +210,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The domain license type</div>
+                                            <div>The license type of the identity domain.</div>
                                                         </td>
             </tr>
                                 <tr>

@@ -33,7 +33,8 @@ description:
       For more information about the Database Management Service, see
       L(Database Management Service,https://docs.cloud.oracle.com/Content/ExternalDatabase/Concepts/databasemanagementservice.htm).
     - For I(action=scan_external_container_database_pluggable_databases), scans for pluggable databases in the specified external container database.
-      This operation will return un-registered pluggable databases in the `GetWorkRequest` operation.
+      This operation will return un-registered pluggable databases in the L(GetWorkRequest,https://docs.cloud.oracle.com/en-
+      us/iaas/api/#/en/workrequests/20160918/WorkRequest/GetWorkRequest) operation.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:

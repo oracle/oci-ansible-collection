@@ -36,7 +36,7 @@ options:
         required: true
     availability_domain:
         description:
-            - The name of the availibilityDomain.
+            - The name of the availabilityDomain.
         type: str
         required: true
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]

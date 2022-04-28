@@ -30,7 +30,7 @@ oracle.oci.oci_compute_instance -- Manage an Instance resource in Oracle Cloud I
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -65,7 +65,7 @@ Synopsis
 - When you launch an instance, it is automatically attached to a virtual network interface card (VNIC), called the *primary VNIC*. The VNIC has a private IP address from the subnet's CIDR. You can either assign a private IP address of your choice or let Oracle automatically assign one. You can choose whether the instance has a public IP address. To retrieve the addresses, use the `ListVnicAttachments <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/VnicAttachment/ListVnicAttachments>`_ operation to get the VNIC ID for the instance, and then call `GetVnic <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Vnic/GetVnic>`_ with the VNIC ID.
 - You can later add secondary VNICs to an instance. For more information, see L(Virtual Network Interface Cards (VNICs),https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingVNICs.htm).
 - To launch an instance from a Marketplace image listing, you must provide the image ID of the listing resource version that you want, but you also must subscribe to the listing before you try to launch the instance. To subscribe to the listing, use the `GetAppCatalogListingAgreements <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/AppCatalogListingResourceVersionAgreements/GetAppCatalogListingAgreements>`_ operation to get the signature for the terms of use agreement for the desired listing resource version. Then, call `CreateAppCatalogSubscription <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/AppCatalogSubscription/CreateAppCatalogSubscription>`_ with the signature. To get the image ID for the LaunchInstance operation, call `GetAppCatalogListingResourceVersion <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/AppCatalogListingResourceVersion/GetAppCatalogListingResourceVersion>`_.
-- This resource has the following action operations in the :ref:`oracle.oci.oci_compute_instance_actions <ansible_collections.oracle.oci.oci_compute_instance_actions_module>` module: stop, start, softreset, reset, softstop, senddiagnosticinterrupt.
+- This resource has the following action operations in the :ref:`oracle.oci.oci_compute_instance_actions <ansible_collections.oracle.oci.oci_compute_instance_actions_module>` module: stop, start, softreset, reset, softstop, senddiagnosticinterrupt, diagnosticreboot.
 
 
 .. Aliases

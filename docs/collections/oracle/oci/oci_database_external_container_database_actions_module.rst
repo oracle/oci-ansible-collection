@@ -30,7 +30,7 @@ oracle.oci.oci_database_external_container_database_actions -- Perform actions o
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -60,7 +60,7 @@ Synopsis
 - For *action=change_compartment*, move the `external container database <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/datatypes/CreateExternalContainerDatabaseDetails>`_ and its dependent resources to the specified compartment. For more information about moving external container databases, see `Moving Database Resources to a Different Compartment <https://docs.cloud.oracle.com/Content/Database/Concepts/databaseoverview.htm#moveRes>`_.
 - For *action=disable_external_container_database_database_management*, disable Database Management service for the external container database.
 - For *action=enable_external_container_database_database_management*, enables Database Management Service for the external container database. For more information about the Database Management Service, see `Database Management Service <https://docs.cloud.oracle.com/Content/ExternalDatabase/Concepts/databasemanagementservice.htm>`_.
-- For *action=scan_external_container_database_pluggable_databases*, scans for pluggable databases in the specified external container database. This operation will return un-registered pluggable databases in the `GetWorkRequest` operation.
+- For *action=scan_external_container_database_pluggable_databases*, scans for pluggable databases in the specified external container database. This operation will return un-registered pluggable databases in the `GetWorkRequest <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/workrequests/20160918/WorkRequest/GetWorkRequest>`_ operation.
 
 
 .. Aliases

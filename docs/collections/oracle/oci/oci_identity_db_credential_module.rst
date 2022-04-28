@@ -30,7 +30,7 @@ oracle.oci.oci_identity_db_credential -- Manage a DbCredential resource in Oracl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -227,6 +227,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The description you assign to the DB credentials during creation.</div>
+                                            <div>(For tenancies that support identity domains) You can have an empty description.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
@@ -470,6 +471,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The description you assign to the DB credential. Does not have to be unique, and it&#x27;s changeable.</div>
+                                            <div>(For tenancies that support identity domains) You can have an empty description.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>

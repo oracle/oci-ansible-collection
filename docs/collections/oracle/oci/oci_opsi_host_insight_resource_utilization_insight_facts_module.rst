@@ -30,7 +30,7 @@ oracle.oci.oci_opsi_host_insight_resource_utilization_insight_facts -- Fetches d
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -365,10 +365,11 @@ Parameters
                                                                                                                                                                 <li>LINUX</li>
                                                                                                                                                                                                 <li>SOLARIS</li>
                                                                                                                                                                                                 <li>SUNOS</li>
+                                                                                                                                                                                                <li>ZLINUX</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Filter by one or more platform types. Supported platformType(s) for MACS-managed external host insight: [LINUX]. Supported platformType(s) for EM-managed external host insight: [LINUX, SOLARIS, SUNOS].</div>
+                                            <div>Filter by one or more platform types. Supported platformType(s) for MACS-managed external host insight: [LINUX]. Supported platformType(s) for EM-managed external host insight: [LINUX, SOLARIS, SUNOS, ZLINUX].</div>
                                                         </td>
             </tr>
                                 <tr>

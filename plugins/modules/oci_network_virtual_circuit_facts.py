@@ -238,6 +238,18 @@ virtual_circuits:
             returned: on success
             type: list
             sample: []
+        bgp_admin_state:
+            description:
+                - Set to ENABLED to activate the  bgp session of virtual circuit, DISABLED to deactivate.
+            returned: on success
+            type: str
+            sample: ENABLED
+        is_bfd_enabled:
+            description:
+                - Set to true to enable BFD for ipv4 Bgp Peering, false to disable. If not set, default is false
+            returned: on success
+            type: bool
+            sample: true
         customer_bgp_asn:
             description:
                 - Deprecated. Instead use `customerAsn`.
@@ -407,6 +419,8 @@ virtual_circuits:
             "vlan": 56
         }],
         "routing_policy": [],
+        "bgp_admin_state": "ENABLED",
+        "is_bfd_enabled": true,
         "customer_bgp_asn": 56,
         "customer_asn": 56,
         "defined_tags": {'Operations': {'CostCenter': 'US'}},

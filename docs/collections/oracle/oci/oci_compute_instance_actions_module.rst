@@ -30,7 +30,7 @@ oracle.oci.oci_compute_instance_actions -- Perform actions on an Instance resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -66,6 +66,7 @@ Synopsis
 - - **SOFTSTOP** - Gracefully shuts down the instance by sending a shutdown command to the operating system. After waiting 15 minutes for the OS to shut down, the instance is powered off. If the applications that run on the instance take more than 15 minutes to shut down, they could be improperly stopped, resulting in data corruption. To avoid this, manually shut down the instance using the commands available in the OS before you softstop the instance.
 - - **SOFTRESET** - Gracefully reboots the instance by sending a shutdown command to the operating system. After waiting 15 minutes for the OS to shut down, the instance is powered off and then powered back on.
 - - **SENDDIAGNOSTICINTERRUPT** - For advanced users. **Warning: Sending a diagnostic interrupt to a live system can cause data corruption or system failure.** Sends a diagnostic interrupt that causes the instance's OS to crash and then reboot. Before you send a diagnostic interrupt, you must configure the instance to generate a crash dump file when it crashes. The crash dump captures information about the state of the OS at the time of the crash. After the OS restarts, you can analyze the crash dump to diagnose the issue. For more information, see `Sending a Diagnostic Interrupt <https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/sendingdiagnosticinterrupt.htm>`_.
+- - **DIAGNOSTICREBOOT** - Powers off the instance, rebuilds it on the physical host, and then powers it back on. Before you send a diagnostic reboot, restart the instance's OS, confirm that the instance and networking settings are configured correctly, and try other `troubleshooting steps <https://docs.cloud.oracle.com/iaas/Content/Compute/References/troubleshooting-compute-instances.htm>`_. Use diagnostic reboot as a final attempt to troubleshoot an unreachable instance. For virtual machine (VM) instances only. For more information, see `Performing a Diagnostic Reboot <https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/diagnostic-reboot.htm>`_.
 - For more information about managing instance lifecycle states, see `Stopping and Starting an Instance <https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/restartinginstance.htm>`_.
 
 
@@ -113,6 +114,7 @@ Parameters
                                                                                                                                                                                                 <li>reset</li>
                                                                                                                                                                                                 <li>softstop</li>
                                                                                                                                                                                                 <li>senddiagnosticinterrupt</li>
+                                                                                                                                                                                                <li>diagnosticreboot</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -389,6 +391,12 @@ Examples
         action: STOP
 
     - name: Perform action senddiagnosticinterrupt on instance
+      oci_compute_instance_actions:
+        # required
+        instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
+        action: STOP
+
+    - name: Perform action diagnosticreboot on instance
       oci_compute_instance_actions:
         # required
         instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"

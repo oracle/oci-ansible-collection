@@ -30,7 +30,7 @@ oracle.oci.oci_database_exadata_infrastructure -- Manage an ExadataInfrastructur
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -1769,7 +1769,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A field to capture ???Maintenance SLO Status??? for the Exadata infrastructure with values ???OK???, ???DEGRADED???. Default is ???OK??? when the infrastructure is provisioned.</div>
+                                            <div>A field to capture &#x27;Maintenance SLO Status&#x27; for the Exadata infrastructure with values &#x27;OK&#x27;, &#x27;DEGRADED&#x27;. Default is &#x27;OK&#x27; when the infrastructure is provisioned.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">OK</div>

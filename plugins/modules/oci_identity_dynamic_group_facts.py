@@ -127,13 +127,14 @@ dynamic_groups:
         description:
             description:
                 - The description you assign to the group. Does not have to be unique, and it's changeable.
+                - (For tenancies that support identity domains) You can have an empty description.
             returned: on success
             type: str
             sample: description_example
         matching_rule:
             description:
                 - A rule string that defines which instance certificates will be matched.
-                  For syntax, see L(Managing Dynamic Groups,https://docs.cloud.oracle.com/Content/Identity/Tasks/managingdynamicgroups.htm).
+                  For syntax, see L(Managing Dynamic Groups,https://docs.cloud.oracle.com/Content/Identity/dynamicgroups/managingdynamicgroups.htm).
             returned: on success
             type: str
             sample: matching_rule_example

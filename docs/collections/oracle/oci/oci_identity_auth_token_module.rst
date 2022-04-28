@@ -30,7 +30,7 @@ oracle.oci.oci_identity_auth_token -- Manage an AuthToken resource in Oracle Clo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete an AuthToken resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a new auth token for the specified user. For information about what auth tokens are for, see `Managing User Credentials <https://docs.cloud.oracle.com/Content/Identity/Tasks/managingcredentials.htm>`_.
+- For *state=present*, creates a new auth token for the specified user. For information about what auth tokens are for, see `Managing User Credentials <https://docs.cloud.oracle.com/Content/Identity/access/managing-user-credentials.htm>`_.
 - You must specify a *description* for the auth token (although it can be an empty string). It does not have to be unique, and you can change it anytime with `UpdateAuthToken <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/AuthToken/UpdateAuthToken>`_.
 - Every user has permission to create an auth token for *their own user ID*. An administrator in your organization does not need to write a policy to give users this ability. To compare, administrators who have permission to the tenancy can use this operation to create an auth token for any user, including themselves.
 
@@ -230,6 +230,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The description you assign to the auth token during creation. Does not have to be unique, and it&#x27;s changeable.</div>
+                                            <div>(For tenancies that support identity domains) You can have an empty description.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -466,6 +467,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The description you assign to the auth token. Does not have to be unique, and it&#x27;s changeable.</div>
+                                            <div>(For tenancies that support identity domains) You can have an empty description.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>

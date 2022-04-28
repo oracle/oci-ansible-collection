@@ -30,7 +30,7 @@ oracle.oci.oci_identity_tag_namespace_facts -- Fetches details about one or mult
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -495,7 +495,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Whether the tag namespace is retired. See <a href='https://docs.cloud.oracle.com/Content/Identity/Concepts/taggingoverview.htm#Retiring'>Retiring Key Definitions and Namespace Definitions</a>.</div>
+                                            <div>Whether the tag namespace is retired. See <a href='https://docs.cloud.oracle.com/Content/Tagging/Tasks/managingtagsandtagnamespaces.htm#retiringkeys'>Retiring Key Definitions and Namespace Definitions</a>.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>

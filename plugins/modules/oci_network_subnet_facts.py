@@ -191,6 +191,12 @@ subnets:
             returned: on success
             type: str
             sample: ipv6_cidr_block_example
+        ipv6_cidr_blocks:
+            description:
+                - The list of all IPv6 CIDR blocks (Oracle allocated IPv6 GUA, ULA or private IPv6 CIDR blocks, BYOIPv6 CIDR blocks) for the subnet.
+            returned: on success
+            type: list
+            sample: []
         ipv6_virtual_router_ip:
             description:
                 - For an IPv6-enabled subnet, this is the IPv6 address of the virtual router.
@@ -296,6 +302,7 @@ subnets:
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "ipv6_cidr_block": "ipv6_cidr_block_example",
+        "ipv6_cidr_blocks": [],
         "ipv6_virtual_router_ip": "ipv6_virtual_router_ip_example",
         "lifecycle_state": "PROVISIONING",
         "prohibit_internet_ingress": true,

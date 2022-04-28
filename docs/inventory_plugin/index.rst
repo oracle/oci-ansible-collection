@@ -78,6 +78,11 @@ so the plugin can use authentication information that is outlined in the
 File <https://docs.oracle.com/en-us/iaas/Content/API/Concepts/sdkconfig.htm#SDK_and_CLI_Configuration_File>`_.
 Some parameters can also be provided as environment variables.
 
+.. note::
+   For config_file location, either pass the '/full/path/to/config/file' in inventory plugin configuration file.
+   Or pass the 'relative/path/to/config/file' with respect to the directory from where inventory command is executed.
+   Relative path should not be relative with respect to inventory plugin configuration file.
+
 For a complete list of parameters and environment variables that the
 plugin supports, see `OCI Inventory
 Plugin <https://oci-ansible-collection.readthedocs.io/en/latest/collections/oracle/oci/oci_inventory.html#parameters>`_.

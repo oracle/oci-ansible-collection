@@ -30,7 +30,7 @@ author: Oracle (@oracle)
 options:
     project_id:
         description:
-            - unique project identifier.
+            - A unique project identifier.
             - Required to get a specific project.
         type: str
         aliases: ["id"]
@@ -40,7 +40,7 @@ options:
         type: str
     lifecycle_state:
         description:
-            - Filter to match projects with the given lifecycleState.
+            - The filter to match projects with the given lifecycleState.
         type: str
         choices:
             - "CREATING"
@@ -63,7 +63,7 @@ options:
             - "DESC"
     sort_by:
         description:
-            - The field to sort by. Only one sort order may be provided. Default order for timeCreated is descending. Default order for displayName is
+            - The field to sort by. Only one sort order may be provided. The default order for timeCreated is descending. The default order for displayName is
               ascending.
         type: str
         choices:
@@ -99,26 +99,26 @@ projects:
     contains:
         description:
             description:
-                - Optional description of the project.
+                - An optional description of the project.
                 - Returned for get operation
             returned: on success
             type: str
             sample: description_example
         id:
             description:
-                - Unique identifier that is immutable after creation.
+                - A unique identifier that is immutable after creation.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - Human-friendly name for the project, which can be changed.
+                - A human-friendly name for the project, which can be changed.
             returned: on success
             type: str
             sample: display_name_example
         compartment_id:
             description:
-                - Compartment identifier.
+                - A compartment identifier.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -142,28 +142,28 @@ projects:
             sample: CREATING
         lifecycle_details:
             description:
-                - A message describing the current state in more detail which can provide actionable information if creation failed.
+                - A message describing the current state in more detail, that can provide actionable information if creation failed.
             returned: on success
             type: str
             sample: lifecycle_details_example
         freeform_tags:
             description:
-                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-                  Example: `{\\"bar-key\\": \\"value\\"}`"
+                - "A simple key-value pair that is applied without any predefined name, type, or scope. It exists for cross-compatibility only.
+                  For example: `{\\"bar-key\\": \\"value\\"}`"
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
         defined_tags:
             description:
                 - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
-                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+                  For example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
         system_tags:
             description:
                 - "Usage of system tag keys. These predefined keys are scoped to namespaces.
-                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
+                  For example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
             returned: on success
             type: dict
             sample: {}

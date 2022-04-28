@@ -24,7 +24,7 @@ short_description: Manage an User resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete an User resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new user in your tenancy. For conceptual information about users, your tenancy, and other
-      IAM Service components, see L(Overview of the IAM Service,https://docs.cloud.oracle.com/Content/Identity/Concepts/overview.htm).
+      IAM Service components, see L(Overview of IAM,https://docs.cloud.oracle.com/Content/Identity/getstarted/identity-domains.htm).
     - You must specify your tenancy's OCID as the compartment ID in the request object (remember that the
       tenancy is simply the root compartment). Notice that IAM resources (users, groups, compartments, and
       some policies) reside within the tenancy itself, unlike cloud resources such as compute instances,
@@ -72,12 +72,14 @@ options:
     description:
         description:
             - The description you assign to the user during creation. Does not have to be unique, and it's changeable.
+            - (For tenancies that support identity domains) You can have an empty description.
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
     email:
         description:
-            - The email you assign to the user. Has to be unique across the tenancy.
+            - The email you assign to the user during creation. The email must be unique across all users in the tenancy.
+            - (For tenancies that support identity domains) You must provide an email for each user.
             - This parameter is updatable.
         type: str
     db_user_name:
@@ -200,6 +202,7 @@ user:
         description:
             description:
                 - The description you assign to the user. Does not have to be unique, and it's changeable.
+                - (For tenancies that support identity domains) You can have an empty description.
             returned: on success
             type: str
             sample: description_example
@@ -207,6 +210,7 @@ user:
             description:
                 - The email address you assign to the user.
                   The email address must be unique across all users in the tenancy.
+                - (For tenancies that support identity domains) The email address is required unless the requirement is disabled at the tenancy level.
             returned: on success
             type: str
             sample: email_example

@@ -30,7 +30,7 @@ oracle.oci.oci_compute_shape_facts -- Fetches details about one or multiple Shap
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -342,7 +342,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Shape resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;baseline_ocpu_utilizations&#x27;: [], &#x27;billing_type&#x27;: &#x27;ALWAYS_FREE&#x27;, &#x27;gpu_description&#x27;: &#x27;gpu_description_example&#x27;, &#x27;gpus&#x27;: 56, &#x27;is_billed_for_stopped_instance&#x27;: True, &#x27;is_flexible&#x27;: True, &#x27;is_live_migration_supported&#x27;: True, &#x27;is_subcore&#x27;: True, &#x27;local_disk_description&#x27;: &#x27;local_disk_description_example&#x27;, &#x27;local_disks&#x27;: 56, &#x27;local_disks_total_size_in_gbs&#x27;: 3.4, &#x27;max_vnic_attachment_options&#x27;: {&#x27;default_per_ocpu&#x27;: 3.4, &#x27;max&#x27;: 3.4, &#x27;min&#x27;: 56}, &#x27;max_vnic_attachments&#x27;: 56, &#x27;memory_in_gbs&#x27;: 3.4, &#x27;memory_options&#x27;: {&#x27;default_per_ocpu_in_g_bs&#x27;: 3.4, &#x27;max_in_g_bs&#x27;: 3.4, &#x27;max_per_ocpu_in_gbs&#x27;: 3.4, &#x27;min_in_g_bs&#x27;: 3.4, &#x27;min_per_ocpu_in_gbs&#x27;: 3.4}, &#x27;min_total_baseline_ocpus_required&#x27;: 10, &#x27;networking_bandwidth_in_gbps&#x27;: 3.4, &#x27;networking_bandwidth_options&#x27;: {&#x27;default_per_ocpu_in_gbps&#x27;: 3.4, &#x27;max_in_gbps&#x27;: 3.4, &#x27;min_in_gbps&#x27;: 3.4}, &#x27;ocpu_options&#x27;: {&#x27;max&#x27;: 3.4, &#x27;min&#x27;: 3.4}, &#x27;ocpus&#x27;: 3.4, &#x27;platform_config_options&#x27;: {&#x27;measured_boot_options&#x27;: {&#x27;allowed_values&#x27;: [], &#x27;is_default_enabled&#x27;: True}, &#x27;numa_nodes_per_socket_platform_options&#x27;: {&#x27;default_value&#x27;: &#x27;default_value_example&#x27;, &#x27;service_allowed_values&#x27;: []}, &#x27;secure_boot_options&#x27;: {&#x27;allowed_values&#x27;: [], &#x27;is_default_enabled&#x27;: True}, &#x27;trusted_platform_module_options&#x27;: {&#x27;allowed_values&#x27;: [], &#x27;is_default_enabled&#x27;: True}, &#x27;type&#x27;: &#x27;AMD_MILAN_BM&#x27;}, &#x27;processor_description&#x27;: &#x27;processor_description_example&#x27;, &#x27;quota_names&#x27;: [], &#x27;recommended_alternatives&#x27;: [{&#x27;shape_name&#x27;: &#x27;shape_name_example&#x27;}], &#x27;resize_compatible_shapes&#x27;: [], &#x27;shape&#x27;: &#x27;shape_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;baseline_ocpu_utilizations&#x27;: [], &#x27;billing_type&#x27;: &#x27;ALWAYS_FREE&#x27;, &#x27;gpu_description&#x27;: &#x27;gpu_description_example&#x27;, &#x27;gpus&#x27;: 56, &#x27;is_billed_for_stopped_instance&#x27;: True, &#x27;is_flexible&#x27;: True, &#x27;is_live_migration_supported&#x27;: True, &#x27;is_subcore&#x27;: True, &#x27;local_disk_description&#x27;: &#x27;local_disk_description_example&#x27;, &#x27;local_disks&#x27;: 56, &#x27;local_disks_total_size_in_gbs&#x27;: 3.4, &#x27;max_vnic_attachment_options&#x27;: {&#x27;default_per_ocpu&#x27;: 3.4, &#x27;max&#x27;: 3.4, &#x27;min&#x27;: 56}, &#x27;max_vnic_attachments&#x27;: 56, &#x27;memory_in_gbs&#x27;: 3.4, &#x27;memory_options&#x27;: {&#x27;default_per_ocpu_in_g_bs&#x27;: 3.4, &#x27;max_in_g_bs&#x27;: 3.4, &#x27;max_per_ocpu_in_gbs&#x27;: 3.4, &#x27;min_in_g_bs&#x27;: 3.4, &#x27;min_per_ocpu_in_gbs&#x27;: 3.4}, &#x27;min_total_baseline_ocpus_required&#x27;: 10, &#x27;network_ports&#x27;: 56, &#x27;networking_bandwidth_in_gbps&#x27;: 3.4, &#x27;networking_bandwidth_options&#x27;: {&#x27;default_per_ocpu_in_gbps&#x27;: 3.4, &#x27;max_in_gbps&#x27;: 3.4, &#x27;min_in_gbps&#x27;: 3.4}, &#x27;ocpu_options&#x27;: {&#x27;max&#x27;: 3.4, &#x27;min&#x27;: 3.4}, &#x27;ocpus&#x27;: 3.4, &#x27;platform_config_options&#x27;: {&#x27;measured_boot_options&#x27;: {&#x27;allowed_values&#x27;: [], &#x27;is_default_enabled&#x27;: True}, &#x27;numa_nodes_per_socket_platform_options&#x27;: {&#x27;default_value&#x27;: &#x27;default_value_example&#x27;, &#x27;service_allowed_values&#x27;: []}, &#x27;secure_boot_options&#x27;: {&#x27;allowed_values&#x27;: [], &#x27;is_default_enabled&#x27;: True}, &#x27;trusted_platform_module_options&#x27;: {&#x27;allowed_values&#x27;: [], &#x27;is_default_enabled&#x27;: True}, &#x27;type&#x27;: &#x27;AMD_MILAN_BM&#x27;}, &#x27;processor_description&#x27;: &#x27;processor_description_example&#x27;, &#x27;quota_names&#x27;: [], &#x27;rdma_bandwidth_in_gbps&#x27;: 56, &#x27;rdma_ports&#x27;: 56, &#x27;recommended_alternatives&#x27;: [{&#x27;shape_name&#x27;: &#x27;shape_name_example&#x27;}], &#x27;resize_compatible_shapes&#x27;: [], &#x27;shape&#x27;: &#x27;shape_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -782,6 +782,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-shapes/network_ports"></div>
+                    <b>network_ports</b>
+                    <a class="ansibleOptionLink" href="#return-shapes/network_ports" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The number of physical network interface card (NIC) ports available for this shape.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1242,6 +1260,42 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The list of of compartment quotas for the shape.</div>
                                         <br/>
                                                         </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-shapes/rdma_bandwidth_in_gbps"></div>
+                    <b>rdma_bandwidth_in_gbps</b>
+                    <a class="ansibleOptionLink" href="#return-shapes/rdma_bandwidth_in_gbps" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The networking bandwidth available for the remote direct memory access (RDMA) network for this shape, in gigabits per second.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-shapes/rdma_ports"></div>
+                    <b>rdma_ports</b>
+                    <a class="ansibleOptionLink" href="#return-shapes/rdma_ports" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The number of networking ports available for the remote direct memory access (RDMA) network between nodes in a high performance computing (HPC) cluster network. If the shape does not support cluster networks, this value is `0`.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>

@@ -29,27 +29,14 @@ author: Oracle (@oracle)
 options:
     features:
         description:
-            - Types of image analysis.
+            - The types of image analysis.
         type: list
         elements: dict
         required: true
         suboptions:
-            feature_type:
-                description:
-                    - "Type of image analysis requested.
-                      Allowed values are:
-                      - `IMAGE_CLASSIFICATION`: Label the image.
-                      - `OBJECT_DETECTION`: Identify objects in the image with bounding boxes.
-                      - `TEXT_DETECTION`: Recognize text in the image."
-                type: str
-                choices:
-                    - "TEXT_DETECTION"
-                    - "OBJECT_DETECTION"
-                    - "IMAGE_CLASSIFICATION"
-                required: true
             language:
                 description:
-                    - Language of the document image, abbreviated according to ISO 639-2.
+                    - The language of the document image, abbreviated according to ISO 639-2.
                     - Applicable when feature_type is 'TEXT_DETECTION'
                 type: str
                 choices:
@@ -78,6 +65,19 @@ options:
                     - "JPN"
                     - "KOR"
                     - "OTHERS"
+            feature_type:
+                description:
+                    - "The type of image analysis requested.
+                      The allowed values are:
+                      - `IMAGE_CLASSIFICATION`: Label the image.
+                      - `OBJECT_DETECTION`: Identify objects in the image with bounding boxes.
+                      - `TEXT_DETECTION`: Recognize text in the image."
+                type: str
+                choices:
+                    - "TEXT_DETECTION"
+                    - "OBJECT_DETECTION"
+                    - "IMAGE_CLASSIFICATION"
+                required: true
             max_results:
                 description:
                     - The maximum number of results to return.
@@ -85,7 +85,7 @@ options:
                 type: int
             model_id:
                 description:
-                    - Custom model id.
+                    - The custom model ID.
                     - Applicable when feature_type is one of ['IMAGE_CLASSIFICATION', 'OBJECT_DETECTION']
                 type: str
     image:
@@ -94,40 +94,40 @@ options:
         type: dict
         required: true
         suboptions:
+            namespace_name:
+                description:
+                    - The Object Storage namespace.
+                    - Required when source is 'OBJECT_STORAGE'
+                type: str
+            bucket_name:
+                description:
+                    - The Object Storage bucket name.
+                    - Required when source is 'OBJECT_STORAGE'
+                type: str
+            object_name:
+                description:
+                    - The Object Storage object name.
+                    - Required when source is 'OBJECT_STORAGE'
+                type: str
             source:
                 description:
-                    - "The location of image data
-                      Allowed values are:
-                      - `INLINE`: Data is included directly in the request payload.
+                    - "The location of the image data.
+                      The allowed values are:
+                      - `INLINE`: The data is included directly in the request payload.
                       - `OBJECT_STORAGE`: The image is in OCI Object Storage."
                 type: str
                 choices:
                     - "OBJECT_STORAGE"
                     - "INLINE"
                 required: true
-            namespace_name:
-                description:
-                    - Object Storage namespace.
-                    - Required when source is 'OBJECT_STORAGE'
-                type: str
-            bucket_name:
-                description:
-                    - Object Storage bucket name.
-                    - Required when source is 'OBJECT_STORAGE'
-                type: str
-            object_name:
-                description:
-                    - Object Storage object name.
-                    - Required when source is 'OBJECT_STORAGE'
-                type: str
             data:
                 description:
-                    - Image raw data.
+                    - Raw image data.
                     - Required when source is 'INLINE'
                 type: str
     compartment_id:
         description:
-            - The ocid of the compartment that calls the API.
+            - The OCID of the compartment that calls the API.
         type: str
     action:
         description:
@@ -151,10 +151,10 @@ EXAMPLES = """
       language: ENG
     image:
       # required
-      source: OBJECT_STORAGE
       namespace_name: namespace_name_example
       bucket_name: bucket_name_example
       object_name: object_name_example
+      source: OBJECT_STORAGE
     action: analyze_image
 
     # optional
@@ -171,19 +171,19 @@ analyze_image_result:
     contains:
         image_objects:
             description:
-                - Detected objects.
+                - The detected objects.
             returned: on success
             type: complex
             contains:
                 name:
                     description:
-                        - Object category name. Every value returned by the pre-deployed model will be in English.
+                        - The object category name. Every value returned by the pre-deployed model is in English.
                     returned: on success
                     type: str
                     sample: name_example
                 confidence:
                     description:
-                        - Confidence score between 0 to 1.
+                        - The confidence score, between 0 and 1.
                     returned: on success
                     type: float
                     sample: 3.4
@@ -197,62 +197,62 @@ analyze_image_result:
                             description:
                                 - "An array of normalized points defining the polygon's perimeter, with an implicit segment between subsequent points and
                                   between the first and last point.
-                                  Rectangles are defined with four points, e.g. `[{\\"x\\": 0, \\"y\\": 0}, {\\"x\\": 1, \\"y\\": 0}, {\\"x\\": 1, \\"y\\":
-                                  0.5}, {\\"x\\": 0, \\"y\\": 0.5}]` represents the top half of an image."
+                                  Rectangles are defined with four points. For example, `[{\\"x\\": 0, \\"y\\": 0}, {\\"x\\": 1, \\"y\\": 0}, {\\"x\\": 1,
+                                  \\"y\\": 0.5}, {\\"x\\": 0, \\"y\\": 0.5}]` represents the top half of an image."
                             returned: on success
                             type: complex
                             contains:
                                 x:
                                     description:
-                                        - X axis normalized coordinate.
+                                        - The X-axis normalized coordinate.
                                     returned: on success
                                     type: float
                                     sample: 1.2
                                 y:
                                     description:
-                                        - Y axis normalized coordinate.
+                                        - The Y-axis normalized coordinate.
                                     returned: on success
                                     type: float
                                     sample: 1.2
         labels:
             description:
-                - Image classification labels.
+                - The image classification labels.
             returned: on success
             type: complex
             contains:
                 name:
                     description:
-                        - Classification catagory label name.
+                        - The classification catagory label name.
                     returned: on success
                     type: str
                     sample: name_example
                 confidence:
                     description:
-                        - Confidence score between 0 to 1.
+                        - The confidence score between 0 and 1.
                     returned: on success
                     type: float
                     sample: 3.4
         ontology_classes:
             description:
-                - ontologyClasses of image labels.
+                - The ontologyClasses of image labels.
             returned: on success
             type: complex
             contains:
                 name:
                     description:
-                        - Name of the label.
+                        - The label name.
                     returned: on success
                     type: str
                     sample: name_example
                 parent_names:
                     description:
-                        - Parents of the label.
+                        - The label parents.
                     returned: on success
                     type: list
                     sample: []
                 synonym_names:
                     description:
-                        - Synonyms of the label.
+                        - The label synonyms.
                     returned: on success
                     type: list
                     sample: []
@@ -264,19 +264,19 @@ analyze_image_result:
             contains:
                 words:
                     description:
-                        - Words recognized in the image.
+                        - The words recognized in an image.
                     returned: on success
                     type: complex
                     contains:
                         text:
                             description:
-                                - String of text characters in the word.
+                                - The string of text characters in the word.
                             returned: on success
                             type: str
                             sample: text_example
                         confidence:
                             description:
-                                - Confidence score between 0 to 1.
+                                - the confidence score between 0 and 1.
                             returned: on success
                             type: float
                             sample: 3.4
@@ -290,38 +290,38 @@ analyze_image_result:
                                     description:
                                         - "An array of normalized points defining the polygon's perimeter, with an implicit segment between subsequent points
                                           and between the first and last point.
-                                          Rectangles are defined with four points, e.g. `[{\\"x\\": 0, \\"y\\": 0}, {\\"x\\": 1, \\"y\\": 0}, {\\"x\\": 1,
-                                          \\"y\\": 0.5}, {\\"x\\": 0, \\"y\\": 0.5}]` represents the top half of an image."
+                                          Rectangles are defined with four points. For example, `[{\\"x\\": 0, \\"y\\": 0}, {\\"x\\": 1, \\"y\\": 0}, {\\"x\\":
+                                          1, \\"y\\": 0.5}, {\\"x\\": 0, \\"y\\": 0.5}]` represents the top half of an image."
                                     returned: on success
                                     type: complex
                                     contains:
                                         x:
                                             description:
-                                                - X axis normalized coordinate.
+                                                - The X-axis normalized coordinate.
                                             returned: on success
                                             type: float
                                             sample: 1.2
                                         y:
                                             description:
-                                                - Y axis normalized coordinate.
+                                                - The Y-axis normalized coordinate.
                                             returned: on success
                                             type: float
                                             sample: 1.2
                 lines:
                     description:
-                        - Lines of text recognized in the image.
+                        - The lines of text recognized in an image.
                     returned: on success
                     type: complex
                     contains:
                         text:
                             description:
-                                - Text recognized.
+                                - The text recognized.
                             returned: on success
                             type: str
                             sample: text_example
                         confidence:
                             description:
-                                - Confidence score between 0 to 1.
+                                - The confidence score between 0 and 1.
                             returned: on success
                             type: float
                             sample: 3.4
@@ -335,62 +335,62 @@ analyze_image_result:
                                     description:
                                         - "An array of normalized points defining the polygon's perimeter, with an implicit segment between subsequent points
                                           and between the first and last point.
-                                          Rectangles are defined with four points, e.g. `[{\\"x\\": 0, \\"y\\": 0}, {\\"x\\": 1, \\"y\\": 0}, {\\"x\\": 1,
-                                          \\"y\\": 0.5}, {\\"x\\": 0, \\"y\\": 0.5}]` represents the top half of an image."
+                                          Rectangles are defined with four points. For example, `[{\\"x\\": 0, \\"y\\": 0}, {\\"x\\": 1, \\"y\\": 0}, {\\"x\\":
+                                          1, \\"y\\": 0.5}, {\\"x\\": 0, \\"y\\": 0.5}]` represents the top half of an image."
                                     returned: on success
                                     type: complex
                                     contains:
                                         x:
                                             description:
-                                                - X axis normalized coordinate.
+                                                - The X-axis normalized coordinate.
                                             returned: on success
                                             type: float
                                             sample: 1.2
                                         y:
                                             description:
-                                                - Y axis normalized coordinate.
+                                                - The Y-axis normalized coordinate.
                                             returned: on success
                                             type: float
                                             sample: 1.2
                         word_indexes:
                             description:
-                                - Array of words.
+                                - The array of words.
                             returned: on success
                             type: list
                             sample: []
         image_classification_model_version:
             description:
-                - Image classification model version.
+                - The image classification model version.
             returned: on success
             type: str
             sample: image_classification_model_version_example
         object_detection_model_version:
             description:
-                - Object detection model version.
+                - The object detection model version.
             returned: on success
             type: str
             sample: object_detection_model_version_example
         text_detection_model_version:
             description:
-                - Text detection model version.
+                - The text detection model version.
             returned: on success
             type: str
             sample: text_detection_model_version_example
         errors:
             description:
-                - Errors encountered during image analysis.
+                - The errors encountered during image analysis.
             returned: on success
             type: complex
             contains:
                 code:
                     description:
-                        - Error code.
+                        - The error code.
                     returned: on success
                     type: str
                     sample: code_example
                 message:
                     description:
-                        - Error message.
+                        - The error message.
                     returned: on success
                     type: str
                     sample: message_example
@@ -516,15 +516,6 @@ def main():
                 elements="dict",
                 required=True,
                 options=dict(
-                    feature_type=dict(
-                        type="str",
-                        required=True,
-                        choices=[
-                            "TEXT_DETECTION",
-                            "OBJECT_DETECTION",
-                            "IMAGE_CLASSIFICATION",
-                        ],
-                    ),
                     language=dict(
                         type="str",
                         choices=[
@@ -555,6 +546,15 @@ def main():
                             "OTHERS",
                         ],
                     ),
+                    feature_type=dict(
+                        type="str",
+                        required=True,
+                        choices=[
+                            "TEXT_DETECTION",
+                            "OBJECT_DETECTION",
+                            "IMAGE_CLASSIFICATION",
+                        ],
+                    ),
                     max_results=dict(type="int"),
                     model_id=dict(type="str"),
                 ),
@@ -563,12 +563,12 @@ def main():
                 type="dict",
                 required=True,
                 options=dict(
-                    source=dict(
-                        type="str", required=True, choices=["OBJECT_STORAGE", "INLINE"]
-                    ),
                     namespace_name=dict(type="str"),
                     bucket_name=dict(type="str"),
                     object_name=dict(type="str"),
+                    source=dict(
+                        type="str", required=True, choices=["OBJECT_STORAGE", "INLINE"]
+                    ),
                     data=dict(type="str"),
                 ),
             ),

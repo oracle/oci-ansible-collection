@@ -30,7 +30,7 @@ oracle.oci.oci_identity_tag_namespace_actions -- Perform actions on a TagNamespa
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -58,7 +58,7 @@ Synopsis
 
 - Perform actions on a TagNamespace resource in Oracle Cloud Infrastructure
 - For *action=cascade_delete*, deletes the specified tag namespace. This operation triggers a process that removes all of the tags defined in the specified tag namespace from all resources in your tenancy and then deletes the tag namespace. After you start the delete operation: * New tag key definitions cannot be created under the namespace. * The state of the tag namespace changes to DELETING. * Tag removal from the resources begins. This process can take up to 48 hours depending on the number of tag definitions in the namespace, the number of resources that are tagged, and the locations of the regions in which those resources reside. After all tags are removed, the state changes to DELETED. You cannot restore a deleted tag namespace. After the deleted tag namespace changes its state to DELETED, you can use the name of the deleted tag namespace again. After you start this operation, you cannot start either the `DeleteTag <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/Tag/DeleteTag>`_ or the `BulkDeleteTags <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/Tag/BulkDeleteTags>`_ operation until this process completes. To delete a tag namespace, you must first retire it. Use `UpdateTagNamespace <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/identity/20160918/TagNamespace/UpdateTagNamespace>`_ to retire a tag namespace.
-- For *action=change_compartment*, moves the specified tag namespace to the specified compartment within the same tenancy. To move the tag namespace, you must have the manage tag-namespaces permission on both compartments. For more information about IAM policies, see `Details for IAM <https://docs.cloud.oracle.com/Content/Identity/Reference/iampolicyreference.htm>`_. Moving a tag namespace moves all the tag key definitions contained in the tag namespace.
+- For *action=change_compartment*, moves the specified tag namespace to the specified compartment within the same tenancy. To move the tag namespace, you must have the manage tag-namespaces permission on both compartments. For more information about IAM policies, see `Details for IAM <https://docs.cloud.oracle.com/Content/Identity/policyreference/iampolicyreference.htm>`_. Moving a tag namespace moves all the tag key definitions contained in the tag namespace.
 
 
 .. Aliases
@@ -491,7 +491,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Whether the tag namespace is retired. See <a href='https://docs.cloud.oracle.com/Content/Identity/Concepts/taggingoverview.htm#Retiring'>Retiring Key Definitions and Namespace Definitions</a>.</div>
+                                            <div>Whether the tag namespace is retired. See <a href='https://docs.cloud.oracle.com/Content/Tagging/Tasks/managingtagsandtagnamespaces.htm#retiringkeys'>Retiring Key Definitions and Namespace Definitions</a>.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>

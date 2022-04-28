@@ -54,7 +54,8 @@ options:
     is_retired:
         description:
             - Whether the tag is retired.
-              See L(Retiring Key Definitions and Namespace Definitions,https://docs.cloud.oracle.com/Content/Identity/Concepts/taggingoverview.htm#Retiring).
+              See L(Retiring Key Definitions and Namespace
+              Definitions,https://docs.cloud.oracle.com/Content/Tagging/Tasks/managingtagsandtagnamespaces.htm#retiringkeys).
             - This parameter is updatable.
         type: bool
     freeform_tags:
@@ -224,7 +225,7 @@ tag:
             description:
                 - Indicates whether the tag is retired.
                   See L(Retiring Key Definitions and Namespace
-                  Definitions,https://docs.cloud.oracle.com/Content/Identity/Concepts/taggingoverview.htm#Retiring).
+                  Definitions,https://docs.cloud.oracle.com/Content/Tagging/Tasks/managingtagsandtagnamespaces.htm#retiringkeys).
             returned: on success
             type: bool
             sample: true
@@ -312,6 +313,12 @@ class TagHelperGen(OCIResourceHelperBase):
 
     def get_possible_entity_types(self):
         return super(TagHelperGen, self).get_possible_entity_types() + [
+            "tagdefinition",
+            "tagdefinitions",
+            "identitytagdefinition",
+            "identitytagdefinitions",
+            "tagdefinitionresource",
+            "tagdefinitionsresource",
             "tag",
             "tags",
             "identitytag",

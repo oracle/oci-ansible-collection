@@ -137,6 +137,7 @@ users:
         description:
             description:
                 - The description you assign to the user. Does not have to be unique, and it's changeable.
+                - (For tenancies that support identity domains) You can have an empty description.
             returned: on success
             type: str
             sample: description_example
@@ -144,6 +145,7 @@ users:
             description:
                 - The email address you assign to the user.
                   The email address must be unique across all users in the tenancy.
+                - (For tenancies that support identity domains) The email address is required unless the requirement is disabled at the tenancy level.
             returned: on success
             type: str
             sample: email_example

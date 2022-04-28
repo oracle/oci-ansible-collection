@@ -30,7 +30,7 @@ oracle.oci.oci_identity_network_sources -- Manage a NetworkSources resource in O
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -59,7 +59,7 @@ Synopsis
 - This module allows the user to create, update and delete a NetworkSources resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new network source in your tenancy.
 - You must specify your tenancy's OCID as the compartment ID in the request object (remember that the tenancy is simply the root compartment). Notice that IAM resources (users, groups, compartments, and some policies) reside within the tenancy itself, unlike cloud resources such as compute instances, which typically reside within compartments inside the tenancy. For information about OCIDs, see `Resource Identifiers <https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm>`_.
-- You must also specify a *name* for the network source, which must be unique across all network sources in your tenancy, and cannot be changed. You can use this name or the OCID when writing policies that apply to the network source. For more information about policies, see `How Policies Work <https://docs.cloud.oracle.com/Content/Identity/Concepts/policies.htm>`_.
+- You must also specify a *name* for the network source, which must be unique across all network sources in your tenancy, and cannot be changed. You can use this name or the OCID when writing policies that apply to the network source. For more information about policies, see `How Policies Work <https://docs.cloud.oracle.com/Content/Identity/policieshow/how-policies-work.htm>`_.
 - You must also specify a *description* for the network source (although it can be an empty string). It does not have to be unique, and you can change it anytime with `UpdateNetworkSource <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/identity/20160918/NetworkSource/UpdateNetworkSource>`_.
 - After you send your request, the new object's `lifecycleState` will temporarily be CREATING. Before using the object, first make sure its `lifecycleState` has changed to ACTIVE.
 - After your network resource is created, you can use it in policy to restrict access to only requests made from an allowed IP address specified in your network source. For more information, see `Managing Network Sources <https://docs.cloud.oracle.com/Content/Identity/Tasks/managingnetworksources.htm>`_.

@@ -60,7 +60,8 @@ options:
     is_retired:
         description:
             - Whether the tag namespace is retired.
-              See L(Retiring Key Definitions and Namespace Definitions,https://docs.cloud.oracle.com/Content/Identity/Concepts/taggingoverview.htm#Retiring).
+              See L(Retiring Key Definitions and Namespace
+              Definitions,https://docs.cloud.oracle.com/Content/Tagging/Tasks/managingtagsandtagnamespaces.htm#retiringkeys).
             - This parameter is updatable.
         type: bool
     freeform_tags:
@@ -197,7 +198,7 @@ tag_namespace:
             description:
                 - Whether the tag namespace is retired.
                   See L(Retiring Key Definitions and Namespace
-                  Definitions,https://docs.cloud.oracle.com/Content/Identity/Concepts/taggingoverview.htm#Retiring).
+                  Definitions,https://docs.cloud.oracle.com/Content/Tagging/Tasks/managingtagsandtagnamespaces.htm#retiringkeys).
             returned: on success
             type: bool
             sample: true

@@ -189,13 +189,13 @@ volumes:
             description:
                 - The number of volume performance units (VPUs) that will be applied to this volume per GB,
                   representing the Block Volume service's elastic performance options.
-                  See L(Block Volume Elastic Performance,https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/blockvolumeelasticperformance.htm) for more
-                  information.
+                  See L(Block Volume Performance Levels,https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/blockvolumeperformance.htm#perf_levels) for
+                  more information.
                 - "Allowed values:"
                 - " * `0`: Represents Lower Cost option."
                 - " * `10`: Represents Balanced option."
                 - " * `20`: Represents Higher Performance option."
-                - For performance autotune enabled volumes, It would be the Default(Minimum) VPUs/GB.
+                - " * `30`-`120`: Represents the Ultra High Performance option."
             returned: on success
             type: int
             sample: 56
@@ -244,14 +244,13 @@ volumes:
             sample: "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
         is_auto_tune_enabled:
             description:
-                - Specifies whether the auto-tune performance is enabled for this volume. This field is deprecated.
-                  Use the `DetachedVolumeAutotunePolicy` instead to enable the volume for detached autotune.
+                - Specifies whether the auto-tune performance is enabled for this volume.
             returned: on success
             type: bool
             sample: true
         auto_tuned_vpus_per_gb:
             description:
-                - The number of Volume Performance Units per GB that this volume is effectively tuned to.
+                - The number of Volume Performance Units per GB that this volume is effectively tuned to when it's idle.
             returned: on success
             type: int
             sample: 56

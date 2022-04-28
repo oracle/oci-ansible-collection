@@ -30,7 +30,7 @@ oracle.oci.oci_database_db_node_facts -- Fetches details about one or multiple D
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -480,7 +480,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the backup IP address associated with the database node.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the backup IP address associated with the database node. Use this OCID with either the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/GetPrivateIp'>GetPrivateIp</a> or the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PublicIp/GetPublicIpByPrivateIpId'>GetPublicIpByPrivateIpId</a> API to get the IP address needed to make a database connection.</div>
                                             <div>**Note:** Applies only to Exadata Cloud Service.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -626,7 +626,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the host IP address associated with the database node.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the host IP address associated with the database node. Use this OCID with either the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/GetPrivateIp'>GetPrivateIp</a> or the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PublicIp/GetPublicIpByPrivateIpId'>GetPublicIpByPrivateIpId</a> API to get the IP address needed to make a database connection.</div>
                                             <div>**Note:** Applies only to Exadata Cloud Service.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>

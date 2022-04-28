@@ -30,7 +30,7 @@ oracle.oci.oci_network_virtual_circuit_facts -- Fetches details about one or mul
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -417,7 +417,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of VirtualCircuit resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;bandwidth_shape_name&#x27;: &#x27;bandwidth_shape_name_example&#x27;, &#x27;bgp_ipv6_session_state&#x27;: &#x27;UP&#x27;, &#x27;bgp_management&#x27;: &#x27;CUSTOMER_MANAGED&#x27;, &#x27;bgp_session_state&#x27;: &#x27;UP&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cross_connect_mappings&#x27;: [{&#x27;bgp_md5_auth_key&#x27;: &#x27;bgp_md5_auth_key_example&#x27;, &#x27;cross_connect_or_cross_connect_group_id&#x27;: &#x27;ocid1.crossconnectorcrossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;customer_bgp_peering_ip&#x27;: &#x27;customer_bgp_peering_ip_example&#x27;, &#x27;customer_bgp_peering_ipv6&#x27;: &#x27;customer_bgp_peering_ipv6_example&#x27;, &#x27;oracle_bgp_peering_ip&#x27;: &#x27;oracle_bgp_peering_ip_example&#x27;, &#x27;oracle_bgp_peering_ipv6&#x27;: &#x27;oracle_bgp_peering_ipv6_example&#x27;, &#x27;vlan&#x27;: 56}], &#x27;customer_asn&#x27;: 56, &#x27;customer_bgp_asn&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;gateway_id&#x27;: &#x27;ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ip_mtu&#x27;: &#x27;MTU_1500&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PENDING_PROVIDER&#x27;, &#x27;oracle_bgp_asn&#x27;: 56, &#x27;provider_name&#x27;: &#x27;provider_name_example&#x27;, &#x27;provider_service_id&#x27;: &#x27;ocid1.providerservice.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;provider_service_key_name&#x27;: &#x27;provider_service_key_name_example&#x27;, &#x27;provider_service_name&#x27;: &#x27;provider_service_name_example&#x27;, &#x27;provider_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;public_prefixes&#x27;: [], &#x27;reference_comment&#x27;: &#x27;reference_comment_example&#x27;, &#x27;region&#x27;: &#x27;us-phoenix-1&#x27;, &#x27;routing_policy&#x27;: [], &#x27;service_type&#x27;: &#x27;COLOCATED&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;PUBLIC&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;bandwidth_shape_name&#x27;: &#x27;bandwidth_shape_name_example&#x27;, &#x27;bgp_admin_state&#x27;: &#x27;ENABLED&#x27;, &#x27;bgp_ipv6_session_state&#x27;: &#x27;UP&#x27;, &#x27;bgp_management&#x27;: &#x27;CUSTOMER_MANAGED&#x27;, &#x27;bgp_session_state&#x27;: &#x27;UP&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cross_connect_mappings&#x27;: [{&#x27;bgp_md5_auth_key&#x27;: &#x27;bgp_md5_auth_key_example&#x27;, &#x27;cross_connect_or_cross_connect_group_id&#x27;: &#x27;ocid1.crossconnectorcrossconnectgroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;customer_bgp_peering_ip&#x27;: &#x27;customer_bgp_peering_ip_example&#x27;, &#x27;customer_bgp_peering_ipv6&#x27;: &#x27;customer_bgp_peering_ipv6_example&#x27;, &#x27;oracle_bgp_peering_ip&#x27;: &#x27;oracle_bgp_peering_ip_example&#x27;, &#x27;oracle_bgp_peering_ipv6&#x27;: &#x27;oracle_bgp_peering_ipv6_example&#x27;, &#x27;vlan&#x27;: 56}], &#x27;customer_asn&#x27;: 56, &#x27;customer_bgp_asn&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;gateway_id&#x27;: &#x27;ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ip_mtu&#x27;: &#x27;MTU_1500&#x27;, &#x27;is_bfd_enabled&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;PENDING_PROVIDER&#x27;, &#x27;oracle_bgp_asn&#x27;: 56, &#x27;provider_name&#x27;: &#x27;provider_name_example&#x27;, &#x27;provider_service_id&#x27;: &#x27;ocid1.providerservice.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;provider_service_key_name&#x27;: &#x27;provider_service_key_name_example&#x27;, &#x27;provider_service_name&#x27;: &#x27;provider_service_name_example&#x27;, &#x27;provider_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;public_prefixes&#x27;: [], &#x27;reference_comment&#x27;: &#x27;reference_comment_example&#x27;, &#x27;region&#x27;: &#x27;us-phoenix-1&#x27;, &#x27;routing_policy&#x27;: [], &#x27;service_type&#x27;: &#x27;COLOCATED&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;PUBLIC&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -437,6 +437,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">bandwidth_shape_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-virtual_circuits/bgp_admin_state"></div>
+                    <b>bgp_admin_state</b>
+                    <a class="ansibleOptionLink" href="#return-virtual_circuits/bgp_admin_state" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Set to ENABLED to activate the  bgp session of virtual circuit, DISABLED to deactivate.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ENABLED</div>
                                     </td>
             </tr>
                                 <tr>
@@ -816,6 +834,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">MTU_1500</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-virtual_circuits/is_bfd_enabled"></div>
+                    <b>is_bfd_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-virtual_circuits/is_bfd_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Set to true to enable BFD for ipv4 Bgp Peering, false to disable. If not set, default is false</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
                                 <tr>

@@ -30,7 +30,7 @@ oracle.oci.oci_identity_domain -- Manage a Domain resource in Oracle Cloud Infra
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,9 +57,9 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a Domain resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a new domain in the tenancy with domain home in {@code homeRegion}. This is an asynchronous call - where, at start, {@code lifecycleState} of this domain is set to CREATING and {@code lifecycleDetails} to UPDATING. On domain creation completion this Domain's {@code lifecycleState} will be set to ACTIVE and {@code lifecycleDetails} to null.
-- To track progress, HTTP GET on /iamWorkRequests/{iamWorkRequestsId} endpoint will provide the async operation's status.
-- After creating a `Domain`, make sure its `lifecycleState` changes from CREATING to ACTIVE before using it. If the domain's {@code displayName} already exists, returns 400 BAD REQUEST. If any one of admin related fields are provided and one of the following 3 fields - {@code adminEmail}, {@code adminLastName} and {@code adminUserName} - is not provided, returns 400 BAD REQUEST. - If {@code isNotificationBypassed} is NOT provided when admin information is provided, returns 400 BAD REQUEST. - If any internal error occurs, return 500 INTERNAL SERVER ERROR.
+- For *state=present*, (For tenancies that support identity domains) Creates a new identity domain in the tenancy with the identity domain home in `homeRegion`. After you send your request, the temporary `lifecycleState` of this identity domain is set to CREATING and `lifecycleDetails` to UPDATING. When creation of the identity domain completes, this identity domain's `lifecycleState` is set to ACTIVE and `lifecycleDetails` to null.
+- To track the progress of the request, submitting an HTTP GET on the /iamWorkRequests/{iamWorkRequestsId} endpoint retrieves the operation's status.
+- After creating an `identity domain`, first make sure its `lifecycleState` changes from CREATING to ACTIVE before you use it.
 - This resource has the following action operations in the :ref:`oracle.oci.oci_identity_domain_actions <ansible_collections.oracle.oci.oci_identity_domain_actions_module>` module: activate, change_compartment, change_domain_license_type, deactivate, enable_replication_to_region.
 
 
@@ -101,7 +101,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The admin email address</div>
+                                            <div>The administrator&#x27;s email address.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -116,7 +116,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The admin first name</div>
+                                            <div>The administrator&#x27;s first name.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -131,7 +131,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The admin last name</div>
+                                            <div>The administrator&#x27;s last name.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -146,7 +146,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The admin user name</div>
+                                            <div>The administrator&#x27;s user name.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -242,7 +242,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the Compartment where domain is created</div>
+                                            <div>The OCID of the compartment where the identity domain is created.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for update when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                             <div>Required for delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
@@ -306,7 +306,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Domain entity description</div>
+                                            <div>The identity domain description. You can have an empty description.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -323,7 +323,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The mutable display name of the domain.</div>
+                                            <div>The mutable display name of the identity domain.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                             <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
@@ -342,7 +342,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the domain</div>
+                                            <div>The OCID of the identity domain.</div>
                                             <div>Required for update using <em>state=present</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                             <div>Required for delete using <em>state=absent</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
@@ -416,7 +416,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Indicates whether domain is hidden on login screen or not.</div>
+                                            <div>Indicates whether the identity domain is hidden on the sign-in screen or not.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -436,7 +436,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Indicates if admin user created in IDCS stripe would like to receive notification like welcome email or not. Required field only if admin information is provided, otherwise optional.</div>
+                                            <div>Indicates whether or not the administrator user created in the IDCS stripe would like to receive notifications like a welcome email. This field is required only if admin information is provided. This field is otherwise optional.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -455,7 +455,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Optional field to indicate whether users in the domain are required to have a primary email address or not Defaults to true</div>
+                                            <div>Optional field to indicate whether users in the identity domain are required to have a primary email address or not. The default is true.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -485,7 +485,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The License type of Domain</div>
+                                            <div>The license type of the identity domain.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
@@ -706,7 +706,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the compartment containing the domain.</div>
+                                            <div>The OCID of the compartment containing the identity domain.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -742,7 +742,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The domain descripition</div>
+                                            <div>The identity domain description. You can have an empty description.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
@@ -760,7 +760,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The mutable display name of the domain</div>
+                                            <div>The mutable display name of the identity domain.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
@@ -796,7 +796,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The home region for the domain. See <a href='https://docs.cloud.oracle.com/Content/General/Concepts/regions.htm'>Regions and Availability Domains</a> for the full list of supported region names.</div>
+                                            <div>The home region for the identity domain. See <a href='https://docs.cloud.oracle.com/Content/General/Concepts/regions.htm'>Regions and Availability Domains</a> for the full list of supported region names.</div>
                                             <div>Example: `us-phoenix-1`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -815,7 +815,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Region specific domain URL.</div>
+                                            <div>Region-specific identity domain URL.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">home_region_url_example</div>
@@ -833,7 +833,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the domain</div>
+                                            <div>The OCID of the identity domain.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -851,7 +851,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Indicates whether domain is hidden on login screen or not.</div>
+                                            <div>Indicates whether the identity domain is hidden on the sign-in screen or not.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -869,7 +869,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The License type of Domain</div>
+                                            <div>The license type of the identity domain.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">license_type_example</div>
@@ -887,7 +887,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Any additional details about the current state of the Domain.</div>
+                                            <div>Any additional details about the current state of the identity domain.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">DEACTIVATING</div>
@@ -923,7 +923,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The regions domain is replication to.</div>
+                                            <div>The regions where replicas of the identity domain exist.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -959,7 +959,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The IDCS replicated region state</div>
+                                            <div>The IDCS-replicated region state.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ENABLING_REPLICATION</div>
@@ -978,7 +978,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Region agnostic domain URL.</div>
+                                            <div>Region-agnostic identity domain URL.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">url_example</div>
@@ -997,7 +997,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Date and time the domain was created, in the format defined by RFC3339.</div>
+                                            <div>Date and time the identity domain was created, in the format defined by RFC3339.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -1034,7 +1034,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Region agnostic domain URL.</div>
+                                            <div>Region-agnostic identity domain URL.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">url_example</div>

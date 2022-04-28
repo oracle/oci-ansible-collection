@@ -180,8 +180,9 @@ options:
         type: bool
     admin_password:
         description:
-            - "The password must be between 12 and 30 characters long, and must contain at least 1 uppercase, 1 lowercase, and 1 numeric character. It cannot
-              contain the double quote symbol (\\") or the username \\"admin\\", regardless of casing."
+            - "**Important** The `adminPassword` must be specified for all Autonomous Databases except for refreshable clones. The password must be between 12
+              and 30 characters long, and must contain at least 1 uppercase, 1 lowercase, and 1 numeric character. It cannot contain the double quote symbol
+              (\\") or the username \\"admin\\", regardless of casing."
             - This parameter is updatable.
         type: str
     db_name:
@@ -306,8 +307,7 @@ options:
     is_data_guard_enabled:
         description:
             - Indicates whether the Autonomous Database has local (in-region) Data Guard enabled. Not applicable to cross-region Autonomous Data Guard
-              associations, or to
-              Autonomous Databases using dedicated Exadata infrastructure or Exadata Cloud@Customer infrastructure.
+              associations, or to Autonomous Databases using dedicated Exadata infrastructure or Exadata Cloud@Customer infrastructure.
             - This parameter is updatable.
         type: bool
     peer_db_id:
@@ -426,6 +426,16 @@ options:
             - Indicates if auto scaling is enabled for the Autonomous Database storage. The default value is `FALSE`.
             - This parameter is updatable.
         type: bool
+    max_cpu_core_count:
+        description:
+            - The number of Max OCPU cores to be made available to the autonomous database with auto scaling of cpu enabled.
+            - This parameter is updatable.
+        type: int
+    database_edition:
+        description:
+            - The Oracle Database Edition that applies to the Autonomous databases.
+            - This parameter is updatable.
+        type: str
     autonomous_database_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the source Autonomous Database that you will clone to create
@@ -499,6 +509,8 @@ EXAMPLES = """
       scheduled_start_time: scheduled_start_time_example
       scheduled_stop_time: scheduled_stop_time_example
     is_auto_scaling_for_storage_enabled: true
+    max_cpu_core_count: 56
+    database_edition: database_edition_example
 
 - name: Create autonomous_database with source = CLONE_TO_REFRESHABLE
   oci_database_autonomous_database:
@@ -551,6 +563,8 @@ EXAMPLES = """
       scheduled_start_time: scheduled_start_time_example
       scheduled_stop_time: scheduled_stop_time_example
     is_auto_scaling_for_storage_enabled: true
+    max_cpu_core_count: 56
+    database_edition: database_edition_example
 
 - name: Create autonomous_database with source = BACKUP_FROM_ID
   oci_database_autonomous_database:
@@ -603,6 +617,8 @@ EXAMPLES = """
       scheduled_start_time: scheduled_start_time_example
       scheduled_stop_time: scheduled_stop_time_example
     is_auto_scaling_for_storage_enabled: true
+    max_cpu_core_count: 56
+    database_edition: database_edition_example
 
 - name: Create autonomous_database with source = BACKUP_FROM_TIMESTAMP
   oci_database_autonomous_database:
@@ -656,6 +672,8 @@ EXAMPLES = """
       scheduled_start_time: scheduled_start_time_example
       scheduled_stop_time: scheduled_stop_time_example
     is_auto_scaling_for_storage_enabled: true
+    max_cpu_core_count: 56
+    database_edition: database_edition_example
 
 - name: Create autonomous_database with source = CROSS_REGION_DATAGUARD
   oci_database_autonomous_database:
@@ -707,6 +725,8 @@ EXAMPLES = """
       scheduled_start_time: scheduled_start_time_example
       scheduled_stop_time: scheduled_stop_time_example
     is_auto_scaling_for_storage_enabled: true
+    max_cpu_core_count: 56
+    database_edition: database_edition_example
 
 - name: Create autonomous_database with source = NONE
   oci_database_autonomous_database:
@@ -757,6 +777,8 @@ EXAMPLES = """
       scheduled_start_time: scheduled_start_time_example
       scheduled_stop_time: scheduled_stop_time_example
     is_auto_scaling_for_storage_enabled: true
+    max_cpu_core_count: 56
+    database_edition: database_edition_example
 
 - name: Update autonomous_database
   oci_database_autonomous_database:
@@ -805,6 +827,8 @@ EXAMPLES = """
       scheduled_start_time: scheduled_start_time_example
       scheduled_stop_time: scheduled_stop_time_example
     is_auto_scaling_for_storage_enabled: true
+    max_cpu_core_count: 56
+    database_edition: database_edition_example
 
 - name: Update autonomous_database using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_autonomous_database:
@@ -853,6 +877,8 @@ EXAMPLES = """
       scheduled_start_time: scheduled_start_time_example
       scheduled_stop_time: scheduled_stop_time_example
     is_auto_scaling_for_storage_enabled: true
+    max_cpu_core_count: 56
+    database_edition: database_edition_example
 
 - name: Delete autonomous_database
   oci_database_autonomous_database:
@@ -1503,8 +1529,7 @@ autonomous_database:
         is_data_guard_enabled:
             description:
                 - Indicates whether the Autonomous Database has local (in-region) Data Guard enabled. Not applicable to cross-region Autonomous Data Guard
-                  associations, or to
-                  Autonomous Databases using dedicated Exadata infrastructure or Exadata Cloud@Customer infrastructure.
+                  associations, or to Autonomous Databases using dedicated Exadata infrastructure or Exadata Cloud@Customer infrastructure.
             returned: on success
             type: bool
             sample: true
@@ -1699,6 +1724,18 @@ autonomous_database:
             returned: on success
             type: float
             sample: 1.2
+        max_cpu_core_count:
+            description:
+                - The number of Max OCPU cores to be made available to the autonomous database with auto scaling of cpu enabled.
+            returned: on success
+            type: int
+            sample: 56
+        database_edition:
+            description:
+                - The Oracle Database Edition that applies to the Autonomous databases.
+            returned: on success
+            type: str
+            sample: STANDARD_EDITION
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -1827,7 +1864,9 @@ autonomous_database:
         }],
         "is_auto_scaling_for_storage_enabled": true,
         "allocated_storage_size_in_tbs": 1.2,
-        "actual_used_data_storage_size_in_tbs": 1.2
+        "actual_used_data_storage_size_in_tbs": 1.2,
+        "max_cpu_core_count": 56,
+        "database_edition": "STANDARD_EDITION"
     }
 """
 
@@ -2100,6 +2139,8 @@ def main():
                 ),
             ),
             is_auto_scaling_for_storage_enabled=dict(type="bool"),
+            max_cpu_core_count=dict(type="int"),
+            database_edition=dict(type="str"),
             autonomous_database_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

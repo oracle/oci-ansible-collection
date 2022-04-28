@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a CustomerSecretKey resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new secret key for the specified user. Secret keys are used for authentication with the Object Storage Service's Amazon S3
       compatible API. The secret key consists of an Access Key/Secret Key pair. For information, see
-      L(Managing User Credentials,https://docs.cloud.oracle.com/Content/Identity/Tasks/managingcredentials.htm).
+      L(Managing User Credentials,https://docs.cloud.oracle.com/Content/Identity/access/managing-user-credentials.htm).
     - "You must specify a *description* for the secret key (although it can be an empty string). It does not
       have to be unique, and you can change it anytime with
       L(UpdateCustomerSecretKey,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/CustomerSecretKeySummary/UpdateCustomerSecretKey)."
@@ -50,7 +50,7 @@ options:
         required: true
     customer_secret_key_id:
         description:
-            - The OCID of the secret key.
+            - The access token of the secret key.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str

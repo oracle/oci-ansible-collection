@@ -30,7 +30,7 @@ oracle.oci.oci_osp_gateway_invoice_facts -- Fetches details about one or multipl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -541,7 +541,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Invoice resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;bill_to_address&#x27;: {&#x27;address_line1&#x27;: &#x27;address_line1_example&#x27;, &#x27;address_line2&#x27;: &#x27;address_line2_example&#x27;, &#x27;address_line3&#x27;: &#x27;address_line3_example&#x27;, &#x27;address_line4&#x27;: &#x27;address_line4_example&#x27;, &#x27;city&#x27;: &#x27;city_example&#x27;, &#x27;company_name&#x27;: &#x27;company_name_example&#x27;, &#x27;contact_name&#x27;: &#x27;contact_name_example&#x27;, &#x27;country&#x27;: {&#x27;ascii3_country_code&#x27;: &#x27;ascii3_country_code_example&#x27;, &#x27;country_code&#x27;: &#x27;country_code_example&#x27;, &#x27;country_id&#x27;: 10, &#x27;country_name&#x27;: &#x27;country_name_example&#x27;, &#x27;language_id&#x27;: 10}, &#x27;county&#x27;: &#x27;county_example&#x27;, &#x27;postal_code&#x27;: &#x27;postal_code_example&#x27;, &#x27;province&#x27;: &#x27;province_example&#x27;, &#x27;state&#x27;: &#x27;state_example&#x27;, &#x27;street_name&#x27;: &#x27;street_name_example&#x27;, &#x27;street_number&#x27;: &#x27;street_number_example&#x27;}, &#x27;currency&#x27;: {&#x27;currency_code&#x27;: &#x27;currency_code_example&#x27;, &#x27;currency_symbol&#x27;: &#x27;currency_symbol_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;round_decimal_point&#x27;: 10, &#x27;usd_conversion&#x27;: 10}, &#x27;internal_invoice_id&#x27;: &#x27;ocid1.internalinvoice.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;invoice_amount&#x27;: 10, &#x27;invoice_amount_adjusted&#x27;: 10, &#x27;invoice_amount_applied&#x27;: 10, &#x27;invoice_amount_credited&#x27;: 10, &#x27;invoice_amount_due&#x27;: 10, &#x27;invoice_amount_in_dispute&#x27;: 10, &#x27;invoice_id&#x27;: &#x27;ocid1.invoice.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;invoice_number&#x27;: &#x27;invoice_number_example&#x27;, &#x27;invoice_po_number&#x27;: &#x27;invoice_po_number_example&#x27;, &#x27;invoice_ref_number&#x27;: &#x27;invoice_ref_number_example&#x27;, &#x27;invoice_status&#x27;: &#x27;OPEN&#x27;, &#x27;invoice_type&#x27;: &#x27;HARDWARE&#x27;, &#x27;is_credit_card_payable&#x27;: True, &#x27;is_display_download_pdf&#x27;: True, &#x27;is_display_view_pdf&#x27;: True, &#x27;is_paid&#x27;: True, &#x27;is_payable&#x27;: True, &#x27;is_payment_failed&#x27;: True, &#x27;is_pdf_email_available&#x27;: True, &#x27;last_payment_detail&#x27;: {&#x27;amount_paid&#x27;: 10, &#x27;paid_by&#x27;: &#x27;paid_by_example&#x27;, &#x27;payment_method&#x27;: &#x27;CREDIT_CARD&#x27;, &#x27;time_paid_on&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;party_name&#x27;: &#x27;party_name_example&#x27;, &#x27;payment_terms&#x27;: &#x27;payment_terms_example&#x27;, &#x27;preferred_email&#x27;: &#x27;preferred_email_example&#x27;, &#x27;subscription_ids&#x27;: [], &#x27;tax&#x27;: 10, &#x27;time_invoice&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_invoice_due&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;bill_to_address&#x27;: {&#x27;address_line1&#x27;: &#x27;address_line1_example&#x27;, &#x27;address_line2&#x27;: &#x27;address_line2_example&#x27;, &#x27;address_line3&#x27;: &#x27;address_line3_example&#x27;, &#x27;address_line4&#x27;: &#x27;address_line4_example&#x27;, &#x27;city&#x27;: &#x27;city_example&#x27;, &#x27;company_name&#x27;: &#x27;company_name_example&#x27;, &#x27;contact_name&#x27;: &#x27;contact_name_example&#x27;, &#x27;country&#x27;: {&#x27;ascii3_country_code&#x27;: &#x27;ascii3_country_code_example&#x27;, &#x27;country_code&#x27;: &#x27;country_code_example&#x27;, &#x27;country_id&#x27;: 10, &#x27;country_name&#x27;: &#x27;country_name_example&#x27;, &#x27;language_id&#x27;: 10}, &#x27;county&#x27;: &#x27;county_example&#x27;, &#x27;postal_code&#x27;: &#x27;postal_code_example&#x27;, &#x27;province&#x27;: &#x27;province_example&#x27;, &#x27;state&#x27;: &#x27;state_example&#x27;, &#x27;street_name&#x27;: &#x27;street_name_example&#x27;, &#x27;street_number&#x27;: &#x27;street_number_example&#x27;}, &#x27;currency&#x27;: {&#x27;currency_code&#x27;: &#x27;currency_code_example&#x27;, &#x27;currency_symbol&#x27;: &#x27;currency_symbol_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;round_decimal_point&#x27;: 10, &#x27;usd_conversion&#x27;: 10}, &#x27;internal_invoice_id&#x27;: &#x27;ocid1.internalinvoice.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;invoice_amount&#x27;: 10, &#x27;invoice_amount_adjusted&#x27;: 10, &#x27;invoice_amount_applied&#x27;: 10, &#x27;invoice_amount_credited&#x27;: 10, &#x27;invoice_amount_due&#x27;: 10, &#x27;invoice_amount_in_dispute&#x27;: 10, &#x27;invoice_id&#x27;: &#x27;ocid1.invoice.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;invoice_number&#x27;: &#x27;invoice_number_example&#x27;, &#x27;invoice_po_number&#x27;: &#x27;invoice_po_number_example&#x27;, &#x27;invoice_ref_number&#x27;: &#x27;invoice_ref_number_example&#x27;, &#x27;invoice_status&#x27;: &#x27;OPEN&#x27;, &#x27;invoice_type&#x27;: &#x27;HARDWARE&#x27;, &#x27;is_credit_card_payable&#x27;: True, &#x27;is_display_download_pdf&#x27;: True, &#x27;is_display_view_pdf&#x27;: True, &#x27;is_paid&#x27;: True, &#x27;is_payable&#x27;: True, &#x27;is_payment_failed&#x27;: True, &#x27;is_pdf_email_available&#x27;: True, &#x27;last_payment_detail&#x27;: {&#x27;amount_paid&#x27;: 10, &#x27;credit_card_type&#x27;: &#x27;VISA&#x27;, &#x27;echeck_routing&#x27;: &#x27;echeck_routing_example&#x27;, &#x27;last_digits&#x27;: &#x27;last_digits_example&#x27;, &#x27;name_on_card&#x27;: &#x27;name_on_card_example&#x27;, &#x27;paid_by&#x27;: &#x27;paid_by_example&#x27;, &#x27;payment_method&#x27;: &#x27;CREDIT_CARD&#x27;, &#x27;paypal_id&#x27;: &#x27;ocid1.paypal.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;paypal_reference&#x27;: &#x27;paypal_reference_example&#x27;, &#x27;time_expiration&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_paid_on&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;party_name&#x27;: &#x27;party_name_example&#x27;, &#x27;payment_terms&#x27;: &#x27;payment_terms_example&#x27;, &#x27;preferred_email&#x27;: &#x27;preferred_email_example&#x27;, &#x27;subscription_ids&#x27;: [], &#x27;tax&#x27;: 10, &#x27;time_invoice&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_invoice_due&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1442,6 +1442,82 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-invoices/last_payment_detail/credit_card_type"></div>
+                    <b>credit_card_type</b>
+                    <a class="ansibleOptionLink" href="#return-invoices/last_payment_detail/credit_card_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Credit card type</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">VISA</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-invoices/last_payment_detail/echeck_routing"></div>
+                    <b>echeck_routing</b>
+                    <a class="ansibleOptionLink" href="#return-invoices/last_payment_detail/echeck_routing" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Last four routing digits of the card</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">echeck_routing_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-invoices/last_payment_detail/last_digits"></div>
+                    <b>last_digits</b>
+                    <a class="ansibleOptionLink" href="#return-invoices/last_payment_detail/last_digits" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Last four digits of the card</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">last_digits_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-invoices/last_payment_detail/name_on_card"></div>
+                    <b>name_on_card</b>
+                    <a class="ansibleOptionLink" href="#return-invoices/last_payment_detail/name_on_card" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name on the credit card</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_on_card_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-invoices/last_payment_detail/paid_by"></div>
                     <b>paid_by</b>
                     <a class="ansibleOptionLink" href="#return-invoices/last_payment_detail/paid_by" title="Permalink to this return value"></a>
@@ -1474,6 +1550,63 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREDIT_CARD</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-invoices/last_payment_detail/paypal_id"></div>
+                    <b>paypal_id</b>
+                    <a class="ansibleOptionLink" href="#return-invoices/last_payment_detail/paypal_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The id (email address) of the paypal payment</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.paypal.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-invoices/last_payment_detail/paypal_reference"></div>
+                    <b>paypal_reference</b>
+                    <a class="ansibleOptionLink" href="#return-invoices/last_payment_detail/paypal_reference" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>paypal payment reference</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">paypal_reference_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-invoices/last_payment_detail/time_expiration"></div>
+                    <b>time_expiration</b>
+                    <a class="ansibleOptionLink" href="#return-invoices/last_payment_detail/time_expiration" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Expired date of the credit card</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>

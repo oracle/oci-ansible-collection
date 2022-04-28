@@ -56,7 +56,11 @@ options:
                 default: "NONE"
             source_url:
                 description:
-                    - The Pre-Authenticated Request (PAR) URL of the file you want to import from Object Storage.
+                    - "The Pre-Authenticated Request (PAR) of a bucket/prefix or PAR of a @.manifest.json object from the Object Storage.
+                      Check L(Using Pre-Authenticated Requests,https://docs.oracle.com/en-us/iaas/Content/Object/Tasks/usingpreauthenticatedrequests.htm)
+                      for information related to PAR creation.
+                      Please create PAR with \\"Permit object reads\\" access type and \\"Enable Object Listing\\" permission when using a bucket/prefix PAR.
+                      Please create PAR with \\"Permit object reads\\" access type when using a @.manifest.json object PAR."
                     - Required when source_type is 'IMPORTURL'
                 type: str
     display_name:

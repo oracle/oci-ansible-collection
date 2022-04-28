@@ -30,7 +30,7 @@ oracle.oci.oci -- Oracle Cloud Infrastructure (OCI) inventory plugin
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -479,7 +479,7 @@ Parameters
                             </div>
                                                                                             </td>
                                                 <td>
-                                            <div>The oci config path.</div>
+                                            <div>The oci config path. Either pass the &#x27;/full/path/to/config/file&#x27; in inventory plugin configuration file. Or pass the &#x27;relative/path/to/config/file&#x27; with respect to the directory from where inventory command is executed. Relative path should not be relative with respect to inventory plugin configuration file.</div>
                                                         </td>
             </tr>
                                 <tr>

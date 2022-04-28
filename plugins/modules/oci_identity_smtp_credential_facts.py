@@ -72,6 +72,7 @@ smtp_credentials:
         description:
             description:
                 - The description you assign to the SMTP credential. Does not have to be unique, and it's changeable.
+                - (For tenancies that support identity domains) You can have an empty description.
             returned: on success
             type: str
             sample: description_example

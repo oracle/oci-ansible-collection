@@ -31,7 +31,7 @@ description:
       L(Resource Identifiers,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
     - "You must also specify a *name* for the group, which must be unique across all groups in your tenancy and
       cannot be changed. You can use this name or the OCID when writing policies that apply to the group. For more
-      information about policies, see L(How Policies Work,https://docs.cloud.oracle.com/Content/Identity/Concepts/policies.htm)."
+      information about policies, see L(How Policies Work,https://docs.cloud.oracle.com/Content/Identity/policieshow/how-policies-work.htm)."
     - "You must also specify a *description* for the group (although it can be an empty string). It does not
       have to be unique, and you can change it anytime with L(UpdateGroup,https://docs.cloud.oracle.com/en-
       us/iaas/api/#/en/identity/20160918/Group/UpdateGroup)."
@@ -60,6 +60,7 @@ options:
     description:
         description:
             - The description you assign to the group during creation. Does not have to be unique, and it's changeable.
+            - (For tenancies that support identity domains) You can have an empty description.
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
@@ -173,6 +174,7 @@ group:
         description:
             description:
                 - The description you assign to the group. Does not have to be unique, and it's changeable.
+                - (For tenancies that support identity domains) You can have an empty description.
             returned: on success
             type: str
             sample: description_example

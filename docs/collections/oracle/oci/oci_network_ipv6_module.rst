@@ -30,7 +30,7 @@ oracle.oci.oci_network_ipv6 -- Manage an Ipv6 resource in Oracle Cloud Infrastru
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -304,6 +304,21 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-ipv6_subnet_cidr"></div>
+                    <b>ipv6_subnet_cidr</b>
+                    <a class="ansibleOptionLink" href="#parameter-ipv6_subnet_cidr" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The IPv6 CIDR allocated to the subnet. This is required if more than one IPv6 CIDR exists on the subnet.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-key_by"></div>
                     <b>key_by</b>
                     <a class="ansibleOptionLink" href="#parameter-key_by" title="Permalink to this option"></a>
@@ -451,6 +466,7 @@ Examples
 
         # optional
         ip_address: ip_address_example
+        ipv6_subnet_cidr: ipv6_subnet_cidr_example
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}

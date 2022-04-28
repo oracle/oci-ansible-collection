@@ -24,15 +24,15 @@ short_description: Manage a Policy resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Policy resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new policy in the specified compartment (either the tenancy or another of your compartments).
-      If you're new to policies, see L(Getting Started with Policies,https://docs.cloud.oracle.com/Content/Identity/Concepts/policygetstarted.htm).
+      If you're new to policies, see L(Get Started with Policies,https://docs.cloud.oracle.com/Content/Identity/policiesgs/get-started-with-policies.htm).
     - "You must specify a *name* for the policy, which must be unique across all policies in your tenancy
       and cannot be changed."
     - "You must also specify a *description* for the policy (although it can be an empty string). It does not
       have to be unique, and you can change it anytime with L(UpdatePolicy,https://docs.cloud.oracle.com/en-
       us/iaas/api/#/en/identity/20160918/Policy/UpdatePolicy)."
     - You must specify one or more policy statements in the statements array. For information about writing
-      policies, see L(How Policies Work,https://docs.cloud.oracle.com/Content/Identity/Concepts/policies.htm) and
-      L(Common Policies,https://docs.cloud.oracle.com/Content/Identity/Concepts/commonpolicies.htm).
+      policies, see L(How Policies Work,https://docs.cloud.oracle.com/Content/Identity/policieshow/how-policies-work.htm) and
+      L(Common Policies,https://docs.cloud.oracle.com/Content/Identity/policiescommon/commonpolicies.htm).
     - After you send your request, the new object's `lifecycleState` will temporarily be CREATING. Before using the
       object, first make sure its `lifecycleState` has changed to ACTIVE.
     - New policies take effect typically within 10 seconds.
@@ -62,8 +62,8 @@ options:
     statements:
         description:
             - An array of policy statements written in the policy language. See
-              L(How Policies Work,https://docs.cloud.oracle.com/Content/Identity/Concepts/policies.htm) and
-              L(Common Policies,https://docs.cloud.oracle.com/Content/Identity/Concepts/commonpolicies.htm).
+              L(How Policies Work,https://docs.cloud.oracle.com/Content/Identity/policieshow/how-policies-work.htm) and
+              L(Common Policies,https://docs.cloud.oracle.com/Content/Identity/policiescommon/commonpolicies.htm).
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: list

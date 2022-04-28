@@ -166,6 +166,38 @@ options:
                 type: list
                 elements: dict
                 suboptions:
+                    credit_card_type:
+                        description:
+                            - Credit card type.
+                            - This parameter is updatable.
+                            - Applicable when payment_method is 'CREDIT_CARD'
+                        type: str
+                        choices:
+                            - "VISA"
+                            - "AMEX"
+                            - "MASTERCARD"
+                            - "DISCOVER"
+                            - "JCB"
+                            - "DINER"
+                            - "ELO"
+                    last_digits:
+                        description:
+                            - Last four digits of the card.
+                            - This parameter is updatable.
+                            - Applicable when payment_method is 'CREDIT_CARD'
+                        type: str
+                    name_on_card:
+                        description:
+                            - Name on the credit card.
+                            - This parameter is updatable.
+                            - Applicable when payment_method is 'CREDIT_CARD'
+                        type: str
+                    time_expiration:
+                        description:
+                            - Expired date of the credit card.
+                            - This parameter is updatable.
+                            - Applicable when payment_method is 'CREDIT_CARD'
+                        type: str
                     wallet_instrument_id:
                         description:
                             - Wallet instrument internal id.
@@ -185,6 +217,30 @@ options:
                             - "CREDIT_CARD"
                             - "PAYPAL"
                         required: true
+                    email_address:
+                        description:
+                            - The email address of the paypal user.
+                            - This parameter is updatable.
+                            - Applicable when payment_method is 'PAYPAL'
+                        type: str
+                    first_name:
+                        description:
+                            - First name of the paypal user.
+                            - This parameter is updatable.
+                            - Applicable when payment_method is 'PAYPAL'
+                        type: str
+                    last_name:
+                        description:
+                            - Last name of the paypal user.
+                            - This parameter is updatable.
+                            - Applicable when payment_method is 'PAYPAL'
+                        type: str
+                    ext_billing_agreement_id:
+                        description:
+                            - Agreement id for the paypal account.
+                            - This parameter is updatable.
+                            - Applicable when payment_method is 'PAYPAL'
+                        type: str
             payment_gateway:
                 description:
                     - ""
@@ -323,6 +379,10 @@ EXAMPLES = """
         payment_method: CREDIT_CARD
 
         # optional
+        credit_card_type: VISA
+        last_digits: last_digits_example
+        name_on_card: name_on_card_example
+        time_expiration: time_expiration_example
         wallet_instrument_id: "ocid1.walletinstrument.oc1..xxxxxxEXAMPLExxxxxx"
         wallet_transaction_id: "ocid1.wallettransaction.oc1..xxxxxxEXAMPLExxxxxx"
       payment_gateway:
@@ -482,6 +542,30 @@ subscription:
             returned: on success
             type: complex
             contains:
+                credit_card_type:
+                    description:
+                        - Credit card type.
+                    returned: on success
+                    type: str
+                    sample: VISA
+                last_digits:
+                    description:
+                        - Last four digits of the card.
+                    returned: on success
+                    type: str
+                    sample: last_digits_example
+                name_on_card:
+                    description:
+                        - Name on the credit card.
+                    returned: on success
+                    type: str
+                    sample: name_on_card_example
+                time_expiration:
+                    description:
+                        - Expired date of the credit card.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
                 wallet_instrument_id:
                     description:
                         - Wallet instrument internal id.
@@ -500,6 +584,30 @@ subscription:
                     returned: on success
                     type: str
                     sample: CREDIT_CARD
+                email_address:
+                    description:
+                        - The email address of the paypal user.
+                    returned: on success
+                    type: str
+                    sample: email_address_example
+                first_name:
+                    description:
+                        - First name of the paypal user.
+                    returned: on success
+                    type: str
+                    sample: first_name_example
+                last_name:
+                    description:
+                        - Last name of the paypal user.
+                    returned: on success
+                    type: str
+                    sample: last_name_example
+                ext_billing_agreement_id:
+                    description:
+                        - Agreement id for the paypal account.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.extbillingagreement.oc1..xxxxxxEXAMPLExxxxxx"
         payment_gateway:
             description:
                 - ""
@@ -625,9 +733,17 @@ subscription:
             "tax_cnpj": "tax_cnpj_example"
         },
         "payment_options": [{
+            "credit_card_type": "VISA",
+            "last_digits": "last_digits_example",
+            "name_on_card": "name_on_card_example",
+            "time_expiration": "2013-10-20T19:20:30+01:00",
             "wallet_instrument_id": "ocid1.walletinstrument.oc1..xxxxxxEXAMPLExxxxxx",
             "wallet_transaction_id": "ocid1.wallettransaction.oc1..xxxxxxEXAMPLExxxxxx",
-            "payment_method": "CREDIT_CARD"
+            "payment_method": "CREDIT_CARD",
+            "email_address": "email_address_example",
+            "first_name": "first_name_example",
+            "last_name": "last_name_example",
+            "ext_billing_agreement_id": "ocid1.extbillingagreement.oc1..xxxxxxEXAMPLExxxxxx"
         }],
         "payment_gateway": {
             "merchant_defined_data": {
@@ -800,6 +916,21 @@ def main():
                         type="list",
                         elements="dict",
                         options=dict(
+                            credit_card_type=dict(
+                                type="str",
+                                choices=[
+                                    "VISA",
+                                    "AMEX",
+                                    "MASTERCARD",
+                                    "DISCOVER",
+                                    "JCB",
+                                    "DINER",
+                                    "ELO",
+                                ],
+                            ),
+                            last_digits=dict(type="str"),
+                            name_on_card=dict(type="str"),
+                            time_expiration=dict(type="str"),
                             wallet_instrument_id=dict(type="str"),
                             wallet_transaction_id=dict(type="str"),
                             payment_method=dict(
@@ -807,6 +938,10 @@ def main():
                                 required=True,
                                 choices=["CREDIT_CARD", "PAYPAL"],
                             ),
+                            email_address=dict(type="str"),
+                            first_name=dict(type="str"),
+                            last_name=dict(type="str"),
+                            ext_billing_agreement_id=dict(type="str"),
                         ),
                     ),
                     payment_gateway=dict(

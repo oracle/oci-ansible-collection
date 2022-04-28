@@ -23,7 +23,7 @@ module: oci_ai_vision_image_job
 short_description: Manage an ImageJob resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create an ImageJob resource in Oracle Cloud Infrastructure
-    - For I(state=present), create a batch image analysis job.
+    - For I(state=present), create an image analysis batch job.
     - "This resource has the following action operations in the M(oracle.oci.oci_ai_vision_image_job_actions) module: cancel."
 version_added: "2.9.0"
 author: Oracle (@oracle)
@@ -36,8 +36,8 @@ options:
         suboptions:
             source_type:
                 description:
-                    - "The type of input location
-                      Allowed values are:
+                    - "The type of input location.
+                      The allowed values are:
                       - `OBJECT_LIST_INLINE_INPUT_LOCATION`: A list of object locations in Object Storage."
                 type: str
                 choices:
@@ -45,49 +45,36 @@ options:
                 required: true
             object_locations:
                 description:
-                    - List of ObjectLocations.
+                    - The list of ObjectLocations.
                 type: list
                 elements: dict
                 required: true
                 suboptions:
                     namespace_name:
                         description:
-                            - Object Storage namespace name.
+                            - The Object Storage namespace name.
                         type: str
                         required: true
                     bucket_name:
                         description:
-                            - Object Storage bucket name.
+                            - The Object Storage bucket name.
                         type: str
                         required: true
                     object_name:
                         description:
-                            - Object Storage object name.
+                            - The Object Storage object name.
                         type: str
                         required: true
     features:
         description:
-            - List of image analysis types requested.
+            - The list of requested image analysis types.
         type: list
         elements: dict
         required: true
         suboptions:
-            feature_type:
-                description:
-                    - "Type of image analysis requested.
-                      Allowed values are:
-                      - `IMAGE_CLASSIFICATION`: Label the image.
-                      - `OBJECT_DETECTION`: Identify objects in the image with bounding boxes.
-                      - `TEXT_DETECTION`: Recognize text in the image."
-                type: str
-                choices:
-                    - "TEXT_DETECTION"
-                    - "OBJECT_DETECTION"
-                    - "IMAGE_CLASSIFICATION"
-                required: true
             language:
                 description:
-                    - Language of the document image, abbreviated according to ISO 639-2.
+                    - The language of the document image, abbreviated according to ISO 639-2.
                     - Applicable when feature_type is 'TEXT_DETECTION'
                 type: str
                 choices:
@@ -116,6 +103,19 @@ options:
                     - "JPN"
                     - "KOR"
                     - "OTHERS"
+            feature_type:
+                description:
+                    - "The type of image analysis requested.
+                      The allowed values are:
+                      - `IMAGE_CLASSIFICATION`: Label the image.
+                      - `OBJECT_DETECTION`: Identify objects in the image with bounding boxes.
+                      - `TEXT_DETECTION`: Recognize text in the image."
+                type: str
+                choices:
+                    - "TEXT_DETECTION"
+                    - "OBJECT_DETECTION"
+                    - "IMAGE_CLASSIFICATION"
+                required: true
             max_results:
                 description:
                     - The maximum number of results to return.
@@ -123,7 +123,7 @@ options:
                 type: int
             model_id:
                 description:
-                    - Custom model id.
+                    - The custom model ID.
                     - Applicable when feature_type is one of ['IMAGE_CLASSIFICATION', 'OBJECT_DETECTION']
                 type: str
     output_location:
@@ -134,31 +134,31 @@ options:
         suboptions:
             namespace_name:
                 description:
-                    - Object Storage namespace.
+                    - The Object Storage namespace.
                 type: str
                 required: true
             bucket_name:
                 description:
-                    - Object Storage bucket name.
+                    - The Object Storage bucket name.
                 type: str
                 required: true
             prefix:
                 description:
-                    - Object Storage folder name.
+                    - The Object Storage folder name.
                 type: str
                 required: true
     compartment_id:
         description:
-            - Compartment identifier from the requester.
+            - The compartment identifier from the requester.
         type: str
     display_name:
         description:
-            - Image job display name.
+            - The image job display name.
         type: str
         aliases: ["name"]
     is_zip_output_enabled:
         description:
-            - Whether to generate a Zip file containing the results.
+            - Whether or not to generate a ZIP file containing the results.
         type: bool
     state:
         description:
@@ -211,7 +211,7 @@ image_job:
     contains:
         id:
             description:
-                - Job id
+                - The job id
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -223,13 +223,13 @@ image_job:
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - Image job display name.
+                - The image job display name.
             returned: on success
             type: str
             sample: display_name_example
         features:
             description:
-                - List of document analysis types requested.
+                - The list of requested document analysis types.
             returned: on success
             type: complex
             contains:
@@ -241,14 +241,14 @@ image_job:
                     sample: 56
                 model_id:
                     description:
-                        - Custom model id.
+                        - The custom model ID.
                     returned: on success
                     type: str
                     sample: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
                 feature_type:
                     description:
-                        - "Type of image analysis requested.
-                          Allowed values are:
+                        - "The type of image analysis requested.
+                          The allowed values are:
                           - `IMAGE_CLASSIFICATION`: Label the image.
                           - `OBJECT_DETECTION`: Identify objects in the image with bounding boxes.
                           - `TEXT_DETECTION`: Recognize text in the image."
@@ -257,7 +257,7 @@ image_job:
                     sample: IMAGE_CLASSIFICATION
                 language:
                     description:
-                        - Language of the document image, abbreviated according to ISO 639-2.
+                        - The language of the document image, abbreviated according to ISO 639-2.
                     returned: on success
                     type: str
                     sample: ENG
@@ -269,57 +269,57 @@ image_job:
             contains:
                 source_type:
                     description:
-                        - "The type of input location
-                          Allowed values are:
+                        - "The type of input location.
+                          The allowed values are:
                           - `OBJECT_LIST_INLINE_INPUT_LOCATION`: A list of object locations in Object Storage."
                     returned: on success
                     type: str
                     sample: OBJECT_LIST_INLINE_INPUT_LOCATION
                 object_locations:
                     description:
-                        - List of ObjectLocations.
+                        - The list of ObjectLocations.
                     returned: on success
                     type: complex
                     contains:
                         namespace_name:
                             description:
-                                - Object Storage namespace name.
+                                - The Object Storage namespace name.
                             returned: on success
                             type: str
                             sample: namespace_name_example
                         bucket_name:
                             description:
-                                - Object Storage bucket name.
+                                - The Object Storage bucket name.
                             returned: on success
                             type: str
                             sample: bucket_name_example
                         object_name:
                             description:
-                                - Object Storage object name.
+                                - The Object Storage object name.
                             returned: on success
                             type: str
                             sample: object_name_example
         time_accepted:
             description:
-                - Job accepted time.
+                - The job acceptance time.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_started:
             description:
-                - Job started time.
+                - The job start time.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_finished:
             description:
-                - Job finished time.
+                - The job finish time.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         percent_complete:
             description:
-                - How much progress the operation has made, vs the total amount of work that must be performed.
+                - How much progress the operation has made, compared to the total amount of work to be performed.
             returned: on success
             type: float
             sample: 3.4
@@ -331,19 +331,19 @@ image_job:
             contains:
                 namespace_name:
                     description:
-                        - Object Storage namespace.
+                        - The Object Storage namespace.
                     returned: on success
                     type: str
                     sample: namespace_name_example
                 bucket_name:
                     description:
-                        - Object Storage bucket name.
+                        - The Object Storage bucket name.
                     returned: on success
                     type: str
                     sample: bucket_name_example
                 prefix:
                     description:
-                        - Object Storage folder name.
+                        - The Object Storage folder name.
                     returned: on success
                     type: str
                     sample: prefix_example
@@ -355,13 +355,13 @@ image_job:
             sample: SUCCEEDED
         lifecycle_details:
             description:
-                - Detailed status of FAILED state.
+                - The detailed status of FAILED state.
             returned: on success
             type: str
             sample: PARTIALLY_SUCCEEDED
         is_zip_output_enabled:
             description:
-                - Whether to generate a Zip file containing the results.
+                - Whether or not to generate a ZIP file containing the results.
             returned: on success
             type: bool
             sample: true
@@ -498,15 +498,6 @@ def main():
                 elements="dict",
                 required=True,
                 options=dict(
-                    feature_type=dict(
-                        type="str",
-                        required=True,
-                        choices=[
-                            "TEXT_DETECTION",
-                            "OBJECT_DETECTION",
-                            "IMAGE_CLASSIFICATION",
-                        ],
-                    ),
                     language=dict(
                         type="str",
                         choices=[
@@ -535,6 +526,15 @@ def main():
                             "JPN",
                             "KOR",
                             "OTHERS",
+                        ],
+                    ),
+                    feature_type=dict(
+                        type="str",
+                        required=True,
+                        choices=[
+                            "TEXT_DETECTION",
+                            "OBJECT_DETECTION",
+                            "IMAGE_CLASSIFICATION",
                         ],
                     ),
                     max_results=dict(type="int"),

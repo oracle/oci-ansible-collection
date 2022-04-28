@@ -44,6 +44,7 @@ description:
       **Note:** Modifying a CIDR block places your VCN in an updating state until the changes are complete. You cannot create or update the VCN's subnets,
       VLANs, LPGs, or route tables during this operation. The time to completion can vary depending on the size of your network. Updating a small network could
       take about a minute, and updating a large network could take up to an hour. You can use the `GetWorkRequest` operation to check the status of the update."
+    - For I(action=remove_ipv6_vcn_cidr), removing an existing IPv6 CIDR from a VCN.
     - "For I(action=remove_vcn_cidr), removes a specified CIDR block from a VCN.
       **Notes:**
       - You cannot remove a CIDR block if an IP address in its range is in use.
@@ -53,6 +54,37 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    ipv6_private_cidr_block:
+        description:
+            - This field is not required and should only be specified if a ULA or private IPv6 prefix is desired for VCN's private IP address space.
+              SeeL(IPv6 Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm).
+            - "Example: `2001:0db8:0123::/48` or `fd00:1000:0:1::/64`"
+            - Applicable only for I(action=add_ipv6_vcn_cidr).
+        type: str
+    is_oracle_gua_allocation_enabled:
+        description:
+            - Indicates whether Oracle will allocate an IPv6 GUA. Only one prefix of /56 size can be allocated by Oracle as a GUA.
+            - Applicable only for I(action=add_ipv6_vcn_cidr).
+        type: bool
+    byoipv6_cidr_detail:
+        description:
+            - ""
+            - Applicable only for I(action=add_ipv6_vcn_cidr).
+        type: dict
+        suboptions:
+            byoipv6_range_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the `ByoipRange` resource to which the CIDR
+                      block belongs.
+                type: str
+                required: true
+            ipv6_cidr_block:
+                description:
+                    - "An IPv6 CIDR block required to create a VCN with a BYOIP prefix. It could be the whole CIDR block identified in `byoipv6RangeId`, or a
+                      subrange.
+                      Example: `2001:0db8:0123::/48`"
+                type: str
+                required: true
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment to move the
@@ -68,6 +100,15 @@ options:
         description:
             - The new CIDR IP address.
             - Required for I(action=modify_vcn_cidr).
+        type: str
+    ipv6_cidr_block:
+        description:
+            - This field is not required and should only be specified when removing ULA or private IPv6 prefix or an IPv6 GUA assigned by Oracle or BYOIPv6
+              prefix
+              from a VCN's IPv6 address space.
+              SeeL(IPv6 Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm).
+            - "Example: `2001:0db8:0123::/56`"
+            - Applicable only for I(action=remove_ipv6_vcn_cidr).
         type: str
     vcn_id:
         description:
@@ -90,6 +131,7 @@ options:
             - "add_vcn_cidr"
             - "change_compartment"
             - "modify_vcn_cidr"
+            - "remove_ipv6_vcn_cidr"
             - "remove_vcn_cidr"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
@@ -100,6 +142,14 @@ EXAMPLES = """
     # required
     vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     action: add_ipv6_vcn_cidr
+
+    # optional
+    ipv6_private_cidr_block: ipv6_private_cidr_block_example
+    is_oracle_gua_allocation_enabled: true
+    byoipv6_cidr_detail:
+      # required
+      byoipv6_range_id: "ocid1.byoipv6range.oc1..xxxxxxEXAMPLExxxxxx"
+      ipv6_cidr_block: ipv6_cidr_block_example
 
 - name: Perform action add_vcn_cidr on vcn
   oci_network_vcn_actions:
@@ -123,6 +173,15 @@ EXAMPLES = """
     vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     action: modify_vcn_cidr
 
+- name: Perform action remove_ipv6_vcn_cidr on vcn
+  oci_network_vcn_actions:
+    # required
+    vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+    action: remove_ipv6_vcn_cidr
+
+    # optional
+    ipv6_cidr_block: ipv6_cidr_block_example
+
 - name: Perform action remove_vcn_cidr on vcn
   oci_network_vcn_actions:
     # required
@@ -139,6 +198,18 @@ vcn:
     returned: on success
     type: complex
     contains:
+        byoipv6_cidr_blocks:
+            description:
+                - The list of BYOIPv6 CIDR blocks required to create a VCN that uses BYOIPv6 ranges.
+            returned: on success
+            type: list
+            sample: []
+        ipv6_private_cidr_blocks:
+            description:
+                - For an IPv6-enabled VCN, this is the list of Private IPv6 CIDR blocks for the VCN's IP address space.
+            returned: on success
+            type: list
+            sample: []
         cidr_block:
             description:
                 - Deprecated. The first CIDR IP address from cidrBlocks.
@@ -252,6 +323,8 @@ vcn:
             type: str
             sample: vcn_domain_name_example
     sample: {
+        "byoipv6_cidr_blocks": [],
+        "ipv6_private_cidr_blocks": [],
         "cidr_block": "cidr_block_example",
         "cidr_blocks": [],
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -283,9 +356,11 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 try:
     from oci.work_requests import WorkRequestClient
     from oci.core import VirtualNetworkClient
+    from oci.core.models import AddVcnIpv6CidrDetails
     from oci.core.models import AddVcnCidrDetails
     from oci.core.models import ChangeVcnCompartmentDetails
     from oci.core.models import ModifyVcnCidrDetails
+    from oci.core.models import RemoveVcnIpv6CidrDetails
     from oci.core.models import RemoveVcnCidrDetails
 
     HAS_OCI_PY_SDK = True
@@ -300,6 +375,7 @@ class VcnActionsHelperGen(OCIActionsHelperBase):
         add_vcn_cidr
         change_compartment
         modify_vcn_cidr
+        remove_ipv6_vcn_cidr
         remove_vcn_cidr
     """
 
@@ -325,10 +401,16 @@ class VcnActionsHelperGen(OCIActionsHelperBase):
         )
 
     def add_ipv6_vcn_cidr(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, AddVcnIpv6CidrDetails
+        )
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.add_ipv6_vcn_cidr,
             call_fn_args=(),
-            call_fn_kwargs=dict(vcn_id=self.module.params.get("vcn_id"),),
+            call_fn_kwargs=dict(
+                vcn_id=self.module.params.get("vcn_id"),
+                add_vcn_ipv6_cidr_details=action_details,
+            ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
                 self.module.params.get("action").upper(),
@@ -402,6 +484,27 @@ class VcnActionsHelperGen(OCIActionsHelperBase):
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
+    def remove_ipv6_vcn_cidr(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, RemoveVcnIpv6CidrDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.remove_ipv6_vcn_cidr,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                vcn_id=self.module.params.get("vcn_id"),
+                remove_vcn_ipv6_cidr_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
     def remove_vcn_cidr(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, RemoveVcnCidrDetails
@@ -437,9 +540,19 @@ def main():
     )
     module_args.update(
         dict(
+            ipv6_private_cidr_block=dict(type="str"),
+            is_oracle_gua_allocation_enabled=dict(type="bool"),
+            byoipv6_cidr_detail=dict(
+                type="dict",
+                options=dict(
+                    byoipv6_range_id=dict(type="str", required=True),
+                    ipv6_cidr_block=dict(type="str", required=True),
+                ),
+            ),
             compartment_id=dict(type="str"),
             original_cidr_block=dict(type="str"),
             new_cidr_block=dict(type="str"),
+            ipv6_cidr_block=dict(type="str"),
             vcn_id=dict(aliases=["id"], type="str", required=True),
             cidr_block=dict(type="str"),
             action=dict(
@@ -450,6 +563,7 @@ def main():
                     "add_vcn_cidr",
                     "change_compartment",
                     "modify_vcn_cidr",
+                    "remove_ipv6_vcn_cidr",
                     "remove_vcn_cidr",
                 ],
             ),

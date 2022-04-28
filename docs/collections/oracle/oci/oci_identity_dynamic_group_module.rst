@@ -30,7 +30,7 @@ oracle.oci.oci_identity_dynamic_group -- Manage a DynamicGroup resource in Oracl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -59,7 +59,7 @@ Synopsis
 - This module allows the user to create, update and delete a DynamicGroup resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new dynamic group in your tenancy.
 - You must specify your tenancy's OCID as the compartment ID in the request object (remember that the tenancy is simply the root compartment). Notice that IAM resources (users, groups, compartments, and some policies) reside within the tenancy itself, unlike cloud resources such as compute instances, which typically reside within compartments inside the tenancy. For information about OCIDs, see `Resource Identifiers <https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm>`_.
-- You must also specify a *name* for the dynamic group, which must be unique across all dynamic groups in your tenancy, and cannot be changed. Note that this name has to be also unique across all groups in your tenancy. You can use this name or the OCID when writing policies that apply to the dynamic group. For more information about policies, see `How Policies Work <https://docs.cloud.oracle.com/Content/Identity/Concepts/policies.htm>`_.
+- You must also specify a *name* for the dynamic group, which must be unique across all dynamic groups in your tenancy, and cannot be changed. Note that this name has to be also unique across all groups in your tenancy. You can use this name or the OCID when writing policies that apply to the dynamic group. For more information about policies, see `How Policies Work <https://docs.cloud.oracle.com/Content/Identity/policieshow/how-policies-work.htm>`_.
 - You must also specify a *description* for the dynamic group (although it can be an empty string). It does not have to be unique, and you can change it anytime with `UpdateDynamicGroup <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/identity/20160918/DynamicGroup/UpdateDynamicGroup>`_.
 - After you send your request, the new object's `lifecycleState` will temporarily be CREATING. Before using the object, first make sure its `lifecycleState` has changed to ACTIVE.
 
@@ -248,6 +248,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The description you assign to the group during creation. Does not have to be unique, and it&#x27;s changeable.</div>
+                                            <div>(For tenancies that support identity domains) You can have an empty description.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -332,7 +333,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The matching rule to dynamically match an instance certificate to this dynamic group. For rule syntax, see <a href='https://docs.cloud.oracle.com/Content/Identity/Tasks/managingdynamicgroups.htm'>Managing Dynamic Groups</a>.</div>
+                                            <div>The matching rule to dynamically match an instance certificate to this dynamic group. For rule syntax, see <a href='https://docs.cloud.oracle.com/Content/Identity/dynamicgroups/managingdynamicgroups.htm'>Managing Dynamic Groups</a>.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -599,6 +600,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The description you assign to the group. Does not have to be unique, and it&#x27;s changeable.</div>
+                                            <div>(For tenancies that support identity domains) You can have an empty description.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
@@ -688,7 +690,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A rule string that defines which instance certificates will be matched. For syntax, see <a href='https://docs.cloud.oracle.com/Content/Identity/Tasks/managingdynamicgroups.htm'>Managing Dynamic Groups</a>.</div>
+                                            <div>A rule string that defines which instance certificates will be matched. For syntax, see <a href='https://docs.cloud.oracle.com/Content/Identity/dynamicgroups/managingdynamicgroups.htm'>Managing Dynamic Groups</a>.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">matching_rule_example</div>

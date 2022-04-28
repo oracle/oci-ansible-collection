@@ -23,43 +23,43 @@ module: oci_ai_vision_project
 short_description: Manage a Project resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Project resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates a new project.
+    - For I(state=present), create a new project.
     - "This resource has the following action operations in the M(oracle.oci.oci_ai_vision_project_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The compartment identifier.
+            - Required for create using I(state=present).
+        type: str
     display_name:
         description:
-            - Human-friendly name for the project, which can be changed.
+            - A human-friendly name for the project, that can be changed.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     description:
         description:
-            - Optional description of the project.
+            - An optional description of the project.
             - This parameter is updatable.
-        type: str
-    compartment_id:
-        description:
-            - Compartment identifier.
-            - Required for create using I(state=present).
         type: str
     freeform_tags:
         description:
-            - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-              Example: `{\\"bar-key\\": \\"value\\"}`"
+            - "A simple key-value pair that is applied without any predefined name, type, or scope. It exists for cross-compatibility only.
+              For example: `{\\"bar-key\\": \\"value\\"}`"
             - This parameter is updatable.
         type: dict
     defined_tags:
         description:
             - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
-              Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+              For example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             - This parameter is updatable.
         type: dict
     project_id:
         description:
-            - unique project identifier.
+            - A unique project identifier.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -132,25 +132,25 @@ project:
     contains:
         id:
             description:
-                - Unique identifier that is immutable after creation.
+                - A unique identifier that is immutable after creation.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - Human-friendly name for the project, which can be changed.
+                - A human-friendly name for the project, which can be changed.
             returned: on success
             type: str
             sample: display_name_example
         description:
             description:
-                - Optional description of the project.
+                - An optional description of the project.
             returned: on success
             type: str
             sample: description_example
         compartment_id:
             description:
-                - Compartment identifier.
+                - A compartment identifier.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -174,28 +174,28 @@ project:
             sample: CREATING
         lifecycle_details:
             description:
-                - A message describing the current state in more detail which can provide actionable information if creation failed.
+                - A message describing the current state in more detail, that can provide actionable information if creation failed.
             returned: on success
             type: str
             sample: lifecycle_details_example
         freeform_tags:
             description:
-                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-                  Example: `{\\"bar-key\\": \\"value\\"}`"
+                - "A simple key-value pair that is applied without any predefined name, type, or scope. It exists for cross-compatibility only.
+                  For example: `{\\"bar-key\\": \\"value\\"}`"
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
         defined_tags:
             description:
                 - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
-                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+                  For example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
         system_tags:
             description:
                 - "Usage of system tag keys. These predefined keys are scoped to namespaces.
-                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
+                  For example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
             returned: on success
             type: dict
             sample: {}
@@ -360,9 +360,9 @@ def main():
     )
     module_args.update(
         dict(
+            compartment_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             description=dict(type="str"),
-            compartment_id=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             project_id=dict(aliases=["id"], type="str"),

@@ -180,6 +180,19 @@ options:
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - This parameter is updatable.
         type: dict
+    data_collection_options:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            is_diagnostics_events_enabled:
+                description:
+                    - Indicates whether diagnostic collection is enabled for the VM cluster. Enabling diagnostic collection allows you to receive Events service
+                      notifications for guest VM issues. Diagnostic collection also allows Oracle to provide enhanced service and proactive support for your
+                      Exadata system. You can enable diagnostic collection during VM cluster provisioning. You can also disable or enable it at any time using
+                      the `UpdateVmCluster` API.
+                type: bool
     vm_cluster_id:
         description:
             - The VM cluster L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -224,6 +237,9 @@ EXAMPLES = """
     license_model: LICENSE_INCLUDED
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    data_collection_options:
+      # optional
+      is_diagnostics_events_enabled: true
 
 - name: Update vm_cluster
   oci_database_vm_cluster:
@@ -250,6 +266,9 @@ EXAMPLES = """
       update_action: ROLLING_APPLY
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    data_collection_options:
+      # optional
+      is_diagnostics_events_enabled: true
 
 - name: Update vm_cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_vm_cluster:
@@ -277,6 +296,9 @@ EXAMPLES = """
       update_action: ROLLING_APPLY
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    data_collection_options:
+      # optional
+      is_diagnostics_events_enabled: true
 
 - name: Delete vm_cluster
   oci_database_vm_cluster:
@@ -462,6 +484,21 @@ vm_cluster:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        data_collection_options:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                is_diagnostics_events_enabled:
+                    description:
+                        - Indicates whether diagnostic collection is enabled for the VM cluster. Enabling diagnostic collection allows you to receive Events
+                          service notifications for guest VM issues. Diagnostic collection also allows Oracle to provide enhanced service and proactive support
+                          for your Exadata system. You can enable diagnostic collection during VM cluster provisioning. You can also disable or enable it at any
+                          time using the `UpdateVmCluster` API.
+                    returned: on success
+                    type: bool
+                    sample: true
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -488,7 +525,10 @@ vm_cluster:
         "license_model": "LICENSE_INCLUDED",
         "db_servers": [],
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}}
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "data_collection_options": {
+            "is_diagnostics_events_enabled": true
+        }
     }
 """
 
@@ -689,6 +729,10 @@ def main():
             ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
+            data_collection_options=dict(
+                type="dict",
+                options=dict(is_diagnostics_events_enabled=dict(type="bool")),
+            ),
             vm_cluster_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

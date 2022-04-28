@@ -24,7 +24,7 @@ short_description: Fetches details about one or multiple CostTrackingTag resourc
 description:
     - Fetches details about one or multiple CostTrackingTag resources in Oracle Cloud Infrastructure
     - Lists all the tags enabled for cost-tracking in the specified tenancy. For information about
-      cost-tracking tags, see L(Using Cost-tracking Tags,https://docs.cloud.oracle.com/Content/Identity/Concepts/taggingoverview.htm#costs).
+      cost-tracking tags, see L(Using Cost-tracking Tags,https://docs.cloud.oracle.com/Content/Tagging/Tasks/usingcosttrackingtags.htm).
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -108,7 +108,7 @@ cost_tracking_tags:
             description:
                 - Indicates whether the tag is retired.
                   See L(Retiring Key Definitions and Namespace
-                  Definitions,https://docs.cloud.oracle.com/Content/Identity/Concepts/taggingoverview.htm#Retiring).
+                  Definitions,https://docs.cloud.oracle.com/Content/Tagging/Tasks/managingtagsandtagnamespaces.htm#retiringkeys).
             returned: on success
             type: bool
             sample: true

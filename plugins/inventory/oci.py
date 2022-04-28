@@ -21,7 +21,9 @@ DOCUMENTATION = """
             required: True
             choices: ['oracle.oci.oci']
         config_file:
-            description: The oci config path.
+            description: The oci config path. Either pass the '/full/path/to/config/file' in inventory plugin configuration file.
+                         Or pass the 'relative/path/to/config/file' with respect to the directory from where inventory command is executed.
+                         Relative path should not be relative with respect to inventory plugin configuration file.
             env:
                - name: OCI_CONFIG_FILE
         config_profile:
