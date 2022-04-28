@@ -32,7 +32,7 @@ description:
     - "You must also specify a *name* for the dynamic group, which must be unique across all dynamic groups in your
       tenancy, and cannot be changed. Note that this name has to be also unique across all groups in your tenancy.
       You can use this name or the OCID when writing policies that apply to the dynamic group. For more information
-      about policies, see L(How Policies Work,https://docs.cloud.oracle.com/Content/Identity/Concepts/policies.htm)."
+      about policies, see L(How Policies Work,https://docs.cloud.oracle.com/Content/Identity/policieshow/how-policies-work.htm)."
     - "You must also specify a *description* for the dynamic group (although it can be an empty string). It does not
       have to be unique, and you can change it anytime with L(UpdateDynamicGroup,https://docs.cloud.oracle.com/en-
       us/iaas/api/#/en/identity/20160918/DynamicGroup/UpdateDynamicGroup)."
@@ -58,13 +58,14 @@ options:
     description:
         description:
             - The description you assign to the group during creation. Does not have to be unique, and it's changeable.
+            - (For tenancies that support identity domains) You can have an empty description.
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
     matching_rule:
         description:
             - The matching rule to dynamically match an instance certificate to this dynamic group.
-              For rule syntax, see L(Managing Dynamic Groups,https://docs.cloud.oracle.com/Content/Identity/Tasks/managingdynamicgroups.htm).
+              For rule syntax, see L(Managing Dynamic Groups,https://docs.cloud.oracle.com/Content/Identity/dynamicgroups/managingdynamicgroups.htm).
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
@@ -181,13 +182,14 @@ dynamic_group:
         description:
             description:
                 - The description you assign to the group. Does not have to be unique, and it's changeable.
+                - (For tenancies that support identity domains) You can have an empty description.
             returned: on success
             type: str
             sample: description_example
         matching_rule:
             description:
                 - A rule string that defines which instance certificates will be matched.
-                  For syntax, see L(Managing Dynamic Groups,https://docs.cloud.oracle.com/Content/Identity/Tasks/managingdynamicgroups.htm).
+                  For syntax, see L(Managing Dynamic Groups,https://docs.cloud.oracle.com/Content/Identity/dynamicgroups/managingdynamicgroups.htm).
             returned: on success
             type: str
             sample: matching_rule_example

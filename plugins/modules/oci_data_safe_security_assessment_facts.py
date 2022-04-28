@@ -142,6 +142,7 @@ options:
             - "SUCCEEDED"
             - "UPDATING"
             - "DELETING"
+            - "DELETED"
             - "FAILED"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
@@ -884,7 +885,14 @@ def main():
             time_created_less_than=dict(type="str"),
             lifecycle_state=dict(
                 type="str",
-                choices=["CREATING", "SUCCEEDED", "UPDATING", "DELETING", "FAILED"],
+                choices=[
+                    "CREATING",
+                    "SUCCEEDED",
+                    "UPDATING",
+                    "DELETING",
+                    "DELETED",
+                    "FAILED",
+                ],
             ),
         )
     )

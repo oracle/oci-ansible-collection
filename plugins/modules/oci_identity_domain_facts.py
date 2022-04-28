@@ -23,15 +23,14 @@ module: oci_identity_domain_facts
 short_description: Fetches details about one or multiple Domain resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple Domain resources in Oracle Cloud Infrastructure
-    - "List all domains that are homed or have a replica region in current region.
-      - If any internal error occurs, return 500 INTERNAL SERVER ERROR."
+    - (For tenancies that support identity domains) Lists all identity domains within a tenancy.
     - If I(domain_id) is specified, the details of a single Domain will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     domain_id:
         description:
-            - The OCID of the domain
+            - The OCID of the identity domain.
             - Required to get a specific domain.
         type: str
         aliases: ["id"]
@@ -42,27 +41,27 @@ options:
         type: str
     display_name:
         description:
-            - The mutable display name of the domain
+            - The mutable display name of the identity domain.
         type: str
     url:
         description:
-            - The region agnostic domain URL
+            - The region-agnostic identity domain URL.
         type: str
     home_region_url:
         description:
-            - The region specific domain URL
+            - The region-specific identity domain URL.
         type: str
     type:
         description:
-            - The domain type
+            - The identity domain type.
         type: str
     license_type:
         description:
-            - The domain license type
+            - The license type of the identity domain.
         type: str
     is_hidden_on_login:
         description:
-            - Indicate if the domain is visible at login screen or not
+            - Indicates whether or not the identity domain is visible at the sign-in screen.
         type: bool
     name:
         description:
@@ -91,7 +90,7 @@ options:
             - "DESC"
     lifecycle_state:
         description:
-            - A filter to only return resources that match the given lifecycle state.  The state value is case-insensitive.
+            - A filter to only return resources that match the given lifecycle state. The state value is case-insensitive.
         type: str
         choices:
             - "CREATING"
@@ -135,43 +134,43 @@ domains:
     contains:
         id:
             description:
-                - The OCID of the domain
+                - The OCID of the identity domain.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
-                - The OCID of the compartment containing the domain.
+                - The OCID of the compartment containing the identity domain.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - The mutable display name of the domain
+                - The mutable display name of the identity domain.
             returned: on success
             type: str
             sample: display_name_example
         description:
             description:
-                - The domain descripition
+                - The identity domain description. You can have an empty description.
             returned: on success
             type: str
             sample: description_example
         url:
             description:
-                - Region agnostic domain URL.
+                - Region-agnostic identity domain URL.
             returned: on success
             type: str
             sample: url_example
         home_region_url:
             description:
-                - Region specific domain URL.
+                - Region-specific identity domain URL.
             returned: on success
             type: str
             sample: home_region_url_example
         home_region:
             description:
-                - The home region for the domain.
+                - The home region for the identity domain.
                   See L(Regions and Availability Domains,https://docs.cloud.oracle.com/Content/General/Concepts/regions.htm)
                   for the full list of supported region names.
                 - "Example: `us-phoenix-1`"
@@ -180,7 +179,7 @@ domains:
             sample: us-phoenix-1
         replica_regions:
             description:
-                - The regions domain is replication to.
+                - The regions where replicas of the identity domain exist.
             returned: on success
             type: complex
             contains:
@@ -194,13 +193,13 @@ domains:
                     sample: us-phoenix-1
                 url:
                     description:
-                        - Region agnostic domain URL.
+                        - Region-agnostic identity domain URL.
                     returned: on success
                     type: str
                     sample: url_example
                 state:
                     description:
-                        - The IDCS replicated region state
+                        - The IDCS-replicated region state.
                     returned: on success
                     type: str
                     sample: ENABLING_REPLICATION
@@ -212,19 +211,19 @@ domains:
             sample: DEFAULT
         license_type:
             description:
-                - The License type of Domain
+                - The license type of the identity domain.
             returned: on success
             type: str
             sample: license_type_example
         is_hidden_on_login:
             description:
-                - Indicates whether domain is hidden on login screen or not.
+                - Indicates whether the identity domain is hidden on the sign-in screen or not.
             returned: on success
             type: bool
             sample: true
         time_created:
             description:
-                - Date and time the domain was created, in the format defined by RFC3339.
+                - Date and time the identity domain was created, in the format defined by RFC3339.
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
@@ -237,7 +236,7 @@ domains:
             sample: CREATING
         lifecycle_details:
             description:
-                - Any additional details about the current state of the Domain.
+                - Any additional details about the current state of the identity domain.
             returned: on success
             type: str
             sample: DEACTIVATING

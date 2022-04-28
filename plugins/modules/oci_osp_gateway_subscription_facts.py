@@ -221,6 +221,30 @@ subscriptions:
             returned: on success
             type: complex
             contains:
+                credit_card_type:
+                    description:
+                        - Credit card type.
+                    returned: on success
+                    type: str
+                    sample: VISA
+                last_digits:
+                    description:
+                        - Last four digits of the card.
+                    returned: on success
+                    type: str
+                    sample: last_digits_example
+                name_on_card:
+                    description:
+                        - Name on the credit card.
+                    returned: on success
+                    type: str
+                    sample: name_on_card_example
+                time_expiration:
+                    description:
+                        - Expired date of the credit card.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
                 wallet_instrument_id:
                     description:
                         - Wallet instrument internal id.
@@ -239,6 +263,30 @@ subscriptions:
                     returned: on success
                     type: str
                     sample: CREDIT_CARD
+                email_address:
+                    description:
+                        - The email address of the paypal user.
+                    returned: on success
+                    type: str
+                    sample: email_address_example
+                first_name:
+                    description:
+                        - First name of the paypal user.
+                    returned: on success
+                    type: str
+                    sample: first_name_example
+                last_name:
+                    description:
+                        - Last name of the paypal user.
+                    returned: on success
+                    type: str
+                    sample: last_name_example
+                ext_billing_agreement_id:
+                    description:
+                        - Agreement id for the paypal account.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.extbillingagreement.oc1..xxxxxxEXAMPLExxxxxx"
         payment_gateway:
             description:
                 - ""
@@ -364,9 +412,17 @@ subscriptions:
             "tax_cnpj": "tax_cnpj_example"
         },
         "payment_options": [{
+            "credit_card_type": "VISA",
+            "last_digits": "last_digits_example",
+            "name_on_card": "name_on_card_example",
+            "time_expiration": "2013-10-20T19:20:30+01:00",
             "wallet_instrument_id": "ocid1.walletinstrument.oc1..xxxxxxEXAMPLExxxxxx",
             "wallet_transaction_id": "ocid1.wallettransaction.oc1..xxxxxxEXAMPLExxxxxx",
-            "payment_method": "CREDIT_CARD"
+            "payment_method": "CREDIT_CARD",
+            "email_address": "email_address_example",
+            "first_name": "first_name_example",
+            "last_name": "last_name_example",
+            "ext_billing_agreement_id": "ocid1.extbillingagreement.oc1..xxxxxxEXAMPLExxxxxx"
         }],
         "payment_gateway": {
             "merchant_defined_data": {

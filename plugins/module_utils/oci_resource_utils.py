@@ -263,9 +263,14 @@ class OCIActionsHelperBase(OCIResourceCommonBase):
             self.module.fail_json(
                 msg="Getting resource failed with exception: {0}".format(se.message)
             )
+        except NotImplementedError as ex:
+            _debug("no get_resource impelemented exception : {0}".format(str(ex)))
+            resource = {}
+            is_action_necessary = True
         else:
             resource = to_dict(get_response.data)
-        is_action_necessary = self.is_action_necessary(action, get_response.data)
+            is_action_necessary = self.is_action_necessary(action, get_response.data)
+
         if not is_action_necessary:
             return self.prepare_result(
                 changed=False,

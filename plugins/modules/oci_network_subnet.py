@@ -49,7 +49,8 @@ description:
     - You can also add a DNS label for the subnet, which is required if you want the Internet and
       VCN Resolver to resolve hostnames for instances in the subnet. For more information, see
       L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm).
-    - "This resource has the following action operations in the M(oracle.oci.oci_network_subnet_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_network_subnet_actions) module: add_ipv6_subnet_cidr, change_compartment,
+      remove_ipv6_subnet_cidr."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -179,6 +180,16 @@ options:
             - "Example: `2001:0db8:0123:1111::/64`"
             - This parameter is updatable.
         type: str
+    ipv6_cidr_blocks:
+        description:
+            - "The list of all IPv6 CIDR blocks (Oracle allocated IPv6 GUA, ULA or private IPv6 CIDR blocks, BYOIPv6 CIDR blocks) for the subnet that meets the
+              following criteria:
+              - The CIDR blocks must be valid.
+              - Multiple CIDR blocks must not overlap each other or the on-premises network CIDR block.
+              - The number of CIDR blocks must not exceed the limit of IPv6 CIDR blocks allowed to a subnet."
+            - This parameter is updatable.
+        type: list
+        elements: str
     subnet_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet.
@@ -218,6 +229,7 @@ EXAMPLES = """
     route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
     security_list_ids: [ "security_list_ids_example" ]
     ipv6_cidr_block: ipv6_cidr_block_example
+    ipv6_cidr_blocks: [ "ipv6_cidr_blocks_example" ]
 
 - name: Update subnet
   oci_network_subnet:
@@ -233,6 +245,7 @@ EXAMPLES = """
     security_list_ids: [ "security_list_ids_example" ]
     cidr_block: cidr_block_example
     ipv6_cidr_block: ipv6_cidr_block_example
+    ipv6_cidr_blocks: [ "ipv6_cidr_blocks_example" ]
 
 - name: Update subnet using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_subnet:
@@ -248,6 +261,7 @@ EXAMPLES = """
     security_list_ids: [ "security_list_ids_example" ]
     cidr_block: cidr_block_example
     ipv6_cidr_block: ipv6_cidr_block_example
+    ipv6_cidr_blocks: [ "ipv6_cidr_blocks_example" ]
 
 - name: Delete subnet
   oci_network_subnet:
@@ -351,6 +365,12 @@ subnet:
             returned: on success
             type: str
             sample: ipv6_cidr_block_example
+        ipv6_cidr_blocks:
+            description:
+                - The list of all IPv6 CIDR blocks (Oracle allocated IPv6 GUA, ULA or private IPv6 CIDR blocks, BYOIPv6 CIDR blocks) for the subnet.
+            returned: on success
+            type: list
+            sample: []
         ipv6_virtual_router_ip:
             description:
                 - For an IPv6-enabled subnet, this is the IPv6 address of the virtual router.
@@ -456,6 +476,7 @@ subnet:
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "ipv6_cidr_block": "ipv6_cidr_block_example",
+        "ipv6_cidr_blocks": [],
         "ipv6_virtual_router_ip": "ipv6_virtual_router_ip_example",
         "lifecycle_state": "PROVISIONING",
         "prohibit_internet_ingress": true,
@@ -631,6 +652,7 @@ def main():
             security_list_ids=dict(type="list", elements="str"),
             cidr_block=dict(type="str"),
             ipv6_cidr_block=dict(type="str"),
+            ipv6_cidr_blocks=dict(type="list", elements="str"),
             subnet_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

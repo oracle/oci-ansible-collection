@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 2.48.0
+Collection version 2.49.0
 
 .. toctree::
     :maxdepth: 1
@@ -1189,6 +1189,7 @@ Modules
 * :ref:`oci_opsi_summarize_exadata_insight_resource_forecast_trend_facts <ansible_collections.oracle.oci.oci_opsi_summarize_exadata_insight_resource_forecast_trend_facts_module>` -- Fetches details about one or multiple SummarizeExadataInsightResourceForecastTrend resources in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_summarize_exadata_insight_resource_statistics_aggregation_facts <ansible_collections.oracle.oci.oci_opsi_summarize_exadata_insight_resource_statistics_aggregation_facts_module>` -- Fetches details about one or multiple SummarizeExadataInsightResourceStatisticsAggregation resources in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_summarize_exadata_insight_resource_usage_facts <ansible_collections.oracle.oci.oci_opsi_summarize_exadata_insight_resource_usage_facts_module>` -- Fetches details about one or multiple SummarizeExadataInsightResourceUsage resources in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_summarize_host_insights_top_processes_usage_trend_facts <ansible_collections.oracle.oci.oci_opsi_summarize_host_insights_top_processes_usage_trend_facts_module>` -- Fetches details about one or multiple SummarizeHostInsightsTopProcessesUsageTrend resources in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_tablespace_usage_trend_facts <ansible_collections.oracle.oci.oci_opsi_tablespace_usage_trend_facts_module>` -- Fetches details about a TablespaceUsageTrend resource in Oracle Cloud Infrastructure
 * :ref:`oci_optimizer_category_facts <ansible_collections.oracle.oci.oci_optimizer_category_facts_module>` -- Fetches details about one or multiple Category resources in Oracle Cloud Infrastructure
 * :ref:`oci_optimizer_enrollment_status <ansible_collections.oracle.oci.oci_optimizer_enrollment_status_module>` -- Manage an EnrollmentStatus resource in Oracle Cloud Infrastructure
@@ -2571,6 +2572,7 @@ Modules
     oci_opsi_summarize_exadata_insight_resource_forecast_trend_facts_module
     oci_opsi_summarize_exadata_insight_resource_statistics_aggregation_facts_module
     oci_opsi_summarize_exadata_insight_resource_usage_facts_module
+    oci_opsi_summarize_host_insights_top_processes_usage_trend_facts_module
     oci_opsi_tablespace_usage_trend_facts_module
     oci_optimizer_category_facts_module
     oci_optimizer_enrollment_status_module

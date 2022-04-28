@@ -23,95 +23,63 @@ module: oci_identity_domain_actions
 short_description: Perform actions on a Domain resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a Domain resource in Oracle Cloud Infrastructure
-    - "For I(action=activate), if the domain's {@code lifecycleState} is INACTIVE,
-      1. Set the {@code lifecycleDetails} to ACTIVATING and asynchronously starts enabling
-         the domain and return 202 ACCEPTED.
-          1.1 Sets the domain status to ENABLED and set specified domain's
-              {@code lifecycleState} to ACTIVE and set the {@code lifecycleDetails} to null.
-      To track progress, HTTP GET on /iamWorkRequests/{iamWorkRequestsId} endpoint will provide
-      the async operation's status. Deactivate a domain can be done using HTTP POST
-      /domains/{domainId}/actions/deactivate.
-      - If the domain's {@code lifecycleState} is ACTIVE, returns 202 ACCEPTED with no action
-        taken on service side.
-      - If domain is of {@code type} DEFAULT or DEFAULT_LIGHTWEIGHT or domain's {@code lifecycleState} is not INACTIVE,
-        returns 400 BAD REQUEST.
-      - If the domain doesn't exists, returns 404 NOT FOUND.
-      - If the authenticated user is part of the domain to be activated, returns 400 BAD REQUEST
-      - If error occurs while activating domain, returns 500 INTERNAL SERVER ERROR."
-    - "For I(action=change_compartment), change the containing compartment for a domain.
-      This is an asynchronous call where the Domain's compartment is changed and is updated with the new compartment information.
-      To track progress, HTTP GET on /iamWorkRequests/{iamWorkRequestsId} endpoint will provide
-      the async operation's status.
-      The compartment change is complete when accessed via domain URL and
-      also returns new compartment OCID.
-      - If the domain doesn't exists, returns 404 NOT FOUND.
-      - If Domain {@code type} is DEFAULT or DEFAULT_LIGHTWEIGHT, return 400 BAD Request
-      - If Domain is not active or being updated, returns 400 BAD REQUEST.
-      - If error occurs while changing compartment for domain, return 500 INTERNAL SERVER ERROR."
-    - "For I(action=change_domain_license_type), if the domain's {@code lifecycleState} is ACTIVE, validates the requested {@code licenseType} update
-      is allowed and
-      1. Set the {@code lifecycleDetails} to UPDATING
-      2. Asynchronously starts updating the domain and return 202 ACCEPTED.
-          2.1 Successfully updates specified domain's {@code licenseType}.
-      3. On completion set the {@code lifecycleDetails} to null.
-      To track progress, HTTP GET on /iamWorkRequests/{iamWorkRequestsId} endpoint will provide
-      the async operation's status.
-      - If license type update is successful, return 202 ACCEPTED
-      - If requested {@code licenseType} validation fails, returns 400 Bad request.
-      - If Domain is not active or being updated, returns 400 BAD REQUEST.
-      - If Domain {@code type} is DEFAULT or DEFAULT_LIGHTWEIGHT, return 400 BAD Request
-      - If the domain doesn't exists, returns 404 NOT FOUND
-      - If any internal error occurs, returns 500 INTERNAL SERVER ERROR."
-    - "For I(action=deactivate), if the domain's {@code lifecycleState} is ACTIVE and no active Apps are present in domain,
-      1. Set the {@code lifecycleDetails} to DEACTIVATING and asynchronously starts disabling
-         the domain and return 202 ACCEPTED.
-          1.1 Sets the domain status to DISABLED and set specified domain's
-              {@code lifecycleState} to INACTIVE and set the {@code lifecycleDetails} to null.
-      To track progress, HTTP GET on /iamWorkRequests/{iamWorkRequestsId} endpoint will provide
-      the async operation's status. Activate a domain can be done using HTTP POST
-      /domains/{domainId}/actions/activate.
-      - If the domain's {@code lifecycleState} is INACTIVE, returns 202 ACCEPTED with no action
-        taken on service side.
-      - If domain is of {@code type} DEFAULT or DEFAULT_LIGHTWEIGHT or domain's {@code lifecycleState}
-        is not ACTIVE, returns 400 BAD REQUEST.
-      - If the domain doesn't exists, returns 404 NOT FOUND.
-      - If any active Apps in domain, returns 400 BAD REQUEST.
-      - If the authenticated user is part of the domain to be activated, returns 400 BAD REQUEST
-      - If error occurs while deactivating domain, returns 500 INTERNAL SERVER ERROR."
-    - "For I(action=enable_replication_to_region), replicate domain to a new region. This is an asynchronous call - where, at start,
-      {@code state} of this domain in replica region is set to ENABLING_REPLICATION.
-      On domain replication completion the {@code state} will be set to REPLICATION_ENABLED.
-      To track progress, HTTP GET on /iamWorkRequests/{iamWorkRequestsId} endpoint will provide
-      the async operation's status.
-      If the replica region's {@code state} is already ENABLING_REPLICATION or REPLICATION_ENABLED,
-      returns 409 CONFLICT.
-      - If the domain doesn't exists, returns 404 NOT FOUND.
-      - If home region is same as replication region, return 400 BAD REQUEST.
-      - If Domain is not active or being updated, returns 400 BAD REQUEST.
-      - If any internal error occurs, return 500 INTERNAL SERVER ERROR."
+    - For I(action=activate), (For tenancies that support identity domains) Activates a deactivated identity domain. You can only activate identity domains that
+      your user account is not a part of.
+      After you send the request, the `lifecycleDetails` of the identity domain is set to ACTIVATING. When the operation completes, the
+      `lifecycleDetails` is set to null and the `lifecycleState` of the identity domain is set to ACTIVE.
+      To track the progress of the request, submitting an HTTP GET on the /iamWorkRequests/{iamWorkRequestsId} endpoint retrieves
+      the operation's status.
+    - For I(action=change_compartment), (For tenancies that support identity domains) Moves the identity domain to a different compartment in the tenancy.
+      To track the progress of the request, submitting an HTTP GET on the /iamWorkRequests/{iamWorkRequestsId} endpoint retrieves
+      the operation's status.
+    - For I(action=change_domain_license_type), (For tenancies that support identity domains) Changes the license type of the given identity domain. The
+      identity domain's
+      `lifecycleState` must be set to ACTIVE and the requested `licenseType` must be allowed. To retrieve the allowed `licenseType` for
+      the identity domain, use L(ListAllowedDomainLicenseTypes,https://docs.cloud.oracle.com/en-
+      us/iaas/api/#/en/identity/20160918/Domain/ListAllowedDomainLicenseTypes).
+      After you send your request, the `lifecycleDetails` of this identity domain is set to UPDATING. When the update of the identity
+      domain completes, then the `lifecycleDetails` is set to null.
+      To track the progress of the request, submitting an HTTP GET on the /iamWorkRequests/{iamWorkRequestsId} endpoint retrieves
+      the operation's status.
+    - For I(action=deactivate), (For tenancies that support identity domains) Deactivates the specified identity domain. Identity domains must be in an ACTIVE
+      `lifecycleState` and have no active apps present in the domain or underlying Identity Cloud Service stripe. You cannot deactivate
+      the default identity domain.
+      After you send your request, the `lifecycleDetails` of this identity domain is set to DEACTIVATING. When the operation completes,
+      then the `lifecycleDetails` is set to null and the `lifecycleState` is set to INACTIVE.
+      To track the progress of the request, submitting an HTTP GET on the /iamWorkRequests/{iamWorkRequestsId} endpoint retrieves
+      the operation's status.
+    - For I(action=enable_replication_to_region), (For tenancies that support identity domains) Replicates the identity domain to a new region (provided that
+      the region is the
+      tenancy home region or other region that the tenancy subscribes to). You can only replicate identity domains that are in an ACTIVE
+      `lifecycleState` and not currently updating or already replicating. You also can only trigger the replication of secondary identity domains.
+      The default identity domain is automatically replicated to all regions that the tenancy subscribes to.
+      After you send the request, the `state` of the identity domain in the replica region is set to ENABLING_REPLICATION. When the operation
+      completes, the `state` is set to REPLICATION_ENABLED.
+      To track the progress of the request, submitting an HTTP GET on the /iamWorkRequests/{iamWorkRequestsId} endpoint retrieves
+      the operation's status.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the destination compartment
-              into which to move the domain.
+              into which to move the identity domain.
             - Required for I(action=change_compartment).
         type: str
     license_type:
         description:
-            - The License type of Domain
+            - The license type of the identity domain.
             - Applicable only for I(action=change_domain_license_type).
         type: str
     domain_id:
         description:
-            - The OCID of the domain
+            - The OCID of the identity domain.
         type: str
         aliases: ["id"]
         required: true
     replica_region:
         description:
-            - A region for which domain replication is requested for.
+            - A region to which you want identity domain replication to occur.
               See L(Regions and Availability Domains,https://docs.cloud.oracle.com/Content/General/Concepts/regions.htm)
               for the full list of supported region names.
             - "Example: `us-phoenix-1`"
@@ -180,43 +148,43 @@ domain:
     contains:
         id:
             description:
-                - The OCID of the domain
+                - The OCID of the identity domain.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
-                - The OCID of the compartment containing the domain.
+                - The OCID of the compartment containing the identity domain.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - The mutable display name of the domain
+                - The mutable display name of the identity domain.
             returned: on success
             type: str
             sample: display_name_example
         description:
             description:
-                - The domain descripition
+                - The identity domain description. You can have an empty description.
             returned: on success
             type: str
             sample: description_example
         url:
             description:
-                - Region agnostic domain URL.
+                - Region-agnostic identity domain URL.
             returned: on success
             type: str
             sample: url_example
         home_region_url:
             description:
-                - Region specific domain URL.
+                - Region-specific identity domain URL.
             returned: on success
             type: str
             sample: home_region_url_example
         home_region:
             description:
-                - The home region for the domain.
+                - The home region for the identity domain.
                   See L(Regions and Availability Domains,https://docs.cloud.oracle.com/Content/General/Concepts/regions.htm)
                   for the full list of supported region names.
                 - "Example: `us-phoenix-1`"
@@ -225,7 +193,7 @@ domain:
             sample: us-phoenix-1
         replica_regions:
             description:
-                - The regions domain is replication to.
+                - The regions where replicas of the identity domain exist.
             returned: on success
             type: complex
             contains:
@@ -239,13 +207,13 @@ domain:
                     sample: us-phoenix-1
                 url:
                     description:
-                        - Region agnostic domain URL.
+                        - Region-agnostic identity domain URL.
                     returned: on success
                     type: str
                     sample: url_example
                 state:
                     description:
-                        - The IDCS replicated region state
+                        - The IDCS-replicated region state.
                     returned: on success
                     type: str
                     sample: ENABLING_REPLICATION
@@ -257,19 +225,19 @@ domain:
             sample: DEFAULT
         license_type:
             description:
-                - The License type of Domain
+                - The license type of the identity domain.
             returned: on success
             type: str
             sample: license_type_example
         is_hidden_on_login:
             description:
-                - Indicates whether domain is hidden on login screen or not.
+                - Indicates whether the identity domain is hidden on the sign-in screen or not.
             returned: on success
             type: bool
             sample: true
         time_created:
             description:
-                - Date and time the domain was created, in the format defined by RFC3339.
+                - Date and time the identity domain was created, in the format defined by RFC3339.
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
@@ -282,7 +250,7 @@ domain:
             sample: CREATING
         lifecycle_details:
             description:
-                - Any additional details about the current state of the Domain.
+                - Any additional details about the current state of the identity domain.
             returned: on success
             type: str
             sample: DEACTIVATING

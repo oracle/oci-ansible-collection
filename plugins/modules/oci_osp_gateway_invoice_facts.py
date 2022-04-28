@@ -474,6 +474,36 @@ invoices:
             returned: on success
             type: complex
             contains:
+                echeck_routing:
+                    description:
+                        - Last four routing digits of the card
+                    returned: on success
+                    type: str
+                    sample: echeck_routing_example
+                name_on_card:
+                    description:
+                        - Name on the credit card
+                    returned: on success
+                    type: str
+                    sample: name_on_card_example
+                credit_card_type:
+                    description:
+                        - Credit card type
+                    returned: on success
+                    type: str
+                    sample: VISA
+                last_digits:
+                    description:
+                        - Last four digits of the card
+                    returned: on success
+                    type: str
+                    sample: last_digits_example
+                time_expiration:
+                    description:
+                        - Expired date of the credit card
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
                 time_paid_on:
                     description:
                         - Paid the invoice on this day
@@ -498,6 +528,18 @@ invoices:
                     returned: on success
                     type: float
                     sample: 10
+                paypal_id:
+                    description:
+                        - The id (email address) of the paypal payment
+                    returned: on success
+                    type: str
+                    sample: "ocid1.paypal.oc1..xxxxxxEXAMPLExxxxxx"
+                paypal_reference:
+                    description:
+                        - paypal payment reference
+                    returned: on success
+                    type: str
+                    sample: paypal_reference_example
         party_name:
             description:
                 - Name of the bill to customer
@@ -567,10 +609,17 @@ invoices:
         "is_display_view_pdf": true,
         "is_display_download_pdf": true,
         "last_payment_detail": {
+            "echeck_routing": "echeck_routing_example",
+            "name_on_card": "name_on_card_example",
+            "credit_card_type": "VISA",
+            "last_digits": "last_digits_example",
+            "time_expiration": "2013-10-20T19:20:30+01:00",
             "time_paid_on": "2013-10-20T19:20:30+01:00",
             "paid_by": "paid_by_example",
             "payment_method": "CREDIT_CARD",
-            "amount_paid": 10
+            "amount_paid": 10,
+            "paypal_id": "ocid1.paypal.oc1..xxxxxxEXAMPLExxxxxx",
+            "paypal_reference": "paypal_reference_example"
         },
         "party_name": "party_name_example",
         "subscription_ids": []

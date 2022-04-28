@@ -35,6 +35,10 @@ options:
               contains the VNIC you specify in `vnicId`.
             - "Example: `2001:DB8::`"
         type: str
+    ipv6_subnet_cidr:
+        description:
+            - The IPv6 CIDR allocated to the subnet. This is required if more than one IPv6 CIDR exists on the subnet.
+        type: str
     defined_tags:
         description:
             - Defined tags for this resource. Each key is predefined and scoped to a
@@ -92,6 +96,7 @@ EXAMPLES = """
 
     # optional
     ip_address: ip_address_example
+    ipv6_subnet_cidr: ipv6_subnet_cidr_example
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
@@ -304,6 +309,9 @@ class Ipv6HelperGen(OCIResourceHelperBase):
     def get_create_model_class(self):
         return CreateIpv6Details
 
+    def get_exclude_attributes(self):
+        return ["ipv6_subnet_cidr"]
+
     def create_resource(self):
         create_details = self.get_create_model()
         return oci_wait_utils.call_and_wait(
@@ -369,6 +377,7 @@ def main():
     module_args.update(
         dict(
             ip_address=dict(type="str"),
+            ipv6_subnet_cidr=dict(type="str"),
             defined_tags=dict(type="dict"),
             display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),

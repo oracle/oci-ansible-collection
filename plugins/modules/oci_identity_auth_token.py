@@ -24,7 +24,7 @@ short_description: Manage an AuthToken resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete an AuthToken resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new auth token for the specified user. For information about what auth tokens are for, see
-      L(Managing User Credentials,https://docs.cloud.oracle.com/Content/Identity/Tasks/managingcredentials.htm).
+      L(Managing User Credentials,https://docs.cloud.oracle.com/Content/Identity/access/managing-user-credentials.htm).
     - "You must specify a *description* for the auth token (although it can be an empty string). It does not
       have to be unique, and you can change it anytime with
       L(UpdateAuthToken,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/AuthToken/UpdateAuthToken)."
@@ -37,6 +37,7 @@ options:
     description:
         description:
             - The description you assign to the auth token during creation. Does not have to be unique, and it's changeable.
+            - (For tenancies that support identity domains) You can have an empty description.
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
@@ -118,6 +119,7 @@ auth_token:
         description:
             description:
                 - The description you assign to the auth token. Does not have to be unique, and it's changeable.
+                - (For tenancies that support identity domains) You can have an empty description.
             returned: on success
             type: str
             sample: description_example

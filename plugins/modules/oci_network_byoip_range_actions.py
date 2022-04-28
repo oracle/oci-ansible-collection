@@ -96,6 +96,40 @@ byoip_range:
     returned: on success
     type: complex
     contains:
+        byoip_range_vcn_ipv6_allocations:
+            description:
+                - A list of `ByoipRangeVcnIpv6AllocationSummary` objects.
+            returned: on success
+            type: complex
+            contains:
+                byoip_range_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the `ByoipRange` resource to which the CIDR
+                          block belongs.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx"
+                compartment_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the
+                          `ByoipRange`.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+                ipv6_cidr_block:
+                    description:
+                        - The BYOIPv6 CIDR block range or subrange allocated to a VCN. This could be all or part of a BYOIPv6 CIDR block.
+                          Each VCN allocation must be /64 or larger.
+                    returned: on success
+                    type: str
+                    sample: ipv6_cidr_block_example
+                vcn_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the `Vcn` resource to which the ByoipRange
+                          belongs.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         cidr_block:
             description:
                 - The public IPv4 CIDR block being imported from on-premises to the Oracle cloud.
@@ -138,6 +172,14 @@ byoip_range:
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        ipv6_cidr_block:
+            description:
+                - The IPv6 CIDR block being imported to the Oracle cloud. This CIDR block must be /48 or larger, and can be subdivided into sub-ranges used
+                  across multiple VCNs. A BYOIPv6 prefix can be also assigned across multiple VCNs, and each VCN must be /64 or larger. You may specify
+                  a ULA or private IPv6 prefix of /64 or larger to use in the VCN. IPv6-enabled subnets will remain a fixed /64 in size.
+            returned: on success
+            type: str
+            sample: ipv6_cidr_block_example
         lifecycle_details:
             description:
                 - The `ByoipRange` resource's current status.
@@ -188,12 +230,19 @@ byoip_range:
             type: str
             sample: validation_token_example
     sample: {
+        "byoip_range_vcn_ipv6_allocations": [{
+            "byoip_range_id": "ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx",
+            "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+            "ipv6_cidr_block": "ipv6_cidr_block_example",
+            "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+        }],
         "cidr_block": "cidr_block_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "display_name": "display_name_example",
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "ipv6_cidr_block": "ipv6_cidr_block_example",
         "lifecycle_details": "CREATING",
         "lifecycle_state": "INACTIVE",
         "time_created": "2013-10-20T19:20:30+01:00",

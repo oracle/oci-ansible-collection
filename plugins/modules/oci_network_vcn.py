@@ -52,7 +52,7 @@ description:
       or FastConnect. For more information, see
       L(Overview of the Networking Service,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/overview.htm).
     - "This resource has the following action operations in the M(oracle.oci.oci_network_vcn_actions) module: add_ipv6_vcn_cidr, add_vcn_cidr,
-      change_compartment, modify_vcn_cidr, remove_vcn_cidr."
+      change_compartment, modify_vcn_cidr, remove_ipv6_vcn_cidr, remove_vcn_cidr."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -77,6 +77,39 @@ options:
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    ipv6_private_cidr_blocks:
+        description:
+            - "The list of one or more ULA or Private IPv6 CIDR blocks for the vcn that meets the following criteria:
+              - The CIDR blocks must be valid.
+              - Multiple CIDR blocks must not overlap each other or the on-premises network CIDR block.
+              - The number of CIDR blocks must not exceed the limit of IPv6 CIDR blocks allowed to a vcn."
+            - "**Important:** Do *not* specify a value for `ipv6CidrBlock`. Use this parameter instead."
+        type: list
+        elements: str
+    is_oracle_gua_allocation_enabled:
+        description:
+            - Specifies whether to skip Oracle allocated IPv6 GUA. By default, Oracle will allocate one GUA of /56
+              size for an IPv6 enabled VCN.
+        type: bool
+    byoipv6_cidr_details:
+        description:
+            - The list of BYOIPv6 OCIDs and BYOIPv6 CIDR blocks required to create a VCN that uses BYOIPv6 ranges.
+        type: list
+        elements: dict
+        suboptions:
+            byoipv6_range_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the `ByoipRange` resource to which the CIDR
+                      block belongs.
+                type: str
+                required: true
+            ipv6_cidr_block:
+                description:
+                    - "An IPv6 CIDR block required to create a VCN with a BYOIP prefix. It could be the whole CIDR block identified in `byoipv6RangeId`, or a
+                      subrange.
+                      Example: `2001:0db8:0123::/48`"
+                type: str
+                required: true
     dns_label:
         description:
             - A DNS label for the VCN, used in conjunction with the VNIC's hostname and
@@ -151,6 +184,12 @@ EXAMPLES = """
     # optional
     cidr_block: cidr_block_example
     cidr_blocks: [ "cidr_blocks_example" ]
+    ipv6_private_cidr_blocks: [ "ipv6_private_cidr_blocks_example" ]
+    is_oracle_gua_allocation_enabled: true
+    byoipv6_cidr_details:
+    - # required
+      byoipv6_range_id: "ocid1.byoipv6range.oc1..xxxxxxEXAMPLExxxxxx"
+      ipv6_cidr_block: ipv6_cidr_block_example
     dns_label: dns_label_example
     is_ipv6_enabled: true
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -199,6 +238,18 @@ vcn:
     returned: on success
     type: complex
     contains:
+        byoipv6_cidr_blocks:
+            description:
+                - The list of BYOIPv6 CIDR blocks required to create a VCN that uses BYOIPv6 ranges.
+            returned: on success
+            type: list
+            sample: []
+        ipv6_private_cidr_blocks:
+            description:
+                - For an IPv6-enabled VCN, this is the list of Private IPv6 CIDR blocks for the VCN's IP address space.
+            returned: on success
+            type: list
+            sample: []
         cidr_block:
             description:
                 - Deprecated. The first CIDR IP address from cidrBlocks.
@@ -312,6 +363,8 @@ vcn:
             type: str
             sample: vcn_domain_name_example
     sample: {
+        "byoipv6_cidr_blocks": [],
+        "ipv6_private_cidr_blocks": [],
         "cidr_block": "cidr_block_example",
         "cidr_blocks": [],
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -414,7 +467,11 @@ class VcnHelperGen(OCIResourceHelperBase):
         return CreateVcnDetails
 
     def get_exclude_attributes(self):
-        return ["is_ipv6_enabled"]
+        return [
+            "byoipv6_cidr_details",
+            "is_oracle_gua_allocation_enabled",
+            "is_ipv6_enabled",
+        ]
 
     def create_resource(self):
         create_details = self.get_create_model()
@@ -483,6 +540,16 @@ def main():
             cidr_block=dict(type="str"),
             cidr_blocks=dict(type="list", elements="str"),
             compartment_id=dict(type="str"),
+            ipv6_private_cidr_blocks=dict(type="list", elements="str"),
+            is_oracle_gua_allocation_enabled=dict(type="bool"),
+            byoipv6_cidr_details=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    byoipv6_range_id=dict(type="str", required=True),
+                    ipv6_cidr_block=dict(type="str", required=True),
+                ),
+            ),
             dns_label=dict(type="str"),
             is_ipv6_enabled=dict(type="bool"),
             defined_tags=dict(type="dict"),

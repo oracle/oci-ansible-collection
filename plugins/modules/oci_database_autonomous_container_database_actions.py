@@ -117,7 +117,8 @@ autonomous_container_database:
             sample: STANDARD
         autonomous_exadata_infrastructure_id:
             description:
-                - The OCID of the Autonomous Exadata Infrastructure.
+                - "**No longer used.** For Autonomous Database on dedicated Exadata infrastructure, the container database is created within a specified
+                  `cloudAutonomousVmCluster`."
             returned: on success
             type: str
             sample: "ocid1.autonomousexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"

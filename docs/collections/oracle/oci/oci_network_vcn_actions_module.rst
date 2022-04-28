@@ -30,7 +30,7 @@ oracle.oci.oci_network_vcn_actions -- Perform actions on a Vcn resource in Oracl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -61,6 +61,7 @@ Synopsis
 - For *action=add_vcn_cidr*, adds a CIDR block to a VCN. The CIDR block you add: - Must be valid. - Must not overlap with another CIDR block in the VCN, a CIDR block of a peered VCN, or the on-premises network CIDR block. - Must not exceed the limit of CIDR blocks allowed per VCN. **Note:** Adding a CIDR block places your VCN in an updating state until the changes are complete. You cannot create or update the VCN's subnets, VLANs, LPGs, or route tables during this operation. The time to completion can take a few minutes. You can use the `GetWorkRequest` operation to check the status of the update.
 - For *action=change_compartment*, moves a VCN into a different compartment within the same tenancy. For information about moving resources between compartments, see `Moving Resources to a Different Compartment <https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes>`_.
 - For *action=modify_vcn_cidr*, updates the specified CIDR block of a VCN. The new CIDR IP range must meet the following criteria: - Must be valid. - Must not overlap with another CIDR block in the VCN, a CIDR block of a peered VCN, or the on-premises network CIDR block. - Must not exceed the limit of CIDR blocks allowed per VCN. - Must include IP addresses from the original CIDR block that are used in the VCN's existing route rules. - No IP address in an existing subnet should be outside of the new CIDR block range. **Note:** Modifying a CIDR block places your VCN in an updating state until the changes are complete. You cannot create or update the VCN's subnets, VLANs, LPGs, or route tables during this operation. The time to completion can vary depending on the size of your network. Updating a small network could take about a minute, and updating a large network could take up to an hour. You can use the `GetWorkRequest` operation to check the status of the update.
+- For *action=remove_ipv6_vcn_cidr*, removing an existing IPv6 CIDR from a VCN.
 - For *action=remove_vcn_cidr*, removes a specified CIDR block from a VCN. **Notes:** - You cannot remove a CIDR block if an IP address in its range is in use. - Removing a CIDR block places your VCN in an updating state until the changes are complete. You cannot create or update the VCN's subnets, VLANs, LPGs, or route tables during this operation. The time to completion can take a few minutes. You can use the `GetWorkRequest` operation to check the status of the update.
 
 
@@ -86,12 +87,12 @@ Parameters
 
     <table  border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="1">Parameter</th>
+            <th colspan="2">Parameter</th>
             <th>Choices/<font color="blue">Defaults</font></th>
                         <th width="100%">Comments</th>
         </tr>
                     <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-action"></div>
                     <b>action</b>
                     <a class="ansibleOptionLink" href="#parameter-action" title="Permalink to this option"></a>
@@ -105,6 +106,7 @@ Parameters
                                                                                                                                                                                                 <li>add_vcn_cidr</li>
                                                                                                                                                                                                 <li>change_compartment</li>
                                                                                                                                                                                                 <li>modify_vcn_cidr</li>
+                                                                                                                                                                                                <li>remove_ipv6_vcn_cidr</li>
                                                                                                                                                                                                 <li>remove_vcn_cidr</li>
                                                                                     </ul>
                                                                             </td>
@@ -113,7 +115,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user"></div>
                     <b>api_user</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user" title="Permalink to this option"></a>
@@ -128,7 +130,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_fingerprint"></div>
                     <b>api_user_fingerprint</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_fingerprint" title="Permalink to this option"></a>
@@ -143,7 +145,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_key_file"></div>
                     <b>api_user_key_file</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_key_file" title="Permalink to this option"></a>
@@ -158,7 +160,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_key_pass_phrase"></div>
                     <b>api_user_key_pass_phrase</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_key_pass_phrase" title="Permalink to this option"></a>
@@ -173,7 +175,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-auth_type"></div>
                     <b>auth_type</b>
                     <a class="ansibleOptionLink" href="#parameter-auth_type" title="Permalink to this option"></a>
@@ -194,7 +196,56 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-byoipv6_cidr_detail"></div>
+                    <b>byoipv6_cidr_detail</b>
+                    <a class="ansibleOptionLink" href="#parameter-byoipv6_cidr_detail" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Applicable only for <em>action=add_ipv6_vcn_cidr</em>.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-byoipv6_cidr_detail/byoipv6_range_id"></div>
+                    <b>byoipv6_range_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-byoipv6_cidr_detail/byoipv6_range_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the `ByoipRange` resource to which the CIDR block belongs.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-byoipv6_cidr_detail/ipv6_cidr_block"></div>
+                    <b>ipv6_cidr_block</b>
+                    <a class="ansibleOptionLink" href="#parameter-byoipv6_cidr_detail/ipv6_cidr_block" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>An IPv6 CIDR block required to create a VCN with a BYOIP prefix. It could be the whole CIDR block identified in `byoipv6RangeId`, or a subrange. Example: `2001:0db8:0123::/48`</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-cidr_block"></div>
                     <b>cidr_block</b>
                     <a class="ansibleOptionLink" href="#parameter-cidr_block" title="Permalink to this option"></a>
@@ -210,7 +261,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
@@ -226,7 +277,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-config_file_location"></div>
                     <b>config_file_location</b>
                     <a class="ansibleOptionLink" href="#parameter-config_file_location" title="Permalink to this option"></a>
@@ -241,7 +292,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-config_profile_name"></div>
                     <b>config_profile_name</b>
                     <a class="ansibleOptionLink" href="#parameter-config_profile_name" title="Permalink to this option"></a>
@@ -256,7 +307,61 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-ipv6_cidr_block"></div>
+                    <b>ipv6_cidr_block</b>
+                    <a class="ansibleOptionLink" href="#parameter-ipv6_cidr_block" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>This field is not required and should only be specified when removing ULA or private IPv6 prefix or an IPv6 GUA assigned by Oracle or BYOIPv6 prefix from a VCN&#x27;s IPv6 address space. SeeL(IPv6 Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm).</div>
+                                            <div>Example: `2001:0db8:0123::/56`</div>
+                                            <div>Applicable only for <em>action=remove_ipv6_vcn_cidr</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-ipv6_private_cidr_block"></div>
+                    <b>ipv6_private_cidr_block</b>
+                    <a class="ansibleOptionLink" href="#parameter-ipv6_private_cidr_block" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>This field is not required and should only be specified if a ULA or private IPv6 prefix is desired for VCN&#x27;s private IP address space. SeeL(IPv6 Addresses,https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/ipv6.htm).</div>
+                                            <div>Example: `2001:0db8:0123::/48` or `fd00:1000:0:1::/64`</div>
+                                            <div>Applicable only for <em>action=add_ipv6_vcn_cidr</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-is_oracle_gua_allocation_enabled"></div>
+                    <b>is_oracle_gua_allocation_enabled</b>
+                    <a class="ansibleOptionLink" href="#parameter-is_oracle_gua_allocation_enabled" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Indicates whether Oracle will allocate an IPv6 GUA. Only one prefix of /56 size can be allocated by Oracle as a GUA.</div>
+                                            <div>Applicable only for <em>action=add_ipv6_vcn_cidr</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-new_cidr_block"></div>
                     <b>new_cidr_block</b>
                     <a class="ansibleOptionLink" href="#parameter-new_cidr_block" title="Permalink to this option"></a>
@@ -272,7 +377,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-original_cidr_block"></div>
                     <b>original_cidr_block</b>
                     <a class="ansibleOptionLink" href="#parameter-original_cidr_block" title="Permalink to this option"></a>
@@ -288,7 +393,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#parameter-region" title="Permalink to this option"></a>
@@ -303,7 +408,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-tenancy"></div>
                     <b>tenancy</b>
                     <a class="ansibleOptionLink" href="#parameter-tenancy" title="Permalink to this option"></a>
@@ -318,7 +423,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-vcn_id"></div>
                     <b>vcn_id</b>
                     <a class="ansibleOptionLink" href="#parameter-vcn_id" title="Permalink to this option"></a>
@@ -334,7 +439,7 @@ Parameters
                                     </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-wait"></div>
                     <b>wait</b>
                     <a class="ansibleOptionLink" href="#parameter-wait" title="Permalink to this option"></a>
@@ -353,7 +458,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-wait_timeout"></div>
                     <b>wait_timeout</b>
                     <a class="ansibleOptionLink" href="#parameter-wait_timeout" title="Permalink to this option"></a>
@@ -398,6 +503,14 @@ Examples
         vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         action: add_ipv6_vcn_cidr
 
+        # optional
+        ipv6_private_cidr_block: ipv6_private_cidr_block_example
+        is_oracle_gua_allocation_enabled: true
+        byoipv6_cidr_detail:
+          # required
+          byoipv6_range_id: "ocid1.byoipv6range.oc1..xxxxxxEXAMPLExxxxxx"
+          ipv6_cidr_block: ipv6_cidr_block_example
+
     - name: Perform action add_vcn_cidr on vcn
       oci_network_vcn_actions:
         # required
@@ -419,6 +532,15 @@ Examples
         new_cidr_block: new_cidr_block_example
         vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         action: modify_vcn_cidr
+
+    - name: Perform action remove_ipv6_vcn_cidr on vcn
+      oci_network_vcn_actions:
+        # required
+        vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+        action: remove_ipv6_vcn_cidr
+
+        # optional
+        ipv6_cidr_block: ipv6_cidr_block_example
 
     - name: Perform action remove_vcn_cidr on vcn
       oci_network_vcn_actions:
@@ -462,10 +584,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Vcn resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;cidr_block&#x27;: &#x27;cidr_block_example&#x27;, &#x27;cidr_blocks&#x27;: [], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;default_dhcp_options_id&#x27;: &#x27;ocid1.defaultdhcpoptions.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;default_route_table_id&#x27;: &#x27;ocid1.defaultroutetable.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;default_security_list_id&#x27;: &#x27;ocid1.defaultsecuritylist.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;dns_label&#x27;: &#x27;dns_label_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ipv6_cidr_blocks&#x27;: [], &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vcn_domain_name&#x27;: &#x27;vcn_domain_name_example&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;byoipv6_cidr_blocks&#x27;: [], &#x27;cidr_block&#x27;: &#x27;cidr_block_example&#x27;, &#x27;cidr_blocks&#x27;: [], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;default_dhcp_options_id&#x27;: &#x27;ocid1.defaultdhcpoptions.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;default_route_table_id&#x27;: &#x27;ocid1.defaultroutetable.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;default_security_list_id&#x27;: &#x27;ocid1.defaultsecuritylist.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;dns_label&#x27;: &#x27;dns_label_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ipv6_cidr_blocks&#x27;: [], &#x27;ipv6_private_cidr_blocks&#x27;: [], &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vcn_domain_name&#x27;: &#x27;vcn_domain_name_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-vcn/byoipv6_cidr_blocks"></div>
+                    <b>byoipv6_cidr_blocks</b>
+                    <a class="ansibleOptionLink" href="#return-vcn/byoipv6_cidr_blocks" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The list of BYOIPv6 CIDR blocks required to create a VCN that uses BYOIPv6 ranges.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-vcn/cidr_block"></div>
@@ -680,6 +818,22 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>For an IPv6-enabled VCN, this is the list of IPv6 CIDR blocks for the VCN&#x27;s IP address space. The CIDRs are provided by Oracle and the sizes are always /56.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-vcn/ipv6_private_cidr_blocks"></div>
+                    <b>ipv6_private_cidr_blocks</b>
+                    <a class="ansibleOptionLink" href="#return-vcn/ipv6_private_cidr_blocks" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>For an IPv6-enabled VCN, this is the list of Private IPv6 CIDR blocks for the VCN&#x27;s IP address space.</div>
                                         <br/>
                                                         </td>
             </tr>

@@ -26,12 +26,12 @@ description:
     - For I(action=bulk_delete_resources), deletes multiple resources in the compartment. All resources must be in the same compartment. You must have the
       appropriate
       permissions to delete the resources in the request. This API can only be invoked from the tenancy's
-      L(home region,https://docs.cloud.oracle.com/Content/Identity/Tasks/managingregions.htm#Home). This operation creates a
+      L(home region,https://docs.cloud.oracle.com/Content/Identity/regions/managingregions.htm#Home). This operation creates a
       L(WorkRequest,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/workrequests/20160918/WorkRequest/). Use the
       L(GetWorkRequest,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/workrequests/20160918/WorkRequest/GetWorkRequest)
       API to monitor the status of the bulk action.
     - For I(action=bulk_move_resources), moves multiple resources from one compartment to another. All resources must be in the same compartment.
-      This API can only be invoked from the tenancy's L(home region,https://docs.cloud.oracle.com/Content/Identity/Tasks/managingregions.htm#Home).
+      This API can only be invoked from the tenancy's L(home region,https://docs.cloud.oracle.com/Content/Identity/regions/managingregions.htm#Home).
       To move resources, you must have the appropriate permissions to move the resource in both the source and target
       compartments. This operation creates a L(WorkRequest,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/workrequests/20160918/WorkRequest/).
       Use the L(GetWorkRequest,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/workrequests/20160918/WorkRequest/GetWorkRequest) API to monitor the status of
@@ -42,7 +42,7 @@ description:
       **IMPORTANT**: After you move a compartment to a new parent compartment, the access policies of
       the new parent take effect and the policies of the previous parent no longer apply. Ensure that you
       are aware of the implications for the compartment contents before you move it. For more
-      information, see L(Moving a Compartment,https://docs.cloud.oracle.com/Content/Identity/Tasks/managingcompartments.htm#MoveCompartment)."
+      information, see L(Moving a Compartment,https://docs.cloud.oracle.com/Content/Identity/compartments/managingcompartments.htm#MoveCompartment)."
     - For I(action=recover), recover the compartment from DELETED state to ACTIVE state.
 version_added: "2.9.0"
 author: Oracle (@oracle)

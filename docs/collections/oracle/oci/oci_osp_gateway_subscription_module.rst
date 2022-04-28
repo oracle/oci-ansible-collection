@@ -30,7 +30,7 @@ oracle.oci.oci_osp_gateway_subscription -- Manage a Subscription resource in Ora
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -721,6 +721,148 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-subscription/payment_options/credit_card_type"></div>
+                    <b>credit_card_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-subscription/payment_options/credit_card_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>VISA</li>
+                                                                                                                                                                                                <li>AMEX</li>
+                                                                                                                                                                                                <li>MASTERCARD</li>
+                                                                                                                                                                                                <li>DISCOVER</li>
+                                                                                                                                                                                                <li>JCB</li>
+                                                                                                                                                                                                <li>DINER</li>
+                                                                                                                                                                                                <li>ELO</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Credit card type.</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when payment_method is &#x27;CREDIT_CARD&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-subscription/payment_options/email_address"></div>
+                    <b>email_address</b>
+                    <a class="ansibleOptionLink" href="#parameter-subscription/payment_options/email_address" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The email address of the paypal user.</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when payment_method is &#x27;PAYPAL&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-subscription/payment_options/ext_billing_agreement_id"></div>
+                    <b>ext_billing_agreement_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-subscription/payment_options/ext_billing_agreement_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Agreement id for the paypal account.</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when payment_method is &#x27;PAYPAL&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-subscription/payment_options/first_name"></div>
+                    <b>first_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-subscription/payment_options/first_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>First name of the paypal user.</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when payment_method is &#x27;PAYPAL&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-subscription/payment_options/last_digits"></div>
+                    <b>last_digits</b>
+                    <a class="ansibleOptionLink" href="#parameter-subscription/payment_options/last_digits" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Last four digits of the card.</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when payment_method is &#x27;CREDIT_CARD&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-subscription/payment_options/last_name"></div>
+                    <b>last_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-subscription/payment_options/last_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Last name of the paypal user.</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when payment_method is &#x27;PAYPAL&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-subscription/payment_options/name_on_card"></div>
+                    <b>name_on_card</b>
+                    <a class="ansibleOptionLink" href="#parameter-subscription/payment_options/name_on_card" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Name on the credit card.</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when payment_method is &#x27;CREDIT_CARD&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-subscription/payment_options/payment_method"></div>
                     <b>payment_method</b>
                     <a class="ansibleOptionLink" href="#parameter-subscription/payment_options/payment_method" title="Permalink to this option"></a>
@@ -737,6 +879,25 @@ Parameters
                                                                 <td>
                                             <div>Payment method</div>
                                             <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-subscription/payment_options/time_expiration"></div>
+                    <b>time_expiration</b>
+                    <a class="ansibleOptionLink" href="#parameter-subscription/payment_options/time_expiration" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Expired date of the credit card.</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when payment_method is &#x27;CREDIT_CARD&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1126,6 +1287,10 @@ Examples
             payment_method: CREDIT_CARD
 
             # optional
+            credit_card_type: VISA
+            last_digits: last_digits_example
+            name_on_card: name_on_card_example
+            time_expiration: time_expiration_example
             wallet_instrument_id: "ocid1.walletinstrument.oc1..xxxxxxEXAMPLExxxxxx"
             wallet_transaction_id: "ocid1.wallettransaction.oc1..xxxxxxEXAMPLExxxxxx"
           payment_gateway:
@@ -1185,7 +1350,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Subscription resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;bill_to_cust_account_id&#x27;: &#x27;ocid1.billtocustaccount.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;billing_address&#x27;: {&#x27;address_key&#x27;: &#x27;address_key_example&#x27;, &#x27;city&#x27;: &#x27;city_example&#x27;, &#x27;company_name&#x27;: &#x27;company_name_example&#x27;, &#x27;country&#x27;: &#x27;country_example&#x27;, &#x27;email_address&#x27;: &#x27;email_address_example&#x27;, &#x27;first_name&#x27;: &#x27;first_name_example&#x27;, &#x27;last_name&#x27;: &#x27;last_name_example&#x27;, &#x27;line1&#x27;: &#x27;line1_example&#x27;, &#x27;line2&#x27;: &#x27;line2_example&#x27;, &#x27;postal_code&#x27;: &#x27;postal_code_example&#x27;, &#x27;state&#x27;: &#x27;state_example&#x27;}, &#x27;currency_code&#x27;: &#x27;currency_code_example&#x27;, &#x27;gsi_org_code&#x27;: &#x27;gsi_org_code_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_intent_to_pay&#x27;: True, &#x27;language_code&#x27;: &#x27;language_code_example&#x27;, &#x27;organization_id&#x27;: &#x27;ocid1.organization.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;payment_gateway&#x27;: {&#x27;merchant_defined_data&#x27;: {&#x27;cloud_account_name&#x27;: &#x27;cloud_account_name_example&#x27;, &#x27;promo_type&#x27;: &#x27;promo_type_example&#x27;}}, &#x27;payment_options&#x27;: [{&#x27;payment_method&#x27;: &#x27;CREDIT_CARD&#x27;, &#x27;wallet_instrument_id&#x27;: &#x27;ocid1.walletinstrument.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;wallet_transaction_id&#x27;: &#x27;ocid1.wallettransaction.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;plan_type&#x27;: &#x27;FREE_TIER&#x27;, &#x27;ship_to_cust_acct_role_id&#x27;: &#x27;ocid1.shiptocustacctrole.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ship_to_cust_acct_site_id&#x27;: &#x27;ocid1.shiptocustacctsite.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;subscription_plan_number&#x27;: &#x27;subscription_plan_number_example&#x27;, &#x27;tax_info&#x27;: {&#x27;no_tax_reason_code&#x27;: &#x27;no_tax_reason_code_example&#x27;, &#x27;no_tax_reason_code_details&#x27;: &#x27;no_tax_reason_code_details_example&#x27;, &#x27;tax_cnpj&#x27;: &#x27;tax_cnpj_example&#x27;, &#x27;tax_payer_id&#x27;: &#x27;ocid1.taxpayer.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;tax_reg_number&#x27;: &#x27;tax_reg_number_example&#x27;}, &#x27;time_plan_upgrade&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_start&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;upgrade_state&#x27;: &#x27;PROMO&#x27;, &#x27;upgrade_state_details&#x27;: &#x27;TAX_ERROR&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;bill_to_cust_account_id&#x27;: &#x27;ocid1.billtocustaccount.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;billing_address&#x27;: {&#x27;address_key&#x27;: &#x27;address_key_example&#x27;, &#x27;city&#x27;: &#x27;city_example&#x27;, &#x27;company_name&#x27;: &#x27;company_name_example&#x27;, &#x27;country&#x27;: &#x27;country_example&#x27;, &#x27;email_address&#x27;: &#x27;email_address_example&#x27;, &#x27;first_name&#x27;: &#x27;first_name_example&#x27;, &#x27;last_name&#x27;: &#x27;last_name_example&#x27;, &#x27;line1&#x27;: &#x27;line1_example&#x27;, &#x27;line2&#x27;: &#x27;line2_example&#x27;, &#x27;postal_code&#x27;: &#x27;postal_code_example&#x27;, &#x27;state&#x27;: &#x27;state_example&#x27;}, &#x27;currency_code&#x27;: &#x27;currency_code_example&#x27;, &#x27;gsi_org_code&#x27;: &#x27;gsi_org_code_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_intent_to_pay&#x27;: True, &#x27;language_code&#x27;: &#x27;language_code_example&#x27;, &#x27;organization_id&#x27;: &#x27;ocid1.organization.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;payment_gateway&#x27;: {&#x27;merchant_defined_data&#x27;: {&#x27;cloud_account_name&#x27;: &#x27;cloud_account_name_example&#x27;, &#x27;promo_type&#x27;: &#x27;promo_type_example&#x27;}}, &#x27;payment_options&#x27;: [{&#x27;credit_card_type&#x27;: &#x27;VISA&#x27;, &#x27;email_address&#x27;: &#x27;email_address_example&#x27;, &#x27;ext_billing_agreement_id&#x27;: &#x27;ocid1.extbillingagreement.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;first_name&#x27;: &#x27;first_name_example&#x27;, &#x27;last_digits&#x27;: &#x27;last_digits_example&#x27;, &#x27;last_name&#x27;: &#x27;last_name_example&#x27;, &#x27;name_on_card&#x27;: &#x27;name_on_card_example&#x27;, &#x27;payment_method&#x27;: &#x27;CREDIT_CARD&#x27;, &#x27;time_expiration&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;wallet_instrument_id&#x27;: &#x27;ocid1.walletinstrument.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;wallet_transaction_id&#x27;: &#x27;ocid1.wallettransaction.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;plan_type&#x27;: &#x27;FREE_TIER&#x27;, &#x27;ship_to_cust_acct_role_id&#x27;: &#x27;ocid1.shiptocustacctrole.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ship_to_cust_acct_site_id&#x27;: &#x27;ocid1.shiptocustacctsite.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;subscription_plan_number&#x27;: &#x27;subscription_plan_number_example&#x27;, &#x27;tax_info&#x27;: {&#x27;no_tax_reason_code&#x27;: &#x27;no_tax_reason_code_example&#x27;, &#x27;no_tax_reason_code_details&#x27;: &#x27;no_tax_reason_code_details_example&#x27;, &#x27;tax_cnpj&#x27;: &#x27;tax_cnpj_example&#x27;, &#x27;tax_payer_id&#x27;: &#x27;ocid1.taxpayer.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;tax_reg_number&#x27;: &#x27;tax_reg_number_example&#x27;}, &#x27;time_plan_upgrade&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_start&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;upgrade_state&#x27;: &#x27;PROMO&#x27;, &#x27;upgrade_state_details&#x27;: &#x27;TAX_ERROR&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1635,6 +1800,139 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-subscription/payment_options/credit_card_type"></div>
+                    <b>credit_card_type</b>
+                    <a class="ansibleOptionLink" href="#return-subscription/payment_options/credit_card_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Credit card type.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">VISA</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-subscription/payment_options/email_address"></div>
+                    <b>email_address</b>
+                    <a class="ansibleOptionLink" href="#return-subscription/payment_options/email_address" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The email address of the paypal user.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">email_address_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-subscription/payment_options/ext_billing_agreement_id"></div>
+                    <b>ext_billing_agreement_id</b>
+                    <a class="ansibleOptionLink" href="#return-subscription/payment_options/ext_billing_agreement_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Agreement id for the paypal account.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.extbillingagreement.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-subscription/payment_options/first_name"></div>
+                    <b>first_name</b>
+                    <a class="ansibleOptionLink" href="#return-subscription/payment_options/first_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>First name of the paypal user.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">first_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-subscription/payment_options/last_digits"></div>
+                    <b>last_digits</b>
+                    <a class="ansibleOptionLink" href="#return-subscription/payment_options/last_digits" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Last four digits of the card.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">last_digits_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-subscription/payment_options/last_name"></div>
+                    <b>last_name</b>
+                    <a class="ansibleOptionLink" href="#return-subscription/payment_options/last_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Last name of the paypal user.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">last_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-subscription/payment_options/name_on_card"></div>
+                    <b>name_on_card</b>
+                    <a class="ansibleOptionLink" href="#return-subscription/payment_options/name_on_card" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name on the credit card.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_on_card_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-subscription/payment_options/payment_method"></div>
                     <b>payment_method</b>
                     <a class="ansibleOptionLink" href="#return-subscription/payment_options/payment_method" title="Permalink to this return value"></a>
@@ -1648,6 +1946,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREDIT_CARD</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-subscription/payment_options/time_expiration"></div>
+                    <b>time_expiration</b>
+                    <a class="ansibleOptionLink" href="#return-subscription/payment_options/time_expiration" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Expired date of the credit card.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
                                     </td>
             </tr>
                                 <tr>

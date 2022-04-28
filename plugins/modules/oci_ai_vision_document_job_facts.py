@@ -23,7 +23,7 @@ module: oci_ai_vision_document_job_facts
 short_description: Fetches details about a DocumentJob resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a DocumentJob resource in Oracle Cloud Infrastructure
-    - Get details of a batch document job.
+    - Get details of a document batch job.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -53,7 +53,7 @@ document_job:
     contains:
         id:
             description:
-                - Job id.
+                - The job id.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -65,19 +65,19 @@ document_job:
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - Document job display name.
+                - The document job display name.
             returned: on success
             type: str
             sample: display_name_example
         features:
             description:
-                - List of document analysis types requested.
+                - The list of requested document analysis types.
             returned: on success
             type: complex
             contains:
                 model_id:
                     description:
-                        - Custom model id.
+                        - The custom model ID.
                     returned: on success
                     type: str
                     sample: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
@@ -89,8 +89,8 @@ document_job:
                     sample: 56
                 feature_type:
                     description:
-                        - "Type of document analysis requested
-                          Allowed values are:
+                        - "The type of document analysis requested.
+                          The allowed values are:
                           - `LANGUAGE_CLASSIFICATION`: Detect the language.
                           - `TEXT_DETECTION`: Recognize text.
                           - `TABLE_DETECTION`: Detect and extract data in tables.
@@ -101,19 +101,19 @@ document_job:
                     sample: LANGUAGE_CLASSIFICATION
                 generate_searchable_pdf:
                     description:
-                        - Whether to generate a searchable PDF file.
+                        - Whether or not to generate a searchable PDF file.
                     returned: on success
                     type: bool
                     sample: true
         language:
             description:
-                - Language of the document, abbreviated according to ISO 639-2.
+                - The document language, abbreviated according to ISO 639-2.
             returned: on success
             type: str
             sample: ENG
         document_type:
             description:
-                - The type of documents.
+                - The type of document.
             returned: on success
             type: str
             sample: INVOICE
@@ -125,57 +125,57 @@ document_job:
             contains:
                 source_type:
                     description:
-                        - "The type of input location
-                          Allowed values are:
+                        - "The type of input location.
+                          The allowed values are:
                           - `OBJECT_LIST_INLINE_INPUT_LOCATION`: A list of object locations in Object Storage."
                     returned: on success
                     type: str
                     sample: OBJECT_LIST_INLINE_INPUT_LOCATION
                 object_locations:
                     description:
-                        - List of ObjectLocations.
+                        - The list of ObjectLocations.
                     returned: on success
                     type: complex
                     contains:
                         namespace_name:
                             description:
-                                - Object Storage namespace name.
+                                - The Object Storage namespace name.
                             returned: on success
                             type: str
                             sample: namespace_name_example
                         bucket_name:
                             description:
-                                - Object Storage bucket name.
+                                - The Object Storage bucket name.
                             returned: on success
                             type: str
                             sample: bucket_name_example
                         object_name:
                             description:
-                                - Object Storage object name.
+                                - The Object Storage object name.
                             returned: on success
                             type: str
                             sample: object_name_example
         time_accepted:
             description:
-                - Job accepted time.
+                - The job acceptance time.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_started:
             description:
-                - Job started time.
+                - The job start time.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_finished:
             description:
-                - Job finished time.
+                - The job finish time.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         percent_complete:
             description:
-                - How much progress the operation has made, vs the total amount of work that must be performed.
+                - How much progress the operation has made, compared to the total amount of work to be performed.
             returned: on success
             type: float
             sample: 3.4
@@ -187,19 +187,19 @@ document_job:
             contains:
                 namespace_name:
                     description:
-                        - Object Storage namespace.
+                        - The Object Storage namespace.
                     returned: on success
                     type: str
                     sample: namespace_name_example
                 bucket_name:
                     description:
-                        - Object Storage bucket name.
+                        - The Object Storage bucket name.
                     returned: on success
                     type: str
                     sample: bucket_name_example
                 prefix:
                     description:
-                        - Object Storage folder name.
+                        - The Object Storage folder name.
                     returned: on success
                     type: str
                     sample: prefix_example
@@ -211,13 +211,13 @@ document_job:
             sample: SUCCEEDED
         is_zip_output_enabled:
             description:
-                - Whether to generate a Zip file containing the results.
+                - Whether or not to generate a ZIP file containing the results.
             returned: on success
             type: bool
             sample: true
         lifecycle_details:
             description:
-                - Detailed status of FAILED state.
+                - The detailed status of FAILED state.
             returned: on success
             type: str
             sample: PARTIALLY_SUCCEEDED

@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.49.0]
+
+## Added
+
+- Support for creating Enterprise Manager-based zLinux host targets, creating alarms, and viewing top process analytics in the Operations Insights service
+- Fixed the lifecycle state values for target databases in the Data Safe service
+- Support for specifying database edition and maximum CPU core count when creating or updating an autonomous database in the Database service
+- Support for enabling and disabling data collection options when creating or updating Exadata Cloud at Customer VM clusters in the Database service
+- Support for diagnostic reboots on VM instances in the Compute service
+- Support for returning the number of network ports as part of listing shapes in the Compute service
+- Support for bringing your own IPv6 addresses in the Networking service
+- Support for new parameters for BGP admin state and enabling/disabling BFD in the Networking service
+
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.65.0
+
 ## [2.48.0]
 
 ## Added

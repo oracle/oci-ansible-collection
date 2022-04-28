@@ -23,20 +23,13 @@ module: oci_identity_domain
 short_description: Manage a Domain resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Domain resource in Oracle Cloud Infrastructure
-    - "For I(state=present), creates a new domain in the tenancy with domain home in {@code homeRegion}. This is an asynchronous call - where, at start,
-      {@code lifecycleState} of this domain is set to CREATING and {@code lifecycleDetails} to UPDATING. On domain creation completion
-      this Domain's {@code lifecycleState} will be set to ACTIVE and {@code lifecycleDetails} to null."
-    - To track progress, HTTP GET on /iamWorkRequests/{iamWorkRequestsId} endpoint will provide
-      the async operation's status.
-    - "After creating a `Domain`, make sure its `lifecycleState` changes from CREATING to ACTIVE
-      before using it.
-      If the domain's {@code displayName} already exists, returns 400 BAD REQUEST.
-      If any one of admin related fields are provided and one of the following 3 fields
-      - {@code adminEmail}, {@code adminLastName} and {@code adminUserName} - is not provided,
-      returns 400 BAD REQUEST.
-      - If {@code isNotificationBypassed} is NOT provided when admin information is provided,
-      returns 400 BAD REQUEST.
-      - If any internal error occurs, return 500 INTERNAL SERVER ERROR."
+    - For I(state=present), (For tenancies that support identity domains) Creates a new identity domain in the tenancy with the identity domain home in
+      `homeRegion`.
+      After you send your request, the temporary `lifecycleState` of this identity domain is set to CREATING and `lifecycleDetails` to UPDATING.
+      When creation of the identity domain completes, this identity domain's `lifecycleState` is set to ACTIVE and `lifecycleDetails` to null.
+    - To track the progress of the request, submitting an HTTP GET on the /iamWorkRequests/{iamWorkRequestsId} endpoint retrieves
+      the operation's status.
+    - After creating an `identity domain`, first make sure its `lifecycleState` changes from CREATING to ACTIVE before you use it.
     - "This resource has the following action operations in the M(oracle.oci.oci_identity_domain_actions) module: activate, change_compartment,
       change_domain_license_type, deactivate, enable_replication_to_region."
 version_added: "2.9.0"
@@ -44,7 +37,7 @@ author: Oracle (@oracle)
 options:
     compartment_id:
         description:
-            - The OCID of the Compartment where domain is created
+            - The OCID of the compartment where the identity domain is created.
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
@@ -58,45 +51,43 @@ options:
         type: str
     license_type:
         description:
-            - The License type of Domain
+            - The license type of the identity domain.
             - Required for create using I(state=present).
         type: str
     admin_first_name:
         description:
-            - The admin first name
+            - The administrator's first name.
         type: str
     admin_last_name:
         description:
-            - The admin last name
+            - The administrator's last name.
         type: str
     admin_user_name:
         description:
-            - The admin user name
+            - The administrator's user name.
         type: str
     admin_email:
         description:
-            - The admin email address
+            - The administrator's email address.
         type: str
     is_notification_bypassed:
         description:
-            - Indicates if admin user created in IDCS stripe would like to receive notification like welcome email
-              or not.
-              Required field only if admin information is provided, otherwise optional.
+            - Indicates whether or not the administrator user created in the IDCS stripe would like to receive notifications like a welcome email.
+              This field is required only if admin information is provided. This field is otherwise optional.
         type: bool
     is_primary_email_required:
         description:
-            - Optional field to indicate whether users in the domain are required to have a primary email address or not
-              Defaults to true
+            - Optional field to indicate whether users in the identity domain are required to have a primary email address or not. The default is true.
         type: bool
     description:
         description:
-            - Domain entity description
+            - The identity domain description. You can have an empty description.
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
     display_name:
         description:
-            - The mutable display name of the domain.
+            - The mutable display name of the identity domain.
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
@@ -104,7 +95,7 @@ options:
         aliases: ["name"]
     is_hidden_on_login:
         description:
-            - Indicates whether domain is hidden on login screen or not.
+            - Indicates whether the identity domain is hidden on the sign-in screen or not.
             - This parameter is updatable.
         type: bool
     freeform_tags:
@@ -123,7 +114,7 @@ options:
         type: dict
     domain_id:
         description:
-            - The OCID of the domain
+            - The OCID of the identity domain.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -209,43 +200,43 @@ domain:
     contains:
         id:
             description:
-                - The OCID of the domain
+                - The OCID of the identity domain.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
-                - The OCID of the compartment containing the domain.
+                - The OCID of the compartment containing the identity domain.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - The mutable display name of the domain
+                - The mutable display name of the identity domain.
             returned: on success
             type: str
             sample: display_name_example
         description:
             description:
-                - The domain descripition
+                - The identity domain description. You can have an empty description.
             returned: on success
             type: str
             sample: description_example
         url:
             description:
-                - Region agnostic domain URL.
+                - Region-agnostic identity domain URL.
             returned: on success
             type: str
             sample: url_example
         home_region_url:
             description:
-                - Region specific domain URL.
+                - Region-specific identity domain URL.
             returned: on success
             type: str
             sample: home_region_url_example
         home_region:
             description:
-                - The home region for the domain.
+                - The home region for the identity domain.
                   See L(Regions and Availability Domains,https://docs.cloud.oracle.com/Content/General/Concepts/regions.htm)
                   for the full list of supported region names.
                 - "Example: `us-phoenix-1`"
@@ -254,7 +245,7 @@ domain:
             sample: us-phoenix-1
         replica_regions:
             description:
-                - The regions domain is replication to.
+                - The regions where replicas of the identity domain exist.
             returned: on success
             type: complex
             contains:
@@ -268,13 +259,13 @@ domain:
                     sample: us-phoenix-1
                 url:
                     description:
-                        - Region agnostic domain URL.
+                        - Region-agnostic identity domain URL.
                     returned: on success
                     type: str
                     sample: url_example
                 state:
                     description:
-                        - The IDCS replicated region state
+                        - The IDCS-replicated region state.
                     returned: on success
                     type: str
                     sample: ENABLING_REPLICATION
@@ -286,19 +277,19 @@ domain:
             sample: DEFAULT
         license_type:
             description:
-                - The License type of Domain
+                - The license type of the identity domain.
             returned: on success
             type: str
             sample: license_type_example
         is_hidden_on_login:
             description:
-                - Indicates whether domain is hidden on login screen or not.
+                - Indicates whether the identity domain is hidden on the sign-in screen or not.
             returned: on success
             type: bool
             sample: true
         time_created:
             description:
-                - Date and time the domain was created, in the format defined by RFC3339.
+                - Date and time the identity domain was created, in the format defined by RFC3339.
                 - "Example: `2016-08-25T21:10:29.600Z`"
             returned: on success
             type: str
@@ -311,7 +302,7 @@ domain:
             sample: CREATING
         lifecycle_details:
             description:
-                - Any additional details about the current state of the Domain.
+                - Any additional details about the current state of the identity domain.
             returned: on success
             type: str
             sample: DEACTIVATING

@@ -30,7 +30,7 @@ oracle.oci.oci_network_byoip_range -- Manage a ByoipRange resource in Oracle Clo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -199,7 +199,6 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The BYOIP CIDR block. You can assign some or all of it to a public IP pool after it is validated. Example: `10.0.1.0/24`</div>
-                                            <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -319,6 +318,21 @@ Parameters
                                             <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
                                             <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
                                             <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-ipv6_cidr_block"></div>
+                    <b>ipv6_cidr_block</b>
+                    <a class="ansibleOptionLink" href="#parameter-ipv6_cidr_block" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The BYOIPv6 CIDR block. You can assign some or all of it to a VCN after it is validated.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -449,10 +463,11 @@ Examples
     - name: Create byoip_range
       oci_network_byoip_range:
         # required
-        cidr_block: cidr_block_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
+        cidr_block: cidr_block_example
+        ipv6_cidr_block: ipv6_cidr_block_example
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
@@ -507,12 +522,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="2">Key</th>
+            <th colspan="3">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-byoip_range"></div>
                     <b>byoip_range</b>
                     <a class="ansibleOptionLink" href="#return-byoip_range" title="Permalink to this return value"></a>
@@ -525,12 +540,105 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the ByoipRange resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;cidr_block&#x27;: &#x27;cidr_block_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;CREATING&#x27;, &#x27;lifecycle_state&#x27;: &#x27;INACTIVE&#x27;, &#x27;time_advertised&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_validated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_withdrawn&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;validation_token&#x27;: &#x27;validation_token_example&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;byoip_range_vcn_ipv6_allocations&#x27;: [{&#x27;byoip_range_id&#x27;: &#x27;ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ipv6_cidr_block&#x27;: &#x27;ipv6_cidr_block_example&#x27;, &#x27;vcn_id&#x27;: &#x27;ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;cidr_block&#x27;: &#x27;cidr_block_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ipv6_cidr_block&#x27;: &#x27;ipv6_cidr_block_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;CREATING&#x27;, &#x27;lifecycle_state&#x27;: &#x27;INACTIVE&#x27;, &#x27;time_advertised&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_validated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_withdrawn&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;validation_token&#x27;: &#x27;validation_token_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-byoip_range/byoip_range_vcn_ipv6_allocations"></div>
+                    <b>byoip_range_vcn_ipv6_allocations</b>
+                    <a class="ansibleOptionLink" href="#return-byoip_range/byoip_range_vcn_ipv6_allocations" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A list of `ByoipRangeVcnIpv6AllocationSummary` objects.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-byoip_range/byoip_range_vcn_ipv6_allocations/byoip_range_id"></div>
+                    <b>byoip_range_id</b>
+                    <a class="ansibleOptionLink" href="#return-byoip_range/byoip_range_vcn_ipv6_allocations/byoip_range_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the `ByoipRange` resource to which the CIDR block belongs.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.byoiprange.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-byoip_range/byoip_range_vcn_ipv6_allocations/compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#return-byoip_range/byoip_range_vcn_ipv6_allocations/compartment_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment containing the `ByoipRange`.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-byoip_range/byoip_range_vcn_ipv6_allocations/ipv6_cidr_block"></div>
+                    <b>ipv6_cidr_block</b>
+                    <a class="ansibleOptionLink" href="#return-byoip_range/byoip_range_vcn_ipv6_allocations/ipv6_cidr_block" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The BYOIPv6 CIDR block range or subrange allocated to a VCN. This could be all or part of a BYOIPv6 CIDR block. Each VCN allocation must be /64 or larger.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ipv6_cidr_block_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-byoip_range/byoip_range_vcn_ipv6_allocations/vcn_id"></div>
+                    <b>vcn_id</b>
+                    <a class="ansibleOptionLink" href="#return-byoip_range/byoip_range_vcn_ipv6_allocations/vcn_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the `Vcn` resource to which the ByoipRange belongs.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-byoip_range/cidr_block"></div>
                     <b>cidr_block</b>
                     <a class="ansibleOptionLink" href="#return-byoip_range/cidr_block" title="Permalink to this return value"></a>
@@ -548,7 +656,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-byoip_range/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-byoip_range/compartment_id" title="Permalink to this return value"></a>
@@ -566,7 +674,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-byoip_range/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-byoip_range/defined_tags" title="Permalink to this return value"></a>
@@ -585,7 +693,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-byoip_range/display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#return-byoip_range/display_name" title="Permalink to this return value"></a>
@@ -603,7 +711,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-byoip_range/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-byoip_range/freeform_tags" title="Permalink to this return value"></a>
@@ -622,7 +730,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-byoip_range/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-byoip_range/id" title="Permalink to this return value"></a>
@@ -640,7 +748,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-byoip_range/ipv6_cidr_block"></div>
+                    <b>ipv6_cidr_block</b>
+                    <a class="ansibleOptionLink" href="#return-byoip_range/ipv6_cidr_block" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The IPv6 CIDR block being imported to the Oracle cloud. This CIDR block must be /48 or larger, and can be subdivided into sub-ranges used across multiple VCNs. A BYOIPv6 prefix can be also assigned across multiple VCNs, and each VCN must be /64 or larger. You may specify a ULA or private IPv6 prefix of /64 or larger to use in the VCN. IPv6-enabled subnets will remain a fixed /64 in size.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ipv6_cidr_block_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-byoip_range/lifecycle_details"></div>
                     <b>lifecycle_details</b>
                     <a class="ansibleOptionLink" href="#return-byoip_range/lifecycle_details" title="Permalink to this return value"></a>
@@ -658,7 +784,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-byoip_range/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-byoip_range/lifecycle_state" title="Permalink to this return value"></a>
@@ -676,7 +802,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-byoip_range/time_advertised"></div>
                     <b>time_advertised</b>
                     <a class="ansibleOptionLink" href="#return-byoip_range/time_advertised" title="Permalink to this return value"></a>
@@ -695,7 +821,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-byoip_range/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-byoip_range/time_created" title="Permalink to this return value"></a>
@@ -714,7 +840,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-byoip_range/time_validated"></div>
                     <b>time_validated</b>
                     <a class="ansibleOptionLink" href="#return-byoip_range/time_validated" title="Permalink to this return value"></a>
@@ -733,7 +859,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-byoip_range/time_withdrawn"></div>
                     <b>time_withdrawn</b>
                     <a class="ansibleOptionLink" href="#return-byoip_range/time_withdrawn" title="Permalink to this return value"></a>
@@ -752,7 +878,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-byoip_range/validation_token"></div>
                     <b>validation_token</b>
                     <a class="ansibleOptionLink" href="#return-byoip_range/validation_token" title="Permalink to this return value"></a>

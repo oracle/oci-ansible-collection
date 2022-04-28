@@ -24,14 +24,13 @@ short_description: Manage a Compartment resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Compartment resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new compartment in the specified compartment.
-    - "**Important:** Compartments cannot be deleted."
     - Specify the parent compartment's OCID as the compartment ID in the request object. Remember that the tenancy
       is simply the root compartment. For information about OCIDs, see
       L(Resource Identifiers,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
     - "You must also specify a *name* for the compartment, which must be unique across all compartments in
       your tenancy. You can use this name or the OCID when writing policies that apply
       to the compartment. For more information about policies, see
-      L(How Policies Work,https://docs.cloud.oracle.com/Content/Identity/Concepts/policies.htm)."
+      L(How Policies Work,https://docs.cloud.oracle.com/Content/Identity/policieshow/how-policies-work.htm)."
     - "You must also specify a *description* for the compartment (although it can be an empty string). It does
       not have to be unique, and you can change it anytime with
       L(UpdateCompartment,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/Compartment/UpdateCompartment)."

@@ -30,7 +30,7 @@ oracle.oci.oci_network_vcn_facts -- Fetches details about one or multiple Vcn re
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -414,10 +414,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Vcn resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;cidr_block&#x27;: &#x27;cidr_block_example&#x27;, &#x27;cidr_blocks&#x27;: [], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;default_dhcp_options_id&#x27;: &#x27;ocid1.defaultdhcpoptions.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;default_route_table_id&#x27;: &#x27;ocid1.defaultroutetable.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;default_security_list_id&#x27;: &#x27;ocid1.defaultsecuritylist.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;dns_label&#x27;: &#x27;dns_label_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ipv6_cidr_blocks&#x27;: [], &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vcn_domain_name&#x27;: &#x27;vcn_domain_name_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;byoipv6_cidr_blocks&#x27;: [], &#x27;cidr_block&#x27;: &#x27;cidr_block_example&#x27;, &#x27;cidr_blocks&#x27;: [], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;default_dhcp_options_id&#x27;: &#x27;ocid1.defaultdhcpoptions.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;default_route_table_id&#x27;: &#x27;ocid1.defaultroutetable.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;default_security_list_id&#x27;: &#x27;ocid1.defaultsecuritylist.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;dns_label&#x27;: &#x27;dns_label_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ipv6_cidr_blocks&#x27;: [], &#x27;ipv6_private_cidr_blocks&#x27;: [], &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vcn_domain_name&#x27;: &#x27;vcn_domain_name_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-vcns/byoipv6_cidr_blocks"></div>
+                    <b>byoipv6_cidr_blocks</b>
+                    <a class="ansibleOptionLink" href="#return-vcns/byoipv6_cidr_blocks" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The list of BYOIPv6 CIDR blocks required to create a VCN that uses BYOIPv6 ranges.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-vcns/cidr_block"></div>
@@ -632,6 +648,22 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>For an IPv6-enabled VCN, this is the list of IPv6 CIDR blocks for the VCN&#x27;s IP address space. The CIDRs are provided by Oracle and the sizes are always /56.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-vcns/ipv6_private_cidr_blocks"></div>
+                    <b>ipv6_private_cidr_blocks</b>
+                    <a class="ansibleOptionLink" href="#return-vcns/ipv6_private_cidr_blocks" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>For an IPv6-enabled VCN, this is the list of Private IPv6 CIDR blocks for the VCN&#x27;s IP address space.</div>
                                         <br/>
                                                         </td>
             </tr>

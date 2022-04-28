@@ -30,7 +30,7 @@ oracle.oci.oci_ai_vision_analyze_image_result_actions -- Perform actions on an A
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -197,7 +197,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The ocid of the compartment that calls the API.</div>
+                                            <div>The OCID of the compartment that calls the API.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -242,7 +242,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Types of image analysis.</div>
+                                            <div>The types of image analysis.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -263,7 +263,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Type of image analysis requested. Allowed values are: - `IMAGE_CLASSIFICATION`: Label the image. - `OBJECT_DETECTION`: Identify objects in the image with bounding boxes. - `TEXT_DETECTION`: Recognize text in the image.</div>
+                                            <div>The type of image analysis requested. The allowed values are: - `IMAGE_CLASSIFICATION`: Label the image. - `OBJECT_DETECTION`: Identify objects in the image with bounding boxes. - `TEXT_DETECTION`: Recognize text in the image.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -306,7 +306,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Language of the document image, abbreviated according to ISO 639-2.</div>
+                                            <div>The language of the document image, abbreviated according to ISO 639-2.</div>
                                             <div>Applicable when feature_type is &#x27;TEXT_DETECTION&#x27;</div>
                                                         </td>
             </tr>
@@ -340,7 +340,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Custom model id.</div>
+                                            <div>The custom model ID.</div>
                                             <div>Applicable when feature_type is one of [&#x27;IMAGE_CLASSIFICATION&#x27;, &#x27;OBJECT_DETECTION&#x27;]</div>
                                                         </td>
             </tr>
@@ -373,7 +373,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Object Storage bucket name.</div>
+                                            <div>The Object Storage bucket name.</div>
                                             <div>Required when source is &#x27;OBJECT_STORAGE&#x27;</div>
                                                         </td>
             </tr>
@@ -390,7 +390,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Image raw data.</div>
+                                            <div>Raw image data.</div>
                                             <div>Required when source is &#x27;INLINE&#x27;</div>
                                                         </td>
             </tr>
@@ -407,7 +407,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Object Storage namespace.</div>
+                                            <div>The Object Storage namespace.</div>
                                             <div>Required when source is &#x27;OBJECT_STORAGE&#x27;</div>
                                                         </td>
             </tr>
@@ -424,7 +424,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Object Storage object name.</div>
+                                            <div>The Object Storage object name.</div>
                                             <div>Required when source is &#x27;OBJECT_STORAGE&#x27;</div>
                                                         </td>
             </tr>
@@ -445,7 +445,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The location of image data Allowed values are: - `INLINE`: Data is included directly in the request payload. - `OBJECT_STORAGE`: The image is in OCI Object Storage.</div>
+                                            <div>The location of the image data. The allowed values are: - `INLINE`: The data is included directly in the request payload. - `OBJECT_STORAGE`: The image is in OCI Object Storage.</div>
                                                         </td>
             </tr>
                     
@@ -515,10 +515,10 @@ Examples
           language: ENG
         image:
           # required
-          source: OBJECT_STORAGE
           namespace_name: namespace_name_example
           bucket_name: bucket_name_example
           object_name: object_name_example
+          source: OBJECT_STORAGE
         action: analyze_image
 
         # optional
@@ -574,7 +574,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Errors encountered during image analysis.</div>
+                                            <div>The errors encountered during image analysis.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -591,7 +591,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Error code.</div>
+                                            <div>The error code.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">code_example</div>
@@ -610,7 +610,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Error message.</div>
+                                            <div>The error message.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">message_example</div>
@@ -629,7 +629,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Image classification model version.</div>
+                                            <div>The image classification model version.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">image_classification_model_version_example</div>
@@ -647,7 +647,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Detected objects.</div>
+                                            <div>The detected objects.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -682,7 +682,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>An array of normalized points defining the polygon&#x27;s perimeter, with an implicit segment between subsequent points and between the first and last point. Rectangles are defined with four points, e.g. `[{&quot;x&quot;: 0, &quot;y&quot;: 0}, {&quot;x&quot;: 1, &quot;y&quot;: 0}, {&quot;x&quot;: 1, &quot;y&quot;: 0.5}, {&quot;x&quot;: 0, &quot;y&quot;: 0.5}]` represents the top half of an image.</div>
+                                            <div>An array of normalized points defining the polygon&#x27;s perimeter, with an implicit segment between subsequent points and between the first and last point. Rectangles are defined with four points. For example, `[{&quot;x&quot;: 0, &quot;y&quot;: 0}, {&quot;x&quot;: 1, &quot;y&quot;: 0}, {&quot;x&quot;: 1, &quot;y&quot;: 0.5}, {&quot;x&quot;: 0, &quot;y&quot;: 0.5}]` represents the top half of an image.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -701,7 +701,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>X axis normalized coordinate.</div>
+                                            <div>The X-axis normalized coordinate.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
@@ -722,7 +722,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Y axis normalized coordinate.</div>
+                                            <div>The Y-axis normalized coordinate.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
@@ -743,7 +743,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Confidence score between 0 to 1.</div>
+                                            <div>The confidence score, between 0 and 1.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
@@ -762,7 +762,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Object category name. Every value returned by the pre-deployed model will be in English.</div>
+                                            <div>The object category name. Every value returned by the pre-deployed model is in English.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
@@ -798,7 +798,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Lines of text recognized in the image.</div>
+                                            <div>The lines of text recognized in an image.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -835,7 +835,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>An array of normalized points defining the polygon&#x27;s perimeter, with an implicit segment between subsequent points and between the first and last point. Rectangles are defined with four points, e.g. `[{&quot;x&quot;: 0, &quot;y&quot;: 0}, {&quot;x&quot;: 1, &quot;y&quot;: 0}, {&quot;x&quot;: 1, &quot;y&quot;: 0.5}, {&quot;x&quot;: 0, &quot;y&quot;: 0.5}]` represents the top half of an image.</div>
+                                            <div>An array of normalized points defining the polygon&#x27;s perimeter, with an implicit segment between subsequent points and between the first and last point. Rectangles are defined with four points. For example, `[{&quot;x&quot;: 0, &quot;y&quot;: 0}, {&quot;x&quot;: 1, &quot;y&quot;: 0}, {&quot;x&quot;: 1, &quot;y&quot;: 0.5}, {&quot;x&quot;: 0, &quot;y&quot;: 0.5}]` represents the top half of an image.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -855,7 +855,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>X axis normalized coordinate.</div>
+                                            <div>The X-axis normalized coordinate.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
@@ -877,7 +877,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Y axis normalized coordinate.</div>
+                                            <div>The Y-axis normalized coordinate.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
@@ -899,7 +899,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Confidence score between 0 to 1.</div>
+                                            <div>The confidence score between 0 and 1.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
@@ -919,7 +919,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Text recognized.</div>
+                                            <div>The text recognized.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">text_example</div>
@@ -939,7 +939,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Array of words.</div>
+                                            <div>The array of words.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -957,7 +957,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Words recognized in the image.</div>
+                                            <div>The words recognized in an image.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -994,7 +994,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>An array of normalized points defining the polygon&#x27;s perimeter, with an implicit segment between subsequent points and between the first and last point. Rectangles are defined with four points, e.g. `[{&quot;x&quot;: 0, &quot;y&quot;: 0}, {&quot;x&quot;: 1, &quot;y&quot;: 0}, {&quot;x&quot;: 1, &quot;y&quot;: 0.5}, {&quot;x&quot;: 0, &quot;y&quot;: 0.5}]` represents the top half of an image.</div>
+                                            <div>An array of normalized points defining the polygon&#x27;s perimeter, with an implicit segment between subsequent points and between the first and last point. Rectangles are defined with four points. For example, `[{&quot;x&quot;: 0, &quot;y&quot;: 0}, {&quot;x&quot;: 1, &quot;y&quot;: 0}, {&quot;x&quot;: 1, &quot;y&quot;: 0.5}, {&quot;x&quot;: 0, &quot;y&quot;: 0.5}]` represents the top half of an image.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1014,7 +1014,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>X axis normalized coordinate.</div>
+                                            <div>The X-axis normalized coordinate.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
@@ -1036,7 +1036,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Y axis normalized coordinate.</div>
+                                            <div>The Y-axis normalized coordinate.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
@@ -1058,7 +1058,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Confidence score between 0 to 1.</div>
+                                            <div>the confidence score between 0 and 1.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
@@ -1078,7 +1078,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>String of text characters in the word.</div>
+                                            <div>The string of text characters in the word.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">text_example</div>
@@ -1098,7 +1098,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Image classification labels.</div>
+                                            <div>The image classification labels.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1115,7 +1115,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Confidence score between 0 to 1.</div>
+                                            <div>The confidence score between 0 and 1.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
@@ -1134,7 +1134,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Classification catagory label name.</div>
+                                            <div>The classification catagory label name.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
@@ -1153,7 +1153,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Object detection model version.</div>
+                                            <div>The object detection model version.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">object_detection_model_version_example</div>
@@ -1171,7 +1171,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>ontologyClasses of image labels.</div>
+                                            <div>The ontologyClasses of image labels.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1188,7 +1188,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Name of the label.</div>
+                                            <div>The label name.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
@@ -1207,7 +1207,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Parents of the label.</div>
+                                            <div>The label parents.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1224,7 +1224,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Synonyms of the label.</div>
+                                            <div>The label synonyms.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1241,7 +1241,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Text detection model version.</div>
+                                            <div>The text detection model version.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">text_detection_model_version_example</div>

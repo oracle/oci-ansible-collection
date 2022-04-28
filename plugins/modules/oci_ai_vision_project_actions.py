@@ -23,13 +23,14 @@ module: oci_ai_vision_project_actions
 short_description: Perform actions on a Project resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a Project resource in Oracle Cloud Infrastructure
-    - For I(action=change_compartment), moves a project from one compartment to another. When provided, If-Match is checked against ETag values of the resource.
+    - For I(action=change_compartment), move a project from one compartment to another. When provided, If-Match is checked against the ETag values of the
+      resource.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     project_id:
         description:
-            - unique project identifier.
+            - A unique project identifier.
         type: str
         aliases: ["id"]
         required: true
@@ -68,25 +69,25 @@ project:
     contains:
         id:
             description:
-                - Unique identifier that is immutable after creation.
+                - A unique identifier that is immutable after creation.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - Human-friendly name for the project, which can be changed.
+                - A human-friendly name for the project, which can be changed.
             returned: on success
             type: str
             sample: display_name_example
         description:
             description:
-                - Optional description of the project.
+                - An optional description of the project.
             returned: on success
             type: str
             sample: description_example
         compartment_id:
             description:
-                - Compartment identifier.
+                - A compartment identifier.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -110,28 +111,28 @@ project:
             sample: CREATING
         lifecycle_details:
             description:
-                - A message describing the current state in more detail which can provide actionable information if creation failed.
+                - A message describing the current state in more detail, that can provide actionable information if creation failed.
             returned: on success
             type: str
             sample: lifecycle_details_example
         freeform_tags:
             description:
-                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-                  Example: `{\\"bar-key\\": \\"value\\"}`"
+                - "A simple key-value pair that is applied without any predefined name, type, or scope. It exists for cross-compatibility only.
+                  For example: `{\\"bar-key\\": \\"value\\"}`"
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
         defined_tags:
             description:
                 - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
-                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+                  For example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
         system_tags:
             description:
                 - "Usage of system tag keys. These predefined keys are scoped to namespaces.
-                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
+                  For example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
             returned: on success
             type: dict
             sample: {}

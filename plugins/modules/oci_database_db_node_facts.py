@@ -137,6 +137,11 @@ db_nodes:
         host_ip_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the host IP address associated with the database node.
+                  Use this OCID with either the
+                  L(GetPrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/GetPrivateIp) or the
+                  L(GetPublicIpByPrivateIpId,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PublicIp/GetPublicIpByPrivateIpId) API to get the
+                  IP address
+                  needed to make a database connection.
                 - "**Note:** Applies only to Exadata Cloud Service."
             returned: on success
             type: str
@@ -144,6 +149,11 @@ db_nodes:
         backup_ip_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup IP address associated with the database node.
+                  Use this OCID with either the
+                  L(GetPrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/GetPrivateIp) or the
+                  L(GetPublicIpByPrivateIpId,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PublicIp/GetPublicIpByPrivateIpId) API to get the
+                  IP address
+                  needed to make a database connection.
                 - "**Note:** Applies only to Exadata Cloud Service."
             returned: on success
             type: str

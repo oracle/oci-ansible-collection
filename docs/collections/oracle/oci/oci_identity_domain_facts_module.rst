@@ -30,7 +30,7 @@ oracle.oci.oci_identity_domain_facts -- Fetches details about one or multiple Do
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple Domain resources in Oracle Cloud Infrastructure
-- List all domains that are homed or have a replica region in current region. - If any internal error occurs, return 500 INTERNAL SERVER ERROR.
+- (For tenancies that support identity domains) Lists all identity domains within a tenancy.
 - If *domain_id* is specified, the details of a single Domain will be returned.
 
 
@@ -226,7 +226,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The mutable display name of the domain</div>
+                                            <div>The mutable display name of the identity domain.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -241,7 +241,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the domain</div>
+                                            <div>The OCID of the identity domain.</div>
                                             <div>Required to get a specific domain.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
@@ -258,7 +258,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The region specific domain URL</div>
+                                            <div>The region-specific identity domain URL.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -277,7 +277,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Indicate if the domain is visible at login screen or not</div>
+                                            <div>Indicates whether or not the identity domain is visible at the sign-in screen.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -292,7 +292,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The domain license type</div>
+                                            <div>The license type of the identity domain.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -313,7 +313,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>A filter to only return resources that match the given lifecycle state.  The state value is case-insensitive.</div>
+                                            <div>A filter to only return resources that match the given lifecycle state. The state value is case-insensitive.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -412,7 +412,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The domain type</div>
+                                            <div>The identity domain type.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -427,7 +427,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The region agnostic domain URL</div>
+                                            <div>The region-agnostic identity domain URL.</div>
                                                         </td>
             </tr>
                         </table>
@@ -527,7 +527,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the compartment containing the domain.</div>
+                                            <div>The OCID of the compartment containing the identity domain.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -563,7 +563,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The domain descripition</div>
+                                            <div>The identity domain description. You can have an empty description.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
@@ -581,7 +581,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The mutable display name of the domain</div>
+                                            <div>The mutable display name of the identity domain.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
@@ -617,7 +617,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The home region for the domain. See <a href='https://docs.cloud.oracle.com/Content/General/Concepts/regions.htm'>Regions and Availability Domains</a> for the full list of supported region names.</div>
+                                            <div>The home region for the identity domain. See <a href='https://docs.cloud.oracle.com/Content/General/Concepts/regions.htm'>Regions and Availability Domains</a> for the full list of supported region names.</div>
                                             <div>Example: `us-phoenix-1`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -636,7 +636,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Region specific domain URL.</div>
+                                            <div>Region-specific identity domain URL.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">home_region_url_example</div>
@@ -654,7 +654,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the domain</div>
+                                            <div>The OCID of the identity domain.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -672,7 +672,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Indicates whether domain is hidden on login screen or not.</div>
+                                            <div>Indicates whether the identity domain is hidden on the sign-in screen or not.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -690,7 +690,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The License type of Domain</div>
+                                            <div>The license type of the identity domain.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">license_type_example</div>
@@ -708,7 +708,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Any additional details about the current state of the Domain.</div>
+                                            <div>Any additional details about the current state of the identity domain.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">DEACTIVATING</div>
@@ -744,7 +744,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The regions domain is replication to.</div>
+                                            <div>The regions where replicas of the identity domain exist.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -780,7 +780,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The IDCS replicated region state</div>
+                                            <div>The IDCS-replicated region state.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ENABLING_REPLICATION</div>
@@ -799,7 +799,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Region agnostic domain URL.</div>
+                                            <div>Region-agnostic identity domain URL.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">url_example</div>
@@ -818,7 +818,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Date and time the domain was created, in the format defined by RFC3339.</div>
+                                            <div>Date and time the identity domain was created, in the format defined by RFC3339.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -855,7 +855,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Region agnostic domain URL.</div>
+                                            <div>Region-agnostic identity domain URL.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">url_example</div>

@@ -30,7 +30,7 @@ oracle.oci.oci_identity_user -- Manage an User resource in Oracle Cloud Infrastr
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete an User resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a new user in your tenancy. For conceptual information about users, your tenancy, and other IAM Service components, see `Overview of the IAM Service <https://docs.cloud.oracle.com/Content/Identity/Concepts/overview.htm>`_.
+- For *state=present*, creates a new user in your tenancy. For conceptual information about users, your tenancy, and other IAM Service components, see `Overview of IAM <https://docs.cloud.oracle.com/Content/Identity/getstarted/identity-domains.htm>`_.
 - You must specify your tenancy's OCID as the compartment ID in the request object (remember that the tenancy is simply the root compartment). Notice that IAM resources (users, groups, compartments, and some policies) reside within the tenancy itself, unlike cloud resources such as compute instances, which typically reside within compartments inside the tenancy. For information about OCIDs, see `Resource Identifiers <https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm>`_.
 - You must also specify a *name* for the user, which must be unique across all users in your tenancy and cannot be changed. Allowed characters: No spaces. Only letters, numerals, hyphens, periods, underscores, +, and @. If you specify a name that's already in use, you'll get a 409 error. This name will be the user's login to the Console. You might want to pick a name that your company's own identity system (e.g., Active Directory, LDAP, etc.) already uses. If you delete a user and then create a new user with the same name, they'll be considered different users because they have different OCIDs.
 - You must also specify a *description* for the user (although it can be an empty string). It does not have to be unique, and you can change it anytime with `UpdateUser <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/User/UpdateUser>`_. You can use the field to provide the user's full name, a description, a nickname, or other information to generally identify the user.
@@ -266,6 +266,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The description you assign to the user during creation. Does not have to be unique, and it&#x27;s changeable.</div>
+                                            <div>(For tenancies that support identity domains) You can have an empty description.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -282,7 +283,8 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The email you assign to the user. Has to be unique across the tenancy.</div>
+                                            <div>The email you assign to the user during creation. The email must be unique across all users in the tenancy.</div>
+                                            <div>(For tenancies that support identity domains) You must provide an email for each user.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -767,6 +769,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The description you assign to the user. Does not have to be unique, and it&#x27;s changeable.</div>
+                                            <div>(For tenancies that support identity domains) You can have an empty description.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
@@ -785,6 +788,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The email address you assign to the user. The email address must be unique across all users in the tenancy.</div>
+                                            <div>(For tenancies that support identity domains) The email address is required unless the requirement is disabled at the tenancy level.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">email_example</div>

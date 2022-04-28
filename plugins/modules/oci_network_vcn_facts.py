@@ -105,6 +105,18 @@ vcns:
     returned: on success
     type: complex
     contains:
+        byoipv6_cidr_blocks:
+            description:
+                - The list of BYOIPv6 CIDR blocks required to create a VCN that uses BYOIPv6 ranges.
+            returned: on success
+            type: list
+            sample: []
+        ipv6_private_cidr_blocks:
+            description:
+                - For an IPv6-enabled VCN, this is the list of Private IPv6 CIDR blocks for the VCN's IP address space.
+            returned: on success
+            type: list
+            sample: []
         cidr_block:
             description:
                 - Deprecated. The first CIDR IP address from cidrBlocks.
@@ -218,6 +230,8 @@ vcns:
             type: str
             sample: vcn_domain_name_example
     sample: [{
+        "byoipv6_cidr_blocks": [],
+        "ipv6_private_cidr_blocks": [],
         "cidr_block": "cidr_block_example",
         "cidr_blocks": [],
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

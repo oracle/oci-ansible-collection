@@ -30,7 +30,7 @@ oracle.oci.oci_mysql_db_system -- Manage a DbSystem resource in Oracle Cloud Inf
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -884,7 +884,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The Pre-Authenticated Request (PAR) URL of the file you want to import from Object Storage.</div>
+                                            <div>The Pre-Authenticated Request (PAR) of a bucket/prefix or PAR of a @.manifest.json object from the Object Storage. Check <a href='https://docs.oracle.com/en-us/iaas/Content/Object/Tasks/usingpreauthenticatedrequests.htm'>Using Pre-Authenticated Requests</a> for information related to PAR creation. Please create PAR with &quot;Permit object reads&quot; access type and &quot;Enable Object Listing&quot; permission when using a bucket/prefix PAR. Please create PAR with &quot;Permit object reads&quot; access type when using a @.manifest.json object PAR.</div>
                                             <div>Required when source_type is &#x27;IMPORTURL&#x27;</div>
                                                         </td>
             </tr>

@@ -102,6 +102,12 @@ shapes:
             returned: on success
             type: float
             sample: 3.4
+        network_ports:
+            description:
+                - The number of physical network interface card (NIC) ports available for this shape.
+            returned: on success
+            type: int
+            sample: 56
         networking_bandwidth_in_gbps:
             description:
                 - The networking bandwidth available for this shape, in gigabits per second.
@@ -147,6 +153,21 @@ shapes:
             returned: on success
             type: str
             sample: local_disk_description_example
+        rdma_ports:
+            description:
+                - The number of networking ports available for the remote direct memory access (RDMA) network between nodes in
+                  a high performance computing (HPC) cluster network. If the shape does not support cluster networks, this
+                  value is `0`.
+            returned: on success
+            type: int
+            sample: 56
+        rdma_bandwidth_in_gbps:
+            description:
+                - The networking bandwidth available for the remote direct memory access (RDMA) network for this shape, in
+                  gigabits per second.
+            returned: on success
+            type: int
+            sample: 56
         is_live_migration_supported:
             description:
                 - Whether live migration is supported for this shape.
@@ -401,6 +422,7 @@ shapes:
         "processor_description": "processor_description_example",
         "ocpus": 3.4,
         "memory_in_gbs": 3.4,
+        "network_ports": 56,
         "networking_bandwidth_in_gbps": 3.4,
         "max_vnic_attachments": 56,
         "gpus": 56,
@@ -408,6 +430,8 @@ shapes:
         "local_disks": 56,
         "local_disks_total_size_in_gbs": 3.4,
         "local_disk_description": "local_disk_description_example",
+        "rdma_ports": 56,
+        "rdma_bandwidth_in_gbps": 56,
         "is_live_migration_supported": true,
         "ocpu_options": {
             "min": 3.4,

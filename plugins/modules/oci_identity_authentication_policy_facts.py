@@ -23,7 +23,7 @@ module: oci_identity_authentication_policy_facts
 short_description: Fetches details about a AuthenticationPolicy resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a AuthenticationPolicy resource in Oracle Cloud Infrastructure
-    - Gets the authentication policy for the given tenancy. You must specify your tenant's OCID as the value for
+    - Gets the authentication policy for the given tenancy. You must specify your tenant’s OCID as the value for
       the compartment ID (remember that the tenancy is simply the root compartment).
 version_added: "2.9.0"
 author: Oracle (@oracle)

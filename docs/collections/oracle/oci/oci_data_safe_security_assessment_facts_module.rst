@@ -30,7 +30,7 @@ oracle.oci.oci_data_safe_security_assessment_facts -- Fetches details about one 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -324,6 +324,7 @@ Parameters
                                                                                                                                                                                                 <li>SUCCEEDED</li>
                                                                                                                                                                                                 <li>UPDATING</li>
                                                                                                                                                                                                 <li>DELETING</li>
+                                                                                                                                                                                                <li>DELETED</li>
                                                                                                                                                                                                 <li>FAILED</li>
                                                                                     </ul>
                                                                             </td>

@@ -30,7 +30,7 @@ oracle.oci.oci_network_subnet -- Manage a Subnet resource in Oracle Cloud Infras
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -64,7 +64,7 @@ Synopsis
 - You may optionally associate a set of DHCP options with the subnet. If you don't, the subnet will use the VCN's default set. For more information about DHCP options, see `DHCP Options <https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingDHCP.htm>`_.
 - You may optionally specify a *display name* for the subnet, otherwise a default is provided. It does not have to be unique, and you can change it. Avoid entering confidential information.
 - You can also add a DNS label for the subnet, which is required if you want the Internet and VCN Resolver to resolve hostnames for instances in the subnet. For more information, see `DNS in Your Virtual Cloud Network <https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/dns.htm>`_.
-- This resource has the following action operations in the :ref:`oracle.oci.oci_network_subnet_actions <ansible_collections.oracle.oci.oci_network_subnet_actions_module>` module: change_compartment.
+- This resource has the following action operations in the :ref:`oracle.oci.oci_network_subnet_actions <ansible_collections.oracle.oci.oci_network_subnet_actions_module>` module: add_ipv6_subnet_cidr, change_compartment, remove_ipv6_subnet_cidr.
 
 
 .. Aliases
@@ -384,6 +384,22 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-ipv6_cidr_blocks"></div>
+                    <b>ipv6_cidr_blocks</b>
+                    <a class="ansibleOptionLink" href="#parameter-ipv6_cidr_blocks" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The list of all IPv6 CIDR blocks (Oracle allocated IPv6 GUA, ULA or private IPv6 CIDR blocks, BYOIPv6 CIDR blocks) for the subnet that meets the following criteria: - The CIDR blocks must be valid. - Multiple CIDR blocks must not overlap each other or the on-premises network CIDR block. - The number of CIDR blocks must not exceed the limit of IPv6 CIDR blocks allowed to a subnet.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-key_by"></div>
                     <b>key_by</b>
                     <a class="ansibleOptionLink" href="#parameter-key_by" title="Permalink to this option"></a>
@@ -635,6 +651,7 @@ Examples
         route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
         security_list_ids: [ "security_list_ids_example" ]
         ipv6_cidr_block: ipv6_cidr_block_example
+        ipv6_cidr_blocks: [ "ipv6_cidr_blocks_example" ]
 
     - name: Update subnet
       oci_network_subnet:
@@ -650,6 +667,7 @@ Examples
         security_list_ids: [ "security_list_ids_example" ]
         cidr_block: cidr_block_example
         ipv6_cidr_block: ipv6_cidr_block_example
+        ipv6_cidr_blocks: [ "ipv6_cidr_blocks_example" ]
 
     - name: Update subnet using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_network_subnet:
@@ -665,6 +683,7 @@ Examples
         security_list_ids: [ "security_list_ids_example" ]
         cidr_block: cidr_block_example
         ipv6_cidr_block: ipv6_cidr_block_example
+        ipv6_cidr_blocks: [ "ipv6_cidr_blocks_example" ]
 
     - name: Delete subnet
       oci_network_subnet:
@@ -714,7 +733,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Subnet resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;cidr_block&#x27;: &#x27;cidr_block_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;dhcp_options_id&#x27;: &#x27;ocid1.dhcpoptions.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;dns_label&#x27;: &#x27;dns_label_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ipv6_cidr_block&#x27;: &#x27;ipv6_cidr_block_example&#x27;, &#x27;ipv6_virtual_router_ip&#x27;: &#x27;ipv6_virtual_router_ip_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;prohibit_internet_ingress&#x27;: True, &#x27;prohibit_public_ip_on_vnic&#x27;: True, &#x27;route_table_id&#x27;: &#x27;ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;security_list_ids&#x27;: [], &#x27;subnet_domain_name&#x27;: &#x27;subnet_domain_name_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vcn_id&#x27;: &#x27;ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;virtual_router_ip&#x27;: &#x27;virtual_router_ip_example&#x27;, &#x27;virtual_router_mac&#x27;: &#x27;virtual_router_mac_example&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;cidr_block&#x27;: &#x27;cidr_block_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;dhcp_options_id&#x27;: &#x27;ocid1.dhcpoptions.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;dns_label&#x27;: &#x27;dns_label_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ipv6_cidr_block&#x27;: &#x27;ipv6_cidr_block_example&#x27;, &#x27;ipv6_cidr_blocks&#x27;: [], &#x27;ipv6_virtual_router_ip&#x27;: &#x27;ipv6_virtual_router_ip_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;prohibit_internet_ingress&#x27;: True, &#x27;prohibit_public_ip_on_vnic&#x27;: True, &#x27;route_table_id&#x27;: &#x27;ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;security_list_ids&#x27;: [], &#x27;subnet_domain_name&#x27;: &#x27;subnet_domain_name_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vcn_id&#x27;: &#x27;ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;virtual_router_ip&#x27;: &#x27;virtual_router_ip_example&#x27;, &#x27;virtual_router_mac&#x27;: &#x27;virtual_router_mac_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -904,6 +923,22 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ipv6_cidr_block_example</div>
                                     </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-subnet/ipv6_cidr_blocks"></div>
+                    <b>ipv6_cidr_blocks</b>
+                    <a class="ansibleOptionLink" href="#return-subnet/ipv6_cidr_blocks" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The list of all IPv6 CIDR blocks (Oracle allocated IPv6 GUA, ULA or private IPv6 CIDR blocks, BYOIPv6 CIDR blocks) for the subnet.</div>
+                                        <br/>
+                                                        </td>
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>

@@ -30,7 +30,7 @@ oracle.oci.oci_ai_vision_image_job -- Manage an ImageJob resource in Oracle Clou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create an ImageJob resource in Oracle Cloud Infrastructure
-- For *state=present*, create a batch image analysis job.
+- For *state=present*, create an image analysis batch job.
 - This resource has the following action operations in the :ref:`oracle.oci.oci_ai_vision_image_job_actions <ansible_collections.oracle.oci.oci_ai_vision_image_job_actions_module>` module: cancel.
 
 
@@ -180,7 +180,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Compartment identifier from the requester.</div>
+                                            <div>The compartment identifier from the requester.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -225,7 +225,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Image job display name.</div>
+                                            <div>The image job display name.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
             </tr>
@@ -241,7 +241,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>List of image analysis types requested.</div>
+                                            <div>The list of requested image analysis types.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -262,7 +262,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Type of image analysis requested. Allowed values are: - `IMAGE_CLASSIFICATION`: Label the image. - `OBJECT_DETECTION`: Identify objects in the image with bounding boxes. - `TEXT_DETECTION`: Recognize text in the image.</div>
+                                            <div>The type of image analysis requested. The allowed values are: - `IMAGE_CLASSIFICATION`: Label the image. - `OBJECT_DETECTION`: Identify objects in the image with bounding boxes. - `TEXT_DETECTION`: Recognize text in the image.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -305,7 +305,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Language of the document image, abbreviated according to ISO 639-2.</div>
+                                            <div>The language of the document image, abbreviated according to ISO 639-2.</div>
                                             <div>Applicable when feature_type is &#x27;TEXT_DETECTION&#x27;</div>
                                                         </td>
             </tr>
@@ -339,7 +339,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Custom model id.</div>
+                                            <div>The custom model ID.</div>
                                             <div>Applicable when feature_type is one of [&#x27;IMAGE_CLASSIFICATION&#x27;, &#x27;OBJECT_DETECTION&#x27;]</div>
                                                         </td>
             </tr>
@@ -391,7 +391,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>List of ObjectLocations.</div>
+                                            <div>The list of ObjectLocations.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -408,7 +408,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Object Storage bucket name.</div>
+                                            <div>The Object Storage bucket name.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -425,7 +425,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Object Storage namespace name.</div>
+                                            <div>The Object Storage namespace name.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -442,7 +442,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Object Storage object name.</div>
+                                            <div>The Object Storage object name.</div>
                                                         </td>
             </tr>
                     
@@ -462,7 +462,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The type of input location Allowed values are: - `OBJECT_LIST_INLINE_INPUT_LOCATION`: A list of object locations in Object Storage.</div>
+                                            <div>The type of input location. The allowed values are: - `OBJECT_LIST_INLINE_INPUT_LOCATION`: A list of object locations in Object Storage.</div>
                                                         </td>
             </tr>
                     
@@ -482,7 +482,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Whether to generate a Zip file containing the results.</div>
+                                            <div>Whether or not to generate a ZIP file containing the results.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -528,7 +528,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Object Storage bucket name.</div>
+                                            <div>The Object Storage bucket name.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -544,7 +544,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Object Storage namespace.</div>
+                                            <div>The Object Storage namespace.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -560,7 +560,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Object Storage folder name.</div>
+                                            <div>The Object Storage folder name.</div>
                                                         </td>
             </tr>
                     
@@ -768,7 +768,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Image job display name.</div>
+                                            <div>The image job display name.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
@@ -786,7 +786,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>List of document analysis types requested.</div>
+                                            <div>The list of requested document analysis types.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -803,7 +803,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Type of image analysis requested. Allowed values are: - `IMAGE_CLASSIFICATION`: Label the image. - `OBJECT_DETECTION`: Identify objects in the image with bounding boxes. - `TEXT_DETECTION`: Recognize text in the image.</div>
+                                            <div>The type of image analysis requested. The allowed values are: - `IMAGE_CLASSIFICATION`: Label the image. - `OBJECT_DETECTION`: Identify objects in the image with bounding boxes. - `TEXT_DETECTION`: Recognize text in the image.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">IMAGE_CLASSIFICATION</div>
@@ -822,7 +822,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Language of the document image, abbreviated according to ISO 639-2.</div>
+                                            <div>The language of the document image, abbreviated according to ISO 639-2.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ENG</div>
@@ -860,7 +860,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Custom model id.</div>
+                                            <div>The custom model ID.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.model.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -879,7 +879,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Job id</div>
+                                            <div>The job id</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -914,7 +914,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>List of ObjectLocations.</div>
+                                            <div>The list of ObjectLocations.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -932,7 +932,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Object Storage bucket name.</div>
+                                            <div>The Object Storage bucket name.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">bucket_name_example</div>
@@ -952,7 +952,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Object Storage namespace name.</div>
+                                            <div>The Object Storage namespace name.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">namespace_name_example</div>
@@ -972,7 +972,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Object Storage object name.</div>
+                                            <div>The Object Storage object name.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">object_name_example</div>
@@ -992,7 +992,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The type of input location Allowed values are: - `OBJECT_LIST_INLINE_INPUT_LOCATION`: A list of object locations in Object Storage.</div>
+                                            <div>The type of input location. The allowed values are: - `OBJECT_LIST_INLINE_INPUT_LOCATION`: A list of object locations in Object Storage.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">OBJECT_LIST_INLINE_INPUT_LOCATION</div>
@@ -1011,7 +1011,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Whether to generate a Zip file containing the results.</div>
+                                            <div>Whether or not to generate a ZIP file containing the results.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -1029,7 +1029,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Detailed status of FAILED state.</div>
+                                            <div>The detailed status of FAILED state.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PARTIALLY_SUCCEEDED</div>
@@ -1082,7 +1082,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Object Storage bucket name.</div>
+                                            <div>The Object Storage bucket name.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">bucket_name_example</div>
@@ -1101,7 +1101,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Object Storage namespace.</div>
+                                            <div>The Object Storage namespace.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">namespace_name_example</div>
@@ -1120,7 +1120,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Object Storage folder name.</div>
+                                            <div>The Object Storage folder name.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">prefix_example</div>
@@ -1139,7 +1139,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>How much progress the operation has made, vs the total amount of work that must be performed.</div>
+                                            <div>How much progress the operation has made, compared to the total amount of work to be performed.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
@@ -1157,7 +1157,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Job accepted time.</div>
+                                            <div>The job acceptance time.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -1175,7 +1175,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Job finished time.</div>
+                                            <div>The job finish time.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -1193,7 +1193,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Job started time.</div>
+                                            <div>The job start time.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>

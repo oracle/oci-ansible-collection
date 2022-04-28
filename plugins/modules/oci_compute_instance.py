@@ -60,7 +60,7 @@ description:
       L(GetAppCatalogListingResourceVersion,https://docs.cloud.oracle.com/en-
       us/iaas/api/#/en/iaas/latest/AppCatalogListingResourceVersion/GetAppCatalogListingResourceVersion).
     - "This resource has the following action operations in the M(oracle.oci.oci_compute_instance_actions) module: stop, start, softreset, reset, softstop,
-      senddiagnosticinterrupt."
+      senddiagnosticinterrupt, diagnosticreboot."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:

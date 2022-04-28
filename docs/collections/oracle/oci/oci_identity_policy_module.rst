@@ -30,7 +30,7 @@ oracle.oci.oci_identity_policy -- Manage a Policy resource in Oracle Cloud Infra
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,10 +57,10 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a Policy resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a new policy in the specified compartment (either the tenancy or another of your compartments). If you're new to policies, see `Getting Started with Policies <https://docs.cloud.oracle.com/Content/Identity/Concepts/policygetstarted.htm>`_.
+- For *state=present*, creates a new policy in the specified compartment (either the tenancy or another of your compartments). If you're new to policies, see `Get Started with Policies <https://docs.cloud.oracle.com/Content/Identity/policiesgs/get-started-with-policies.htm>`_.
 - You must specify a *name* for the policy, which must be unique across all policies in your tenancy and cannot be changed.
 - You must also specify a *description* for the policy (although it can be an empty string). It does not have to be unique, and you can change it anytime with `UpdatePolicy <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/identity/20160918/Policy/UpdatePolicy>`_.
-- You must specify one or more policy statements in the statements array. For information about writing policies, see `How Policies Work <https://docs.cloud.oracle.com/Content/Identity/Concepts/policies.htm>`_ and `Common Policies <https://docs.cloud.oracle.com/Content/Identity/Concepts/commonpolicies.htm>`_.
+- You must specify one or more policy statements in the statements array. For information about writing policies, see `How Policies Work <https://docs.cloud.oracle.com/Content/Identity/policieshow/how-policies-work.htm>`_ and `Common Policies <https://docs.cloud.oracle.com/Content/Identity/policiescommon/commonpolicies.htm>`_.
 - After you send your request, the new object's `lifecycleState` will temporarily be CREATING. Before using the object, first make sure its `lifecycleState` has changed to ACTIVE.
 - New policies take effect typically within 10 seconds.
 
@@ -386,7 +386,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>An array of policy statements written in the policy language. See <a href='https://docs.cloud.oracle.com/Content/Identity/Concepts/policies.htm'>How Policies Work</a> and <a href='https://docs.cloud.oracle.com/Content/Identity/Concepts/commonpolicies.htm'>Common Policies</a>.</div>
+                                            <div>An array of policy statements written in the policy language. See <a href='https://docs.cloud.oracle.com/Content/Identity/policieshow/how-policies-work.htm'>How Policies Work</a> and <a href='https://docs.cloud.oracle.com/Content/Identity/policiescommon/commonpolicies.htm'>Common Policies</a>.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>

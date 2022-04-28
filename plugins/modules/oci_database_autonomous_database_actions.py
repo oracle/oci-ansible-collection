@@ -946,8 +946,7 @@ autonomous_database:
         is_data_guard_enabled:
             description:
                 - Indicates whether the Autonomous Database has local (in-region) Data Guard enabled. Not applicable to cross-region Autonomous Data Guard
-                  associations, or to
-                  Autonomous Databases using dedicated Exadata infrastructure or Exadata Cloud@Customer infrastructure.
+                  associations, or to Autonomous Databases using dedicated Exadata infrastructure or Exadata Cloud@Customer infrastructure.
             returned: on success
             type: bool
             sample: true
@@ -1142,6 +1141,18 @@ autonomous_database:
             returned: on success
             type: float
             sample: 1.2
+        max_cpu_core_count:
+            description:
+                - The number of Max OCPU cores to be made available to the autonomous database with auto scaling of cpu enabled.
+            returned: on success
+            type: int
+            sample: 56
+        database_edition:
+            description:
+                - The Oracle Database Edition that applies to the Autonomous databases.
+            returned: on success
+            type: str
+            sample: STANDARD_EDITION
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -1270,7 +1281,9 @@ autonomous_database:
         }],
         "is_auto_scaling_for_storage_enabled": true,
         "allocated_storage_size_in_tbs": 1.2,
-        "actual_used_data_storage_size_in_tbs": 1.2
+        "actual_used_data_storage_size_in_tbs": 1.2,
+        "max_cpu_core_count": 56,
+        "database_edition": "STANDARD_EDITION"
     }
 """
 

@@ -30,7 +30,7 @@ author: Oracle (@oracle)
 options:
     model_id:
         description:
-            - unique model identifier.
+            - A unique model identifier.
             - Required to get a specific model.
         type: str
         aliases: ["id"]
@@ -44,7 +44,7 @@ options:
         type: str
     lifecycle_state:
         description:
-            - Filter to match models with the given lifecycleState.
+            - The filter to match models with the given lifecycleState.
         type: str
         choices:
             - "CREATING"
@@ -67,7 +67,7 @@ options:
             - "DESC"
     sort_by:
         description:
-            - The field to sort by. Only one sort order may be provided. Default order for timeCreated is descending. Default order for displayName is
+            - The field to sort by. Only one sort order may be provided. The default order for timeCreated is descending. The default order for displayName is
               ascending.
         type: str
         choices:
@@ -104,22 +104,22 @@ models:
     contains:
         is_quick_mode:
             description:
-                - Set to true when experimenting with a new model type or dataset so model training is quick, with a predefined low number of passes through the
-                  training data.
+                - Set to true when experimenting with a new model type or dataset, so model training is quick, with a predefined low number of passes through
+                  the training data.
                 - Returned for get operation
             returned: on success
             type: bool
             sample: true
         max_training_duration_in_hours:
             description:
-                - Maximum model training duration in hours, expressed as a decimal fraction.
+                - The maximum model training duration in hours, expressed as a decimal fraction.
                 - Returned for get operation
             returned: on success
             type: float
             sample: 1.2
         trained_duration_in_hours:
             description:
-                - Total hours actually used for model training.
+                - The total hours actually used for model training.
                 - Returned for get operation
             returned: on success
             type: float
@@ -133,60 +133,60 @@ models:
             sample: 3.4
         average_precision:
             description:
-                - Mean average precision of the trained model.
+                - The mean average precision of the trained model.
                 - Returned for get operation
             returned: on success
             type: float
             sample: 3.4
         confidence_threshold:
             description:
-                - Intersection over union threshold used for calculating precision and recall.
+                - The intersection over the union threshold used for calculating precision and recall.
                 - Returned for get operation
             returned: on success
             type: float
             sample: 3.4
         total_image_count:
             description:
-                - Number of images in the dataset used to train, validate, and test the model.
+                - The number of images in the dataset used to train, validate, and test the model.
                 - Returned for get operation
             returned: on success
             type: int
             sample: 56
         test_image_count:
             description:
-                - Number of images set aside for evaluating model performance metrics after training.
+                - The number of images set aside for evaluating model performance metrics after training.
                 - Returned for get operation
             returned: on success
             type: int
             sample: 56
         metrics:
             description:
-                - Complete set of per-label metrics for successfully trained model.
+                - The complete set of per-label metrics for successfully trained models.
                 - Returned for get operation
             returned: on success
             type: str
             sample: metrics_example
         id:
             description:
-                - Unique identifier that is immutable after creation.
+                - A unique identifier that is immutable after creation.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - Human-friendly name for the model, which can be changed.
+                - A human-friendly name for the model, which can be changed.
             returned: on success
             type: str
             sample: display_name_example
         description:
             description:
-                - Optional description of the model.
+                - An optional description of the model.
             returned: on success
             type: str
             sample: description_example
         compartment_id:
             description:
-                - Compartment identifier.
+                - The compartment identifier.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -204,7 +204,7 @@ models:
             sample: model_version_example
         project_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the project which contains the model.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the project that contains the model.
             returned: on success
             type: str
             sample: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
@@ -222,19 +222,19 @@ models:
             sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
-                - Current state of the model.
+                - The current state of the model.
             returned: on success
             type: str
             sample: CREATING
         lifecycle_details:
             description:
-                - A message describing the current state in more detail which can provide actionable information if training failed.
+                - A message describing the current state in more detail, that can provide actionable information if training failed.
             returned: on success
             type: str
             sample: lifecycle_details_example
         precision:
             description:
-                - Precision of the trained model.
+                - The precision of the trained model.
             returned: on success
             type: float
             sample: 3.4
@@ -252,7 +252,7 @@ models:
                     sample: "ocid1.dataset.oc1..xxxxxxEXAMPLExxxxxx"
                 dataset_type:
                     description:
-                        - Type of the dataset based on where it is stored.
+                        - The dataset type, based on where it is stored.
                     returned: on success
                     type: str
                     sample: DATA_SCIENCE_LABELING
@@ -288,7 +288,7 @@ models:
                     sample: "ocid1.dataset.oc1..xxxxxxEXAMPLExxxxxx"
                 dataset_type:
                     description:
-                        - Type of the dataset based on where it is stored.
+                        - The dataset type, based on where it is stored.
                     returned: on success
                     type: str
                     sample: DATA_SCIENCE_LABELING
@@ -324,7 +324,7 @@ models:
                     sample: "ocid1.dataset.oc1..xxxxxxEXAMPLExxxxxx"
                 dataset_type:
                     description:
-                        - Type of the dataset based on where it is stored.
+                        - The dataset type, based on where it is stored.
                     returned: on success
                     type: str
                     sample: DATA_SCIENCE_LABELING
@@ -348,22 +348,22 @@ models:
                     sample: object_name_example
         freeform_tags:
             description:
-                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
-                  Example: `{\\"bar-key\\": \\"value\\"}`"
+                - "A simple key-value pair that is applied without any predefined name, type, or scope. It exists for cross-compatibility only.
+                  For example: `{\\"bar-key\\": \\"value\\"}`"
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
         defined_tags:
             description:
                 - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
-                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+                  For example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
         system_tags:
             description:
                 - "Usage of system tag keys. These predefined keys are scoped to namespaces.
-                  Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
+                  For example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
             returned: on success
             type: dict
             sample: {}

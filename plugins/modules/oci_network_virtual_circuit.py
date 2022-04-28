@@ -199,6 +199,19 @@ options:
             - "REGIONAL"
             - "MARKET_LEVEL"
             - "GLOBAL"
+    bgp_admin_state:
+        description:
+            - Set to ENABLED to activate the bgp session of virtual circuit, DISABLED to deactivate.
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "ENABLED"
+            - "DISABLED"
+    is_bfd_enabled:
+        description:
+            - Set to true to enable BFD for ipv4 Bgp Peering, false to disable. If not set, default is false
+            - This parameter is updatable.
+        type: bool
     customer_bgp_asn:
         description:
             - Deprecated. Instead use `customerAsn`.
@@ -322,6 +335,8 @@ EXAMPLES = """
       oracle_bgp_peering_ipv6: oracle_bgp_peering_ipv6_example
       vlan: 56
     routing_policy: [ "ORACLE_SERVICE_NETWORK" ]
+    bgp_admin_state: ENABLED
+    is_bfd_enabled: true
     customer_bgp_asn: 56
     customer_asn: 56
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -348,6 +363,8 @@ EXAMPLES = """
       oracle_bgp_peering_ipv6: oracle_bgp_peering_ipv6_example
       vlan: 56
     routing_policy: [ "ORACLE_SERVICE_NETWORK" ]
+    bgp_admin_state: ENABLED
+    is_bfd_enabled: true
     customer_bgp_asn: 56
     customer_asn: 56
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -377,6 +394,8 @@ EXAMPLES = """
       oracle_bgp_peering_ipv6: oracle_bgp_peering_ipv6_example
       vlan: 56
     routing_policy: [ "ORACLE_SERVICE_NETWORK" ]
+    bgp_admin_state: ENABLED
+    is_bfd_enabled: true
     customer_bgp_asn: 56
     customer_asn: 56
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -539,6 +558,18 @@ virtual_circuit:
             returned: on success
             type: list
             sample: []
+        bgp_admin_state:
+            description:
+                - Set to ENABLED to activate the  bgp session of virtual circuit, DISABLED to deactivate.
+            returned: on success
+            type: str
+            sample: ENABLED
+        is_bfd_enabled:
+            description:
+                - Set to true to enable BFD for ipv4 Bgp Peering, false to disable. If not set, default is false
+            returned: on success
+            type: bool
+            sample: true
         customer_bgp_asn:
             description:
                 - Deprecated. Instead use `customerAsn`.
@@ -708,6 +739,8 @@ virtual_circuit:
             "vlan": 56
         }],
         "routing_policy": [],
+        "bgp_admin_state": "ENABLED",
+        "is_bfd_enabled": true,
         "customer_bgp_asn": 56,
         "customer_asn": 56,
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -919,6 +952,8 @@ def main():
                     "GLOBAL",
                 ],
             ),
+            bgp_admin_state=dict(type="str", choices=["ENABLED", "DISABLED"]),
+            is_bfd_enabled=dict(type="bool"),
             customer_bgp_asn=dict(type="int"),
             customer_asn=dict(type="int"),
             defined_tags=dict(type="dict"),

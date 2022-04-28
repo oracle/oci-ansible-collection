@@ -32,7 +32,7 @@ description:
     - "You must also specify a *name* for the network source, which must be unique across all network sources in your
       tenancy, and cannot be changed.
       You can use this name or the OCID when writing policies that apply to the network source. For more information
-      about policies, see L(How Policies Work,https://docs.cloud.oracle.com/Content/Identity/Concepts/policies.htm)."
+      about policies, see L(How Policies Work,https://docs.cloud.oracle.com/Content/Identity/policieshow/how-policies-work.htm)."
     - "You must also specify a *description* for the network source (although it can be an empty string). It does not
       have to be unique, and you can change it anytime with L(UpdateNetworkSource,https://docs.cloud.oracle.com/en-
       us/iaas/api/#/en/identity/20160918/NetworkSource/UpdateNetworkSource)."

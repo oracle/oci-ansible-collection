@@ -40,7 +40,7 @@ description:
       to retire a tag namespace."
     - For I(action=change_compartment), moves the specified tag namespace to the specified compartment within the same tenancy.
       To move the tag namespace, you must have the manage tag-namespaces permission on both compartments.
-      For more information about IAM policies, see L(Details for IAM,https://docs.cloud.oracle.com/Content/Identity/Reference/iampolicyreference.htm).
+      For more information about IAM policies, see L(Details for IAM,https://docs.cloud.oracle.com/Content/Identity/policyreference/iampolicyreference.htm).
       Moving a tag namespace moves all the tag key definitions contained in the tag namespace.
 version_added: "2.9.0"
 author: Oracle (@oracle)
@@ -134,7 +134,7 @@ tag_namespace:
             description:
                 - Whether the tag namespace is retired.
                   See L(Retiring Key Definitions and Namespace
-                  Definitions,https://docs.cloud.oracle.com/Content/Identity/Concepts/taggingoverview.htm#Retiring).
+                  Definitions,https://docs.cloud.oracle.com/Content/Tagging/Tasks/managingtagsandtagnamespaces.htm#retiringkeys).
             returned: on success
             type: bool
             sample: true

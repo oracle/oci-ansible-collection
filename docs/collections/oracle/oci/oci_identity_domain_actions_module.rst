@@ -30,7 +30,7 @@ oracle.oci.oci_identity_domain_actions -- Perform actions on a Domain resource i
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,11 +57,11 @@ Synopsis
 .. Description
 
 - Perform actions on a Domain resource in Oracle Cloud Infrastructure
-- For *action=activate*, if the domain's {@code lifecycleState} is INACTIVE, 1. Set the {@code lifecycleDetails} to ACTIVATING and asynchronously starts enabling the domain and return 202 ACCEPTED. 1.1 Sets the domain status to ENABLED and set specified domain's {@code lifecycleState} to ACTIVE and set the {@code lifecycleDetails} to null. To track progress, HTTP GET on /iamWorkRequests/{iamWorkRequestsId} endpoint will provide the async operation's status. Deactivate a domain can be done using HTTP POST /domains/{domainId}/actions/deactivate. - If the domain's {@code lifecycleState} is ACTIVE, returns 202 ACCEPTED with no action taken on service side. - If domain is of {@code type} DEFAULT or DEFAULT_LIGHTWEIGHT or domain's {@code lifecycleState} is not INACTIVE, returns 400 BAD REQUEST. - If the domain doesn't exists, returns 404 NOT FOUND. - If the authenticated user is part of the domain to be activated, returns 400 BAD REQUEST - If error occurs while activating domain, returns 500 INTERNAL SERVER ERROR.
-- For *action=change_compartment*, change the containing compartment for a domain. This is an asynchronous call where the Domain's compartment is changed and is updated with the new compartment information. To track progress, HTTP GET on /iamWorkRequests/{iamWorkRequestsId} endpoint will provide the async operation's status. The compartment change is complete when accessed via domain URL and also returns new compartment OCID. - If the domain doesn't exists, returns 404 NOT FOUND. - If Domain {@code type} is DEFAULT or DEFAULT_LIGHTWEIGHT, return 400 BAD Request - If Domain is not active or being updated, returns 400 BAD REQUEST. - If error occurs while changing compartment for domain, return 500 INTERNAL SERVER ERROR.
-- For *action=change_domain_license_type*, if the domain's {@code lifecycleState} is ACTIVE, validates the requested {@code licenseType} update is allowed and 1. Set the {@code lifecycleDetails} to UPDATING 2. Asynchronously starts updating the domain and return 202 ACCEPTED. 2.1 Successfully updates specified domain's {@code licenseType}. 3. On completion set the {@code lifecycleDetails} to null. To track progress, HTTP GET on /iamWorkRequests/{iamWorkRequestsId} endpoint will provide the async operation's status. - If license type update is successful, return 202 ACCEPTED - If requested {@code licenseType} validation fails, returns 400 Bad request. - If Domain is not active or being updated, returns 400 BAD REQUEST. - If Domain {@code type} is DEFAULT or DEFAULT_LIGHTWEIGHT, return 400 BAD Request - If the domain doesn't exists, returns 404 NOT FOUND - If any internal error occurs, returns 500 INTERNAL SERVER ERROR.
-- For *action=deactivate*, if the domain's {@code lifecycleState} is ACTIVE and no active Apps are present in domain, 1. Set the {@code lifecycleDetails} to DEACTIVATING and asynchronously starts disabling the domain and return 202 ACCEPTED. 1.1 Sets the domain status to DISABLED and set specified domain's {@code lifecycleState} to INACTIVE and set the {@code lifecycleDetails} to null. To track progress, HTTP GET on /iamWorkRequests/{iamWorkRequestsId} endpoint will provide the async operation's status. Activate a domain can be done using HTTP POST /domains/{domainId}/actions/activate. - If the domain's {@code lifecycleState} is INACTIVE, returns 202 ACCEPTED with no action taken on service side. - If domain is of {@code type} DEFAULT or DEFAULT_LIGHTWEIGHT or domain's {@code lifecycleState} is not ACTIVE, returns 400 BAD REQUEST. - If the domain doesn't exists, returns 404 NOT FOUND. - If any active Apps in domain, returns 400 BAD REQUEST. - If the authenticated user is part of the domain to be activated, returns 400 BAD REQUEST - If error occurs while deactivating domain, returns 500 INTERNAL SERVER ERROR.
-- For *action=enable_replication_to_region*, replicate domain to a new region. This is an asynchronous call - where, at start, {@code state} of this domain in replica region is set to ENABLING_REPLICATION. On domain replication completion the {@code state} will be set to REPLICATION_ENABLED. To track progress, HTTP GET on /iamWorkRequests/{iamWorkRequestsId} endpoint will provide the async operation's status. If the replica region's {@code state} is already ENABLING_REPLICATION or REPLICATION_ENABLED, returns 409 CONFLICT. - If the domain doesn't exists, returns 404 NOT FOUND. - If home region is same as replication region, return 400 BAD REQUEST. - If Domain is not active or being updated, returns 400 BAD REQUEST. - If any internal error occurs, return 500 INTERNAL SERVER ERROR.
+- For *action=activate*, (For tenancies that support identity domains) Activates a deactivated identity domain. You can only activate identity domains that your user account is not a part of. After you send the request, the `lifecycleDetails` of the identity domain is set to ACTIVATING. When the operation completes, the `lifecycleDetails` is set to null and the `lifecycleState` of the identity domain is set to ACTIVE. To track the progress of the request, submitting an HTTP GET on the /iamWorkRequests/{iamWorkRequestsId} endpoint retrieves the operation's status.
+- For *action=change_compartment*, (For tenancies that support identity domains) Moves the identity domain to a different compartment in the tenancy. To track the progress of the request, submitting an HTTP GET on the /iamWorkRequests/{iamWorkRequestsId} endpoint retrieves the operation's status.
+- For *action=change_domain_license_type*, (For tenancies that support identity domains) Changes the license type of the given identity domain. The identity domain's `lifecycleState` must be set to ACTIVE and the requested `licenseType` must be allowed. To retrieve the allowed `licenseType` for the identity domain, use `ListAllowedDomainLicenseTypes <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/identity/20160918/Domain/ListAllowedDomainLicenseTypes>`_. After you send your request, the `lifecycleDetails` of this identity domain is set to UPDATING. When the update of the identity domain completes, then the `lifecycleDetails` is set to null. To track the progress of the request, submitting an HTTP GET on the /iamWorkRequests/{iamWorkRequestsId} endpoint retrieves the operation's status.
+- For *action=deactivate*, (For tenancies that support identity domains) Deactivates the specified identity domain. Identity domains must be in an ACTIVE `lifecycleState` and have no active apps present in the domain or underlying Identity Cloud Service stripe. You cannot deactivate the default identity domain. After you send your request, the `lifecycleDetails` of this identity domain is set to DEACTIVATING. When the operation completes, then the `lifecycleDetails` is set to null and the `lifecycleState` is set to INACTIVE. To track the progress of the request, submitting an HTTP GET on the /iamWorkRequests/{iamWorkRequestsId} endpoint retrieves the operation's status.
+- For *action=enable_replication_to_region*, (For tenancies that support identity domains) Replicates the identity domain to a new region (provided that the region is the tenancy home region or other region that the tenancy subscribes to). You can only replicate identity domains that are in an ACTIVE `lifecycleState` and not currently updating or already replicating. You also can only trigger the replication of secondary identity domains. The default identity domain is automatically replicated to all regions that the tenancy subscribes to. After you send the request, the `state` of the identity domain in the replica region is set to ENABLING_REPLICATION. When the operation completes, the `state` is set to REPLICATION_ENABLED. To track the progress of the request, submitting an HTTP GET on the /iamWorkRequests/{iamWorkRequestsId} endpoint retrieves the operation's status.
 
 
 .. Aliases
@@ -205,7 +205,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the destination compartment into which to move the domain.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the destination compartment into which to move the identity domain.</div>
                                             <div>Required for <em>action=change_compartment</em>.</div>
                                                         </td>
             </tr>
@@ -251,7 +251,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the domain</div>
+                                            <div>The OCID of the identity domain.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
             </tr>
@@ -267,7 +267,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The License type of Domain</div>
+                                            <div>The license type of the identity domain.</div>
                                             <div>Applicable only for <em>action=change_domain_license_type</em>.</div>
                                                         </td>
             </tr>
@@ -298,7 +298,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A region for which domain replication is requested for. See <a href='https://docs.cloud.oracle.com/Content/General/Concepts/regions.htm'>Regions and Availability Domains</a> for the full list of supported region names.</div>
+                                            <div>A region to which you want identity domain replication to occur. See <a href='https://docs.cloud.oracle.com/Content/General/Concepts/regions.htm'>Regions and Availability Domains</a> for the full list of supported region names.</div>
                                             <div>Example: `us-phoenix-1`</div>
                                             <div>Applicable only for <em>action=enable_replication_to_region</em>.</div>
                                                         </td>
@@ -464,7 +464,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the compartment containing the domain.</div>
+                                            <div>The OCID of the compartment containing the identity domain.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -500,7 +500,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The domain descripition</div>
+                                            <div>The identity domain description. You can have an empty description.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
@@ -518,7 +518,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The mutable display name of the domain</div>
+                                            <div>The mutable display name of the identity domain.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
@@ -554,7 +554,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The home region for the domain. See <a href='https://docs.cloud.oracle.com/Content/General/Concepts/regions.htm'>Regions and Availability Domains</a> for the full list of supported region names.</div>
+                                            <div>The home region for the identity domain. See <a href='https://docs.cloud.oracle.com/Content/General/Concepts/regions.htm'>Regions and Availability Domains</a> for the full list of supported region names.</div>
                                             <div>Example: `us-phoenix-1`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -573,7 +573,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Region specific domain URL.</div>
+                                            <div>Region-specific identity domain URL.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">home_region_url_example</div>
@@ -591,7 +591,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the domain</div>
+                                            <div>The OCID of the identity domain.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -609,7 +609,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Indicates whether domain is hidden on login screen or not.</div>
+                                            <div>Indicates whether the identity domain is hidden on the sign-in screen or not.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -627,7 +627,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The License type of Domain</div>
+                                            <div>The license type of the identity domain.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">license_type_example</div>
@@ -645,7 +645,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Any additional details about the current state of the Domain.</div>
+                                            <div>Any additional details about the current state of the identity domain.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">DEACTIVATING</div>
@@ -681,7 +681,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The regions domain is replication to.</div>
+                                            <div>The regions where replicas of the identity domain exist.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -717,7 +717,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The IDCS replicated region state</div>
+                                            <div>The IDCS-replicated region state.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ENABLING_REPLICATION</div>
@@ -736,7 +736,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Region agnostic domain URL.</div>
+                                            <div>Region-agnostic identity domain URL.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">url_example</div>
@@ -755,7 +755,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Date and time the domain was created, in the format defined by RFC3339.</div>
+                                            <div>Date and time the identity domain was created, in the format defined by RFC3339.</div>
                                             <div>Example: `2016-08-25T21:10:29.600Z`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -792,7 +792,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Region agnostic domain URL.</div>
+                                            <div>Region-agnostic identity domain URL.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">url_example</div>

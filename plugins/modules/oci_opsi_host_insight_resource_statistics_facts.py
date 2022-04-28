@@ -66,13 +66,14 @@ options:
         description:
             - "Filter by one or more platform types.
               Supported platformType(s) for MACS-managed external host insight: [LINUX].
-              Supported platformType(s) for EM-managed external host insight: [LINUX, SOLARIS, SUNOS]."
+              Supported platformType(s) for EM-managed external host insight: [LINUX, SOLARIS, SUNOS, ZLINUX]."
         type: list
         elements: str
         choices:
             - "LINUX"
             - "SOLARIS"
             - "SUNOS"
+            - "ZLINUX"
     id:
         description:
             - Optional list of host insight resource L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
@@ -252,7 +253,7 @@ host_insight_resource_statistics:
                             description:
                                 - "Platform type.
                                   Supported platformType(s) for MACS-managed external host insight: [LINUX].
-                                  Supported platformType(s) for EM-managed external host insight: [LINUX, SOLARIS, SUNOS]."
+                                  Supported platformType(s) for EM-managed external host insight: [LINUX, SOLARIS, SUNOS, ZLINUX]."
                             returned: on success
                             type: str
                             sample: LINUX
@@ -493,7 +494,9 @@ def main():
             time_interval_start=dict(type="str"),
             time_interval_end=dict(type="str"),
             platform_type=dict(
-                type="list", elements="str", choices=["LINUX", "SOLARIS", "SUNOS"]
+                type="list",
+                elements="str",
+                choices=["LINUX", "SOLARIS", "SUNOS", "ZLINUX"],
             ),
             id=dict(type="list", elements="str"),
             exadata_insight_id=dict(type="list", elements="str"),

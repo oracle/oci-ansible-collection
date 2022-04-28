@@ -30,7 +30,7 @@ oracle.oci.oci_identity_compartment -- Manage a Compartment resource in Oracle C
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.48.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -58,9 +58,8 @@ Synopsis
 
 - This module allows the user to create, update and delete a Compartment resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new compartment in the specified compartment.
-- **Important:** Compartments cannot be deleted.
 - Specify the parent compartment's OCID as the compartment ID in the request object. Remember that the tenancy is simply the root compartment. For information about OCIDs, see `Resource Identifiers <https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm>`_.
-- You must also specify a *name* for the compartment, which must be unique across all compartments in your tenancy. You can use this name or the OCID when writing policies that apply to the compartment. For more information about policies, see `How Policies Work <https://docs.cloud.oracle.com/Content/Identity/Concepts/policies.htm>`_.
+- You must also specify a *name* for the compartment, which must be unique across all compartments in your tenancy. You can use this name or the OCID when writing policies that apply to the compartment. For more information about policies, see `How Policies Work <https://docs.cloud.oracle.com/Content/Identity/policieshow/how-policies-work.htm>`_.
 - You must also specify a *description* for the compartment (although it can be an empty string). It does not have to be unique, and you can change it anytime with `UpdateCompartment <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/20160918/Compartment/UpdateCompartment>`_.
 - After you send your request, the new object's `lifecycleState` will temporarily be CREATING. Before using the object, first make sure its `lifecycleState` has changed to ACTIVE.
 - This resource has the following action operations in the :ref:`oracle.oci.oci_identity_compartment_actions <ansible_collections.oracle.oci.oci_identity_compartment_actions_module>` module: bulk_delete_resources, bulk_move_resources, move, recover.
