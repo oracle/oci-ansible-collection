@@ -221,6 +221,19 @@ esxi_hosts:
             returned: on success
             type: str
             sample: Uocm:PHX-AD-1
+        host_shape_name:
+            description:
+                - The compute shape name of the ESXi host.
+                  L(ListSupportedHostShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedHostShapes/ListSupportedHostShapes).
+            returned: on success
+            type: str
+            sample: host_shape_name_example
+        host_ocpu_count:
+            description:
+                - The OCPU count of the ESXi host.
+            returned: on success
+            type: float
+            sample: 3.4
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -254,6 +267,8 @@ esxi_hosts:
         "replacement_esxi_host_id": "ocid1.replacementesxihost.oc1..xxxxxxEXAMPLExxxxxx",
         "grace_period_end_date": "2013-10-20T19:20:30+01:00",
         "compute_availability_domain": "Uocm:PHX-AD-1",
+        "host_shape_name": "host_shape_name_example",
+        "host_ocpu_count": 3.4,
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]

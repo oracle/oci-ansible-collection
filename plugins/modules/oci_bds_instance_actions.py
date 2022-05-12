@@ -23,22 +23,37 @@ module: oci_bds_instance_actions
 short_description: Perform actions on a BdsInstance resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a BdsInstance resource in Oracle Cloud Infrastructure
-    - For I(action=add_block_storage), adds block storage to existing worker nodes. The same amount of  storage will be added to all worker nodes. No change
-      will be made  to storage that is already attached. Block storage cannot be removed.
+    - For I(action=add_block_storage), adds block storage to existing worker/compute only worker nodes. The same amount of  storage will be added to all
+      worker/compute only worker nodes. No change will be made to storage that is already attached. Block storage cannot be removed.
     - For I(action=add_cloud_sql), adds Cloud SQL to your cluster. You can use Cloud SQL to query against non-relational data stored in multiple big data
       sources, including Apache Hive, HDFS, Oracle NoSQL Database, and Apache HBase. Adding Cloud SQL adds a query server node to the cluster and creates cell
       servers on all the worker nodes in the cluster.
-    - For I(action=add_worker_nodes), increases the size (scales out) a cluster by adding worker nodes. The added worker nodes will have the same shape and will
-      have the same amount of attached block storage as other worker nodes in the cluster.
+    - For I(action=add_worker_nodes), increases the size (scales out) a cluster by adding worker nodes(data/compute). The added worker nodes will have the same
+      shape and will have the same amount of attached block storage as other worker nodes in the cluster.
     - For I(action=change_compartment), moves a Big Data Service cluster into a different compartment.
     - For I(action=change_shape), changes the size of a cluster by scaling up or scaling down the nodes. Nodes are scaled up or down by changing the shapes of
       all the nodes of the same type to the next larger or smaller shape. The node types are master, utility, worker, and Cloud SQL. Only nodes with VM-STANDARD
       shapes can be scaled.
+    - For I(action=install_patch), install the specified patch to this cluster.
     - For I(action=remove_cloud_sql), removes Cloud SQL from the cluster.
+    - For I(action=remove_node), remove a single node of a Big Data Service cluster
     - For I(action=restart_node), restarts a single node of a Big Data Service cluster
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    number_of_worker_nodes:
+        description:
+            - Number of additional worker nodes for the cluster.
+            - Required for I(action=add_worker_nodes).
+        type: int
+    node_type:
+        description:
+            - Worker node types, can either be Worker Data node or Compute only worker node.
+            - Required for I(action=add_block_storage), I(action=add_worker_nodes).
+        type: str
+        choices:
+            - "WORKER"
+            - "COMPUTE_ONLY_WORKER"
     shape:
         description:
             - Shape of the node.
@@ -50,11 +65,20 @@ options:
               details needed for attaching the block volume are managed by service itself.
             - Required for I(action=add_block_storage).
         type: int
-    number_of_worker_nodes:
+    shape_config:
         description:
-            - Number of additional worker nodes for the cluster.
-            - Required for I(action=add_worker_nodes).
-        type: int
+            - ""
+            - Applicable only for I(action=add_worker_nodes).
+        type: dict
+        suboptions:
+            ocpus:
+                description:
+                    - The total number of OCPUs available to the node.
+                type: int
+            memory_in_gbs:
+                description:
+                    - The total amount of memory available to the node, in gigabytes
+                type: int
     compartment_id:
         description:
             - The OCID of the compartment.
@@ -68,25 +92,93 @@ options:
         suboptions:
             worker:
                 description:
-                    - Change shape of worker nodes to the desired target shape. Only VM_STANDARD shapes are allowed here.
+                    - Change shape of worker nodes to the desired target shape. Both VM_STANDARD and E4 Flex shapes are allowed here.
                 type: str
+            worker_shape_config:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    ocpus:
+                        description:
+                            - The total number of OCPUs available to the node.
+                        type: int
+                    memory_in_gbs:
+                        description:
+                            - The total amount of memory available to the node, in gigabytes
+                        type: int
+            compute_only_worker:
+                description:
+                    - Change shape of compute only worker nodes to the desired target shape. Both VM_STANDARD and E4 Flex shapes are allowed here.
+                type: str
+            compute_only_worker_shape_config:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    ocpus:
+                        description:
+                            - The total number of OCPUs available to the node.
+                        type: int
+                    memory_in_gbs:
+                        description:
+                            - The total amount of memory available to the node, in gigabytes
+                        type: int
             master:
                 description:
-                    - Change shape of master nodes to the desired target shape. Only VM_STANDARD shapes are allowed here.
+                    - Change shape of master nodes to the desired target shape. Both VM_STANDARD and E4 Flex shapes are allowed here.
                 type: str
+            master_shape_config:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    ocpus:
+                        description:
+                            - The total number of OCPUs available to the node.
+                        type: int
+                    memory_in_gbs:
+                        description:
+                            - The total amount of memory available to the node, in gigabytes
+                        type: int
             utility:
                 description:
-                    - Change shape of utility nodes to the desired target shape. Only VM_STANDARD shapes are allowed here.
+                    - Change shape of utility nodes to the desired target shape. Both VM_STANDARD and E4 Flex shapes are allowed here.
                 type: str
+            utility_shape_config:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    ocpus:
+                        description:
+                            - The total number of OCPUs available to the node.
+                        type: int
+                    memory_in_gbs:
+                        description:
+                            - The total amount of memory available to the node, in gigabytes
+                        type: int
             cloudsql:
                 description:
                     - Change shape of the Cloud SQL node to the desired target shape. Only VM_STANDARD shapes are allowed here.
                 type: str
+    version:
+        description:
+            - The version of the patch to be installed.
+            - Required for I(action=install_patch).
+        type: str
     cluster_admin_password:
         description:
             - Base-64 encoded password for the cluster (and Cloudera Manager) admin user.
-            - Required for I(action=add_block_storage), I(action=add_cloud_sql), I(action=add_worker_nodes), I(action=change_shape), I(action=remove_cloud_sql).
+            - Required for I(action=add_block_storage), I(action=add_cloud_sql), I(action=add_worker_nodes), I(action=change_shape), I(action=install_patch),
+              I(action=remove_cloud_sql), I(action=remove_node).
         type: str
+    is_force_remove_enabled:
+        description:
+            - Boolean flag specifying whether or not to force remove node if graceful
+              removal fails.
+            - Applicable only for I(action=remove_node).
+        type: bool
     bds_instance_id:
         description:
             - The OCID of the cluster.
@@ -95,8 +187,8 @@ options:
         required: true
     node_id:
         description:
-            - OCID of the node to be restarted.
-            - Required for I(action=restart_node).
+            - OCID of the node to be removed.
+            - Required for I(action=remove_node), I(action=restart_node).
         type: str
     action:
         description:
@@ -109,7 +201,9 @@ options:
             - "add_worker_nodes"
             - "change_compartment"
             - "change_shape"
+            - "install_patch"
             - "remove_cloud_sql"
+            - "remove_node"
             - "restart_node"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
@@ -118,6 +212,7 @@ EXAMPLES = """
 - name: Perform action add_block_storage on bds_instance
   oci_bds_instance_actions:
     # required
+    node_type: WORKER
     block_volume_size_in_gbs: 56
     cluster_admin_password: example-password
     bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
@@ -138,9 +233,18 @@ EXAMPLES = """
   oci_bds_instance_actions:
     # required
     number_of_worker_nodes: 56
+    node_type: WORKER
     cluster_admin_password: example-password
     bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     action: add_worker_nodes
+
+    # optional
+    shape: shape_example
+    block_volume_size_in_gbs: 56
+    shape_config:
+      # optional
+      ocpus: 56
+      memory_in_gbs: 56
 
 - name: Perform action change_compartment on bds_instance
   oci_bds_instance_actions:
@@ -155,12 +259,37 @@ EXAMPLES = """
     nodes:
       # optional
       worker: worker_example
+      worker_shape_config:
+        # optional
+        ocpus: 56
+        memory_in_gbs: 56
+      compute_only_worker: compute_only_worker_example
+      compute_only_worker_shape_config:
+        # optional
+        ocpus: 56
+        memory_in_gbs: 56
       master: master_example
+      master_shape_config:
+        # optional
+        ocpus: 56
+        memory_in_gbs: 56
       utility: utility_example
+      utility_shape_config:
+        # optional
+        ocpus: 56
+        memory_in_gbs: 56
       cloudsql: cloudsql_example
     cluster_admin_password: example-password
     bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_shape
+
+- name: Perform action install_patch on bds_instance
+  oci_bds_instance_actions:
+    # required
+    version: version_example
+    cluster_admin_password: example-password
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    action: install_patch
 
 - name: Perform action remove_cloud_sql on bds_instance
   oci_bds_instance_actions:
@@ -168,6 +297,17 @@ EXAMPLES = """
     cluster_admin_password: example-password
     bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     action: remove_cloud_sql
+
+- name: Perform action remove_node on bds_instance
+  oci_bds_instance_actions:
+    # required
+    cluster_admin_password: example-password
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    node_id: "ocid1.node.oc1..xxxxxxEXAMPLExxxxxx"
+    action: remove_node
+
+    # optional
+    is_force_remove_enabled: true
 
 - name: Perform action restart_node on bds_instance
   oci_bds_instance_actions:
@@ -335,6 +475,18 @@ bds_instance:
                     returned: on success
                     type: str
                     sample: hue_server_url_example
+                odh_version:
+                    description:
+                        - Version of the ODH (Oracle Distribution including Apache Hadoop) installed on the cluster.
+                    returned: on success
+                    type: str
+                    sample: odh_version_example
+                jupyter_hub_url:
+                    description:
+                        - The URL of the Jupyterhub.
+                    returned: on success
+                    type: str
+                    sample: jupyter_hub_url_example
         nodes:
             description:
                 - The list of nodes in the cluster.
@@ -443,6 +595,18 @@ bds_instance:
                     returned: on success
                     type: str
                     sample: "2013-10-20T19:20:30+01:00"
+                ocpus:
+                    description:
+                        - The total number of OCPUs available to the node.
+                    returned: on success
+                    type: int
+                    sample: 56
+                memory_in_gbs:
+                    description:
+                        - The total amount of memory available to the node, in gigabytes.
+                    returned: on success
+                    type: int
+                    sample: 56
         cloud_sql_details:
             description:
                 - ""
@@ -517,6 +681,12 @@ bds_instance:
             returned: on success
             type: int
             sample: 56
+        bootstrap_script_url:
+            description:
+                - pre-authenticated URL of the bootstrap script in Object Store that can be downloaded and executed.
+            returned: on success
+            type: str
+            sample: bootstrap_script_url_example
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type, or scope.
@@ -557,7 +727,9 @@ bds_instance:
             "cloudera_manager_url": "cloudera_manager_url_example",
             "ambari_url": "ambari_url_example",
             "big_data_manager_url": "big_data_manager_url_example",
-            "hue_server_url": "hue_server_url_example"
+            "hue_server_url": "hue_server_url_example",
+            "odh_version": "odh_version_example",
+            "jupyter_hub_url": "jupyter_hub_url_example"
         },
         "nodes": [{
             "instance_id": "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx",
@@ -577,7 +749,9 @@ bds_instance:
             "availability_domain": "Uocm:PHX-AD-1",
             "fault_domain": "FAULT-DOMAIN-1",
             "time_created": "2013-10-20T19:20:30+01:00",
-            "time_updated": "2013-10-20T19:20:30+01:00"
+            "time_updated": "2013-10-20T19:20:30+01:00",
+            "ocpus": 56,
+            "memory_in_gbs": 56
         }],
         "cloud_sql_details": {
             "shape": "shape_example",
@@ -593,6 +767,7 @@ bds_instance:
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "number_of_nodes": 56,
+        "bootstrap_script_url": "bootstrap_script_url_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }
@@ -615,7 +790,9 @@ try:
     from oci.bds.models import AddWorkerNodesDetails
     from oci.bds.models import ChangeBdsInstanceCompartmentDetails
     from oci.bds.models import ChangeShapeDetails
+    from oci.bds.models import InstallPatchDetails
     from oci.bds.models import RemoveCloudSqlDetails
+    from oci.bds.models import RemoveNodeDetails
     from oci.bds.models import RestartNodeDetails
 
     HAS_OCI_PY_SDK = True
@@ -631,7 +808,9 @@ class BdsInstanceActionsHelperGen(OCIActionsHelperBase):
         add_worker_nodes
         change_compartment
         change_shape
+        install_patch
         remove_cloud_sql
+        remove_node
         restart_node
     """
 
@@ -756,6 +935,27 @@ class BdsInstanceActionsHelperGen(OCIActionsHelperBase):
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
+    def install_patch(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, InstallPatchDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.install_patch,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                bds_instance_id=self.module.params.get("bds_instance_id"),
+                install_patch_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
     def remove_cloud_sql(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, RemoveCloudSqlDetails
@@ -766,6 +966,27 @@ class BdsInstanceActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 bds_instance_id=self.module.params.get("bds_instance_id"),
                 remove_cloud_sql_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def remove_node(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, RemoveNodeDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.remove_node,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                bds_instance_id=self.module.params.get("bds_instance_id"),
+                remove_node_details=action_details,
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -812,20 +1033,52 @@ def main():
     )
     module_args.update(
         dict(
+            number_of_worker_nodes=dict(type="int"),
+            node_type=dict(type="str", choices=["WORKER", "COMPUTE_ONLY_WORKER"]),
             shape=dict(type="str"),
             block_volume_size_in_gbs=dict(type="int"),
-            number_of_worker_nodes=dict(type="int"),
+            shape_config=dict(
+                type="dict",
+                options=dict(ocpus=dict(type="int"), memory_in_gbs=dict(type="int")),
+            ),
             compartment_id=dict(type="str"),
             nodes=dict(
                 type="dict",
                 options=dict(
                     worker=dict(type="str"),
+                    worker_shape_config=dict(
+                        type="dict",
+                        options=dict(
+                            ocpus=dict(type="int"), memory_in_gbs=dict(type="int")
+                        ),
+                    ),
+                    compute_only_worker=dict(type="str"),
+                    compute_only_worker_shape_config=dict(
+                        type="dict",
+                        options=dict(
+                            ocpus=dict(type="int"), memory_in_gbs=dict(type="int")
+                        ),
+                    ),
                     master=dict(type="str"),
+                    master_shape_config=dict(
+                        type="dict",
+                        options=dict(
+                            ocpus=dict(type="int"), memory_in_gbs=dict(type="int")
+                        ),
+                    ),
                     utility=dict(type="str"),
+                    utility_shape_config=dict(
+                        type="dict",
+                        options=dict(
+                            ocpus=dict(type="int"), memory_in_gbs=dict(type="int")
+                        ),
+                    ),
                     cloudsql=dict(type="str"),
                 ),
             ),
+            version=dict(type="str"),
             cluster_admin_password=dict(type="str", no_log=True),
+            is_force_remove_enabled=dict(type="bool"),
             bds_instance_id=dict(aliases=["id"], type="str", required=True),
             node_id=dict(type="str"),
             action=dict(
@@ -837,7 +1090,9 @@ def main():
                     "add_worker_nodes",
                     "change_compartment",
                     "change_shape",
+                    "install_patch",
                     "remove_cloud_sql",
+                    "remove_node",
                     "restart_node",
                 ],
             ),

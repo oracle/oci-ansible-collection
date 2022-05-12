@@ -93,6 +93,7 @@ options:
                     - "COMPARTMENT"
                     - "ERPCLOUD"
                     - "HCMCLOUD"
+                    - "SECURITY_ZONE"
     data_mask_categories:
         description:
             - Data Mask Categories
@@ -551,7 +552,12 @@ def main():
                     values=dict(
                         type="list",
                         elements="str",
-                        choices=["COMPARTMENT", "ERPCLOUD", "HCMCLOUD"],
+                        choices=[
+                            "COMPARTMENT",
+                            "ERPCLOUD",
+                            "HCMCLOUD",
+                            "SECURITY_ZONE",
+                        ],
                     ),
                 ),
             ),

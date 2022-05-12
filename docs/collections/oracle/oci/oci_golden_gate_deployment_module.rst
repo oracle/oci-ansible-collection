@@ -30,7 +30,7 @@ oracle.oci.oci_golden_gate_deployment -- Manage a Deployment resource in Oracle 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.50.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -711,22 +711,22 @@ Examples
     - name: Create deployment
       oci_golden_gate_deployment:
         # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        deployment_type: OGG
         display_name: display_name_example
         license_model: LICENSE_INCLUDED
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         cpu_core_count: 56
         is_auto_scaling_enabled: true
-        deployment_type: OGG
 
         # optional
+        deployment_backup_id: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
         description: description_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        deployment_backup_id: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
-        fqdn: fqdn_example
         nsg_ids: [ "nsg_ids_example" ]
         is_public: true
+        fqdn: fqdn_example
         ogg_data:
           # optional
           deployment_name: deployment_name_example
@@ -746,10 +746,10 @@ Examples
         description: description_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-        fqdn: fqdn_example
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         is_public: true
+        fqdn: fqdn_example
         cpu_core_count: 56
         is_auto_scaling_enabled: true
         ogg_data:
@@ -763,18 +763,18 @@ Examples
     - name: Update deployment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_golden_gate_deployment:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
 
         # optional
         license_model: LICENSE_INCLUDED
         description: description_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-        fqdn: fqdn_example
         nsg_ids: [ "nsg_ids_example" ]
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         is_public: true
+        fqdn: fqdn_example
         cpu_core_count: 56
         is_auto_scaling_enabled: true
         ogg_data:
@@ -794,8 +794,8 @@ Examples
     - name: Delete deployment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_golden_gate_deployment:
         # required
-        display_name: display_name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
         state: absent
 
 

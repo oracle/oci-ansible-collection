@@ -30,7 +30,7 @@ oracle.oci.oci_budget -- Manage a Budget resource in Oracle Cloud Infrastructure
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.50.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a Budget resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a new Budget.
+- For *state=present*, creates a new budget.
 
 
 .. Aliases
@@ -196,7 +196,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The unique Budget OCID</div>
+                                            <div>The unique budget OCID.</div>
                                             <div>Required for update using <em>state=present</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                             <div>Required for delete using <em>state=absent</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
@@ -230,7 +230,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the compartment</div>
+                                            <div>The OCID of the compartment.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for update when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                             <div>Required for delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
@@ -311,7 +311,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The displayName of the budget.</div>
+                                            <div>The displayName of the budget. Avoid entering confidential information.</div>
                                             <div>Required for create, update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                             <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
@@ -366,6 +366,26 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The list of attributes of this resource which should be used to uniquely identify an instance of the resource. By default, all the attributes of a resource are used to uniquely identify a resource.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-processing_period_type"></div>
+                    <b>processing_period_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-processing_period_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>INVOICE</li>
+                                                                                                                                                                                                <li>MONTH</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The type of the budget processing period. Valid values are INVOICE and MONTH.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -436,7 +456,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>This is DEPRECTAED. Set the target compartment id in targets instead.</div>
+                                            <div>This is DEPRECATED. Set the target compartment ID in targets instead.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -470,7 +490,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The list of targets on which the budget is applied. If targetType is &quot;COMPARTMENT&quot;, targets contains list of compartment OCIDs. If targetType is &quot;TAG&quot;, targets contains list of cost tracking tag identifiers in the form of &quot;{tagNamespace}.{tagKey}.{tagValue}&quot;. Curerntly, the array should contain EXACT ONE item.</div>
+                                            <div>The list of targets on which the budget is applied. If targetType is &quot;COMPARTMENT&quot;, the targets contain the list of compartment OCIDs. If targetType is &quot;TAG&quot;, the targets contain the list of cost tracking tag identifiers in the form of &quot;{tagNamespace}.{tagKey}.{tagValue}&quot;. Curerntly, the array should contain exactly one item.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -561,6 +581,7 @@ Examples
         display_name: display_name_example
         description: description_example
         budget_processing_period_start_offset: 56
+        processing_period_type: INVOICE
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -574,6 +595,7 @@ Examples
         description: description_example
         amount: 3.4
         budget_processing_period_start_offset: 56
+        processing_period_type: INVOICE
         reset_period: MONTHLY
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -588,6 +610,7 @@ Examples
         description: description_example
         amount: 3.4
         budget_processing_period_start_offset: 56
+        processing_period_type: INVOICE
         reset_period: MONTHLY
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -640,7 +663,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Budget resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;actual_spend&#x27;: 10, &#x27;alert_rule_count&#x27;: 56, &#x27;amount&#x27;: 10, &#x27;budget_processing_period_start_offset&#x27;: 56, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;forecasted_spend&#x27;: 10, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;reset_period&#x27;: &#x27;MONTHLY&#x27;, &#x27;target_compartment_id&#x27;: &#x27;ocid1.targetcompartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;target_type&#x27;: &#x27;COMPARTMENT&#x27;, &#x27;targets&#x27;: [], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_spend_computed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;version&#x27;: 56}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;actual_spend&#x27;: 10, &#x27;alert_rule_count&#x27;: 56, &#x27;amount&#x27;: 10, &#x27;budget_processing_period_start_offset&#x27;: 56, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;forecasted_spend&#x27;: 10, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;processing_period_type&#x27;: &#x27;INVOICE&#x27;, &#x27;reset_period&#x27;: &#x27;MONTHLY&#x27;, &#x27;target_compartment_id&#x27;: &#x27;ocid1.targetcompartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;target_type&#x27;: &#x27;COMPARTMENT&#x27;, &#x27;targets&#x27;: [], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_spend_computed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;version&#x27;: 56}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -655,7 +678,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The actual spend in currency for the current budget cycle</div>
+                                            <div>The actual spend in currency for the current budget cycle.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10</div>
@@ -673,7 +696,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Total number of alert rules in the budget</div>
+                                            <div>The total number of alert rules in the budget.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -727,7 +750,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the compartment</div>
+                                            <div>The OCID of the compartment.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -782,7 +805,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The display name of the budget.</div>
+                                            <div>The display name of the budget. Avoid entering confidential information.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
@@ -800,7 +823,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The forecasted spend in currency by the end of the current budget cycle</div>
+                                            <div>The forecasted spend in currency by the end of the current budget cycle.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10</div>
@@ -837,7 +860,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the budget</div>
+                                            <div>The OCID of the budget.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -859,6 +882,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ACTIVE</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-budget/processing_period_type"></div>
+                    <b>processing_period_type</b>
+                    <a class="ansibleOptionLink" href="#return-budget/processing_period_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The type of the budget processing period. Valid values are INVOICE and MONTH.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">INVOICE</div>
                                     </td>
             </tr>
                                 <tr>
@@ -891,7 +932,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>This is DEPRECATED. For backwards compatability, the property will be populated when targetType is &quot;COMPARTMENT&quot; AND targets contains EXACT ONE target compartment ocid. For all other scenarios, this property will be left empty.</div>
+                                            <div>This is DEPRECATED. For backwards compatability, the property is populated when the targetType is &quot;COMPARTMENT&quot;, and targets contain the specific target compartment OCID. For all other scenarios, this property will be left empty.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.targetcompartment.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -927,7 +968,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The list of targets on which the budget is applied. If targetType is &quot;COMPARTMENT&quot;, targets contains list of compartment OCIDs. If targetType is &quot;TAG&quot;, targets contains list of cost tracking tag identifiers in the form of &quot;{tagNamespace}.{tagKey}.{tagValue}&quot;.</div>
+                                            <div>The list of targets on which the budget is applied. If the targetType is &quot;COMPARTMENT&quot;, the targets contain the list of compartment OCIDs. If the targetType is &quot;TAG&quot;, the targets contain the list of cost tracking tag identifiers in the form of &quot;{tagNamespace}.{tagKey}.{tagValue}&quot;.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -943,7 +984,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Time that budget was created</div>
+                                            <div>The time that the budget was created.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -961,7 +1002,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The time that the budget spend was last computed</div>
+                                            <div>The time that the budget spend was last computed.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -979,7 +1020,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Time that budget was updated</div>
+                                            <div>The time that the budget was updated.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -997,7 +1038,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Version of the budget. Starts from 1 and increments by 1.</div>
+                                            <div>The version of the budget. Starts from 1 and increments by 1.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>

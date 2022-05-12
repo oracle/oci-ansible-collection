@@ -29,3 +29,19 @@ class CustomTableHelperCustom:
                     break
 
         return get_model
+
+
+class ScheduleHelperCustom:
+    def get_resource_terminated_states(self):
+        return super(ScheduleHelperCustom, self).get_resource_terminated_states() + [
+            "INACTIVE"
+        ]
+
+    def is_resource_dead(self, resource):
+        if super(ScheduleHelperCustom, self).is_resource_dead(resource):
+            return True
+        if hasattr(resource, "lifecycle_state") and (
+            resource.lifecycle_state in ["INACTIVE"]
+        ):
+            return True
+        return False

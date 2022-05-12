@@ -60,6 +60,15 @@ options:
               host will be created to replace the failed one, and the `failedEsxiHostId` field
               will be udpated in the newly created Esxi host.
         type: str
+    host_shape_name:
+        description:
+            - The compute shape name of the ESXi host.
+              L(ListSupportedHostShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedHostShapes/ListSupportedHostShapes).
+        type: str
+    host_ocpu_count:
+        description:
+            - The OCPU count of the ESXi host.
+        type: float
     display_name:
         description:
             - "A descriptive name for the ESXi host. It's changeable.
@@ -130,6 +139,8 @@ EXAMPLES = """
     current_sku: HOUR
     compute_availability_domain: Uocm:PHX-AD-1
     failed_esxi_host_id: "ocid1.failedesxihost.oc1..xxxxxxEXAMPLExxxxxx"
+    host_shape_name: host_shape_name_example
+    host_ocpu_count: 3.4
     display_name: display_name_example
     next_sku: HOUR
     freeform_tags: {'Department': 'Finance'}
@@ -283,6 +294,19 @@ esxi_host:
             returned: on success
             type: str
             sample: Uocm:PHX-AD-1
+        host_shape_name:
+            description:
+                - The compute shape name of the ESXi host.
+                  L(ListSupportedHostShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedHostShapes/ListSupportedHostShapes).
+            returned: on success
+            type: str
+            sample: host_shape_name_example
+        host_ocpu_count:
+            description:
+                - The OCPU count of the ESXi host.
+            returned: on success
+            type: float
+            sample: 3.4
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -316,6 +340,8 @@ esxi_host:
         "replacement_esxi_host_id": "ocid1.replacementesxihost.oc1..xxxxxxEXAMPLExxxxxx",
         "grace_period_end_date": "2013-10-20T19:20:30+01:00",
         "compute_availability_domain": "Uocm:PHX-AD-1",
+        "host_shape_name": "host_shape_name_example",
+        "host_ocpu_count": 3.4,
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }
@@ -477,6 +503,8 @@ def main():
             ),
             compute_availability_domain=dict(type="str"),
             failed_esxi_host_id=dict(type="str"),
+            host_shape_name=dict(type="str"),
+            host_ocpu_count=dict(type="float"),
             display_name=dict(aliases=["name"], type="str"),
             next_sku=dict(
                 type="str", choices=["HOUR", "MONTH", "ONE_YEAR", "THREE_YEARS"]

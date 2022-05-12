@@ -533,6 +533,19 @@ sddc:
             returned: on success
             type: str
             sample: CREATING
+        initial_host_shape_name:
+            description:
+                - The initial compute shape of the SDDC's ESXi hosts.
+                  L(ListSupportedHostShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedHostShapes/ListSupportedHostShapes).
+            returned: on success
+            type: str
+            sample: initial_host_shape_name_example
+        initial_host_ocpu_count:
+            description:
+                - The initial OCPU count of the SDDC's ESXi hosts.
+            returned: on success
+            type: float
+            sample: 3.4
         is_shielded_instance_enabled:
             description:
                 - Indicates whether shielded instance is enabled at the SDDC level.
@@ -605,6 +618,8 @@ sddc:
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
+        "initial_host_shape_name": "initial_host_shape_name_example",
+        "initial_host_ocpu_count": 3.4,
         "is_shielded_instance_enabled": true,
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}

@@ -23,20 +23,20 @@ module: oci_budget_alert_rule_facts
 short_description: Fetches details about one or multiple BudgetAlertRule resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple BudgetAlertRule resources in Oracle Cloud Infrastructure
-    - Returns a list of Alert Rules for a specified Budget.
+    - Returns a list of Alert Rules for a specified budget.
     - If I(alert_rule_id) is specified, the details of a single BudgetAlertRule will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     alert_rule_id:
         description:
-            - The unique Alert Rule OCID
+            - The unique Alert Rule OCID.
             - Required to get a specific budget_alert_rule.
         type: str
         aliases: ["id"]
     budget_id:
         description:
-            - The unique Budget OCID
+            - The unique budget OCID.
         type: str
         required: true
     sort_order:
@@ -64,7 +64,7 @@ options:
             - "INACTIVE"
     display_name:
         description:
-            - A user-friendly name. Does not have to be unique, and it's changeable.
+            - A user-friendly name. This does not have to be unique, and it's changeable.
             - "Example: `My new resource`"
         type: str
         aliases: ["name"]
@@ -100,32 +100,32 @@ budget_alert_rules:
     contains:
         id:
             description:
-                - The OCID of the alert rule
+                - The OCID of the alert rule.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         budget_id:
             description:
-                - The OCID of the budget
+                - The OCID of the budget.
             returned: on success
             type: str
             sample: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - The name of the alert rule.
+                - The name of the alert rule. Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example
         type:
             description:
-                - The type of alert. Valid values are ACTUAL (the alert will trigger based on actual usage) or
-                  FORECAST (the alert will trigger based on predicted usage).
+                - The type of the alert. Valid values are ACTUAL (the alert triggers based on actual usage), or
+                  FORECAST (the alert triggers based on predicted usage).
             returned: on success
             type: str
             sample: ACTUAL
         threshold:
             description:
-                - The threshold for triggering the alert. If thresholdType is PERCENTAGE, the maximum value is 10000.
+                - The threshold for triggering the alert. If the thresholdType is PERCENTAGE, the maximum value is 10000.
             returned: on success
             type: float
             sample: 10
@@ -143,7 +143,7 @@ budget_alert_rules:
             sample: ACTIVE
         message:
             description:
-                - Custom message sent when alert is triggered
+                - Custom message sent when an alert is triggered.
             returned: on success
             type: str
             sample: message_example
@@ -155,26 +155,26 @@ budget_alert_rules:
             sample: description_example
         version:
             description:
-                - Version of the alert rule. Starts from 1 and increments by 1.
+                - The version of the alert rule. Starts from 1 and increments by 1.
             returned: on success
             type: int
             sample: 56
         recipients:
             description:
-                - Delimited list of email addresses to receive the alert when it triggers.
-                  Delimiter character can be comma, space, TAB, or semicolon.
+                - The delimited list of email addresses to receive the alert when it triggers.
+                  Delimiter characters can be a comma, space, TAB, or semicolon.
             returned: on success
             type: str
             sample: recipients_example
         time_created:
             description:
-                - Time budget was created
+                - The time the budget was created.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - Time budget was updated
+                - The time the budget was updated.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"

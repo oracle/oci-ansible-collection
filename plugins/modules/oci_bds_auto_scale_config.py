@@ -27,9 +27,16 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The OCID of the compartment.
+            - Required for create using I(state=present).
+            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+        type: str
     node_type:
         description:
-            - A node type that is managed by an autoscale configuration. The only supported type is WORKER.
+            - A node type that is managed by an autoscale configuration. The only supported types are WORKER and COMPUTE_ONLY_WORKER.
             - Required for create using I(state=present).
         type: str
     display_name:
@@ -48,7 +55,6 @@ options:
     policy:
         description:
             - ""
-            - Required for create using I(state=present).
             - This parameter is updatable.
         type: dict
         suboptions:
@@ -59,6 +65,7 @@ options:
                 choices:
                     - "THRESHOLD_BASED"
                     - "SCHEDULE_BASED"
+                    - "NONE"
                 required: true
             rules:
                 description:
@@ -96,8 +103,8 @@ options:
                                 suboptions:
                                     duration_in_minutes:
                                         description:
-                                            - This value is the minimum period of time the metric value meets or exceeds the threshold value before the action
-                                              is triggered. The value is in minutes.
+                                            - This value is the minimum period of time the metric value exceeds the threshold value before the action is
+                                              triggered. The value is in minutes.
                                         type: int
                                         required: true
                                     operator:
@@ -113,6 +120,361 @@ options:
                                             - Integer non-negative value. 0 < value < 100
                                         type: int
                                         required: true
+    policy_details:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            scale_up_config:
+                description:
+                    - ""
+                    - Applicable when policy_type is 'METRIC_BASED_VERTICAL_SCALING_POLICY'
+                type: dict
+                suboptions:
+                    metric:
+                        description:
+                            - ""
+                            - Applicable when policy_type is 'METRIC_BASED_VERTICAL_SCALING_POLICY'
+                        type: dict
+                        suboptions:
+                            metric_type:
+                                description:
+                                    - Allowed value is CPU_UTILIZATION.
+                                    - Required when policy_type is 'METRIC_BASED_VERTICAL_SCALING_POLICY'
+                                type: str
+                                choices:
+                                    - "CPU_UTILIZATION"
+                                required: true
+                            threshold:
+                                description:
+                                    - ""
+                                    - Required when policy_type is 'METRIC_BASED_VERTICAL_SCALING_POLICY'
+                                type: dict
+                                required: true
+                                suboptions:
+                                    duration_in_minutes:
+                                        description:
+                                            - This value is the minimum period of time the metric value exceeds the threshold value before the action is
+                                              triggered. The value is in minutes.
+                                            - Required when policy_type is 'METRIC_BASED_VERTICAL_SCALING_POLICY'
+                                        type: int
+                                        required: true
+                                    operator:
+                                        description:
+                                            - The comparison operator to use. Options are greater than (GT) or less than (LT).
+                                            - Required when policy_type is 'METRIC_BASED_VERTICAL_SCALING_POLICY'
+                                        type: str
+                                        choices:
+                                            - "GT"
+                                            - "LT"
+                                        required: true
+                                    value:
+                                        description:
+                                            - Integer non-negative value. 0 < value < 100
+                                            - Required when policy_type is 'METRIC_BASED_VERTICAL_SCALING_POLICY'
+                                        type: int
+                                        required: true
+                    max_ocpus_per_node:
+                        description:
+                            - For nodes with L(flexible compute shapes,https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan-
+                              shape), this value is the maximum number of OCPUs each node can be scaled-up to. This value is not used for nodes with fixed
+                              compute shapes.
+                            - Applicable when policy_type is 'METRIC_BASED_VERTICAL_SCALING_POLICY'
+                        type: int
+                    max_memory_per_node:
+                        description:
+                            - For nodes with L(flexible compute shapes,https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan-
+                              shape), this value is the maximum memory in GBs each node can be scaled-up to. This value is not used for nodes with fixed compute
+                              shapes.
+                            - Applicable when policy_type is 'METRIC_BASED_VERTICAL_SCALING_POLICY'
+                        type: int
+                    ocpu_step_size:
+                        description:
+                            - For nodes with L(flexible compute shapes,https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan-
+                              shape), this value is the number of OCPUs to add to each node during a scale-up event. This value is not used for nodes with fixed
+                              compute shapes.
+                            - Applicable when policy_type is 'METRIC_BASED_VERTICAL_SCALING_POLICY'
+                        type: int
+                    memory_step_size:
+                        description:
+                            - For nodes with L(flexible compute shapes,https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan-
+                              shape), this value is the size of memory in GBs to add to each node during a scale-up event. This value is not used for nodes with
+                              fixed compute shapes.
+                            - Applicable when policy_type is 'METRIC_BASED_VERTICAL_SCALING_POLICY'
+                        type: int
+            scale_down_config:
+                description:
+                    - ""
+                    - Applicable when policy_type is 'METRIC_BASED_VERTICAL_SCALING_POLICY'
+                type: dict
+                suboptions:
+                    metric:
+                        description:
+                            - ""
+                            - Applicable when policy_type is 'METRIC_BASED_VERTICAL_SCALING_POLICY'
+                        type: dict
+                        suboptions:
+                            metric_type:
+                                description:
+                                    - Allowed value is CPU_UTILIZATION.
+                                    - Required when policy_type is 'METRIC_BASED_VERTICAL_SCALING_POLICY'
+                                type: str
+                                choices:
+                                    - "CPU_UTILIZATION"
+                                required: true
+                            threshold:
+                                description:
+                                    - ""
+                                    - Required when policy_type is 'METRIC_BASED_VERTICAL_SCALING_POLICY'
+                                type: dict
+                                required: true
+                                suboptions:
+                                    duration_in_minutes:
+                                        description:
+                                            - This value is the minimum period of time the metric value exceeds the threshold value before the action is
+                                              triggered. The value is in minutes.
+                                            - Required when policy_type is 'METRIC_BASED_VERTICAL_SCALING_POLICY'
+                                        type: int
+                                        required: true
+                                    operator:
+                                        description:
+                                            - The comparison operator to use. Options are greater than (GT) or less than (LT).
+                                            - Required when policy_type is 'METRIC_BASED_VERTICAL_SCALING_POLICY'
+                                        type: str
+                                        choices:
+                                            - "GT"
+                                            - "LT"
+                                        required: true
+                                    value:
+                                        description:
+                                            - Integer non-negative value. 0 < value < 100
+                                            - Required when policy_type is 'METRIC_BASED_VERTICAL_SCALING_POLICY'
+                                        type: int
+                                        required: true
+                    min_ocpus_per_node:
+                        description:
+                            - For nodes with L(flexible compute shapes,https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan-
+                              shape), this value is the minimum number of OCPUs each node can be scaled-down to. This value is not used for nodes with fixed
+                              compute shapes.
+                            - Applicable when policy_type is 'METRIC_BASED_VERTICAL_SCALING_POLICY'
+                        type: int
+                    min_memory_per_node:
+                        description:
+                            - For nodes with L(flexible compute shapes,https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan-
+                              shape), this value is the minimum memory in GBs each node can be scaled-down to. This value is not used for nodes with fixed
+                              compute shapes.
+                            - Applicable when policy_type is 'METRIC_BASED_VERTICAL_SCALING_POLICY'
+                        type: int
+                    ocpu_step_size:
+                        description:
+                            - For nodes with L(flexible compute shapes,https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan-
+                              shape), this value is the number of OCPUs to remove from each node during a scale-down event. This value is not used for nodes
+                              with fixed compute shapes.
+                            - Applicable when policy_type is 'METRIC_BASED_VERTICAL_SCALING_POLICY'
+                        type: int
+                    memory_step_size:
+                        description:
+                            - For nodes with L(flexible compute shapes,https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan-
+                              shape), this value is the size of memory in GBs to remove from each node during a scale-down event. This value is not used for
+                              nodes with fixed compute shapes.
+                            - Applicable when policy_type is 'METRIC_BASED_VERTICAL_SCALING_POLICY'
+                        type: int
+            scale_out_config:
+                description:
+                    - ""
+                    - Applicable when policy_type is 'METRIC_BASED_HORIZONTAL_SCALING_POLICY'
+                type: dict
+                suboptions:
+                    metric:
+                        description:
+                            - ""
+                            - Applicable when policy_type is 'METRIC_BASED_HORIZONTAL_SCALING_POLICY'
+                        type: dict
+                        suboptions:
+                            metric_type:
+                                description:
+                                    - Allowed value is CPU_UTILIZATION.
+                                    - Required when policy_type is 'METRIC_BASED_HORIZONTAL_SCALING_POLICY'
+                                type: str
+                                choices:
+                                    - "CPU_UTILIZATION"
+                                required: true
+                            threshold:
+                                description:
+                                    - ""
+                                    - Required when policy_type is 'METRIC_BASED_HORIZONTAL_SCALING_POLICY'
+                                type: dict
+                                required: true
+                                suboptions:
+                                    duration_in_minutes:
+                                        description:
+                                            - This value is the minimum period of time the metric value exceeds the threshold value before the action is
+                                              triggered. The value is in minutes.
+                                            - Required when policy_type is 'METRIC_BASED_HORIZONTAL_SCALING_POLICY'
+                                        type: int
+                                        required: true
+                                    operator:
+                                        description:
+                                            - The comparison operator to use. Options are greater than (GT) or less than (LT).
+                                            - Required when policy_type is 'METRIC_BASED_HORIZONTAL_SCALING_POLICY'
+                                        type: str
+                                        choices:
+                                            - "GT"
+                                            - "LT"
+                                        required: true
+                                    value:
+                                        description:
+                                            - Integer non-negative value. 0 < value < 100
+                                            - Required when policy_type is 'METRIC_BASED_HORIZONTAL_SCALING_POLICY'
+                                        type: int
+                                        required: true
+                    max_node_count:
+                        description:
+                            - This value is the maximum number of nodes the cluster can be scaled-out to.
+                            - Applicable when policy_type is 'METRIC_BASED_HORIZONTAL_SCALING_POLICY'
+                        type: int
+                    step_size:
+                        description:
+                            - This value is the number of nodes to add during a scale-out event.
+                            - Applicable when policy_type is 'METRIC_BASED_HORIZONTAL_SCALING_POLICY'
+                        type: int
+            scale_in_config:
+                description:
+                    - ""
+                    - Applicable when policy_type is 'METRIC_BASED_HORIZONTAL_SCALING_POLICY'
+                type: dict
+                suboptions:
+                    metric:
+                        description:
+                            - ""
+                            - Applicable when policy_type is 'METRIC_BASED_HORIZONTAL_SCALING_POLICY'
+                        type: dict
+                        suboptions:
+                            metric_type:
+                                description:
+                                    - Allowed value is CPU_UTILIZATION.
+                                    - Required when policy_type is 'METRIC_BASED_HORIZONTAL_SCALING_POLICY'
+                                type: str
+                                choices:
+                                    - "CPU_UTILIZATION"
+                                required: true
+                            threshold:
+                                description:
+                                    - ""
+                                    - Required when policy_type is 'METRIC_BASED_HORIZONTAL_SCALING_POLICY'
+                                type: dict
+                                required: true
+                                suboptions:
+                                    duration_in_minutes:
+                                        description:
+                                            - This value is the minimum period of time the metric value exceeds the threshold value before the action is
+                                              triggered. The value is in minutes.
+                                            - Required when policy_type is 'METRIC_BASED_HORIZONTAL_SCALING_POLICY'
+                                        type: int
+                                        required: true
+                                    operator:
+                                        description:
+                                            - The comparison operator to use. Options are greater than (GT) or less than (LT).
+                                            - Required when policy_type is 'METRIC_BASED_HORIZONTAL_SCALING_POLICY'
+                                        type: str
+                                        choices:
+                                            - "GT"
+                                            - "LT"
+                                        required: true
+                                    value:
+                                        description:
+                                            - Integer non-negative value. 0 < value < 100
+                                            - Required when policy_type is 'METRIC_BASED_HORIZONTAL_SCALING_POLICY'
+                                        type: int
+                                        required: true
+                    min_node_count:
+                        description:
+                            - This value is the minimum number of nodes the cluster can be scaled-in to.
+                            - Applicable when policy_type is 'METRIC_BASED_HORIZONTAL_SCALING_POLICY'
+                        type: int
+                    step_size:
+                        description:
+                            - This value is the number of nodes to remove during a scale-in event.
+                            - Applicable when policy_type is 'METRIC_BASED_HORIZONTAL_SCALING_POLICY'
+                        type: int
+            policy_type:
+                description:
+                    - Type of autoscaling policy.
+                    - This parameter is updatable.
+                type: str
+                choices:
+                    - "METRIC_BASED_HORIZONTAL_SCALING_POLICY"
+                    - "SCHEDULE_BASED_VERTICAL_SCALING_POLICY"
+                    - "SCHEDULE_BASED_HORIZONTAL_SCALING_POLICY"
+                    - "METRIC_BASED_VERTICAL_SCALING_POLICY"
+                required: true
+            timezone:
+                description:
+                    - The time zone of the execution schedule, in IANA time zone database name format
+                    - This parameter is updatable.
+                    - Applicable when policy_type is one of ['SCHEDULE_BASED_VERTICAL_SCALING_POLICY', 'SCHEDULE_BASED_HORIZONTAL_SCALING_POLICY']
+                type: str
+            schedule_details:
+                description:
+                    - ""
+                    - Applicable when policy_type is one of ['SCHEDULE_BASED_VERTICAL_SCALING_POLICY', 'SCHEDULE_BASED_HORIZONTAL_SCALING_POLICY']
+                type: list
+                elements: dict
+                suboptions:
+                    time_and_horizontal_scaling_config:
+                        description:
+                            - ""
+                        type: list
+                        elements: dict
+                        suboptions:
+                            time_recurrence:
+                                description:
+                                    - Day/time recurrence (specified following RFC 5545) at which to trigger autoscaling action. Currently only WEEKLY frequency
+                                      is supported. Days of the week are specified using BYDAY field. Time of the day is specified using BYHOUR and BYMINUTE
+                                      fields. Other fields are not supported.
+                                type: str
+                            target_node_count:
+                                description:
+                                    - This value is the desired number of nodes in the cluster.
+                                type: int
+                    schedule_type:
+                        description:
+                            - The type of schedule.
+                            - This parameter is updatable.
+                        type: str
+                        choices:
+                            - "DAY_BASED"
+                        required: true
+                    time_and_vertical_scaling_config:
+                        description:
+                            - ""
+                        type: list
+                        elements: dict
+                        suboptions:
+                            time_recurrence:
+                                description:
+                                    - Day/time recurrence (specified following RFC 5545) at which to trigger autoscaling action. Currently only WEEKLY frequency
+                                      is supported. Days of the week are specified using BYDAY field. Time of the day is specified using BYHOUR and BYMINUTE
+                                      fields. Other fields are not supported.
+                                type: str
+                            target_shape:
+                                description:
+                                    - For nodes with L(fixed compute shapes,https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan-
+                                      shape), this value is the desired shape of each node. This value is not used for nodes with flexible compute shapes.
+                                type: str
+                            target_ocpus_per_node:
+                                description:
+                                    - For nodes with L(flexible compute shapes,https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-
+                                      plan-shape), this value is the desired OCPUs count on each node. This value is not used for nodes with fixed compute
+                                      shapes.
+                                type: int
+                            target_memory_per_node:
+                                description:
+                                    - For nodes with L(flexible compute shapes,https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-
+                                      plan-shape), this value is the desired memory in GBs on each node. This value is not used for nodes with fixed compute
+                                      shapes.
+                                type: int
     bds_instance_id:
         description:
             - The OCID of the cluster.
@@ -132,13 +494,6 @@ options:
             - Required for delete using I(state=absent).
             - This parameter is updatable.
         type: str
-    compartment_id:
-        description:
-            - The OCID of the compartment.
-            - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-        type: str
     state:
         description:
             - The state of the BdsAutoScaleConfig.
@@ -155,8 +510,14 @@ EXAMPLES = """
 - name: Create bds_auto_scale_config
   oci_bds_auto_scale_config:
     # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     node_type: node_type_example
     is_enabled: true
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    cluster_admin_password: example-password
+
+    # optional
+    display_name: display_name_example
     policy:
       # required
       policy_type: THRESHOLD_BASED
@@ -171,11 +532,35 @@ EXAMPLES = """
             duration_in_minutes: 56
             operator: GT
             value: 56
-    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
-    cluster_admin_password: example-password
+    policy_details:
+      # required
+      policy_type: METRIC_BASED_HORIZONTAL_SCALING_POLICY
 
-    # optional
-    display_name: display_name_example
+      # optional
+      scale_out_config:
+        # optional
+        metric:
+          # required
+          metric_type: CPU_UTILIZATION
+          threshold:
+            # required
+            duration_in_minutes: 56
+            operator: GT
+            value: 56
+        max_node_count: 56
+        step_size: 56
+      scale_in_config:
+        # optional
+        metric:
+          # required
+          metric_type: CPU_UTILIZATION
+          threshold:
+            # required
+            duration_in_minutes: 56
+            operator: GT
+            value: 56
+        min_node_count: 56
+        step_size: 56
 
 - name: Update bds_auto_scale_config
   oci_bds_auto_scale_config:
@@ -200,14 +585,43 @@ EXAMPLES = """
             duration_in_minutes: 56
             operator: GT
             value: 56
+    policy_details:
+      # required
+      policy_type: METRIC_BASED_HORIZONTAL_SCALING_POLICY
+
+      # optional
+      scale_out_config:
+        # optional
+        metric:
+          # required
+          metric_type: CPU_UTILIZATION
+          threshold:
+            # required
+            duration_in_minutes: 56
+            operator: GT
+            value: 56
+        max_node_count: 56
+        step_size: 56
+      scale_in_config:
+        # optional
+        metric:
+          # required
+          metric_type: CPU_UTILIZATION
+          threshold:
+            # required
+            duration_in_minutes: 56
+            operator: GT
+            value: 56
+        min_node_count: 56
+        step_size: 56
     cluster_admin_password: example-password
 
 - name: Update bds_auto_scale_config using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_bds_auto_scale_config:
     # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     is_enabled: true
@@ -225,6 +639,35 @@ EXAMPLES = """
             duration_in_minutes: 56
             operator: GT
             value: 56
+    policy_details:
+      # required
+      policy_type: METRIC_BASED_HORIZONTAL_SCALING_POLICY
+
+      # optional
+      scale_out_config:
+        # optional
+        metric:
+          # required
+          metric_type: CPU_UTILIZATION
+          threshold:
+            # required
+            duration_in_minutes: 56
+            operator: GT
+            value: 56
+        max_node_count: 56
+        step_size: 56
+      scale_in_config:
+        # optional
+        metric:
+          # required
+          metric_type: CPU_UTILIZATION
+          threshold:
+            # required
+            duration_in_minutes: 56
+            operator: GT
+            value: 56
+        min_node_count: 56
+        step_size: 56
     cluster_admin_password: example-password
 
 - name: Delete bds_auto_scale_config
@@ -238,9 +681,9 @@ EXAMPLES = """
 - name: Delete bds_auto_scale_config using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_bds_auto_scale_config:
     # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
 
 """
@@ -266,7 +709,7 @@ bds_auto_scale_config:
             sample: display_name_example
         node_type:
             description:
-                - A node type that is managed by an autoscale configuration. The only supported type is WORKER.
+                - A node type that is managed by an autoscale configuration. The only supported types are WORKER and COMPUTE_ONLY_WORKER.
             returned: on success
             type: str
             sample: node_type_example
@@ -332,8 +775,8 @@ bds_auto_scale_config:
                                     contains:
                                         duration_in_minutes:
                                             description:
-                                                - This value is the minimum period of time the metric value meets or exceeds the threshold value before the
-                                                  action is triggered. The value is in minutes.
+                                                - This value is the minimum period of time the metric value exceeds the threshold value before the action is
+                                                  triggered. The value is in minutes.
                                             returned: on success
                                             type: int
                                             sample: 56
@@ -349,6 +792,366 @@ bds_auto_scale_config:
                                             returned: on success
                                             type: int
                                             sample: 56
+        policy_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                scale_out_config:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        metric:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                metric_type:
+                                    description:
+                                        - Allowed value is CPU_UTILIZATION.
+                                    returned: on success
+                                    type: str
+                                    sample: CPU_UTILIZATION
+                                threshold:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        duration_in_minutes:
+                                            description:
+                                                - This value is the minimum period of time the metric value exceeds the threshold value before the action is
+                                                  triggered. The value is in minutes.
+                                            returned: on success
+                                            type: int
+                                            sample: 56
+                                        operator:
+                                            description:
+                                                - The comparison operator to use. Options are greater than (GT) or less than (LT).
+                                            returned: on success
+                                            type: str
+                                            sample: GT
+                                        value:
+                                            description:
+                                                - Integer non-negative value. 0 < value < 100
+                                            returned: on success
+                                            type: int
+                                            sample: 56
+                        max_node_count:
+                            description:
+                                - This value is the maximum number of nodes the cluster can be scaled-out to.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        step_size:
+                            description:
+                                - This value is the number of nodes to add during a scale-out event.
+                            returned: on success
+                            type: int
+                            sample: 56
+                scale_in_config:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        metric:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                metric_type:
+                                    description:
+                                        - Allowed value is CPU_UTILIZATION.
+                                    returned: on success
+                                    type: str
+                                    sample: CPU_UTILIZATION
+                                threshold:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        duration_in_minutes:
+                                            description:
+                                                - This value is the minimum period of time the metric value exceeds the threshold value before the action is
+                                                  triggered. The value is in minutes.
+                                            returned: on success
+                                            type: int
+                                            sample: 56
+                                        operator:
+                                            description:
+                                                - The comparison operator to use. Options are greater than (GT) or less than (LT).
+                                            returned: on success
+                                            type: str
+                                            sample: GT
+                                        value:
+                                            description:
+                                                - Integer non-negative value. 0 < value < 100
+                                            returned: on success
+                                            type: int
+                                            sample: 56
+                        min_node_count:
+                            description:
+                                - This value is the minimum number of nodes the cluster can be scaled-in to.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        step_size:
+                            description:
+                                - This value is the number of nodes to remove during a scale-in event.
+                            returned: on success
+                            type: int
+                            sample: 56
+                scale_up_config:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        metric:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                metric_type:
+                                    description:
+                                        - Allowed value is CPU_UTILIZATION.
+                                    returned: on success
+                                    type: str
+                                    sample: CPU_UTILIZATION
+                                threshold:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        duration_in_minutes:
+                                            description:
+                                                - This value is the minimum period of time the metric value exceeds the threshold value before the action is
+                                                  triggered. The value is in minutes.
+                                            returned: on success
+                                            type: int
+                                            sample: 56
+                                        operator:
+                                            description:
+                                                - The comparison operator to use. Options are greater than (GT) or less than (LT).
+                                            returned: on success
+                                            type: str
+                                            sample: GT
+                                        value:
+                                            description:
+                                                - Integer non-negative value. 0 < value < 100
+                                            returned: on success
+                                            type: int
+                                            sample: 56
+                        max_ocpus_per_node:
+                            description:
+                                - For nodes with L(flexible compute shapes,https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan-
+                                  shape), this value is the maximum number of OCPUs each node can be scaled-up to. This value is not used for nodes with fixed
+                                  compute shapes.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        max_memory_per_node:
+                            description:
+                                - For nodes with L(flexible compute shapes,https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan-
+                                  shape), this value is the maximum memory in GBs each node can be scaled-up to. This value is not used for nodes with fixed
+                                  compute shapes.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        ocpu_step_size:
+                            description:
+                                - For nodes with L(flexible compute shapes,https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan-
+                                  shape), this value is the number of OCPUs to add to each node during a scale-up event. This value is not used for nodes with
+                                  fixed compute shapes.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        memory_step_size:
+                            description:
+                                - For nodes with L(flexible compute shapes,https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan-
+                                  shape), this value is the size of memory in GBs to add to each node during a scale-up event. This value is not used for nodes
+                                  with fixed compute shapes.
+                            returned: on success
+                            type: int
+                            sample: 56
+                scale_down_config:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        metric:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                metric_type:
+                                    description:
+                                        - Allowed value is CPU_UTILIZATION.
+                                    returned: on success
+                                    type: str
+                                    sample: CPU_UTILIZATION
+                                threshold:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        duration_in_minutes:
+                                            description:
+                                                - This value is the minimum period of time the metric value exceeds the threshold value before the action is
+                                                  triggered. The value is in minutes.
+                                            returned: on success
+                                            type: int
+                                            sample: 56
+                                        operator:
+                                            description:
+                                                - The comparison operator to use. Options are greater than (GT) or less than (LT).
+                                            returned: on success
+                                            type: str
+                                            sample: GT
+                                        value:
+                                            description:
+                                                - Integer non-negative value. 0 < value < 100
+                                            returned: on success
+                                            type: int
+                                            sample: 56
+                        min_ocpus_per_node:
+                            description:
+                                - For nodes with L(flexible compute shapes,https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan-
+                                  shape), this value is the minimum number of OCPUs each node can be scaled-down to. This value is not used for nodes with fixed
+                                  compute shapes.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        min_memory_per_node:
+                            description:
+                                - For nodes with L(flexible compute shapes,https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan-
+                                  shape), this value is the minimum memory in GBs each node can be scaled-down to. This value is not used for nodes with fixed
+                                  compute shapes.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        ocpu_step_size:
+                            description:
+                                - For nodes with L(flexible compute shapes,https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan-
+                                  shape), this value is the number of OCPUs to remove from each node during a scale-down event. This value is not used for nodes
+                                  with fixed compute shapes.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        memory_step_size:
+                            description:
+                                - For nodes with L(flexible compute shapes,https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan-
+                                  shape), this value is the size of memory in GBs to remove from each node during a scale-down event. This value is not used for
+                                  nodes with fixed compute shapes.
+                            returned: on success
+                            type: int
+                            sample: 56
+                policy_type:
+                    description:
+                        - Type of autoscaling policy.
+                    returned: on success
+                    type: str
+                    sample: METRIC_BASED_VERTICAL_SCALING_POLICY
+                trigger_type:
+                    description:
+                        - The type of autoscaling trigger.
+                    returned: on success
+                    type: str
+                    sample: METRIC_BASED
+                action_type:
+                    description:
+                        - The type of autoscaling action to take.
+                    returned: on success
+                    type: str
+                    sample: VERTICAL_SCALING
+                timezone:
+                    description:
+                        - The time zone of the execution schedule, in IANA time zone database name format
+                    returned: on success
+                    type: str
+                    sample: timezone_example
+                schedule_details:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        schedule_type:
+                            description:
+                                - The type of schedule.
+                            returned: on success
+                            type: str
+                            sample: DAY_BASED
+                        time_and_horizontal_scaling_config:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                time_recurrence:
+                                    description:
+                                        - Day/time recurrence (specified following RFC 5545) at which to trigger autoscaling action. Currently only WEEKLY
+                                          frequency is supported. Days of the week are specified using BYDAY field. Time of the day is specified using BYHOUR
+                                          and BYMINUTE fields. Other fields are not supported.
+                                    returned: on success
+                                    type: str
+                                    sample: time_recurrence_example
+                                target_node_count:
+                                    description:
+                                        - This value is the desired number of nodes in the cluster.
+                                    returned: on success
+                                    type: int
+                                    sample: 56
+                        time_and_vertical_scaling_config:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                time_recurrence:
+                                    description:
+                                        - Day/time recurrence (specified following RFC 5545) at which to trigger autoscaling action. Currently only WEEKLY
+                                          frequency is supported. Days of the week are specified using BYDAY field. Time of the day is specified using BYHOUR
+                                          and BYMINUTE fields. Other fields are not supported.
+                                    returned: on success
+                                    type: str
+                                    sample: time_recurrence_example
+                                target_shape:
+                                    description:
+                                        - For nodes with L(fixed compute shapes,https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-
+                                          plan-shape), this value is the desired shape of each node. This value is not used for nodes with flexible compute
+                                          shapes.
+                                    returned: on success
+                                    type: str
+                                    sample: target_shape_example
+                                target_ocpus_per_node:
+                                    description:
+                                        - For nodes with L(flexible compute shapes,https://docs.cloud.oracle.com/iaas/Content/bigdata/create-
+                                          cluster.htm#cluster-plan-shape), this value is the desired OCPUs count on each node. This value is not used for nodes
+                                          with fixed compute shapes.
+                                    returned: on success
+                                    type: int
+                                    sample: 56
+                                target_memory_per_node:
+                                    description:
+                                        - For nodes with L(flexible compute shapes,https://docs.cloud.oracle.com/iaas/Content/bigdata/create-
+                                          cluster.htm#cluster-plan-shape), this value is the desired memory in GBs on each node. This value is not used for
+                                          nodes with fixed compute shapes.
+                                    returned: on success
+                                    type: int
+                                    sample: 56
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -368,6 +1171,77 @@ bds_auto_scale_config:
                         "value": 56
                     }
                 }
+            }]
+        },
+        "policy_details": {
+            "scale_out_config": {
+                "metric": {
+                    "metric_type": "CPU_UTILIZATION",
+                    "threshold": {
+                        "duration_in_minutes": 56,
+                        "operator": "GT",
+                        "value": 56
+                    }
+                },
+                "max_node_count": 56,
+                "step_size": 56
+            },
+            "scale_in_config": {
+                "metric": {
+                    "metric_type": "CPU_UTILIZATION",
+                    "threshold": {
+                        "duration_in_minutes": 56,
+                        "operator": "GT",
+                        "value": 56
+                    }
+                },
+                "min_node_count": 56,
+                "step_size": 56
+            },
+            "scale_up_config": {
+                "metric": {
+                    "metric_type": "CPU_UTILIZATION",
+                    "threshold": {
+                        "duration_in_minutes": 56,
+                        "operator": "GT",
+                        "value": 56
+                    }
+                },
+                "max_ocpus_per_node": 56,
+                "max_memory_per_node": 56,
+                "ocpu_step_size": 56,
+                "memory_step_size": 56
+            },
+            "scale_down_config": {
+                "metric": {
+                    "metric_type": "CPU_UTILIZATION",
+                    "threshold": {
+                        "duration_in_minutes": 56,
+                        "operator": "GT",
+                        "value": 56
+                    }
+                },
+                "min_ocpus_per_node": 56,
+                "min_memory_per_node": 56,
+                "ocpu_step_size": 56,
+                "memory_step_size": 56
+            },
+            "policy_type": "METRIC_BASED_VERTICAL_SCALING_POLICY",
+            "trigger_type": "METRIC_BASED",
+            "action_type": "VERTICAL_SCALING",
+            "timezone": "timezone_example",
+            "schedule_details": [{
+                "schedule_type": "DAY_BASED",
+                "time_and_horizontal_scaling_config": [{
+                    "time_recurrence": "time_recurrence_example",
+                    "target_node_count": 56
+                }],
+                "time_and_vertical_scaling_config": [{
+                    "time_recurrence": "time_recurrence_example",
+                    "target_shape": "target_shape_example",
+                    "target_ocpus_per_node": 56,
+                    "target_memory_per_node": 56
+                }]
             }]
         }
     }
@@ -550,6 +1424,7 @@ def main():
     )
     module_args.update(
         dict(
+            compartment_id=dict(type="str"),
             node_type=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             is_enabled=dict(type="bool"),
@@ -559,7 +1434,7 @@ def main():
                     policy_type=dict(
                         type="str",
                         required=True,
-                        choices=["THRESHOLD_BASED", "SCHEDULE_BASED"],
+                        choices=["THRESHOLD_BASED", "SCHEDULE_BASED", "NONE"],
                     ),
                     rules=dict(
                         type="list",
@@ -604,10 +1479,184 @@ def main():
                     ),
                 ),
             ),
+            policy_details=dict(
+                type="dict",
+                options=dict(
+                    scale_up_config=dict(
+                        type="dict",
+                        options=dict(
+                            metric=dict(
+                                type="dict",
+                                options=dict(
+                                    metric_type=dict(
+                                        type="str",
+                                        required=True,
+                                        choices=["CPU_UTILIZATION"],
+                                    ),
+                                    threshold=dict(
+                                        type="dict",
+                                        required=True,
+                                        options=dict(
+                                            duration_in_minutes=dict(
+                                                type="int", required=True
+                                            ),
+                                            operator=dict(
+                                                type="str",
+                                                required=True,
+                                                choices=["GT", "LT"],
+                                            ),
+                                            value=dict(type="int", required=True),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            max_ocpus_per_node=dict(type="int"),
+                            max_memory_per_node=dict(type="int"),
+                            ocpu_step_size=dict(type="int"),
+                            memory_step_size=dict(type="int"),
+                        ),
+                    ),
+                    scale_down_config=dict(
+                        type="dict",
+                        options=dict(
+                            metric=dict(
+                                type="dict",
+                                options=dict(
+                                    metric_type=dict(
+                                        type="str",
+                                        required=True,
+                                        choices=["CPU_UTILIZATION"],
+                                    ),
+                                    threshold=dict(
+                                        type="dict",
+                                        required=True,
+                                        options=dict(
+                                            duration_in_minutes=dict(
+                                                type="int", required=True
+                                            ),
+                                            operator=dict(
+                                                type="str",
+                                                required=True,
+                                                choices=["GT", "LT"],
+                                            ),
+                                            value=dict(type="int", required=True),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            min_ocpus_per_node=dict(type="int"),
+                            min_memory_per_node=dict(type="int"),
+                            ocpu_step_size=dict(type="int"),
+                            memory_step_size=dict(type="int"),
+                        ),
+                    ),
+                    scale_out_config=dict(
+                        type="dict",
+                        options=dict(
+                            metric=dict(
+                                type="dict",
+                                options=dict(
+                                    metric_type=dict(
+                                        type="str",
+                                        required=True,
+                                        choices=["CPU_UTILIZATION"],
+                                    ),
+                                    threshold=dict(
+                                        type="dict",
+                                        required=True,
+                                        options=dict(
+                                            duration_in_minutes=dict(
+                                                type="int", required=True
+                                            ),
+                                            operator=dict(
+                                                type="str",
+                                                required=True,
+                                                choices=["GT", "LT"],
+                                            ),
+                                            value=dict(type="int", required=True),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            max_node_count=dict(type="int"),
+                            step_size=dict(type="int"),
+                        ),
+                    ),
+                    scale_in_config=dict(
+                        type="dict",
+                        options=dict(
+                            metric=dict(
+                                type="dict",
+                                options=dict(
+                                    metric_type=dict(
+                                        type="str",
+                                        required=True,
+                                        choices=["CPU_UTILIZATION"],
+                                    ),
+                                    threshold=dict(
+                                        type="dict",
+                                        required=True,
+                                        options=dict(
+                                            duration_in_minutes=dict(
+                                                type="int", required=True
+                                            ),
+                                            operator=dict(
+                                                type="str",
+                                                required=True,
+                                                choices=["GT", "LT"],
+                                            ),
+                                            value=dict(type="int", required=True),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            min_node_count=dict(type="int"),
+                            step_size=dict(type="int"),
+                        ),
+                    ),
+                    policy_type=dict(
+                        type="str",
+                        required=True,
+                        choices=[
+                            "METRIC_BASED_HORIZONTAL_SCALING_POLICY",
+                            "SCHEDULE_BASED_VERTICAL_SCALING_POLICY",
+                            "SCHEDULE_BASED_HORIZONTAL_SCALING_POLICY",
+                            "METRIC_BASED_VERTICAL_SCALING_POLICY",
+                        ],
+                    ),
+                    timezone=dict(type="str"),
+                    schedule_details=dict(
+                        type="list",
+                        elements="dict",
+                        options=dict(
+                            time_and_horizontal_scaling_config=dict(
+                                type="list",
+                                elements="dict",
+                                options=dict(
+                                    time_recurrence=dict(type="str"),
+                                    target_node_count=dict(type="int"),
+                                ),
+                            ),
+                            schedule_type=dict(
+                                type="str", required=True, choices=["DAY_BASED"]
+                            ),
+                            time_and_vertical_scaling_config=dict(
+                                type="list",
+                                elements="dict",
+                                options=dict(
+                                    time_recurrence=dict(type="str"),
+                                    target_shape=dict(type="str"),
+                                    target_ocpus_per_node=dict(type="int"),
+                                    target_memory_per_node=dict(type="int"),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
             bds_instance_id=dict(type="str", required=True),
             auto_scaling_configuration_id=dict(aliases=["id"], type="str"),
             cluster_admin_password=dict(type="str", no_log=True),
-            compartment_id=dict(type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

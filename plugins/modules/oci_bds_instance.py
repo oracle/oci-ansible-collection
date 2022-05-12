@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a BdsInstance resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a Big Data Service cluster.
     - "This resource has the following action operations in the M(oracle.oci.oci_bds_instance_actions) module: add_block_storage, add_cloud_sql,
-      add_worker_nodes, change_compartment, change_shape, remove_cloud_sql, restart_node."
+      add_worker_nodes, change_compartment, change_shape, install_patch, remove_cloud_sql, remove_node, restart_node."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -102,6 +102,23 @@ options:
                     - The OCID of the subnet in which the node will be created.
                 type: str
                 required: true
+            shape_config:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    ocpus:
+                        description:
+                            - The total number of OCPUs available to the node.
+                        type: int
+                    memory_in_gbs:
+                        description:
+                            - The total amount of memory available to the node, in gigabytes
+                        type: int
+    kerberos_realm_name:
+        description:
+            - The user-defined kerberos realm name.
+        type: str
     display_name:
         description:
             - Name of the Big Data Service cluster.
@@ -110,6 +127,11 @@ options:
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
+    bootstrap_script_url:
+        description:
+            - Pre-authenticated URL of the script in Object Store that is downloaded and executed.
+            - This parameter is updatable.
+        type: str
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type, or scope.
@@ -157,6 +179,12 @@ EXAMPLES = """
       shape: shape_example
       block_volume_size_in_gbs: 56
       subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      shape_config:
+        # optional
+        ocpus: 56
+        memory_in_gbs: 56
     display_name: display_name_example
 
     # optional
@@ -164,6 +192,8 @@ EXAMPLES = """
       # optional
       is_nat_gateway_required: true
       cidr_block: cidr_block_example
+    kerberos_realm_name: kerberos_realm_name_example
+    bootstrap_script_url: bootstrap_script_url_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -174,6 +204,7 @@ EXAMPLES = """
 
     # optional
     display_name: display_name_example
+    bootstrap_script_url: bootstrap_script_url_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -184,6 +215,7 @@ EXAMPLES = """
     display_name: display_name_example
 
     # optional
+    bootstrap_script_url: bootstrap_script_url_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -359,6 +391,18 @@ bds_instance:
                     returned: on success
                     type: str
                     sample: hue_server_url_example
+                odh_version:
+                    description:
+                        - Version of the ODH (Oracle Distribution including Apache Hadoop) installed on the cluster.
+                    returned: on success
+                    type: str
+                    sample: odh_version_example
+                jupyter_hub_url:
+                    description:
+                        - The URL of the Jupyterhub.
+                    returned: on success
+                    type: str
+                    sample: jupyter_hub_url_example
         nodes:
             description:
                 - The list of nodes in the cluster.
@@ -467,6 +511,18 @@ bds_instance:
                     returned: on success
                     type: str
                     sample: "2013-10-20T19:20:30+01:00"
+                ocpus:
+                    description:
+                        - The total number of OCPUs available to the node.
+                    returned: on success
+                    type: int
+                    sample: 56
+                memory_in_gbs:
+                    description:
+                        - The total amount of memory available to the node, in gigabytes.
+                    returned: on success
+                    type: int
+                    sample: 56
         cloud_sql_details:
             description:
                 - ""
@@ -541,6 +597,12 @@ bds_instance:
             returned: on success
             type: int
             sample: 56
+        bootstrap_script_url:
+            description:
+                - pre-authenticated URL of the bootstrap script in Object Store that can be downloaded and executed.
+            returned: on success
+            type: str
+            sample: bootstrap_script_url_example
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type, or scope.
@@ -581,7 +643,9 @@ bds_instance:
             "cloudera_manager_url": "cloudera_manager_url_example",
             "ambari_url": "ambari_url_example",
             "big_data_manager_url": "big_data_manager_url_example",
-            "hue_server_url": "hue_server_url_example"
+            "hue_server_url": "hue_server_url_example",
+            "odh_version": "odh_version_example",
+            "jupyter_hub_url": "jupyter_hub_url_example"
         },
         "nodes": [{
             "instance_id": "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx",
@@ -601,7 +665,9 @@ bds_instance:
             "availability_domain": "Uocm:PHX-AD-1",
             "fault_domain": "FAULT-DOMAIN-1",
             "time_created": "2013-10-20T19:20:30+01:00",
-            "time_updated": "2013-10-20T19:20:30+01:00"
+            "time_updated": "2013-10-20T19:20:30+01:00",
+            "ocpus": 56,
+            "memory_in_gbs": 56
         }],
         "cloud_sql_details": {
             "shape": "shape_example",
@@ -617,6 +683,7 @@ bds_instance:
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "number_of_nodes": 56,
+        "bootstrap_script_url": "bootstrap_script_url_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }
@@ -716,7 +783,9 @@ class BdsInstanceHelperGen(OCIResourceHelperBase):
     def get_exclude_attributes(self):
         return [
             "nodes.block_volume_size_in_gbs",
+            "nodes.shape_config",
             "cluster_admin_password",
+            "kerberos_realm_name",
             "cluster_public_key",
         ]
 
@@ -801,9 +870,17 @@ def main():
                     shape=dict(type="str", required=True),
                     block_volume_size_in_gbs=dict(type="int", required=True),
                     subnet_id=dict(type="str", required=True),
+                    shape_config=dict(
+                        type="dict",
+                        options=dict(
+                            ocpus=dict(type="int"), memory_in_gbs=dict(type="int")
+                        ),
+                    ),
                 ),
             ),
+            kerberos_realm_name=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
+            bootstrap_script_url=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             bds_instance_id=dict(aliases=["id"], type="str"),

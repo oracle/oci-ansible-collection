@@ -23,20 +23,20 @@ module: oci_budget
 short_description: Manage a Budget resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Budget resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates a new Budget.
+    - For I(state=present), creates a new budget.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
         description:
-            - The OCID of the compartment
+            - The OCID of the compartment.
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
     target_compartment_id:
         description:
-            - This is DEPRECTAED. Set the target compartment id in targets instead.
+            - This is DEPRECATED. Set the target compartment ID in targets instead.
         type: str
     target_type:
         description:
@@ -48,14 +48,15 @@ options:
     targets:
         description:
             - "The list of targets on which the budget is applied.
-                If targetType is \\"COMPARTMENT\\", targets contains list of compartment OCIDs.
-                If targetType is \\"TAG\\", targets contains list of cost tracking tag identifiers in the form of \\"{tagNamespace}.{tagKey}.{tagValue}\\".
-              Curerntly, the array should contain EXACT ONE item."
+                If targetType is \\"COMPARTMENT\\", the targets contain the list of compartment OCIDs.
+                If targetType is \\"TAG\\", the targets contain the list of cost tracking tag identifiers in the form of
+                \\"{tagNamespace}.{tagKey}.{tagValue}\\".
+              Curerntly, the array should contain exactly one item."
         type: list
         elements: str
     display_name:
         description:
-            - The displayName of the budget.
+            - The displayName of the budget. Avoid entering confidential information.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -77,6 +78,14 @@ options:
               value, processing will begin on the last day of that month. For example, for a value of 12, processing starts every month on the 12th at midnight.
             - This parameter is updatable.
         type: int
+    processing_period_type:
+        description:
+            - The type of the budget processing period. Valid values are INVOICE and MONTH.
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "INVOICE"
+            - "MONTH"
     reset_period:
         description:
             - The reset period for the budget.
@@ -101,7 +110,7 @@ options:
         type: dict
     budget_id:
         description:
-            - The unique Budget OCID
+            - The unique budget OCID.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -133,6 +142,7 @@ EXAMPLES = """
     display_name: display_name_example
     description: description_example
     budget_processing_period_start_offset: 56
+    processing_period_type: INVOICE
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -146,6 +156,7 @@ EXAMPLES = """
     description: description_example
     amount: 3.4
     budget_processing_period_start_offset: 56
+    processing_period_type: INVOICE
     reset_period: MONTHLY
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -160,6 +171,7 @@ EXAMPLES = """
     description: description_example
     amount: 3.4
     budget_processing_period_start_offset: 56
+    processing_period_type: INVOICE
     reset_period: MONTHLY
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -188,27 +200,27 @@ budget:
     contains:
         id:
             description:
-                - The OCID of the budget
+                - The OCID of the budget.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
-                - The OCID of the compartment
+                - The OCID of the compartment.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         target_compartment_id:
             description:
-                - "This is DEPRECATED. For backwards compatability, the property will be populated when
-                  targetType is \\"COMPARTMENT\\" AND targets contains EXACT ONE target compartment ocid.
+                - "This is DEPRECATED. For backwards compatability, the property is populated when
+                  the targetType is \\"COMPARTMENT\\", and targets contain the specific target compartment OCID.
                   For all other scenarios, this property will be left empty."
             returned: on success
             type: str
             sample: "ocid1.targetcompartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - The display name of the budget.
+                - The display name of the budget. Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example
@@ -238,6 +250,12 @@ budget:
             returned: on success
             type: int
             sample: 56
+        processing_period_type:
+            description:
+                - The type of the budget processing period. Valid values are INVOICE and MONTH.
+            returned: on success
+            type: str
+            sample: INVOICE
         target_type:
             description:
                 - The type of target on which the budget is applied.
@@ -247,8 +265,9 @@ budget:
         targets:
             description:
                 - "The list of targets on which the budget is applied.
-                    If targetType is \\"COMPARTMENT\\", targets contains list of compartment OCIDs.
-                    If targetType is \\"TAG\\", targets contains list of cost tracking tag identifiers in the form of \\"{tagNamespace}.{tagKey}.{tagValue}\\"."
+                    If the targetType is \\"COMPARTMENT\\", the targets contain the list of compartment OCIDs.
+                    If the targetType is \\"TAG\\", the targets contain the list of cost tracking tag identifiers in the form of
+                    \\"{tagNamespace}.{tagKey}.{tagValue}\\"."
             returned: on success
             type: list
             sample: []
@@ -260,43 +279,43 @@ budget:
             sample: ACTIVE
         alert_rule_count:
             description:
-                - Total number of alert rules in the budget
+                - The total number of alert rules in the budget.
             returned: on success
             type: int
             sample: 56
         version:
             description:
-                - Version of the budget. Starts from 1 and increments by 1.
+                - The version of the budget. Starts from 1 and increments by 1.
             returned: on success
             type: int
             sample: 56
         actual_spend:
             description:
-                - The actual spend in currency for the current budget cycle
+                - The actual spend in currency for the current budget cycle.
             returned: on success
             type: float
             sample: 10
         forecasted_spend:
             description:
-                - The forecasted spend in currency by the end of the current budget cycle
+                - The forecasted spend in currency by the end of the current budget cycle.
             returned: on success
             type: float
             sample: 10
         time_spend_computed:
             description:
-                - The time that the budget spend was last computed
+                - The time that the budget spend was last computed.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_created:
             description:
-                - Time that budget was created
+                - The time that the budget was created.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - Time that budget was updated
+                - The time that the budget was updated.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
@@ -325,6 +344,7 @@ budget:
         "amount": 10,
         "reset_period": "MONTHLY",
         "budget_processing_period_start_offset": 56,
+        "processing_period_type": "INVOICE",
         "target_type": "COMPARTMENT",
         "targets": [],
         "lifecycle_state": "ACTIVE",
@@ -499,6 +519,7 @@ def main():
             description=dict(type="str"),
             amount=dict(type="float"),
             budget_processing_period_start_offset=dict(type="int"),
+            processing_period_type=dict(type="str", choices=["INVOICE", "MONTH"]),
             reset_period=dict(type="str", choices=["MONTHLY"]),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),

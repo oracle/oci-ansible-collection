@@ -571,6 +571,19 @@ sddcs:
             returned: on success
             type: bool
             sample: true
+        initial_host_shape_name:
+            description:
+                - The initial compute shape of the SDDC's ESXi hosts.
+                  L(ListSupportedHostShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedHostShapes/ListSupportedHostShapes).
+            returned: on success
+            type: str
+            sample: initial_host_shape_name_example
+        initial_host_ocpu_count:
+            description:
+                - The initial OCPU count of the SDDC's ESXi hosts.
+            returned: on success
+            type: float
+            sample: 3.4
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -638,6 +651,8 @@ sddcs:
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "is_shielded_instance_enabled": true,
+        "initial_host_shape_name": "initial_host_shape_name_example",
+        "initial_host_ocpu_count": 3.4,
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]

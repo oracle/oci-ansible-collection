@@ -29,6 +29,24 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment being referenced.
+            - Required for create using I(state=present).
+            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+        type: str
+    deployment_backup_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup being referenced.
+        type: str
+    deployment_type:
+        description:
+            - The deployment type.
+            - Required for create using I(state=present).
+        type: str
+        choices:
+            - "OGG"
     display_name:
         description:
             - An object's Display Name.
@@ -51,13 +69,6 @@ options:
             - Metadata about this specific object.
             - This parameter is updatable.
         type: str
-    compartment_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment being referenced.
-            - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-        type: str
     freeform_tags:
         description:
             - "A simple key-value pair that is applied without any predefined name, type, or scope. Exists for cross-compatibility only.
@@ -70,21 +81,6 @@ options:
               Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             - This parameter is updatable.
         type: dict
-    deployment_backup_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the backup being referenced.
-        type: str
-    subnet_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet being referenced.
-            - Required for create using I(state=present).
-            - This parameter is updatable.
-        type: str
-    fqdn:
-        description:
-            - A three-label Fully Qualified Domain Name (FQDN) for a resource.
-            - This parameter is updatable.
-        type: str
     nsg_ids:
         description:
             - An array of L(Network Security Group,https://docs.cloud.oracle.com/Content/Network/Concepts/networksecuritygroups.htm) OCIDs used to define
@@ -92,11 +88,22 @@ options:
             - This parameter is updatable.
         type: list
         elements: str
+    subnet_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet being referenced.
+            - Required for create using I(state=present).
+            - This parameter is updatable.
+        type: str
     is_public:
         description:
             - True if this object is publicly available.
             - This parameter is updatable.
         type: bool
+    fqdn:
+        description:
+            - A three-label Fully Qualified Domain Name (FQDN) for a resource.
+            - This parameter is updatable.
+        type: str
     cpu_core_count:
         description:
             - The Minimum number of OCPUs to be made available for this Deployment.
@@ -109,13 +116,6 @@ options:
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: bool
-    deployment_type:
-        description:
-            - The deployment type.
-            - Required for create using I(state=present).
-        type: str
-        choices:
-            - "OGG"
     ogg_data:
         description:
             - ""
@@ -171,22 +171,22 @@ EXAMPLES = """
 - name: Create deployment
   oci_golden_gate_deployment:
     # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    deployment_type: OGG
     display_name: display_name_example
     license_model: LICENSE_INCLUDED
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     cpu_core_count: 56
     is_auto_scaling_enabled: true
-    deployment_type: OGG
 
     # optional
+    deployment_backup_id: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
     description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    deployment_backup_id: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
-    fqdn: fqdn_example
     nsg_ids: [ "nsg_ids_example" ]
     is_public: true
+    fqdn: fqdn_example
     ogg_data:
       # optional
       deployment_name: deployment_name_example
@@ -206,10 +206,10 @@ EXAMPLES = """
     description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-    fqdn: fqdn_example
     nsg_ids: [ "nsg_ids_example" ]
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     is_public: true
+    fqdn: fqdn_example
     cpu_core_count: 56
     is_auto_scaling_enabled: true
     ogg_data:
@@ -223,18 +223,18 @@ EXAMPLES = """
 - name: Update deployment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_golden_gate_deployment:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
 
     # optional
     license_model: LICENSE_INCLUDED
     description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-    fqdn: fqdn_example
     nsg_ids: [ "nsg_ids_example" ]
+    subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     is_public: true
+    fqdn: fqdn_example
     cpu_core_count: 56
     is_auto_scaling_enabled: true
     ogg_data:
@@ -254,8 +254,8 @@ EXAMPLES = """
 - name: Delete deployment using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_golden_gate_deployment:
     # required
-    display_name: display_name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
     state: absent
 
 """
@@ -688,22 +688,22 @@ def main():
     )
     module_args.update(
         dict(
+            compartment_id=dict(type="str"),
+            deployment_backup_id=dict(type="str"),
+            deployment_type=dict(type="str", choices=["OGG"]),
             display_name=dict(aliases=["name"], type="str"),
             license_model=dict(
                 type="str", choices=["LICENSE_INCLUDED", "BRING_YOUR_OWN_LICENSE"]
             ),
             description=dict(type="str"),
-            compartment_id=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
-            deployment_backup_id=dict(type="str"),
-            subnet_id=dict(type="str"),
-            fqdn=dict(type="str"),
             nsg_ids=dict(type="list", elements="str"),
+            subnet_id=dict(type="str"),
             is_public=dict(type="bool"),
+            fqdn=dict(type="str"),
             cpu_core_count=dict(type="int"),
             is_auto_scaling_enabled=dict(type="bool"),
-            deployment_type=dict(type="str", choices=["OGG"]),
             ogg_data=dict(
                 type="dict",
                 options=dict(
