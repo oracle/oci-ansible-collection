@@ -30,7 +30,7 @@ oracle.oci.oci_cloud_guard_target -- Manage a Target resource in Oracle Cloud In
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.50.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -824,6 +824,7 @@ Parameters
                                                                                                                                                                 <li>COMPARTMENT</li>
                                                                                                                                                                                                 <li>ERPCLOUD</li>
                                                                                                                                                                                                 <li>HCMCLOUD</li>
+                                                                                                                                                                                                <li>SECURITY_ZONE</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -1570,7 +1571,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Target resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;inherited_by_compartments&#x27;: [], &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;lifecyle_details&#x27;: &#x27;lifecyle_details_example&#x27;, &#x27;recipe_count&#x27;: 56, &#x27;system_tags&#x27;: {}, &#x27;target_detector_recipes&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;detector&#x27;: &#x27;IAAS_ACTIVITY_DETECTOR&#x27;, &#x27;detector_recipe_id&#x27;: &#x27;ocid1.detectorrecipe.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;detector_rules&#x27;: [{&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;details&#x27;: {&#x27;condition_groups&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;condition&#x27;: {&#x27;composite_operator&#x27;: &#x27;AND&#x27;, &#x27;kind&#x27;: &#x27;COMPOSITE&#x27;, &#x27;left_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;operator&#x27;: &#x27;IN&#x27;, &#x27;parameter&#x27;: &#x27;parameter_example&#x27;, &#x27;right_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;value_type&#x27;: &#x27;MANAGED&#x27;}}], &#x27;configurations&#x27;: [{&#x27;config_key&#x27;: &#x27;config_key_example&#x27;, &#x27;data_type&#x27;: &#x27;data_type_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;values&#x27;: [{&#x27;list_type&#x27;: &#x27;MANAGED&#x27;, &#x27;managed_list_type&#x27;: &#x27;managed_list_type_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}], &#x27;is_configuration_allowed&#x27;: True, &#x27;is_enabled&#x27;: True, &#x27;labels&#x27;: [], &#x27;problem_threshold&#x27;: 56, &#x27;risk_level&#x27;: &#x27;CRITICAL&#x27;, &#x27;sighting_types&#x27;: [{&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;mitre_link&#x27;: &#x27;mitre_link_example&#x27;, &#x27;tactic&#x27;: &#x27;tactic_example&#x27;, &#x27;techniques&#x27;: []}], &#x27;target_types&#x27;: []}, &#x27;detector&#x27;: &#x27;IAAS_ACTIVITY_DETECTOR&#x27;, &#x27;detector_rule_id&#x27;: &#x27;ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;managed_list_types&#x27;: [], &#x27;recommendation&#x27;: &#x27;recommendation_example&#x27;, &#x27;resource_type&#x27;: &#x27;resource_type_example&#x27;, &#x27;service_type&#x27;: &#x27;service_type_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;effective_detector_rules&#x27;: [{&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;details&#x27;: {&#x27;condition_groups&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;condition&#x27;: {&#x27;composite_operator&#x27;: &#x27;AND&#x27;, &#x27;kind&#x27;: &#x27;COMPOSITE&#x27;, &#x27;left_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;operator&#x27;: &#x27;IN&#x27;, &#x27;parameter&#x27;: &#x27;parameter_example&#x27;, &#x27;right_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;value_type&#x27;: &#x27;MANAGED&#x27;}}], &#x27;configurations&#x27;: [{&#x27;config_key&#x27;: &#x27;config_key_example&#x27;, &#x27;data_type&#x27;: &#x27;data_type_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;values&#x27;: [{&#x27;list_type&#x27;: &#x27;MANAGED&#x27;, &#x27;managed_list_type&#x27;: &#x27;managed_list_type_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}], &#x27;is_configuration_allowed&#x27;: True, &#x27;is_enabled&#x27;: True, &#x27;labels&#x27;: [], &#x27;problem_threshold&#x27;: 56, &#x27;risk_level&#x27;: &#x27;CRITICAL&#x27;, &#x27;sighting_types&#x27;: [{&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;mitre_link&#x27;: &#x27;mitre_link_example&#x27;, &#x27;tactic&#x27;: &#x27;tactic_example&#x27;, &#x27;techniques&#x27;: []}], &#x27;target_types&#x27;: []}, &#x27;detector&#x27;: &#x27;IAAS_ACTIVITY_DETECTOR&#x27;, &#x27;detector_rule_id&#x27;: &#x27;ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;managed_list_types&#x27;: [], &#x27;recommendation&#x27;: &#x27;recommendation_example&#x27;, &#x27;resource_type&#x27;: &#x27;resource_type_example&#x27;, &#x27;service_type&#x27;: &#x27;service_type_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;owner&#x27;: &#x27;CUSTOMER&#x27;, &#x27;source_data_retention&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;target_resource_id&#x27;: &#x27;ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;target_resource_type&#x27;: &#x27;COMPARTMENT&#x27;, &#x27;target_responder_recipes&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;effective_responder_rules&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;details&#x27;: {&#x27;condition&#x27;: {&#x27;composite_operator&#x27;: &#x27;AND&#x27;, &#x27;kind&#x27;: &#x27;COMPOSITE&#x27;, &#x27;left_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;operator&#x27;: &#x27;IN&#x27;, &#x27;parameter&#x27;: &#x27;parameter_example&#x27;, &#x27;right_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;value_type&#x27;: &#x27;MANAGED&#x27;}, &#x27;configurations&#x27;: [{&#x27;config_key&#x27;: &#x27;config_key_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;is_enabled&#x27;: True, &#x27;mode&#x27;: &#x27;AUTOACTION&#x27;}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;policies&#x27;: [], &#x27;responder_rule_id&#x27;: &#x27;ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;supported_modes&#x27;: [], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;REMEDIATION&#x27;}], &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;owner&#x27;: &#x27;CUSTOMER&#x27;, &#x27;responder_recipe_id&#x27;: &#x27;ocid1.responderrecipe.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;responder_rules&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;details&#x27;: {&#x27;condition&#x27;: {&#x27;composite_operator&#x27;: &#x27;AND&#x27;, &#x27;kind&#x27;: &#x27;COMPOSITE&#x27;, &#x27;left_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;operator&#x27;: &#x27;IN&#x27;, &#x27;parameter&#x27;: &#x27;parameter_example&#x27;, &#x27;right_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;value_type&#x27;: &#x27;MANAGED&#x27;}, &#x27;configurations&#x27;: [{&#x27;config_key&#x27;: &#x27;config_key_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;is_enabled&#x27;: True, &#x27;mode&#x27;: &#x27;AUTOACTION&#x27;}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;policies&#x27;: [], &#x27;responder_rule_id&#x27;: &#x27;ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;supported_modes&#x27;: [], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;REMEDIATION&#x27;}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;inherited_by_compartments&#x27;: [], &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;lifecyle_details&#x27;: &#x27;lifecyle_details_example&#x27;, &#x27;recipe_count&#x27;: 56, &#x27;system_tags&#x27;: {}, &#x27;target_details&#x27;: {&#x27;security_zone_display_name&#x27;: &#x27;security_zone_display_name_example&#x27;, &#x27;security_zone_id&#x27;: &#x27;ocid1.securityzone.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;target_resource_type&#x27;: &#x27;COMPARTMENT&#x27;, &#x27;target_security_zone_recipes&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;owner&#x27;: &#x27;CUSTOMER&#x27;, &#x27;security_policies&#x27;: [], &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]}, &#x27;target_detector_recipes&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;detector&#x27;: &#x27;IAAS_ACTIVITY_DETECTOR&#x27;, &#x27;detector_recipe_id&#x27;: &#x27;ocid1.detectorrecipe.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;detector_rules&#x27;: [{&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;details&#x27;: {&#x27;condition_groups&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;condition&#x27;: {&#x27;composite_operator&#x27;: &#x27;AND&#x27;, &#x27;kind&#x27;: &#x27;COMPOSITE&#x27;, &#x27;left_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;operator&#x27;: &#x27;IN&#x27;, &#x27;parameter&#x27;: &#x27;parameter_example&#x27;, &#x27;right_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;value_type&#x27;: &#x27;MANAGED&#x27;}}], &#x27;configurations&#x27;: [{&#x27;config_key&#x27;: &#x27;config_key_example&#x27;, &#x27;data_type&#x27;: &#x27;data_type_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;values&#x27;: [{&#x27;list_type&#x27;: &#x27;MANAGED&#x27;, &#x27;managed_list_type&#x27;: &#x27;managed_list_type_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}], &#x27;is_configuration_allowed&#x27;: True, &#x27;is_enabled&#x27;: True, &#x27;labels&#x27;: [], &#x27;problem_threshold&#x27;: 56, &#x27;risk_level&#x27;: &#x27;CRITICAL&#x27;, &#x27;sighting_types&#x27;: [{&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;mitre_link&#x27;: &#x27;mitre_link_example&#x27;, &#x27;tactic&#x27;: &#x27;tactic_example&#x27;, &#x27;techniques&#x27;: []}], &#x27;target_types&#x27;: []}, &#x27;detector&#x27;: &#x27;IAAS_ACTIVITY_DETECTOR&#x27;, &#x27;detector_rule_id&#x27;: &#x27;ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;managed_list_types&#x27;: [], &#x27;recommendation&#x27;: &#x27;recommendation_example&#x27;, &#x27;resource_type&#x27;: &#x27;resource_type_example&#x27;, &#x27;service_type&#x27;: &#x27;service_type_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;effective_detector_rules&#x27;: [{&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;details&#x27;: {&#x27;condition_groups&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;condition&#x27;: {&#x27;composite_operator&#x27;: &#x27;AND&#x27;, &#x27;kind&#x27;: &#x27;COMPOSITE&#x27;, &#x27;left_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;operator&#x27;: &#x27;IN&#x27;, &#x27;parameter&#x27;: &#x27;parameter_example&#x27;, &#x27;right_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;value_type&#x27;: &#x27;MANAGED&#x27;}}], &#x27;configurations&#x27;: [{&#x27;config_key&#x27;: &#x27;config_key_example&#x27;, &#x27;data_type&#x27;: &#x27;data_type_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;values&#x27;: [{&#x27;list_type&#x27;: &#x27;MANAGED&#x27;, &#x27;managed_list_type&#x27;: &#x27;managed_list_type_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}], &#x27;is_configuration_allowed&#x27;: True, &#x27;is_enabled&#x27;: True, &#x27;labels&#x27;: [], &#x27;problem_threshold&#x27;: 56, &#x27;risk_level&#x27;: &#x27;CRITICAL&#x27;, &#x27;sighting_types&#x27;: [{&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;mitre_link&#x27;: &#x27;mitre_link_example&#x27;, &#x27;tactic&#x27;: &#x27;tactic_example&#x27;, &#x27;techniques&#x27;: []}], &#x27;target_types&#x27;: []}, &#x27;detector&#x27;: &#x27;IAAS_ACTIVITY_DETECTOR&#x27;, &#x27;detector_rule_id&#x27;: &#x27;ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;managed_list_types&#x27;: [], &#x27;recommendation&#x27;: &#x27;recommendation_example&#x27;, &#x27;resource_type&#x27;: &#x27;resource_type_example&#x27;, &#x27;service_type&#x27;: &#x27;service_type_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;owner&#x27;: &#x27;CUSTOMER&#x27;, &#x27;source_data_retention&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;target_resource_id&#x27;: &#x27;ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;target_resource_type&#x27;: &#x27;COMPARTMENT&#x27;, &#x27;target_responder_recipes&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;effective_responder_rules&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;details&#x27;: {&#x27;condition&#x27;: {&#x27;composite_operator&#x27;: &#x27;AND&#x27;, &#x27;kind&#x27;: &#x27;COMPOSITE&#x27;, &#x27;left_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;operator&#x27;: &#x27;IN&#x27;, &#x27;parameter&#x27;: &#x27;parameter_example&#x27;, &#x27;right_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;value_type&#x27;: &#x27;MANAGED&#x27;}, &#x27;configurations&#x27;: [{&#x27;config_key&#x27;: &#x27;config_key_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;is_enabled&#x27;: True, &#x27;mode&#x27;: &#x27;AUTOACTION&#x27;}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;policies&#x27;: [], &#x27;responder_rule_id&#x27;: &#x27;ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;supported_modes&#x27;: [], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;REMEDIATION&#x27;}], &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;owner&#x27;: &#x27;CUSTOMER&#x27;, &#x27;responder_recipe_id&#x27;: &#x27;ocid1.responderrecipe.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;responder_rules&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;details&#x27;: {&#x27;condition&#x27;: {&#x27;composite_operator&#x27;: &#x27;AND&#x27;, &#x27;kind&#x27;: &#x27;COMPOSITE&#x27;, &#x27;left_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;operator&#x27;: &#x27;IN&#x27;, &#x27;parameter&#x27;: &#x27;parameter_example&#x27;, &#x27;right_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;value_type&#x27;: &#x27;MANAGED&#x27;}, &#x27;configurations&#x27;: [{&#x27;config_key&#x27;: &#x27;config_key_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;is_enabled&#x27;: True, &#x27;mode&#x27;: &#x27;AUTOACTION&#x27;}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;policies&#x27;: [], &#x27;responder_rule_id&#x27;: &#x27;ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;supported_modes&#x27;: [], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;REMEDIATION&#x27;}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1769,6 +1770,356 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                         </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="7">
+                    <div class="ansibleOptionAnchor" id="return-target/target_details"></div>
+                    <b>target_details</b>
+                    <a class="ansibleOptionLink" href="#return-target/target_details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="6">
+                    <div class="ansibleOptionAnchor" id="return-target/target_details/security_zone_display_name"></div>
+                    <b>security_zone_display_name</b>
+                    <a class="ansibleOptionLink" href="#return-target/target_details/security_zone_display_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The name of the security zone to associate this compartment with.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">security_zone_display_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="6">
+                    <div class="ansibleOptionAnchor" id="return-target/target_details/security_zone_id"></div>
+                    <b>security_zone_id</b>
+                    <a class="ansibleOptionLink" href="#return-target/target_details/security_zone_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the security zone to associate this compartment with.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.securityzone.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="6">
+                    <div class="ansibleOptionAnchor" id="return-target/target_details/target_resource_type"></div>
+                    <b>target_resource_type</b>
+                    <a class="ansibleOptionLink" href="#return-target/target_details/target_resource_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Possible type of targets.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">COMPARTMENT</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="6">
+                    <div class="ansibleOptionAnchor" id="return-target/target_details/target_security_zone_recipes"></div>
+                    <b>target_security_zone_recipes</b>
+                    <a class="ansibleOptionLink" href="#return-target/target_details/target_security_zone_recipes" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The list of security zone recipes to associate this compartment with.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-target/target_details/target_security_zone_recipes/compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#return-target/target_details/target_security_zone_recipes/compartment_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The id of the compartment that contains the recipe</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-target/target_details/target_security_zone_recipes/defined_tags"></div>
+                    <b>defined_tags</b>
+                    <a class="ansibleOptionLink" href="#return-target/target_details/target_security_zone_recipes/defined_tags" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-target/target_details/target_security_zone_recipes/description"></div>
+                    <b>description</b>
+                    <a class="ansibleOptionLink" href="#return-target/target_details/target_security_zone_recipes/description" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The recipe&#x27;s description</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-target/target_details/target_security_zone_recipes/display_name"></div>
+                    <b>display_name</b>
+                    <a class="ansibleOptionLink" href="#return-target/target_details/target_security_zone_recipes/display_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The recipe&#x27;s name</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-target/target_details/target_security_zone_recipes/freeform_tags"></div>
+                    <b>freeform_tags</b>
+                    <a class="ansibleOptionLink" href="#return-target/target_details/target_security_zone_recipes/freeform_tags" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
+                                            <div>Avoid entering confidential information.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-target/target_details/target_security_zone_recipes/id"></div>
+                    <b>id</b>
+                    <a class="ansibleOptionLink" href="#return-target/target_details/target_security_zone_recipes/id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Unique identifier that is immutable on creation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-target/target_details/target_security_zone_recipes/lifecycle_details"></div>
+                    <b>lifecycle_details</b>
+                    <a class="ansibleOptionLink" href="#return-target/target_details/target_security_zone_recipes/lifecycle_details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A message describing the current state in more detail. For example, this can be used to provide actionable information for a recipe in the `Failed` state.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">lifecycle_details_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-target/target_details/target_security_zone_recipes/lifecycle_state"></div>
+                    <b>lifecycle_state</b>
+                    <a class="ansibleOptionLink" href="#return-target/target_details/target_security_zone_recipes/lifecycle_state" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The current state of the recipe</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-target/target_details/target_security_zone_recipes/owner"></div>
+                    <b>owner</b>
+                    <a class="ansibleOptionLink" href="#return-target/target_details/target_security_zone_recipes/owner" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The owner of the recipe</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CUSTOMER</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-target/target_details/target_security_zone_recipes/security_policies"></div>
+                    <b>security_policies</b>
+                    <a class="ansibleOptionLink" href="#return-target/target_details/target_security_zone_recipes/security_policies" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The list of `SecurityPolicy` ids that are included in the recipe</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-target/target_details/target_security_zone_recipes/system_tags"></div>
+                    <b>system_tags</b>
+                    <a class="ansibleOptionLink" href="#return-target/target_details/target_security_zone_recipes/system_tags" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>System tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. System tags can be viewed by users, but can only be created by the system.</div>
+                                            <div>Example: `{&quot;orcl-cloud&quot;: {&quot;free-tier-retained&quot;: &quot;true&quot;}}`</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-target/target_details/target_security_zone_recipes/time_created"></div>
+                    <b>time_created</b>
+                    <a class="ansibleOptionLink" href="#return-target/target_details/target_security_zone_recipes/time_created" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The time the recipe was created. An RFC3339 formatted datetime string.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-target/target_details/target_security_zone_recipes/time_updated"></div>
+                    <b>time_updated</b>
+                    <a class="ansibleOptionLink" href="#return-target/target_details/target_security_zone_recipes/time_updated" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The time the recipe was last updated. An RFC3339 formatted datetime string.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                    
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="7">

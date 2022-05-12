@@ -30,7 +30,7 @@ oracle.oci.oci_waf_web_app_firewall_policy_facts -- Fetches details about one or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.50.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -406,7 +406,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of WebAppFirewallPolicy resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;actions&#x27;: [{&#x27;body&#x27;: {&#x27;text&#x27;: &#x27;text_example&#x27;, &#x27;type&#x27;: &#x27;STATIC_TEXT&#x27;}, &#x27;code&#x27;: 56, &#x27;headers&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;type&#x27;: &#x27;CHECK&#x27;}], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;request_access_control&#x27;: {&#x27;default_action_name&#x27;: &#x27;default_action_name_example&#x27;, &#x27;rules&#x27;: [{&#x27;action_name&#x27;: &#x27;action_name_example&#x27;, &#x27;condition&#x27;: &#x27;condition_example&#x27;, &#x27;condition_language&#x27;: &#x27;JMESPATH&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;type&#x27;: &#x27;ACCESS_CONTROL&#x27;}]}, &#x27;request_protection&#x27;: {&#x27;rules&#x27;: [{&#x27;action_name&#x27;: &#x27;action_name_example&#x27;, &#x27;condition&#x27;: &#x27;condition_example&#x27;, &#x27;condition_language&#x27;: &#x27;JMESPATH&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;protection_capabilities&#x27;: [{&#x27;action_name&#x27;: &#x27;action_name_example&#x27;, &#x27;collaborative_action_threshold&#x27;: 56, &#x27;collaborative_weights&#x27;: [{&#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;weight&#x27;: 56}], &#x27;exclusions&#x27;: {&#x27;args&#x27;: [], &#x27;request_cookies&#x27;: []}, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;version&#x27;: 56}], &#x27;protection_capability_settings&#x27;: {&#x27;allowed_http_methods&#x27;: [], &#x27;max_http_request_header_length&#x27;: 56, &#x27;max_http_request_headers&#x27;: 56, &#x27;max_number_of_arguments&#x27;: 56, &#x27;max_single_argument_length&#x27;: 56, &#x27;max_total_argument_length&#x27;: 56}, &#x27;type&#x27;: &#x27;ACCESS_CONTROL&#x27;}]}, &#x27;request_rate_limiting&#x27;: {&#x27;rules&#x27;: [{&#x27;action_name&#x27;: &#x27;action_name_example&#x27;, &#x27;condition&#x27;: &#x27;condition_example&#x27;, &#x27;condition_language&#x27;: &#x27;JMESPATH&#x27;, &#x27;configurations&#x27;: [{&#x27;action_duration_in_seconds&#x27;: 56, &#x27;period_in_seconds&#x27;: 56, &#x27;requests_limit&#x27;: 56}], &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;type&#x27;: &#x27;ACCESS_CONTROL&#x27;}]}, &#x27;response_access_control&#x27;: {&#x27;rules&#x27;: [{&#x27;action_name&#x27;: &#x27;action_name_example&#x27;, &#x27;condition&#x27;: &#x27;condition_example&#x27;, &#x27;condition_language&#x27;: &#x27;JMESPATH&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;type&#x27;: &#x27;ACCESS_CONTROL&#x27;}]}, &#x27;response_protection&#x27;: {&#x27;rules&#x27;: [{&#x27;action_name&#x27;: &#x27;action_name_example&#x27;, &#x27;condition&#x27;: &#x27;condition_example&#x27;, &#x27;condition_language&#x27;: &#x27;JMESPATH&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;protection_capabilities&#x27;: [{&#x27;action_name&#x27;: &#x27;action_name_example&#x27;, &#x27;collaborative_action_threshold&#x27;: 56, &#x27;collaborative_weights&#x27;: [{&#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;weight&#x27;: 56}], &#x27;exclusions&#x27;: {&#x27;args&#x27;: [], &#x27;request_cookies&#x27;: []}, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;version&#x27;: 56}], &#x27;protection_capability_settings&#x27;: {&#x27;allowed_http_methods&#x27;: [], &#x27;max_http_request_header_length&#x27;: 56, &#x27;max_http_request_headers&#x27;: 56, &#x27;max_number_of_arguments&#x27;: 56, &#x27;max_single_argument_length&#x27;: 56, &#x27;max_total_argument_length&#x27;: 56}, &#x27;type&#x27;: &#x27;ACCESS_CONTROL&#x27;}]}, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;actions&#x27;: [{&#x27;body&#x27;: {&#x27;text&#x27;: &#x27;text_example&#x27;, &#x27;type&#x27;: &#x27;STATIC_TEXT&#x27;}, &#x27;code&#x27;: 56, &#x27;headers&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;type&#x27;: &#x27;CHECK&#x27;}], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;request_access_control&#x27;: {&#x27;default_action_name&#x27;: &#x27;default_action_name_example&#x27;, &#x27;rules&#x27;: [{&#x27;action_name&#x27;: &#x27;action_name_example&#x27;, &#x27;condition&#x27;: &#x27;condition_example&#x27;, &#x27;condition_language&#x27;: &#x27;JMESPATH&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;type&#x27;: &#x27;ACCESS_CONTROL&#x27;}]}, &#x27;request_protection&#x27;: {&#x27;body_inspection_size_limit_exceeded_action_name&#x27;: &#x27;body_inspection_size_limit_exceeded_action_name_example&#x27;, &#x27;body_inspection_size_limit_in_bytes&#x27;: 56, &#x27;rules&#x27;: [{&#x27;action_name&#x27;: &#x27;action_name_example&#x27;, &#x27;condition&#x27;: &#x27;condition_example&#x27;, &#x27;condition_language&#x27;: &#x27;JMESPATH&#x27;, &#x27;is_body_inspection_enabled&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;protection_capabilities&#x27;: [{&#x27;action_name&#x27;: &#x27;action_name_example&#x27;, &#x27;collaborative_action_threshold&#x27;: 56, &#x27;collaborative_weights&#x27;: [{&#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;weight&#x27;: 56}], &#x27;exclusions&#x27;: {&#x27;args&#x27;: [], &#x27;request_cookies&#x27;: []}, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;version&#x27;: 56}], &#x27;protection_capability_settings&#x27;: {&#x27;allowed_http_methods&#x27;: [], &#x27;max_http_request_header_length&#x27;: 56, &#x27;max_http_request_headers&#x27;: 56, &#x27;max_number_of_arguments&#x27;: 56, &#x27;max_single_argument_length&#x27;: 56, &#x27;max_total_argument_length&#x27;: 56}, &#x27;type&#x27;: &#x27;ACCESS_CONTROL&#x27;}]}, &#x27;request_rate_limiting&#x27;: {&#x27;rules&#x27;: [{&#x27;action_name&#x27;: &#x27;action_name_example&#x27;, &#x27;condition&#x27;: &#x27;condition_example&#x27;, &#x27;condition_language&#x27;: &#x27;JMESPATH&#x27;, &#x27;configurations&#x27;: [{&#x27;action_duration_in_seconds&#x27;: 56, &#x27;period_in_seconds&#x27;: 56, &#x27;requests_limit&#x27;: 56}], &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;type&#x27;: &#x27;ACCESS_CONTROL&#x27;}]}, &#x27;response_access_control&#x27;: {&#x27;rules&#x27;: [{&#x27;action_name&#x27;: &#x27;action_name_example&#x27;, &#x27;condition&#x27;: &#x27;condition_example&#x27;, &#x27;condition_language&#x27;: &#x27;JMESPATH&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;type&#x27;: &#x27;ACCESS_CONTROL&#x27;}]}, &#x27;response_protection&#x27;: {&#x27;rules&#x27;: [{&#x27;action_name&#x27;: &#x27;action_name_example&#x27;, &#x27;condition&#x27;: &#x27;condition_example&#x27;, &#x27;condition_language&#x27;: &#x27;JMESPATH&#x27;, &#x27;is_body_inspection_enabled&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;protection_capabilities&#x27;: [{&#x27;action_name&#x27;: &#x27;action_name_example&#x27;, &#x27;collaborative_action_threshold&#x27;: 56, &#x27;collaborative_weights&#x27;: [{&#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;weight&#x27;: 56}], &#x27;exclusions&#x27;: {&#x27;args&#x27;: [], &#x27;request_cookies&#x27;: []}, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;version&#x27;: 56}], &#x27;protection_capability_settings&#x27;: {&#x27;allowed_http_methods&#x27;: [], &#x27;max_http_request_header_length&#x27;: 56, &#x27;max_http_request_headers&#x27;: 56, &#x27;max_number_of_arguments&#x27;: 56, &#x27;max_single_argument_length&#x27;: 56, &#x27;max_total_argument_length&#x27;: 56}, &#x27;type&#x27;: &#x27;ACCESS_CONTROL&#x27;}]}, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -919,6 +919,48 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-web_app_firewall_policies/request_protection/body_inspection_size_limit_exceeded_action_name"></div>
+                    <b>body_inspection_size_limit_exceeded_action_name</b>
+                    <a class="ansibleOptionLink" href="#return-web_app_firewall_policies/request_protection/body_inspection_size_limit_exceeded_action_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>References action by name from actions defined in WebAppFirewallPolicy. Executed if HTTP message body size exceeds limit set in field `bodyInspectionSizeLimitInBytes`.</div>
+                                            <div>If this field is `null` HTTP message body will inspected up to `bodyInspectionSizeLimitInBytes` and the rest will not be inspected by Protection Capabilities.</div>
+                                            <div>Allowed action types: * **RETURN_HTTP_RESPONSE** terminates further execution of modules and rules and returns defined HTTP response.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">body_inspection_size_limit_exceeded_action_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-web_app_firewall_policies/request_protection/body_inspection_size_limit_in_bytes"></div>
+                    <b>body_inspection_size_limit_in_bytes</b>
+                    <a class="ansibleOptionLink" href="#return-web_app_firewall_policies/request_protection/body_inspection_size_limit_in_bytes" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Maximum size of inspected HTTP message body in bytes. Actions to take if this limit is exceeded are defined in `bodyInspectionSizeLimitExceededActionName`.</div>
+                                            <div>Body inspection maximum size allowed is defined with per-tenancy limit: 8192 bytes.</div>
+                                            <div>For steps to request a limit increase, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/servicelimits.htm'>Requesting a Service Limit Increase</a>.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-web_app_firewall_policies/request_protection/rules"></div>
                     <b>rules</b>
                     <a class="ansibleOptionLink" href="#return-web_app_firewall_policies/request_protection/rules" title="Permalink to this return value"></a>
@@ -928,7 +970,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Ordered list of ProtectionRules. Rules are executed in order of appearance in this array. ProtectionRules in this array can only use protection cCapabilities of REQUEST_PROTECTION_CAPABILITY type.</div>
+                                            <div>Ordered list of ProtectionRules. Rules are executed in order of appearance in this array. ProtectionRules in this array can only use protection Capabilities of REQUEST_PROTECTION_CAPABILITY type.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -998,6 +1040,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-web_app_firewall_policies/request_protection/rules/is_body_inspection_enabled"></div>
+                    <b>is_body_inspection_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-web_app_firewall_policies/request_protection/rules/is_body_inspection_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Enables/disables body inspection for this protection rule. Only Protection Rules in RequestProtection can have this option enabled. Response body inspection will be available at a later date.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-web_app_firewall_policies/request_protection/rules/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#return-web_app_firewall_policies/request_protection/rules/name" title="Permalink to this return value"></a>
@@ -1027,7 +1089,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>An ordered list that references OCI-managed protection capabilities. Referenced protection capabilities are executed in order of appearance. The array cannot contain entries with the same pair of capability key and version more than once.</div>
+                                            <div>An ordered list that references OCI-managed protection capabilities. Referenced protection capabilities are not necessarily executed in order of appearance. Their execution order is decided at runtime for improved performance. The array cannot contain entries with the same pair of capability key and version more than once.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1861,6 +1923,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-web_app_firewall_policies/response_protection/rules/is_body_inspection_enabled"></div>
+                    <b>is_body_inspection_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-web_app_firewall_policies/response_protection/rules/is_body_inspection_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Enables/disables body inspection for this protection rule. Only Protection Rules in RequestProtection can have this option enabled. Response body inspection will be available at a later date.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-web_app_firewall_policies/response_protection/rules/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#return-web_app_firewall_policies/response_protection/rules/name" title="Permalink to this return value"></a>
@@ -1890,7 +1972,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>An ordered list that references OCI-managed protection capabilities. Referenced protection capabilities are executed in order of appearance. The array cannot contain entries with the same pair of capability key and version more than once.</div>
+                                            <div>An ordered list that references OCI-managed protection capabilities. Referenced protection capabilities are not necessarily executed in order of appearance. Their execution order is decided at runtime for improved performance. The array cannot contain entries with the same pair of capability key and version more than once.</div>
                                         <br/>
                                                         </td>
             </tr>

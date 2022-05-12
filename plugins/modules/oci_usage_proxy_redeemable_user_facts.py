@@ -23,7 +23,7 @@ module: oci_usage_proxy_redeemable_user_facts
 short_description: Fetches details about one or multiple RedeemableUser resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple RedeemableUser resources in Oracle Cloud Infrastructure
-    - Provides emailids of redeemable users for the given subscriptionId
+    - Provides the email IDs of users that can redeem rewards for the given subscription ID.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -34,19 +34,19 @@ options:
         required: true
     subscription_id:
         description:
-            - The subscriptionId for which rewards information is requested for.
+            - The subscription ID for which rewards information is requested for.
         type: str
         required: true
     sort_order:
         description:
-            - The sort order to use, can be ascending (ASC) or descending (DESC).
+            - The sort order to use, which can be ascending (ASC) or descending (DESC).
         type: str
         choices:
             - "ASC"
             - "DESC"
     sort_by:
         description:
-            - The field to sort by, supports one sort Order.
+            - The field to sort by. Supports one sort order.
         type: str
         choices:
             - "TIMECREATED"
@@ -76,7 +76,7 @@ redeemable_users:
     contains:
         email_id:
             description:
-                - The email Id of Redeemable User.
+                - The email ID of a user that can redeem rewards.
             returned: on success
             type: str
             sample: "ocid1.email.oc1..xxxxxxEXAMPLExxxxxx"

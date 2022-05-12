@@ -30,7 +30,7 @@ oracle.oci.oci_usage_proxy_redeemable_user_facts -- Fetches details about one or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.50.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple RedeemableUser resources in Oracle Cloud Infrastructure
-- Provides emailids of redeemable users for the given subscriptionId
+- Provides the email IDs of users that can redeem rewards for the given subscription ID.
 
 
 .. Aliases
@@ -228,7 +228,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The field to sort by, supports one sort Order.</div>
+                                            <div>The field to sort by. Supports one sort order.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -247,7 +247,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The sort order to use, can be ascending (ASC) or descending (DESC).</div>
+                                            <div>The sort order to use, which can be ascending (ASC) or descending (DESC).</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -262,7 +262,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The subscriptionId for which rewards information is requested for.</div>
+                                            <div>The subscription ID for which rewards information is requested for.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -380,7 +380,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The email Id of Redeemable User.</div>
+                                            <div>The email ID of a user that can redeem rewards.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.email.oc1..xxxxxxEXAMPLExxxxxx</div>

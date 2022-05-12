@@ -30,7 +30,7 @@ oracle.oci.oci_ocvp_supported_host_shape_facts -- Fetches details about one or m
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.50.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -345,7 +345,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of SupportedHostShape resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;default_ocpu_count&#x27;: 3.4, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;is_support_shielded_instances&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;shape_family&#x27;: &#x27;shape_family_example&#x27;, &#x27;supported_ocpu_count&#x27;: [], &#x27;supported_operations&#x27;: [], &#x27;supported_sddc_types&#x27;: []}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;default_ocpu_count&#x27;: 3.4, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;is_support_shielded_instances&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;shape_family&#x27;: &#x27;shape_family_example&#x27;, &#x27;supported_ocpu_count&#x27;: [], &#x27;supported_operations&#x27;: [], &#x27;supported_sddc_types&#x27;: [], &#x27;supported_vmware_software_versions&#x27;: []}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -483,6 +483,22 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The supported SDDC types for the shape.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-supported_host_shapes/supported_vmware_software_versions"></div>
+                    <b>supported_vmware_software_versions</b>
+                    <a class="ansibleOptionLink" href="#return-supported_host_shapes/supported_vmware_software_versions" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The VMware software versions supported by the shape.</div>
                                         <br/>
                                                         </td>
             </tr>

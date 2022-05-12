@@ -29,15 +29,15 @@ author: Oracle (@oracle)
 options:
     display_name:
         description:
-            - The name of the alert rule.
+            - The name of the alert rule. Avoid entering confidential information.
             - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["name"]
     type:
         description:
-            - Type of alert. Valid values are ACTUAL (the alert will trigger based on actual usage) or
-              FORECAST (the alert will trigger based on predicted usage).
+            - The type of the alert. Valid values are ACTUAL (the alert triggers based on actual usage), or
+              FORECAST (the alert triggers based on predicted usage).
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
@@ -46,9 +46,9 @@ options:
             - "FORECAST"
     threshold:
         description:
-            - The threshold for triggering the alert expressed as a whole number or decimal value.
-              If thresholdType is ABSOLUTE, threshold can have at most 12 digits before the decimal point and up to 2 digits after the decimal point.
-              If thresholdType is PERCENTAGE, the maximum value is 10000 and can have up to 2 digits after the decimal point.
+            - The threshold for triggering the alert, expressed as a whole number or decimal value.
+              If the thresholdType is ABSOLUTE, the threshold can have at most 12 digits before the decimal point, and up to two digits after the decimal point.
+              If the thresholdType is PERCENTAGE, the maximum value is 10000 and can have up to two digits after the decimal point.
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: float
@@ -63,7 +63,7 @@ options:
             - "ABSOLUTE"
     recipients:
         description:
-            - The audience that will receive the alert when it triggers. An empty string is interpreted as null.
+            - The audience that receives the alert when it triggers. An empty string is interpreted as null.
             - This parameter is updatable.
         type: str
     description:
@@ -73,7 +73,7 @@ options:
         type: str
     msg:
         description:
-            - The message to be sent to the recipients when alert rule is triggered.
+            - The message to be sent to the recipients when the alert rule is triggered.
             - This parameter is updatable.
         type: str
         aliases: ["message"]
@@ -93,12 +93,12 @@ options:
         type: dict
     budget_id:
         description:
-            - The unique Budget OCID
+            - The unique budget OCID.
         type: str
         required: true
     alert_rule_id:
         description:
-            - The unique Alert Rule OCID
+            - The unique Alert Rule OCID.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -190,32 +190,32 @@ budget_alert_rule:
     contains:
         id:
             description:
-                - The OCID of the alert rule
+                - The OCID of the alert rule.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         budget_id:
             description:
-                - The OCID of the budget
+                - The OCID of the budget.
             returned: on success
             type: str
             sample: "ocid1.budget.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - The name of the alert rule.
+                - The name of the alert rule. Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example
         type:
             description:
-                - The type of alert. Valid values are ACTUAL (the alert will trigger based on actual usage) or
-                  FORECAST (the alert will trigger based on predicted usage).
+                - The type of the alert. Valid values are ACTUAL (the alert triggers based on actual usage), or
+                  FORECAST (the alert triggers based on predicted usage).
             returned: on success
             type: str
             sample: ACTUAL
         threshold:
             description:
-                - The threshold for triggering the alert. If thresholdType is PERCENTAGE, the maximum value is 10000.
+                - The threshold for triggering the alert. If the thresholdType is PERCENTAGE, the maximum value is 10000.
             returned: on success
             type: float
             sample: 10
@@ -233,7 +233,7 @@ budget_alert_rule:
             sample: ACTIVE
         message:
             description:
-                - Custom message sent when alert is triggered
+                - Custom message sent when an alert is triggered.
             returned: on success
             type: str
             sample: message_example
@@ -245,26 +245,26 @@ budget_alert_rule:
             sample: description_example
         version:
             description:
-                - Version of the alert rule. Starts from 1 and increments by 1.
+                - The version of the alert rule. Starts from 1 and increments by 1.
             returned: on success
             type: int
             sample: 56
         recipients:
             description:
-                - Delimited list of email addresses to receive the alert when it triggers.
-                  Delimiter character can be comma, space, TAB, or semicolon.
+                - The delimited list of email addresses to receive the alert when it triggers.
+                  Delimiter characters can be a comma, space, TAB, or semicolon.
             returned: on success
             type: str
             sample: recipients_example
         time_created:
             description:
-                - Time budget was created
+                - The time the budget was created.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - Time budget was updated
+                - The time the budget was updated.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"

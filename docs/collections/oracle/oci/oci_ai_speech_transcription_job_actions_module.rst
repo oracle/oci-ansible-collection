@@ -30,7 +30,7 @@ oracle.oci.oci_ai_speech_transcription_job_actions -- Perform actions on a Trans
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.50.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -352,10 +352,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the TranscriptionJob resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by&#x27;: &#x27;created_by_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;input_location&#x27;: {&#x27;location_type&#x27;: &#x27;OBJECT_LIST_INLINE_INPUT_LOCATION&#x27;, &#x27;object_location&#x27;: {&#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;object_names&#x27;: []}, &#x27;object_locations&#x27;: [{&#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;object_names&#x27;: []}]}, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACCEPTED&#x27;, &#x27;model_details&#x27;: {&#x27;domain&#x27;: &#x27;GENERIC&#x27;, &#x27;language_code&#x27;: &#x27;en-US&#x27;}, &#x27;normalization&#x27;: {&#x27;filters&#x27;: [{&#x27;mode&#x27;: &#x27;MASK&#x27;, &#x27;type&#x27;: &#x27;PROFANITY&#x27;}]}, &#x27;output_location&#x27;: {&#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;prefix&#x27;: &#x27;prefix_example&#x27;}, &#x27;outstanding_tasks&#x27;: 56, &#x27;percent_complete&#x27;: 56, &#x27;successful_tasks&#x27;: 56, &#x27;system_tags&#x27;: {}, &#x27;time_accepted&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;total_tasks&#x27;: 56, &#x27;ttl_in_days&#x27;: 56}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;additional_transcription_formats&#x27;: [], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by&#x27;: &#x27;created_by_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;input_location&#x27;: {&#x27;location_type&#x27;: &#x27;OBJECT_LIST_INLINE_INPUT_LOCATION&#x27;, &#x27;object_location&#x27;: {&#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;object_names&#x27;: []}, &#x27;object_locations&#x27;: [{&#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;object_names&#x27;: []}]}, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACCEPTED&#x27;, &#x27;model_details&#x27;: {&#x27;domain&#x27;: &#x27;GENERIC&#x27;, &#x27;language_code&#x27;: &#x27;en-US&#x27;}, &#x27;normalization&#x27;: {&#x27;filters&#x27;: [{&#x27;mode&#x27;: &#x27;MASK&#x27;, &#x27;type&#x27;: &#x27;PROFANITY&#x27;}], &#x27;is_punctuation_enabled&#x27;: True}, &#x27;output_location&#x27;: {&#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;prefix&#x27;: &#x27;prefix_example&#x27;}, &#x27;outstanding_tasks&#x27;: 56, &#x27;percent_complete&#x27;: 56, &#x27;successful_tasks&#x27;: 56, &#x27;system_tags&#x27;: {}, &#x27;time_accepted&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;total_tasks&#x27;: 56, &#x27;ttl_in_days&#x27;: 56}</div>
                                     </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-transcription_job/additional_transcription_formats"></div>
+                    <b>additional_transcription_formats</b>
+                    <a class="ansibleOptionLink" href="#return-transcription_job/additional_transcription_formats" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Transcription format. JSON format will always be provided in addition to any formats in this list.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-transcription_job/compartment_id"></div>
@@ -367,7 +383,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the compartment that contains the transcriptionJob.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment where you want to create the job.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -385,7 +401,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>OCID of the user who created the transcriptionJob.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the user who created the job.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">created_by_example</div>
@@ -421,7 +437,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Job description.</div>
+                                            <div>A short description of the job.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
@@ -439,7 +455,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Job name.</div>
+                                            <div>A user-friendly display name for the job.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
@@ -475,7 +491,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Unique identifier that is immutable on creation.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the job.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -510,7 +526,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The type of input location. Allowed values are: - `OBJECT_LIST_INLINE_INPUT_LOCATION`: A list of object locations in Object Storage. - `OBJECT_LIST_FILE_INPUT_LOCATION`: An object in Object Storage that contains a list of input files.</div>
+                                            <div>The type of input location.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">OBJECT_LIST_INLINE_INPUT_LOCATION</div>
@@ -807,7 +823,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The mode of filters. Allowed values are: - `MASK`: Will mask detected profanity in transcription. - `REMOVE`: Will replace profane word with * in transcription. - `TAG`: Will tag profane word as profanity but will show actual word.</div>
+                                            <div>- `MASK`: Will mask detected profanity in transcription. - `REMOVE`: Will replace profane word with * in transcription. - `TAG`: Will tag profane word as profanity but will show actual word.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">MASK</div>
@@ -827,13 +843,32 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The type of filters. Allowed values are: - `PROFANITY`</div>
+                                            <div>The type of filters.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PROFANITY</div>
                                     </td>
             </tr>
                     
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-transcription_job/normalization/is_punctuation_enabled"></div>
+                    <b>is_punctuation_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-transcription_job/normalization/is_punctuation_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Whether to add punctuation in generated transcription. By default it is enabled.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>

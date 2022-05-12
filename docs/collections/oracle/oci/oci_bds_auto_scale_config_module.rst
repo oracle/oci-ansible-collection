@@ -30,7 +30,7 @@ oracle.oci.oci_bds_auto_scale_config -- Manage a BdsAutoScaleConfig resource in 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.50.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -351,7 +351,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A node type that is managed by an autoscale configuration. The only supported type is WORKER.</div>
+                                            <div>A node type that is managed by an autoscale configuration. The only supported types are WORKER and COMPUTE_ONLY_WORKER.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
@@ -368,7 +368,6 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div></div>
-                                            <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -386,6 +385,7 @@ Parameters
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>THRESHOLD_BASED</li>
                                                                                                                                                                                                 <li>SCHEDULE_BASED</li>
+                                                                                                                                                                                                <li>NONE</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -501,7 +501,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>This value is the minimum period of time the metric value meets or exceeds the threshold value before the action is triggered. The value is in minutes.</div>
+                                            <div>This value is the minimum period of time the metric value exceeds the threshold value before the action is triggered. The value is in minutes.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -549,6 +549,1035 @@ Parameters
                     
                     
                     
+                    
+                                <tr>
+                                                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details"></div>
+                    <b>policy_details</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/policy_type"></div>
+                    <b>policy_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/policy_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>METRIC_BASED_HORIZONTAL_SCALING_POLICY</li>
+                                                                                                                                                                                                <li>SCHEDULE_BASED_VERTICAL_SCALING_POLICY</li>
+                                                                                                                                                                                                <li>SCHEDULE_BASED_HORIZONTAL_SCALING_POLICY</li>
+                                                                                                                                                                                                <li>METRIC_BASED_VERTICAL_SCALING_POLICY</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Type of autoscaling policy.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_down_config"></div>
+                    <b>scale_down_config</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_down_config" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Applicable when policy_type is &#x27;METRIC_BASED_VERTICAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_down_config/memory_step_size"></div>
+                    <b>memory_step_size</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_down_config/memory_step_size" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>For nodes with <a href='https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan- shape'>flexible compute shapes</a>, this value is the size of memory in GBs to remove from each node during a scale-down event. This value is not used for nodes with fixed compute shapes.</div>
+                                            <div>Applicable when policy_type is &#x27;METRIC_BASED_VERTICAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_down_config/metric"></div>
+                    <b>metric</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_down_config/metric" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Applicable when policy_type is &#x27;METRIC_BASED_VERTICAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_down_config/metric/metric_type"></div>
+                    <b>metric_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_down_config/metric/metric_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>CPU_UTILIZATION</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Allowed value is CPU_UTILIZATION.</div>
+                                            <div>Required when policy_type is &#x27;METRIC_BASED_VERTICAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_down_config/metric/threshold"></div>
+                    <b>threshold</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_down_config/metric/threshold" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Required when policy_type is &#x27;METRIC_BASED_VERTICAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_down_config/metric/threshold/duration_in_minutes"></div>
+                    <b>duration_in_minutes</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_down_config/metric/threshold/duration_in_minutes" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>This value is the minimum period of time the metric value exceeds the threshold value before the action is triggered. The value is in minutes.</div>
+                                            <div>Required when policy_type is &#x27;METRIC_BASED_VERTICAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_down_config/metric/threshold/operator"></div>
+                    <b>operator</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_down_config/metric/threshold/operator" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>GT</li>
+                                                                                                                                                                                                <li>LT</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The comparison operator to use. Options are greater than (GT) or less than (LT).</div>
+                                            <div>Required when policy_type is &#x27;METRIC_BASED_VERTICAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_down_config/metric/threshold/value"></div>
+                    <b>value</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_down_config/metric/threshold/value" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Integer non-negative value. 0 &lt; value &lt; 100</div>
+                                            <div>Required when policy_type is &#x27;METRIC_BASED_VERTICAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                    
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_down_config/min_memory_per_node"></div>
+                    <b>min_memory_per_node</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_down_config/min_memory_per_node" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>For nodes with <a href='https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan- shape'>flexible compute shapes</a>, this value is the minimum memory in GBs each node can be scaled-down to. This value is not used for nodes with fixed compute shapes.</div>
+                                            <div>Applicable when policy_type is &#x27;METRIC_BASED_VERTICAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_down_config/min_ocpus_per_node"></div>
+                    <b>min_ocpus_per_node</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_down_config/min_ocpus_per_node" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>For nodes with <a href='https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan- shape'>flexible compute shapes</a>, this value is the minimum number of OCPUs each node can be scaled-down to. This value is not used for nodes with fixed compute shapes.</div>
+                                            <div>Applicable when policy_type is &#x27;METRIC_BASED_VERTICAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_down_config/ocpu_step_size"></div>
+                    <b>ocpu_step_size</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_down_config/ocpu_step_size" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>For nodes with <a href='https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan- shape'>flexible compute shapes</a>, this value is the number of OCPUs to remove from each node during a scale-down event. This value is not used for nodes with fixed compute shapes.</div>
+                                            <div>Applicable when policy_type is &#x27;METRIC_BASED_VERTICAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_in_config"></div>
+                    <b>scale_in_config</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_in_config" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Applicable when policy_type is &#x27;METRIC_BASED_HORIZONTAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_in_config/metric"></div>
+                    <b>metric</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_in_config/metric" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Applicable when policy_type is &#x27;METRIC_BASED_HORIZONTAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_in_config/metric/metric_type"></div>
+                    <b>metric_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_in_config/metric/metric_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>CPU_UTILIZATION</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Allowed value is CPU_UTILIZATION.</div>
+                                            <div>Required when policy_type is &#x27;METRIC_BASED_HORIZONTAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_in_config/metric/threshold"></div>
+                    <b>threshold</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_in_config/metric/threshold" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Required when policy_type is &#x27;METRIC_BASED_HORIZONTAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_in_config/metric/threshold/duration_in_minutes"></div>
+                    <b>duration_in_minutes</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_in_config/metric/threshold/duration_in_minutes" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>This value is the minimum period of time the metric value exceeds the threshold value before the action is triggered. The value is in minutes.</div>
+                                            <div>Required when policy_type is &#x27;METRIC_BASED_HORIZONTAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_in_config/metric/threshold/operator"></div>
+                    <b>operator</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_in_config/metric/threshold/operator" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>GT</li>
+                                                                                                                                                                                                <li>LT</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The comparison operator to use. Options are greater than (GT) or less than (LT).</div>
+                                            <div>Required when policy_type is &#x27;METRIC_BASED_HORIZONTAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_in_config/metric/threshold/value"></div>
+                    <b>value</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_in_config/metric/threshold/value" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Integer non-negative value. 0 &lt; value &lt; 100</div>
+                                            <div>Required when policy_type is &#x27;METRIC_BASED_HORIZONTAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                    
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_in_config/min_node_count"></div>
+                    <b>min_node_count</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_in_config/min_node_count" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>This value is the minimum number of nodes the cluster can be scaled-in to.</div>
+                                            <div>Applicable when policy_type is &#x27;METRIC_BASED_HORIZONTAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_in_config/step_size"></div>
+                    <b>step_size</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_in_config/step_size" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>This value is the number of nodes to remove during a scale-in event.</div>
+                                            <div>Applicable when policy_type is &#x27;METRIC_BASED_HORIZONTAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_out_config"></div>
+                    <b>scale_out_config</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_out_config" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Applicable when policy_type is &#x27;METRIC_BASED_HORIZONTAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_out_config/max_node_count"></div>
+                    <b>max_node_count</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_out_config/max_node_count" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>This value is the maximum number of nodes the cluster can be scaled-out to.</div>
+                                            <div>Applicable when policy_type is &#x27;METRIC_BASED_HORIZONTAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_out_config/metric"></div>
+                    <b>metric</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_out_config/metric" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Applicable when policy_type is &#x27;METRIC_BASED_HORIZONTAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_out_config/metric/metric_type"></div>
+                    <b>metric_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_out_config/metric/metric_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>CPU_UTILIZATION</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Allowed value is CPU_UTILIZATION.</div>
+                                            <div>Required when policy_type is &#x27;METRIC_BASED_HORIZONTAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_out_config/metric/threshold"></div>
+                    <b>threshold</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_out_config/metric/threshold" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Required when policy_type is &#x27;METRIC_BASED_HORIZONTAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_out_config/metric/threshold/duration_in_minutes"></div>
+                    <b>duration_in_minutes</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_out_config/metric/threshold/duration_in_minutes" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>This value is the minimum period of time the metric value exceeds the threshold value before the action is triggered. The value is in minutes.</div>
+                                            <div>Required when policy_type is &#x27;METRIC_BASED_HORIZONTAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_out_config/metric/threshold/operator"></div>
+                    <b>operator</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_out_config/metric/threshold/operator" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>GT</li>
+                                                                                                                                                                                                <li>LT</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The comparison operator to use. Options are greater than (GT) or less than (LT).</div>
+                                            <div>Required when policy_type is &#x27;METRIC_BASED_HORIZONTAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_out_config/metric/threshold/value"></div>
+                    <b>value</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_out_config/metric/threshold/value" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Integer non-negative value. 0 &lt; value &lt; 100</div>
+                                            <div>Required when policy_type is &#x27;METRIC_BASED_HORIZONTAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                    
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_out_config/step_size"></div>
+                    <b>step_size</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_out_config/step_size" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>This value is the number of nodes to add during a scale-out event.</div>
+                                            <div>Applicable when policy_type is &#x27;METRIC_BASED_HORIZONTAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_up_config"></div>
+                    <b>scale_up_config</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_up_config" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Applicable when policy_type is &#x27;METRIC_BASED_VERTICAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_up_config/max_memory_per_node"></div>
+                    <b>max_memory_per_node</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_up_config/max_memory_per_node" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>For nodes with <a href='https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan- shape'>flexible compute shapes</a>, this value is the maximum memory in GBs each node can be scaled-up to. This value is not used for nodes with fixed compute shapes.</div>
+                                            <div>Applicable when policy_type is &#x27;METRIC_BASED_VERTICAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_up_config/max_ocpus_per_node"></div>
+                    <b>max_ocpus_per_node</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_up_config/max_ocpus_per_node" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>For nodes with <a href='https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan- shape'>flexible compute shapes</a>, this value is the maximum number of OCPUs each node can be scaled-up to. This value is not used for nodes with fixed compute shapes.</div>
+                                            <div>Applicable when policy_type is &#x27;METRIC_BASED_VERTICAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_up_config/memory_step_size"></div>
+                    <b>memory_step_size</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_up_config/memory_step_size" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>For nodes with <a href='https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan- shape'>flexible compute shapes</a>, this value is the size of memory in GBs to add to each node during a scale-up event. This value is not used for nodes with fixed compute shapes.</div>
+                                            <div>Applicable when policy_type is &#x27;METRIC_BASED_VERTICAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_up_config/metric"></div>
+                    <b>metric</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_up_config/metric" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Applicable when policy_type is &#x27;METRIC_BASED_VERTICAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_up_config/metric/metric_type"></div>
+                    <b>metric_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_up_config/metric/metric_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>CPU_UTILIZATION</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Allowed value is CPU_UTILIZATION.</div>
+                                            <div>Required when policy_type is &#x27;METRIC_BASED_VERTICAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_up_config/metric/threshold"></div>
+                    <b>threshold</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_up_config/metric/threshold" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Required when policy_type is &#x27;METRIC_BASED_VERTICAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_up_config/metric/threshold/duration_in_minutes"></div>
+                    <b>duration_in_minutes</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_up_config/metric/threshold/duration_in_minutes" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>This value is the minimum period of time the metric value exceeds the threshold value before the action is triggered. The value is in minutes.</div>
+                                            <div>Required when policy_type is &#x27;METRIC_BASED_VERTICAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_up_config/metric/threshold/operator"></div>
+                    <b>operator</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_up_config/metric/threshold/operator" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>GT</li>
+                                                                                                                                                                                                <li>LT</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The comparison operator to use. Options are greater than (GT) or less than (LT).</div>
+                                            <div>Required when policy_type is &#x27;METRIC_BASED_VERTICAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_up_config/metric/threshold/value"></div>
+                    <b>value</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_up_config/metric/threshold/value" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Integer non-negative value. 0 &lt; value &lt; 100</div>
+                                            <div>Required when policy_type is &#x27;METRIC_BASED_VERTICAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                    
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/scale_up_config/ocpu_step_size"></div>
+                    <b>ocpu_step_size</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/scale_up_config/ocpu_step_size" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>For nodes with <a href='https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan- shape'>flexible compute shapes</a>, this value is the number of OCPUs to add to each node during a scale-up event. This value is not used for nodes with fixed compute shapes.</div>
+                                            <div>Applicable when policy_type is &#x27;METRIC_BASED_VERTICAL_SCALING_POLICY&#x27;</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/schedule_details"></div>
+                    <b>schedule_details</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/schedule_details" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Applicable when policy_type is one of [&#x27;SCHEDULE_BASED_VERTICAL_SCALING_POLICY&#x27;, &#x27;SCHEDULE_BASED_HORIZONTAL_SCALING_POLICY&#x27;]</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/schedule_details/schedule_type"></div>
+                    <b>schedule_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/schedule_details/schedule_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>DAY_BASED</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The type of schedule.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/schedule_details/time_and_horizontal_scaling_config"></div>
+                    <b>time_and_horizontal_scaling_config</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/schedule_details/time_and_horizontal_scaling_config" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/schedule_details/time_and_horizontal_scaling_config/target_node_count"></div>
+                    <b>target_node_count</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/schedule_details/time_and_horizontal_scaling_config/target_node_count" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>This value is the desired number of nodes in the cluster.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/schedule_details/time_and_horizontal_scaling_config/time_recurrence"></div>
+                    <b>time_recurrence</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/schedule_details/time_and_horizontal_scaling_config/time_recurrence" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Day/time recurrence (specified following RFC 5545) at which to trigger autoscaling action. Currently only WEEKLY frequency is supported. Days of the week are specified using BYDAY field. Time of the day is specified using BYHOUR and BYMINUTE fields. Other fields are not supported.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/schedule_details/time_and_vertical_scaling_config"></div>
+                    <b>time_and_vertical_scaling_config</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/schedule_details/time_and_vertical_scaling_config" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/schedule_details/time_and_vertical_scaling_config/target_memory_per_node"></div>
+                    <b>target_memory_per_node</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/schedule_details/time_and_vertical_scaling_config/target_memory_per_node" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>For nodes with <a href='https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster- plan-shape'>flexible compute shapes</a>, this value is the desired memory in GBs on each node. This value is not used for nodes with fixed compute shapes.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/schedule_details/time_and_vertical_scaling_config/target_ocpus_per_node"></div>
+                    <b>target_ocpus_per_node</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/schedule_details/time_and_vertical_scaling_config/target_ocpus_per_node" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>For nodes with <a href='https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster- plan-shape'>flexible compute shapes</a>, this value is the desired OCPUs count on each node. This value is not used for nodes with fixed compute shapes.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/schedule_details/time_and_vertical_scaling_config/target_shape"></div>
+                    <b>target_shape</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/schedule_details/time_and_vertical_scaling_config/target_shape" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>For nodes with <a href='https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan- shape'>fixed compute shapes</a>, this value is the desired shape of each node. This value is not used for nodes with flexible compute shapes.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/schedule_details/time_and_vertical_scaling_config/time_recurrence"></div>
+                    <b>time_recurrence</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/schedule_details/time_and_vertical_scaling_config/time_recurrence" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Day/time recurrence (specified following RFC 5545) at which to trigger autoscaling action. Currently only WEEKLY frequency is supported. Days of the week are specified using BYDAY field. Time of the day is specified using BYHOUR and BYMINUTE fields. Other fields are not supported.</div>
+                                                        </td>
+            </tr>
+                    
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-policy_details/timezone"></div>
+                    <b>timezone</b>
+                    <a class="ansibleOptionLink" href="#parameter-policy_details/timezone" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The time zone of the execution schedule, in IANA time zone database name format</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when policy_type is one of [&#x27;SCHEDULE_BASED_VERTICAL_SCALING_POLICY&#x27;, &#x27;SCHEDULE_BASED_HORIZONTAL_SCALING_POLICY&#x27;]</div>
+                                                        </td>
+            </tr>
                     
                                 <tr>
                                                                 <td colspan="5">
@@ -663,8 +1692,14 @@ Examples
     - name: Create bds_auto_scale_config
       oci_bds_auto_scale_config:
         # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         node_type: node_type_example
         is_enabled: true
+        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+        cluster_admin_password: example-password
+
+        # optional
+        display_name: display_name_example
         policy:
           # required
           policy_type: THRESHOLD_BASED
@@ -679,11 +1714,35 @@ Examples
                 duration_in_minutes: 56
                 operator: GT
                 value: 56
-        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
-        cluster_admin_password: example-password
+        policy_details:
+          # required
+          policy_type: METRIC_BASED_HORIZONTAL_SCALING_POLICY
 
-        # optional
-        display_name: display_name_example
+          # optional
+          scale_out_config:
+            # optional
+            metric:
+              # required
+              metric_type: CPU_UTILIZATION
+              threshold:
+                # required
+                duration_in_minutes: 56
+                operator: GT
+                value: 56
+            max_node_count: 56
+            step_size: 56
+          scale_in_config:
+            # optional
+            metric:
+              # required
+              metric_type: CPU_UTILIZATION
+              threshold:
+                # required
+                duration_in_minutes: 56
+                operator: GT
+                value: 56
+            min_node_count: 56
+            step_size: 56
 
     - name: Update bds_auto_scale_config
       oci_bds_auto_scale_config:
@@ -708,14 +1767,43 @@ Examples
                 duration_in_minutes: 56
                 operator: GT
                 value: 56
+        policy_details:
+          # required
+          policy_type: METRIC_BASED_HORIZONTAL_SCALING_POLICY
+
+          # optional
+          scale_out_config:
+            # optional
+            metric:
+              # required
+              metric_type: CPU_UTILIZATION
+              threshold:
+                # required
+                duration_in_minutes: 56
+                operator: GT
+                value: 56
+            max_node_count: 56
+            step_size: 56
+          scale_in_config:
+            # optional
+            metric:
+              # required
+              metric_type: CPU_UTILIZATION
+              threshold:
+                # required
+                duration_in_minutes: 56
+                operator: GT
+                value: 56
+            min_node_count: 56
+            step_size: 56
         cluster_admin_password: example-password
 
     - name: Update bds_auto_scale_config using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_bds_auto_scale_config:
         # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
         is_enabled: true
@@ -733,6 +1821,35 @@ Examples
                 duration_in_minutes: 56
                 operator: GT
                 value: 56
+        policy_details:
+          # required
+          policy_type: METRIC_BASED_HORIZONTAL_SCALING_POLICY
+
+          # optional
+          scale_out_config:
+            # optional
+            metric:
+              # required
+              metric_type: CPU_UTILIZATION
+              threshold:
+                # required
+                duration_in_minutes: 56
+                operator: GT
+                value: 56
+            max_node_count: 56
+            step_size: 56
+          scale_in_config:
+            # optional
+            metric:
+              # required
+              metric_type: CPU_UTILIZATION
+              threshold:
+                # required
+                duration_in_minutes: 56
+                operator: GT
+                value: 56
+            min_node_count: 56
+            step_size: 56
         cluster_admin_password: example-password
 
     - name: Delete bds_auto_scale_config
@@ -746,9 +1863,9 @@ Examples
     - name: Delete bds_auto_scale_config using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_bds_auto_scale_config:
         # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
 
 
@@ -786,7 +1903,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the BdsAutoScaleConfig resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;node_type&#x27;: &#x27;node_type_example&#x27;, &#x27;policy&#x27;: {&#x27;policy_type&#x27;: &#x27;THRESHOLD_BASED&#x27;, &#x27;rules&#x27;: [{&#x27;action&#x27;: &#x27;CHANGE_SHAPE_SCALE_UP&#x27;, &#x27;metric&#x27;: {&#x27;metric_type&#x27;: &#x27;CPU_UTILIZATION&#x27;, &#x27;threshold&#x27;: {&#x27;duration_in_minutes&#x27;: 56, &#x27;operator&#x27;: &#x27;GT&#x27;, &#x27;value&#x27;: 56}}}]}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;node_type&#x27;: &#x27;node_type_example&#x27;, &#x27;policy&#x27;: {&#x27;policy_type&#x27;: &#x27;THRESHOLD_BASED&#x27;, &#x27;rules&#x27;: [{&#x27;action&#x27;: &#x27;CHANGE_SHAPE_SCALE_UP&#x27;, &#x27;metric&#x27;: {&#x27;metric_type&#x27;: &#x27;CPU_UTILIZATION&#x27;, &#x27;threshold&#x27;: {&#x27;duration_in_minutes&#x27;: 56, &#x27;operator&#x27;: &#x27;GT&#x27;, &#x27;value&#x27;: 56}}}]}, &#x27;policy_details&#x27;: {&#x27;action_type&#x27;: &#x27;VERTICAL_SCALING&#x27;, &#x27;policy_type&#x27;: &#x27;METRIC_BASED_VERTICAL_SCALING_POLICY&#x27;, &#x27;scale_down_config&#x27;: {&#x27;memory_step_size&#x27;: 56, &#x27;metric&#x27;: {&#x27;metric_type&#x27;: &#x27;CPU_UTILIZATION&#x27;, &#x27;threshold&#x27;: {&#x27;duration_in_minutes&#x27;: 56, &#x27;operator&#x27;: &#x27;GT&#x27;, &#x27;value&#x27;: 56}}, &#x27;min_memory_per_node&#x27;: 56, &#x27;min_ocpus_per_node&#x27;: 56, &#x27;ocpu_step_size&#x27;: 56}, &#x27;scale_in_config&#x27;: {&#x27;metric&#x27;: {&#x27;metric_type&#x27;: &#x27;CPU_UTILIZATION&#x27;, &#x27;threshold&#x27;: {&#x27;duration_in_minutes&#x27;: 56, &#x27;operator&#x27;: &#x27;GT&#x27;, &#x27;value&#x27;: 56}}, &#x27;min_node_count&#x27;: 56, &#x27;step_size&#x27;: 56}, &#x27;scale_out_config&#x27;: {&#x27;max_node_count&#x27;: 56, &#x27;metric&#x27;: {&#x27;metric_type&#x27;: &#x27;CPU_UTILIZATION&#x27;, &#x27;threshold&#x27;: {&#x27;duration_in_minutes&#x27;: 56, &#x27;operator&#x27;: &#x27;GT&#x27;, &#x27;value&#x27;: 56}}, &#x27;step_size&#x27;: 56}, &#x27;scale_up_config&#x27;: {&#x27;max_memory_per_node&#x27;: 56, &#x27;max_ocpus_per_node&#x27;: 56, &#x27;memory_step_size&#x27;: 56, &#x27;metric&#x27;: {&#x27;metric_type&#x27;: &#x27;CPU_UTILIZATION&#x27;, &#x27;threshold&#x27;: {&#x27;duration_in_minutes&#x27;: 56, &#x27;operator&#x27;: &#x27;GT&#x27;, &#x27;value&#x27;: 56}}, &#x27;ocpu_step_size&#x27;: 56}, &#x27;schedule_details&#x27;: [{&#x27;schedule_type&#x27;: &#x27;DAY_BASED&#x27;, &#x27;time_and_horizontal_scaling_config&#x27;: [{&#x27;target_node_count&#x27;: 56, &#x27;time_recurrence&#x27;: &#x27;time_recurrence_example&#x27;}], &#x27;time_and_vertical_scaling_config&#x27;: [{&#x27;target_memory_per_node&#x27;: 56, &#x27;target_ocpus_per_node&#x27;: 56, &#x27;target_shape&#x27;: &#x27;target_shape_example&#x27;, &#x27;time_recurrence&#x27;: &#x27;time_recurrence_example&#x27;}]}], &#x27;timezone&#x27;: &#x27;timezone_example&#x27;, &#x27;trigger_type&#x27;: &#x27;METRIC_BASED&#x27;}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -855,7 +1972,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A node type that is managed by an autoscale configuration. The only supported type is WORKER.</div>
+                                            <div>A node type that is managed by an autoscale configuration. The only supported types are WORKER and COMPUTE_ONLY_WORKER.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">node_type_example</div>
@@ -1007,7 +2124,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>This value is the minimum period of time the metric value meets or exceeds the threshold value before the action is triggered. The value is in minutes.</div>
+                                            <div>This value is the minimum period of time the metric value exceeds the threshold value before the action is triggered. The value is in minutes.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -1060,6 +2177,1117 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                     
                     
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details"></div>
+                    <b>policy_details</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/action_type"></div>
+                    <b>action_type</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/action_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The type of autoscaling action to take.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">VERTICAL_SCALING</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/policy_type"></div>
+                    <b>policy_type</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/policy_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Type of autoscaling policy.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">METRIC_BASED_VERTICAL_SCALING_POLICY</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_down_config"></div>
+                    <b>scale_down_config</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_down_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_down_config/memory_step_size"></div>
+                    <b>memory_step_size</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_down_config/memory_step_size" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>For nodes with <a href='https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan- shape'>flexible compute shapes</a>, this value is the size of memory in GBs to remove from each node during a scale-down event. This value is not used for nodes with fixed compute shapes.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_down_config/metric"></div>
+                    <b>metric</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_down_config/metric" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_down_config/metric/metric_type"></div>
+                    <b>metric_type</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_down_config/metric/metric_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Allowed value is CPU_UTILIZATION.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CPU_UTILIZATION</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_down_config/metric/threshold"></div>
+                    <b>threshold</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_down_config/metric/threshold" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_down_config/metric/threshold/duration_in_minutes"></div>
+                    <b>duration_in_minutes</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_down_config/metric/threshold/duration_in_minutes" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>This value is the minimum period of time the metric value exceeds the threshold value before the action is triggered. The value is in minutes.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_down_config/metric/threshold/operator"></div>
+                    <b>operator</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_down_config/metric/threshold/operator" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The comparison operator to use. Options are greater than (GT) or less than (LT).</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">GT</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_down_config/metric/threshold/value"></div>
+                    <b>value</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_down_config/metric/threshold/value" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Integer non-negative value. 0 &lt; value &lt; 100</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                    
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_down_config/min_memory_per_node"></div>
+                    <b>min_memory_per_node</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_down_config/min_memory_per_node" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>For nodes with <a href='https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan- shape'>flexible compute shapes</a>, this value is the minimum memory in GBs each node can be scaled-down to. This value is not used for nodes with fixed compute shapes.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_down_config/min_ocpus_per_node"></div>
+                    <b>min_ocpus_per_node</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_down_config/min_ocpus_per_node" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>For nodes with <a href='https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan- shape'>flexible compute shapes</a>, this value is the minimum number of OCPUs each node can be scaled-down to. This value is not used for nodes with fixed compute shapes.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_down_config/ocpu_step_size"></div>
+                    <b>ocpu_step_size</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_down_config/ocpu_step_size" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>For nodes with <a href='https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan- shape'>flexible compute shapes</a>, this value is the number of OCPUs to remove from each node during a scale-down event. This value is not used for nodes with fixed compute shapes.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_in_config"></div>
+                    <b>scale_in_config</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_in_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_in_config/metric"></div>
+                    <b>metric</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_in_config/metric" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_in_config/metric/metric_type"></div>
+                    <b>metric_type</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_in_config/metric/metric_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Allowed value is CPU_UTILIZATION.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CPU_UTILIZATION</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_in_config/metric/threshold"></div>
+                    <b>threshold</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_in_config/metric/threshold" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_in_config/metric/threshold/duration_in_minutes"></div>
+                    <b>duration_in_minutes</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_in_config/metric/threshold/duration_in_minutes" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>This value is the minimum period of time the metric value exceeds the threshold value before the action is triggered. The value is in minutes.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_in_config/metric/threshold/operator"></div>
+                    <b>operator</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_in_config/metric/threshold/operator" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The comparison operator to use. Options are greater than (GT) or less than (LT).</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">GT</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_in_config/metric/threshold/value"></div>
+                    <b>value</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_in_config/metric/threshold/value" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Integer non-negative value. 0 &lt; value &lt; 100</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                    
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_in_config/min_node_count"></div>
+                    <b>min_node_count</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_in_config/min_node_count" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>This value is the minimum number of nodes the cluster can be scaled-in to.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_in_config/step_size"></div>
+                    <b>step_size</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_in_config/step_size" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>This value is the number of nodes to remove during a scale-in event.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_out_config"></div>
+                    <b>scale_out_config</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_out_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_out_config/max_node_count"></div>
+                    <b>max_node_count</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_out_config/max_node_count" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>This value is the maximum number of nodes the cluster can be scaled-out to.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_out_config/metric"></div>
+                    <b>metric</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_out_config/metric" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_out_config/metric/metric_type"></div>
+                    <b>metric_type</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_out_config/metric/metric_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Allowed value is CPU_UTILIZATION.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CPU_UTILIZATION</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_out_config/metric/threshold"></div>
+                    <b>threshold</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_out_config/metric/threshold" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_out_config/metric/threshold/duration_in_minutes"></div>
+                    <b>duration_in_minutes</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_out_config/metric/threshold/duration_in_minutes" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>This value is the minimum period of time the metric value exceeds the threshold value before the action is triggered. The value is in minutes.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_out_config/metric/threshold/operator"></div>
+                    <b>operator</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_out_config/metric/threshold/operator" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The comparison operator to use. Options are greater than (GT) or less than (LT).</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">GT</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_out_config/metric/threshold/value"></div>
+                    <b>value</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_out_config/metric/threshold/value" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Integer non-negative value. 0 &lt; value &lt; 100</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                    
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_out_config/step_size"></div>
+                    <b>step_size</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_out_config/step_size" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>This value is the number of nodes to add during a scale-out event.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_up_config"></div>
+                    <b>scale_up_config</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_up_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_up_config/max_memory_per_node"></div>
+                    <b>max_memory_per_node</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_up_config/max_memory_per_node" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>For nodes with <a href='https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan- shape'>flexible compute shapes</a>, this value is the maximum memory in GBs each node can be scaled-up to. This value is not used for nodes with fixed compute shapes.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_up_config/max_ocpus_per_node"></div>
+                    <b>max_ocpus_per_node</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_up_config/max_ocpus_per_node" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>For nodes with <a href='https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan- shape'>flexible compute shapes</a>, this value is the maximum number of OCPUs each node can be scaled-up to. This value is not used for nodes with fixed compute shapes.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_up_config/memory_step_size"></div>
+                    <b>memory_step_size</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_up_config/memory_step_size" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>For nodes with <a href='https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan- shape'>flexible compute shapes</a>, this value is the size of memory in GBs to add to each node during a scale-up event. This value is not used for nodes with fixed compute shapes.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_up_config/metric"></div>
+                    <b>metric</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_up_config/metric" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_up_config/metric/metric_type"></div>
+                    <b>metric_type</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_up_config/metric/metric_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Allowed value is CPU_UTILIZATION.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CPU_UTILIZATION</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_up_config/metric/threshold"></div>
+                    <b>threshold</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_up_config/metric/threshold" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_up_config/metric/threshold/duration_in_minutes"></div>
+                    <b>duration_in_minutes</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_up_config/metric/threshold/duration_in_minutes" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>This value is the minimum period of time the metric value exceeds the threshold value before the action is triggered. The value is in minutes.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_up_config/metric/threshold/operator"></div>
+                    <b>operator</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_up_config/metric/threshold/operator" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The comparison operator to use. Options are greater than (GT) or less than (LT).</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">GT</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_up_config/metric/threshold/value"></div>
+                    <b>value</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_up_config/metric/threshold/value" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Integer non-negative value. 0 &lt; value &lt; 100</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                    
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/scale_up_config/ocpu_step_size"></div>
+                    <b>ocpu_step_size</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/scale_up_config/ocpu_step_size" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>For nodes with <a href='https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan- shape'>flexible compute shapes</a>, this value is the number of OCPUs to add to each node during a scale-up event. This value is not used for nodes with fixed compute shapes.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/schedule_details"></div>
+                    <b>schedule_details</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/schedule_details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/schedule_details/schedule_type"></div>
+                    <b>schedule_type</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/schedule_details/schedule_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The type of schedule.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">DAY_BASED</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/schedule_details/time_and_horizontal_scaling_config"></div>
+                    <b>time_and_horizontal_scaling_config</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/schedule_details/time_and_horizontal_scaling_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/schedule_details/time_and_horizontal_scaling_config/target_node_count"></div>
+                    <b>target_node_count</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/schedule_details/time_and_horizontal_scaling_config/target_node_count" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>This value is the desired number of nodes in the cluster.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/schedule_details/time_and_horizontal_scaling_config/time_recurrence"></div>
+                    <b>time_recurrence</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/schedule_details/time_and_horizontal_scaling_config/time_recurrence" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Day/time recurrence (specified following RFC 5545) at which to trigger autoscaling action. Currently only WEEKLY frequency is supported. Days of the week are specified using BYDAY field. Time of the day is specified using BYHOUR and BYMINUTE fields. Other fields are not supported.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">time_recurrence_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/schedule_details/time_and_vertical_scaling_config"></div>
+                    <b>time_and_vertical_scaling_config</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/schedule_details/time_and_vertical_scaling_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/schedule_details/time_and_vertical_scaling_config/target_memory_per_node"></div>
+                    <b>target_memory_per_node</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/schedule_details/time_and_vertical_scaling_config/target_memory_per_node" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>For nodes with <a href='https://docs.cloud.oracle.com/iaas/Content/bigdata/create- cluster.htm#cluster-plan-shape'>flexible compute shapes</a>, this value is the desired memory in GBs on each node. This value is not used for nodes with fixed compute shapes.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/schedule_details/time_and_vertical_scaling_config/target_ocpus_per_node"></div>
+                    <b>target_ocpus_per_node</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/schedule_details/time_and_vertical_scaling_config/target_ocpus_per_node" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>For nodes with <a href='https://docs.cloud.oracle.com/iaas/Content/bigdata/create- cluster.htm#cluster-plan-shape'>flexible compute shapes</a>, this value is the desired OCPUs count on each node. This value is not used for nodes with fixed compute shapes.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/schedule_details/time_and_vertical_scaling_config/target_shape"></div>
+                    <b>target_shape</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/schedule_details/time_and_vertical_scaling_config/target_shape" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>For nodes with <a href='https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster- plan-shape'>fixed compute shapes</a>, this value is the desired shape of each node. This value is not used for nodes with flexible compute shapes.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">target_shape_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/schedule_details/time_and_vertical_scaling_config/time_recurrence"></div>
+                    <b>time_recurrence</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/schedule_details/time_and_vertical_scaling_config/time_recurrence" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Day/time recurrence (specified following RFC 5545) at which to trigger autoscaling action. Currently only WEEKLY frequency is supported. Days of the week are specified using BYDAY field. Time of the day is specified using BYHOUR and BYMINUTE fields. Other fields are not supported.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">time_recurrence_example</div>
+                                    </td>
+            </tr>
+                    
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/timezone"></div>
+                    <b>timezone</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/timezone" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The time zone of the execution schedule, in IANA time zone database name format</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">timezone_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-bds_auto_scale_config/policy_details/trigger_type"></div>
+                    <b>trigger_type</b>
+                    <a class="ansibleOptionLink" href="#return-bds_auto_scale_config/policy_details/trigger_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The type of autoscaling trigger.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">METRIC_BASED</div>
+                                    </td>
+            </tr>
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>

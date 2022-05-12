@@ -30,7 +30,7 @@ oracle.oci.oci_bds_instance -- Manage a BdsInstance resource in Oracle Cloud Inf
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.50.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -58,7 +58,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a BdsInstance resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a Big Data Service cluster.
-- This resource has the following action operations in the :ref:`oracle.oci.oci_bds_instance_actions <ansible_collections.oracle.oci.oci_bds_instance_actions_module>` module: add_block_storage, add_cloud_sql, add_worker_nodes, change_compartment, change_shape, remove_cloud_sql, restart_node.
+- This resource has the following action operations in the :ref:`oracle.oci.oci_bds_instance_actions <ansible_collections.oracle.oci.oci_bds_instance_actions_module>` module: add_block_storage, add_cloud_sql, add_worker_nodes, change_compartment, change_shape, install_patch, remove_cloud_sql, remove_node, restart_node.
 
 
 .. Aliases
@@ -83,12 +83,12 @@ Parameters
 
     <table  border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="2">Parameter</th>
+            <th colspan="3">Parameter</th>
             <th>Choices/<font color="blue">Defaults</font></th>
                         <th width="100%">Comments</th>
         </tr>
                     <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-api_user"></div>
                     <b>api_user</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user" title="Permalink to this option"></a>
@@ -103,7 +103,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_fingerprint"></div>
                     <b>api_user_fingerprint</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_fingerprint" title="Permalink to this option"></a>
@@ -118,7 +118,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_key_file"></div>
                     <b>api_user_key_file</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_key_file" title="Permalink to this option"></a>
@@ -133,7 +133,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_key_pass_phrase"></div>
                     <b>api_user_key_pass_phrase</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_key_pass_phrase" title="Permalink to this option"></a>
@@ -148,7 +148,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-auth_type"></div>
                     <b>auth_type</b>
                     <a class="ansibleOptionLink" href="#parameter-auth_type" title="Permalink to this option"></a>
@@ -169,7 +169,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-bds_instance_id"></div>
                     <b>bds_instance_id</b>
                     <a class="ansibleOptionLink" href="#parameter-bds_instance_id" title="Permalink to this option"></a>
@@ -187,7 +187,23 @@ Parameters
                                     </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-bootstrap_script_url"></div>
+                    <b>bootstrap_script_url</b>
+                    <a class="ansibleOptionLink" href="#parameter-bootstrap_script_url" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Pre-authenticated URL of the script in Object Store that is downloaded and executed.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-cluster_admin_password"></div>
                     <b>cluster_admin_password</b>
                     <a class="ansibleOptionLink" href="#parameter-cluster_admin_password" title="Permalink to this option"></a>
@@ -203,7 +219,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-cluster_public_key"></div>
                     <b>cluster_public_key</b>
                     <a class="ansibleOptionLink" href="#parameter-cluster_public_key" title="Permalink to this option"></a>
@@ -219,7 +235,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-cluster_version"></div>
                     <b>cluster_version</b>
                     <a class="ansibleOptionLink" href="#parameter-cluster_version" title="Permalink to this option"></a>
@@ -235,7 +251,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
@@ -253,7 +269,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-config_file_location"></div>
                     <b>config_file_location</b>
                     <a class="ansibleOptionLink" href="#parameter-config_file_location" title="Permalink to this option"></a>
@@ -268,7 +284,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-config_profile_name"></div>
                     <b>config_profile_name</b>
                     <a class="ansibleOptionLink" href="#parameter-config_profile_name" title="Permalink to this option"></a>
@@ -283,7 +299,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#parameter-defined_tags" title="Permalink to this option"></a>
@@ -299,7 +315,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#parameter-display_name" title="Permalink to this option"></a>
@@ -318,7 +334,7 @@ Parameters
                                     </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-force_create"></div>
                     <b>force_create</b>
                     <a class="ansibleOptionLink" href="#parameter-force_create" title="Permalink to this option"></a>
@@ -337,7 +353,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#parameter-freeform_tags" title="Permalink to this option"></a>
@@ -353,7 +369,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-is_high_availability"></div>
                     <b>is_high_availability</b>
                     <a class="ansibleOptionLink" href="#parameter-is_high_availability" title="Permalink to this option"></a>
@@ -373,7 +389,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-is_secure"></div>
                     <b>is_secure</b>
                     <a class="ansibleOptionLink" href="#parameter-is_secure" title="Permalink to this option"></a>
@@ -393,7 +409,22 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-kerberos_realm_name"></div>
+                    <b>kerberos_realm_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-kerberos_realm_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The user-defined kerberos realm name.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-key_by"></div>
                     <b>key_by</b>
                     <a class="ansibleOptionLink" href="#parameter-key_by" title="Permalink to this option"></a>
@@ -408,7 +439,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-network_config"></div>
                     <b>network_config</b>
                     <a class="ansibleOptionLink" href="#parameter-network_config" title="Permalink to this option"></a>
@@ -424,7 +455,7 @@ Parameters
             </tr>
                                         <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-network_config/cidr_block"></div>
                     <b>cidr_block</b>
                     <a class="ansibleOptionLink" href="#parameter-network_config/cidr_block" title="Permalink to this option"></a>
@@ -440,7 +471,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-network_config/is_nat_gateway_required"></div>
                     <b>is_nat_gateway_required</b>
                     <a class="ansibleOptionLink" href="#parameter-network_config/is_nat_gateway_required" title="Permalink to this option"></a>
@@ -460,7 +491,7 @@ Parameters
             </tr>
                     
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-nodes"></div>
                     <b>nodes</b>
                     <a class="ansibleOptionLink" href="#parameter-nodes" title="Permalink to this option"></a>
@@ -477,7 +508,7 @@ Parameters
             </tr>
                                         <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-nodes/block_volume_size_in_gbs"></div>
                     <b>block_volume_size_in_gbs</b>
                     <a class="ansibleOptionLink" href="#parameter-nodes/block_volume_size_in_gbs" title="Permalink to this option"></a>
@@ -493,7 +524,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-nodes/node_type"></div>
                     <b>node_type</b>
                     <a class="ansibleOptionLink" href="#parameter-nodes/node_type" title="Permalink to this option"></a>
@@ -509,7 +540,7 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-nodes/shape"></div>
                     <b>shape</b>
                     <a class="ansibleOptionLink" href="#parameter-nodes/shape" title="Permalink to this option"></a>
@@ -525,7 +556,58 @@ Parameters
             </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-nodes/shape_config"></div>
+                    <b>shape_config</b>
+                    <a class="ansibleOptionLink" href="#parameter-nodes/shape_config" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-nodes/shape_config/memory_in_gbs"></div>
+                    <b>memory_in_gbs</b>
+                    <a class="ansibleOptionLink" href="#parameter-nodes/shape_config/memory_in_gbs" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The total amount of memory available to the node, in gigabytes</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-nodes/shape_config/ocpus"></div>
+                    <b>ocpus</b>
+                    <a class="ansibleOptionLink" href="#parameter-nodes/shape_config/ocpus" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The total number of OCPUs available to the node.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-nodes/subnet_id"></div>
                     <b>subnet_id</b>
                     <a class="ansibleOptionLink" href="#parameter-nodes/subnet_id" title="Permalink to this option"></a>
@@ -541,7 +623,7 @@ Parameters
             </tr>
                     
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#parameter-region" title="Permalink to this option"></a>
@@ -556,7 +638,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-state"></div>
                     <b>state</b>
                     <a class="ansibleOptionLink" href="#parameter-state" title="Permalink to this option"></a>
@@ -577,7 +659,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-tenancy"></div>
                     <b>tenancy</b>
                     <a class="ansibleOptionLink" href="#parameter-tenancy" title="Permalink to this option"></a>
@@ -592,7 +674,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-wait"></div>
                     <b>wait</b>
                     <a class="ansibleOptionLink" href="#parameter-wait" title="Permalink to this option"></a>
@@ -611,7 +693,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="2">
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-wait_timeout"></div>
                     <b>wait_timeout</b>
                     <a class="ansibleOptionLink" href="#parameter-wait_timeout" title="Permalink to this option"></a>
@@ -665,6 +747,12 @@ Examples
           shape: shape_example
           block_volume_size_in_gbs: 56
           subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+
+          # optional
+          shape_config:
+            # optional
+            ocpus: 56
+            memory_in_gbs: 56
         display_name: display_name_example
 
         # optional
@@ -672,6 +760,8 @@ Examples
           # optional
           is_nat_gateway_required: true
           cidr_block: cidr_block_example
+        kerberos_realm_name: kerberos_realm_name_example
+        bootstrap_script_url: bootstrap_script_url_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -682,6 +772,7 @@ Examples
 
         # optional
         display_name: display_name_example
+        bootstrap_script_url: bootstrap_script_url_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -692,6 +783,7 @@ Examples
         display_name: display_name_example
 
         # optional
+        bootstrap_script_url: bootstrap_script_url_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -743,10 +835,28 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the BdsInstance resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;cloud_sql_details&#x27;: {&#x27;block_volume_size_in_gbs&#x27;: 56, &#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;is_kerberos_mapped_to_database_users&#x27;: True, &#x27;kerberos_details&#x27;: [{&#x27;keytab_file&#x27;: &#x27;keytab_file_example&#x27;, &#x27;principal_name&#x27;: &#x27;principal_name_example&#x27;}], &#x27;shape&#x27;: &#x27;shape_example&#x27;}, &#x27;cluster_details&#x27;: {&#x27;ambari_url&#x27;: &#x27;ambari_url_example&#x27;, &#x27;bd_cell_version&#x27;: &#x27;bd_cell_version_example&#x27;, &#x27;bda_version&#x27;: &#x27;bda_version_example&#x27;, &#x27;bdm_version&#x27;: &#x27;bdm_version_example&#x27;, &#x27;bds_version&#x27;: &#x27;bds_version_example&#x27;, &#x27;big_data_manager_url&#x27;: &#x27;big_data_manager_url_example&#x27;, &#x27;cloudera_manager_url&#x27;: &#x27;cloudera_manager_url_example&#x27;, &#x27;csql_cell_version&#x27;: &#x27;csql_cell_version_example&#x27;, &#x27;db_version&#x27;: &#x27;db_version_example&#x27;, &#x27;hue_server_url&#x27;: &#x27;hue_server_url_example&#x27;, &#x27;os_version&#x27;: &#x27;os_version_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_refreshed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;cluster_version&#x27;: &#x27;CDH5&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by&#x27;: &#x27;created_by_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_cloud_sql_configured&#x27;: True, &#x27;is_high_availability&#x27;: True, &#x27;is_secure&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;network_config&#x27;: {&#x27;cidr_block&#x27;: &#x27;cidr_block_example&#x27;, &#x27;is_nat_gateway_required&#x27;: True}, &#x27;nodes&#x27;: [{&#x27;attached_block_volumes&#x27;: [{&#x27;volume_attachment_id&#x27;: &#x27;ocid1.volumeattachment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;volume_size_in_gbs&#x27;: 56}], &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;fault_domain&#x27;: &#x27;FAULT-DOMAIN-1&#x27;, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_id&#x27;: &#x27;ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;node_type&#x27;: &#x27;MASTER&#x27;, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;ssh_fingerprint&#x27;: &#x27;ssh_fingerprint_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;number_of_nodes&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;bootstrap_script_url&#x27;: &#x27;bootstrap_script_url_example&#x27;, &#x27;cloud_sql_details&#x27;: {&#x27;block_volume_size_in_gbs&#x27;: 56, &#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;is_kerberos_mapped_to_database_users&#x27;: True, &#x27;kerberos_details&#x27;: [{&#x27;keytab_file&#x27;: &#x27;keytab_file_example&#x27;, &#x27;principal_name&#x27;: &#x27;principal_name_example&#x27;}], &#x27;shape&#x27;: &#x27;shape_example&#x27;}, &#x27;cluster_details&#x27;: {&#x27;ambari_url&#x27;: &#x27;ambari_url_example&#x27;, &#x27;bd_cell_version&#x27;: &#x27;bd_cell_version_example&#x27;, &#x27;bda_version&#x27;: &#x27;bda_version_example&#x27;, &#x27;bdm_version&#x27;: &#x27;bdm_version_example&#x27;, &#x27;bds_version&#x27;: &#x27;bds_version_example&#x27;, &#x27;big_data_manager_url&#x27;: &#x27;big_data_manager_url_example&#x27;, &#x27;cloudera_manager_url&#x27;: &#x27;cloudera_manager_url_example&#x27;, &#x27;csql_cell_version&#x27;: &#x27;csql_cell_version_example&#x27;, &#x27;db_version&#x27;: &#x27;db_version_example&#x27;, &#x27;hue_server_url&#x27;: &#x27;hue_server_url_example&#x27;, &#x27;jupyter_hub_url&#x27;: &#x27;jupyter_hub_url_example&#x27;, &#x27;odh_version&#x27;: &#x27;odh_version_example&#x27;, &#x27;os_version&#x27;: &#x27;os_version_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_refreshed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;cluster_version&#x27;: &#x27;CDH5&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by&#x27;: &#x27;created_by_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_cloud_sql_configured&#x27;: True, &#x27;is_high_availability&#x27;: True, &#x27;is_secure&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;network_config&#x27;: {&#x27;cidr_block&#x27;: &#x27;cidr_block_example&#x27;, &#x27;is_nat_gateway_required&#x27;: True}, &#x27;nodes&#x27;: [{&#x27;attached_block_volumes&#x27;: [{&#x27;volume_attachment_id&#x27;: &#x27;ocid1.volumeattachment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;volume_size_in_gbs&#x27;: 56}], &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;fault_domain&#x27;: &#x27;FAULT-DOMAIN-1&#x27;, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_id&#x27;: &#x27;ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;memory_in_gbs&#x27;: 56, &#x27;node_type&#x27;: &#x27;MASTER&#x27;, &#x27;ocpus&#x27;: 56, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;ssh_fingerprint&#x27;: &#x27;ssh_fingerprint_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;number_of_nodes&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-bds_instance/bootstrap_script_url"></div>
+                    <b>bootstrap_script_url</b>
+                    <a class="ansibleOptionLink" href="#return-bds_instance/bootstrap_script_url" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>pre-authenticated URL of the bootstrap script in Object Store that can be downloaded and executed.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">bootstrap_script_url_example</div>
+                                    </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-bds_instance/cloud_sql_details"></div>
@@ -1101,6 +1211,44 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">hue_server_url_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-bds_instance/cluster_details/jupyter_hub_url"></div>
+                    <b>jupyter_hub_url</b>
+                    <a class="ansibleOptionLink" href="#return-bds_instance/cluster_details/jupyter_hub_url" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The URL of the Jupyterhub.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">jupyter_hub_url_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-bds_instance/cluster_details/odh_version"></div>
+                    <b>odh_version</b>
+                    <a class="ansibleOptionLink" href="#return-bds_instance/cluster_details/odh_version" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Version of the ODH (Oracle Distribution including Apache Hadoop) installed on the cluster.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">odh_version_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1644,6 +1792,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-bds_instance/nodes/memory_in_gbs"></div>
+                    <b>memory_in_gbs</b>
+                    <a class="ansibleOptionLink" href="#return-bds_instance/nodes/memory_in_gbs" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The total amount of memory available to the node, in gigabytes.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-bds_instance/nodes/node_type"></div>
                     <b>node_type</b>
                     <a class="ansibleOptionLink" href="#return-bds_instance/nodes/node_type" title="Permalink to this return value"></a>
@@ -1657,6 +1824,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">MASTER</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-bds_instance/nodes/ocpus"></div>
+                    <b>ocpus</b>
+                    <a class="ansibleOptionLink" href="#return-bds_instance/nodes/ocpus" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The total number of OCPUs available to the node.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                                 <tr>

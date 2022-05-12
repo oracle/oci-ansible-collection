@@ -23,7 +23,7 @@ module: oci_usage_proxy_monthly_reward_facts
 short_description: Fetches details about one or multiple MonthlyReward resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple MonthlyReward resources in Oracle Cloud Infrastructure
-    - This API returns list of rewards for a subscription Id
+    - Returns the list of rewards for a subscription ID.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -34,7 +34,7 @@ options:
         required: true
     subscription_id:
         description:
-            - The subscriptionId for which rewards information is requested for.
+            - The subscription ID for which rewards information is requested for.
         type: str
         required: true
 extends_documentation_fragment: [ oracle.oci.oracle ]
@@ -76,19 +76,19 @@ monthly_rewards:
             sample: 3.4
         is_manual:
             description:
-                - The boolean flag to tell if the available rewards are posted manually or not.
+                - The boolean parameter to indicate whether or not the available rewards are manually posted.
             returned: on success
             type: bool
             sample: true
         time_rewards_expired:
             description:
-                - The date and time on which rewards are expired.
+                - The date and time when rewards expire.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_rewards_earned:
             description:
-                - The date and time on which rewards are accrued.
+                - The date and time when rewards accrue.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
@@ -118,13 +118,13 @@ monthly_rewards:
             sample: 1.2
         ineligible_usage_amount:
             description:
-                - The in eligible usage amount for the usage period.
+                - The ineligible usage amount for the usage period.
             returned: on success
             type: float
             sample: 1.2
         usage_period_key:
             description:
-                - The id for the usage period.
+                - The usage period ID.
             returned: on success
             type: str
             sample: usage_period_key_example

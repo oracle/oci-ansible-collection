@@ -30,7 +30,7 @@ oracle.oci.oci_usage_proxy_monthly_reward_facts -- Fetches details about one or 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.50.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple MonthlyReward resources in Oracle Cloud Infrastructure
-- This API returns list of rewards for a subscription Id
+- Returns the list of rewards for a subscription ID.
 
 
 .. Aliases
@@ -224,7 +224,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The subscriptionId for which rewards information is requested for.</div>
+                                            <div>The subscription ID for which rewards information is requested for.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -392,7 +392,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The in eligible usage amount for the usage period.</div>
+                                            <div>The ineligible usage amount for the usage period.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
@@ -410,7 +410,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The boolean flag to tell if the available rewards are posted manually or not.</div>
+                                            <div>The boolean parameter to indicate whether or not the available rewards are manually posted.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -446,7 +446,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time on which rewards are accrued.</div>
+                                            <div>The date and time when rewards accrue.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -464,7 +464,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time on which rewards are expired.</div>
+                                            <div>The date and time when rewards expire.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -536,7 +536,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The id for the usage period.</div>
+                                            <div>The usage period ID.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">usage_period_key_example</div>

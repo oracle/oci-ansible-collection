@@ -67,13 +67,13 @@ transcription_task:
     contains:
         id:
             description:
-                - Unique identifier that is immutable on creation
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the task.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - Task name.
+                - A user-friendly display name for the task.
             returned: on success
             type: str
             sample: display_name_example

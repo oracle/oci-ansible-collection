@@ -23,7 +23,7 @@ module: oci_usage_proxy_product_facts
 short_description: Fetches details about one or multiple Product resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple Product resources in Oracle Cloud Infrastructure
-    - This API provides usage period specific product and its usage details.
+    - Provides product information that is specific to a reward usage period and its usage details.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -34,7 +34,7 @@ options:
         required: true
     subscription_id:
         description:
-            - The subscriptionId for which rewards information is requested for.
+            - The subscription ID for which rewards information is requested for.
         type: str
         required: true
     usage_period_key:
@@ -44,14 +44,14 @@ options:
         required: true
     sort_order:
         description:
-            - The sort order to use, can be ascending (ASC) or descending (DESC).
+            - The sort order to use, which can be ascending (ASC) or descending (DESC).
         type: str
         choices:
             - "ASC"
             - "DESC"
     sort_by:
         description:
-            - The field to sort by, supports one sort Order.
+            - The field to sort by. Supports one sort order.
         type: str
         choices:
             - "TIMECREATED"
@@ -91,19 +91,19 @@ products:
     contains:
         product_number:
             description:
-                - The ratecard product number.
+                - The rate card product number.
             returned: on success
             type: str
             sample: product_number_example
         product_name:
             description:
-                - The ratecard product Name.
+                - The rate card product name.
             returned: on success
             type: str
             sample: product_name_example
         usage_amount:
             description:
-                - The ratecard product usage amount.
+                - The rate card product usage amount.
             returned: on success
             type: float
             sample: 1.2
@@ -115,7 +115,7 @@ products:
             sample: 3.4
         is_eligible_to_earn_rewards:
             description:
-                - The boolean flag to tell if the product is eligible for earning rewards.
+                - The boolean parameter to indicate if the product is eligible to earn rewards.
             returned: on success
             type: bool
             sample: true

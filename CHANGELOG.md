@@ -4,6 +4,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.50.0]
+
+# 
+ ## Added
+
+ - Support for the Service Mesh service.
+ - Support for the Stack Monitoring service
+ - Support for virtual test access points (VTAPs) in the Networking service
+ - Support for creating budgets that target subscriptions and child tenancies in the Budgets service
+ - Support for security zones in the Cloud Guard service
+ - Support for punctuation and the SRT transcription format in the AI Speech service
+ - Support for cost management schedules in the Usage service
+ - Support for enabling inspection of HTTP request bodies in the Web Application Acceleration and Security
+ - Support for autoscaling on Open Data Hub (ODH) clusters in the Big Data service
+ - Support for creating Open Data Hub (ODH) 0.9 clusters in the Big Data service
+ - Support for Open Data Hub (ODH) patch management in the Big Data service
+ - Support for customizable Kerberos realm names in the Big Data service
+ - Support for viewing supported VMWare software versions when listing host shapes in the VMWare Solution service
+ - Support for choosing compute shapes when creating SDDCs and ESXi hosts in the VMWare Solution service
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.67.0
+
 ## [2.49.0]
 
 ## Added

@@ -206,6 +206,18 @@ bds_instances:
                     returned: on success
                     type: str
                     sample: hue_server_url_example
+                odh_version:
+                    description:
+                        - Version of the ODH (Oracle Distribution including Apache Hadoop) installed on the cluster.
+                    returned: on success
+                    type: str
+                    sample: odh_version_example
+                jupyter_hub_url:
+                    description:
+                        - The URL of the Jupyterhub.
+                    returned: on success
+                    type: str
+                    sample: jupyter_hub_url_example
         nodes:
             description:
                 - The list of nodes in the cluster.
@@ -315,6 +327,18 @@ bds_instances:
                     returned: on success
                     type: str
                     sample: "2013-10-20T19:20:30+01:00"
+                ocpus:
+                    description:
+                        - The total number of OCPUs available to the node.
+                    returned: on success
+                    type: int
+                    sample: 56
+                memory_in_gbs:
+                    description:
+                        - The total amount of memory available to the node, in gigabytes.
+                    returned: on success
+                    type: int
+                    sample: 56
         cloud_sql_details:
             description:
                 - ""
@@ -380,6 +404,13 @@ bds_instances:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        bootstrap_script_url:
+            description:
+                - pre-authenticated URL of the bootstrap script in Object Store that can be downloaded and executed.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: bootstrap_script_url_example
         id:
             description:
                 - The OCID of the Big Data Service resource.
@@ -472,7 +503,9 @@ bds_instances:
             "cloudera_manager_url": "cloudera_manager_url_example",
             "ambari_url": "ambari_url_example",
             "big_data_manager_url": "big_data_manager_url_example",
-            "hue_server_url": "hue_server_url_example"
+            "hue_server_url": "hue_server_url_example",
+            "odh_version": "odh_version_example",
+            "jupyter_hub_url": "jupyter_hub_url_example"
         },
         "nodes": [{
             "instance_id": "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx",
@@ -492,7 +525,9 @@ bds_instances:
             "availability_domain": "Uocm:PHX-AD-1",
             "fault_domain": "FAULT-DOMAIN-1",
             "time_created": "2013-10-20T19:20:30+01:00",
-            "time_updated": "2013-10-20T19:20:30+01:00"
+            "time_updated": "2013-10-20T19:20:30+01:00",
+            "ocpus": 56,
+            "memory_in_gbs": 56
         }],
         "cloud_sql_details": {
             "shape": "shape_example",
@@ -506,6 +541,7 @@ bds_instances:
         },
         "created_by": "created_by_example",
         "time_updated": "2013-10-20T19:20:30+01:00",
+        "bootstrap_script_url": "bootstrap_script_url_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",

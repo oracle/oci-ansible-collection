@@ -71,6 +71,7 @@ options:
         choices:
             - "CREATING"
             - "ACTIVE"
+            - "INACTIVE"
             - "UPDATING"
             - "DELETING"
             - "DELETED"
@@ -126,7 +127,7 @@ bds_auto_scale_configs:
             sample: CREATING
         node_type:
             description:
-                - A node type that is managed by an autoscale configuration. The only supported type is WORKER.
+                - A node type that is managed by an autoscale configuration. The only supported types are WORKER and COMPUTE_ONLY_WORKER.
             returned: on success
             type: str
             sample: node_type_example
@@ -186,8 +187,8 @@ bds_auto_scale_configs:
                                     contains:
                                         duration_in_minutes:
                                             description:
-                                                - This value is the minimum period of time the metric value meets or exceeds the threshold value before the
-                                                  action is triggered. The value is in minutes.
+                                                - This value is the minimum period of time the metric value exceeds the threshold value before the action is
+                                                  triggered. The value is in minutes.
                                             returned: on success
                                             type: int
                                             sample: 56
@@ -203,6 +204,366 @@ bds_auto_scale_configs:
                                             returned: on success
                                             type: int
                                             sample: 56
+        policy_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                scale_out_config:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        metric:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                metric_type:
+                                    description:
+                                        - Allowed value is CPU_UTILIZATION.
+                                    returned: on success
+                                    type: str
+                                    sample: CPU_UTILIZATION
+                                threshold:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        duration_in_minutes:
+                                            description:
+                                                - This value is the minimum period of time the metric value exceeds the threshold value before the action is
+                                                  triggered. The value is in minutes.
+                                            returned: on success
+                                            type: int
+                                            sample: 56
+                                        operator:
+                                            description:
+                                                - The comparison operator to use. Options are greater than (GT) or less than (LT).
+                                            returned: on success
+                                            type: str
+                                            sample: GT
+                                        value:
+                                            description:
+                                                - Integer non-negative value. 0 < value < 100
+                                            returned: on success
+                                            type: int
+                                            sample: 56
+                        max_node_count:
+                            description:
+                                - This value is the maximum number of nodes the cluster can be scaled-out to.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        step_size:
+                            description:
+                                - This value is the number of nodes to add during a scale-out event.
+                            returned: on success
+                            type: int
+                            sample: 56
+                scale_in_config:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        metric:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                metric_type:
+                                    description:
+                                        - Allowed value is CPU_UTILIZATION.
+                                    returned: on success
+                                    type: str
+                                    sample: CPU_UTILIZATION
+                                threshold:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        duration_in_minutes:
+                                            description:
+                                                - This value is the minimum period of time the metric value exceeds the threshold value before the action is
+                                                  triggered. The value is in minutes.
+                                            returned: on success
+                                            type: int
+                                            sample: 56
+                                        operator:
+                                            description:
+                                                - The comparison operator to use. Options are greater than (GT) or less than (LT).
+                                            returned: on success
+                                            type: str
+                                            sample: GT
+                                        value:
+                                            description:
+                                                - Integer non-negative value. 0 < value < 100
+                                            returned: on success
+                                            type: int
+                                            sample: 56
+                        min_node_count:
+                            description:
+                                - This value is the minimum number of nodes the cluster can be scaled-in to.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        step_size:
+                            description:
+                                - This value is the number of nodes to remove during a scale-in event.
+                            returned: on success
+                            type: int
+                            sample: 56
+                scale_up_config:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        metric:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                metric_type:
+                                    description:
+                                        - Allowed value is CPU_UTILIZATION.
+                                    returned: on success
+                                    type: str
+                                    sample: CPU_UTILIZATION
+                                threshold:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        duration_in_minutes:
+                                            description:
+                                                - This value is the minimum period of time the metric value exceeds the threshold value before the action is
+                                                  triggered. The value is in minutes.
+                                            returned: on success
+                                            type: int
+                                            sample: 56
+                                        operator:
+                                            description:
+                                                - The comparison operator to use. Options are greater than (GT) or less than (LT).
+                                            returned: on success
+                                            type: str
+                                            sample: GT
+                                        value:
+                                            description:
+                                                - Integer non-negative value. 0 < value < 100
+                                            returned: on success
+                                            type: int
+                                            sample: 56
+                        max_ocpus_per_node:
+                            description:
+                                - For nodes with L(flexible compute shapes,https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan-
+                                  shape), this value is the maximum number of OCPUs each node can be scaled-up to. This value is not used for nodes with fixed
+                                  compute shapes.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        max_memory_per_node:
+                            description:
+                                - For nodes with L(flexible compute shapes,https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan-
+                                  shape), this value is the maximum memory in GBs each node can be scaled-up to. This value is not used for nodes with fixed
+                                  compute shapes.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        ocpu_step_size:
+                            description:
+                                - For nodes with L(flexible compute shapes,https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan-
+                                  shape), this value is the number of OCPUs to add to each node during a scale-up event. This value is not used for nodes with
+                                  fixed compute shapes.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        memory_step_size:
+                            description:
+                                - For nodes with L(flexible compute shapes,https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan-
+                                  shape), this value is the size of memory in GBs to add to each node during a scale-up event. This value is not used for nodes
+                                  with fixed compute shapes.
+                            returned: on success
+                            type: int
+                            sample: 56
+                scale_down_config:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        metric:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                metric_type:
+                                    description:
+                                        - Allowed value is CPU_UTILIZATION.
+                                    returned: on success
+                                    type: str
+                                    sample: CPU_UTILIZATION
+                                threshold:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        duration_in_minutes:
+                                            description:
+                                                - This value is the minimum period of time the metric value exceeds the threshold value before the action is
+                                                  triggered. The value is in minutes.
+                                            returned: on success
+                                            type: int
+                                            sample: 56
+                                        operator:
+                                            description:
+                                                - The comparison operator to use. Options are greater than (GT) or less than (LT).
+                                            returned: on success
+                                            type: str
+                                            sample: GT
+                                        value:
+                                            description:
+                                                - Integer non-negative value. 0 < value < 100
+                                            returned: on success
+                                            type: int
+                                            sample: 56
+                        min_ocpus_per_node:
+                            description:
+                                - For nodes with L(flexible compute shapes,https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan-
+                                  shape), this value is the minimum number of OCPUs each node can be scaled-down to. This value is not used for nodes with fixed
+                                  compute shapes.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        min_memory_per_node:
+                            description:
+                                - For nodes with L(flexible compute shapes,https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan-
+                                  shape), this value is the minimum memory in GBs each node can be scaled-down to. This value is not used for nodes with fixed
+                                  compute shapes.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        ocpu_step_size:
+                            description:
+                                - For nodes with L(flexible compute shapes,https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan-
+                                  shape), this value is the number of OCPUs to remove from each node during a scale-down event. This value is not used for nodes
+                                  with fixed compute shapes.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        memory_step_size:
+                            description:
+                                - For nodes with L(flexible compute shapes,https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-plan-
+                                  shape), this value is the size of memory in GBs to remove from each node during a scale-down event. This value is not used for
+                                  nodes with fixed compute shapes.
+                            returned: on success
+                            type: int
+                            sample: 56
+                policy_type:
+                    description:
+                        - Type of autoscaling policy.
+                    returned: on success
+                    type: str
+                    sample: METRIC_BASED_VERTICAL_SCALING_POLICY
+                trigger_type:
+                    description:
+                        - The type of autoscaling trigger.
+                    returned: on success
+                    type: str
+                    sample: METRIC_BASED
+                action_type:
+                    description:
+                        - The type of autoscaling action to take.
+                    returned: on success
+                    type: str
+                    sample: VERTICAL_SCALING
+                timezone:
+                    description:
+                        - The time zone of the execution schedule, in IANA time zone database name format
+                    returned: on success
+                    type: str
+                    sample: timezone_example
+                schedule_details:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        schedule_type:
+                            description:
+                                - The type of schedule.
+                            returned: on success
+                            type: str
+                            sample: DAY_BASED
+                        time_and_horizontal_scaling_config:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                time_recurrence:
+                                    description:
+                                        - Day/time recurrence (specified following RFC 5545) at which to trigger autoscaling action. Currently only WEEKLY
+                                          frequency is supported. Days of the week are specified using BYDAY field. Time of the day is specified using BYHOUR
+                                          and BYMINUTE fields. Other fields are not supported.
+                                    returned: on success
+                                    type: str
+                                    sample: time_recurrence_example
+                                target_node_count:
+                                    description:
+                                        - This value is the desired number of nodes in the cluster.
+                                    returned: on success
+                                    type: int
+                                    sample: 56
+                        time_and_vertical_scaling_config:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                time_recurrence:
+                                    description:
+                                        - Day/time recurrence (specified following RFC 5545) at which to trigger autoscaling action. Currently only WEEKLY
+                                          frequency is supported. Days of the week are specified using BYDAY field. Time of the day is specified using BYHOUR
+                                          and BYMINUTE fields. Other fields are not supported.
+                                    returned: on success
+                                    type: str
+                                    sample: time_recurrence_example
+                                target_shape:
+                                    description:
+                                        - For nodes with L(fixed compute shapes,https://docs.cloud.oracle.com/iaas/Content/bigdata/create-cluster.htm#cluster-
+                                          plan-shape), this value is the desired shape of each node. This value is not used for nodes with flexible compute
+                                          shapes.
+                                    returned: on success
+                                    type: str
+                                    sample: target_shape_example
+                                target_ocpus_per_node:
+                                    description:
+                                        - For nodes with L(flexible compute shapes,https://docs.cloud.oracle.com/iaas/Content/bigdata/create-
+                                          cluster.htm#cluster-plan-shape), this value is the desired OCPUs count on each node. This value is not used for nodes
+                                          with fixed compute shapes.
+                                    returned: on success
+                                    type: int
+                                    sample: 56
+                                target_memory_per_node:
+                                    description:
+                                        - For nodes with L(flexible compute shapes,https://docs.cloud.oracle.com/iaas/Content/bigdata/create-
+                                          cluster.htm#cluster-plan-shape), this value is the desired memory in GBs on each node. This value is not used for
+                                          nodes with fixed compute shapes.
+                                    returned: on success
+                                    type: int
+                                    sample: 56
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -222,6 +583,77 @@ bds_auto_scale_configs:
                         "value": 56
                     }
                 }
+            }]
+        },
+        "policy_details": {
+            "scale_out_config": {
+                "metric": {
+                    "metric_type": "CPU_UTILIZATION",
+                    "threshold": {
+                        "duration_in_minutes": 56,
+                        "operator": "GT",
+                        "value": 56
+                    }
+                },
+                "max_node_count": 56,
+                "step_size": 56
+            },
+            "scale_in_config": {
+                "metric": {
+                    "metric_type": "CPU_UTILIZATION",
+                    "threshold": {
+                        "duration_in_minutes": 56,
+                        "operator": "GT",
+                        "value": 56
+                    }
+                },
+                "min_node_count": 56,
+                "step_size": 56
+            },
+            "scale_up_config": {
+                "metric": {
+                    "metric_type": "CPU_UTILIZATION",
+                    "threshold": {
+                        "duration_in_minutes": 56,
+                        "operator": "GT",
+                        "value": 56
+                    }
+                },
+                "max_ocpus_per_node": 56,
+                "max_memory_per_node": 56,
+                "ocpu_step_size": 56,
+                "memory_step_size": 56
+            },
+            "scale_down_config": {
+                "metric": {
+                    "metric_type": "CPU_UTILIZATION",
+                    "threshold": {
+                        "duration_in_minutes": 56,
+                        "operator": "GT",
+                        "value": 56
+                    }
+                },
+                "min_ocpus_per_node": 56,
+                "min_memory_per_node": 56,
+                "ocpu_step_size": 56,
+                "memory_step_size": 56
+            },
+            "policy_type": "METRIC_BASED_VERTICAL_SCALING_POLICY",
+            "trigger_type": "METRIC_BASED",
+            "action_type": "VERTICAL_SCALING",
+            "timezone": "timezone_example",
+            "schedule_details": [{
+                "schedule_type": "DAY_BASED",
+                "time_and_horizontal_scaling_config": [{
+                    "time_recurrence": "time_recurrence_example",
+                    "target_node_count": 56
+                }],
+                "time_and_vertical_scaling_config": [{
+                    "time_recurrence": "time_recurrence_example",
+                    "target_shape": "target_shape_example",
+                    "target_ocpus_per_node": 56,
+                    "target_memory_per_node": 56
+                }]
             }]
         }
     }]
@@ -312,6 +744,7 @@ def main():
                 choices=[
                     "CREATING",
                     "ACTIVE",
+                    "INACTIVE",
                     "UPDATING",
                     "DELETING",
                     "DELETED",

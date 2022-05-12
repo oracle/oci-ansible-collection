@@ -240,13 +240,13 @@ virtual_circuits:
             sample: []
         bgp_admin_state:
             description:
-                - Set to ENABLED to activate the  bgp session of virtual circuit, DISABLED to deactivate.
+                - Set to `ENABLED` (the default) to activate the BGP session of the virtual circuit, set to `DISABLED` to deactivate the virtual circuit.
             returned: on success
             type: str
             sample: ENABLED
         is_bfd_enabled:
             description:
-                - Set to true to enable BFD for ipv4 Bgp Peering, false to disable. If not set, default is false
+                - Set to `true` to enable BFD for IPv4 BGP peering, or set to `false` to disable BFD. If this is not set, the default is `false`.
             returned: on success
             type: bool
             sample: true

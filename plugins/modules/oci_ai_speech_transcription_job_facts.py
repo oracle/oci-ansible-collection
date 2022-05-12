@@ -99,7 +99,7 @@ transcription_jobs:
     contains:
         description:
             description:
-                - Job description.
+                - A short description of the job.
                 - Returned for get operation
             returned: on success
             type: str
@@ -130,6 +130,12 @@ transcription_jobs:
             returned: on success
             type: complex
             contains:
+                is_punctuation_enabled:
+                    description:
+                        - Whether to add punctuation in generated transcription. By default it is enabled.
+                    returned: on success
+                    type: bool
+                    sample: true
                 filters:
                     description:
                         - List of filters.
@@ -138,17 +144,13 @@ transcription_jobs:
                     contains:
                         type:
                             description:
-                                - "The type of filters.
-                                  Allowed values are:
-                                  - `PROFANITY`"
+                                - The type of filters.
                             returned: on success
                             type: str
                             sample: PROFANITY
                         mode:
                             description:
-                                - "The mode of filters.
-                                  Allowed values are:
-                                  - `MASK`: Will mask detected profanity in transcription.
+                                - "- `MASK`: Will mask detected profanity in transcription.
                                   - `REMOVE`: Will replace profane word with * in transcription.
                                   - `TAG`: Will tag profane word as profanity but will show actual word."
                             returned: on success
@@ -194,10 +196,7 @@ transcription_jobs:
                             sample: []
                 location_type:
                     description:
-                        - "The type of input location.
-                          Allowed values are:
-                          - `OBJECT_LIST_INLINE_INPUT_LOCATION`: A list of object locations in Object Storage.
-                          - `OBJECT_LIST_FILE_INPUT_LOCATION`: An object in Object Storage that contains a list of input files."
+                        - The type of input location.
                     returned: on success
                     type: str
                     sample: OBJECT_LIST_INLINE_INPUT_LOCATION
@@ -250,27 +249,34 @@ transcription_jobs:
                     returned: on success
                     type: str
                     sample: prefix_example
+        additional_transcription_formats:
+            description:
+                - Transcription format. JSON format will always be provided in addition to any formats in this list.
+                - Returned for get operation
+            returned: on success
+            type: list
+            sample: []
         id:
             description:
-                - Unique identifier that is immutable on creation.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the job.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - Job name.
+                - A user-friendly display name for the job.
             returned: on success
             type: str
             sample: display_name_example
         compartment_id:
             description:
-                - The OCID of the compartment that contains the transcriptionJob.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment where you want to create the job.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         created_by:
             description:
-                - OCID of the user who created the transcriptionJob.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the user who created the job.
             returned: on success
             type: str
             sample: created_by_example
@@ -357,6 +363,7 @@ transcription_jobs:
             "language_code": "en-US"
         },
         "normalization": {
+            "is_punctuation_enabled": true,
             "filters": [{
                 "type": "PROFANITY",
                 "mode": "MASK"
@@ -381,6 +388,7 @@ transcription_jobs:
             "bucket_name": "bucket_name_example",
             "prefix": "prefix_example"
         },
+        "additional_transcription_formats": [],
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

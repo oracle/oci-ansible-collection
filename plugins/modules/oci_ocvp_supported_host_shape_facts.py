@@ -101,6 +101,12 @@ supported_host_shapes:
             returned: on success
             type: list
             sample: []
+        supported_vmware_software_versions:
+            description:
+                - The VMware software versions supported by the shape.
+            returned: on success
+            type: list
+            sample: []
         description:
             description:
                 - Description of the shape.
@@ -120,6 +126,7 @@ supported_host_shapes:
         "default_ocpu_count": 3.4,
         "supported_ocpu_count": [],
         "supported_sddc_types": [],
+        "supported_vmware_software_versions": [],
         "description": "description_example",
         "is_support_shielded_instances": true
     }]

@@ -23,20 +23,18 @@ module: oci_budget_facts
 short_description: Fetches details about one or multiple Budget resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple Budget resources in Oracle Cloud Infrastructure
-    - Gets a list of Budgets in a compartment.
-    - By default, ListBudgets returns budgets of 'COMPARTMENT' target type and the budget records with only ONE target compartment OCID.
-    - "To list ALL budgets, set the targetType query parameter to ALL.
-      Example:
-        'targetType=ALL'"
-    - Additional targetTypes would be available in future releases. Clients should ignore new targetType
-      or upgrade to latest version of client SDK to handle new targetType.
+    - Gets a list of budgets in a compartment.
+    - By default, ListBudgets returns budgets of the 'COMPARTMENT' target type, and the budget records with only one target compartment OCID.
+    - "To list all budgets, set the targetType query parameter to ALL (for example: 'targetType=ALL')."
+    - Additional targetTypes would be available in future releases. Clients should ignore new targetTypes,
+      or upgrade to the latest version of the client SDK to handle new targetTypes.
     - If I(budget_id) is specified, the details of a single Budget will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     budget_id:
         description:
-            - The unique Budget OCID
+            - The unique budget OCID.
             - Required to get a specific budget.
         type: str
         aliases: ["id"]
@@ -70,13 +68,13 @@ options:
             - "INACTIVE"
     display_name:
         description:
-            - A user-friendly name. Does not have to be unique, and it's changeable.
+            - A user-friendly name. This does not have to be unique, and it's changeable.
             - "Example: `My new resource`"
         type: str
         aliases: ["name"]
     target_type:
         description:
-            - "The type of target to filter by.
+            - "The type of target to filter by:
                 * ALL - List all budgets
                 * COMPARTMENT - List all budgets with targetType == \\"COMPARTMENT\\"
                 * TAG - List all budgets with targetType == \\"TAG\\""
@@ -117,27 +115,27 @@ budgets:
     contains:
         id:
             description:
-                - The OCID of the budget
+                - The OCID of the budget.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
-                - The OCID of the compartment
+                - The OCID of the compartment.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         target_compartment_id:
             description:
-                - "This is DEPRECATED. For backwards compatability, the property will be populated when
-                  targetType is \\"COMPARTMENT\\" AND targets contains EXACT ONE target compartment ocid.
+                - "This is DEPRECATED. For backwards compatability, the property is populated when
+                  the targetType is \\"COMPARTMENT\\", and targets contain the specific target compartment OCID.
                   For all other scenarios, this property will be left empty."
             returned: on success
             type: str
             sample: "ocid1.targetcompartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name:
             description:
-                - The display name of the budget.
+                - The display name of the budget. Avoid entering confidential information.
             returned: on success
             type: str
             sample: display_name_example
@@ -167,6 +165,12 @@ budgets:
             returned: on success
             type: int
             sample: 56
+        processing_period_type:
+            description:
+                - The type of the budget processing period. Valid values are INVOICE and MONTH.
+            returned: on success
+            type: str
+            sample: INVOICE
         target_type:
             description:
                 - The type of target on which the budget is applied.
@@ -176,8 +180,9 @@ budgets:
         targets:
             description:
                 - "The list of targets on which the budget is applied.
-                    If targetType is \\"COMPARTMENT\\", targets contains list of compartment OCIDs.
-                    If targetType is \\"TAG\\", targets contains list of cost tracking tag identifiers in the form of \\"{tagNamespace}.{tagKey}.{tagValue}\\"."
+                    If the targetType is \\"COMPARTMENT\\", the targets contain the list of compartment OCIDs.
+                    If the targetType is \\"TAG\\", the targets contain the list of cost tracking tag identifiers in the form of
+                    \\"{tagNamespace}.{tagKey}.{tagValue}\\"."
             returned: on success
             type: list
             sample: []
@@ -189,43 +194,43 @@ budgets:
             sample: ACTIVE
         alert_rule_count:
             description:
-                - Total number of alert rules in the budget
+                - The total number of alert rules in the budget.
             returned: on success
             type: int
             sample: 56
         version:
             description:
-                - Version of the budget. Starts from 1 and increments by 1.
+                - The version of the budget. Starts from 1 and increments by 1.
             returned: on success
             type: int
             sample: 56
         actual_spend:
             description:
-                - The actual spend in currency for the current budget cycle
+                - The actual spend in currency for the current budget cycle.
             returned: on success
             type: float
             sample: 10
         forecasted_spend:
             description:
-                - The forecasted spend in currency by the end of the current budget cycle
+                - The forecasted spend in currency by the end of the current budget cycle.
             returned: on success
             type: float
             sample: 10
         time_spend_computed:
             description:
-                - The time that the budget spend was last computed
+                - The time that the budget spend was last computed.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_created:
             description:
-                - Time that budget was created
+                - The time that the budget was created.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - Time that budget was updated
+                - The time that the budget was updated.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
@@ -254,6 +259,7 @@ budgets:
         "amount": 10,
         "reset_period": "MONTHLY",
         "budget_processing_period_start_offset": 56,
+        "processing_period_type": "INVOICE",
         "target_type": "COMPARTMENT",
         "targets": [],
         "lifecycle_state": "ACTIVE",

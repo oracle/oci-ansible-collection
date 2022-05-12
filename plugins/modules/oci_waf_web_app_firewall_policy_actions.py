@@ -352,7 +352,7 @@ web_app_firewall_policy:
                 rules:
                     description:
                         - Ordered list of ProtectionRules. Rules are executed in order of appearance in this array.
-                          ProtectionRules in this array can only use protection cCapabilities of REQUEST_PROTECTION_CAPABILITY type.
+                          ProtectionRules in this array can only use protection Capabilities of REQUEST_PROTECTION_CAPABILITY type.
                     returned: on success
                     type: complex
                     contains:
@@ -390,7 +390,8 @@ web_app_firewall_policy:
                         protection_capabilities:
                             description:
                                 - An ordered list that references OCI-managed protection capabilities.
-                                  Referenced protection capabilities are executed in order of appearance.
+                                  Referenced protection capabilities are not necessarily executed in order of appearance. Their execution order
+                                  is decided at runtime for improved performance.
                                   The array cannot contain entries with the same pair of capability key and version more than once.
                             returned: on success
                             type: complex
@@ -508,6 +509,35 @@ web_app_firewall_policy:
                                     returned: on success
                                     type: list
                                     sample: []
+                        is_body_inspection_enabled:
+                            description:
+                                - Enables/disables body inspection for this protection rule.
+                                  Only Protection Rules in RequestProtection can have this option enabled. Response body inspection will
+                                  be available at a later date.
+                            returned: on success
+                            type: bool
+                            sample: true
+                body_inspection_size_limit_in_bytes:
+                    description:
+                        - Maximum size of inspected HTTP message body in bytes. Actions to take if this limit is exceeded are defined in
+                          `bodyInspectionSizeLimitExceededActionName`.
+                        - "Body inspection maximum size allowed is defined with per-tenancy limit: 8192 bytes."
+                        - For steps to request a limit increase, see L(Requesting a Service Limit
+                          Increase,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/servicelimits.htm).
+                    returned: on success
+                    type: int
+                    sample: 56
+                body_inspection_size_limit_exceeded_action_name:
+                    description:
+                        - References action by name from actions defined in WebAppFirewallPolicy. Executed if HTTP message
+                          body size exceeds limit set in field `bodyInspectionSizeLimitInBytes`.
+                        - If this field is `null` HTTP message body will inspected up to `bodyInspectionSizeLimitInBytes` and the rest
+                          will not be inspected by Protection Capabilities.
+                        - "Allowed action types:
+                          * **RETURN_HTTP_RESPONSE** terminates further execution of modules and rules and returns defined HTTP response."
+                    returned: on success
+                    type: str
+                    sample: body_inspection_size_limit_exceeded_action_name_example
         response_access_control:
             description:
                 - ""
@@ -598,7 +628,8 @@ web_app_firewall_policy:
                         protection_capabilities:
                             description:
                                 - An ordered list that references OCI-managed protection capabilities.
-                                  Referenced protection capabilities are executed in order of appearance.
+                                  Referenced protection capabilities are not necessarily executed in order of appearance. Their execution order
+                                  is decided at runtime for improved performance.
                                   The array cannot contain entries with the same pair of capability key and version more than once.
                             returned: on success
                             type: complex
@@ -716,6 +747,14 @@ web_app_firewall_policy:
                                     returned: on success
                                     type: list
                                     sample: []
+                        is_body_inspection_enabled:
+                            description:
+                                - Enables/disables body inspection for this protection rule.
+                                  Only Protection Rules in RequestProtection can have this option enabled. Response body inspection will
+                                  be available at a later date.
+                            returned: on success
+                            type: bool
+                            sample: true
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -810,8 +849,11 @@ web_app_firewall_policy:
                     "max_http_request_headers": 56,
                     "max_http_request_header_length": 56,
                     "allowed_http_methods": []
-                }
-            }]
+                },
+                "is_body_inspection_enabled": true
+            }],
+            "body_inspection_size_limit_in_bytes": 56,
+            "body_inspection_size_limit_exceeded_action_name": "body_inspection_size_limit_exceeded_action_name_example"
         },
         "response_access_control": {
             "rules": [{
@@ -850,7 +892,8 @@ web_app_firewall_policy:
                     "max_http_request_headers": 56,
                     "max_http_request_header_length": 56,
                     "allowed_http_methods": []
-                }
+                },
+                "is_body_inspection_enabled": true
             }]
         },
         "freeform_tags": {'Department': 'Finance'},

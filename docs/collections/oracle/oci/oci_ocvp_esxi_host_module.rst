@@ -30,7 +30,7 @@ oracle.oci.oci_ocvp_esxi_host -- Manage an EsxiHost resource in Oracle Cloud Inf
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.49.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.50.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -342,6 +342,36 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-host_ocpu_count"></div>
+                    <b>host_ocpu_count</b>
+                    <a class="ansibleOptionLink" href="#parameter-host_ocpu_count" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">float</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The OCPU count of the ESXi host.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-host_shape_name"></div>
+                    <b>host_shape_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-host_shape_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The compute shape name of the ESXi host. <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedHostShapes/ListSupportedHostShapes'>ListSupportedHostShapes</a>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-key_by"></div>
                     <b>key_by</b>
                     <a class="ansibleOptionLink" href="#parameter-key_by" title="Permalink to this option"></a>
@@ -512,6 +542,8 @@ Examples
         current_sku: HOUR
         compute_availability_domain: Uocm:PHX-AD-1
         failed_esxi_host_id: "ocid1.failedesxihost.oc1..xxxxxxEXAMPLExxxxxx"
+        host_shape_name: host_shape_name_example
+        host_ocpu_count: 3.4
         display_name: display_name_example
         next_sku: HOUR
         freeform_tags: {'Department': 'Finance'}
@@ -585,7 +617,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the EsxiHost resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;billing_contract_end_date&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;compute_instance_id&#x27;: &#x27;ocid1.computeinstance.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;current_sku&#x27;: &#x27;HOUR&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;failed_esxi_host_id&#x27;: &#x27;ocid1.failedesxihost.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;grace_period_end_date&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;next_sku&#x27;: &#x27;HOUR&#x27;, &#x27;replacement_esxi_host_id&#x27;: &#x27;ocid1.replacementesxihost.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;sddc_id&#x27;: &#x27;ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;billing_contract_end_date&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;compute_instance_id&#x27;: &#x27;ocid1.computeinstance.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;current_sku&#x27;: &#x27;HOUR&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;failed_esxi_host_id&#x27;: &#x27;ocid1.failedesxihost.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;grace_period_end_date&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;host_ocpu_count&#x27;: 3.4, &#x27;host_shape_name&#x27;: &#x27;host_shape_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;next_sku&#x27;: &#x27;HOUR&#x27;, &#x27;replacement_esxi_host_id&#x27;: &#x27;ocid1.replacementesxihost.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;sddc_id&#x27;: &#x27;ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -768,6 +800,42 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-esxi_host/host_ocpu_count"></div>
+                    <b>host_ocpu_count</b>
+                    <a class="ansibleOptionLink" href="#return-esxi_host/host_ocpu_count" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCPU count of the ESXi host.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-esxi_host/host_shape_name"></div>
+                    <b>host_shape_name</b>
+                    <a class="ansibleOptionLink" href="#return-esxi_host/host_shape_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The compute shape name of the ESXi host. <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/SupportedHostShapes/ListSupportedHostShapes'>ListSupportedHostShapes</a>.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">host_shape_name_example</div>
                                     </td>
             </tr>
                                 <tr>

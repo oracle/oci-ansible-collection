@@ -94,6 +94,7 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_identity_data_plane_custom_helpers,
     oci_visual_builder_custom_helpers,
     oci_ai_vision_custom_helpers,
+    oci_stack_monitoring_custom_helpers,
 )  # noqa
 
 custom_helper_mapping = get_custom_class_mapping(
@@ -162,5 +163,6 @@ custom_helper_mapping = get_custom_class_mapping(
         oci_identity_data_plane_custom_helpers,
         oci_visual_builder_custom_helpers,
         oci_ai_vision_custom_helpers,
+        oci_stack_monitoring_custom_helpers,
     ]
 )

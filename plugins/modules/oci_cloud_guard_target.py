@@ -48,6 +48,7 @@ options:
             - "COMPARTMENT"
             - "ERPCLOUD"
             - "HCMCLOUD"
+            - "SECURITY_ZONE"
     target_resource_id:
         description:
             - Resource ID which the target uses to monitor
@@ -1681,6 +1682,121 @@ target:
                             returned: on success
                             type: str
                             sample: lifecycle_details_example
+        target_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                target_resource_type:
+                    description:
+                        - Possible type of targets.
+                    returned: on success
+                    type: str
+                    sample: COMPARTMENT
+                security_zone_id:
+                    description:
+                        - The OCID of the security zone to associate this compartment with.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.securityzone.oc1..xxxxxxEXAMPLExxxxxx"
+                security_zone_display_name:
+                    description:
+                        - The name of the security zone to associate this compartment with.
+                    returned: on success
+                    type: str
+                    sample: security_zone_display_name_example
+                target_security_zone_recipes:
+                    description:
+                        - The list of security zone recipes to associate this compartment with.
+                    returned: on success
+                    type: complex
+                    contains:
+                        id:
+                            description:
+                                - Unique identifier that is immutable on creation
+                            returned: on success
+                            type: str
+                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+                        display_name:
+                            description:
+                                - The recipe's name
+                            returned: on success
+                            type: str
+                            sample: display_name_example
+                        description:
+                            description:
+                                - The recipe's description
+                            returned: on success
+                            type: str
+                            sample: description_example
+                        compartment_id:
+                            description:
+                                - The id of the compartment that contains the recipe
+                            returned: on success
+                            type: str
+                            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+                        owner:
+                            description:
+                                - The owner of the recipe
+                            returned: on success
+                            type: str
+                            sample: CUSTOMER
+                        security_policies:
+                            description:
+                                - The list of `SecurityPolicy` ids that are included in the recipe
+                            returned: on success
+                            type: list
+                            sample: []
+                        time_created:
+                            description:
+                                - The time the recipe was created. An RFC3339 formatted datetime string.
+                            returned: on success
+                            type: str
+                            sample: "2013-10-20T19:20:30+01:00"
+                        time_updated:
+                            description:
+                                - The time the recipe was last updated. An RFC3339 formatted datetime string.
+                            returned: on success
+                            type: str
+                            sample: "2013-10-20T19:20:30+01:00"
+                        lifecycle_state:
+                            description:
+                                - The current state of the recipe
+                            returned: on success
+                            type: str
+                            sample: CREATING
+                        lifecycle_details:
+                            description:
+                                - A message describing the current state in more detail. For example, this can be used to provide actionable information for a
+                                  recipe in the `Failed` state.
+                            returned: on success
+                            type: str
+                            sample: lifecycle_details_example
+                        freeform_tags:
+                            description:
+                                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+                                  Example: `{\\"bar-key\\": \\"value\\"}`"
+                                - Avoid entering confidential information.
+                            returned: on success
+                            type: dict
+                            sample: {'Department': 'Finance'}
+                        defined_tags:
+                            description:
+                                - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
+                                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+                            returned: on success
+                            type: dict
+                            sample: {'Operations': {'CostCenter': 'US'}}
+                        system_tags:
+                            description:
+                                - System tags for this resource. Each key is predefined and scoped to a namespace.
+                                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+                                  System tags can be viewed by users, but can only be created by the system.
+                                - "Example: `{\\"orcl-cloud\\": {\\"free-tier-retained\\": \\"true\\"}}`"
+                            returned: on success
+                            type: dict
+                            sample: {}
         inherited_by_compartments:
             description:
                 - List of inherited compartments
@@ -1955,6 +2071,26 @@ target:
                 "lifecycle_details": "lifecycle_details_example"
             }]
         }],
+        "target_details": {
+            "target_resource_type": "COMPARTMENT",
+            "security_zone_id": "ocid1.securityzone.oc1..xxxxxxEXAMPLExxxxxx",
+            "security_zone_display_name": "security_zone_display_name_example",
+            "target_security_zone_recipes": [{
+                "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+                "display_name": "display_name_example",
+                "description": "description_example",
+                "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+                "owner": "CUSTOMER",
+                "security_policies": [],
+                "time_created": "2013-10-20T19:20:30+01:00",
+                "time_updated": "2013-10-20T19:20:30+01:00",
+                "lifecycle_state": "CREATING",
+                "lifecycle_details": "lifecycle_details_example",
+                "freeform_tags": {'Department': 'Finance'},
+                "defined_tags": {'Operations': {'CostCenter': 'US'}},
+                "system_tags": {}
+            }]
+        },
         "inherited_by_compartments": [],
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
@@ -2131,7 +2267,8 @@ def main():
             compartment_id=dict(type="str"),
             description=dict(type="str"),
             target_resource_type=dict(
-                type="str", choices=["COMPARTMENT", "ERPCLOUD", "HCMCLOUD"]
+                type="str",
+                choices=["COMPARTMENT", "ERPCLOUD", "HCMCLOUD", "SECURITY_ZONE"],
             ),
             target_resource_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
