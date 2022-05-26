@@ -30,7 +30,7 @@ oracle.oci.oci_dns_zone -- Manage a Zone resource in Oracle Cloud Infrastructure
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.50.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.51.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,8 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a Zone resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a new zone in the specified compartment. For global zones, if the `Content-Type` header for the request is `text/dns`, the `compartmentId` query parameter is required. `text/dns` for the `Content-Type` header is not supported for private zones. Query parameter scope with a value of `PRIVATE` is required when creating a private zone. Private zones must have a zone type of `PRIMARY`. Creating a private zone at or under `oraclevcn.com` within the default protected view of a VCN-dedicated resolver is not permitted.
+- For *state=present*, creates a new zone in the specified compartment.
+- Private zones must have a zone type of `PRIMARY`. Creating a private zone at or under `oraclevcn.com` within the default protected view of a VCN-dedicated resolver is not permitted.
 - This resource has the following action operations in the :ref:`oracle.oci.oci_dns_zone_actions <ansible_collections.oracle.oci.oci_dns_zone_actions_module>` module: change_compartment.
 
 

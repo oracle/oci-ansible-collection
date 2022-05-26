@@ -41,12 +41,16 @@ options:
         required: true
     display_name:
         description:
-            - A filter to return only resources that match the entire display name given.
+            - A filter to return only the resources that match the entire display name.
         type: str
         aliases: ["name"]
     script_id:
         description:
             - A filter to return only monitors using scriptId.
+        type: str
+    vantage_point:
+        description:
+            - The name of the public or dedicated vantage point.
         type: str
     monitor_type:
         description:
@@ -99,6 +103,7 @@ EXAMPLES = """
     # optional
     display_name: display_name_example
     script_id: "ocid1.script.oc1..xxxxxxEXAMPLExxxxxx"
+    vantage_point: vantage_point_example
     monitor_type: monitor_type_example
     status: ENABLED
     sort_order: ASC
@@ -161,7 +166,7 @@ monitors:
             contains:
                 verify_texts:
                     description:
-                        - Verify all the search strings present in response.
+                        - Verifies all the search strings present in the response.
                           If any search string is not present in the response, then it will be considered as a failure.
                     returned: on success
                     type: complex
@@ -385,7 +390,7 @@ monitors:
             sample: SCRIPTED_BROWSER
         vantage_points:
             description:
-                - List of vantage points from where monitor is running.
+                - List of public and dedicated vantage points where the monitor is running.
             returned: on success
             type: complex
             contains:
@@ -429,7 +434,8 @@ monitors:
         repeat_interval_in_seconds:
             description:
                 - Interval in seconds after the start time when the job should be repeated.
-                  Minimum repeatIntervalInSeconds should be 300 seconds.
+                  Minimum repeatIntervalInSeconds should be 300 seconds for Scripted REST, Scripted Browser and Browser monitors, and 60 seconds for REST
+                  monitor.
             returned: on success
             type: int
             sample: 56
@@ -442,8 +448,8 @@ monitors:
         timeout_in_seconds:
             description:
                 - Timeout in seconds. Timeout cannot be more than 30% of repeatIntervalInSeconds time for monitors.
-                  Also, timeoutInSeconds should be a multiple of 60. Monitor will be allowed to run only for timeoutInSeconds time. It would be terminated after
-                  that.
+                  Also, timeoutInSeconds should be a multiple of 60 for Scripted REST, Scripted Browser and Browser monitors.
+                  Monitor will be allowed to run only for timeoutInSeconds time. It would be terminated after that.
             returned: on success
             type: int
             sample: 56
@@ -600,6 +606,7 @@ class MonitorFactsHelperGen(OCIResourceFactsHelperBase):
         optional_list_method_params = [
             "display_name",
             "script_id",
+            "vantage_point",
             "monitor_type",
             "status",
             "sort_order",
@@ -632,6 +639,7 @@ def main():
             apm_domain_id=dict(type="str", required=True),
             display_name=dict(aliases=["name"], type="str"),
             script_id=dict(type="str"),
+            vantage_point=dict(type="str"),
             monitor_type=dict(type="str"),
             status=dict(type="str", choices=["ENABLED", "DISABLED", "INVALID"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),

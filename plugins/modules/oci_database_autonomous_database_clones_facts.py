@@ -74,6 +74,7 @@ options:
             - "ROLE_CHANGE_IN_PROGRESS"
             - "UPGRADING"
             - "INACCESSIBLE"
+            - "STANDBY"
     sort_by:
         description:
             - The field to sort by.  You can provide one sort order (`sortOrder`).  Default order for TIMECREATED is descending.  Default order for DISPLAYNAME
@@ -172,6 +173,29 @@ autonomous_database_clones:
             returned: on success
             type: str
             sample: db_name_example
+        character_set:
+            description:
+                - "The character set for the autonomous database.  The default is AL32UTF8. Allowed values are:"
+                - AL32UTF8, AR8ADOS710, AR8ADOS720, AR8APTEC715, AR8ARABICMACS, AR8ASMO8X, AR8ISO8859P6, AR8MSWIN1256, AR8MUSSAD768, AR8NAFITHA711,
+                  AR8NAFITHA721, AR8SAKHR706, AR8SAKHR707, AZ8ISO8859P9E, BG8MSWIN, BG8PC437S, BLT8CP921, BLT8ISO8859P13, BLT8MSWIN1257, BLT8PC775, BN8BSCII,
+                  CDN8PC863, CEL8ISO8859P14, CL8ISO8859P5, CL8ISOIR111, CL8KOI8R, CL8KOI8U, CL8MACCYRILLICS, CL8MSWIN1251, EE8ISO8859P2, EE8MACCES,
+                  EE8MACCROATIANS, EE8MSWIN1250, EE8PC852, EL8DEC, EL8ISO8859P7, EL8MACGREEKS, EL8MSWIN1253, EL8PC437S, EL8PC851, EL8PC869, ET8MSWIN923,
+                  HU8ABMOD, HU8CWI2, IN8ISCII, IS8PC861, IW8ISO8859P8, IW8MACHEBREWS, IW8MSWIN1255, IW8PC1507, JA16EUC, JA16EUCTILDE, JA16SJIS, JA16SJISTILDE,
+                  JA16VMS, KO16KSC5601, KO16KSCCS, KO16MSWIN949, LA8ISO6937, LA8PASSPORT, LT8MSWIN921, LT8PC772, LT8PC774, LV8PC1117, LV8PC8LR, LV8RST104090,
+                  N8PC865, NE8ISO8859P10, NEE8ISO8859P4, RU8BESTA, RU8PC855, RU8PC866, SE8ISO8859P3, TH8MACTHAIS, TH8TISASCII, TR8DEC, TR8MACTURKISHS,
+                  TR8MSWIN1254, TR8PC857, US7ASCII, US8PC437, UTF8, VN8MSWIN1258, VN8VN3, WE8DEC, WE8DG, WE8ISO8859P1, WE8ISO8859P15, WE8ISO8859P9,
+                  WE8MACROMAN8S, WE8MSWIN1252, WE8NCR4970, WE8NEXTSTEP, WE8PC850, WE8PC858, WE8PC860, WE8ROMAN8, ZHS16CGB231280, ZHS16GBK, ZHT16BIG5, ZHT16CCDC,
+                  ZHT16DBT, ZHT16HKSCS, ZHT16MSWIN950, ZHT32EUC, ZHT32SOPS, ZHT32TRIS
+            returned: on success
+            type: str
+            sample: character_set_example
+        ncharacter_set:
+            description:
+                - "The national character set for the autonomous database.  The default is AL16UTF16. Allowed values are:
+                  AL16UTF16 or UTF8."
+            returned: on success
+            type: str
+            sample: ncharacter_set_example
         is_free_tier:
             description:
                 - Indicates if this is an Always Free resource. The default value is false. Note that Always Free Autonomous Databases have 1 CPU and 20GB of
@@ -279,6 +303,12 @@ autonomous_database_clones:
             returned: on success
             type: float
             sample: 3.4
+        provisionable_cpus:
+            description:
+                - An array of CPU values that an Autonomous Database can be scaled to.
+            returned: on success
+            type: list
+            sample: []
         data_storage_size_in_tbs:
             description:
                 - The quantity of data in the database, in terabytes.
@@ -513,11 +543,11 @@ autonomous_database_clones:
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids:
             description:
-                - "A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this
-                  resource belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about
-                  NSGs, see L(Security Rules,https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
+                - "The list of L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) for the network security groups (NSGs) to which
+                  this resource belongs. Setting this to an empty list removes all resources from all NSGs. For more information about NSGs, see L(Security
+                  Rules,https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
                   **NsgIds restrictions:**
-                  - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds array cannot be empty."
+                  - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds list cannot be empty."
             returned: on success
             type: list
             sample: []
@@ -742,8 +772,8 @@ autonomous_database_clones:
             sample: "2013-10-20T19:20:30+01:00"
         is_data_guard_enabled:
             description:
-                - Indicates whether the Autonomous Database has local (in-region) Data Guard enabled. Not applicable to cross-region Autonomous Data Guard
-                  associations, or to Autonomous Databases using dedicated Exadata infrastructure or Exadata Cloud@Customer infrastructure.
+                - "**Deprecated.** Indicates whether the Autonomous Database has local (in-region) Data Guard enabled. Not applicable to cross-region Autonomous
+                  Data Guard associations, or to Autonomous Databases using dedicated Exadata infrastructure or Exadata Cloud@Customer infrastructure."
             returned: on success
             type: bool
             sample: true
@@ -754,6 +784,51 @@ autonomous_database_clones:
             type: int
             sample: 56
         standby_db:
+            description:
+                - "**Deprecated** Autonomous Data Guard standby database details."
+            returned: on success
+            type: complex
+            contains:
+                lag_time_in_seconds:
+                    description:
+                        - The amount of time, in seconds, that the data of the standby database lags the data of the primary database. Can be used to determine
+                          the potential data loss in the event of a failover.
+                    returned: on success
+                    type: int
+                    sample: 56
+                lifecycle_state:
+                    description:
+                        - The current state of the Autonomous Database.
+                    returned: on success
+                    type: str
+                    sample: PROVISIONING
+                lifecycle_details:
+                    description:
+                        - Additional information about the current lifecycle state.
+                    returned: on success
+                    type: str
+                    sample: lifecycle_details_example
+                time_data_guard_role_changed:
+                    description:
+                        - The date and time the Autonomous Data Guard role was switched for the standby Autonomous Database.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
+        is_local_data_guard_enabled:
+            description:
+                - Indicates whether the Autonomous Database has local (in-region) Data Guard enabled. Not applicable to cross-region Autonomous Data Guard
+                  associations, or to Autonomous Databases using dedicated Exadata infrastructure or Exadata Cloud@Customer infrastructure.
+            returned: on success
+            type: bool
+            sample: true
+        is_remote_data_guard_enabled:
+            description:
+                - Indicates whether the Autonomous Database has Cross Region Data Guard enabled. Not applicable to Autonomous Databases using dedicated Exadata
+                  infrastructure or Exadata Cloud@Customer infrastructure.
+            returned: on success
+            type: bool
+            sample: true
+        local_standby_db:
             description:
                 - ""
             returned: on success
@@ -960,6 +1035,8 @@ autonomous_database_clones:
         "kms_key_lifecycle_details": "kms_key_lifecycle_details_example",
         "kms_key_version_id": "ocid1.kmskeyversion.oc1..xxxxxxEXAMPLExxxxxx",
         "db_name": "db_name_example",
+        "character_set": "character_set_example",
+        "ncharacter_set": "ncharacter_set_example",
         "is_free_tier": true,
         "system_tags": {},
         "time_reclamation_of_free_autonomous_database": "2013-10-20T19:20:30+01:00",
@@ -976,6 +1053,7 @@ autonomous_database_clones:
         }],
         "cpu_core_count": 56,
         "ocpu_count": 3.4,
+        "provisionable_cpus": [],
         "data_storage_size_in_tbs": 56,
         "memory_per_oracle_compute_unit_in_gbs": 56,
         "data_storage_size_in_gbs": 56,
@@ -1048,6 +1126,14 @@ autonomous_database_clones:
         "is_data_guard_enabled": true,
         "failed_data_recovery_in_seconds": 56,
         "standby_db": {
+            "lag_time_in_seconds": 56,
+            "lifecycle_state": "PROVISIONING",
+            "lifecycle_details": "lifecycle_details_example",
+            "time_data_guard_role_changed": "2013-10-20T19:20:30+01:00"
+        },
+        "is_local_data_guard_enabled": true,
+        "is_remote_data_guard_enabled": true,
+        "local_standby_db": {
             "lag_time_in_seconds": 56,
             "lifecycle_state": "PROVISIONING",
             "lifecycle_details": "lifecycle_details_example",
@@ -1171,6 +1257,7 @@ def main():
                     "ROLE_CHANGE_IN_PROGRESS",
                     "UPGRADING",
                     "INACCESSIBLE",
+                    "STANDBY",
                 ],
             ),
             sort_by=dict(type="str", choices=["NONE", "TIMECREATED", "DISPLAYNAME"]),

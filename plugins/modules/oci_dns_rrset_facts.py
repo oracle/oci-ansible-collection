@@ -23,10 +23,9 @@ module: oci_dns_rrset_facts
 short_description: Fetches details about a Rrset resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a Rrset resource in Oracle Cloud Infrastructure
-    - Gets a list of all records in the specified RRSet. The results are sorted by `recordHash` by default. For
-      private zones, the scope query parameter is required with a value of `PRIVATE`. When the zone name is
-      provided as a path parameter and `PRIVATE` is used for the scope query parameter then the viewId query
-      parameter is required.
+    - Gets a list of all records in the specified RRSet.
+    - The results are sorted by `recordHash` by default. When the zone name is provided as a path parameter
+      and `PRIVATE` is used for the scope query parameter then the viewId query parameter is required.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -59,7 +58,8 @@ options:
         type: str
     compartment_id:
         description:
-            - The OCID of the compartment the resource belongs to.
+            - The OCID of the compartment the zone belongs to.
+            - This parameter is deprecated and should be omitted.
         type: str
     scope:
         description:
@@ -150,7 +150,7 @@ rrset:
                     sample: rtype_example
                 ttl:
                     description:
-                        - The Time To Live for the record, in seconds.
+                        - The Time To Live for the record, in seconds. Using a TTL lower than 30 seconds is not recommended.
                     returned: on success
                     type: int
                     sample: 56

@@ -219,7 +219,7 @@ database_software_images:
             sample: []
         ls_inventory:
             description:
-                - output from lsinventory which will get passed as a string
+                - The output from the OPatch lsInventory command, which is passed as a string.
             returned: on success
             type: str
             sample: ls_inventory_example

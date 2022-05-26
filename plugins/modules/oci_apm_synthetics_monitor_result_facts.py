@@ -44,12 +44,12 @@ options:
         required: true
     result_type:
         description:
-            - The result type har, screenshot, log or network.
+            - "The result type: har, screenshot, log, or network."
         type: str
         required: true
     result_content_type:
         description:
-            - The result content type zip or raw.
+            - "The result content type: zip or raw."
         type: str
         required: true
     execution_time:
@@ -137,7 +137,7 @@ monitor_result:
             sample: "ocid1.monitor.oc1..xxxxxxEXAMPLExxxxxx"
         vantage_point:
             description:
-                - The name of the vantage point.
+                - The name of the public or dedicated vantage point.
             returned: on success
             type: str
             sample: vantage_point_example

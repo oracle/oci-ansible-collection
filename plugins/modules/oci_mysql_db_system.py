@@ -479,8 +479,7 @@ db_system:
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         is_highly_available:
             description:
-                - If the policy is to enable high availability of the instance, by
-                  maintaining secondary/failover capacity as necessary.
+                - Specifies if the DB System is highly available.
             returned: on success
             type: bool
             sample: true

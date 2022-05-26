@@ -237,7 +237,7 @@ script:
             sample: sample_content
         time_uploaded:
             description:
-                - The time when the script was uploaded.
+                - The time the script was uploaded.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"

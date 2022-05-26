@@ -180,6 +180,56 @@ service_connector:
                             returned: on success
                             type: str
                             sample: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+                monitoring_sources:
+                    description:
+                        - The list of metric namespaces to retrieve data from.
+                    returned: on success
+                    type: complex
+                    contains:
+                        compartment_id:
+                            description:
+                                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the
+                                  metric namespaces you want to use for the Monitoring source.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+                        namespace_details:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                kind:
+                                    description:
+                                        - The type discriminator.
+                                    returned: on success
+                                    type: str
+                                    sample: selected
+                                namespaces:
+                                    description:
+                                        - The namespaces for the compartment-specific list.
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        namespace:
+                                            description:
+                                                - The source service or application to use when querying for metric data points. Must begin with `oci_`.
+                                                - "Example: `oci_computeagent`"
+                                            returned: on success
+                                            type: str
+                                            sample: namespace_example
+                                        metrics:
+                                            description:
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                kind:
+                                                    description:
+                                                        - The type descriminator.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: all
                 kind:
                     description:
                         - The type descriminator.
@@ -306,7 +356,7 @@ service_connector:
                                     description:
                                         - "The location to use for deriving the dimension value (evaluated).
                                           The path must start with `logContent` in an acceptable notation style with supported L(JMESPath
-                                          selectors,https://jmespath.org/specification.html): expression with dot and index operator (`.`, and `L(]`).
+                                          selectors,https://jmespath.org/specification.html): expression with dot and index operator (`.` and `L(]`).
                                           Example with dot notation: `logContent.data`
                                           Example with index notation: `logContent.data[0].content`
                                           For information on valid dimension keys and values, see [MetricDataDetails Reference,https://docs.cloud.oracle.com/en-
@@ -427,6 +477,18 @@ service_connector:
                 "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
                 "log_group_id": "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx",
                 "log_id": "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+            }],
+            "monitoring_sources": [{
+                "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+                "namespace_details": {
+                    "kind": "selected",
+                    "namespaces": [{
+                        "namespace": "namespace_example",
+                        "metrics": {
+                            "kind": "all"
+                        }
+                    }]
+                }
             }],
             "kind": "logging",
             "stream_id": "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx",

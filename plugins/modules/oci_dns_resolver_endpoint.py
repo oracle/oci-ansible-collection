@@ -23,7 +23,7 @@ module: oci_dns_resolver_endpoint
 short_description: Manage a ResolverEndpoint resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a ResolverEndpoint resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates a new resolver endpoint. Requires a `PRIVATE` scope query parameter.
+    - For I(state=present), creates a new resolver endpoint in the same compartment as the resolver.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:

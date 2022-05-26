@@ -332,7 +332,7 @@ autonomous_vm_clusters:
             sample: 1.2
         available_data_storage_size_in_tbs:
             description:
-                - The data storage available in TBs
+                - "**Deprecated.** Use `availableAutonomousDataStorageSizeInTBs` for Autonomous Databases data storage available, in TBs."
             returned: on success
             type: float
             sample: 1.2
@@ -357,6 +357,24 @@ autonomous_vm_clusters:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        reclaimable_cpus:
+            description:
+                - CPU cores that are not released to available pool after an Autonomous Database is terminated (Requires Autonomous Container Database restart).
+            returned: on success
+            type: int
+            sample: 56
+        available_container_databases:
+            description:
+                - The number of Autonomous Container Databases that can be created with the currently available local storage.
+            returned: on success
+            type: int
+            sample: 56
+        available_autonomous_data_storage_size_in_tbs:
+            description:
+                - The data disk group size available for Autonomous Databases, in TBs.
+            returned: on success
+            type: float
+            sample: 1.2
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -399,7 +417,10 @@ autonomous_vm_clusters:
         "available_data_storage_size_in_tbs": 1.2,
         "license_model": "LICENSE_INCLUDED",
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}}
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "reclaimable_cpus": 56,
+        "available_container_databases": 56,
+        "available_autonomous_data_storage_size_in_tbs": 1.2
     }]
 """
 

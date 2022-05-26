@@ -23,8 +23,8 @@ module: oci_dns_view_actions
 short_description: Perform actions on a View resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a View resource in Oracle Cloud Infrastructure
-    - For I(action=change_compartment), moves a view into a different compartment. Protected views cannot have their compartment changed. Requires a
-      `PRIVATE` scope query parameter.
+    - For I(action=change_compartment), moves a view into a different compartment.
+      To change the compartment of a protected view, change the compartment of its corresponding resolver.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:

@@ -23,7 +23,7 @@ module: oci_dns_view
 short_description: Manage a View resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a View resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates a new view in the specified compartment. Requires a `PRIVATE` scope query parameter.
+    - For I(state=present), creates a new view in the specified compartment.
     - "This resource has the following action operations in the M(oracle.oci.oci_dns_view_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)

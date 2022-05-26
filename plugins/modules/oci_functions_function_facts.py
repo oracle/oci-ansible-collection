@@ -177,6 +177,24 @@ functions:
             returned: on success
             type: int
             sample: 56
+        provisioned_concurrency_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                count:
+                    description:
+                        - ""
+                    returned: on success
+                    type: int
+                    sample: 56
+                strategy:
+                    description:
+                        - The strategy for provisioned concurrency to be used.
+                    returned: on success
+                    type: str
+                    sample: CONSTANT
         trace_config:
             description:
                 - ""
@@ -239,6 +257,10 @@ functions:
         "image_digest": "image_digest_example",
         "memory_in_mbs": 56,
         "timeout_in_seconds": 56,
+        "provisioned_concurrency_config": {
+            "count": 56,
+            "strategy": "CONSTANT"
+        },
         "trace_config": {
             "is_enabled": true
         },

@@ -26,7 +26,8 @@ description:
     - For I(state=present), creates a new ExternalNonContainerDatabase resource
     - "This resource has the following action operations in the M(oracle.oci.oci_database_external_non_container_database_actions) module: change_compartment,
       disable_external_non_container_database_database_management, disable_external_non_container_database_operations_insights,
-      enable_external_non_container_database_database_management, enable_external_non_container_database_operations_insights."
+      disable_external_non_container_database_stack_monitoring, enable_external_non_container_database_database_management,
+      enable_external_non_container_database_operations_insights, enable_external_non_container_database_stack_monitoring."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -283,6 +284,26 @@ external_non_container_database:
                     returned: on success
                     type: str
                     sample: LICENSE_INCLUDED
+        stack_monitoring_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                stack_monitoring_status:
+                    description:
+                        - The status of Stack Monitoring.
+                    returned: on success
+                    type: str
+                    sample: ENABLING
+                stack_monitoring_connector_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the
+                          L(external database connector,https://docs.cloud.oracle.com/en-
+                          us/iaas/api/#/en/database/latest/datatypes/CreateExternalDatabaseConnectorDetails).
+                    returned: on success
+                    type: str
+                    sample: "ocid1.stackmonitoringconnector.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "operations_insights_config": {
             "operations_insights_status": "ENABLING",
@@ -309,6 +330,10 @@ external_non_container_database:
             "database_management_status": "ENABLING",
             "database_management_connection_id": "ocid1.databasemanagementconnection.oc1..xxxxxxEXAMPLExxxxxx",
             "license_model": "LICENSE_INCLUDED"
+        },
+        "stack_monitoring_config": {
+            "stack_monitoring_status": "ENABLING",
+            "stack_monitoring_connector_id": "ocid1.stackmonitoringconnector.oc1..xxxxxxEXAMPLExxxxxx"
         }
     }
 """

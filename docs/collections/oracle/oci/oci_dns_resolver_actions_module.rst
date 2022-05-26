@@ -30,7 +30,7 @@ oracle.oci.oci_dns_resolver_actions -- Perform actions on a Resolver resource in
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.50.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.51.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Perform actions on a Resolver resource in Oracle Cloud Infrastructure
-- For *action=change_compartment*, moves a resolver into a different compartment along with its protected default view and any endpoints. Zones in the default view are not moved. Requires a `PRIVATE` scope query parameter.
+- For *action=change_compartment*, moves a resolver into a different compartment along with its protected default view and any endpoints. Zones in the default view are not moved. VCN-dedicated resolvers are initially created in the same compartment as their corresponding VCN, but can then be moved to a different compartment.
 
 
 .. Aliases

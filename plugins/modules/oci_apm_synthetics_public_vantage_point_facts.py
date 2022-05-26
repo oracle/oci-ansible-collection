@@ -49,11 +49,11 @@ options:
             - "displayName"
     display_name:
         description:
-            - A filter to return only resources that match the entire display name given.
+            - A filter to return only the resources that match the entire display name.
         type: str
     name:
         description:
-            - A filter to return only resources that match the entire name given.
+            - A filter to return only the resources that match the entire name.
         type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """

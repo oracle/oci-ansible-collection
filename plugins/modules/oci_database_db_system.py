@@ -37,8 +37,8 @@ description:
       us/iaas/api/#/en/database/latest/CloudExadataInfrastructure/CreateCloudExadataInfrastructure/) and
       L(CreateCloudVmCluster,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/latest/CloudVmCluster/CreateCloudVmCluster/) APIs to provision a new
       Exadata Cloud Service instance.
-    - "This resource has the following action operations in the M(oracle.oci.oci_database_db_system_actions) module: change_compartment,
-      migrate_exadata_db_system_resource_model."
+    - "This resource has the following action operations in the M(oracle.oci.oci_database_db_system_actions) module: precheck, rollback,
+      update_snapshot_retention_days, upgrade."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -541,11 +541,11 @@ options:
         type: str
     nsg_ids:
         description:
-            - "A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this
-              resource belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs,
-              see L(Security Rules,https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
+            - "The list of L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) for the network security groups (NSGs) to which this
+              resource belongs. Setting this to an empty list removes all resources from all NSGs. For more information about NSGs, see L(Security
+              Rules,https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
               **NsgIds restrictions:**
-              - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds array cannot be empty."
+              - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds list cannot be empty."
             - This parameter is updatable.
         type: list
         elements: str
@@ -1250,11 +1250,11 @@ db_system:
             sample: "ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids:
             description:
-                - "A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this
-                  resource belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about
-                  NSGs, see L(Security Rules,https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
+                - "The list of L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) for the network security groups (NSGs) to which
+                  this resource belongs. Setting this to an empty list removes all resources from all NSGs. For more information about NSGs, see L(Security
+                  Rules,https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
                   **NsgIds restrictions:**
-                  - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds array cannot be empty."
+                  - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds list cannot be empty."
             returned: on success
             type: list
             sample: []

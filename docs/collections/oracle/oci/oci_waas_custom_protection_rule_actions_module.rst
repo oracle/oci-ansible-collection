@@ -30,7 +30,7 @@ oracle.oci.oci_waas_custom_protection_rule_actions -- Perform actions on a Custo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.50.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.51.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -508,7 +508,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>`ctl:ruleEngine={{mode}}` - The action to be taken when the criteria of the `SecRule` are met, either `OFF`, `DETECT` or `BLOCK`. This field is automatically populated with the corresponding value of the `action` field of the `CustomProtectionRuleSetting` schema when the `WafConfig` is updated.</div>
                                             <div>*Example:* ``` SecRule REQUEST_COOKIES &quot;regex matching SQL injection - part 1/2&quot; \ &quot;phase:2,                                                 \ msg:&#x27;Detects chained SQL injection attempts 1/2.&#x27;,        \ id: {{id_1}},                                             \ ctl:ruleEngine={{mode}},                                  \ deny&quot; SecRule REQUEST_COOKIES &quot;regex matching SQL injection - part 2/2&quot; \ &quot;phase:2,                                                 \ msg:&#x27;Detects chained SQL injection attempts 2/2.&#x27;,        \ id: {{id_2}},                                             \ ctl:ruleEngine={{mode}},                                  \ deny&quot; ```</div>
                                             <div>The example contains two `SecRules` each having distinct regex expression to match the `Cookie` header value during the second input analysis phase.</div>
-                                            <div>For more information about custom protection rules, see <a href='https://docs.cloud.oracle.com/Content/WAF/tasks/customprotectionrules.htm'>Custom Protection Rules</a>.</div>
+                                            <div>For more information about custom protection rules, see <a href='https://docs.cloud.oracle.com/Content/WAF/Tasks/customprotectionrules.htm'>Custom Protection Rules</a>.</div>
                                             <div>For more information about ModSecurity syntax, see <a href='https://www.modsecurity.org/CRS/Documentation/making.html'>Making Rules: The Basic Syntax</a>.</div>
                                             <div>For more information about ModSecurity&#x27;s open source WAF rules, see <a href='https://www.modsecurity.org/CRS/Documentation/index.html'>Mod Security&#x27;s OWASP Core Rule Set documentation</a>.</div>
                                         <br/>

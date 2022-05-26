@@ -30,7 +30,7 @@ oracle.oci.oci_apm_synthetics_public_vantage_point_facts -- Fetches details abou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.50.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.51.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -224,7 +224,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A filter to return only resources that match the entire display name given.</div>
+                                            <div>A filter to return only the resources that match the entire display name.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -239,7 +239,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A filter to return only resources that match the entire name given.</div>
+                                            <div>A filter to return only the resources that match the entire name.</div>
                                                         </td>
             </tr>
                                 <tr>

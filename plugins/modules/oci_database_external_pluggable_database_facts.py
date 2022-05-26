@@ -280,6 +280,26 @@ external_pluggable_databases:
                     returned: on success
                     type: str
                     sample: LICENSE_INCLUDED
+        stack_monitoring_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                stack_monitoring_status:
+                    description:
+                        - The status of Stack Monitoring.
+                    returned: on success
+                    type: str
+                    sample: ENABLING
+                stack_monitoring_connector_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the
+                          L(external database connector,https://docs.cloud.oracle.com/en-
+                          us/iaas/api/#/en/database/latest/datatypes/CreateExternalDatabaseConnectorDetails).
+                    returned: on success
+                    type: str
+                    sample: "ocid1.stackmonitoringconnector.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "source_id": "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx",
         "external_container_database_id": "ocid1.externalcontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx",
@@ -308,6 +328,10 @@ external_pluggable_databases:
             "database_management_status": "ENABLING",
             "database_management_connection_id": "ocid1.databasemanagementconnection.oc1..xxxxxxEXAMPLExxxxxx",
             "license_model": "LICENSE_INCLUDED"
+        },
+        "stack_monitoring_config": {
+            "stack_monitoring_status": "ENABLING",
+            "stack_monitoring_connector_id": "ocid1.stackmonitoringconnector.oc1..xxxxxxEXAMPLExxxxxx"
         }
     }]
 """

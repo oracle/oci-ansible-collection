@@ -76,7 +76,7 @@ options:
                 required: true
             ttl:
                 description:
-                    - The Time To Live for the record, in seconds.
+                    - The Time To Live for the record, in seconds. Using a TTL lower than 30 seconds is not recommended.
                     - This parameter is updatable.
                 type: int
                 required: true
@@ -119,7 +119,7 @@ options:
                 type: str
             ttl:
                 description:
-                    - The Time To Live for the record, in seconds.
+                    - The Time To Live for the record, in seconds. Using a TTL lower than 30 seconds is not recommended.
                 type: int
             operation:
                 description:
@@ -176,7 +176,8 @@ options:
         type: str
     compartment_id:
         description:
-            - The OCID of the compartment the resource belongs to.
+            - The OCID of the compartment the zone belongs to.
+            - This parameter is deprecated and should be omitted.
             - This parameter is updatable.
         type: str
     state:
@@ -282,7 +283,7 @@ domain_records:
             sample: rtype_example
         ttl:
             description:
-                - The Time To Live for the record, in seconds.
+                - The Time To Live for the record, in seconds. Using a TTL lower than 30 seconds is not recommended.
             returned: on success
             type: int
             sample: 56

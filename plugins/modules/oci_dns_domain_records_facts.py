@@ -23,11 +23,10 @@ module: oci_dns_domain_records_facts
 short_description: Fetches details about a DomainRecords resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a DomainRecords resource in Oracle Cloud Infrastructure
-    - Gets a list of all records at the specified zone and domain. The results are sorted by `rtype` in
-      alphabetical order by default. You can optionally filter and/or sort the results using the listed parameters.
-      For private zones, the scope query parameter is required with a value of `PRIVATE`. When the zone name is
-      provided as a path parameter and `PRIVATE` is used for the scope query parameter then the viewId query
-      parameter is required.
+    - Gets a list of all records at the specified zone and domain.
+    - The results are sorted by `rtype` in alphabetical order by default. You can optionally filter and/or sort
+      the results using the listed parameters. When the zone name is provided as a path parameter and `PRIVATE`
+      is used for the scope query parameter then the viewId query parameter is required.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -86,7 +85,8 @@ options:
             - "DESC"
     compartment_id:
         description:
-            - The OCID of the compartment the resource belongs to.
+            - The OCID of the compartment the zone belongs to.
+            - This parameter is deprecated and should be omitted.
         type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
@@ -162,7 +162,7 @@ domain_records:
             sample: rtype_example
         ttl:
             description:
-                - The Time To Live for the record, in seconds.
+                - The Time To Live for the record, in seconds. Using a TTL lower than 30 seconds is not recommended.
             returned: on success
             type: int
             sample: 56

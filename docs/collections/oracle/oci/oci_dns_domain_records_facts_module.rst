@@ -30,7 +30,7 @@ oracle.oci.oci_dns_domain_records_facts -- Fetches details about a DomainRecords
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.50.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.51.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,8 @@ Synopsis
 .. Description
 
 - Fetches details about a DomainRecords resource in Oracle Cloud Infrastructure
-- Gets a list of all records at the specified zone and domain. The results are sorted by `rtype` in alphabetical order by default. You can optionally filter and/or sort the results using the listed parameters. For private zones, the scope query parameter is required with a value of `PRIVATE`. When the zone name is provided as a path parameter and `PRIVATE` is used for the scope query parameter then the viewId query parameter is required.
+- Gets a list of all records at the specified zone and domain.
+- The results are sorted by `rtype` in alphabetical order by default. You can optionally filter and/or sort the results using the listed parameters. When the zone name is provided as a path parameter and `PRIVATE` is used for the scope query parameter then the viewId query parameter is required.
 
 
 .. Aliases
@@ -179,7 +180,8 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the compartment the resource belongs to.</div>
+                                            <div>The OCID of the compartment the zone belongs to.</div>
+                                            <div>This parameter is deprecated and should be omitted.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -589,7 +591,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The Time To Live for the record, in seconds.</div>
+                                            <div>The Time To Live for the record, in seconds. Using a TTL lower than 30 seconds is not recommended.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
