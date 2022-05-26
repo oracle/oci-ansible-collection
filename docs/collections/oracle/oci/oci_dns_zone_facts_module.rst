@@ -30,7 +30,7 @@ oracle.oci.oci_dns_zone_facts -- Fetches details about one or multiple Zone reso
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.50.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.51.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,8 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple Zone resources in Oracle Cloud Infrastructure
-- Gets a list of all zones in the specified compartment. The collection can be filtered by name, time created, scope, associated view, and zone type. Filtering by view is only supported for private zones.
+- Gets a list of all zones in the specified compartment.
+- The collection can be filtered by name, time created, scope, associated view, and zone type. Filtering by view is only supported for private zones.
 - If *zone_name_or_id* is specified, the details of a single Zone will be returned.
 
 
@@ -180,7 +181,8 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the compartment the resource belongs to.</div>
+                                            <div>The OCID of the compartment the zone belongs to.</div>
+                                            <div>This parameter is deprecated and should be omitted.</div>
                                             <div>Required to list multiple zones.</div>
                                                         </td>
             </tr>

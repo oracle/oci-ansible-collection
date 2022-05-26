@@ -32,10 +32,12 @@ description:
       For more information about the Database Management Service, see
       L(Database Management Service,https://docs.cloud.oracle.com/Content/ExternalDatabase/Concepts/databasemanagementservice.htm).
     - For I(action=disable_external_pluggable_database_operations_insights), disable Operations Insights for the external pluggable database.
+    - For I(action=disable_external_pluggable_database_stack_monitoring), disable Stack Monitoring for the external pluggable database.
     - For I(action=enable_external_pluggable_database_database_management), enable Database Management Service for the external pluggable database.
       For more information about the Database Management Service, see
       L(Database Management Service,https://docs.cloud.oracle.com/Content/ExternalDatabase/Concepts/databasemanagementservice.htm).
     - For I(action=enable_external_pluggable_database_operations_insights), enable Operations Insights for the external pluggable database.
+    - For I(action=enable_external_pluggable_database_stack_monitoring), enable Stack Monitoring for the external pluggable database.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -54,7 +56,8 @@ options:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the
               L(external database connector,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/latest/datatypes/CreateExternalDatabaseConnectorDetails).
-            - Required for I(action=enable_external_pluggable_database_database_management), I(action=enable_external_pluggable_database_operations_insights).
+            - Required for I(action=enable_external_pluggable_database_database_management), I(action=enable_external_pluggable_database_operations_insights),
+              I(action=enable_external_pluggable_database_stack_monitoring).
         type: str
     action:
         description:
@@ -65,8 +68,10 @@ options:
             - "change_compartment"
             - "disable_external_pluggable_database_database_management"
             - "disable_external_pluggable_database_operations_insights"
+            - "disable_external_pluggable_database_stack_monitoring"
             - "enable_external_pluggable_database_database_management"
             - "enable_external_pluggable_database_operations_insights"
+            - "enable_external_pluggable_database_stack_monitoring"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
@@ -90,6 +95,12 @@ EXAMPLES = """
     external_pluggable_database_id: "ocid1.externalpluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: disable_external_pluggable_database_operations_insights
 
+- name: Perform action disable_external_pluggable_database_stack_monitoring on external_pluggable_database
+  oci_database_external_pluggable_database_actions:
+    # required
+    external_pluggable_database_id: "ocid1.externalpluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    action: disable_external_pluggable_database_stack_monitoring
+
 - name: Perform action enable_external_pluggable_database_database_management on external_pluggable_database
   oci_database_external_pluggable_database_actions:
     # required
@@ -103,6 +114,13 @@ EXAMPLES = """
     external_pluggable_database_id: "ocid1.externalpluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
     external_database_connector_id: "ocid1.externaldatabaseconnector.oc1..xxxxxxEXAMPLExxxxxx"
     action: enable_external_pluggable_database_operations_insights
+
+- name: Perform action enable_external_pluggable_database_stack_monitoring on external_pluggable_database
+  oci_database_external_pluggable_database_actions:
+    # required
+    external_pluggable_database_id: "ocid1.externalpluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    external_database_connector_id: "ocid1.externaldatabaseconnector.oc1..xxxxxxEXAMPLExxxxxx"
+    action: enable_external_pluggable_database_stack_monitoring
 
 """
 
@@ -284,6 +302,26 @@ external_pluggable_database:
                     returned: on success
                     type: str
                     sample: LICENSE_INCLUDED
+        stack_monitoring_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                stack_monitoring_status:
+                    description:
+                        - The status of Stack Monitoring.
+                    returned: on success
+                    type: str
+                    sample: ENABLING
+                stack_monitoring_connector_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the
+                          L(external database connector,https://docs.cloud.oracle.com/en-
+                          us/iaas/api/#/en/database/latest/datatypes/CreateExternalDatabaseConnectorDetails).
+                    returned: on success
+                    type: str
+                    sample: "ocid1.stackmonitoringconnector.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "source_id": "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx",
         "external_container_database_id": "ocid1.externalcontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx",
@@ -312,6 +350,10 @@ external_pluggable_database:
             "database_management_status": "ENABLING",
             "database_management_connection_id": "ocid1.databasemanagementconnection.oc1..xxxxxxEXAMPLExxxxxx",
             "license_model": "LICENSE_INCLUDED"
+        },
+        "stack_monitoring_config": {
+            "stack_monitoring_status": "ENABLING",
+            "stack_monitoring_connector_id": "ocid1.stackmonitoringconnector.oc1..xxxxxxEXAMPLExxxxxx"
         }
     }
 """
@@ -336,6 +378,9 @@ try:
     from oci.database.models import (
         EnableExternalPluggableDatabaseOperationsInsightsDetails,
     )
+    from oci.database.models import (
+        EnableExternalPluggableDatabaseStackMonitoringDetails,
+    )
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -348,8 +393,10 @@ class ExternalPluggableDatabaseActionsHelperGen(OCIActionsHelperBase):
         change_compartment
         disable_external_pluggable_database_database_management
         disable_external_pluggable_database_operations_insights
+        disable_external_pluggable_database_stack_monitoring
         enable_external_pluggable_database_database_management
         enable_external_pluggable_database_operations_insights
+        enable_external_pluggable_database_stack_monitoring
     """
 
     def __init__(self, *args, **kwargs):
@@ -437,6 +484,25 @@ class ExternalPluggableDatabaseActionsHelperGen(OCIActionsHelperBase):
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
+    def disable_external_pluggable_database_stack_monitoring(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.disable_external_pluggable_database_stack_monitoring,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                external_pluggable_database_id=self.module.params.get(
+                    "external_pluggable_database_id"
+                ),
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
     def enable_external_pluggable_database_database_management(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, EnableExternalPluggableDatabaseDatabaseManagementDetails
@@ -483,6 +549,29 @@ class ExternalPluggableDatabaseActionsHelperGen(OCIActionsHelperBase):
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
+    def enable_external_pluggable_database_stack_monitoring(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, EnableExternalPluggableDatabaseStackMonitoringDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.enable_external_pluggable_database_stack_monitoring,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                external_pluggable_database_id=self.module.params.get(
+                    "external_pluggable_database_id"
+                ),
+                enable_external_pluggable_database_stack_monitoring_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
 
 ExternalPluggableDatabaseActionsHelperCustom = get_custom_class(
     "ExternalPluggableDatabaseActionsHelperCustom"
@@ -514,8 +603,10 @@ def main():
                     "change_compartment",
                     "disable_external_pluggable_database_database_management",
                     "disable_external_pluggable_database_operations_insights",
+                    "disable_external_pluggable_database_stack_monitoring",
                     "enable_external_pluggable_database_database_management",
                     "enable_external_pluggable_database_operations_insights",
+                    "enable_external_pluggable_database_stack_monitoring",
                 ],
             ),
         )

@@ -41,7 +41,7 @@ options:
         required: true
     display_name:
         description:
-            - A filter to return only resources that match the entire display name given.
+            - A filter to return only the resources that match the entire display name.
         type: str
         aliases: ["name"]
     content_type:
@@ -113,7 +113,7 @@ scripts:
             sample: sample_content
         time_uploaded:
             description:
-                - The time when the script was uploaded.
+                - The time the script was uploaded.
                 - Returned for get operation
             returned: on success
             type: str

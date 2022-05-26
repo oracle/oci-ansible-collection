@@ -30,7 +30,7 @@ oracle.oci.oci_database_db_system_actions -- Perform actions on a DbSystem resou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.50.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.51.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,8 +57,9 @@ Synopsis
 .. Description
 
 - Perform actions on a DbSystem resource in Oracle Cloud Infrastructure
-- For *action=change_compartment*, moves the DB system and its dependent resources to the specified compartment. For more information about moving DB systems, see `Moving Database Resources to a Different Compartment <https://docs.cloud.oracle.com/Content/Database/Concepts/databaseoverview.htm#moveRes>`_.
-- For *action=migrate_exadata_db_system_resource_model*, migrates the Exadata DB system to the new `Exadata resource model <https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/exaflexsystem.htm#exaflexsystem_topic-resource_model>`_. All related resources will be migrated.
+- Moves the DB system and its dependent resources to the specified compartment. For more information about moving DB systems, see `Moving Database Resources to a Different Compartment <https://docs.cloud.oracle.com/Content/Database/Concepts/databaseoverview.htm#moveRes>`_.
+- Migrates the Exadata DB system to the new `Exadata resource model <https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/exaflexsystem.htm#exaflexsystem_topic-resource_model>`_. All related resources will be migrated.
+- Upgrades the operating system and grid infrastructure of the DB system.
 
 
 .. Aliases
@@ -100,6 +101,10 @@ Parameters
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>change_compartment</li>
                                                                                                                                                                                                 <li>migrate_exadata_db_system_resource_model</li>
+                                                                                                                                                                                                <li>precheck</li>
+                                                                                                                                                                                                <li>rollback</li>
+                                                                                                                                                                                                <li>update_snapshot_retention_days</li>
+                                                                                                                                                                                                <li>upgrade</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -251,6 +256,42 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-is_snapshot_retention_days_force_updated"></div>
+                    <b>is_snapshot_retention_days_force_updated</b>
+                    <a class="ansibleOptionLink" href="#parameter-is_snapshot_retention_days_force_updated" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>If true, rollback time is updated even if operating system upgrade history contains errors.</div>
+                                            <div>Applicable only for <em>action=upgrade</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-new_gi_version"></div>
+                    <b>new_gi_version</b>
+                    <a class="ansibleOptionLink" href="#parameter-new_gi_version" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A valid Oracle Grid Infrastructure (GI) software version.</div>
+                                            <div>Applicable only for <em>action=upgrade</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#parameter-region" title="Permalink to this option"></a>
@@ -262,6 +303,22 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The Oracle Cloud Infrastructure region to use for all OCI API requests. If not set, then the value of the OCI_REGION variable, if any, is used. This option is required if the region is not specified through a configuration file (See <code>config_file_location</code>). Please refer to <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/regions.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/regions.htm</a> for more information on OCI regions.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-snapshot_retention_period_in_days"></div>
+                    <b>snapshot_retention_period_in_days</b>
+                    <a class="ansibleOptionLink" href="#parameter-snapshot_retention_period_in_days" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The retention period, in days, for the snapshot that allows you to perform a rollback of the upgrade operation. After this number of days passes, you cannot roll back the upgrade.</div>
+                                            <div>Applicable only for <em>action=upgrade</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -350,6 +407,50 @@ Examples
         # required
         db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         action: migrate_exadata_db_system_resource_model
+
+    - name: Perform action precheck on db_system
+      oci_database_db_system_actions:
+        # required
+        db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+        action: PRECHECK
+
+        # optional
+        snapshot_retention_period_in_days: 56
+        new_gi_version: new_gi_version_example
+        is_snapshot_retention_days_force_updated: true
+
+    - name: Perform action rollback on db_system
+      oci_database_db_system_actions:
+        # required
+        db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+        action: PRECHECK
+
+        # optional
+        snapshot_retention_period_in_days: 56
+        new_gi_version: new_gi_version_example
+        is_snapshot_retention_days_force_updated: true
+
+    - name: Perform action update_snapshot_retention_days on db_system
+      oci_database_db_system_actions:
+        # required
+        db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+        action: PRECHECK
+
+        # optional
+        snapshot_retention_period_in_days: 56
+        new_gi_version: new_gi_version_example
+        is_snapshot_retention_days_force_updated: true
+
+    - name: Perform action upgrade on db_system
+      oci_database_db_system_actions:
+        # required
+        db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+        action: PRECHECK
+
+        # optional
+        snapshot_retention_period_in_days: 56
+        new_gi_version: new_gi_version_example
+        is_snapshot_retention_days_force_updated: true
 
 
 
@@ -1278,7 +1379,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A list of the <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCIDs</a> of the network security groups (NSGs) that this resource belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about NSGs, see <a href='https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm'>Security Rules</a>. **NsgIds restrictions:** - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds array cannot be empty.</div>
+                                            <div>The list of <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCIDs</a> for the network security groups (NSGs) to which this resource belongs. Setting this to an empty list removes all resources from all NSGs. For more information about NSGs, see <a href='https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm'>Security Rules</a>. **NsgIds restrictions:** - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds list cannot be empty.</div>
                                         <br/>
                                                         </td>
             </tr>

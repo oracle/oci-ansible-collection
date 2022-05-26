@@ -133,8 +133,7 @@ secrets:
                     description:
                         - A property indicating how long the secret contents will be considered valid, expressed in
                           L(ISO 8601,https://en.wikipedia.org/wiki/ISO_8601#Time_intervals) format. The secret needs to be
-                          updated when the secret content expires. No enforcement mechanism exists at this time, but audit logs
-                          record the expiration on the appropriate date, according to the time interval specified in the rule.
+                          updated when the secret content expires.
                           The timer resets after you update the secret contents.
                           The minimum value is 1 day and the maximum value is 90 days for this property. Currently, only intervals expressed in days are
                           supported.
@@ -201,7 +200,8 @@ secrets:
             sample: {'Department': 'Finance'}
         key_id:
             description:
-                - The OCID of the master encryption key that is used to encrypt the secret.
+                - The OCID of the master encryption key that is used to encrypt the secret. You must specify a symmetric key to encrypt the secret during import
+                  to the vault. You cannot encrypt secrets with asymmetric keys. Furthermore, the key must exist in the vault that you specify.
             returned: on success
             type: str
             sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"

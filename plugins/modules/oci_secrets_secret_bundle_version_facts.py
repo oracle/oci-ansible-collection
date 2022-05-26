@@ -35,7 +35,7 @@ options:
     sort_by:
         description:
             - The field to sort by. You can specify only one sort order. The default
-              order for `VERSION_NUMBER` is ascending.
+              order for `VERSION_NUMBER` is descending.
         type: str
         choices:
             - "VERSION_NUMBER"

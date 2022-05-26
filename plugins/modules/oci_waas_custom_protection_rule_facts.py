@@ -150,7 +150,7 @@ custom_protection_rules:
                 - The example contains two `SecRules` each having distinct regex expression to match the `Cookie` header value during the second input analysis
                   phase.
                 - For more information about custom protection rules, see L(Custom Protection
-                  Rules,https://docs.cloud.oracle.com/Content/WAF/tasks/customprotectionrules.htm).
+                  Rules,https://docs.cloud.oracle.com/Content/WAF/Tasks/customprotectionrules.htm).
                 - "For more information about ModSecurity syntax, see L(Making Rules: The Basic
                   Syntax,https://www.modsecurity.org/CRS/Documentation/making.html)."
                 - For more information about ModSecurity's open source WAF rules, see L(Mod Security's OWASP Core Rule Set

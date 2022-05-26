@@ -103,6 +103,7 @@ options:
                 type: str
                 choices:
                     - "TCP"
+                    - "TCPS"
                 required: true
     connection_credentials:
         description:
@@ -112,12 +113,19 @@ options:
             - Applicable when connector_type is 'MACS'
         type: dict
         suboptions:
+            ssl_secret_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
+                      L(secret,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
+                    - Required when credential_type is 'SSL_DETAILS'
+                type: str
             credential_type:
                 description:
                     - The type of credential used to connect to the database.
                 type: str
                 choices:
                     - "NAME_REFERENCE"
+                    - "SSL_DETAILS"
                     - "DETAILS"
                 default: "DETAILS"
             credential_name:
@@ -135,17 +143,17 @@ options:
             username:
                 description:
                     - The username that will be used to connect to the database.
-                    - Required when credential_type is 'DETAILS'
+                    - Required when credential_type is one of ['SSL_DETAILS', 'DETAILS']
                 type: str
             password:
                 description:
                     - The password that will be used to connect to the database.
-                    - Required when credential_type is 'DETAILS'
+                    - Required when credential_type is one of ['SSL_DETAILS', 'DETAILS']
                 type: str
             role:
                 description:
                     - The role of the user that will be connecting to the database.
-                    - Required when credential_type is 'DETAILS'
+                    - Required when credential_type is one of ['SSL_DETAILS', 'DETAILS']
                 type: str
                 choices:
                     - "SYSDBA"
@@ -379,24 +387,6 @@ external_database_connector:
             returned: on success
             type: complex
             contains:
-                username:
-                    description:
-                        - The username that will be used to connect to the database.
-                    returned: on success
-                    type: str
-                    sample: username_example
-                password:
-                    description:
-                        - The password that will be used to connect to the database.
-                    returned: on success
-                    type: str
-                    sample: example-password
-                role:
-                    description:
-                        - The role of the user that will be connecting to the database.
-                    returned: on success
-                    type: str
-                    sample: SYSDBA
                 credential_type:
                     description:
                         - The type of credential used to connect to the database.
@@ -416,6 +406,31 @@ external_database_connector:
                     returned: on success
                     type: str
                     sample: credential_name_example
+                username:
+                    description:
+                        - The username that will be used to connect to the database.
+                    returned: on success
+                    type: str
+                    sample: username_example
+                password:
+                    description:
+                        - The password that will be used to connect to the database.
+                    returned: on success
+                    type: str
+                    sample: example-password
+                role:
+                    description:
+                        - The role of the user that will be connecting to the database.
+                    returned: on success
+                    type: str
+                    sample: SYSDBA
+                ssl_secret_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
+                          L(secret,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
+                    returned: on success
+                    type: str
+                    sample: "ocid1.sslsecret.oc1..xxxxxxEXAMPLExxxxxx"
         connector_agent_id:
             description:
                 - The ID of the agent used for the
@@ -444,11 +459,12 @@ external_database_connector:
             "protocol": "TCP"
         },
         "connection_credentials": {
+            "credential_type": "NAME_REFERENCE",
+            "credential_name": "credential_name_example",
             "username": "username_example",
             "password": "example-password",
             "role": "SYSDBA",
-            "credential_type": "NAME_REFERENCE",
-            "credential_name": "credential_name_example"
+            "ssl_secret_id": "ocid1.sslsecret.oc1..xxxxxxEXAMPLExxxxxx"
         },
         "connector_agent_id": "ocid1.connectoragent.oc1..xxxxxxEXAMPLExxxxxx"
     }
@@ -640,16 +656,17 @@ def main():
                     hostname=dict(type="str", required=True),
                     port=dict(type="int", required=True),
                     service=dict(type="str", required=True),
-                    protocol=dict(type="str", required=True, choices=["TCP"]),
+                    protocol=dict(type="str", required=True, choices=["TCP", "TCPS"]),
                 ),
             ),
             connection_credentials=dict(
                 type="dict",
                 options=dict(
+                    ssl_secret_id=dict(type="str"),
                     credential_type=dict(
                         type="str",
                         default="DETAILS",
-                        choices=["NAME_REFERENCE", "DETAILS"],
+                        choices=["NAME_REFERENCE", "SSL_DETAILS", "DETAILS"],
                     ),
                     credential_name=dict(type="str"),
                     username=dict(type="str"),

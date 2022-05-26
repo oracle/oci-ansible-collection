@@ -485,6 +485,30 @@ autonomous_container_databases:
             returned: on success
             type: int
             sample: 56
+        available_cpus:
+            description:
+                - Sum of OCPUs available on the Autonomous VM Cluster + Sum of Fractional OCPUs available in the Autonomous Container Database.
+            returned: on success
+            type: float
+            sample: 3.4
+        total_cpus:
+            description:
+                - The number of CPU cores allocated to the Autonomous VM cluster.
+            returned: on success
+            type: int
+            sample: 56
+        reclaimable_cpus:
+            description:
+                - CPU cores that are not released to available pool after an Autonomous Database is terminated (Requires Autonomous Container Database restart).
+            returned: on success
+            type: float
+            sample: 3.4
+        provisionable_cpus:
+            description:
+                - An array of CPU values that can be used to successfully provision a single Autonomous Database.
+            returned: on success
+            type: list
+            sample: []
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -544,7 +568,11 @@ autonomous_container_databases:
         },
         "key_store_id": "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx",
         "key_store_wallet_name": "key_store_wallet_name_example",
-        "memory_per_oracle_compute_unit_in_gbs": 56
+        "memory_per_oracle_compute_unit_in_gbs": 56,
+        "available_cpus": 3.4,
+        "total_cpus": 56,
+        "reclaimable_cpus": 3.4,
+        "provisionable_cpus": []
     }]
 """
 

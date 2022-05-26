@@ -99,12 +99,67 @@ options:
                             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the log.
                             - Applicable when kind is 'logging'
                         type: str
+            monitoring_sources:
+                description:
+                    - The list of metric namespaces to retrieve data from.
+                    - Required when kind is 'monitoring'
+                type: list
+                elements: dict
+                suboptions:
+                    compartment_id:
+                        description:
+                            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the metric
+                              namespaces you want to use for the Monitoring source.
+                            - Required when kind is 'monitoring'
+                        type: str
+                        required: true
+                    namespace_details:
+                        description:
+                            - ""
+                            - Required when kind is 'monitoring'
+                        type: dict
+                        required: true
+                        suboptions:
+                            kind:
+                                description:
+                                    - The type discriminator.
+                                type: str
+                                choices:
+                                    - "selected"
+                                required: true
+                            namespaces:
+                                description:
+                                    - The namespaces for the compartment-specific list.
+                                type: list
+                                elements: dict
+                                required: true
+                                suboptions:
+                                    namespace:
+                                        description:
+                                            - The source service or application to use when querying for metric data points. Must begin with `oci_`.
+                                            - "Example: `oci_computeagent`"
+                                        type: str
+                                        required: true
+                                    metrics:
+                                        description:
+                                            - ""
+                                        type: dict
+                                        required: true
+                                        suboptions:
+                                            kind:
+                                                description:
+                                                    - The type descriminator.
+                                                type: str
+                                                choices:
+                                                    - "all"
+                                                required: true
             kind:
                 description:
                     - The type descriminator.
                 type: str
                 choices:
                     - "logging"
+                    - "monitoring"
                     - "streaming"
                 required: true
             stream_id:
@@ -267,7 +322,7 @@ options:
                                 description:
                                     - "The location to use for deriving the dimension value (evaluated).
                                       The path must start with `logContent` in an acceptable notation style with supported L(JMESPath
-                                      selectors,https://jmespath.org/specification.html): expression with dot and index operator (`.`, and `L(]`).
+                                      selectors,https://jmespath.org/specification.html): expression with dot and index operator (`.` and `L(]`).
                                       Example with dot notation: `logContent.data`
                                       Example with index notation: `logContent.data[0].content`
                                       For information on valid dimension keys and values, see [MetricDataDetails Reference,https://docs.cloud.oracle.com/en-
@@ -555,6 +610,56 @@ service_connector:
                             returned: on success
                             type: str
                             sample: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+                monitoring_sources:
+                    description:
+                        - The list of metric namespaces to retrieve data from.
+                    returned: on success
+                    type: complex
+                    contains:
+                        compartment_id:
+                            description:
+                                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the
+                                  metric namespaces you want to use for the Monitoring source.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+                        namespace_details:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                kind:
+                                    description:
+                                        - The type discriminator.
+                                    returned: on success
+                                    type: str
+                                    sample: selected
+                                namespaces:
+                                    description:
+                                        - The namespaces for the compartment-specific list.
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        namespace:
+                                            description:
+                                                - The source service or application to use when querying for metric data points. Must begin with `oci_`.
+                                                - "Example: `oci_computeagent`"
+                                            returned: on success
+                                            type: str
+                                            sample: namespace_example
+                                        metrics:
+                                            description:
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                kind:
+                                                    description:
+                                                        - The type descriminator.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: all
                 kind:
                     description:
                         - The type descriminator.
@@ -681,7 +786,7 @@ service_connector:
                                     description:
                                         - "The location to use for deriving the dimension value (evaluated).
                                           The path must start with `logContent` in an acceptable notation style with supported L(JMESPath
-                                          selectors,https://jmespath.org/specification.html): expression with dot and index operator (`.`, and `L(]`).
+                                          selectors,https://jmespath.org/specification.html): expression with dot and index operator (`.` and `L(]`).
                                           Example with dot notation: `logContent.data`
                                           Example with index notation: `logContent.data[0].content`
                                           For information on valid dimension keys and values, see [MetricDataDetails Reference,https://docs.cloud.oracle.com/en-
@@ -802,6 +907,18 @@ service_connector:
                 "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
                 "log_group_id": "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx",
                 "log_id": "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+            }],
+            "monitoring_sources": [{
+                "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+                "namespace_details": {
+                    "kind": "selected",
+                    "namespaces": [{
+                        "namespace": "namespace_example",
+                        "metrics": {
+                            "kind": "all"
+                        }
+                    }]
+                }
             }],
             "kind": "logging",
             "stream_id": "ocid1.stream.oc1..xxxxxxEXAMPLExxxxxx",
@@ -1012,8 +1129,45 @@ def main():
                             log_id=dict(type="str"),
                         ),
                     ),
+                    monitoring_sources=dict(
+                        type="list",
+                        elements="dict",
+                        options=dict(
+                            compartment_id=dict(type="str", required=True),
+                            namespace_details=dict(
+                                type="dict",
+                                required=True,
+                                options=dict(
+                                    kind=dict(
+                                        type="str", required=True, choices=["selected"]
+                                    ),
+                                    namespaces=dict(
+                                        type="list",
+                                        elements="dict",
+                                        required=True,
+                                        options=dict(
+                                            namespace=dict(type="str", required=True),
+                                            metrics=dict(
+                                                type="dict",
+                                                required=True,
+                                                options=dict(
+                                                    kind=dict(
+                                                        type="str",
+                                                        required=True,
+                                                        choices=["all"],
+                                                    )
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
                     kind=dict(
-                        type="str", required=True, choices=["logging", "streaming"]
+                        type="str",
+                        required=True,
+                        choices=["logging", "monitoring", "streaming"],
                     ),
                     stream_id=dict(type="str"),
                     cursor=dict(

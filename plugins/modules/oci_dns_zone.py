@@ -23,11 +23,9 @@ module: oci_dns_zone
 short_description: Manage a Zone resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Zone resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates a new zone in the specified compartment. For global zones, if the `Content-Type` header for the request
-      is `text/dns`, the `compartmentId` query parameter is required. `text/dns` for the `Content-Type` header is
-      not supported for private zones. Query parameter scope with a value of `PRIVATE` is required when creating a
-      private zone. Private zones must have a zone type of `PRIMARY`. Creating a private zone at or under
-      `oraclevcn.com` within the default protected view of a VCN-dedicated resolver is not permitted.
+    - For I(state=present), creates a new zone in the specified compartment.
+    - Private zones must have a zone type of `PRIMARY`. Creating a private zone at or under `oraclevcn.com`
+      within the default protected view of a VCN-dedicated resolver is not permitted.
     - "This resource has the following action operations in the M(oracle.oci.oci_dns_zone_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)

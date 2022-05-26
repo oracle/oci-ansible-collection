@@ -513,18 +513,66 @@ instance_configurations:
                                     returned: on success
                                     type: str
                                     sample: BASELINE_1_8
+                                nvmes:
+                                    description:
+                                        - The number of NVMe drives to be used for storage. A single drive has 6.8 TB available.
+                                    returned: on success
+                                    type: int
+                                    sample: 56
                         platform_config:
                             description:
                                 - ""
                             returned: on success
                             type: complex
                             contains:
+                                is_access_control_service_enabled:
+                                    description:
+                                        - Whether the Access Control Service is enabled on the instance. When enabled,
+                                          the platform can enforce PCIe device isolation, required for VFIO device pass-through.
+                                    returned: on success
+                                    type: bool
+                                    sample: true
+                                are_virtual_instructions_enabled:
+                                    description:
+                                        - Whether virtualization instructions are available. For example, Secure Virtual Machine for AMD shapes
+                                          or VT-x for Intel shapes.
+                                    returned: on success
+                                    type: bool
+                                    sample: true
                                 numa_nodes_per_socket:
                                     description:
                                         - The number of NUMA nodes per socket (NPS).
                                     returned: on success
                                     type: str
                                     sample: NPS0
+                                is_symmetric_multi_threading_enabled:
+                                    description:
+                                        - Whether symmetric multithreading is enabled on the instance. Symmetric multithreading is also
+                                          called simultaneous multithreading (SMT) or Intel Hyper-Threading.
+                                        - Intel and AMD processors have two hardware execution threads per core (OCPU). SMT permits multiple
+                                          independent threads of execution, to better use the resources and increase the efficiency
+                                          of the CPU. When multithreading is disabled, only one thread is permitted to run on each core, which
+                                          can provide higher or more predictable performance for some workloads.
+                                    returned: on success
+                                    type: bool
+                                    sample: true
+                                is_input_output_memory_management_unit_enabled:
+                                    description:
+                                        - Whether the input-output memory management unit is enabled.
+                                    returned: on success
+                                    type: bool
+                                    sample: true
+                                percentage_of_cores_enabled:
+                                    description:
+                                        - The percentage of cores enabled. Value must be a multiple of 25%. If the requested percentage
+                                          results in a fractional number of cores, the system rounds up the number of cores across processors
+                                          and provisions an instance with a whole number of cores.
+                                        - If the applications that you run on the instance use a core-based licensing model and need fewer cores
+                                          than the full size of the shape, you can disable cores to reduce your licensing costs. The instance
+                                          itself is billed for the full shape, regardless of whether all cores are enabled.
+                                    returned: on success
+                                    type: int
+                                    sample: 56
                                 type:
                                     description:
                                         - The type of platform being configured.
@@ -1045,10 +1093,16 @@ instance_configurations:
                 "shape_config": {
                     "ocpus": 3.4,
                     "memory_in_gbs": 3.4,
-                    "baseline_ocpu_utilization": "BASELINE_1_8"
+                    "baseline_ocpu_utilization": "BASELINE_1_8",
+                    "nvmes": 56
                 },
                 "platform_config": {
+                    "is_access_control_service_enabled": true,
+                    "are_virtual_instructions_enabled": true,
                     "numa_nodes_per_socket": "NPS0",
+                    "is_symmetric_multi_threading_enabled": true,
+                    "is_input_output_memory_management_unit_enabled": true,
+                    "percentage_of_cores_enabled": 56,
                     "type": "AMD_MILAN_BM",
                     "is_secure_boot_enabled": true,
                     "is_trusted_platform_module_enabled": true,

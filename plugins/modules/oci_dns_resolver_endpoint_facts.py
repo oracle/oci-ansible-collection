@@ -26,7 +26,7 @@ description:
     - Gets a list of all endpoints within a resolver. The collection can be filtered by name or lifecycle state.
       It can be sorted on creation time or name both in ASC or DESC order. Note that when no lifecycleState
       query parameter is provided, the collection does not include resolver endpoints in the DELETED
-      lifecycle state to be consistent with other operations of the API. Requires a `PRIVATE` scope query parameter.
+      lifecycle state to be consistent with other operations of the API.
     - If I(resolver_endpoint_name) is specified, the details of a single ResolverEndpoint will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)

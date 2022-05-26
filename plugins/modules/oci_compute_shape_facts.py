@@ -360,6 +360,102 @@ shapes:
                             returned: on success
                             type: str
                             sample: default_value_example
+                symmetric_multi_threading_options:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        allowed_values:
+                            description:
+                                - Whether symmetric multithreading can be enabled.
+                            returned: on success
+                            type: list
+                            sample: []
+                        is_default_enabled:
+                            description:
+                                - Whether symmetric multithreading is enabled by default.
+                            returned: on success
+                            type: bool
+                            sample: true
+                access_control_service_options:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        allowed_values:
+                            description:
+                                - Whether the Access Control Service can be enabled.
+                            returned: on success
+                            type: list
+                            sample: []
+                        is_default_enabled:
+                            description:
+                                - Whether the Access Control Service is enabled by default.
+                            returned: on success
+                            type: bool
+                            sample: true
+                virtual_instructions_options:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        allowed_values:
+                            description:
+                                - Whether virtualization instructions can be enabled.
+                            returned: on success
+                            type: list
+                            sample: []
+                        is_default_enabled:
+                            description:
+                                - Whether virtualization instructions are enabled by default.
+                            returned: on success
+                            type: bool
+                            sample: true
+                input_output_memory_management_unit_options:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        allowed_values:
+                            description:
+                                - Whether the input-output memory management unit can be enabled.
+                            returned: on success
+                            type: list
+                            sample: []
+                        is_default_enabled:
+                            description:
+                                - Whether the input-output memory management unit is enabled by default.
+                            returned: on success
+                            type: bool
+                            sample: true
+                percentage_of_cores_enabled_options:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        min:
+                            description:
+                                - The minimum allowed percentage of cores enabled.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        max:
+                            description:
+                                - The maximum allowed percentage of cores enabled.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        default_value:
+                            description:
+                                - The default percentage of cores enabled.
+                            returned: on success
+                            type: int
+                            sample: 56
         is_billed_for_stopped_instance:
             description:
                 - Whether billing continues when the instances that use this shape are in the stopped state.
@@ -471,6 +567,27 @@ shapes:
             "numa_nodes_per_socket_platform_options": {
                 "service_allowed_values": [],
                 "default_value": "default_value_example"
+            },
+            "symmetric_multi_threading_options": {
+                "allowed_values": [],
+                "is_default_enabled": true
+            },
+            "access_control_service_options": {
+                "allowed_values": [],
+                "is_default_enabled": true
+            },
+            "virtual_instructions_options": {
+                "allowed_values": [],
+                "is_default_enabled": true
+            },
+            "input_output_memory_management_unit_options": {
+                "allowed_values": [],
+                "is_default_enabled": true
+            },
+            "percentage_of_cores_enabled_options": {
+                "min": 56,
+                "max": 56,
+                "default_value": 56
             }
         },
         "is_billed_for_stopped_instance": true,

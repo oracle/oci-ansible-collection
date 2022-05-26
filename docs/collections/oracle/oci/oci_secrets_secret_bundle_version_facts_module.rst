@@ -30,7 +30,7 @@ oracle.oci.oci_secrets_secret_bundle_version_facts -- Fetches details about one 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.50.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.51.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -242,7 +242,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The field to sort by. You can specify only one sort order. The default order for `VERSION_NUMBER` is ascending.</div>
+                                            <div>The field to sort by. You can specify only one sort order. The default order for `VERSION_NUMBER` is descending.</div>
                                                         </td>
             </tr>
                                 <tr>

@@ -81,6 +81,7 @@ options:
                         415 Unsupported Media Type
                         416 Range Not Satisfiable
                         422 Unprocessable Entity
+                        429 Too Many Requests
                         494 Request Header Too Large
                         495 Cert Error
                         496 No Cert
@@ -426,8 +427,6 @@ options:
                     - Maximum size of inspected HTTP message body in bytes. Actions to take if this limit is exceeded are defined in
                       `bodyInspectionSizeLimitExceededActionName`.
                     - "Body inspection maximum size allowed is defined with per-tenancy limit: 8192 bytes."
-                    - For steps to request a limit increase, see L(Requesting a Service Limit
-                      Increase,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/servicelimits.htm).
                 type: int
             body_inspection_size_limit_exceeded_action_name:
                 description:
@@ -1214,6 +1213,7 @@ web_app_firewall_policy:
                             415 Unsupported Media Type
                             416 Range Not Satisfiable
                             422 Unprocessable Entity
+                            429 Too Many Requests
                             494 Request Header Too Large
                             495 Cert Error
                             496 No Cert
@@ -1573,8 +1573,6 @@ web_app_firewall_policy:
                         - Maximum size of inspected HTTP message body in bytes. Actions to take if this limit is exceeded are defined in
                           `bodyInspectionSizeLimitExceededActionName`.
                         - "Body inspection maximum size allowed is defined with per-tenancy limit: 8192 bytes."
-                        - For steps to request a limit increase, see L(Requesting a Service Limit
-                          Increase,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/servicelimits.htm).
                     returned: on success
                     type: int
                     sample: 56

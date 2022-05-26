@@ -30,7 +30,7 @@ oracle.oci.oci_data_science_job_artifact -- Manage a JobArtifact resource in Ora
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.50.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.51.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -209,7 +209,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>This header allows you to specify a filename during upload. This file name is used to dispose of the file contents while downloading the file. If this optional field is not populated in the request, then the OCID of the model is used for the file name when downloading. Example: `{&quot;Content-Disposition&quot;: &quot;attachment&quot; &quot;filename&quot;=&quot;model.tar.gz&quot; &quot;Content-Length&quot;: &quot;2347&quot; &quot;Content-Type&quot;: &quot;application/gzip&quot;}`</div>
+                                            <div>This header is for specifying a filename during upload. It is used to identify the file type and validate if the file type is supported. Example: `--content-disposition &quot;attachment; filename=hello-world.py&quot;`</div>
                                                         </td>
             </tr>
                                 <tr>

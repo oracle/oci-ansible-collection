@@ -30,7 +30,7 @@ oracle.oci.oci_functions_function -- Manage a Function resource in Oracle Cloud 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.50.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.51.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -390,6 +390,60 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-provisioned_concurrency_config"></div>
+                    <b>provisioned_concurrency_config</b>
+                    <a class="ansibleOptionLink" href="#parameter-provisioned_concurrency_config" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-provisioned_concurrency_config/count"></div>
+                    <b>count</b>
+                    <a class="ansibleOptionLink" href="#parameter-provisioned_concurrency_config/count" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Required when strategy is &#x27;CONSTANT&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-provisioned_concurrency_config/strategy"></div>
+                    <b>strategy</b>
+                    <a class="ansibleOptionLink" href="#parameter-provisioned_concurrency_config/strategy" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>NONE</li>
+                                                                                                                                                                                                <li>CONSTANT</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The strategy for provisioned concurrency to be used.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#parameter-region" title="Permalink to this option"></a>
@@ -563,6 +617,9 @@ Examples
         image_digest: image_digest_example
         config: null
         timeout_in_seconds: 56
+        provisioned_concurrency_config:
+          # required
+          strategy: NONE
         trace_config:
           # optional
           is_enabled: true
@@ -580,6 +637,9 @@ Examples
         memory_in_mbs: 56
         config: null
         timeout_in_seconds: 56
+        provisioned_concurrency_config:
+          # required
+          strategy: NONE
         trace_config:
           # optional
           is_enabled: true
@@ -598,6 +658,9 @@ Examples
         memory_in_mbs: 56
         config: null
         timeout_in_seconds: 56
+        provisioned_concurrency_config:
+          # required
+          strategy: NONE
         trace_config:
           # optional
           is_enabled: true
@@ -652,7 +715,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Function resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;application_id&#x27;: &#x27;ocid1.application.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config&#x27;: {}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;image&#x27;: &#x27;image_example&#x27;, &#x27;image_digest&#x27;: &#x27;image_digest_example&#x27;, &#x27;invoke_endpoint&#x27;: &#x27;invoke_endpoint_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;memory_in_mbs&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;timeout_in_seconds&#x27;: 56, &#x27;trace_config&#x27;: {&#x27;is_enabled&#x27;: True}}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;application_id&#x27;: &#x27;ocid1.application.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config&#x27;: {}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;image&#x27;: &#x27;image_example&#x27;, &#x27;image_digest&#x27;: &#x27;image_digest_example&#x27;, &#x27;invoke_endpoint&#x27;: &#x27;invoke_endpoint_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;memory_in_mbs&#x27;: 56, &#x27;provisioned_concurrency_config&#x27;: {&#x27;count&#x27;: 56, &#x27;strategy&#x27;: &#x27;CONSTANT&#x27;}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;timeout_in_seconds&#x27;: 56, &#x27;trace_config&#x27;: {&#x27;is_enabled&#x27;: True}}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -873,6 +936,61 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-function/provisioned_concurrency_config"></div>
+                    <b>provisioned_concurrency_config</b>
+                    <a class="ansibleOptionLink" href="#return-function/provisioned_concurrency_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-function/provisioned_concurrency_config/count"></div>
+                    <b>count</b>
+                    <a class="ansibleOptionLink" href="#return-function/provisioned_concurrency_config/count" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-function/provisioned_concurrency_config/strategy"></div>
+                    <b>strategy</b>
+                    <a class="ansibleOptionLink" href="#return-function/provisioned_concurrency_config/strategy" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The strategy for provisioned concurrency to be used.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CONSTANT</div>
+                                    </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">

@@ -30,7 +30,7 @@ oracle.oci.oci_waf_web_app_firewall_policy_facts -- Fetches details about one or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.50.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.51.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -504,7 +504,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>* 3xx</div>
                                             <div>300 Multiple Choices 301 Moved Permanently 302 Found 303 See Other 307 Temporary Redirect</div>
                                             <div>* 4xx</div>
-                                            <div>400 Bad Request 401 Unauthorized 403 Forbidden 404 Not Found 405 Method Not Allowed 408 Request Timeout 409 Conflict 411 Length Required 412 Precondition Failed 413 Payload Too Large 414 URI Too Long 415 Unsupported Media Type 416 Range Not Satisfiable 422 Unprocessable Entity 494 Request Header Too Large 495 Cert Error 496 No Cert 497 HTTP to HTTPS</div>
+                                            <div>400 Bad Request 401 Unauthorized 403 Forbidden 404 Not Found 405 Method Not Allowed 408 Request Timeout 409 Conflict 411 Length Required 412 Precondition Failed 413 Payload Too Large 414 URI Too Long 415 Unsupported Media Type 416 Range Not Satisfiable 422 Unprocessable Entity 429 Too Many Requests 494 Request Header Too Large 495 Cert Error 496 No Cert 497 HTTP to HTTPS</div>
                                             <div>* 5xx</div>
                                             <div>500 Internal Server Error 501 Not Implemented 502 Bad Gateway 503 Service Unavailable 504 Gateway Timeout 507 Insufficient Storage</div>
                                             <div>Example: `200`</div>
@@ -951,7 +951,6 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Maximum size of inspected HTTP message body in bytes. Actions to take if this limit is exceeded are defined in `bodyInspectionSizeLimitExceededActionName`.</div>
                                             <div>Body inspection maximum size allowed is defined with per-tenancy limit: 8192 bytes.</div>
-                                            <div>For steps to request a limit increase, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/servicelimits.htm'>Requesting a Service Limit Increase</a>.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>

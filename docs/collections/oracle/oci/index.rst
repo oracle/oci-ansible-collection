@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 2.50.0
+Collection version 2.51.0
 
 .. toctree::
     :maxdepth: 1
@@ -24,6 +24,13 @@ Inventory Plugins
 Modules
 ~~~~~~~
 
+* :ref:`oci_adm_application_dependency_vulnerability_facts <ansible_collections.oracle.oci.oci_adm_application_dependency_vulnerability_facts_module>` -- Fetches details about one or multiple ApplicationDependencyVulnerability resources in Oracle Cloud Infrastructure
+* :ref:`oci_adm_knowledge_base <ansible_collections.oracle.oci.oci_adm_knowledge_base_module>` -- Manage a KnowledgeBase resource in Oracle Cloud Infrastructure
+* :ref:`oci_adm_knowledge_base_actions <ansible_collections.oracle.oci.oci_adm_knowledge_base_actions_module>` -- Perform actions on a KnowledgeBase resource in Oracle Cloud Infrastructure
+* :ref:`oci_adm_knowledge_base_facts <ansible_collections.oracle.oci.oci_adm_knowledge_base_facts_module>` -- Fetches details about one or multiple KnowledgeBase resources in Oracle Cloud Infrastructure
+* :ref:`oci_adm_vulnerability_audit <ansible_collections.oracle.oci.oci_adm_vulnerability_audit_module>` -- Manage a VulnerabilityAudit resource in Oracle Cloud Infrastructure
+* :ref:`oci_adm_vulnerability_audit_actions <ansible_collections.oracle.oci.oci_adm_vulnerability_audit_actions_module>` -- Perform actions on a VulnerabilityAudit resource in Oracle Cloud Infrastructure
+* :ref:`oci_adm_vulnerability_audit_facts <ansible_collections.oracle.oci.oci_adm_vulnerability_audit_facts_module>` -- Fetches details about one or multiple VulnerabilityAudit resources in Oracle Cloud Infrastructure
 * :ref:`oci_ai_anomaly_detection_ai_private_endpoint <ansible_collections.oracle.oci.oci_ai_anomaly_detection_ai_private_endpoint_module>` -- Manage an AiPrivateEndpoint resource in Oracle Cloud Infrastructure
 * :ref:`oci_ai_anomaly_detection_ai_private_endpoint_actions <ansible_collections.oracle.oci.oci_ai_anomaly_detection_ai_private_endpoint_actions_module>` -- Perform actions on an AiPrivateEndpoint resource in Oracle Cloud Infrastructure
 * :ref:`oci_ai_anomaly_detection_ai_private_endpoint_facts <ansible_collections.oracle.oci.oci_ai_anomaly_detection_ai_private_endpoint_facts_module>` -- Fetches details about one or multiple AiPrivateEndpoint resources in Oracle Cloud Infrastructure
@@ -424,6 +431,7 @@ Modules
 * :ref:`oci_database_autonomous_database_actions <ansible_collections.oracle.oci.oci_database_autonomous_database_actions_module>` -- Perform actions on an AutonomousDatabase resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_autonomous_database_backup <ansible_collections.oracle.oci.oci_database_autonomous_database_backup_module>` -- Manage an AutonomousDatabaseBackup resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_autonomous_database_backup_facts <ansible_collections.oracle.oci.oci_database_autonomous_database_backup_facts_module>` -- Fetches details about one or multiple AutonomousDatabaseBackup resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_autonomous_database_character_sets_facts <ansible_collections.oracle.oci.oci_database_autonomous_database_character_sets_facts_module>` -- Fetches details about one or multiple AutonomousDatabaseCharacterSets resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_autonomous_database_clones_facts <ansible_collections.oracle.oci.oci_database_autonomous_database_clones_facts_module>` -- Fetches details about one or multiple AutonomousDatabaseClones resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_autonomous_database_dataguard_association_facts <ansible_collections.oracle.oci.oci_database_autonomous_database_dataguard_association_facts_module>` -- Fetches details about one or multiple AutonomousDatabaseDataguardAssociation resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_autonomous_database_facts <ansible_collections.oracle.oci.oci_database_autonomous_database_facts_module>` -- Fetches details about one or multiple AutonomousDatabase resources in Oracle Cloud Infrastructure
@@ -480,6 +488,7 @@ Modules
 * :ref:`oci_database_db_system_patch_facts <ansible_collections.oracle.oci.oci_database_db_system_patch_facts_module>` -- Fetches details about one or multiple DbSystemPatch resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_db_system_patch_history_entry_facts <ansible_collections.oracle.oci.oci_database_db_system_patch_history_entry_facts_module>` -- Fetches details about one or multiple DbSystemPatchHistoryEntry resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_db_system_shape_facts <ansible_collections.oracle.oci.oci_database_db_system_shape_facts_module>` -- Fetches details about one or multiple DbSystemShape resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_db_system_upgrade_history_entry_facts <ansible_collections.oracle.oci.oci_database_db_system_upgrade_history_entry_facts_module>` -- Fetches details about one or multiple DbSystemUpgradeHistoryEntry resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_db_version_facts <ansible_collections.oracle.oci.oci_database_db_version_facts_module>` -- Fetches details about one or multiple DbVersion resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_exadata_infrastructure <ansible_collections.oracle.oci.oci_database_exadata_infrastructure_module>` -- Manage an ExadataInfrastructure resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_exadata_infrastructure_actions <ansible_collections.oracle.oci.oci_database_exadata_infrastructure_actions_module>` -- Perform actions on an ExadataInfrastructure resource in Oracle Cloud Infrastructure
@@ -1446,6 +1455,13 @@ Modules
     :hidden:
 
     oci_inventory
+    oci_adm_application_dependency_vulnerability_facts_module
+    oci_adm_knowledge_base_module
+    oci_adm_knowledge_base_actions_module
+    oci_adm_knowledge_base_facts_module
+    oci_adm_vulnerability_audit_module
+    oci_adm_vulnerability_audit_actions_module
+    oci_adm_vulnerability_audit_facts_module
     oci_ai_anomaly_detection_ai_private_endpoint_module
     oci_ai_anomaly_detection_ai_private_endpoint_actions_module
     oci_ai_anomaly_detection_ai_private_endpoint_facts_module
@@ -1846,6 +1862,7 @@ Modules
     oci_database_autonomous_database_actions_module
     oci_database_autonomous_database_backup_module
     oci_database_autonomous_database_backup_facts_module
+    oci_database_autonomous_database_character_sets_facts_module
     oci_database_autonomous_database_clones_facts_module
     oci_database_autonomous_database_dataguard_association_facts_module
     oci_database_autonomous_database_facts_module
@@ -1902,6 +1919,7 @@ Modules
     oci_database_db_system_patch_facts_module
     oci_database_db_system_patch_history_entry_facts_module
     oci_database_db_system_shape_facts_module
+    oci_database_db_system_upgrade_history_entry_facts_module
     oci_database_db_version_facts_module
     oci_database_exadata_infrastructure_module
     oci_database_exadata_infrastructure_actions_module

@@ -30,7 +30,7 @@ oracle.oci.oci_apm_synthetics_monitor_result_facts -- Fetches details about a Mo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.50.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.51.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -269,7 +269,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The result content type zip or raw.</div>
+                                            <div>The result content type: zip or raw.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -284,7 +284,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The result type har, screenshot, log or network.</div>
+                                            <div>The result type: har, screenshot, log, or network.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -567,7 +567,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name of the vantage point.</div>
+                                            <div>The name of the public or dedicated vantage point.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">vantage_point_example</div>

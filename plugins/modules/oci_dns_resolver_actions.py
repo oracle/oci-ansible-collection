@@ -24,7 +24,8 @@ short_description: Perform actions on a Resolver resource in Oracle Cloud Infras
 description:
     - Perform actions on a Resolver resource in Oracle Cloud Infrastructure
     - For I(action=change_compartment), moves a resolver into a different compartment along with its protected default view and any endpoints.
-      Zones in the default view are not moved. Requires a `PRIVATE` scope query parameter.
+      Zones in the default view are not moved. VCN-dedicated resolvers are initially created in the same compartment
+      as their corresponding VCN, but can then be moved to a different compartment.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:

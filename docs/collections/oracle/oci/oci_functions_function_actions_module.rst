@@ -30,7 +30,7 @@ oracle.oci.oci_functions_function_actions -- Perform actions on a Function resou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.50.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.51.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -265,7 +265,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Indicates whether the functions platform should execute the request directly and return the result (&#x27;sync&#x27;) or whether the platform should enqueue the request for later processing and acknowledge that it has been processed (&#x27;detached&#x27;).</div>
+                                            <div>Indicates whether Oracle Functions should execute the request and return the result (&#x27;sync&#x27;) of the execution, or whether Oracle Functions should return as soon as processing has begun (&#x27;detached&#x27;) and leave result handling to the function.</div>
                                                         </td>
             </tr>
                                 <tr>

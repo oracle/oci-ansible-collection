@@ -23,10 +23,12 @@ module: oci_dns_zone_actions
 short_description: Perform actions on a Zone resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a Zone resource in Oracle Cloud Infrastructure
-    - "For I(action=change_compartment), moves a zone into a different compartment. Protected zones cannot have their compartment changed. For private
-      zones, the scope query parameter is required with a value of `PRIVATE`. When the zone name is provided as a
-      path parameter and `PRIVATE` is used for the scope query parameter then the viewId query parameter is required.
-      **Note:** All SteeringPolicyAttachment objects associated with this zone will also be moved into the provided compartment."
+    - "For I(action=change_compartment), moves a zone into a different compartment.
+      Protected zones cannot have their compartment changed. When the zone name is provided as a path
+      parameter and `PRIVATE` is used for the scope query parameter then the viewId query parameter is
+      required.
+      **Note:** All SteeringPolicyAttachment objects associated with this zone will also be moved into
+      the provided compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:

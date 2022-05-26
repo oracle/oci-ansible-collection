@@ -30,7 +30,7 @@ oracle.oci.oci_database_external_container_database_actions -- Perform actions o
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.50.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.51.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -59,7 +59,9 @@ Synopsis
 - Perform actions on an ExternalContainerDatabase resource in Oracle Cloud Infrastructure
 - For *action=change_compartment*, move the `external container database <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/datatypes/CreateExternalContainerDatabaseDetails>`_ and its dependent resources to the specified compartment. For more information about moving external container databases, see `Moving Database Resources to a Different Compartment <https://docs.cloud.oracle.com/Content/Database/Concepts/databaseoverview.htm#moveRes>`_.
 - For *action=disable_external_container_database_database_management*, disable Database Management service for the external container database.
+- For *action=disable_external_container_database_stack_monitoring*, disable Stack Monitoring for the external container database.
 - For *action=enable_external_container_database_database_management*, enables Database Management Service for the external container database. For more information about the Database Management Service, see `Database Management Service <https://docs.cloud.oracle.com/Content/ExternalDatabase/Concepts/databasemanagementservice.htm>`_.
+- For *action=enable_external_container_database_stack_monitoring*, enable Stack Monitoring for the external container database.
 - For *action=scan_external_container_database_pluggable_databases*, scans for pluggable databases in the specified external container database. This operation will return un-registered pluggable databases in the `GetWorkRequest <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/workrequests/20160918/WorkRequest/GetWorkRequest>`_ operation.
 
 
@@ -102,7 +104,9 @@ Parameters
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>change_compartment</li>
                                                                                                                                                                                                 <li>disable_external_container_database_database_management</li>
+                                                                                                                                                                                                <li>disable_external_container_database_stack_monitoring</li>
                                                                                                                                                                                                 <li>enable_external_container_database_database_management</li>
+                                                                                                                                                                                                <li>enable_external_container_database_stack_monitoring</li>
                                                                                                                                                                                                 <li>scan_external_container_database_pluggable_databases</li>
                                                                                     </ul>
                                                                             </td>
@@ -266,7 +270,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/latest/datatypes/CreateExternalDatabaseConnectorDetails'>external database connector</a>.</div>
-                                            <div>Required for <em>action=enable_external_container_database_database_management</em>, <em>action=scan_external_container_database_pluggable_databases</em>.</div>
+                                            <div>Required for <em>action=enable_external_container_database_database_management</em>, <em>action=enable_external_container_database_stack_monitoring</em>, <em>action=scan_external_container_database_pluggable_databases</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -391,6 +395,12 @@ Examples
         external_container_database_id: "ocid1.externalcontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         action: disable_external_container_database_database_management
 
+    - name: Perform action disable_external_container_database_stack_monitoring on external_container_database
+      oci_database_external_container_database_actions:
+        # required
+        external_container_database_id: "ocid1.externalcontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+        action: disable_external_container_database_stack_monitoring
+
     - name: Perform action enable_external_container_database_database_management on external_container_database
       oci_database_external_container_database_actions:
         # required
@@ -398,6 +408,13 @@ Examples
         external_container_database_id: "ocid1.externalcontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
         external_database_connector_id: "ocid1.externaldatabaseconnector.oc1..xxxxxxEXAMPLExxxxxx"
         action: enable_external_container_database_database_management
+
+    - name: Perform action enable_external_container_database_stack_monitoring on external_container_database
+      oci_database_external_container_database_actions:
+        # required
+        external_container_database_id: "ocid1.externalcontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+        external_database_connector_id: "ocid1.externaldatabaseconnector.oc1..xxxxxxEXAMPLExxxxxx"
+        action: enable_external_container_database_stack_monitoring
 
     - name: Perform action scan_external_container_database_pluggable_databases on external_container_database
       oci_database_external_container_database_actions:
@@ -441,7 +458,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the ExternalContainerDatabase resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;character_set&#x27;: &#x27;character_set_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_configuration&#x27;: &#x27;RAC&#x27;, &#x27;database_edition&#x27;: &#x27;STANDARD_EDITION&#x27;, &#x27;database_management_config&#x27;: {&#x27;database_management_connection_id&#x27;: &#x27;ocid1.databasemanagementconnection.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_management_status&#x27;: &#x27;ENABLING&#x27;, &#x27;license_model&#x27;: &#x27;LICENSE_INCLUDED&#x27;}, &#x27;database_version&#x27;: &#x27;database_version_example&#x27;, &#x27;db_id&#x27;: &#x27;ocid1.db.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_packs&#x27;: &#x27;db_packs_example&#x27;, &#x27;db_unique_name&#x27;: &#x27;db_unique_name_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;ncharacter_set&#x27;: &#x27;ncharacter_set_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_zone&#x27;: &#x27;time_zone_example&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;character_set&#x27;: &#x27;character_set_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_configuration&#x27;: &#x27;RAC&#x27;, &#x27;database_edition&#x27;: &#x27;STANDARD_EDITION&#x27;, &#x27;database_management_config&#x27;: {&#x27;database_management_connection_id&#x27;: &#x27;ocid1.databasemanagementconnection.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_management_status&#x27;: &#x27;ENABLING&#x27;, &#x27;license_model&#x27;: &#x27;LICENSE_INCLUDED&#x27;}, &#x27;database_version&#x27;: &#x27;database_version_example&#x27;, &#x27;db_id&#x27;: &#x27;ocid1.db.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_packs&#x27;: &#x27;db_packs_example&#x27;, &#x27;db_unique_name&#x27;: &#x27;db_unique_name_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;ncharacter_set&#x27;: &#x27;ncharacter_set_example&#x27;, &#x27;stack_monitoring_config&#x27;: {&#x27;stack_monitoring_connector_id&#x27;: &#x27;ocid1.stackmonitoringconnector.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;stack_monitoring_status&#x27;: &#x27;ENABLING&#x27;}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_zone&#x27;: &#x27;time_zone_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -789,6 +806,61 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ncharacter_set_example</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-external_container_database/stack_monitoring_config"></div>
+                    <b>stack_monitoring_config</b>
+                    <a class="ansibleOptionLink" href="#return-external_container_database/stack_monitoring_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-external_container_database/stack_monitoring_config/stack_monitoring_connector_id"></div>
+                    <b>stack_monitoring_connector_id</b>
+                    <a class="ansibleOptionLink" href="#return-external_container_database/stack_monitoring_config/stack_monitoring_connector_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/datatypes/CreateExternalDatabaseConnectorDetails'>external database connector</a>.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.stackmonitoringconnector.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-external_container_database/stack_monitoring_config/stack_monitoring_status"></div>
+                    <b>stack_monitoring_status</b>
+                    <a class="ansibleOptionLink" href="#return-external_container_database/stack_monitoring_config/stack_monitoring_status" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The status of Stack Monitoring.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ENABLING</div>
+                                    </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">

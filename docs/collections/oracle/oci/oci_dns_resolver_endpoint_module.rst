@@ -30,7 +30,7 @@ oracle.oci.oci_dns_resolver_endpoint -- Manage a ResolverEndpoint resource in Or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.50.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.51.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a ResolverEndpoint resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a new resolver endpoint. Requires a `PRIVATE` scope query parameter.
+- For *state=present*, creates a new resolver endpoint in the same compartment as the resolver.
 
 
 .. Aliases

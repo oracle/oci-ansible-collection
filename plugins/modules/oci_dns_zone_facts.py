@@ -23,8 +23,9 @@ module: oci_dns_zone_facts
 short_description: Fetches details about one or multiple Zone resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple Zone resources in Oracle Cloud Infrastructure
-    - Gets a list of all zones in the specified compartment. The collection can be filtered by name, time created,
-      scope, associated view, and zone type. Filtering by view is only supported for private zones.
+    - Gets a list of all zones in the specified compartment.
+    - The collection can be filtered by name, time created, scope, associated view, and zone type.
+      Filtering by view is only supported for private zones.
     - If I(zone_name_or_id) is specified, the details of a single Zone will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)
@@ -44,7 +45,8 @@ options:
         type: str
     compartment_id:
         description:
-            - The OCID of the compartment the resource belongs to.
+            - The OCID of the compartment the zone belongs to.
+            - This parameter is deprecated and should be omitted.
             - Required to list multiple zones.
         type: str
     name:

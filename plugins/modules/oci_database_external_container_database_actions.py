@@ -29,9 +29,11 @@ description:
       For more information about moving external container databases, see
       L(Moving Database Resources to a Different Compartment,https://docs.cloud.oracle.com/Content/Database/Concepts/databaseoverview.htm#moveRes).
     - For I(action=disable_external_container_database_database_management), disable Database Management service for the external container database.
+    - For I(action=disable_external_container_database_stack_monitoring), disable Stack Monitoring for the external container database.
     - For I(action=enable_external_container_database_database_management), enables Database Management Service for the external container database.
       For more information about the Database Management Service, see
       L(Database Management Service,https://docs.cloud.oracle.com/Content/ExternalDatabase/Concepts/databasemanagementservice.htm).
+    - For I(action=enable_external_container_database_stack_monitoring), enable Stack Monitoring for the external container database.
     - For I(action=scan_external_container_database_pluggable_databases), scans for pluggable databases in the specified external container database.
       This operation will return un-registered pluggable databases in the L(GetWorkRequest,https://docs.cloud.oracle.com/en-
       us/iaas/api/#/en/workrequests/20160918/WorkRequest/GetWorkRequest) operation.
@@ -61,7 +63,8 @@ options:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the
               L(external database connector,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/latest/datatypes/CreateExternalDatabaseConnectorDetails).
-            - Required for I(action=enable_external_container_database_database_management), I(action=scan_external_container_database_pluggable_databases).
+            - Required for I(action=enable_external_container_database_database_management), I(action=enable_external_container_database_stack_monitoring),
+              I(action=scan_external_container_database_pluggable_databases).
         type: str
     action:
         description:
@@ -71,7 +74,9 @@ options:
         choices:
             - "change_compartment"
             - "disable_external_container_database_database_management"
+            - "disable_external_container_database_stack_monitoring"
             - "enable_external_container_database_database_management"
+            - "enable_external_container_database_stack_monitoring"
             - "scan_external_container_database_pluggable_databases"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
@@ -90,6 +95,12 @@ EXAMPLES = """
     external_container_database_id: "ocid1.externalcontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     action: disable_external_container_database_database_management
 
+- name: Perform action disable_external_container_database_stack_monitoring on external_container_database
+  oci_database_external_container_database_actions:
+    # required
+    external_container_database_id: "ocid1.externalcontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    action: disable_external_container_database_stack_monitoring
+
 - name: Perform action enable_external_container_database_database_management on external_container_database
   oci_database_external_container_database_actions:
     # required
@@ -97,6 +108,13 @@ EXAMPLES = """
     external_container_database_id: "ocid1.externalcontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
     external_database_connector_id: "ocid1.externaldatabaseconnector.oc1..xxxxxxEXAMPLExxxxxx"
     action: enable_external_container_database_database_management
+
+- name: Perform action enable_external_container_database_stack_monitoring on external_container_database
+  oci_database_external_container_database_actions:
+    # required
+    external_container_database_id: "ocid1.externalcontainerdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    external_database_connector_id: "ocid1.externaldatabaseconnector.oc1..xxxxxxEXAMPLExxxxxx"
+    action: enable_external_container_database_stack_monitoring
 
 - name: Perform action scan_external_container_database_pluggable_databases on external_container_database
   oci_database_external_container_database_actions:
@@ -248,6 +266,26 @@ external_container_database:
                     returned: on success
                     type: str
                     sample: LICENSE_INCLUDED
+        stack_monitoring_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                stack_monitoring_status:
+                    description:
+                        - The status of Stack Monitoring.
+                    returned: on success
+                    type: str
+                    sample: ENABLING
+                stack_monitoring_connector_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the
+                          L(external database connector,https://docs.cloud.oracle.com/en-
+                          us/iaas/api/#/en/database/latest/datatypes/CreateExternalDatabaseConnectorDetails).
+                    returned: on success
+                    type: str
+                    sample: "ocid1.stackmonitoringconnector.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "freeform_tags": {'Department': 'Finance'},
@@ -270,6 +308,10 @@ external_container_database:
             "database_management_status": "ENABLING",
             "database_management_connection_id": "ocid1.databasemanagementconnection.oc1..xxxxxxEXAMPLExxxxxx",
             "license_model": "LICENSE_INCLUDED"
+        },
+        "stack_monitoring_config": {
+            "stack_monitoring_status": "ENABLING",
+            "stack_monitoring_connector_id": "ocid1.stackmonitoringconnector.oc1..xxxxxxEXAMPLExxxxxx"
         }
     }
 """
@@ -291,6 +333,9 @@ try:
     from oci.database.models import (
         EnableExternalContainerDatabaseDatabaseManagementDetails,
     )
+    from oci.database.models import (
+        EnableExternalContainerDatabaseStackMonitoringDetails,
+    )
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -302,7 +347,9 @@ class ExternalContainerDatabaseActionsHelperGen(OCIActionsHelperBase):
     Supported actions:
         change_compartment
         disable_external_container_database_database_management
+        disable_external_container_database_stack_monitoring
         enable_external_container_database_database_management
+        enable_external_container_database_stack_monitoring
         scan_external_container_database_pluggable_databases
     """
 
@@ -372,6 +419,25 @@ class ExternalContainerDatabaseActionsHelperGen(OCIActionsHelperBase):
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
+    def disable_external_container_database_stack_monitoring(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.disable_external_container_database_stack_monitoring,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                external_container_database_id=self.module.params.get(
+                    "external_container_database_id"
+                ),
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
     def enable_external_container_database_database_management(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, EnableExternalContainerDatabaseDatabaseManagementDetails
@@ -384,6 +450,29 @@ class ExternalContainerDatabaseActionsHelperGen(OCIActionsHelperBase):
                     "external_container_database_id"
                 ),
                 enable_external_container_database_database_management_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def enable_external_container_database_stack_monitoring(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, EnableExternalContainerDatabaseStackMonitoringDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.enable_external_container_database_stack_monitoring,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                external_container_database_id=self.module.params.get(
+                    "external_container_database_id"
+                ),
+                enable_external_container_database_stack_monitoring_details=action_details,
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -450,7 +539,9 @@ def main():
                 choices=[
                     "change_compartment",
                     "disable_external_container_database_database_management",
+                    "disable_external_container_database_stack_monitoring",
                     "enable_external_container_database_database_management",
+                    "enable_external_container_database_stack_monitoring",
                     "scan_external_container_database_pluggable_databases",
                 ],
             ),

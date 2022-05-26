@@ -47,8 +47,8 @@ options:
         aliases: ["name"]
     vantage_points:
         description:
-            - A list of vantage points from which to execute the monitor.
-              Use /publicVantagePoints to fetch public vantage points.
+            - A list of public and dedicated vantage points from which to execute the monitor.
+              Use /publicVantagePoints to fetch public vantage points, and /dedicatedVantagePoints to fetch dedicated vantage points.
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: list
@@ -71,7 +71,7 @@ options:
     repeat_interval_in_seconds:
         description:
             - Interval in seconds after the start time when the job should be repeated.
-              Minimum repeatIntervalInSeconds should be 300 seconds.
+              Minimum repeatIntervalInSeconds should be 300 seconds for Scripted REST, Scripted Browser and Browser monitors, and 60 seconds for REST monitor.
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: int
@@ -83,8 +83,8 @@ options:
     timeout_in_seconds:
         description:
             - Timeout in seconds. Timeout cannot be more than 30% of repeatIntervalInSeconds time for monitors.
-              Also, timeoutInSeconds should be a multiple of 60. Monitor will be allowed to run only for timeoutInSeconds time. It would be terminated after
-              that.
+              Also, timeoutInSeconds should be a multiple of 60 for Scripted REST, Scripted Browser and Browser monitors.
+              Monitor will be allowed to run only for timeoutInSeconds time. It would be terminated after that.
             - This parameter is updatable.
         type: int
     target:
@@ -283,7 +283,7 @@ options:
                 type: bool
             verify_texts:
                 description:
-                    - Verify all the search strings present in response.
+                    - Verifies all the search strings present in the response.
                       If any search string is not present in the response, then it will be considered as a failure.
                     - Applicable when config_type is 'BROWSER_CONFIG'
                 type: list
@@ -514,7 +514,7 @@ monitor:
             sample: SCRIPTED_BROWSER
         vantage_points:
             description:
-                - List of vantage points from where monitor is running.
+                - List of public and dedicated vantage points where the monitor is running.
             returned: on success
             type: complex
             contains:
@@ -558,7 +558,8 @@ monitor:
         repeat_interval_in_seconds:
             description:
                 - Interval in seconds after the start time when the job should be repeated.
-                  Minimum repeatIntervalInSeconds should be 300 seconds.
+                  Minimum repeatIntervalInSeconds should be 300 seconds for Scripted REST, Scripted Browser and Browser monitors, and 60 seconds for REST
+                  monitor.
             returned: on success
             type: int
             sample: 56
@@ -571,8 +572,8 @@ monitor:
         timeout_in_seconds:
             description:
                 - Timeout in seconds. Timeout cannot be more than 30% of repeatIntervalInSeconds time for monitors.
-                  Also, timeoutInSeconds should be a multiple of 60. Monitor will be allowed to run only for timeoutInSeconds time. It would be terminated after
-                  that.
+                  Also, timeoutInSeconds should be a multiple of 60 for Scripted REST, Scripted Browser and Browser monitors.
+                  Monitor will be allowed to run only for timeoutInSeconds time. It would be terminated after that.
             returned: on success
             type: int
             sample: 56
@@ -632,7 +633,7 @@ monitor:
             contains:
                 verify_texts:
                     description:
-                        - Verify all the search strings present in response.
+                        - Verifies all the search strings present in the response.
                           If any search string is not present in the response, then it will be considered as a failure.
                     returned: on success
                     type: complex

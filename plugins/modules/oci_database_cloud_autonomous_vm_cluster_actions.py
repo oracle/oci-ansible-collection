@@ -122,11 +122,11 @@ cloud_autonomous_vm_cluster:
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids:
             description:
-                - "A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this
-                  resource belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about
-                  NSGs, see L(Security Rules,https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
+                - "The list of L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) for the network security groups (NSGs) to which
+                  this resource belongs. Setting this to an empty list removes all resources from all NSGs. For more information about NSGs, see L(Security
+                  Rules,https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
                   **NsgIds restrictions:**
-                  - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds array cannot be empty."
+                  - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds list cannot be empty."
             returned: on success
             type: list
             sample: []
@@ -266,6 +266,54 @@ cloud_autonomous_vm_cluster:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        available_cpus:
+            description:
+                - CPU cores available for allocation to Autonomous Databases.
+            returned: on success
+            type: float
+            sample: 3.4
+        reclaimable_cpus:
+            description:
+                - CPU cores that are not released to available pool after an Autonomous Database is terminated (Requires Autonomous Container Database restart).
+            returned: on success
+            type: float
+            sample: 3.4
+        available_container_databases:
+            description:
+                - The number of Autonomous Container Databases that can be created with the currently available local storage.
+            returned: on success
+            type: int
+            sample: 56
+        total_container_databases:
+            description:
+                - The total number of Autonomous Container Databases that can be created with the allocated local storage.
+            returned: on success
+            type: int
+            sample: 56
+        available_autonomous_data_storage_size_in_tbs:
+            description:
+                - The data disk group size available for Autonomous Databases, in TBs.
+            returned: on success
+            type: float
+            sample: 1.2
+        autonomous_data_storage_size_in_tbs:
+            description:
+                - The data disk group size allocated for Autonomous Databases, in TBs.
+            returned: on success
+            type: float
+            sample: 1.2
+        db_node_storage_size_in_gbs:
+            description:
+                - The local node storage allocated in GBs.
+            returned: on success
+            type: int
+            sample: 56
+        memory_per_oracle_compute_unit_in_gbs:
+            description:
+                - The amount of memory (in GBs) enabled per each OCPU core.
+            returned: on success
+            type: int
+            sample: 56
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -293,7 +341,15 @@ cloud_autonomous_vm_cluster:
         "last_maintenance_run_id": "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
         "next_maintenance_run_id": "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}}
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "available_cpus": 3.4,
+        "reclaimable_cpus": 3.4,
+        "available_container_databases": 56,
+        "total_container_databases": 56,
+        "available_autonomous_data_storage_size_in_tbs": 1.2,
+        "autonomous_data_storage_size_in_tbs": 1.2,
+        "db_node_storage_size_in_gbs": 56,
+        "memory_per_oracle_compute_unit_in_gbs": 56
     }
 """
 

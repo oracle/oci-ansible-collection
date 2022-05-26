@@ -4,6 +4,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.51.0]
+
+## Added
+
+ - Support for the Application Dependency Management service
+ - Support for platform configuration options on some bare metal shapes in the Compute service
+ - Support for shielded instances for BM.Standard.E4.128 and BM.Standard3.64 shapes in the Compute service
+ - Support for E4 dense VMs on launch and update instance operations in the Compute service
+ - Support for reboot migration on DenseIO shapes in the Compute service
+ - Support for stack monitoring on external databases in the Database service
+ - Support for upgrading VM database systems in place in the Database service
+ - Support for an increased database name maximum length, from 14 to 30 characters, in the Database service
+ - Support for getting usage information for autonomous databases and Cloud at Customer autonomous databases in the Database service
+ - Support for the "standby" lifecycle state on autonomous databases in the Database service
+ - Support for character set selection on autonomous dedicated databases in the Database service
+ - Support for listing autonomous dedicated database supported character sets in the Database service
+ - Support for improvements for cross-region ADGs in the Database service
+ - Support for TCPS on external containers as well as non-container and pluggable databases in the Database service
+ - Support for provisioned concurrency in the Functions service
+
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.69.0
+
 ## [2.50.0]
 
 # 

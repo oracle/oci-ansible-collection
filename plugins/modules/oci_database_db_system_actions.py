@@ -23,12 +23,13 @@ module: oci_database_db_system_actions
 short_description: Perform actions on a DbSystem resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a DbSystem resource in Oracle Cloud Infrastructure
-    - For I(action=change_compartment), moves the DB system and its dependent resources to the specified compartment.
+    - Moves the DB system and its dependent resources to the specified compartment.
       For more information about moving DB systems, see
       L(Moving Database Resources to a Different Compartment,https://docs.cloud.oracle.com/Content/Database/Concepts/databaseoverview.htm#moveRes).
-    - For I(action=migrate_exadata_db_system_resource_model), migrates the Exadata DB system to the new L(Exadata resource
+    - Migrates the Exadata DB system to the new L(Exadata resource
       model,https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/exaflexsystem.htm#exaflexsystem_topic-resource_model).
       All related resources will be migrated.
+    - Upgrades the operating system and grid infrastructure of the DB system.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -51,6 +52,26 @@ options:
         choices:
             - "change_compartment"
             - "migrate_exadata_db_system_resource_model"
+            - "precheck"
+            - "rollback"
+            - "update_snapshot_retention_days"
+            - "upgrade"
+    snapshot_retention_period_in_days:
+        description:
+            - The retention period, in days, for the snapshot that allows you to perform a rollback of the upgrade operation. After this number of days passes,
+              you cannot roll back the upgrade.
+            - Applicable only for I(action=upgrade).
+        type: int
+    new_gi_version:
+        description:
+            - A valid Oracle Grid Infrastructure (GI) software version.
+            - Applicable only for I(action=upgrade).
+        type: str
+    is_snapshot_retention_days_force_updated:
+        description:
+            - If true, rollback time is updated even if operating system upgrade history contains errors.
+            - Applicable only for I(action=upgrade).
+        type: bool
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
@@ -67,6 +88,50 @@ EXAMPLES = """
     # required
     db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
     action: migrate_exadata_db_system_resource_model
+
+- name: Perform action precheck on db_system
+  oci_database_db_system_actions:
+    # required
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+    action: PRECHECK
+
+    # optional
+    snapshot_retention_period_in_days: 56
+    new_gi_version: new_gi_version_example
+    is_snapshot_retention_days_force_updated: true
+
+- name: Perform action rollback on db_system
+  oci_database_db_system_actions:
+    # required
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+    action: PRECHECK
+
+    # optional
+    snapshot_retention_period_in_days: 56
+    new_gi_version: new_gi_version_example
+    is_snapshot_retention_days_force_updated: true
+
+- name: Perform action update_snapshot_retention_days on db_system
+  oci_database_db_system_actions:
+    # required
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+    action: PRECHECK
+
+    # optional
+    snapshot_retention_period_in_days: 56
+    new_gi_version: new_gi_version_example
+    is_snapshot_retention_days_force_updated: true
+
+- name: Perform action upgrade on db_system
+  oci_database_db_system_actions:
+    # required
+    db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+    action: PRECHECK
+
+    # optional
+    snapshot_retention_period_in_days: 56
+    new_gi_version: new_gi_version_example
+    is_snapshot_retention_days_force_updated: true
 
 """
 
@@ -180,11 +245,11 @@ db_system:
             sample: "ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids:
             description:
-                - "A list of the L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network security groups (NSGs) that this
-                  resource belongs to. Setting this to an empty array after the list is created removes the resource from all NSGs. For more information about
-                  NSGs, see L(Security Rules,https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
+                - "The list of L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) for the network security groups (NSGs) to which
+                  this resource belongs. Setting this to an empty list removes all resources from all NSGs. For more information about NSGs, see L(Security
+                  Rules,https://docs.cloud.oracle.com/Content/Network/Concepts/securityrules.htm).
                   **NsgIds restrictions:**
-                  - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds array cannot be empty."
+                  - Autonomous Databases with private access require at least 1 Network Security Group (NSG). The nsgIds list cannot be empty."
             returned: on success
             type: list
             sample: []
@@ -603,6 +668,7 @@ try:
     from oci.work_requests import WorkRequestClient
     from oci.database import DatabaseClient
     from oci.database.models import ChangeCompartmentDetails
+    from oci.database.models import UpgradeDbSystemDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -614,6 +680,7 @@ class DbSystemActionsHelperGen(OCIActionsHelperBase):
     Supported actions:
         change_compartment
         migrate_exadata_db_system_resource_model
+        upgrade
     """
 
     def __init__(self, *args, **kwargs):
@@ -674,6 +741,27 @@ class DbSystemActionsHelperGen(OCIActionsHelperBase):
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
+    def upgrade(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, UpgradeDbSystemDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.upgrade_db_system,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                db_system_id=self.module.params.get("db_system_id"),
+                upgrade_db_system_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
 
 DbSystemActionsHelperCustom = get_custom_class("DbSystemActionsHelperCustom")
 
@@ -696,8 +784,15 @@ def main():
                 choices=[
                     "change_compartment",
                     "migrate_exadata_db_system_resource_model",
+                    "precheck",
+                    "rollback",
+                    "update_snapshot_retention_days",
+                    "upgrade",
                 ],
             ),
+            snapshot_retention_period_in_days=dict(type="int"),
+            new_gi_version=dict(type="str"),
+            is_snapshot_retention_days_force_updated=dict(type="bool"),
         )
     )
 

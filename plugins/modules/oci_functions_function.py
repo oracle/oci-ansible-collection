@@ -79,6 +79,25 @@ options:
             - Timeout for executions of the function. Value in seconds.
             - This parameter is updatable.
         type: int
+    provisioned_concurrency_config:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            strategy:
+                description:
+                    - The strategy for provisioned concurrency to be used.
+                type: str
+                choices:
+                    - "NONE"
+                    - "CONSTANT"
+                required: true
+            count:
+                description:
+                    - ""
+                    - Required when strategy is 'CONSTANT'
+                type: int
     trace_config:
         description:
             - ""
@@ -135,6 +154,9 @@ EXAMPLES = """
     image_digest: image_digest_example
     config: null
     timeout_in_seconds: 56
+    provisioned_concurrency_config:
+      # required
+      strategy: NONE
     trace_config:
       # optional
       is_enabled: true
@@ -152,6 +174,9 @@ EXAMPLES = """
     memory_in_mbs: 56
     config: null
     timeout_in_seconds: 56
+    provisioned_concurrency_config:
+      # required
+      strategy: NONE
     trace_config:
       # optional
       is_enabled: true
@@ -170,6 +195,9 @@ EXAMPLES = """
     memory_in_mbs: 56
     config: null
     timeout_in_seconds: 56
+    provisioned_concurrency_config:
+      # required
+      strategy: NONE
     trace_config:
       # optional
       is_enabled: true
@@ -267,6 +295,24 @@ function:
             returned: on success
             type: int
             sample: 56
+        provisioned_concurrency_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                count:
+                    description:
+                        - ""
+                    returned: on success
+                    type: int
+                    sample: 56
+                strategy:
+                    description:
+                        - The strategy for provisioned concurrency to be used.
+                    returned: on success
+                    type: str
+                    sample: CONSTANT
         trace_config:
             description:
                 - ""
@@ -329,6 +375,10 @@ function:
         "memory_in_mbs": 56,
         "config": {},
         "timeout_in_seconds": 56,
+        "provisioned_concurrency_config": {
+            "count": 56,
+            "strategy": "CONSTANT"
+        },
         "trace_config": {
             "is_enabled": true
         },
@@ -498,6 +548,15 @@ def main():
             memory_in_mbs=dict(type="int"),
             config=dict(type="dict"),
             timeout_in_seconds=dict(type="int"),
+            provisioned_concurrency_config=dict(
+                type="dict",
+                options=dict(
+                    strategy=dict(
+                        type="str", required=True, choices=["NONE", "CONSTANT"]
+                    ),
+                    count=dict(type="int"),
+                ),
+            ),
             trace_config=dict(type="dict", options=dict(is_enabled=dict(type="bool"))),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
