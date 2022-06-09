@@ -481,13 +481,6 @@ deploy_stages:
                     returned: on success
                     type: float
                     sample: 3.4
-        oke_cluster_deploy_environment_id:
-            description:
-                - Kubernetes cluster environment OCID for deployment.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
         kubernetes_manifest_deploy_artifact_ids:
             description:
                 - List of Kubernetes manifest artifact OCIDs
@@ -495,6 +488,34 @@ deploy_stages:
             returned: on success
             type: list
             sample: []
+        oke_cluster_deploy_environment_id:
+            description:
+                - Kubernetes cluster environment OCID for deployment.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+        helm_chart_deploy_artifact_id:
+            description:
+                - Helm chart artifact OCID.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.helmchartdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+        values_artifact_ids:
+            description:
+                - List of values.yaml file artifact OCIDs.
+                - Returned for get operation
+            returned: on success
+            type: list
+            sample: []
+        release_name:
+            description:
+                - Release name of the Helm chart.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: release_name_example
         namespace:
             description:
                 - Default namespace to be used for Kubernetes deployment when not specified in the manifest.
@@ -502,6 +523,13 @@ deploy_stages:
             returned: on success
             type: str
             sample: namespace_example
+        timeout_in_seconds:
+            description:
+                - Time to wait for execution of a helm stage. Defaults to 300 seconds.
+                - Returned for get operation
+            returned: on success
+            type: int
+            sample: 56
         rollback_policy:
             description:
                 - ""
@@ -711,9 +739,13 @@ deploy_stages:
             "batch_percentage": 56,
             "ramp_limit_percent": 3.4
         },
-        "oke_cluster_deploy_environment_id": "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx",
         "kubernetes_manifest_deploy_artifact_ids": [],
+        "oke_cluster_deploy_environment_id": "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx",
+        "helm_chart_deploy_artifact_id": "ocid1.helmchartdeployartifact.oc1..xxxxxxEXAMPLExxxxxx",
+        "values_artifact_ids": [],
+        "release_name": "release_name_example",
         "namespace": "namespace_example",
+        "timeout_in_seconds": 56,
         "rollback_policy": {
             "policy_type": "AUTOMATED_STAGE_ROLLBACK_POLICY"
         },

@@ -146,6 +146,33 @@ options:
             - The OCID of an upstream OKE canary deployment traffic shift stage in this pipeline.
             - Required when deploy_stage_type is 'OKE_CANARY_APPROVAL'
         type: str
+    helm_chart_deploy_artifact_id:
+        description:
+            - Helm chart artifact OCID.
+            - This parameter is updatable.
+            - Applicable when deploy_stage_type is 'OKE_HELM_CHART_DEPLOYMENT'
+            - Required when deploy_stage_type is 'OKE_HELM_CHART_DEPLOYMENT'
+        type: str
+    values_artifact_ids:
+        description:
+            - List of values.yaml file artifact OCIDs.
+            - This parameter is updatable.
+            - Applicable when deploy_stage_type is 'OKE_HELM_CHART_DEPLOYMENT'
+        type: list
+        elements: str
+    release_name:
+        description:
+            - Default name of the chart instance. Must be unique within a Kubernetes namespace.
+            - This parameter is updatable.
+            - Applicable when deploy_stage_type is 'OKE_HELM_CHART_DEPLOYMENT'
+            - Required when deploy_stage_type is 'OKE_HELM_CHART_DEPLOYMENT'
+        type: str
+    timeout_in_seconds:
+        description:
+            - Time to wait for execution of a helm stage. Defaults to 300 seconds.
+            - This parameter is updatable.
+            - Applicable when deploy_stage_type is 'OKE_HELM_CHART_DEPLOYMENT'
+        type: int
     compute_instance_group_deploy_environment_id:
         description:
             - A compute instance group environment OCID for Canary deployment.
@@ -157,14 +184,14 @@ options:
         description:
             - Kubernetes cluster environment OCID for deployment.
             - This parameter is updatable.
-            - Applicable when deploy_stage_type is 'OKE_DEPLOYMENT'
-            - Required when deploy_stage_type is one of ['OKE_DEPLOYMENT', 'OKE_CANARY_DEPLOYMENT', 'OKE_BLUE_GREEN_DEPLOYMENT']
+            - Applicable when deploy_stage_type is one of ['OKE_DEPLOYMENT', 'OKE_HELM_CHART_DEPLOYMENT']
+            - Required when deploy_stage_type is one of ['OKE_DEPLOYMENT', 'OKE_CANARY_DEPLOYMENT', 'OKE_HELM_CHART_DEPLOYMENT', 'OKE_BLUE_GREEN_DEPLOYMENT']
         type: str
     namespace:
         description:
             - Default namespace to be used for Kubernetes deployment when not specified in the manifest.
             - This parameter is updatable.
-            - Applicable when deploy_stage_type is 'OKE_DEPLOYMENT'
+            - Applicable when deploy_stage_type is one of ['OKE_DEPLOYMENT', 'OKE_HELM_CHART_DEPLOYMENT']
         type: str
     blue_backend_ips:
         description:
@@ -230,7 +257,8 @@ options:
         description:
             - ""
             - This parameter is updatable.
-            - Applicable when deploy_stage_type is one of ['COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT', 'OKE_DEPLOYMENT', 'LOAD_BALANCER_TRAFFIC_SHIFT']
+            - Applicable when deploy_stage_type is one of ['COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT', 'OKE_DEPLOYMENT', 'OKE_HELM_CHART_DEPLOYMENT',
+              'LOAD_BALANCER_TRAFFIC_SHIFT']
         type: dict
         suboptions:
             policy_type:
@@ -453,6 +481,7 @@ options:
             - "OKE_CANARY_DEPLOYMENT"
             - "COMPUTE_INSTANCE_GROUP_CANARY_TRAFFIC_SHIFT"
             - "COMPUTE_INSTANCE_GROUP_CANARY_APPROVAL"
+            - "OKE_HELM_CHART_DEPLOYMENT"
             - "MANUAL_APPROVAL"
             - "OKE_DEPLOYMENT"
             - "COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT"
@@ -463,10 +492,10 @@ options:
             - Required for create using I(state=present).
             - This parameter is updatable.
             - Applicable when deploy_stage_type is one of ['COMPUTE_INSTANCE_GROUP_CANARY_TRAFFIC_SHIFT', 'OKE_BLUE_GREEN_TRAFFIC_SHIFT', 'OKE_DEPLOYMENT',
-              'DEPLOY_FUNCTION', 'OKE_CANARY_DEPLOYMENT', 'COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT', 'OKE_BLUE_GREEN_DEPLOYMENT',
-              'COMPUTE_INSTANCE_GROUP_BLUE_GREEN_TRAFFIC_SHIFT', 'OKE_CANARY_APPROVAL', 'COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT',
-              'COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT', 'OKE_CANARY_TRAFFIC_SHIFT', 'COMPUTE_INSTANCE_GROUP_CANARY_APPROVAL', 'MANUAL_APPROVAL',
-              'LOAD_BALANCER_TRAFFIC_SHIFT', 'WAIT', 'INVOKE_FUNCTION']
+              'DEPLOY_FUNCTION', 'OKE_CANARY_DEPLOYMENT', 'COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT', 'OKE_HELM_CHART_DEPLOYMENT',
+              'OKE_BLUE_GREEN_DEPLOYMENT', 'COMPUTE_INSTANCE_GROUP_BLUE_GREEN_TRAFFIC_SHIFT', 'OKE_CANARY_APPROVAL',
+              'COMPUTE_INSTANCE_GROUP_ROLLING_DEPLOYMENT', 'COMPUTE_INSTANCE_GROUP_CANARY_DEPLOYMENT', 'OKE_CANARY_TRAFFIC_SHIFT',
+              'COMPUTE_INSTANCE_GROUP_CANARY_APPROVAL', 'MANUAL_APPROVAL', 'LOAD_BALANCER_TRAFFIC_SHIFT', 'WAIT', 'INVOKE_FUNCTION']
         type: dict
         suboptions:
             items:
@@ -876,6 +905,32 @@ EXAMPLES = """
       # required
       approval_policy_type: COUNT_BASED_APPROVAL
       number_of_approvals_required: 56
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Create deploy_stage with deploy_stage_type = OKE_HELM_CHART_DEPLOYMENT
+  oci_devops_deploy_stage:
+    # required
+    deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_stage_type: OKE_HELM_CHART_DEPLOYMENT
+
+    # optional
+    helm_chart_deploy_artifact_id: "ocid1.helmchartdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+    values_artifact_ids: [ "values_artifact_ids_example" ]
+    release_name: release_name_example
+    timeout_in_seconds: 56
+    oke_cluster_deploy_environment_id: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+    namespace: namespace_example
+    rollback_policy:
+      # required
+      policy_type: NO_STAGE_ROLLBACK_POLICY
     description: description_example
     display_name: display_name_example
     deploy_stage_predecessor_collection:
@@ -1306,6 +1361,31 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
+- name: Update deploy_stage with deploy_stage_type = OKE_HELM_CHART_DEPLOYMENT
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: OKE_HELM_CHART_DEPLOYMENT
+
+    # optional
+    helm_chart_deploy_artifact_id: "ocid1.helmchartdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+    values_artifact_ids: [ "values_artifact_ids_example" ]
+    release_name: release_name_example
+    timeout_in_seconds: 56
+    oke_cluster_deploy_environment_id: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+    namespace: namespace_example
+    rollback_policy:
+      # required
+      policy_type: NO_STAGE_ROLLBACK_POLICY
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
 - name: Update deploy_stage with deploy_stage_type = MANUAL_APPROVAL
   oci_devops_deploy_stage:
     # required
@@ -1712,6 +1792,31 @@ EXAMPLES = """
       # required
       approval_policy_type: COUNT_BASED_APPROVAL
       number_of_approvals_required: 56
+    description: description_example
+    display_name: display_name_example
+    deploy_stage_predecessor_collection:
+      # required
+      items:
+      - # required
+        id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update deploy_stage using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with deploy_stage_type = OKE_HELM_CHART_DEPLOYMENT
+  oci_devops_deploy_stage:
+    # required
+    deploy_stage_type: OKE_HELM_CHART_DEPLOYMENT
+
+    # optional
+    helm_chart_deploy_artifact_id: "ocid1.helmchartdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+    values_artifact_ids: [ "values_artifact_ids_example" ]
+    release_name: release_name_example
+    timeout_in_seconds: 56
+    oke_cluster_deploy_environment_id: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+    namespace: namespace_example
+    rollback_policy:
+      # required
+      policy_type: NO_STAGE_ROLLBACK_POLICY
     description: description_example
     display_name: display_name_example
     deploy_stage_predecessor_collection:
@@ -2192,24 +2297,48 @@ deploy_stage:
                     returned: on success
                     type: float
                     sample: 3.4
-        oke_cluster_deploy_environment_id:
-            description:
-                - Kubernetes cluster environment OCID for deployment.
-            returned: on success
-            type: str
-            sample: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
         kubernetes_manifest_deploy_artifact_ids:
             description:
                 - List of Kubernetes manifest artifact OCIDs
             returned: on success
             type: list
             sample: []
+        oke_cluster_deploy_environment_id:
+            description:
+                - Kubernetes cluster environment OCID for deployment.
+            returned: on success
+            type: str
+            sample: "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
+        helm_chart_deploy_artifact_id:
+            description:
+                - Helm chart artifact OCID.
+            returned: on success
+            type: str
+            sample: "ocid1.helmchartdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+        values_artifact_ids:
+            description:
+                - List of values.yaml file artifact OCIDs.
+            returned: on success
+            type: list
+            sample: []
+        release_name:
+            description:
+                - Release name of the Helm chart.
+            returned: on success
+            type: str
+            sample: release_name_example
         namespace:
             description:
                 - Default namespace to be used for Kubernetes deployment when not specified in the manifest.
             returned: on success
             type: str
             sample: namespace_example
+        timeout_in_seconds:
+            description:
+                - Time to wait for execution of a helm stage. Defaults to 300 seconds.
+            returned: on success
+            type: int
+            sample: 56
         rollback_policy:
             description:
                 - ""
@@ -2417,9 +2546,13 @@ deploy_stage:
             "batch_percentage": 56,
             "ramp_limit_percent": 3.4
         },
-        "oke_cluster_deploy_environment_id": "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx",
         "kubernetes_manifest_deploy_artifact_ids": [],
+        "oke_cluster_deploy_environment_id": "ocid1.okeclusterdeployenvironment.oc1..xxxxxxEXAMPLExxxxxx",
+        "helm_chart_deploy_artifact_id": "ocid1.helmchartdeployartifact.oc1..xxxxxxEXAMPLExxxxxx",
+        "values_artifact_ids": [],
+        "release_name": "release_name_example",
         "namespace": "namespace_example",
+        "timeout_in_seconds": 56,
         "rollback_policy": {
             "policy_type": "AUTOMATED_STAGE_ROLLBACK_POLICY"
         },
@@ -2640,6 +2773,10 @@ def main():
             ),
             deploy_pipeline_id=dict(type="str"),
             oke_canary_traffic_shift_deploy_stage_id=dict(type="str"),
+            helm_chart_deploy_artifact_id=dict(type="str"),
+            values_artifact_ids=dict(type="list", elements="str"),
+            release_name=dict(type="str"),
+            timeout_in_seconds=dict(type="int"),
             compute_instance_group_deploy_environment_id=dict(type="str"),
             oke_cluster_deploy_environment_id=dict(type="str"),
             namespace=dict(type="str"),
@@ -2753,6 +2890,7 @@ def main():
                     "OKE_CANARY_DEPLOYMENT",
                     "COMPUTE_INSTANCE_GROUP_CANARY_TRAFFIC_SHIFT",
                     "COMPUTE_INSTANCE_GROUP_CANARY_APPROVAL",
+                    "OKE_HELM_CHART_DEPLOYMENT",
                     "MANUAL_APPROVAL",
                     "OKE_DEPLOYMENT",
                     "COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT",

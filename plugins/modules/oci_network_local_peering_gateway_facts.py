@@ -31,7 +31,7 @@ author: Oracle (@oracle)
 options:
     local_peering_gateway_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the local peering gateway.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the local peering gateway.
             - Required to get a specific local_peering_gateway.
         type: str
         aliases: ["id"]

@@ -31,7 +31,7 @@ author: Oracle (@oracle)
 options:
     remote_peering_connection_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the remote peering connection (RPC).
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the remote peering connection (RPC).
             - Required to get a specific remote_peering_connection.
         type: str
         aliases: ["id"]

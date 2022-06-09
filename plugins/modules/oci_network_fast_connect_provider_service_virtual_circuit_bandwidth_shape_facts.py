@@ -31,7 +31,7 @@ author: Oracle (@oracle)
 options:
     provider_service_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the provider service.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the provider service.
         type: str
         aliases: ["id"]
         required: true

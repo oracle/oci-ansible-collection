@@ -328,6 +328,23 @@ api_specification:
                             returned: on success
                             type: list
                             sample: []
+                usage_plans:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        token_locations:
+                            description:
+                                - "A list of context variables specifying where API tokens may be located in a request.
+                                  Example locations:
+                                    - \\"request.headers[token]\\"
+                                    - \\"request.query[token]\\"
+                                    - \\"request.auth[Token]\\"
+                                    - \\"request.path[TOKEN]\\""
+                            returned: on success
+                            type: list
+                            sample: []
         logging_policies:
             description:
                 - ""
@@ -1093,6 +1110,9 @@ api_specification:
             "mutual_tls": {
                 "is_verified_certificate_required": true,
                 "allowed_sans": []
+            },
+            "usage_plans": {
+                "token_locations": []
             }
         },
         "logging_policies": {

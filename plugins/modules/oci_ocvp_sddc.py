@@ -105,6 +105,10 @@ options:
         description:
             - Indicates whether shielded instance is enabled for this SDDC.
         type: bool
+    capacity_reservation_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Capacity Reservation.
+        type: str
     display_name:
         description:
             - "A descriptive name for the SDDC.
@@ -261,6 +265,7 @@ EXAMPLES = """
     initial_host_shape_name: initial_host_shape_name_example
     initial_host_ocpu_count: 3.4
     is_shielded_instance_enabled: true
+    capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     replication_vlan_id: "ocid1.replicationvlan.oc1..xxxxxxEXAMPLExxxxxx"
     provisioning_vlan_id: "ocid1.provisioningvlan.oc1..xxxxxxEXAMPLExxxxxx"
@@ -775,6 +780,12 @@ sddc:
             returned: on success
             type: bool
             sample: true
+        capacity_reservation_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Capacity Reservation.
+            returned: on success
+            type: str
+            sample: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -844,6 +855,7 @@ sddc:
         "initial_host_shape_name": "initial_host_shape_name_example",
         "initial_host_ocpu_count": 3.4,
         "is_shielded_instance_enabled": true,
+        "capacity_reservation_id": "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }
@@ -1022,6 +1034,7 @@ def main():
             initial_host_shape_name=dict(type="str"),
             initial_host_ocpu_count=dict(type="float"),
             is_shielded_instance_enabled=dict(type="bool"),
+            capacity_reservation_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             vmware_software_version=dict(type="str"),
             ssh_authorized_keys=dict(type="str", no_log=True),

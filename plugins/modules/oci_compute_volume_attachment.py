@@ -41,6 +41,12 @@ options:
         choices:
             - "NONE"
             - "BM_ENCRYPTION_IN_TRANSIT"
+    is_agent_auto_iscsi_login_enabled:
+        description:
+            - Whether to enable Oracle Cloud Agent to perform the iSCSI login and logout commands after the volume attach or detach operations for non
+              multipath-enabled iSCSI attachments.
+            - Applicable when type is 'iscsi'
+        type: bool
     device:
         description:
             - The device name. To retrieve a list of devices for a given instance, see L(ListInstanceDevices,https://docs.cloud.oracle.com/en-
@@ -166,6 +172,7 @@ EXAMPLES = """
     # optional
     use_chap: true
     encryption_in_transit_type: NONE
+    is_agent_auto_iscsi_login_enabled: true
     device: device_example
     display_name: display_name_example
     is_read_only: true
@@ -297,6 +304,13 @@ volume_attachment:
             returned: on success
             type: str
             sample: NONE
+        is_agent_auto_iscsi_login_enabled:
+            description:
+                - Whether Oracle Cloud Agent is enabled perform the iSCSI login and logout commands after the volume attach or detach operations for non
+                  multipath-enabled iSCSI attachments.
+            returned: on success
+            type: bool
+            sample: true
         attachment_type:
             description:
                 - The type of volume attachment.
@@ -418,6 +432,7 @@ volume_attachment:
             "port": 56
         }],
         "encryption_in_transit_type": "NONE",
+        "is_agent_auto_iscsi_login_enabled": true,
         "attachment_type": "emulated",
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -597,6 +612,7 @@ def main():
             encryption_in_transit_type=dict(
                 type="str", choices=["NONE", "BM_ENCRYPTION_IN_TRANSIT"]
             ),
+            is_agent_auto_iscsi_login_enabled=dict(type="bool"),
             device=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             instance_id=dict(type="str"),

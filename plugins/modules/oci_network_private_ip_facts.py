@@ -43,7 +43,7 @@ author: Oracle (@oracle)
 options:
     private_ip_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the private IP or IPv6.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the private IP or IPv6.
             - Required to get a specific private_ip.
         type: str
         aliases: ["id"]
@@ -54,7 +54,7 @@ options:
         type: str
     subnet_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the subnet.
         type: str
     vnic_id:
         description:

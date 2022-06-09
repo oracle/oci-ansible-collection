@@ -36,7 +36,7 @@ options:
         aliases: ["id"]
     ipsc_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the IPSec connection.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the IPSec connection.
         type: str
         required: true
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_name_option ]

@@ -115,6 +115,13 @@ esxi_hosts:
     returned: on success
     type: complex
     contains:
+        capacity_reservation_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Capacity Reservation.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the ESXi host.
@@ -252,6 +259,7 @@ esxi_hosts:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
+        "capacity_reservation_id": "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "sddc_id": "ocid1.sddc.oc1..xxxxxxEXAMPLExxxxxx",

@@ -69,7 +69,7 @@ cluster_cache_metric:
     contains:
         cluster_cache_metrics:
             description:
-                - A list of cluster cache metrics for a specific database.
+                - A list of cluster cache metrics for a specific Managed Database.
             returned: on success
             type: complex
             contains:

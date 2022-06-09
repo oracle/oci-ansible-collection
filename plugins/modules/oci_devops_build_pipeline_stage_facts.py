@@ -170,7 +170,7 @@ build_pipeline_stages:
                             sample: branch_example
                         connection_id:
                             description:
-                                - Connection identifier pertinent to GitHub source provider.
+                                - Connection identifier pertinent to Bitbucket Cloud source provider
                             returned: on success
                             type: str
                             sample: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"

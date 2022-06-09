@@ -158,6 +158,26 @@ applications:
             returned: on success
             type: str
             sample: driver_shape_example
+        driver_shape_config:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                ocpus:
+                    description:
+                        - The total number of OCPUs used for the driver or executors.
+                          See L(here,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Shape/) for details.
+                    returned: on success
+                    type: float
+                    sample: 10
+                memory_in_gbs:
+                    description:
+                        - The amount of memory used for the driver or executors.
+                    returned: on success
+                    type: float
+                    sample: 10
         execute:
             description:
                 - "The input used for spark-submit command. For more details see https://spark.apache.org/docs/latest/submitting-applications.html#launching-
@@ -180,6 +200,26 @@ applications:
             returned: on success
             type: str
             sample: executor_shape_example
+        executor_shape_config:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                ocpus:
+                    description:
+                        - The total number of OCPUs used for the driver or executors.
+                          See L(here,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Shape/) for details.
+                    returned: on success
+                    type: float
+                    sample: 10
+                memory_in_gbs:
+                    description:
+                        - The amount of memory used for the driver or executors.
+                    returned: on success
+                    type: float
+                    sample: 10
         file_uri:
             description:
                 - An Oracle Cloud Infrastructure URI of the file containing the application to execute.
@@ -344,8 +384,16 @@ applications:
         "configuration": {},
         "description": "description_example",
         "driver_shape": "driver_shape_example",
+        "driver_shape_config": {
+            "ocpus": 10,
+            "memory_in_gbs": 10
+        },
         "execute": "execute_example",
         "executor_shape": "executor_shape_example",
+        "executor_shape_config": {
+            "ocpus": 10,
+            "memory_in_gbs": 10
+        },
         "file_uri": "file_uri_example",
         "logs_bucket_uri": "logs_bucket_uri_example",
         "metastore_id": "ocid1.metastore.oc1..xxxxxxEXAMPLExxxxxx",

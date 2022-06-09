@@ -30,7 +30,7 @@ oracle.oci.oci_database_management_database_home_metrics_facts -- Fetches detail
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.51.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.52.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -144,6 +144,24 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Passphrase used by the key referenced in <code>api_user_key_file</code>, if it is encrypted. If not set, then the value of the OCI_USER_KEY_PASS_PHRASE variable, if any, is used. This option is required if the key passphrase is not specified through a configuration file (See <code>config_file_location</code>).</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-auth_purpose"></div>
+                    <b>auth_purpose</b>
+                    <a class="ansibleOptionLink" href="#parameter-auth_purpose" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>service_principal</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The auth purpose which can be used in conjunction with &#x27;auth_type=instance_principal&#x27;. The default auth_purpose for instance_principal is None.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -339,7 +357,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>DatabaseHomeMetrics resource</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;database_home_metrics&#x27;: {&#x27;activity_time_series_metrics&#x27;: [{&#x27;cluster&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}, &#x27;cpu_count&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}, &#x27;cpu_time&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}, &#x27;timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;user_io_time&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}, &#x27;wait_time&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}}], &#x27;cpu_utilization_aggregate_metrics&#x27;: {&#x27;cpu_utilization&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}}, &#x27;db_storage_aggregate_metrics&#x27;: {&#x27;storage_allocated&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}, &#x27;storage_used&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}, &#x27;storage_used_by_table_space&#x27;: [{&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}]}, &#x27;db_time_aggregate_metrics&#x27;: {&#x27;cluster&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}, &#x27;cpu_count&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}, &#x27;cpu_time&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}, &#x27;user_io_time&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}, &#x27;wait_time&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}}, &#x27;failed_connections_aggregate_metrics&#x27;: {&#x27;failed_connections&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}}, &#x27;io_aggregate_metrics&#x27;: {&#x27;io_throughput&#x27;: [{&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}], &#x27;iops&#x27;: [{&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}]}, &#x27;memory_aggregate_metrics&#x27;: {&#x27;memory_usage&#x27;: [{&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}]}, &#x27;statements_aggregate_metrics&#x27;: {&#x27;queued_statements&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}, &#x27;running_statements&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}}}, &#x27;database_instance_home_metrics&#x27;: [{&#x27;activity_time_series_metrics&#x27;: [{&#x27;cluster&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}, &#x27;cpu_count&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}, &#x27;cpu_time&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}, &#x27;timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;user_io_time&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}, &#x27;wait_time&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}}], &#x27;cpu_utilization_aggregate_metrics&#x27;: {&#x27;cpu_utilization&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}}, &#x27;db_time_aggregate_metrics&#x27;: {&#x27;cluster&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}, &#x27;cpu_count&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}, &#x27;cpu_time&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}, &#x27;user_io_time&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}, &#x27;wait_time&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}}, &#x27;instance_name&#x27;: &#x27;instance_name_example&#x27;, &#x27;instance_number&#x27;: 56, &#x27;io_aggregate_metrics&#x27;: {&#x27;io_throughput&#x27;: [{&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}], &#x27;iops&#x27;: [{&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}]}, &#x27;memory_aggregate_metrics&#x27;: {&#x27;memory_usage&#x27;: [{&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}]}}]}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;database_home_metrics&#x27;: {&#x27;activity_time_series_metrics&#x27;: [{&#x27;cluster&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}, &#x27;cpu_count&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}, &#x27;cpu_time&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}, &#x27;timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;user_io_time&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}, &#x27;wait_time&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}}], &#x27;cpu_utilization_aggregate_metrics&#x27;: {&#x27;cpu_statistics&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;lower_quartile&#x27;: 1.2, &#x27;max&#x27;: 1.2, &#x27;median&#x27;: 1.2, &#x27;min&#x27;: 1.2, &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;upper_quartile&#x27;: 1.2}, &#x27;cpu_utilization&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}}, &#x27;db_storage_aggregate_metrics&#x27;: {&#x27;storage_allocated&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}, &#x27;storage_used&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}, &#x27;storage_used_by_table_space&#x27;: [{&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}]}, &#x27;db_time_aggregate_metrics&#x27;: {&#x27;cluster&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}, &#x27;cpu_count&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}, &#x27;cpu_time&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}, &#x27;user_io_time&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}, &#x27;wait_time&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}}, &#x27;failed_connections_aggregate_metrics&#x27;: {&#x27;failed_connections&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}}, &#x27;io_aggregate_metrics&#x27;: {&#x27;io_throughput&#x27;: [{&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}], &#x27;io_throughput_statistics&#x27;: [{&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;lower_quartile&#x27;: 1.2, &#x27;max&#x27;: 1.2, &#x27;median&#x27;: 1.2, &#x27;min&#x27;: 1.2, &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;upper_quartile&#x27;: 1.2}], &#x27;iops&#x27;: [{&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}], &#x27;iops_statistics&#x27;: [{&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;lower_quartile&#x27;: 1.2, &#x27;max&#x27;: 1.2, &#x27;median&#x27;: 1.2, &#x27;min&#x27;: 1.2, &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;upper_quartile&#x27;: 1.2}]}, &#x27;memory_aggregate_metrics&#x27;: {&#x27;memory_usage&#x27;: [{&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}]}, &#x27;statements_aggregate_metrics&#x27;: {&#x27;queued_statements&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}, &#x27;running_statements&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}}}, &#x27;database_instance_home_metrics&#x27;: [{&#x27;activity_time_series_metrics&#x27;: [{&#x27;cluster&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}, &#x27;cpu_count&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}, &#x27;cpu_time&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}, &#x27;timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;user_io_time&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}, &#x27;wait_time&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}}], &#x27;cpu_utilization_aggregate_metrics&#x27;: {&#x27;cpu_statistics&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;lower_quartile&#x27;: 1.2, &#x27;max&#x27;: 1.2, &#x27;median&#x27;: 1.2, &#x27;min&#x27;: 1.2, &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;upper_quartile&#x27;: 1.2}, &#x27;cpu_utilization&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}}, &#x27;db_time_aggregate_metrics&#x27;: {&#x27;cluster&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}, &#x27;cpu_count&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}, &#x27;cpu_time&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}, &#x27;user_io_time&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}, &#x27;wait_time&#x27;: {&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}}, &#x27;instance_name&#x27;: &#x27;instance_name_example&#x27;, &#x27;instance_number&#x27;: 56, &#x27;io_aggregate_metrics&#x27;: {&#x27;io_throughput&#x27;: [{&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}], &#x27;io_throughput_statistics&#x27;: [{&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;lower_quartile&#x27;: 1.2, &#x27;max&#x27;: 1.2, &#x27;median&#x27;: 1.2, &#x27;min&#x27;: 1.2, &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;upper_quartile&#x27;: 1.2}], &#x27;iops&#x27;: [{&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}], &#x27;iops_statistics&#x27;: [{&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;lower_quartile&#x27;: 1.2, &#x27;max&#x27;: 1.2, &#x27;median&#x27;: 1.2, &#x27;min&#x27;: 1.2, &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;upper_quartile&#x27;: 1.2}]}, &#x27;memory_aggregate_metrics&#x27;: {&#x27;memory_usage&#x27;: [{&#x27;dimensions&#x27;: [{&#x27;dimension_name&#x27;: &#x27;dimension_name_example&#x27;, &#x27;dimension_value&#x27;: &#x27;dimension_value_example&#x27;}], &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value&#x27;: 1.2}]}}]}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -371,7 +389,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A list of the active session metrics for CPU and Wait time for a specific database.</div>
+                                            <div>A list of the active session metrics for CPU and Wait time for a specific Managed Database.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1043,6 +1061,215 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics"></div>
+                    <b>cpu_statistics</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics/dimensions"></div>
+                    <b>dimensions</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics/dimensions" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The dimensions of the metric.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics/dimensions/dimension_name"></div>
+                    <b>dimension_name</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics/dimensions/dimension_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The name of the dimension.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">dimension_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics/dimensions/dimension_value"></div>
+                    <b>dimension_value</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics/dimensions/dimension_value" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The value of the dimension.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">dimension_value_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics/lower_quartile"></div>
+                    <b>lower_quartile</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics/lower_quartile" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The first quartile value of the metric.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics/max"></div>
+                    <b>max</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics/max" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The maximum value of the metric.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics/median"></div>
+                    <b>median</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics/median" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The median value of the metric.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics/min"></div>
+                    <b>min</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics/min" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The minimum value of the metric.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics/unit"></div>
+                    <b>unit</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics/unit" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The unit of the metric value.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">unit_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics/upper_quartile"></div>
+                    <b>upper_quartile</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics/upper_quartile" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The third quartile value of the metric.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_home_metrics/cpu_utilization_aggregate_metrics/cpu_utilization"></div>
                     <b>cpu_utilization</b>
                     <a class="ansibleOptionLink" href="#return-database_home_metrics/database_home_metrics/cpu_utilization_aggregate_metrics/cpu_utilization" title="Permalink to this return value"></a>
@@ -1445,7 +1672,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A list of the storage metrics grouped by TableSpace for a specific database.</div>
+                                            <div>A list of the storage metrics grouped by TableSpace for a specific Managed Database.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -2374,7 +2601,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A list of the IOThroughput metrics grouped for a specific database.</div>
+                                            <div>The IOThroughput metrics grouped by IOType for a specific Managed Database.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -2490,6 +2717,215 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_home_metrics/io_aggregate_metrics/io_throughput_statistics"></div>
+                    <b>io_throughput_statistics</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_home_metrics/io_aggregate_metrics/io_throughput_statistics" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The IOThroughput metric statistics such as min, max, mean, lowerQuartile, and upperQuartile.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_home_metrics/io_aggregate_metrics/io_throughput_statistics/dimensions"></div>
+                    <b>dimensions</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_home_metrics/io_aggregate_metrics/io_throughput_statistics/dimensions" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The dimensions of the metric.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_home_metrics/io_aggregate_metrics/io_throughput_statistics/dimensions/dimension_name"></div>
+                    <b>dimension_name</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_home_metrics/io_aggregate_metrics/io_throughput_statistics/dimensions/dimension_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The name of the dimension.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">dimension_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_home_metrics/io_aggregate_metrics/io_throughput_statistics/dimensions/dimension_value"></div>
+                    <b>dimension_value</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_home_metrics/io_aggregate_metrics/io_throughput_statistics/dimensions/dimension_value" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The value of the dimension.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">dimension_value_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_home_metrics/io_aggregate_metrics/io_throughput_statistics/lower_quartile"></div>
+                    <b>lower_quartile</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_home_metrics/io_aggregate_metrics/io_throughput_statistics/lower_quartile" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The first quartile value of the metric.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_home_metrics/io_aggregate_metrics/io_throughput_statistics/max"></div>
+                    <b>max</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_home_metrics/io_aggregate_metrics/io_throughput_statistics/max" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The maximum value of the metric.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_home_metrics/io_aggregate_metrics/io_throughput_statistics/median"></div>
+                    <b>median</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_home_metrics/io_aggregate_metrics/io_throughput_statistics/median" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The median value of the metric.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_home_metrics/io_aggregate_metrics/io_throughput_statistics/min"></div>
+                    <b>min</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_home_metrics/io_aggregate_metrics/io_throughput_statistics/min" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The minimum value of the metric.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_home_metrics/io_aggregate_metrics/io_throughput_statistics/unit"></div>
+                    <b>unit</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_home_metrics/io_aggregate_metrics/io_throughput_statistics/unit" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The unit of the metric value.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">unit_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_home_metrics/io_aggregate_metrics/io_throughput_statistics/upper_quartile"></div>
+                    <b>upper_quartile</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_home_metrics/io_aggregate_metrics/io_throughput_statistics/upper_quartile" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The third quartile value of the metric.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_home_metrics/io_aggregate_metrics/iops"></div>
                     <b>iops</b>
                     <a class="ansibleOptionLink" href="#return-database_home_metrics/database_home_metrics/io_aggregate_metrics/iops" title="Permalink to this return value"></a>
@@ -2499,7 +2935,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A list of the Input/Output Operations Per Second metrics grouped by IOType for a specific database.</div>
+                                            <div>The Input/Output Operations Per Second metrics grouped by IOType for a specific Managed Database.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -2610,6 +3046,215 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                     
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_home_metrics/io_aggregate_metrics/iops_statistics"></div>
+                    <b>iops_statistics</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_home_metrics/io_aggregate_metrics/iops_statistics" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The Input/Output metric statistics such as min, max, mean, lowerQuartile, and upperQuartile.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_home_metrics/io_aggregate_metrics/iops_statistics/dimensions"></div>
+                    <b>dimensions</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_home_metrics/io_aggregate_metrics/iops_statistics/dimensions" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The dimensions of the metric.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_home_metrics/io_aggregate_metrics/iops_statistics/dimensions/dimension_name"></div>
+                    <b>dimension_name</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_home_metrics/io_aggregate_metrics/iops_statistics/dimensions/dimension_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The name of the dimension.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">dimension_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_home_metrics/io_aggregate_metrics/iops_statistics/dimensions/dimension_value"></div>
+                    <b>dimension_value</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_home_metrics/io_aggregate_metrics/iops_statistics/dimensions/dimension_value" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The value of the dimension.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">dimension_value_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_home_metrics/io_aggregate_metrics/iops_statistics/lower_quartile"></div>
+                    <b>lower_quartile</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_home_metrics/io_aggregate_metrics/iops_statistics/lower_quartile" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The first quartile value of the metric.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_home_metrics/io_aggregate_metrics/iops_statistics/max"></div>
+                    <b>max</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_home_metrics/io_aggregate_metrics/iops_statistics/max" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The maximum value of the metric.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_home_metrics/io_aggregate_metrics/iops_statistics/median"></div>
+                    <b>median</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_home_metrics/io_aggregate_metrics/iops_statistics/median" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The median value of the metric.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_home_metrics/io_aggregate_metrics/iops_statistics/min"></div>
+                    <b>min</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_home_metrics/io_aggregate_metrics/iops_statistics/min" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The minimum value of the metric.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_home_metrics/io_aggregate_metrics/iops_statistics/unit"></div>
+                    <b>unit</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_home_metrics/io_aggregate_metrics/iops_statistics/unit" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The unit of the metric value.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">unit_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_home_metrics/io_aggregate_metrics/iops_statistics/upper_quartile"></div>
+                    <b>upper_quartile</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_home_metrics/io_aggregate_metrics/iops_statistics/upper_quartile" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The third quartile value of the metric.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
+                                    </td>
+            </tr>
+                    
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -2642,7 +3287,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A list of the memory usage metrics grouped by memorypool for a specific database.</div>
+                                            <div>The Memory Usage metrics grouped by memorypool for a specific Managed Database.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -3724,6 +4369,215 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_instance_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics"></div>
+                    <b>cpu_statistics</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_instance_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_instance_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics/dimensions"></div>
+                    <b>dimensions</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_instance_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics/dimensions" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The dimensions of the metric.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_instance_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics/dimensions/dimension_name"></div>
+                    <b>dimension_name</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_instance_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics/dimensions/dimension_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The name of the dimension.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">dimension_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_instance_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics/dimensions/dimension_value"></div>
+                    <b>dimension_value</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_instance_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics/dimensions/dimension_value" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The value of the dimension.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">dimension_value_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_instance_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics/lower_quartile"></div>
+                    <b>lower_quartile</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_instance_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics/lower_quartile" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The first quartile value of the metric.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_instance_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics/max"></div>
+                    <b>max</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_instance_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics/max" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The maximum value of the metric.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_instance_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics/median"></div>
+                    <b>median</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_instance_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics/median" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The median value of the metric.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_instance_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics/min"></div>
+                    <b>min</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_instance_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics/min" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The minimum value of the metric.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_instance_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics/unit"></div>
+                    <b>unit</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_instance_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics/unit" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The unit of the metric value.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">unit_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_instance_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics/upper_quartile"></div>
+                    <b>upper_quartile</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_instance_home_metrics/cpu_utilization_aggregate_metrics/cpu_statistics/upper_quartile" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The third quartile value of the metric.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_instance_home_metrics/cpu_utilization_aggregate_metrics/cpu_utilization"></div>
                     <b>cpu_utilization</b>
                     <a class="ansibleOptionLink" href="#return-database_home_metrics/database_instance_home_metrics/cpu_utilization_aggregate_metrics/cpu_utilization" title="Permalink to this return value"></a>
@@ -4557,7 +5411,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A list of the IOThroughput metrics grouped for a specific database.</div>
+                                            <div>The IOThroughput metrics grouped by IOType for a specific Managed Database.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -4673,6 +5527,215 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/io_throughput_statistics"></div>
+                    <b>io_throughput_statistics</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/io_throughput_statistics" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The IOThroughput metric statistics such as min, max, mean, lowerQuartile, and upperQuartile.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/io_throughput_statistics/dimensions"></div>
+                    <b>dimensions</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/io_throughput_statistics/dimensions" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The dimensions of the metric.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/io_throughput_statistics/dimensions/dimension_name"></div>
+                    <b>dimension_name</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/io_throughput_statistics/dimensions/dimension_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The name of the dimension.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">dimension_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/io_throughput_statistics/dimensions/dimension_value"></div>
+                    <b>dimension_value</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/io_throughput_statistics/dimensions/dimension_value" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The value of the dimension.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">dimension_value_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/io_throughput_statistics/lower_quartile"></div>
+                    <b>lower_quartile</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/io_throughput_statistics/lower_quartile" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The first quartile value of the metric.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/io_throughput_statistics/max"></div>
+                    <b>max</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/io_throughput_statistics/max" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The maximum value of the metric.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/io_throughput_statistics/median"></div>
+                    <b>median</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/io_throughput_statistics/median" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The median value of the metric.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/io_throughput_statistics/min"></div>
+                    <b>min</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/io_throughput_statistics/min" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The minimum value of the metric.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/io_throughput_statistics/unit"></div>
+                    <b>unit</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/io_throughput_statistics/unit" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The unit of the metric value.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">unit_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/io_throughput_statistics/upper_quartile"></div>
+                    <b>upper_quartile</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/io_throughput_statistics/upper_quartile" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The third quartile value of the metric.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/iops"></div>
                     <b>iops</b>
                     <a class="ansibleOptionLink" href="#return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/iops" title="Permalink to this return value"></a>
@@ -4682,7 +5745,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A list of the Input/Output Operations Per Second metrics grouped by IOType for a specific database.</div>
+                                            <div>The Input/Output Operations Per Second metrics grouped by IOType for a specific Managed Database.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -4793,6 +5856,215 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                     
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/iops_statistics"></div>
+                    <b>iops_statistics</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/iops_statistics" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The Input/Output metric statistics such as min, max, mean, lowerQuartile, and upperQuartile.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/iops_statistics/dimensions"></div>
+                    <b>dimensions</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/iops_statistics/dimensions" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The dimensions of the metric.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/iops_statistics/dimensions/dimension_name"></div>
+                    <b>dimension_name</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/iops_statistics/dimensions/dimension_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The name of the dimension.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">dimension_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/iops_statistics/dimensions/dimension_value"></div>
+                    <b>dimension_value</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/iops_statistics/dimensions/dimension_value" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The value of the dimension.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">dimension_value_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/iops_statistics/lower_quartile"></div>
+                    <b>lower_quartile</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/iops_statistics/lower_quartile" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The first quartile value of the metric.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/iops_statistics/max"></div>
+                    <b>max</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/iops_statistics/max" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The maximum value of the metric.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/iops_statistics/median"></div>
+                    <b>median</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/iops_statistics/median" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The median value of the metric.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/iops_statistics/min"></div>
+                    <b>min</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/iops_statistics/min" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The minimum value of the metric.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/iops_statistics/unit"></div>
+                    <b>unit</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/iops_statistics/unit" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The unit of the metric value.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">unit_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/iops_statistics/upper_quartile"></div>
+                    <b>upper_quartile</b>
+                    <a class="ansibleOptionLink" href="#return-database_home_metrics/database_instance_home_metrics/io_aggregate_metrics/iops_statistics/upper_quartile" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The third quartile value of the metric.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
+                                    </td>
+            </tr>
+                    
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -4825,7 +6097,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A list of the memory usage metrics grouped by memorypool for a specific database.</div>
+                                            <div>The Memory Usage metrics grouped by memorypool for a specific Managed Database.</div>
                                         <br/>
                                                         </td>
             </tr>

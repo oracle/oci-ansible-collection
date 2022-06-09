@@ -254,7 +254,12 @@ def _create_instance_principal_signer(module, delegation_token_location=None):
                 **signer_kwargs
             )
         else:
-            signer = oci.auth.signers.InstancePrincipalsSecurityTokenSigner()
+            signer_kwargs = {}
+            if _is_instance_principal_auth_purpose(module):
+                signer_kwargs["purpose"] = "service_principal"
+            signer = oci.auth.signers.InstancePrincipalsSecurityTokenSigner(
+                **signer_kwargs
+            )
     except (ValueError, IOError) as ex:
         message = "Exception: {0}".format(str(ex))
         module.fail_json(msg=message)
@@ -270,6 +275,15 @@ def _create_instance_principal_signer(module, delegation_token_location=None):
 
 def _create_resource_principal_signer():
     return get_resource_principals_signer()
+
+
+def _is_instance_principal_auth_purpose(module):
+    # check if auth purpose is overridden via module params
+    instance_principal_auth_purpose = (
+        "auth_purpose" in module.params
+        and module.params["auth_purpose"] == "service_principal"
+    )
+    return instance_principal_auth_purpose
 
 
 def _is_instance_principal_auth(module):

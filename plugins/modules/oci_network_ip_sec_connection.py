@@ -30,8 +30,8 @@ description:
       If you configure both tunnels to use BGP dynamic routing, you can provide an empty list for
       the static routes. For more information, see the important note in
       L(IPSecConnection,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnection/)."
-    - For the purposes of access control, you must provide the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment
-      where you want the
+    - For the purposes of access control, you must provide the L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the
+      compartment where you want the
       IPSec connection to reside. Notice that the IPSec connection doesn't have to be in the same compartment
       as the DRG, CPE, or other Networking Service components. If you're not sure which compartment to
       use, put the IPSec connection in the same compartment as the DRG. For more information about
@@ -371,7 +371,7 @@ options:
         elements: str
     ipsc_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the IPSec connection.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the IPSec connection.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -520,7 +520,7 @@ ip_sec_connection:
             sample: display_name_example
         drg_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DRG.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the DRG.
             returned: on success
             type: str
             sample: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
@@ -535,7 +535,7 @@ ip_sec_connection:
             sample: {'Department': 'Finance'}
         id:
             description:
-                - The IPSec connection's Oracle ID (L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)).
+                - The IPSec connection's Oracle ID (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)).
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"

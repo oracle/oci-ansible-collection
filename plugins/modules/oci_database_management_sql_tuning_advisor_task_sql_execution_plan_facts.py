@@ -52,6 +52,7 @@ options:
             - "ORIGINAL_WITH_ADJUSTED_COST"
             - "USING_SQL_PROFILE"
             - "USING_NEW_INDICES"
+            - "USING_PARALLEL_EXECUTION"
         required: true
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
@@ -361,6 +362,7 @@ def main():
                     "ORIGINAL_WITH_ADJUSTED_COST",
                     "USING_SQL_PROFILE",
                     "USING_NEW_INDICES",
+                    "USING_PARALLEL_EXECUTION",
                 ],
             ),
         )

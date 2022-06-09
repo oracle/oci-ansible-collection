@@ -67,10 +67,15 @@ options:
                     - Specifies the artifact path in the repository.
                     - Required when deploy_artifact_source_type is 'GENERIC_ARTIFACT'
                 type: str
+            chart_url:
+                description:
+                    - The URL of an OCIR repository.
+                    - Required when deploy_artifact_source_type is 'HELM_CHART'
+                type: str
             deploy_artifact_version:
                 description:
                     - Users can set this as a placeholder value that refers to a pipeline parameter, for example, ${appVersion}.
-                    - Required when deploy_artifact_source_type is 'GENERIC_ARTIFACT'
+                    - Required when deploy_artifact_source_type is one of ['GENERIC_ARTIFACT', 'HELM_CHART']
                 type: str
             image_uri:
                 description:
@@ -88,6 +93,7 @@ options:
                 type: str
                 choices:
                     - "GENERIC_ARTIFACT"
+                    - "HELM_CHART"
                     - "OCIR"
                     - "INLINE"
                 required: true
@@ -271,6 +277,12 @@ deploy_artifact:
                     returned: on success
                     type: str
                     sample: deploy_artifact_path_example
+                chart_url:
+                    description:
+                        - The URL of an OCIR repository.
+                    returned: on success
+                    type: str
+                    sample: chart_url_example
                 deploy_artifact_version:
                     description:
                         - Users can set this as a placeholder value that refers to a pipeline parameter, for example, ${appVersion}.
@@ -359,6 +371,7 @@ deploy_artifact:
         "deploy_artifact_source": {
             "repository_id": "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx",
             "deploy_artifact_path": "deploy_artifact_path_example",
+            "chart_url": "chart_url_example",
             "deploy_artifact_version": "deploy_artifact_version_example",
             "base64_encoded_content": null,
             "deploy_artifact_source_type": "INLINE",
@@ -533,13 +546,14 @@ def main():
                 options=dict(
                     repository_id=dict(type="str"),
                     deploy_artifact_path=dict(type="str"),
+                    chart_url=dict(type="str"),
                     deploy_artifact_version=dict(type="str"),
                     image_uri=dict(type="str"),
                     image_digest=dict(type="str"),
                     deploy_artifact_source_type=dict(
                         type="str",
                         required=True,
-                        choices=["GENERIC_ARTIFACT", "OCIR", "INLINE"],
+                        choices=["GENERIC_ARTIFACT", "HELM_CHART", "OCIR", "INLINE"],
                     ),
                     base64_encoded_content=dict(type="str"),
                 ),

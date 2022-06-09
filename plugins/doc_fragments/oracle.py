@@ -67,6 +67,12 @@ class ModuleDocFragment(object):
             choices: ['api_key', 'instance_principal', 'instance_obo_user', 'resource_principal']
             default: 'api_key'
             type: str
+        auth_purpose:
+            description:
+                - The auth purpose which can be used in conjunction with 'auth_type=instance_principal'.
+                  The default auth_purpose for instance_principal is None.
+            choices: ['service_principal']
+            type: str
         tenancy:
             description:
                 - OCID of your tenancy. If not set, then the value of the OCI_TENANCY variable, if any, is

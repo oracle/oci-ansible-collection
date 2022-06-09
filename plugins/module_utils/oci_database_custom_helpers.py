@@ -256,9 +256,10 @@ class ExternalNonContainerDatabaseActionsHelperCustom:
 
 class DbSystemHelperCustom:
     def __init__(self, module, resource_type, service_client_class, namespace):
-        module.params["initial_data_storage_size_in_gb"] = module.params[
-            "data_storage_size_in_gbs"
-        ]
+        if "data_storage_size_in_gbs" in module.params.keys():
+            module.params["initial_data_storage_size_in_gb"] = module.params[
+                "data_storage_size_in_gbs"
+            ]
 
         super(DbSystemHelperCustom, self).__init__(
             module, resource_type, service_client_class, namespace

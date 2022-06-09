@@ -457,6 +457,12 @@ node_pools:
                             returned: on success
                             type: str
                             sample: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+                        fault_domains:
+                            description:
+                                - A list of fault domains in which to place nodes.
+                            returned: on success
+                            type: list
+                            sample: []
         freeform_tags:
             description:
                 - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -543,7 +549,8 @@ node_pools:
             "placement_configs": [{
                 "availability_domain": "Uocm:PHX-AD-1",
                 "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
-                "capacity_reservation_id": "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+                "capacity_reservation_id": "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx",
+                "fault_domains": []
             }]
         },
         "freeform_tags": {'Department': 'Finance'},

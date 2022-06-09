@@ -43,7 +43,7 @@ author: Oracle (@oracle)
 options:
     cpe_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the CPE.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the CPE.
         type: str
         aliases: ["id"]
         required: true

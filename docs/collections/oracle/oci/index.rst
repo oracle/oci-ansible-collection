@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 2.51.0
+Collection version 2.52.0
 
 .. toctree::
     :maxdepth: 1
@@ -94,6 +94,12 @@ Modules
 * :ref:`oci_apigateway_sdk <ansible_collections.oracle.oci.oci_apigateway_sdk_module>` -- Manage a Sdk resource in Oracle Cloud Infrastructure
 * :ref:`oci_apigateway_sdk_facts <ansible_collections.oracle.oci.oci_apigateway_sdk_facts_module>` -- Fetches details about one or multiple Sdk resources in Oracle Cloud Infrastructure
 * :ref:`oci_apigateway_sdk_language_type_facts <ansible_collections.oracle.oci.oci_apigateway_sdk_language_type_facts_module>` -- Fetches details about one or multiple SdkLanguageType resources in Oracle Cloud Infrastructure
+* :ref:`oci_apigateway_subscriber <ansible_collections.oracle.oci.oci_apigateway_subscriber_module>` -- Manage a Subscriber resource in Oracle Cloud Infrastructure
+* :ref:`oci_apigateway_subscriber_actions <ansible_collections.oracle.oci.oci_apigateway_subscriber_actions_module>` -- Perform actions on a Subscriber resource in Oracle Cloud Infrastructure
+* :ref:`oci_apigateway_subscriber_facts <ansible_collections.oracle.oci.oci_apigateway_subscriber_facts_module>` -- Fetches details about one or multiple Subscriber resources in Oracle Cloud Infrastructure
+* :ref:`oci_apigateway_usage_plan <ansible_collections.oracle.oci.oci_apigateway_usage_plan_module>` -- Manage an UsagePlan resource in Oracle Cloud Infrastructure
+* :ref:`oci_apigateway_usage_plan_actions <ansible_collections.oracle.oci.oci_apigateway_usage_plan_actions_module>` -- Perform actions on an UsagePlan resource in Oracle Cloud Infrastructure
+* :ref:`oci_apigateway_usage_plan_facts <ansible_collections.oracle.oci.oci_apigateway_usage_plan_facts_module>` -- Fetches details about one or multiple UsagePlan resources in Oracle Cloud Infrastructure
 * :ref:`oci_apigateway_waas_certificate <ansible_collections.oracle.oci.oci_apigateway_waas_certificate_module>` -- Manage a WaasCertificate resource in Oracle Cloud Infrastructure
 * :ref:`oci_apigateway_waas_certificate_facts <ansible_collections.oracle.oci.oci_apigateway_waas_certificate_facts_module>` -- Fetches details about one or multiple WaasCertificate resources in Oracle Cloud Infrastructure
 * :ref:`oci_apm_config_config <ansible_collections.oracle.oci.oci_apm_config_config_module>` -- Manage a Config resource in Oracle Cloud Infrastructure
@@ -484,10 +490,12 @@ Modules
 * :ref:`oci_database_db_server_facts <ansible_collections.oracle.oci.oci_database_db_server_facts_module>` -- Fetches details about one or multiple DbServer resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_db_system <ansible_collections.oracle.oci.oci_database_db_system_module>` -- Manage a DbSystem resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_db_system_actions <ansible_collections.oracle.oci.oci_database_db_system_actions_module>` -- Perform actions on a DbSystem resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_db_system_compute_performance_facts <ansible_collections.oracle.oci.oci_database_db_system_compute_performance_facts_module>` -- Fetches details about one or multiple DbSystemComputePerformance resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_db_system_facts <ansible_collections.oracle.oci.oci_database_db_system_facts_module>` -- Fetches details about one or multiple DbSystem resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_db_system_patch_facts <ansible_collections.oracle.oci.oci_database_db_system_patch_facts_module>` -- Fetches details about one or multiple DbSystemPatch resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_db_system_patch_history_entry_facts <ansible_collections.oracle.oci.oci_database_db_system_patch_history_entry_facts_module>` -- Fetches details about one or multiple DbSystemPatchHistoryEntry resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_db_system_shape_facts <ansible_collections.oracle.oci.oci_database_db_system_shape_facts_module>` -- Fetches details about one or multiple DbSystemShape resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_db_system_storage_performance_facts <ansible_collections.oracle.oci.oci_database_db_system_storage_performance_facts_module>` -- Fetches details about one or multiple DbSystemStoragePerformance resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_db_system_upgrade_history_entry_facts <ansible_collections.oracle.oci.oci_database_db_system_upgrade_history_entry_facts_module>` -- Fetches details about one or multiple DbSystemUpgradeHistoryEntry resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_db_version_facts <ansible_collections.oracle.oci.oci_database_db_version_facts_module>` -- Fetches details about one or multiple DbVersion resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_exadata_infrastructure <ansible_collections.oracle.oci.oci_database_exadata_infrastructure_module>` -- Manage an ExadataInfrastructure resource in Oracle Cloud Infrastructure
@@ -816,6 +824,18 @@ Modules
 * :ref:`oci_key_management_vault_usage_facts <ansible_collections.oracle.oci.oci_key_management_vault_usage_facts_module>` -- Fetches details about a VaultUsage resource in Oracle Cloud Infrastructure
 * :ref:`oci_key_management_verified_data <ansible_collections.oracle.oci.oci_key_management_verified_data_module>` -- Manage a VerifiedData resource in Oracle Cloud Infrastructure
 * :ref:`oci_key_management_wrapping_key_facts <ansible_collections.oracle.oci.oci_key_management_wrapping_key_facts_module>` -- Fetches details about a WrappingKey resource in Oracle Cloud Infrastructure
+* :ref:`oci_license_manager_bulk_upload_license_records_actions <ansible_collections.oracle.oci.oci_license_manager_bulk_upload_license_records_actions_module>` -- Perform actions on a BulkUploadLicenseRecords resource in Oracle Cloud Infrastructure
+* :ref:`oci_license_manager_bulk_upload_template_facts <ansible_collections.oracle.oci.oci_license_manager_bulk_upload_template_facts_module>` -- Fetches details about a BulkUploadTemplate resource in Oracle Cloud Infrastructure
+* :ref:`oci_license_manager_configuration <ansible_collections.oracle.oci.oci_license_manager_configuration_module>` -- Manage a Configuration resource in Oracle Cloud Infrastructure
+* :ref:`oci_license_manager_configuration_facts <ansible_collections.oracle.oci.oci_license_manager_configuration_facts_module>` -- Fetches details about a Configuration resource in Oracle Cloud Infrastructure
+* :ref:`oci_license_manager_license_metric_facts <ansible_collections.oracle.oci.oci_license_manager_license_metric_facts_module>` -- Fetches details about a LicenseMetric resource in Oracle Cloud Infrastructure
+* :ref:`oci_license_manager_license_record <ansible_collections.oracle.oci.oci_license_manager_license_record_module>` -- Manage a LicenseRecord resource in Oracle Cloud Infrastructure
+* :ref:`oci_license_manager_license_record_facts <ansible_collections.oracle.oci.oci_license_manager_license_record_facts_module>` -- Fetches details about one or multiple LicenseRecord resources in Oracle Cloud Infrastructure
+* :ref:`oci_license_manager_product_license <ansible_collections.oracle.oci.oci_license_manager_product_license_module>` -- Manage a ProductLicense resource in Oracle Cloud Infrastructure
+* :ref:`oci_license_manager_product_license_consumer_facts <ansible_collections.oracle.oci.oci_license_manager_product_license_consumer_facts_module>` -- Fetches details about one or multiple ProductLicenseConsumer resources in Oracle Cloud Infrastructure
+* :ref:`oci_license_manager_product_license_facts <ansible_collections.oracle.oci.oci_license_manager_product_license_facts_module>` -- Fetches details about one or multiple ProductLicense resources in Oracle Cloud Infrastructure
+* :ref:`oci_license_manager_top_utilized_product_license_facts <ansible_collections.oracle.oci.oci_license_manager_top_utilized_product_license_facts_module>` -- Fetches details about one or multiple TopUtilizedProductLicense resources in Oracle Cloud Infrastructure
+* :ref:`oci_license_manager_top_utilized_resource_facts <ansible_collections.oracle.oci.oci_license_manager_top_utilized_resource_facts_module>` -- Fetches details about one or multiple TopUtilizedResource resources in Oracle Cloud Infrastructure
 * :ref:`oci_limits_limit_definition_facts <ansible_collections.oracle.oci.oci_limits_limit_definition_facts_module>` -- Fetches details about one or multiple LimitDefinition resources in Oracle Cloud Infrastructure
 * :ref:`oci_limits_limit_value_facts <ansible_collections.oracle.oci.oci_limits_limit_value_facts_module>` -- Fetches details about one or multiple LimitValue resources in Oracle Cloud Infrastructure
 * :ref:`oci_limits_quota <ansible_collections.oracle.oci.oci_limits_quota_module>` -- Manage a Quota resource in Oracle Cloud Infrastructure
@@ -1525,6 +1545,12 @@ Modules
     oci_apigateway_sdk_module
     oci_apigateway_sdk_facts_module
     oci_apigateway_sdk_language_type_facts_module
+    oci_apigateway_subscriber_module
+    oci_apigateway_subscriber_actions_module
+    oci_apigateway_subscriber_facts_module
+    oci_apigateway_usage_plan_module
+    oci_apigateway_usage_plan_actions_module
+    oci_apigateway_usage_plan_facts_module
     oci_apigateway_waas_certificate_module
     oci_apigateway_waas_certificate_facts_module
     oci_apm_config_config_module
@@ -1915,10 +1941,12 @@ Modules
     oci_database_db_server_facts_module
     oci_database_db_system_module
     oci_database_db_system_actions_module
+    oci_database_db_system_compute_performance_facts_module
     oci_database_db_system_facts_module
     oci_database_db_system_patch_facts_module
     oci_database_db_system_patch_history_entry_facts_module
     oci_database_db_system_shape_facts_module
+    oci_database_db_system_storage_performance_facts_module
     oci_database_db_system_upgrade_history_entry_facts_module
     oci_database_db_version_facts_module
     oci_database_exadata_infrastructure_module
@@ -2247,6 +2275,18 @@ Modules
     oci_key_management_vault_usage_facts_module
     oci_key_management_verified_data_module
     oci_key_management_wrapping_key_facts_module
+    oci_license_manager_bulk_upload_license_records_actions_module
+    oci_license_manager_bulk_upload_template_facts_module
+    oci_license_manager_configuration_module
+    oci_license_manager_configuration_facts_module
+    oci_license_manager_license_metric_facts_module
+    oci_license_manager_license_record_module
+    oci_license_manager_license_record_facts_module
+    oci_license_manager_product_license_module
+    oci_license_manager_product_license_consumer_facts_module
+    oci_license_manager_product_license_facts_module
+    oci_license_manager_top_utilized_product_license_facts_module
+    oci_license_manager_top_utilized_resource_facts_module
     oci_limits_limit_definition_facts_module
     oci_limits_limit_value_facts_module
     oci_limits_quota_module

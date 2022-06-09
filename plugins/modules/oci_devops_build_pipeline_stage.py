@@ -109,6 +109,7 @@ options:
                         type: str
                         choices:
                             - "GITHUB"
+                            - "BITBUCKET_CLOUD"
                             - "DEVOPS_CODE_REPOSITORY"
                             - "GITLAB"
                         required: true
@@ -125,7 +126,7 @@ options:
                     connection_id:
                         description:
                             - Connection identifier pertinent to GitHub source provider.
-                            - Required when connection_type is one of ['GITHUB', 'GITLAB']
+                            - Required when connection_type is one of ['BITBUCKET_CLOUD', 'GITHUB', 'GITLAB']
                         type: str
     primary_build_source:
         description:
@@ -612,7 +613,7 @@ build_pipeline_stage:
                             sample: branch_example
                         connection_id:
                             description:
-                                - Connection identifier pertinent to GitHub source provider.
+                                - Connection identifier pertinent to Bitbucket Cloud source provider
                             returned: on success
                             type: str
                             sample: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1016,7 +1017,12 @@ def main():
                             connection_type=dict(
                                 type="str",
                                 required=True,
-                                choices=["GITHUB", "DEVOPS_CODE_REPOSITORY", "GITLAB"],
+                                choices=[
+                                    "GITHUB",
+                                    "BITBUCKET_CLOUD",
+                                    "DEVOPS_CODE_REPOSITORY",
+                                    "GITLAB",
+                                ],
                             ),
                             repository_url=dict(type="str", required=True),
                             branch=dict(type="str", required=True),

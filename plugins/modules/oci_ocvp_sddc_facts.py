@@ -465,6 +465,13 @@ sddcs:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        capacity_reservation_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Capacity Reservation.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the SDDC.
@@ -637,6 +644,7 @@ sddcs:
         }],
         "time_hcx_billing_cycle_end": "2013-10-20T19:20:30+01:00",
         "time_hcx_license_status_updated": "2013-10-20T19:20:30+01:00",
+        "capacity_reservation_id": "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compute_availability_domain": "Uocm:PHX-AD-1",
         "display_name": "display_name_example",

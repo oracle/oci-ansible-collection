@@ -157,6 +157,13 @@ volume_attachments:
             returned: on success
             type: str
             sample: NONE
+        is_agent_auto_iscsi_login_enabled:
+            description:
+                - Whether Oracle Cloud Agent is enabled perform the iSCSI login and logout commands after the volume attach or detach operations for non
+                  multipath-enabled iSCSI attachments.
+            returned: on success
+            type: bool
+            sample: true
         attachment_type:
             description:
                 - The type of volume attachment.
@@ -278,6 +285,7 @@ volume_attachments:
             "port": 56
         }],
         "encryption_in_transit_type": "NONE",
+        "is_agent_auto_iscsi_login_enabled": true,
         "attachment_type": "emulated",
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

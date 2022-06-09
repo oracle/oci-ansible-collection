@@ -31,7 +31,7 @@ author: Oracle (@oracle)
 options:
     cross_connect_group_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the cross-connect group.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the cross-connect group.
         type: str
         aliases: ["id"]
         required: true

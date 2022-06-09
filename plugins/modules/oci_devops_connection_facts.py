@@ -60,6 +60,7 @@ options:
         choices:
             - "GITHUB_ACCESS_TOKEN"
             - "GITLAB_ACCESS_TOKEN"
+            - "BITBUCKET_CLOUD_APP_PASSWORD"
     sort_order:
         description:
             - The sort order to use. Use either ascending or descending.
@@ -105,6 +106,20 @@ connections:
     returned: on success
     type: complex
     contains:
+        username:
+            description:
+                - Public Bitbucket Cloud Username in plain text
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: username_example
+        app_password:
+            description:
+                - OCID of personal Bitbucket Cloud AppPassword saved in secret store
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: example-password
         access_token:
             description:
                 - The OCID of personal access token saved in secret store.
@@ -189,6 +204,8 @@ connections:
             type: dict
             sample: {}
     sample: [{
+        "username": "username_example",
+        "app_password": "example-password",
         "access_token": "access_token_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -274,7 +291,12 @@ def main():
             lifecycle_state=dict(type="str", choices=["ACTIVE"]),
             display_name=dict(aliases=["name"], type="str"),
             connection_type=dict(
-                type="str", choices=["GITHUB_ACCESS_TOKEN", "GITLAB_ACCESS_TOKEN"]
+                type="str",
+                choices=[
+                    "GITHUB_ACCESS_TOKEN",
+                    "GITLAB_ACCESS_TOKEN",
+                    "BITBUCKET_CLOUD_APP_PASSWORD",
+                ],
             ),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["timeCreated", "displayName"]),

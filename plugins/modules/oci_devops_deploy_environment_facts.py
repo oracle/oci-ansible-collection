@@ -171,7 +171,7 @@ deploy_environments:
                     sample: PRIVATE_ENDPOINT_CHANNEL
                 subnet_id:
                     description:
-                        - The OCID of the subnet where Virtual Network Interface Cards (VNIC) resources are created for private endpoint access.
+                        - The OCID of the subnet where VNIC resources will be created for private endpoint.
                     returned: on success
                     type: str
                     sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"

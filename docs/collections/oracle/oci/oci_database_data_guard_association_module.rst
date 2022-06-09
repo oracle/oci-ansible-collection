@@ -30,7 +30,7 @@ oracle.oci.oci_database_data_guard_association -- Manage a DataGuardAssociation 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.51.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.52.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -150,6 +150,24 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-auth_purpose"></div>
+                    <b>auth_purpose</b>
+                    <a class="ansibleOptionLink" href="#parameter-auth_purpose" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>service_principal</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The auth purpose which can be used in conjunction with &#x27;auth_type=instance_principal&#x27;. The default auth_purpose for instance_principal is None.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-auth_type"></div>
                     <b>auth_type</b>
                     <a class="ansibleOptionLink" href="#parameter-auth_type" title="Permalink to this option"></a>
@@ -229,6 +247,22 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The profile to load from the config file referenced by <code>config_file_location</code>. If not set, then the value of the OCI_CONFIG_PROFILE environment variable, if any, is used. Otherwise, defaults to the &quot;DEFAULT&quot; profile in <code>config_file_location</code>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-cpu_core_count"></div>
+                    <b>cpu_core_count</b>
+                    <a class="ansibleOptionLink" href="#parameter-cpu_core_count" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The number of OCPU cores available for AMD-based virtual machine DB systems.</div>
+                                            <div>Applicable when creation_type is &#x27;NewDbSystem&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -580,6 +614,26 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-storage_volume_performance_mode"></div>
+                    <b>storage_volume_performance_mode</b>
+                    <a class="ansibleOptionLink" href="#parameter-storage_volume_performance_mode" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>BALANCED</li>
+                                                                                                                                                                                                <li>HIGH_PERFORMANCE</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The block storage volume performance level. Valid values are `BALANCED` and `HIGH_PERFORMANCE`. See <a href='https://docs.cloud.oracle.com/Content/Block/Concepts/blockvolumeperformance.htm'>Block Volume Performance</a> for more information.</div>
+                                            <div>Applicable when creation_type is &#x27;NewDbSystem&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-subnet_id"></div>
                     <b>subnet_id</b>
                     <a class="ansibleOptionLink" href="#parameter-subnet_id" title="Permalink to this option"></a>
@@ -706,6 +760,8 @@ Examples
         display_name: display_name_example
         availability_domain: Uocm:PHX-AD-1
         shape: shape_example
+        cpu_core_count: 56
+        storage_volume_performance_mode: BALANCED
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
         backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]

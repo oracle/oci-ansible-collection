@@ -31,7 +31,7 @@ author: Oracle (@oracle)
 options:
     vtap_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VTAP.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VTAP.
         type: str
         aliases: ["id"]
         required: true
@@ -69,13 +69,13 @@ vtap:
     contains:
         compartment_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the `Vtap` resource.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the `Vtap` resource.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         vcn_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN containing the `Vtap` resource.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN containing the `Vtap` resource.
             returned: on success
             type: str
             sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
@@ -105,7 +105,7 @@ vtap:
             sample: {'Department': 'Finance'}
         id:
             description:
-                - The VTAP's Oracle ID (L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)).
+                - The VTAP's Oracle ID (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)).
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -130,13 +130,13 @@ vtap:
             sample: "2013-10-20T19:20:30+01:00"
         source_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the source point where packets are captured.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the source point where packets are captured.
             returned: on success
             type: str
             sample: "ocid1.source.oc1..xxxxxxEXAMPLExxxxxx"
         target_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the destination resource where mirrored packets are
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the destination resource where mirrored packets are
                   sent.
             returned: on success
             type: str
@@ -149,7 +149,7 @@ vtap:
             sample: target_ip_example
         capture_filter_id:
             description:
-                - The capture filter's Oracle ID (L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)).
+                - The capture filter's Oracle ID (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)).
             returned: on success
             type: str
             sample: "ocid1.capturefilter.oc1..xxxxxxEXAMPLExxxxxx"
@@ -205,7 +205,7 @@ vtap:
             sample: source_private_endpoint_ip_example
         source_private_endpoint_subnet_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet that source private endpoint belongs to.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the subnet that source private endpoint belongs to.
             returned: on success
             type: str
             sample: "ocid1.sourceprivateendpointsubnet.oc1..xxxxxxEXAMPLExxxxxx"

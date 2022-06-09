@@ -70,6 +70,12 @@ db_system_shapes:
             returned: on success
             type: str
             sample: shape_family_example
+        shape_type:
+            description:
+                - The shape type for the virtual machine DB system. Shape type is determined by CPU hardware. Valid values are `AMD` and `INTEL`.
+            returned: on success
+            type: str
+            sample: AMD
         shape:
             description:
                 - Deprecated. Use `name` instead of `shape`.
@@ -188,6 +194,7 @@ db_system_shapes:
     sample: [{
         "name": "name_example",
         "shape_family": "shape_family_example",
+        "shape_type": "AMD",
         "shape": "shape_example",
         "available_core_count": 56,
         "minimum_core_count": 56,

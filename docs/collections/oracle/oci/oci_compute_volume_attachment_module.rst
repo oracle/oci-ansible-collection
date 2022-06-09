@@ -30,7 +30,7 @@ oracle.oci.oci_compute_volume_attachment -- Manage a VolumeAttachment resource i
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.51.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.52.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -144,6 +144,24 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Passphrase used by the key referenced in <code>api_user_key_file</code>, if it is encrypted. If not set, then the value of the OCI_USER_KEY_PASS_PHRASE variable, if any, is used. This option is required if the key passphrase is not specified through a configuration file (See <code>config_file_location</code>).</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-auth_purpose"></div>
+                    <b>auth_purpose</b>
+                    <a class="ansibleOptionLink" href="#parameter-auth_purpose" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>service_principal</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The auth purpose which can be used in conjunction with &#x27;auth_type=instance_principal&#x27;. The default auth_purpose for instance_principal is None.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -300,6 +318,26 @@ Parameters
                                                                 <td>
                                             <div>The OCID of the instance.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-is_agent_auto_iscsi_login_enabled"></div>
+                    <b>is_agent_auto_iscsi_login_enabled</b>
+                    <a class="ansibleOptionLink" href="#parameter-is_agent_auto_iscsi_login_enabled" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Whether to enable Oracle Cloud Agent to perform the iSCSI login and logout commands after the volume attach or detach operations for non multipath-enabled iSCSI attachments.</div>
+                                            <div>Applicable when type is &#x27;iscsi&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -622,6 +660,7 @@ Examples
         # optional
         use_chap: true
         encryption_in_transit_type: NONE
+        is_agent_auto_iscsi_login_enabled: true
         device: device_example
         display_name: display_name_example
         is_read_only: true
@@ -706,7 +745,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the VolumeAttachment resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;attachment_type&#x27;: &#x27;emulated&#x27;, &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;chap_secret&#x27;: &#x27;chap_secret_example&#x27;, &#x27;chap_username&#x27;: &#x27;chap_username_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;device&#x27;: &#x27;device_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;encryption_in_transit_type&#x27;: &#x27;NONE&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_id&#x27;: &#x27;ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ipv4&#x27;: &#x27;ipv4_example&#x27;, &#x27;iqn&#x27;: &#x27;iqn_example&#x27;, &#x27;is_multipath&#x27;: True, &#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;is_read_only&#x27;: True, &#x27;is_shareable&#x27;: True, &#x27;iscsi_attach_commands&#x27;: [&#x27;sudo iscsiadm -m node -o new -T IQN -p IP:PORT&#x27;, &#x27;sudo iscsiadm -m node -o update ...&#x27;], &#x27;iscsi_detach_commands&#x27;: [&#x27;sudo iscsiadm -m node -T IQN -p IP:PORT -u&#x27;, &#x27;sudo iscsiadm -m node -o delete -T IQN&#x27;], &#x27;iscsi_login_state&#x27;: &#x27;UNKNOWN&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ATTACHING&#x27;, &#x27;multipath_devices&#x27;: [{&#x27;ipv4&#x27;: &#x27;ipv4_example&#x27;, &#x27;iqn&#x27;: &#x27;iqn_example&#x27;, &#x27;port&#x27;: 56}], &#x27;port&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;volume_id&#x27;: &#x27;ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;attachment_type&#x27;: &#x27;emulated&#x27;, &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;chap_secret&#x27;: &#x27;chap_secret_example&#x27;, &#x27;chap_username&#x27;: &#x27;chap_username_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;device&#x27;: &#x27;device_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;encryption_in_transit_type&#x27;: &#x27;NONE&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_id&#x27;: &#x27;ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ipv4&#x27;: &#x27;ipv4_example&#x27;, &#x27;iqn&#x27;: &#x27;iqn_example&#x27;, &#x27;is_agent_auto_iscsi_login_enabled&#x27;: True, &#x27;is_multipath&#x27;: True, &#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;is_read_only&#x27;: True, &#x27;is_shareable&#x27;: True, &#x27;iscsi_attach_commands&#x27;: [&#x27;sudo iscsiadm -m node -o new -T IQN -p IP:PORT&#x27;, &#x27;sudo iscsiadm -m node -o update ...&#x27;], &#x27;iscsi_detach_commands&#x27;: [&#x27;sudo iscsiadm -m node -T IQN -p IP:PORT -u&#x27;, &#x27;sudo iscsiadm -m node -o delete -T IQN&#x27;], &#x27;iscsi_login_state&#x27;: &#x27;UNKNOWN&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ATTACHING&#x27;, &#x27;multipath_devices&#x27;: [{&#x27;ipv4&#x27;: &#x27;ipv4_example&#x27;, &#x27;iqn&#x27;: &#x27;iqn_example&#x27;, &#x27;port&#x27;: 56}], &#x27;port&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;volume_id&#x27;: &#x27;ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -927,6 +966,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">iqn_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-volume_attachment/is_agent_auto_iscsi_login_enabled"></div>
+                    <b>is_agent_auto_iscsi_login_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-volume_attachment/is_agent_auto_iscsi_login_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Whether Oracle Cloud Agent is enabled perform the iSCSI login and logout commands after the volume attach or detach operations for non multipath-enabled iSCSI attachments.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
                                 <tr>
