@@ -30,7 +30,7 @@ oracle.oci.oci_database_db_system_shape_facts -- Fetches details about one or mu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.51.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.52.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -144,6 +144,24 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Passphrase used by the key referenced in <code>api_user_key_file</code>, if it is encrypted. If not set, then the value of the OCI_USER_KEY_PASS_PHRASE variable, if any, is used. This option is required if the key passphrase is not specified through a configuration file (See <code>config_file_location</code>).</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-auth_purpose"></div>
+                    <b>auth_purpose</b>
+                    <a class="ansibleOptionLink" href="#parameter-auth_purpose" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>service_principal</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The auth purpose which can be used in conjunction with &#x27;auth_type=instance_principal&#x27;. The default auth_purpose for instance_principal is None.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -340,7 +358,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of DbSystemShape resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;available_core_count&#x27;: 56, &#x27;available_core_count_per_node&#x27;: 56, &#x27;available_data_storage_in_t_bs&#x27;: 56, &#x27;available_data_storage_per_server_in_tbs&#x27;: 1.2, &#x27;available_db_node_per_node_in_gbs&#x27;: 56, &#x27;available_db_node_storage_in_g_bs&#x27;: 56, &#x27;available_memory_in_gbs&#x27;: 56, &#x27;available_memory_per_node_in_gbs&#x27;: 56, &#x27;core_count_increment&#x27;: 56, &#x27;max_storage_count&#x27;: 56, &#x27;maximum_node_count&#x27;: 56, &#x27;min_core_count_per_node&#x27;: 56, &#x27;min_data_storage_in_t_bs&#x27;: 56, &#x27;min_db_node_storage_per_node_in_g_bs&#x27;: 56, &#x27;min_memory_per_node_in_g_bs&#x27;: 56, &#x27;min_storage_count&#x27;: 56, &#x27;minimum_core_count&#x27;: 56, &#x27;minimum_node_count&#x27;: 56, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;shape_family&#x27;: &#x27;shape_family_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;available_core_count&#x27;: 56, &#x27;available_core_count_per_node&#x27;: 56, &#x27;available_data_storage_in_t_bs&#x27;: 56, &#x27;available_data_storage_per_server_in_tbs&#x27;: 1.2, &#x27;available_db_node_per_node_in_gbs&#x27;: 56, &#x27;available_db_node_storage_in_g_bs&#x27;: 56, &#x27;available_memory_in_gbs&#x27;: 56, &#x27;available_memory_per_node_in_gbs&#x27;: 56, &#x27;core_count_increment&#x27;: 56, &#x27;max_storage_count&#x27;: 56, &#x27;maximum_node_count&#x27;: 56, &#x27;min_core_count_per_node&#x27;: 56, &#x27;min_data_storage_in_t_bs&#x27;: 56, &#x27;min_db_node_storage_per_node_in_g_bs&#x27;: 56, &#x27;min_memory_per_node_in_g_bs&#x27;: 56, &#x27;min_storage_count&#x27;: 56, &#x27;minimum_core_count&#x27;: 56, &#x27;minimum_node_count&#x27;: 56, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;shape_family&#x27;: &#x27;shape_family_example&#x27;, &#x27;shape_type&#x27;: &#x27;AMD&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -719,6 +737,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">shape_family_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-db_system_shapes/shape_type"></div>
+                    <b>shape_type</b>
+                    <a class="ansibleOptionLink" href="#return-db_system_shapes/shape_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The shape type for the virtual machine DB system. Shape type is determined by CPU hardware. Valid values are `AMD` and `INTEL`.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">AMD</div>
                                     </td>
             </tr>
                     

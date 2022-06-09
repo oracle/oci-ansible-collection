@@ -30,7 +30,7 @@ oracle.oci.oci_network_cpe_device_shape_facts -- Fetches details about one or mu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.51.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.52.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -58,7 +58,7 @@ Synopsis
 
 - Fetches details about one or multiple CpeDeviceShape resources in Oracle Cloud Infrastructure
 - Lists the CPE device types that the Networking service provides CPE configuration content for (example: Cisco ASA). The content helps a network engineer configure the actual CPE device represented by a `Cpe <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/>`_ object.
-- If you want to generate CPE configuration content for one of the returned CPE device types, ensure that the `Cpe <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/>`_ object's `cpeDeviceShapeId` attribute is set to the CPE device type's `OCID <https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm>`_ (returned by this operation).
+- If you want to generate CPE configuration content for one of the returned CPE device types, ensure that the `Cpe <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/>`_ object's `cpeDeviceShapeId` attribute is set to the CPE device type's `OCID <https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm>`_ (returned by this operation).
 - For information about generating CPE configuration content, see these operations:
 -  * `GetCpeDeviceConfigContent <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/Cpe/GetCpeDeviceConfigContent>`_ * `GetIpsecCpeDeviceConfigContent <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/latest/IPSecConnection/GetIpsecCpeDeviceConfigContent>`_ * `GetTunnelCpeDeviceConfigContent <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/iaas/latest/TunnelCpeDeviceConfig/GetTunnelCpeDeviceConfigContent>`_
 - If *cpe_device_shape_id* is specified, the details of a single CpeDeviceShape will be returned.
@@ -148,6 +148,24 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Passphrase used by the key referenced in <code>api_user_key_file</code>, if it is encrypted. If not set, then the value of the OCI_USER_KEY_PASS_PHRASE variable, if any, is used. This option is required if the key passphrase is not specified through a configuration file (See <code>config_file_location</code>).</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-auth_purpose"></div>
+                    <b>auth_purpose</b>
+                    <a class="ansibleOptionLink" href="#parameter-auth_purpose" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>service_principal</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The auth purpose which can be used in conjunction with &#x27;auth_type=instance_principal&#x27;. The default auth_purpose for instance_principal is None.</div>
                                                         </td>
             </tr>
                                 <tr>

@@ -163,7 +163,7 @@ job_executions:
                     sample: object_name_example
                 row_count:
                     description:
-                        - The number of rows returned in the result. Only applicable for QUERY SqlType.
+                        - The number of rows returned in the result for the Query SqlType.
                     returned: on success
                     type: int
                     sample: 56

@@ -69,6 +69,10 @@ options:
         description:
             - The OCPU count of the ESXi host.
         type: float
+    capacity_reservation_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Capacity Reservation.
+        type: str
     display_name:
         description:
             - "A descriptive name for the ESXi host. It's changeable.
@@ -141,6 +145,7 @@ EXAMPLES = """
     failed_esxi_host_id: "ocid1.failedesxihost.oc1..xxxxxxEXAMPLExxxxxx"
     host_shape_name: host_shape_name_example
     host_ocpu_count: 3.4
+    capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     next_sku: HOUR
     freeform_tags: {'Department': 'Finance'}
@@ -307,6 +312,12 @@ esxi_host:
             returned: on success
             type: float
             sample: 3.4
+        capacity_reservation_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Capacity Reservation.
+            returned: on success
+            type: str
+            sample: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -342,6 +353,7 @@ esxi_host:
         "compute_availability_domain": "Uocm:PHX-AD-1",
         "host_shape_name": "host_shape_name_example",
         "host_ocpu_count": 3.4,
+        "capacity_reservation_id": "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }
@@ -505,6 +517,7 @@ def main():
             failed_esxi_host_id=dict(type="str"),
             host_shape_name=dict(type="str"),
             host_ocpu_count=dict(type="float"),
+            capacity_reservation_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             next_sku=dict(
                 type="str", choices=["HOUR", "MONTH", "ONE_YEAR", "THREE_YEARS"]

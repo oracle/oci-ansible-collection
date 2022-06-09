@@ -551,12 +551,6 @@ deployment:
                             returned: on success
                             type: str
                             sample: "ocid1.environment.oc1..xxxxxxEXAMPLExxxxxx"
-                        namespace:
-                            description:
-                                - Namespace either environment A or environment B where artifacts are deployed.
-                            returned: on success
-                            type: str
-                            sample: namespace_example
                         approval_actions:
                             description:
                                 - ""
@@ -581,6 +575,30 @@ deployment:
                                     returned: on success
                                     type: str
                                     sample: reason_example
+                        release_name:
+                            description:
+                                - Release name of the Helm chart.
+                            returned: on success
+                            type: str
+                            sample: release_name_example
+                        chart_url:
+                            description:
+                                - The URL of an OCIR repository.
+                            returned: on success
+                            type: str
+                            sample: chart_url_example
+                        version:
+                            description:
+                                - The version of the helm chart stored in OCIR repository.
+                            returned: on success
+                            type: str
+                            sample: version_example
+                        namespace:
+                            description:
+                                - Namespace either environment A or environment B where artifacts are deployed.
+                            returned: on success
+                            type: str
+                            sample: namespace_example
                         deploy_stage_display_name:
                             description:
                                 - Stage display name. Avoid entering confidential information.
@@ -801,12 +819,15 @@ deployment:
             "time_finished": "2013-10-20T19:20:30+01:00",
             "deploy_stage_execution_progress": {
                 "environment_id": "ocid1.environment.oc1..xxxxxxEXAMPLExxxxxx",
-                "namespace": "namespace_example",
                 "approval_actions": [{
                     "subject_id": "ocid1.subject.oc1..xxxxxxEXAMPLExxxxxx",
                     "action": "APPROVE",
                     "reason": "reason_example"
                 }],
+                "release_name": "release_name_example",
+                "chart_url": "chart_url_example",
+                "version": "version_example",
+                "namespace": "namespace_example",
                 "deploy_stage_display_name": "deploy_stage_display_name_example",
                 "deploy_stage_type": "COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT",
                 "deploy_stage_id": "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx",

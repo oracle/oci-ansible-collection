@@ -552,6 +552,12 @@ sddc:
             returned: on success
             type: bool
             sample: true
+        capacity_reservation_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Capacity Reservation.
+            returned: on success
+            type: str
+            sample: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -621,6 +627,7 @@ sddc:
         "initial_host_shape_name": "initial_host_shape_name_example",
         "initial_host_ocpu_count": 3.4,
         "is_shielded_instance_enabled": true,
+        "capacity_reservation_id": "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }

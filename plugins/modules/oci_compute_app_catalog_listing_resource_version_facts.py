@@ -77,8 +77,8 @@ app_catalog_listing_resource_versions:
         available_regions:
             description:
                 - List of regions that this listing resource version is available.
-                - For information about Regions, see
-                  L(Regions,https://docs.cloud.oracle.com/#General/Concepts/regions.htm).
+                - For information about regions, see
+                  L(Regions and Availability Domains,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm).
                 - "Example: `[\\"us-ashburn-1\\", \\"us-phoenix-1\\"]`"
                 - Returned for get operation
             returned: on success
@@ -87,7 +87,8 @@ app_catalog_listing_resource_versions:
         compatible_shapes:
             description:
                 - Array of shapes compatible with this resource.
-                - You may enumerate all available shapes by calling listShapes.
+                - You can enumerate all available shapes by calling L(ListShapes,https://docs.cloud.oracle.com/en-
+                  us/iaas/api/#/en/iaas/latest/Shape/ListShapes).
                 - "Example: `[\\"VM.Standard1.1\\", \\"VM.Standard1.2\\"]`"
                 - Returned for get operation
             returned: on success

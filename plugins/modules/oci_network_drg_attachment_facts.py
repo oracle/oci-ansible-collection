@@ -142,7 +142,7 @@ drg_attachments:
     contains:
         compartment_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the DRG attachment.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the DRG attachment.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -155,13 +155,13 @@ drg_attachments:
             sample: display_name_example
         drg_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DRG.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the DRG.
             returned: on success
             type: str
             sample: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
-                - The DRG attachment's Oracle ID (L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)).
+                - The DRG attachment's Oracle ID (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)).
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -200,7 +200,8 @@ drg_attachments:
                     sample: "ocid1.ipsecconnection.oc1..xxxxxxEXAMPLExxxxxx"
                 route_table_id:
                     description:
-                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the route table the DRG attachment is using.
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the route table the DRG attachment is
+                          using.
                         - "For information about why you would associate a route table with a DRG attachment, see:"
                         - " * L(Transit Routing: Access to Multiple VCNs in Same
                           Region,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitrouting.htm)
@@ -253,22 +254,22 @@ drg_attachments:
                     * L(Transit Routing: Private Access to Oracle
                     Services,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitroutingoracleservices.htm)"
                 - This field is deprecated. Instead, use the `networkDetails` field to view the
-                  L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the attached resource.
+                  L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the attached resource.
             returned: on success
             type: str
             sample: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
         vcn_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN.
                   This field is deprecated. Instead, use the `networkDetails` field to view the
-                  L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the attached resource.
+                  L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the attached resource.
             returned: on success
             type: str
             sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         export_drg_route_distribution_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the export route distribution used to specify how routes
-                  in the assigned DRG route table
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the export route distribution used to specify how
+                  routes in the assigned DRG route table
                   are advertised to the attachment.
                   If this value is null, no routes are advertised through this attachment.
             returned: on success

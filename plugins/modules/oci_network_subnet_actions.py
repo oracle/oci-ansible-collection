@@ -39,7 +39,7 @@ options:
         type: str
     subnet_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the subnet.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the subnet.
         type: str
         aliases: ["id"]
         required: true

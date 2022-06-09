@@ -31,7 +31,7 @@ author: Oracle (@oracle)
 options:
     security_list_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the security list.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the security list.
         type: str
         aliases: ["id"]
         required: true

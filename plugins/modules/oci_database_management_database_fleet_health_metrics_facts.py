@@ -53,6 +53,7 @@ options:
         choices:
             - "HOUR"
             - "DAY"
+            - "WEEK"
     filter_by_metric_names:
         description:
             - The filter used to retrieve a specific set of metrics by passing the desired metric names with a comma separator. Note that, by default, the
@@ -455,7 +456,7 @@ def main():
             compare_target_time=dict(type="str", required=True),
             managed_database_group_id=dict(type="str"),
             compartment_id=dict(type="str"),
-            compare_type=dict(type="str", choices=["HOUR", "DAY"]),
+            compare_type=dict(type="str", choices=["HOUR", "DAY", "WEEK"]),
             filter_by_metric_names=dict(type="str"),
             filter_by_database_type=dict(type="str"),
             filter_by_database_sub_type=dict(type="str"),

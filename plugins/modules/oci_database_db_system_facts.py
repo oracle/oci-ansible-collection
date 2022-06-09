@@ -242,6 +242,19 @@ db_systems:
             returned: on success
             type: list
             sample: []
+        memory_size_in_gbs:
+            description:
+                - Memory allocated to the DB system, in gigabytes.
+            returned: on success
+            type: int
+            sample: 56
+        storage_volume_performance_mode:
+            description:
+                - The block storage volume performance level. Valid values are `BALANCED` and `HIGH_PERFORMANCE`. See L(Block Volume
+                  Performance,https://docs.cloud.oracle.com/Content/Block/Concepts/blockvolumeperformance.htm) for more information.
+            returned: on success
+            type: str
+            sample: BALANCED
         shape:
             description:
                 - "The shape of the DB system. The shape determines resources to allocate to the DB system.
@@ -580,6 +593,8 @@ db_systems:
         "backup_subnet_id": "ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx",
         "nsg_ids": [],
         "backup_network_nsg_ids": [],
+        "memory_size_in_gbs": 56,
+        "storage_volume_performance_mode": "BALANCED",
         "shape": "shape_example",
         "db_system_options": {
             "storage_management": "ASM"

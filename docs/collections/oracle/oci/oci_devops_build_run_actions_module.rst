@@ -30,7 +30,7 @@ oracle.oci.oci_devops_build_run_actions -- Perform actions on a BuildRun resourc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.51.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.52.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -162,6 +162,24 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Passphrase used by the key referenced in <code>api_user_key_file</code>, if it is encrypted. If not set, then the value of the OCI_USER_KEY_PASS_PHRASE variable, if any, is used. This option is required if the key passphrase is not specified through a configuration file (See <code>config_file_location</code>).</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-auth_purpose"></div>
+                    <b>auth_purpose</b>
+                    <a class="ansibleOptionLink" href="#parameter-auth_purpose" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>service_principal</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The auth purpose which can be used in conjunction with &#x27;auth_type=instance_principal&#x27;. The default auth_purpose for instance_principal is None.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -377,7 +395,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the BuildRun resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;build_outputs&#x27;: {&#x27;artifact_override_parameters&#x27;: {&#x27;items&#x27;: [{&#x27;deploy_artifact_id&#x27;: &#x27;ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}, &#x27;delivered_artifacts&#x27;: {&#x27;items&#x27;: [{&#x27;artifact_repository_id&#x27;: &#x27;ocid1.artifactrepository.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;artifact_type&#x27;: &#x27;GENERIC_ARTIFACT&#x27;, &#x27;delivered_artifact_hash&#x27;: &#x27;delivered_artifact_hash_example&#x27;, &#x27;delivered_artifact_id&#x27;: &#x27;ocid1.deliveredartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_artifact_id&#x27;: &#x27;ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;image_uri&#x27;: &#x27;image_uri_example&#x27;, &#x27;output_artifact_name&#x27;: &#x27;output_artifact_name_example&#x27;, &#x27;path&#x27;: &#x27;path_example&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;}]}, &#x27;exported_variables&#x27;: {&#x27;items&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}}, &#x27;build_pipeline_id&#x27;: &#x27;ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;build_run_arguments&#x27;: {&#x27;items&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}, &#x27;build_run_progress&#x27;: {&#x27;build_pipeline_stage_run_progress&#x27;: {&#x27;actual_build_runner_shape&#x27;: &#x27;actual_build_runner_shape_example&#x27;, &#x27;actual_build_runner_shape_config&#x27;: {&#x27;memory_in_gbs&#x27;: 1.2, &#x27;ocpus&#x27;: 1.2}, &#x27;artifact_override_parameters&#x27;: {&#x27;items&#x27;: [{&#x27;deploy_artifact_id&#x27;: &#x27;ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}, &#x27;build_pipeline_stage_id&#x27;: &#x27;ocid1.buildpipelinestage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;build_pipeline_stage_predecessors&#x27;: {&#x27;items&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}, &#x27;build_pipeline_stage_type&#x27;: &#x27;BUILD&#x27;, &#x27;build_source_collection&#x27;: {&#x27;items&#x27;: [{&#x27;branch&#x27;: &#x27;branch_example&#x27;, &#x27;connection_id&#x27;: &#x27;ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_type&#x27;: &#x27;GITHUB&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;repository_id&#x27;: &#x27;ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;repository_url&#x27;: &#x27;repository_url_example&#x27;}]}, &#x27;build_spec_file&#x27;: &#x27;build_spec_file_example&#x27;, &#x27;delivered_artifacts&#x27;: {&#x27;items&#x27;: [{&#x27;artifact_repository_id&#x27;: &#x27;ocid1.artifactrepository.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;artifact_type&#x27;: &#x27;GENERIC_ARTIFACT&#x27;, &#x27;delivered_artifact_hash&#x27;: &#x27;delivered_artifact_hash_example&#x27;, &#x27;delivered_artifact_id&#x27;: &#x27;ocid1.deliveredartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_artifact_id&#x27;: &#x27;ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;image_uri&#x27;: &#x27;image_uri_example&#x27;, &#x27;output_artifact_name&#x27;: &#x27;output_artifact_name_example&#x27;, &#x27;path&#x27;: &#x27;path_example&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;}]}, &#x27;deployment_id&#x27;: &#x27;ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;exported_variables&#x27;: {&#x27;items&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}, &#x27;image&#x27;: &#x27;OL7_X86_64_STANDARD_10&#x27;, &#x27;primary_build_source&#x27;: &#x27;primary_build_source_example&#x27;, &#x27;stage_display_name&#x27;: &#x27;stage_display_name_example&#x27;, &#x27;stage_execution_timeout_in_seconds&#x27;: 56, &#x27;status&#x27;: &#x27;ACCEPTED&#x27;, &#x27;steps&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;state&#x27;: &#x27;WAITING&#x27;, &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;build_run_source&#x27;: {&#x27;repository_id&#x27;: &#x27;ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_type&#x27;: &#x27;MANUAL&#x27;, &#x27;trigger_id&#x27;: &#x27;ocid1.trigger.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;trigger_info&#x27;: {&#x27;actions&#x27;: [{&#x27;build_pipeline_id&#x27;: &#x27;ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;filter&#x27;: {&#x27;events&#x27;: [], &#x27;include&#x27;: {&#x27;base_ref&#x27;: &#x27;base_ref_example&#x27;, &#x27;head_ref&#x27;: &#x27;head_ref_example&#x27;}, &#x27;trigger_source&#x27;: &#x27;DEVOPS_CODE_REPOSITORY&#x27;}, &#x27;type&#x27;: &#x27;TRIGGER_BUILD_PIPELINE&#x27;}], &#x27;display_name&#x27;: &#x27;display_name_example&#x27;}}, &#x27;commit_info&#x27;: {&#x27;commit_hash&#x27;: &#x27;commit_hash_example&#x27;, &#x27;repository_branch&#x27;: &#x27;repository_branch_example&#x27;, &#x27;repository_url&#x27;: &#x27;repository_url_example&#x27;}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACCEPTED&#x27;, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;build_outputs&#x27;: {&#x27;artifact_override_parameters&#x27;: {&#x27;items&#x27;: [{&#x27;deploy_artifact_id&#x27;: &#x27;ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}, &#x27;delivered_artifacts&#x27;: {&#x27;items&#x27;: [{&#x27;artifact_repository_id&#x27;: &#x27;ocid1.artifactrepository.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;artifact_type&#x27;: &#x27;GENERIC_ARTIFACT&#x27;, &#x27;delivered_artifact_hash&#x27;: &#x27;delivered_artifact_hash_example&#x27;, &#x27;delivered_artifact_id&#x27;: &#x27;ocid1.deliveredartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_artifact_id&#x27;: &#x27;ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;image_uri&#x27;: &#x27;image_uri_example&#x27;, &#x27;output_artifact_name&#x27;: &#x27;output_artifact_name_example&#x27;, &#x27;path&#x27;: &#x27;path_example&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;}]}, &#x27;exported_variables&#x27;: {&#x27;items&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}, &#x27;vulnerability_audit_summary_collection&#x27;: {&#x27;items&#x27;: [{&#x27;build_stage_id&#x27;: &#x27;ocid1.buildstage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;commit_hash&#x27;: &#x27;commit_hash_example&#x27;, &#x27;vulnerability_audit_id&#x27;: &#x27;ocid1.vulnerabilityaudit.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}}, &#x27;build_pipeline_id&#x27;: &#x27;ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;build_run_arguments&#x27;: {&#x27;items&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}, &#x27;build_run_progress&#x27;: {&#x27;build_pipeline_stage_run_progress&#x27;: {&#x27;actual_build_runner_shape&#x27;: &#x27;actual_build_runner_shape_example&#x27;, &#x27;actual_build_runner_shape_config&#x27;: {&#x27;memory_in_gbs&#x27;: 1.2, &#x27;ocpus&#x27;: 1.2}, &#x27;artifact_override_parameters&#x27;: {&#x27;items&#x27;: [{&#x27;deploy_artifact_id&#x27;: &#x27;ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}, &#x27;build_pipeline_stage_id&#x27;: &#x27;ocid1.buildpipelinestage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;build_pipeline_stage_predecessors&#x27;: {&#x27;items&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}, &#x27;build_pipeline_stage_type&#x27;: &#x27;BUILD&#x27;, &#x27;build_source_collection&#x27;: {&#x27;items&#x27;: [{&#x27;branch&#x27;: &#x27;branch_example&#x27;, &#x27;connection_id&#x27;: &#x27;ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_type&#x27;: &#x27;GITHUB&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;repository_id&#x27;: &#x27;ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;repository_url&#x27;: &#x27;repository_url_example&#x27;}]}, &#x27;build_spec_file&#x27;: &#x27;build_spec_file_example&#x27;, &#x27;delivered_artifacts&#x27;: {&#x27;items&#x27;: [{&#x27;artifact_repository_id&#x27;: &#x27;ocid1.artifactrepository.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;artifact_type&#x27;: &#x27;GENERIC_ARTIFACT&#x27;, &#x27;delivered_artifact_hash&#x27;: &#x27;delivered_artifact_hash_example&#x27;, &#x27;delivered_artifact_id&#x27;: &#x27;ocid1.deliveredartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_artifact_id&#x27;: &#x27;ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;image_uri&#x27;: &#x27;image_uri_example&#x27;, &#x27;output_artifact_name&#x27;: &#x27;output_artifact_name_example&#x27;, &#x27;path&#x27;: &#x27;path_example&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;}]}, &#x27;deployment_id&#x27;: &#x27;ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;exported_variables&#x27;: {&#x27;items&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}, &#x27;image&#x27;: &#x27;OL7_X86_64_STANDARD_10&#x27;, &#x27;primary_build_source&#x27;: &#x27;primary_build_source_example&#x27;, &#x27;stage_display_name&#x27;: &#x27;stage_display_name_example&#x27;, &#x27;stage_execution_timeout_in_seconds&#x27;: 56, &#x27;status&#x27;: &#x27;ACCEPTED&#x27;, &#x27;steps&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;state&#x27;: &#x27;WAITING&#x27;, &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;build_run_source&#x27;: {&#x27;repository_id&#x27;: &#x27;ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_type&#x27;: &#x27;MANUAL&#x27;, &#x27;trigger_id&#x27;: &#x27;ocid1.trigger.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;trigger_info&#x27;: {&#x27;actions&#x27;: [{&#x27;build_pipeline_id&#x27;: &#x27;ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;filter&#x27;: {&#x27;events&#x27;: [], &#x27;include&#x27;: {&#x27;base_ref&#x27;: &#x27;base_ref_example&#x27;, &#x27;head_ref&#x27;: &#x27;head_ref_example&#x27;}, &#x27;trigger_source&#x27;: &#x27;BITBUCKET_CLOUD&#x27;}, &#x27;type&#x27;: &#x27;TRIGGER_BUILD_PIPELINE&#x27;}], &#x27;display_name&#x27;: &#x27;display_name_example&#x27;}}, &#x27;commit_info&#x27;: {&#x27;commit_hash&#x27;: &#x27;commit_hash_example&#x27;, &#x27;repository_branch&#x27;: &#x27;repository_branch_example&#x27;, &#x27;repository_url&#x27;: &#x27;repository_url_example&#x27;}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACCEPTED&#x27;, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -797,6 +815,106 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
+                                    </td>
+            </tr>
+                    
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-build_run/build_outputs/vulnerability_audit_summary_collection"></div>
+                    <b>vulnerability_audit_summary_collection</b>
+                    <a class="ansibleOptionLink" href="#return-build_run/build_outputs/vulnerability_audit_summary_collection" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-build_run/build_outputs/vulnerability_audit_summary_collection/items"></div>
+                    <b>items</b>
+                    <a class="ansibleOptionLink" href="#return-build_run/build_outputs/vulnerability_audit_summary_collection/items" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>List of vulnerability audit summary.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-build_run/build_outputs/vulnerability_audit_summary_collection/items/build_stage_id"></div>
+                    <b>build_stage_id</b>
+                    <a class="ansibleOptionLink" href="#return-build_run/build_outputs/vulnerability_audit_summary_collection/items/build_stage_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Build stage OCID where scan was configured.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.buildstage.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-build_run/build_outputs/vulnerability_audit_summary_collection/items/commit_hash"></div>
+                    <b>commit_hash</b>
+                    <a class="ansibleOptionLink" href="#return-build_run/build_outputs/vulnerability_audit_summary_collection/items/commit_hash" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Commit hash used while retrieving the pom file for vulnerabilityAudit.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">commit_hash_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-build_run/build_outputs/vulnerability_audit_summary_collection/items/vulnerability_audit_id"></div>
+                    <b>vulnerability_audit_id</b>
+                    <a class="ansibleOptionLink" href="#return-build_run/build_outputs/vulnerability_audit_summary_collection/items/vulnerability_audit_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the vulnerability audit.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.vulnerabilityaudit.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                     
@@ -1290,7 +1408,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Connection identifier pertinent to GitHub source provider.</div>
+                                            <div>Connection identifier pertinent to Bitbucket Cloud source provider</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -2193,7 +2311,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The events only support PUSH.</div>
+                                            <div>The events, for example, PUSH, PULL_REQUEST_MERGE.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -2257,7 +2375,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Branch for push event.</div>
+                                            <div>Branch for push event; source branch for pull requests.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">head_ref_example</div>
@@ -2283,7 +2401,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Source of the trigger. Allowed values are, GITHUB and GITLAB.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">DEVOPS_CODE_REPOSITORY</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">BITBUCKET_CLOUD</div>
                                     </td>
             </tr>
                     

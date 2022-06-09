@@ -55,7 +55,6 @@ options:
     kubernetes_version:
         description:
             - The version of Kubernetes to install on the nodes in the node pool.
-            - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
     initial_node_labels:
@@ -156,6 +155,11 @@ options:
                         description:
                             - The OCID of the compute capacity reservation in which to place the compute instance.
                         type: str
+                    fault_domains:
+                        description:
+                            - A list of fault domains in which to place nodes.
+                        type: list
+                        elements: str
     node_metadata:
         description:
             - A list of key/value pairs to add to each underlying OCI instance in the node pool on launch.
@@ -253,11 +257,11 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
-    kubernetes_version: kubernetes_version_example
     node_shape: node_shape_example
 
     # optional
     node_image_name: node_image_name_example
+    kubernetes_version: kubernetes_version_example
     initial_node_labels:
     - # optional
       key: key_example
@@ -279,6 +283,7 @@ EXAMPLES = """
 
         # optional
         capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+        fault_domains: [ "fault_domains_example" ]
     node_metadata: null
     node_source_details:
       # required
@@ -324,6 +329,7 @@ EXAMPLES = """
 
         # optional
         capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+        fault_domains: [ "fault_domains_example" ]
     node_metadata: null
     node_source_details:
       # required
@@ -370,6 +376,7 @@ EXAMPLES = """
 
         # optional
         capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+        fault_domains: [ "fault_domains_example" ]
     node_metadata: null
     node_source_details:
       # required
@@ -773,6 +780,12 @@ node_pool:
                             returned: on success
                             type: str
                             sample: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+                        fault_domains:
+                            description:
+                                - A list of fault domains in which to place nodes.
+                            returned: on success
+                            type: list
+                            sample: []
         freeform_tags:
             description:
                 - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -859,7 +872,8 @@ node_pool:
             "placement_configs": [{
                 "availability_domain": "Uocm:PHX-AD-1",
                 "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
-                "capacity_reservation_id": "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+                "capacity_reservation_id": "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx",
+                "fault_domains": []
             }]
         },
         "freeform_tags": {'Department': 'Finance'},
@@ -1045,6 +1059,7 @@ def main():
                             availability_domain=dict(type="str", required=True),
                             subnet_id=dict(type="str", required=True),
                             capacity_reservation_id=dict(type="str"),
+                            fault_domains=dict(type="list", elements="str"),
                         ),
                     ),
                 ),

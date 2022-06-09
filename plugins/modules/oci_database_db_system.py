@@ -119,6 +119,14 @@ options:
                 choices:
                     - "ASM"
                     - "LVM"
+    storage_volume_performance_mode:
+        description:
+            - The block storage volume performance level. Valid values are `BALANCED` and `HIGH_PERFORMANCE`. See L(Block Volume
+              Performance,https://docs.cloud.oracle.com/Content/Block/Concepts/blockvolumeperformance.htm) for more information.
+        type: str
+        choices:
+            - "BALANCED"
+            - "HIGH_PERFORMANCE"
     sparse_diskgroup:
         description:
             - If true, Sparse Diskgroup is configured for Exadata dbsystem. If False, Sparse diskgroup is not configured.
@@ -761,6 +769,7 @@ EXAMPLES = """
     db_system_options:
       # optional
       storage_management: ASM
+    storage_volume_performance_mode: BALANCED
     sparse_diskgroup: true
     domain: domain_example
     cluster_name: cluster_name_example
@@ -863,6 +872,7 @@ EXAMPLES = """
     db_system_options:
       # optional
       storage_management: ASM
+    storage_volume_performance_mode: BALANCED
     sparse_diskgroup: true
     domain: domain_example
     cluster_name: cluster_name_example
@@ -946,6 +956,7 @@ EXAMPLES = """
     db_system_options:
       # optional
       storage_management: ASM
+    storage_volume_performance_mode: BALANCED
     sparse_diskgroup: true
     domain: domain_example
     cluster_name: cluster_name_example
@@ -1030,6 +1041,7 @@ EXAMPLES = """
     db_system_options:
       # optional
       storage_management: ASM
+    storage_volume_performance_mode: BALANCED
     sparse_diskgroup: true
     domain: domain_example
     cluster_name: cluster_name_example
@@ -1267,6 +1279,19 @@ db_system:
             returned: on success
             type: list
             sample: []
+        memory_size_in_gbs:
+            description:
+                - Memory allocated to the DB system, in gigabytes.
+            returned: on success
+            type: int
+            sample: 56
+        storage_volume_performance_mode:
+            description:
+                - The block storage volume performance level. Valid values are `BALANCED` and `HIGH_PERFORMANCE`. See L(Block Volume
+                  Performance,https://docs.cloud.oracle.com/Content/Block/Concepts/blockvolumeperformance.htm) for more information.
+            returned: on success
+            type: str
+            sample: BALANCED
         shape:
             description:
                 - "The shape of the DB system. The shape determines resources to allocate to the DB system.
@@ -1605,6 +1630,8 @@ db_system:
         "backup_subnet_id": "ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx",
         "nsg_ids": [],
         "backup_network_nsg_ids": [],
+        "memory_size_in_gbs": 56,
+        "storage_volume_performance_mode": "BALANCED",
         "shape": "shape_example",
         "db_system_options": {
             "storage_management": "ASM"
@@ -1838,6 +1865,9 @@ def main():
                 options=dict(
                     storage_management=dict(type="str", choices=["ASM", "LVM"])
                 ),
+            ),
+            storage_volume_performance_mode=dict(
+                type="str", choices=["BALANCED", "HIGH_PERFORMANCE"]
             ),
             sparse_diskgroup=dict(type="bool"),
             hostname=dict(type="str"),

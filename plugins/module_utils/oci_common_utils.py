@@ -435,6 +435,7 @@ def get_common_arg_spec(supports_create=False, supports_wait=False):
             ],
             default="api_key",
         ),
+        auth_purpose=dict(type="str", choices=["service_principal"]),
         tenancy=dict(type="str"),
         region=dict(type="str"),
     )

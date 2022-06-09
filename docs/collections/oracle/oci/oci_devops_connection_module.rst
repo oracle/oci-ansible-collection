@@ -30,7 +30,7 @@ oracle.oci.oci_devops_connection -- Manage a Connection resource in Oracle Cloud
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.51.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.52.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -99,9 +99,9 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The OCID of personal access token saved in secret store.</div>
-                                            <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
                                             <div>Applicable when connection_type is one of [&#x27;GITLAB_ACCESS_TOKEN&#x27;, &#x27;GITHUB_ACCESS_TOKEN&#x27;]</div>
+                                            <div>Required when connection_type is one of [&#x27;GITLAB_ACCESS_TOKEN&#x27;, &#x27;GITHUB_ACCESS_TOKEN&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -162,6 +162,42 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Passphrase used by the key referenced in <code>api_user_key_file</code>, if it is encrypted. If not set, then the value of the OCI_USER_KEY_PASS_PHRASE variable, if any, is used. This option is required if the key passphrase is not specified through a configuration file (See <code>config_file_location</code>).</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-app_password"></div>
+                    <b>app_password</b>
+                    <a class="ansibleOptionLink" href="#parameter-app_password" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>OCID of personal Bitbucket Cloud AppPassword saved in secret store</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when connection_type is &#x27;BITBUCKET_CLOUD_APP_PASSWORD&#x27;</div>
+                                            <div>Required when connection_type is &#x27;BITBUCKET_CLOUD_APP_PASSWORD&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-auth_purpose"></div>
+                    <b>auth_purpose</b>
+                    <a class="ansibleOptionLink" href="#parameter-auth_purpose" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>service_principal</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The auth purpose which can be used in conjunction with &#x27;auth_type=instance_principal&#x27;. The default auth_purpose for instance_principal is None.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -245,6 +281,7 @@ Parameters
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>GITHUB_ACCESS_TOKEN</li>
+                                                                                                                                                                                                <li>BITBUCKET_CLOUD_APP_PASSWORD</li>
                                                                                                                                                                                                 <li>GITLAB_ACCESS_TOKEN</li>
                                                                                     </ul>
                                                                             </td>
@@ -422,6 +459,24 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-username"></div>
+                    <b>username</b>
+                    <a class="ansibleOptionLink" href="#parameter-username" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Public Bitbucket Cloud Username in plain text(not more than 30 characters)</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when connection_type is &#x27;BITBUCKET_CLOUD_APP_PASSWORD&#x27;</div>
+                                            <div>Required when connection_type is &#x27;BITBUCKET_CLOUD_APP_PASSWORD&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-wait"></div>
                     <b>wait</b>
                     <a class="ansibleOptionLink" href="#parameter-wait" title="Permalink to this option"></a>
@@ -486,11 +541,25 @@ Examples
         connection_type: GITHUB_ACCESS_TOKEN
 
         # optional
+        access_token: access_token_example
         description: description_example
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        access_token: access_token_example
+
+    - name: Create connection with connection_type = BITBUCKET_CLOUD_APP_PASSWORD
+      oci_devops_connection:
+        # required
+        project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+        connection_type: BITBUCKET_CLOUD_APP_PASSWORD
+
+        # optional
+        description: description_example
+        display_name: display_name_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        username: username_example
+        app_password: example-password
 
     - name: Create connection with connection_type = GITLAB_ACCESS_TOKEN
       oci_devops_connection:
@@ -499,11 +568,11 @@ Examples
         connection_type: GITLAB_ACCESS_TOKEN
 
         # optional
+        access_token: access_token_example
         description: description_example
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        access_token: access_token_example
 
     - name: Update connection with connection_type = GITHUB_ACCESS_TOKEN
       oci_devops_connection:
@@ -511,11 +580,24 @@ Examples
         connection_type: GITHUB_ACCESS_TOKEN
 
         # optional
+        access_token: access_token_example
         description: description_example
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        access_token: access_token_example
+
+    - name: Update connection with connection_type = BITBUCKET_CLOUD_APP_PASSWORD
+      oci_devops_connection:
+        # required
+        connection_type: BITBUCKET_CLOUD_APP_PASSWORD
+
+        # optional
+        description: description_example
+        display_name: display_name_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        username: username_example
+        app_password: example-password
 
     - name: Update connection with connection_type = GITLAB_ACCESS_TOKEN
       oci_devops_connection:
@@ -523,11 +605,11 @@ Examples
         connection_type: GITLAB_ACCESS_TOKEN
 
         # optional
+        access_token: access_token_example
         description: description_example
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        access_token: access_token_example
 
     - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = GITHUB_ACCESS_TOKEN
       oci_devops_connection:
@@ -535,11 +617,24 @@ Examples
         connection_type: GITHUB_ACCESS_TOKEN
 
         # optional
+        access_token: access_token_example
         description: description_example
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        access_token: access_token_example
+
+    - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = BITBUCKET_CLOUD_APP_PASSWORD
+      oci_devops_connection:
+        # required
+        connection_type: BITBUCKET_CLOUD_APP_PASSWORD
+
+        # optional
+        description: description_example
+        display_name: display_name_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        username: username_example
+        app_password: example-password
 
     - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = GITLAB_ACCESS_TOKEN
       oci_devops_connection:
@@ -547,11 +642,11 @@ Examples
         connection_type: GITLAB_ACCESS_TOKEN
 
         # optional
+        access_token: access_token_example
         description: description_example
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        access_token: access_token_example
 
     - name: Delete connection
       oci_devops_connection:
@@ -600,7 +695,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Connection resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;access_token&#x27;: &#x27;access_token_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_type&#x27;: &#x27;GITHUB_ACCESS_TOKEN&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;access_token&#x27;: &#x27;access_token_example&#x27;, &#x27;app_password&#x27;: &#x27;example-password&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_type&#x27;: &#x27;GITHUB_ACCESS_TOKEN&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;username&#x27;: &#x27;username_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -619,6 +714,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">access_token_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-connection/app_password"></div>
+                    <b>app_password</b>
+                    <a class="ansibleOptionLink" href="#return-connection/app_password" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>OCID of personal Bitbucket Cloud AppPassword saved in secret store</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">example-password</div>
                                     </td>
             </tr>
                                 <tr>
@@ -833,6 +946,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-connection/username"></div>
+                    <b>username</b>
+                    <a class="ansibleOptionLink" href="#return-connection/username" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Public Bitbucket Cloud Username in plain text</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">username_example</div>
                                     </td>
             </tr>
                     

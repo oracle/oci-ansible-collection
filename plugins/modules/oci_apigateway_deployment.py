@@ -61,6 +61,7 @@ options:
     specification:
         description:
             - ""
+            - Required for create using I(state=present).
             - This parameter is updatable.
         type: dict
         suboptions:
@@ -322,6 +323,22 @@ options:
                                     - Allowed list of CN or SAN which will be used for verification of certificate.
                                 type: list
                                 elements: str
+                    usage_plans:
+                        description:
+                            - ""
+                        type: dict
+                        suboptions:
+                            token_locations:
+                                description:
+                                    - "A list of context variables specifying where API tokens may be located in a request.
+                                      Example locations:
+                                        - \\"request.headers[token]\\"
+                                        - \\"request.query[token]\\"
+                                        - \\"request.auth[Token]\\"
+                                        - \\"request.path[TOKEN]\\""
+                                type: list
+                                elements: str
+                                required: true
             logging_policies:
                 description:
                     - ""
@@ -1050,9 +1067,6 @@ EXAMPLES = """
     gateway_id: "ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     path_prefix: path_prefix_example
-
-    # optional
-    display_name: display_name_example
     specification:
       # optional
       request_policies:
@@ -1111,6 +1125,9 @@ EXAMPLES = """
           # optional
           is_verified_certificate_required: true
           allowed_sans: [ "allowed_sans_example" ]
+        usage_plans:
+          # required
+          token_locations: [ "token_locations_example" ]
       logging_policies:
         # optional
         access_log:
@@ -1270,6 +1287,9 @@ EXAMPLES = """
             # optional
             is_enabled: true
             log_level: INFO
+
+    # optional
+    display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -1338,6 +1358,9 @@ EXAMPLES = """
           # optional
           is_verified_certificate_required: true
           allowed_sans: [ "allowed_sans_example" ]
+        usage_plans:
+          # required
+          token_locations: [ "token_locations_example" ]
       logging_policies:
         # optional
         access_log:
@@ -1565,6 +1588,9 @@ EXAMPLES = """
           # optional
           is_verified_certificate_required: true
           allowed_sans: [ "allowed_sans_example" ]
+        usage_plans:
+          # required
+          token_locations: [ "token_locations_example" ]
       logging_policies:
         # optional
         access_log:
@@ -2072,6 +2098,23 @@ deployment:
                                 allowed_sans:
                                     description:
                                         - Allowed list of CN or SAN which will be used for verification of certificate.
+                                    returned: on success
+                                    type: list
+                                    sample: []
+                        usage_plans:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                token_locations:
+                                    description:
+                                        - "A list of context variables specifying where API tokens may be located in a request.
+                                          Example locations:
+                                            - \\"request.headers[token]\\"
+                                            - \\"request.query[token]\\"
+                                            - \\"request.auth[Token]\\"
+                                            - \\"request.path[TOKEN]\\""
                                     returned: on success
                                     type: list
                                     sample: []
@@ -2902,6 +2945,9 @@ deployment:
                 "mutual_tls": {
                     "is_verified_certificate_required": true,
                     "allowed_sans": []
+                },
+                "usage_plans": {
+                    "token_locations": []
                 }
             },
             "logging_policies": {
@@ -3336,6 +3382,17 @@ def main():
                                 options=dict(
                                     is_verified_certificate_required=dict(type="bool"),
                                     allowed_sans=dict(type="list", elements="str"),
+                                ),
+                            ),
+                            usage_plans=dict(
+                                type="dict",
+                                options=dict(
+                                    token_locations=dict(
+                                        type="list",
+                                        elements="str",
+                                        required=True,
+                                        no_log=True,
+                                    )
                                 ),
                             ),
                         ),

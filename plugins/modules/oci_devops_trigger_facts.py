@@ -128,10 +128,10 @@ triggers:
                                 - Source of the trigger. Allowed values are, GITHUB and GITLAB.
                             returned: on success
                             type: str
-                            sample: DEVOPS_CODE_REPOSITORY
+                            sample: BITBUCKET_CLOUD
                         events:
                             description:
-                                - The events only support PUSH.
+                                - The events, for example, PUSH, PULL_REQUEST_MERGE.
                             returned: on success
                             type: list
                             sample: []
@@ -143,7 +143,7 @@ triggers:
                             contains:
                                 head_ref:
                                     description:
-                                        - Branch for push event.
+                                        - Branch for push event; source branch for pull requests.
                                     returned: on success
                                     type: str
                                     sample: head_ref_example
@@ -198,7 +198,7 @@ triggers:
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         trigger_source:
             description:
-                - Source of the trigger. Allowed values are, GITHUB, GITLAB and DEVOPS_CODE_REPOSITORY.
+                - Source of the trigger.
             returned: on success
             type: str
             sample: GITHUB
@@ -254,7 +254,7 @@ triggers:
         "actions": [{
             "type": "TRIGGER_BUILD_PIPELINE",
             "filter": {
-                "trigger_source": "DEVOPS_CODE_REPOSITORY",
+                "trigger_source": "BITBUCKET_CLOUD",
                 "events": [],
                 "include": {
                     "head_ref": "head_ref_example",

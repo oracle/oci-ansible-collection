@@ -158,7 +158,7 @@ drg_route_rules:
             sample: CIDR_BLOCK
         next_hop_drg_attachment_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the next hop DRG attachment responsible
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the next hop DRG attachment responsible
                   for reaching the network destination.
                 - A value of `BLACKHOLE` means traffic for this route is discarded without notification.
             returned: on success

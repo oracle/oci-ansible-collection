@@ -32,6 +32,13 @@ options:
             - The OCID of the DevOps project.
             - Required for create using I(state=present).
         type: str
+    access_token:
+        description:
+            - The OCID of personal access token saved in secret store.
+            - This parameter is updatable.
+            - Applicable when connection_type is one of ['GITLAB_ACCESS_TOKEN', 'GITHUB_ACCESS_TOKEN']
+            - Required when connection_type is one of ['GITLAB_ACCESS_TOKEN', 'GITHUB_ACCESS_TOKEN']
+        type: str
     description:
         description:
             - Optional description about the connection.
@@ -51,6 +58,7 @@ options:
         type: str
         choices:
             - "GITHUB_ACCESS_TOKEN"
+            - "BITBUCKET_CLOUD_APP_PASSWORD"
             - "GITLAB_ACCESS_TOKEN"
     freeform_tags:
         description:
@@ -64,12 +72,19 @@ options:
               Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm). Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             - This parameter is updatable.
         type: dict
-    access_token:
+    username:
         description:
-            - The OCID of personal access token saved in secret store.
-            - Required for create using I(state=present).
+            - Public Bitbucket Cloud Username in plain text(not more than 30 characters)
             - This parameter is updatable.
-            - Applicable when connection_type is one of ['GITLAB_ACCESS_TOKEN', 'GITHUB_ACCESS_TOKEN']
+            - Applicable when connection_type is 'BITBUCKET_CLOUD_APP_PASSWORD'
+            - Required when connection_type is 'BITBUCKET_CLOUD_APP_PASSWORD'
+        type: str
+    app_password:
+        description:
+            - OCID of personal Bitbucket Cloud AppPassword saved in secret store
+            - This parameter is updatable.
+            - Applicable when connection_type is 'BITBUCKET_CLOUD_APP_PASSWORD'
+            - Required when connection_type is 'BITBUCKET_CLOUD_APP_PASSWORD'
         type: str
     connection_id:
         description:
@@ -98,11 +113,25 @@ EXAMPLES = """
     connection_type: GITHUB_ACCESS_TOKEN
 
     # optional
+    access_token: access_token_example
     description: description_example
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    access_token: access_token_example
+
+- name: Create connection with connection_type = BITBUCKET_CLOUD_APP_PASSWORD
+  oci_devops_connection:
+    # required
+    project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+    connection_type: BITBUCKET_CLOUD_APP_PASSWORD
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    username: username_example
+    app_password: example-password
 
 - name: Create connection with connection_type = GITLAB_ACCESS_TOKEN
   oci_devops_connection:
@@ -111,11 +140,11 @@ EXAMPLES = """
     connection_type: GITLAB_ACCESS_TOKEN
 
     # optional
+    access_token: access_token_example
     description: description_example
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    access_token: access_token_example
 
 - name: Update connection with connection_type = GITHUB_ACCESS_TOKEN
   oci_devops_connection:
@@ -123,11 +152,24 @@ EXAMPLES = """
     connection_type: GITHUB_ACCESS_TOKEN
 
     # optional
+    access_token: access_token_example
     description: description_example
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    access_token: access_token_example
+
+- name: Update connection with connection_type = BITBUCKET_CLOUD_APP_PASSWORD
+  oci_devops_connection:
+    # required
+    connection_type: BITBUCKET_CLOUD_APP_PASSWORD
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    username: username_example
+    app_password: example-password
 
 - name: Update connection with connection_type = GITLAB_ACCESS_TOKEN
   oci_devops_connection:
@@ -135,11 +177,11 @@ EXAMPLES = """
     connection_type: GITLAB_ACCESS_TOKEN
 
     # optional
+    access_token: access_token_example
     description: description_example
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    access_token: access_token_example
 
 - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = GITHUB_ACCESS_TOKEN
   oci_devops_connection:
@@ -147,11 +189,24 @@ EXAMPLES = """
     connection_type: GITHUB_ACCESS_TOKEN
 
     # optional
+    access_token: access_token_example
     description: description_example
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    access_token: access_token_example
+
+- name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = BITBUCKET_CLOUD_APP_PASSWORD
+  oci_devops_connection:
+    # required
+    connection_type: BITBUCKET_CLOUD_APP_PASSWORD
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    username: username_example
+    app_password: example-password
 
 - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = GITLAB_ACCESS_TOKEN
   oci_devops_connection:
@@ -159,11 +214,11 @@ EXAMPLES = """
     connection_type: GITLAB_ACCESS_TOKEN
 
     # optional
+    access_token: access_token_example
     description: description_example
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    access_token: access_token_example
 
 - name: Delete connection
   oci_devops_connection:
@@ -186,6 +241,18 @@ connection:
     returned: on success
     type: complex
     contains:
+        username:
+            description:
+                - Public Bitbucket Cloud Username in plain text
+            returned: on success
+            type: str
+            sample: username_example
+        app_password:
+            description:
+                - OCID of personal Bitbucket Cloud AppPassword saved in secret store
+            returned: on success
+            type: str
+            sample: example-password
         id:
             description:
                 - Unique identifier that is immutable on creation.
@@ -269,6 +336,8 @@ connection:
             type: str
             sample: access_token_example
     sample: {
+        "username": "username_example",
+        "app_password": "example-password",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "description": "description_example",
         "display_name": "display_name_example",
@@ -437,14 +506,21 @@ def main():
     module_args.update(
         dict(
             project_id=dict(type="str"),
+            access_token=dict(type="str", no_log=True),
             description=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             connection_type=dict(
-                type="str", choices=["GITHUB_ACCESS_TOKEN", "GITLAB_ACCESS_TOKEN"]
+                type="str",
+                choices=[
+                    "GITHUB_ACCESS_TOKEN",
+                    "BITBUCKET_CLOUD_APP_PASSWORD",
+                    "GITLAB_ACCESS_TOKEN",
+                ],
             ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
-            access_token=dict(type="str", no_log=True),
+            username=dict(type="str"),
+            app_password=dict(type="str", no_log=True),
             connection_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

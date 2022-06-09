@@ -4,6 +4,32 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.52.0]
+
+# 
+ ## Added
+
+ - Support for the License Manager service
+ - Support for `auth_purpose` parameter for instance_principal auth_type
+ - Support for AMD E4 flex shapes on virtual machine database systems in the Database service
+ - Support for compute capacity reservations in the VMWare Solution service
+ - Support for flexible shapes in data flow service
+ - Support for in-depth monitoring, diagnostics capabilities, and advanced management functionality for on-premise Oracle databases in the Database Management service
+ - Support for Fault Domain placement in the Container Engine for Kubernetes service
+ - Support for worker node images in the Container Engine for Kubernetes service
+ - Support for Usage Plans in the API Gateway service
+ - Support for Helm charts and repositories on deployments in the DevOps service
+ - Support for Application Dependency Management service scan results on builds in the DevOps service
+ - Support for build resources to use Bitbucket Cloud repositories for source code in the DevOps service
+ - Support for using Oracle Cloud Agent to perform iSCSI login and logout for non multipath-enabled iSCSI attachments in compute service.
+
+ # 
+ ## Breaking
+
+ - The property specification is now a required for create in `oci_apigateway_deployment` module
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.70.1
+
 ## [2.51.0]
 
 ## Added

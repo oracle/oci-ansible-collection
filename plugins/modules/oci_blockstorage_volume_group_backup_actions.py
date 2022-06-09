@@ -27,7 +27,7 @@ description:
       For information about moving resources between compartments,
       see L(Moving Resources to a Different Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
     - For I(action=copy), creates a volume group backup copy in specified region. For general information about volume group backups,
-      see L(Overview of Block Volume Service Backups,https://docs.cloud.oracle.com/Content/Block/Concepts/blockvolumebackups.htm)
+      see L(Overview of Block Volume Backups,https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/blockvolumebackups.htm).
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -62,8 +62,8 @@ options:
               If you do not specify this attribute the volume group backup will be encrypted with the Oracle-provided encryption
               key when it is copied to the destination region.
             - For more information about the Key Management service and encryption keys, see
-              L(Overview of Key Management,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm) and
-              L(Using Keys,https://docs.cloud.oracle.com/Content/KeyManagement/Tasks/usingkeys.htm).
+              L(Overview of Key Management,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm) and
+              L(Using Keys,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Tasks/usingkeys.htm).
             - Applicable only for I(action=copy).
         type: str
     action:

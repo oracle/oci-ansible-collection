@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a DrgAttachment resource in Oracle Cloud Infrastructure
     - For I(state=present), attaches the specified DRG to the specified network resource. A VCN can be attached to only one DRG
       at a time, but a DRG can be attached to more than one VCN. The response includes a `DrgAttachment`
-      object with its own L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm). For more information about DRGs, see
+      object with its own L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm). For more information about DRGs, see
       L(Dynamic Routing Gateways (DRGs),https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingDRGs.htm).
     - "You may optionally specify a *display name* for the attachment, otherwise a default is provided.
       It does not have to be unique, and you can change it. Avoid entering confidential information."
@@ -38,14 +38,14 @@ author: Oracle (@oracle)
 options:
     drg_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DRG.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the DRG.
             - Required for create using I(state=present).
         type: str
     vcn_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN.
               This field is deprecated. Instead, use the `networkDetails` field to specify the
-              L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the attached resource.
+              L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the attached resource.
         type: str
     display_name:
         description:
@@ -57,7 +57,8 @@ options:
         aliases: ["name"]
     drg_route_table_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DRG route table that is assigned to this attachment.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the DRG route table that is assigned to this
+              attachment.
             - The DRG route table manages traffic inside the DRG.
             - This parameter is updatable.
         type: str
@@ -69,7 +70,7 @@ options:
         suboptions:
             id:
                 description:
-                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the network attached to the DRG.
+                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the network attached to the DRG.
                 type: str
             type:
                 description:
@@ -81,8 +82,8 @@ options:
                 required: true
             route_table_id:
                 description:
-                    - This is the L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the route table that is used to route the
-                      traffic as it enters a VCN through this attachment.
+                    - This is the L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the route table that is used to route
+                      the traffic as it enters a VCN through this attachment.
                     - "For information about why you would associate a route table with a DRG attachment, see
                       L(Advanced Scenario: Transit Routing,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitrouting.htm).
                       For information about why you would associate a route table with a DRG attachment, see:"
@@ -122,7 +123,7 @@ options:
         type: str
     route_table_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the route table used by the DRG attachment.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the route table used by the DRG attachment.
             - "If you don't specify a route table here, the DRG attachment is created without an associated route
               table. The Networking service does NOT automatically associate the attached VCN's default route table
               with the DRG attachment.
@@ -247,7 +248,7 @@ drg_attachment:
     contains:
         compartment_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the DRG attachment.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the DRG attachment.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -260,13 +261,13 @@ drg_attachment:
             sample: display_name_example
         drg_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DRG.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the DRG.
             returned: on success
             type: str
             sample: "ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
-                - The DRG attachment's Oracle ID (L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)).
+                - The DRG attachment's Oracle ID (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)).
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -305,7 +306,8 @@ drg_attachment:
                     sample: "ocid1.ipsecconnection.oc1..xxxxxxEXAMPLExxxxxx"
                 route_table_id:
                     description:
-                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the route table the DRG attachment is using.
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the route table the DRG attachment is
+                          using.
                         - "For information about why you would associate a route table with a DRG attachment, see:"
                         - " * L(Transit Routing: Access to Multiple VCNs in Same
                           Region,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitrouting.htm)
@@ -358,22 +360,22 @@ drg_attachment:
                     * L(Transit Routing: Private Access to Oracle
                     Services,https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitroutingoracleservices.htm)"
                 - This field is deprecated. Instead, use the `networkDetails` field to view the
-                  L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the attached resource.
+                  L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the attached resource.
             returned: on success
             type: str
             sample: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
         vcn_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VCN.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VCN.
                   This field is deprecated. Instead, use the `networkDetails` field to view the
-                  L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the attached resource.
+                  L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the attached resource.
             returned: on success
             type: str
             sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         export_drg_route_distribution_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the export route distribution used to specify how routes
-                  in the assigned DRG route table
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the export route distribution used to specify how
+                  routes in the assigned DRG route table
                   are advertised to the attachment.
                   If this value is null, no routes are advertised through this attachment.
             returned: on success

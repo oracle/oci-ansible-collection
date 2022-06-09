@@ -29,7 +29,7 @@ author: Oracle (@oracle)
 options:
     cross_connect_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the cross-connect.
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the cross-connect.
         type: str
         aliases: ["id"]
         required: true

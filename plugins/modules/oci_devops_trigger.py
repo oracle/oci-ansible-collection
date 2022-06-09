@@ -58,13 +58,14 @@ options:
         choices:
             - "GITHUB"
             - "DEVOPS_CODE_REPOSITORY"
+            - "BITBUCKET_CLOUD"
             - "GITLAB"
     actions:
         description:
             - The list of actions that are to be performed for this trigger.
             - Required for create using I(state=present).
             - This parameter is updatable.
-            - Applicable when trigger_source is one of ['DEVOPS_CODE_REPOSITORY', 'GITHUB', 'GITLAB']
+            - Applicable when trigger_source is one of ['DEVOPS_CODE_REPOSITORY', 'BITBUCKET_CLOUD', 'GITHUB', 'GITLAB']
         type: list
         elements: dict
         suboptions:
@@ -86,6 +87,7 @@ options:
                         type: str
                         choices:
                             - "DEVOPS_CODE_REPOSITORY"
+                            - "BITBUCKET_CLOUD"
                             - "GITLAB"
                             - "GITHUB"
                         required: true
@@ -98,8 +100,8 @@ options:
                             - "PUSH"
                             - "PULL_REQUEST_CREATED"
                             - "PULL_REQUEST_UPDATED"
-                            - "PULL_REQUEST_REOPENED"
                             - "PULL_REQUEST_MERGED"
+                            - "PULL_REQUEST_REOPENED"
                     include:
                         description:
                             - ""
@@ -112,7 +114,7 @@ options:
                             base_ref:
                                 description:
                                     - The target branch for pull requests; not applicable for push requests.
-                                    - Applicable when trigger_source is one of ['GITHUB', 'GITLAB']
+                                    - Applicable when trigger_source is one of ['BITBUCKET_CLOUD', 'GITHUB', 'GITLAB']
                                 type: str
             build_pipeline_id:
                 description:
@@ -187,6 +189,34 @@ EXAMPLES = """
 
     # optional
     repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    description: description_example
+    actions:
+    - # required
+      type: TRIGGER_BUILD_PIPELINE
+      build_pipeline_id: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      filter:
+        # required
+        trigger_source: DEVOPS_CODE_REPOSITORY
+
+        # optional
+        events: [ "PUSH" ]
+        include:
+          # optional
+          head_ref: head_ref_example
+          base_ref: base_ref_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Create trigger with trigger_source = BITBUCKET_CLOUD
+  oci_devops_trigger:
+    # required
+    project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+    trigger_source: BITBUCKET_CLOUD
+
+    # optional
     display_name: display_name_example
     description: description_example
     actions:
@@ -291,6 +321,33 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
+- name: Update trigger with trigger_source = BITBUCKET_CLOUD
+  oci_devops_trigger:
+    # required
+    trigger_source: BITBUCKET_CLOUD
+
+    # optional
+    display_name: display_name_example
+    description: description_example
+    actions:
+    - # required
+      type: TRIGGER_BUILD_PIPELINE
+      build_pipeline_id: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      filter:
+        # required
+        trigger_source: DEVOPS_CODE_REPOSITORY
+
+        # optional
+        events: [ "PUSH" ]
+        include:
+          # optional
+          head_ref: head_ref_example
+          base_ref: base_ref_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
 - name: Update trigger with trigger_source = GITLAB
   oci_devops_trigger:
     # required
@@ -352,6 +409,33 @@ EXAMPLES = """
 
     # optional
     repository_id: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
+    display_name: display_name_example
+    description: description_example
+    actions:
+    - # required
+      type: TRIGGER_BUILD_PIPELINE
+      build_pipeline_id: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      filter:
+        # required
+        trigger_source: DEVOPS_CODE_REPOSITORY
+
+        # optional
+        events: [ "PUSH" ]
+        include:
+          # optional
+          head_ref: head_ref_example
+          base_ref: base_ref_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update trigger using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with trigger_source = BITBUCKET_CLOUD
+  oci_devops_trigger:
+    # required
+    trigger_source: BITBUCKET_CLOUD
+
+    # optional
     display_name: display_name_example
     description: description_example
     actions:
@@ -459,7 +543,7 @@ trigger:
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         trigger_source:
             description:
-                - Source of the trigger. Allowed values are, GITHUB, GITLAB and DEVOPS_CODE_REPOSITORY.
+                - Source of the trigger.
             returned: on success
             type: str
             sample: GITHUB
@@ -511,10 +595,10 @@ trigger:
                                 - Source of the trigger. Allowed values are, GITHUB and GITLAB.
                             returned: on success
                             type: str
-                            sample: DEVOPS_CODE_REPOSITORY
+                            sample: BITBUCKET_CLOUD
                         events:
                             description:
-                                - The events only support PUSH.
+                                - The events, for example, PUSH, PULL_REQUEST_MERGE.
                             returned: on success
                             type: list
                             sample: []
@@ -526,7 +610,7 @@ trigger:
                             contains:
                                 head_ref:
                                     description:
-                                        - Branch for push event.
+                                        - Branch for push event; source branch for pull requests.
                                     returned: on success
                                     type: str
                                     sample: head_ref_example
@@ -585,7 +669,7 @@ trigger:
         "actions": [{
             "type": "TRIGGER_BUILD_PIPELINE",
             "filter": {
-                "trigger_source": "DEVOPS_CODE_REPOSITORY",
+                "trigger_source": "BITBUCKET_CLOUD",
                 "events": [],
                 "include": {
                     "head_ref": "head_ref_example",
@@ -746,7 +830,13 @@ def main():
             display_name=dict(aliases=["name"], type="str"),
             description=dict(type="str"),
             trigger_source=dict(
-                type="str", choices=["GITHUB", "DEVOPS_CODE_REPOSITORY", "GITLAB"]
+                type="str",
+                choices=[
+                    "GITHUB",
+                    "DEVOPS_CODE_REPOSITORY",
+                    "BITBUCKET_CLOUD",
+                    "GITLAB",
+                ],
             ),
             actions=dict(
                 type="list",
@@ -761,7 +851,12 @@ def main():
                             trigger_source=dict(
                                 type="str",
                                 required=True,
-                                choices=["DEVOPS_CODE_REPOSITORY", "GITLAB", "GITHUB"],
+                                choices=[
+                                    "DEVOPS_CODE_REPOSITORY",
+                                    "BITBUCKET_CLOUD",
+                                    "GITLAB",
+                                    "GITHUB",
+                                ],
                             ),
                             events=dict(
                                 type="list",
@@ -770,8 +865,8 @@ def main():
                                     "PUSH",
                                     "PULL_REQUEST_CREATED",
                                     "PULL_REQUEST_UPDATED",
-                                    "PULL_REQUEST_REOPENED",
                                     "PULL_REQUEST_MERGED",
+                                    "PULL_REQUEST_REOPENED",
                                 ],
                             ),
                             include=dict(

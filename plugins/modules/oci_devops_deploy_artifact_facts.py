@@ -156,6 +156,12 @@ deploy_artifacts:
                     returned: on success
                     type: str
                     sample: deploy_artifact_path_example
+                chart_url:
+                    description:
+                        - The URL of an OCIR repository.
+                    returned: on success
+                    type: str
+                    sample: chart_url_example
                 deploy_artifact_version:
                     description:
                         - Users can set this as a placeholder value that refers to a pipeline parameter, for example, ${appVersion}.
@@ -249,6 +255,7 @@ deploy_artifacts:
         "deploy_artifact_source": {
             "repository_id": "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx",
             "deploy_artifact_path": "deploy_artifact_path_example",
+            "chart_url": "chart_url_example",
             "deploy_artifact_version": "deploy_artifact_version_example",
             "base64_encoded_content": null,
             "deploy_artifact_source_type": "INLINE",

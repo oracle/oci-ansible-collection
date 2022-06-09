@@ -30,7 +30,7 @@ oracle.oci.oci_data_flow_run -- Manage a Run resource in Oracle Cloud Infrastruc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.51.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.52.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -194,6 +194,24 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-auth_purpose"></div>
+                    <b>auth_purpose</b>
+                    <a class="ansibleOptionLink" href="#parameter-auth_purpose" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>service_principal</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The auth purpose which can be used in conjunction with &#x27;auth_type=instance_principal&#x27;. The default auth_purpose for instance_principal is None.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-auth_type"></div>
                     <b>auth_type</b>
                     <a class="ansibleOptionLink" href="#parameter-auth_type" title="Permalink to this option"></a>
@@ -325,6 +343,54 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-driver_shape_config"></div>
+                    <b>driver_shape_config</b>
+                    <a class="ansibleOptionLink" href="#parameter-driver_shape_config" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-driver_shape_config/memory_in_gbs"></div>
+                    <b>memory_in_gbs</b>
+                    <a class="ansibleOptionLink" href="#parameter-driver_shape_config/memory_in_gbs" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">float</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The amount of memory used for the driver or executors.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-driver_shape_config/ocpus"></div>
+                    <b>ocpus</b>
+                    <a class="ansibleOptionLink" href="#parameter-driver_shape_config/ocpus" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">float</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The total number of OCPUs used for the driver or executors. See <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Shape/'>here</a> for details.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-execute"></div>
                     <b>execute</b>
                     <a class="ansibleOptionLink" href="#parameter-execute" title="Permalink to this option"></a>
@@ -353,6 +419,54 @@ Parameters
                                             <div>The VM shape for the executors. Sets the executor cores and memory.</div>
                                                         </td>
             </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-executor_shape_config"></div>
+                    <b>executor_shape_config</b>
+                    <a class="ansibleOptionLink" href="#parameter-executor_shape_config" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-executor_shape_config/memory_in_gbs"></div>
+                    <b>memory_in_gbs</b>
+                    <a class="ansibleOptionLink" href="#parameter-executor_shape_config/memory_in_gbs" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">float</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The amount of memory used for the driver or executors.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-executor_shape_config/ocpus"></div>
+                    <b>ocpus</b>
+                    <a class="ansibleOptionLink" href="#parameter-executor_shape_config/ocpus" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">float</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The total number of OCPUs used for the driver or executors. See <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Shape/'>here</a> for details.</div>
+                                                        </td>
+            </tr>
+                    
                                 <tr>
                                                                 <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-force_create"></div>
@@ -682,8 +796,16 @@ Examples
         configuration: null
         display_name: display_name_example
         driver_shape: driver_shape_example
+        driver_shape_config:
+          # optional
+          ocpus: 3.4
+          memory_in_gbs: 3.4
         execute: execute_example
         executor_shape: executor_shape_example
+        executor_shape_config:
+          # optional
+          ocpus: 3.4
+          memory_in_gbs: 3.4
         logs_bucket_uri: logs_bucket_uri_example
         metastore_id: "ocid1.metastore.oc1..xxxxxxEXAMPLExxxxxx"
         num_executors: 56
@@ -751,7 +873,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Run resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;application_id&#x27;: &#x27;ocid1.application.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;archive_uri&#x27;: &#x27;archive_uri_example&#x27;, &#x27;arguments&#x27;: [], &#x27;class_name&#x27;: &#x27;class_name_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;configuration&#x27;: {}, &#x27;data_read_in_bytes&#x27;: 56, &#x27;data_written_in_bytes&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;driver_shape&#x27;: &#x27;driver_shape_example&#x27;, &#x27;execute&#x27;: &#x27;execute_example&#x27;, &#x27;executor_shape&#x27;: &#x27;executor_shape_example&#x27;, &#x27;file_uri&#x27;: &#x27;file_uri_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;language&#x27;: &#x27;SCALA&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACCEPTED&#x27;, &#x27;logs_bucket_uri&#x27;: &#x27;logs_bucket_uri_example&#x27;, &#x27;metastore_id&#x27;: &#x27;ocid1.metastore.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;num_executors&#x27;: 56, &#x27;opc_request_id&#x27;: &#x27;ocid1.opcrequest.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;owner_principal_id&#x27;: &#x27;ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;owner_user_name&#x27;: &#x27;owner_user_name_example&#x27;, &#x27;parameters&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;private_endpoint_dns_zones&#x27;: [], &#x27;private_endpoint_id&#x27;: &#x27;ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;private_endpoint_max_host_count&#x27;: 56, &#x27;private_endpoint_nsg_ids&#x27;: [], &#x27;private_endpoint_subnet_id&#x27;: &#x27;ocid1.privateendpointsubnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;run_duration_in_milliseconds&#x27;: 56, &#x27;spark_version&#x27;: &#x27;spark_version_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;total_o_cpu&#x27;: 56, &#x27;type&#x27;: &#x27;BATCH&#x27;, &#x27;warehouse_bucket_uri&#x27;: &#x27;warehouse_bucket_uri_example&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;application_id&#x27;: &#x27;ocid1.application.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;archive_uri&#x27;: &#x27;archive_uri_example&#x27;, &#x27;arguments&#x27;: [], &#x27;class_name&#x27;: &#x27;class_name_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;configuration&#x27;: {}, &#x27;data_read_in_bytes&#x27;: 56, &#x27;data_written_in_bytes&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;driver_shape&#x27;: &#x27;driver_shape_example&#x27;, &#x27;driver_shape_config&#x27;: {&#x27;memory_in_gbs&#x27;: 10, &#x27;ocpus&#x27;: 10}, &#x27;execute&#x27;: &#x27;execute_example&#x27;, &#x27;executor_shape&#x27;: &#x27;executor_shape_example&#x27;, &#x27;executor_shape_config&#x27;: {&#x27;memory_in_gbs&#x27;: 10, &#x27;ocpus&#x27;: 10}, &#x27;file_uri&#x27;: &#x27;file_uri_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;language&#x27;: &#x27;SCALA&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACCEPTED&#x27;, &#x27;logs_bucket_uri&#x27;: &#x27;logs_bucket_uri_example&#x27;, &#x27;metastore_id&#x27;: &#x27;ocid1.metastore.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;num_executors&#x27;: 56, &#x27;opc_request_id&#x27;: &#x27;ocid1.opcrequest.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;owner_principal_id&#x27;: &#x27;ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;owner_user_name&#x27;: &#x27;owner_user_name_example&#x27;, &#x27;parameters&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;private_endpoint_dns_zones&#x27;: [], &#x27;private_endpoint_id&#x27;: &#x27;ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;private_endpoint_max_host_count&#x27;: 56, &#x27;private_endpoint_nsg_ids&#x27;: [], &#x27;private_endpoint_subnet_id&#x27;: &#x27;ocid1.privateendpointsubnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;run_duration_in_milliseconds&#x27;: 56, &#x27;spark_version&#x27;: &#x27;spark_version_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;total_o_cpu&#x27;: 56, &#x27;type&#x27;: &#x27;BATCH&#x27;, &#x27;warehouse_bucket_uri&#x27;: &#x27;warehouse_bucket_uri_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -951,6 +1073,61 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-run/driver_shape_config"></div>
+                    <b>driver_shape_config</b>
+                    <a class="ansibleOptionLink" href="#return-run/driver_shape_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-run/driver_shape_config/memory_in_gbs"></div>
+                    <b>memory_in_gbs</b>
+                    <a class="ansibleOptionLink" href="#return-run/driver_shape_config/memory_in_gbs" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The amount of memory used for the driver or executors.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-run/driver_shape_config/ocpus"></div>
+                    <b>ocpus</b>
+                    <a class="ansibleOptionLink" href="#return-run/driver_shape_config/ocpus" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The total number of OCPUs used for the driver or executors. See <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Shape/'>here</a> for details.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-run/execute"></div>
                     <b>execute</b>
                     <a class="ansibleOptionLink" href="#return-run/execute" title="Permalink to this return value"></a>
@@ -984,6 +1161,61 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">executor_shape_example</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-run/executor_shape_config"></div>
+                    <b>executor_shape_config</b>
+                    <a class="ansibleOptionLink" href="#return-run/executor_shape_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-run/executor_shape_config/memory_in_gbs"></div>
+                    <b>memory_in_gbs</b>
+                    <a class="ansibleOptionLink" href="#return-run/executor_shape_config/memory_in_gbs" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The amount of memory used for the driver or executors.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-run/executor_shape_config/ocpus"></div>
+                    <b>ocpus</b>
+                    <a class="ansibleOptionLink" href="#return-run/executor_shape_config/ocpus" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The total number of OCPUs used for the driver or executors. See <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Shape/'>here</a> for details.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10</div>
+                                    </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">

@@ -126,6 +126,21 @@ options:
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
+    driver_shape_config:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            ocpus:
+                description:
+                    - The total number of OCPUs used for the driver or executors.
+                      See L(here,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Shape/) for details.
+                type: float
+            memory_in_gbs:
+                description:
+                    - The amount of memory used for the driver or executors.
+                type: float
     execute:
         description:
             - "The input used for spark-submit command. For more details see https://spark.apache.org/docs/latest/submitting-applications.html#launching-
@@ -145,6 +160,21 @@ options:
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
+    executor_shape_config:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            ocpus:
+                description:
+                    - The total number of OCPUs used for the driver or executors.
+                      See L(here,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Shape/) for details.
+                type: float
+            memory_in_gbs:
+                description:
+                    - The amount of memory used for the driver or executors.
+                type: float
     freeform_tags:
         description:
             - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -245,7 +275,15 @@ EXAMPLES = """
     configuration: null
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     description: description_example
+    driver_shape_config:
+      # optional
+      ocpus: 3.4
+      memory_in_gbs: 3.4
     execute: execute_example
+    executor_shape_config:
+      # optional
+      ocpus: 3.4
+      memory_in_gbs: 3.4
     freeform_tags: {'Department': 'Finance'}
     logs_bucket_uri: logs_bucket_uri_example
     metastore_id: "ocid1.metastore.oc1..xxxxxxEXAMPLExxxxxx"
@@ -273,8 +311,16 @@ EXAMPLES = """
     description: description_example
     display_name: display_name_example
     driver_shape: driver_shape_example
+    driver_shape_config:
+      # optional
+      ocpus: 3.4
+      memory_in_gbs: 3.4
     execute: execute_example
     executor_shape: executor_shape_example
+    executor_shape_config:
+      # optional
+      ocpus: 3.4
+      memory_in_gbs: 3.4
     freeform_tags: {'Department': 'Finance'}
     logs_bucket_uri: logs_bucket_uri_example
     metastore_id: "ocid1.metastore.oc1..xxxxxxEXAMPLExxxxxx"
@@ -303,8 +349,16 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     description: description_example
     driver_shape: driver_shape_example
+    driver_shape_config:
+      # optional
+      ocpus: 3.4
+      memory_in_gbs: 3.4
     execute: execute_example
     executor_shape: executor_shape_example
+    executor_shape_config:
+      # optional
+      ocpus: 3.4
+      memory_in_gbs: 3.4
     freeform_tags: {'Department': 'Finance'}
     logs_bucket_uri: logs_bucket_uri_example
     metastore_id: "ocid1.metastore.oc1..xxxxxxEXAMPLExxxxxx"
@@ -407,6 +461,25 @@ application:
             returned: on success
             type: str
             sample: driver_shape_example
+        driver_shape_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                ocpus:
+                    description:
+                        - The total number of OCPUs used for the driver or executors.
+                          See L(here,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Shape/) for details.
+                    returned: on success
+                    type: float
+                    sample: 10
+                memory_in_gbs:
+                    description:
+                        - The amount of memory used for the driver or executors.
+                    returned: on success
+                    type: float
+                    sample: 10
         execute:
             description:
                 - "The input used for spark-submit command. For more details see https://spark.apache.org/docs/latest/submitting-applications.html#launching-
@@ -427,6 +500,25 @@ application:
             returned: on success
             type: str
             sample: executor_shape_example
+        executor_shape_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                ocpus:
+                    description:
+                        - The total number of OCPUs used for the driver or executors.
+                          See L(here,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/Shape/) for details.
+                    returned: on success
+                    type: float
+                    sample: 10
+                memory_in_gbs:
+                    description:
+                        - The amount of memory used for the driver or executors.
+                    returned: on success
+                    type: float
+                    sample: 10
         file_uri:
             description:
                 - An Oracle Cloud Infrastructure URI of the file containing the application to execute.
@@ -567,8 +659,16 @@ application:
         "description": "description_example",
         "display_name": "display_name_example",
         "driver_shape": "driver_shape_example",
+        "driver_shape_config": {
+            "ocpus": 10,
+            "memory_in_gbs": 10
+        },
         "execute": "execute_example",
         "executor_shape": "executor_shape_example",
+        "executor_shape_config": {
+            "ocpus": 10,
+            "memory_in_gbs": 10
+        },
         "file_uri": "file_uri_example",
         "freeform_tags": {'Department': 'Finance'},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
@@ -772,8 +872,20 @@ def main():
             description=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             driver_shape=dict(type="str"),
+            driver_shape_config=dict(
+                type="dict",
+                options=dict(
+                    ocpus=dict(type="float"), memory_in_gbs=dict(type="float")
+                ),
+            ),
             execute=dict(type="str"),
             executor_shape=dict(type="str"),
+            executor_shape_config=dict(
+                type="dict",
+                options=dict(
+                    ocpus=dict(type="float"), memory_in_gbs=dict(type="float")
+                ),
+            ),
             freeform_tags=dict(type="dict"),
             logs_bucket_uri=dict(type="str"),
             metastore_id=dict(type="str"),

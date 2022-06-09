@@ -87,13 +87,6 @@ users:
     returned: on success
     type: complex
     contains:
-        time_locked:
-            description:
-                - The date the account was locked if account status was LOCKED.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "2013-10-20T19:20:30+01:00"
         local_temp_tablespace:
             description:
                 - The default local temporary tablespace for the user.
@@ -246,14 +239,19 @@ users:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        time_locked:
+            description:
+                - The date the account was locked, if the status of the account is LOCKED.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         profile:
             description:
-                - The User resource profile name.
+                - The profile name of the user.
             returned: on success
             type: str
             sample: profile_example
     sample: [{
-        "time_locked": "2013-10-20T19:20:30+01:00",
         "local_temp_tablespace": "local_temp_tablespace_example",
         "consumer_group": "consumer_group_example",
         "external_name": "external_name_example",
@@ -276,6 +274,7 @@ users:
         "default_tablespace": "default_tablespace_example",
         "temp_tablespace": "temp_tablespace_example",
         "time_created": "2013-10-20T19:20:30+01:00",
+        "time_locked": "2013-10-20T19:20:30+01:00",
         "profile": "profile_example"
     }]
 """

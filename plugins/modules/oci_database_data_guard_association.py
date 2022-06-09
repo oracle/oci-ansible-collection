@@ -57,6 +57,20 @@ options:
               us/iaas/api/#/en/database/latest/DbSystemShapeSummary/ListDbSystemShapes) operation.
             - Applicable when creation_type is 'NewDbSystem'
         type: str
+    cpu_core_count:
+        description:
+            - The number of OCPU cores available for AMD-based virtual machine DB systems.
+            - Applicable when creation_type is 'NewDbSystem'
+        type: int
+    storage_volume_performance_mode:
+        description:
+            - The block storage volume performance level. Valid values are `BALANCED` and `HIGH_PERFORMANCE`. See L(Block Volume
+              Performance,https://docs.cloud.oracle.com/Content/Block/Concepts/blockvolumeperformance.htm) for more information.
+            - Applicable when creation_type is 'NewDbSystem'
+        type: str
+        choices:
+            - "BALANCED"
+            - "HIGH_PERFORMANCE"
     subnet_id:
         description:
             - "The OCID of the subnet the DB system is associated with.
@@ -212,6 +226,8 @@ EXAMPLES = """
     display_name: display_name_example
     availability_domain: Uocm:PHX-AD-1
     shape: shape_example
+    cpu_core_count: 56
+    storage_volume_performance_mode: BALANCED
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     nsg_ids: [ "nsg_ids_example" ]
     backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
@@ -515,9 +531,11 @@ class DataGuardAssociationHelperGen(OCIResourceHelperBase):
             "peer_db_unique_name",
             "peer_sid_prefix",
             "creation_type",
+            "storage_volume_performance_mode",
             "nsg_ids",
             "subnet_id",
             "backup_network_nsg_ids",
+            "cpu_core_count",
         ]
 
     def create_resource(self):
@@ -575,6 +593,10 @@ def main():
             display_name=dict(aliases=["name"], type="str"),
             availability_domain=dict(type="str"),
             shape=dict(type="str"),
+            cpu_core_count=dict(type="int"),
+            storage_volume_performance_mode=dict(
+                type="str", choices=["BALANCED", "HIGH_PERFORMANCE"]
+            ),
             subnet_id=dict(type="str"),
             nsg_ids=dict(type="list", elements="str"),
             backup_network_nsg_ids=dict(type="list", elements="str"),

@@ -30,7 +30,7 @@ oracle.oci.oci_network_drg_attachment -- Manage a DrgAttachment resource in Orac
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.51.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.52.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a DrgAttachment resource in Oracle Cloud Infrastructure
-- For *state=present*, attaches the specified DRG to the specified network resource. A VCN can be attached to only one DRG at a time, but a DRG can be attached to more than one VCN. The response includes a `DrgAttachment` object with its own `OCID <https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm>`_. For more information about DRGs, see L(Dynamic Routing Gateways (DRGs),https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingDRGs.htm).
+- For *state=present*, attaches the specified DRG to the specified network resource. A VCN can be attached to only one DRG at a time, but a DRG can be attached to more than one VCN. The response includes a `DrgAttachment` object with its own `OCID <https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm>`_. For more information about DRGs, see L(Dynamic Routing Gateways (DRGs),https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/managingDRGs.htm).
 - You may optionally specify a *display name* for the attachment, otherwise a default is provided. It does not have to be unique, and you can change it. Avoid entering confidential information.
 - For the purposes of access control, the DRG attachment is automatically placed into the currently selected compartment. For more information about compartments and access control, see `Overview of the IAM Service <https://docs.cloud.oracle.com/iaas/Content/Identity/Concepts/overview.htm>`_.
 - This resource has the following action operations in the :ref:`oracle.oci.oci_network_drg_attachment_actions <ansible_collections.oracle.oci.oci_network_drg_attachment_actions_module>` module: remove_export_drg_route_distribution.
@@ -147,6 +147,24 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Passphrase used by the key referenced in <code>api_user_key_file</code>, if it is encrypted. If not set, then the value of the OCI_USER_KEY_PASS_PHRASE variable, if any, is used. This option is required if the key passphrase is not specified through a configuration file (See <code>config_file_location</code>).</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-auth_purpose"></div>
+                    <b>auth_purpose</b>
+                    <a class="ansibleOptionLink" href="#parameter-auth_purpose" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>service_principal</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The auth purpose which can be used in conjunction with &#x27;auth_type=instance_principal&#x27;. The default auth_purpose for instance_principal is None.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -283,7 +301,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the DRG.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the DRG.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
@@ -299,7 +317,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the DRG route table that is assigned to this attachment.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the DRG route table that is assigned to this attachment.</div>
                                             <div>The DRG route table manages traffic inside the DRG.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -400,7 +418,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the network attached to the DRG.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the network attached to the DRG.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -416,7 +434,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>This is the <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the route table that is used to route the traffic as it enters a VCN through this attachment.</div>
+                                            <div>This is the <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the route table that is used to route the traffic as it enters a VCN through this attachment.</div>
                                             <div>For information about why you would associate a route table with a DRG attachment, see <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitrouting.htm'>Advanced Scenario: Transit Routing</a>. For information about why you would associate a route table with a DRG attachment, see:</div>
                                             <div>* <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitrouting.htm'>Transit Routing: Access to Multiple VCNs in Same Region</a> * <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitroutingoracleservices.htm'>Transit Routing: Private Access to Oracle Services</a></div>
                                             <div>This parameter is updatable.</div>
@@ -487,7 +505,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the route table used by the DRG attachment.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the route table used by the DRG attachment.</div>
                                             <div>If you don&#x27;t specify a route table here, the DRG attachment is created without an associated route table. The Networking service does NOT automatically associate the attached VCN&#x27;s default route table with the DRG attachment. For information about why you would associate a route table with a DRG attachment, see:</div>
                                             <div>* <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitrouting.htm'>Transit Routing: Access to Multiple VCNs in Same Region</a> * <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitroutingoracleservices.htm'>Transit Routing: Private Access to Oracle Services</a> This field is deprecated. Instead, use the networkDetails field to specify the VCN route table for this attachment.</div>
                                             <div>This parameter is updatable.</div>
@@ -541,7 +559,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the VCN. This field is deprecated. Instead, use the `networkDetails` field to specify the <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the attached resource.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the VCN. This field is deprecated. Instead, use the `networkDetails` field to specify the <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the attached resource.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -729,7 +747,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment containing the DRG attachment.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment containing the DRG attachment.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -784,7 +802,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the DRG.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the DRG.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.drg.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -821,7 +839,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the export route distribution used to specify how routes in the assigned DRG route table are advertised to the attachment. If this value is null, no routes are advertised through this attachment.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the export route distribution used to specify how routes in the assigned DRG route table are advertised to the attachment. If this value is null, no routes are advertised through this attachment.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.exportdrgroutedistribution.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -858,7 +876,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The DRG attachment&#x27;s Oracle ID (<a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a>).</div>
+                                            <div>The DRG attachment&#x27;s Oracle ID (<a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a>).</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -968,7 +986,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the route table the DRG attachment is using.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the route table the DRG attachment is using.</div>
                                             <div>For information about why you would associate a route table with a DRG attachment, see:</div>
                                             <div>* <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitrouting.htm'>Transit Routing: Access to Multiple VCNs in Same Region</a> * <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitroutingoracleservices.htm'>Transit Routing: Private Access to Oracle Services</a></div>
                                         <br/>
@@ -1030,7 +1048,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the route table the DRG attachment is using.</div>
                                             <div>For information about why you would associate a route table with a DRG attachment, see:</div>
                                             <div>* <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitrouting.htm'>Transit Routing: Access to Multiple VCNs in Same Region</a> * <a href='https://docs.cloud.oracle.com/iaas/Content/Network/Tasks/transitroutingoracleservices.htm'>Transit Routing: Private Access to Oracle Services</a></div>
-                                            <div>This field is deprecated. Instead, use the `networkDetails` field to view the <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the attached resource.</div>
+                                            <div>This field is deprecated. Instead, use the `networkDetails` field to view the <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the attached resource.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1067,7 +1085,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the VCN. This field is deprecated. Instead, use the `networkDetails` field to view the <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the attached resource.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the VCN. This field is deprecated. Instead, use the `networkDetails` field to view the <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the attached resource.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx</div>

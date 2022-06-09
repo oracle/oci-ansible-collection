@@ -143,6 +143,12 @@ sql_tuning_advisor_task_recommendations:
             returned: on success
             type: str
             sample: implement_action_sql_example
+        is_parallel_execution:
+            description:
+                - Indicates whether a SQL Profile recommendation uses parallel execution.
+            returned: on success
+            type: bool
+            sample: true
     sample: [{
         "sql_tuning_advisor_task_id": 56,
         "sql_tuning_advisor_task_object_id": 56,
@@ -152,7 +158,8 @@ sql_tuning_advisor_task_recommendations:
         "recommendation": "recommendation_example",
         "rationale": "rationale_example",
         "benefit": 3.4,
-        "implement_action_sql": "implement_action_sql_example"
+        "implement_action_sql": "implement_action_sql_example",
+        "is_parallel_execution": true
     }]
 """
 

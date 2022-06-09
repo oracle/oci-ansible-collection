@@ -72,7 +72,7 @@ database_home_metrics:
             contains:
                 activity_time_series_metrics:
                     description:
-                        - A list of the active session metrics for CPU and Wait time for a specific database.
+                        - A list of the active session metrics for CPU and Wait time for a specific Managed Database.
                     returned: on success
                     type: complex
                     contains:
@@ -456,7 +456,7 @@ database_home_metrics:
                     contains:
                         iops:
                             description:
-                                - A list of the Input/Output Operations Per Second metrics grouped by IOType for a specific database.
+                                - The Input/Output Operations Per Second metrics grouped by IOType for a specific Managed Database.
                             returned: on success
                             type: complex
                             contains:
@@ -492,13 +492,133 @@ database_home_metrics:
                                             sample: dimension_value_example
                         io_throughput:
                             description:
-                                - A list of the IOThroughput metrics grouped for a specific database.
+                                - The IOThroughput metrics grouped by IOType for a specific Managed Database.
                             returned: on success
                             type: complex
                             contains:
                                 value:
                                     description:
                                         - The value of the metric.
+                                    returned: on success
+                                    type: float
+                                    sample: 1.2
+                                unit:
+                                    description:
+                                        - The unit of the metric value.
+                                    returned: on success
+                                    type: str
+                                    sample: unit_example
+                                dimensions:
+                                    description:
+                                        - The dimensions of the metric.
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        dimension_name:
+                                            description:
+                                                - The name of the dimension.
+                                            returned: on success
+                                            type: str
+                                            sample: dimension_name_example
+                                        dimension_value:
+                                            description:
+                                                - The value of the dimension.
+                                            returned: on success
+                                            type: str
+                                            sample: dimension_value_example
+                        iops_statistics:
+                            description:
+                                - The Input/Output metric statistics such as min, max, mean, lowerQuartile, and upperQuartile.
+                            returned: on success
+                            type: complex
+                            contains:
+                                min:
+                                    description:
+                                        - The minimum value of the metric.
+                                    returned: on success
+                                    type: float
+                                    sample: 1.2
+                                max:
+                                    description:
+                                        - The maximum value of the metric.
+                                    returned: on success
+                                    type: float
+                                    sample: 1.2
+                                median:
+                                    description:
+                                        - The median value of the metric.
+                                    returned: on success
+                                    type: float
+                                    sample: 1.2
+                                lower_quartile:
+                                    description:
+                                        - The first quartile value of the metric.
+                                    returned: on success
+                                    type: float
+                                    sample: 1.2
+                                upper_quartile:
+                                    description:
+                                        - The third quartile value of the metric.
+                                    returned: on success
+                                    type: float
+                                    sample: 1.2
+                                unit:
+                                    description:
+                                        - The unit of the metric value.
+                                    returned: on success
+                                    type: str
+                                    sample: unit_example
+                                dimensions:
+                                    description:
+                                        - The dimensions of the metric.
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        dimension_name:
+                                            description:
+                                                - The name of the dimension.
+                                            returned: on success
+                                            type: str
+                                            sample: dimension_name_example
+                                        dimension_value:
+                                            description:
+                                                - The value of the dimension.
+                                            returned: on success
+                                            type: str
+                                            sample: dimension_value_example
+                        io_throughput_statistics:
+                            description:
+                                - The IOThroughput metric statistics such as min, max, mean, lowerQuartile, and upperQuartile.
+                            returned: on success
+                            type: complex
+                            contains:
+                                min:
+                                    description:
+                                        - The minimum value of the metric.
+                                    returned: on success
+                                    type: float
+                                    sample: 1.2
+                                max:
+                                    description:
+                                        - The maximum value of the metric.
+                                    returned: on success
+                                    type: float
+                                    sample: 1.2
+                                median:
+                                    description:
+                                        - The median value of the metric.
+                                    returned: on success
+                                    type: float
+                                    sample: 1.2
+                                lower_quartile:
+                                    description:
+                                        - The first quartile value of the metric.
+                                    returned: on success
+                                    type: float
+                                    sample: 1.2
+                                upper_quartile:
+                                    description:
+                                        - The third quartile value of the metric.
                                     returned: on success
                                     type: float
                                     sample: 1.2
@@ -534,7 +654,7 @@ database_home_metrics:
                     contains:
                         memory_usage:
                             description:
-                                - A list of the memory usage metrics grouped by memorypool for a specific database.
+                                - The Memory Usage metrics grouped by memorypool for a specific Managed Database.
                             returned: on success
                             type: complex
                             contains:
@@ -648,7 +768,7 @@ database_home_metrics:
                                             sample: dimension_value_example
                         storage_used_by_table_space:
                             description:
-                                - A list of the storage metrics grouped by TableSpace for a specific database.
+                                - A list of the storage metrics grouped by TableSpace for a specific Managed Database.
                             returned: on success
                             type: complex
                             contains:
@@ -697,6 +817,66 @@ database_home_metrics:
                                 value:
                                     description:
                                         - The value of the metric.
+                                    returned: on success
+                                    type: float
+                                    sample: 1.2
+                                unit:
+                                    description:
+                                        - The unit of the metric value.
+                                    returned: on success
+                                    type: str
+                                    sample: unit_example
+                                dimensions:
+                                    description:
+                                        - The dimensions of the metric.
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        dimension_name:
+                                            description:
+                                                - The name of the dimension.
+                                            returned: on success
+                                            type: str
+                                            sample: dimension_name_example
+                                        dimension_value:
+                                            description:
+                                                - The value of the dimension.
+                                            returned: on success
+                                            type: str
+                                            sample: dimension_value_example
+                        cpu_statistics:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                min:
+                                    description:
+                                        - The minimum value of the metric.
+                                    returned: on success
+                                    type: float
+                                    sample: 1.2
+                                max:
+                                    description:
+                                        - The maximum value of the metric.
+                                    returned: on success
+                                    type: float
+                                    sample: 1.2
+                                median:
+                                    description:
+                                        - The median value of the metric.
+                                    returned: on success
+                                    type: float
+                                    sample: 1.2
+                                lower_quartile:
+                                    description:
+                                        - The first quartile value of the metric.
+                                    returned: on success
+                                    type: float
+                                    sample: 1.2
+                                upper_quartile:
+                                    description:
+                                        - The third quartile value of the metric.
                                     returned: on success
                                     type: float
                                     sample: 1.2
@@ -1252,7 +1432,7 @@ database_home_metrics:
                     contains:
                         iops:
                             description:
-                                - A list of the Input/Output Operations Per Second metrics grouped by IOType for a specific database.
+                                - The Input/Output Operations Per Second metrics grouped by IOType for a specific Managed Database.
                             returned: on success
                             type: complex
                             contains:
@@ -1288,13 +1468,133 @@ database_home_metrics:
                                             sample: dimension_value_example
                         io_throughput:
                             description:
-                                - A list of the IOThroughput metrics grouped for a specific database.
+                                - The IOThroughput metrics grouped by IOType for a specific Managed Database.
                             returned: on success
                             type: complex
                             contains:
                                 value:
                                     description:
                                         - The value of the metric.
+                                    returned: on success
+                                    type: float
+                                    sample: 1.2
+                                unit:
+                                    description:
+                                        - The unit of the metric value.
+                                    returned: on success
+                                    type: str
+                                    sample: unit_example
+                                dimensions:
+                                    description:
+                                        - The dimensions of the metric.
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        dimension_name:
+                                            description:
+                                                - The name of the dimension.
+                                            returned: on success
+                                            type: str
+                                            sample: dimension_name_example
+                                        dimension_value:
+                                            description:
+                                                - The value of the dimension.
+                                            returned: on success
+                                            type: str
+                                            sample: dimension_value_example
+                        iops_statistics:
+                            description:
+                                - The Input/Output metric statistics such as min, max, mean, lowerQuartile, and upperQuartile.
+                            returned: on success
+                            type: complex
+                            contains:
+                                min:
+                                    description:
+                                        - The minimum value of the metric.
+                                    returned: on success
+                                    type: float
+                                    sample: 1.2
+                                max:
+                                    description:
+                                        - The maximum value of the metric.
+                                    returned: on success
+                                    type: float
+                                    sample: 1.2
+                                median:
+                                    description:
+                                        - The median value of the metric.
+                                    returned: on success
+                                    type: float
+                                    sample: 1.2
+                                lower_quartile:
+                                    description:
+                                        - The first quartile value of the metric.
+                                    returned: on success
+                                    type: float
+                                    sample: 1.2
+                                upper_quartile:
+                                    description:
+                                        - The third quartile value of the metric.
+                                    returned: on success
+                                    type: float
+                                    sample: 1.2
+                                unit:
+                                    description:
+                                        - The unit of the metric value.
+                                    returned: on success
+                                    type: str
+                                    sample: unit_example
+                                dimensions:
+                                    description:
+                                        - The dimensions of the metric.
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        dimension_name:
+                                            description:
+                                                - The name of the dimension.
+                                            returned: on success
+                                            type: str
+                                            sample: dimension_name_example
+                                        dimension_value:
+                                            description:
+                                                - The value of the dimension.
+                                            returned: on success
+                                            type: str
+                                            sample: dimension_value_example
+                        io_throughput_statistics:
+                            description:
+                                - The IOThroughput metric statistics such as min, max, mean, lowerQuartile, and upperQuartile.
+                            returned: on success
+                            type: complex
+                            contains:
+                                min:
+                                    description:
+                                        - The minimum value of the metric.
+                                    returned: on success
+                                    type: float
+                                    sample: 1.2
+                                max:
+                                    description:
+                                        - The maximum value of the metric.
+                                    returned: on success
+                                    type: float
+                                    sample: 1.2
+                                median:
+                                    description:
+                                        - The median value of the metric.
+                                    returned: on success
+                                    type: float
+                                    sample: 1.2
+                                lower_quartile:
+                                    description:
+                                        - The first quartile value of the metric.
+                                    returned: on success
+                                    type: float
+                                    sample: 1.2
+                                upper_quartile:
+                                    description:
+                                        - The third quartile value of the metric.
                                     returned: on success
                                     type: float
                                     sample: 1.2
@@ -1330,7 +1630,7 @@ database_home_metrics:
                     contains:
                         memory_usage:
                             description:
-                                - A list of the memory usage metrics grouped by memorypool for a specific database.
+                                - The Memory Usage metrics grouped by memorypool for a specific Managed Database.
                             returned: on success
                             type: complex
                             contains:
@@ -1379,6 +1679,66 @@ database_home_metrics:
                                 value:
                                     description:
                                         - The value of the metric.
+                                    returned: on success
+                                    type: float
+                                    sample: 1.2
+                                unit:
+                                    description:
+                                        - The unit of the metric value.
+                                    returned: on success
+                                    type: str
+                                    sample: unit_example
+                                dimensions:
+                                    description:
+                                        - The dimensions of the metric.
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        dimension_name:
+                                            description:
+                                                - The name of the dimension.
+                                            returned: on success
+                                            type: str
+                                            sample: dimension_name_example
+                                        dimension_value:
+                                            description:
+                                                - The value of the dimension.
+                                            returned: on success
+                                            type: str
+                                            sample: dimension_value_example
+                        cpu_statistics:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                min:
+                                    description:
+                                        - The minimum value of the metric.
+                                    returned: on success
+                                    type: float
+                                    sample: 1.2
+                                max:
+                                    description:
+                                        - The maximum value of the metric.
+                                    returned: on success
+                                    type: float
+                                    sample: 1.2
+                                median:
+                                    description:
+                                        - The median value of the metric.
+                                    returned: on success
+                                    type: float
+                                    sample: 1.2
+                                lower_quartile:
+                                    description:
+                                        - The first quartile value of the metric.
+                                    returned: on success
+                                    type: float
+                                    sample: 1.2
+                                upper_quartile:
+                                    description:
+                                        - The third quartile value of the metric.
                                     returned: on success
                                     type: float
                                     sample: 1.2
@@ -1509,6 +1869,30 @@ database_home_metrics:
                         "dimension_name": "dimension_name_example",
                         "dimension_value": "dimension_value_example"
                     }]
+                }],
+                "iops_statistics": [{
+                    "min": 1.2,
+                    "max": 1.2,
+                    "median": 1.2,
+                    "lower_quartile": 1.2,
+                    "upper_quartile": 1.2,
+                    "unit": "unit_example",
+                    "dimensions": [{
+                        "dimension_name": "dimension_name_example",
+                        "dimension_value": "dimension_value_example"
+                    }]
+                }],
+                "io_throughput_statistics": [{
+                    "min": 1.2,
+                    "max": 1.2,
+                    "median": 1.2,
+                    "lower_quartile": 1.2,
+                    "upper_quartile": 1.2,
+                    "unit": "unit_example",
+                    "dimensions": [{
+                        "dimension_name": "dimension_name_example",
+                        "dimension_value": "dimension_value_example"
+                    }]
                 }]
             },
             "memory_aggregate_metrics": {
@@ -1550,6 +1934,18 @@ database_home_metrics:
             "cpu_utilization_aggregate_metrics": {
                 "cpu_utilization": {
                     "value": 1.2,
+                    "unit": "unit_example",
+                    "dimensions": [{
+                        "dimension_name": "dimension_name_example",
+                        "dimension_value": "dimension_value_example"
+                    }]
+                },
+                "cpu_statistics": {
+                    "min": 1.2,
+                    "max": 1.2,
+                    "median": 1.2,
+                    "lower_quartile": 1.2,
+                    "upper_quartile": 1.2,
                     "unit": "unit_example",
                     "dimensions": [{
                         "dimension_name": "dimension_name_example",
@@ -1690,6 +2086,30 @@ database_home_metrics:
                         "dimension_name": "dimension_name_example",
                         "dimension_value": "dimension_value_example"
                     }]
+                }],
+                "iops_statistics": [{
+                    "min": 1.2,
+                    "max": 1.2,
+                    "median": 1.2,
+                    "lower_quartile": 1.2,
+                    "upper_quartile": 1.2,
+                    "unit": "unit_example",
+                    "dimensions": [{
+                        "dimension_name": "dimension_name_example",
+                        "dimension_value": "dimension_value_example"
+                    }]
+                }],
+                "io_throughput_statistics": [{
+                    "min": 1.2,
+                    "max": 1.2,
+                    "median": 1.2,
+                    "lower_quartile": 1.2,
+                    "upper_quartile": 1.2,
+                    "unit": "unit_example",
+                    "dimensions": [{
+                        "dimension_name": "dimension_name_example",
+                        "dimension_value": "dimension_value_example"
+                    }]
                 }]
             },
             "memory_aggregate_metrics": {
@@ -1705,6 +2125,18 @@ database_home_metrics:
             "cpu_utilization_aggregate_metrics": {
                 "cpu_utilization": {
                     "value": 1.2,
+                    "unit": "unit_example",
+                    "dimensions": [{
+                        "dimension_name": "dimension_name_example",
+                        "dimension_value": "dimension_value_example"
+                    }]
+                },
+                "cpu_statistics": {
+                    "min": 1.2,
+                    "max": 1.2,
+                    "median": 1.2,
+                    "lower_quartile": 1.2,
+                    "upper_quartile": 1.2,
                     "unit": "unit_example",
                     "dimensions": [{
                         "dimension_name": "dimension_name_example",

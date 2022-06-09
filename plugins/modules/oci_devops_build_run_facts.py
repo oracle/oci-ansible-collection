@@ -220,7 +220,7 @@ build_runs:
                                             sample: branch_example
                                         connection_id:
                                             description:
-                                                - Connection identifier pertinent to GitHub source provider.
+                                                - Connection identifier pertinent to Bitbucket Cloud source provider
                                             returned: on success
                                             type: str
                                             sample: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
@@ -569,6 +569,36 @@ build_runs:
                                     returned: on success
                                     type: str
                                     sample: value_example
+                vulnerability_audit_summary_collection:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        items:
+                            description:
+                                - List of vulnerability audit summary.
+                            returned: on success
+                            type: complex
+                            contains:
+                                vulnerability_audit_id:
+                                    description:
+                                        - The OCID of the vulnerability audit.
+                                    returned: on success
+                                    type: str
+                                    sample: "ocid1.vulnerabilityaudit.oc1..xxxxxxEXAMPLExxxxxx"
+                                commit_hash:
+                                    description:
+                                        - Commit hash used while retrieving the pom file for vulnerabilityAudit.
+                                    returned: on success
+                                    type: str
+                                    sample: commit_hash_example
+                                build_stage_id:
+                                    description:
+                                        - Build stage OCID where scan was configured.
+                                    returned: on success
+                                    type: str
+                                    sample: "ocid1.buildstage.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - Unique identifier that is immutable on creation.
@@ -652,10 +682,10 @@ build_runs:
                                                 - Source of the trigger. Allowed values are, GITHUB and GITLAB.
                                             returned: on success
                                             type: str
-                                            sample: DEVOPS_CODE_REPOSITORY
+                                            sample: BITBUCKET_CLOUD
                                         events:
                                             description:
-                                                - The events only support PUSH.
+                                                - The events, for example, PUSH, PULL_REQUEST_MERGE.
                                             returned: on success
                                             type: list
                                             sample: []
@@ -667,7 +697,7 @@ build_runs:
                                             contains:
                                                 head_ref:
                                                     description:
-                                                        - Branch for push event.
+                                                        - Branch for push event; source branch for pull requests.
                                                     returned: on success
                                                     type: str
                                                     sample: head_ref_example
@@ -900,6 +930,13 @@ build_runs:
                     "name": "name_example",
                     "value": "value_example"
                 }]
+            },
+            "vulnerability_audit_summary_collection": {
+                "items": [{
+                    "vulnerability_audit_id": "ocid1.vulnerabilityaudit.oc1..xxxxxxEXAMPLExxxxxx",
+                    "commit_hash": "commit_hash_example",
+                    "build_stage_id": "ocid1.buildstage.oc1..xxxxxxEXAMPLExxxxxx"
+                }]
             }
         },
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
@@ -915,7 +952,7 @@ build_runs:
                 "actions": [{
                     "type": "TRIGGER_BUILD_PIPELINE",
                     "filter": {
-                        "trigger_source": "DEVOPS_CODE_REPOSITORY",
+                        "trigger_source": "BITBUCKET_CLOUD",
                         "events": [],
                         "include": {
                             "head_ref": "head_ref_example",
