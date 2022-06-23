@@ -60,6 +60,25 @@ options:
         choices:
             - "GITLAB_ACCESS_TOKEN"
             - "GITHUB_ACCESS_TOKEN"
+    private_server_config_details:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            private_endpoint_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of a private endpoint associated with the
+                      configuration source provider.
+                    - Required when config_source_provider_type is 'GITLAB_ACCESS_TOKEN'
+                type: str
+                required: true
+            certificate_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of a certificate associated with the configuration
+                      source provider.
+                    - Applicable when config_source_provider_type is 'GITLAB_ACCESS_TOKEN'
+                type: str
     freeform_tags:
         description:
             - "Free-form tags associated with the resource. Each tag is a key-value pair with no predefined name, type, or namespace.
@@ -118,6 +137,12 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     description: description_example
+    private_server_config_details:
+      # required
+      private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     api_endpoint: api_endpoint_example
@@ -132,6 +157,12 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     description: description_example
+    private_server_config_details:
+      # required
+      private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     api_endpoint: api_endpoint_example
@@ -145,6 +176,12 @@ EXAMPLES = """
     # optional
     display_name: display_name_example
     description: description_example
+    private_server_config_details:
+      # required
+      private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     api_endpoint: api_endpoint_example
@@ -158,6 +195,12 @@ EXAMPLES = """
     # optional
     display_name: display_name_example
     description: description_example
+    private_server_config_details:
+      # required
+      private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     api_endpoint: api_endpoint_example
@@ -173,6 +216,12 @@ EXAMPLES = """
     # optional
     display_name: display_name_example
     description: description_example
+    private_server_config_details:
+      # required
+      private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     api_endpoint: api_endpoint_example
@@ -188,6 +237,12 @@ EXAMPLES = """
     # optional
     display_name: display_name_example
     description: description_example
+    private_server_config_details:
+      # required
+      private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     api_endpoint: api_endpoint_example
@@ -263,6 +318,26 @@ configuration_source_provider:
             returned: on success
             type: str
             sample: GITLAB_ACCESS_TOKEN
+        private_server_config_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                private_endpoint_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of a private endpoint associated with the
+                          configuration source provider.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+                certificate_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of a certificate associated with the
+                          configuration source provider.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - "Free-form tags associated with this resource. Each tag is a key-value pair with no predefined name, type, or namespace.
@@ -294,6 +369,10 @@ configuration_source_provider:
         "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "ACTIVE",
         "config_source_provider_type": "GITLAB_ACCESS_TOKEN",
+        "private_server_config_details": {
+            "private_endpoint_id": "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx",
+            "certificate_id": "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+        },
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "api_endpoint": "api_endpoint_example"
@@ -489,6 +568,13 @@ def main():
             description=dict(type="str"),
             config_source_provider_type=dict(
                 type="str", choices=["GITLAB_ACCESS_TOKEN", "GITHUB_ACCESS_TOKEN"]
+            ),
+            private_server_config_details=dict(
+                type="dict",
+                options=dict(
+                    private_endpoint_id=dict(type="str", required=True),
+                    certificate_id=dict(type="str"),
+                ),
             ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),

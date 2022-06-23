@@ -30,7 +30,7 @@ oracle.oci.oci_os_management_managed_instance_actions -- Perform actions on a Ma
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.52.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.53.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -61,12 +61,18 @@ Synopsis
 - For *action=attach_parent_software_source*, adds a parent software source to a managed instance. After the software source has been added, then packages from that software source can be installed on the managed instance. Software sources that have this software source as a parent will be able to be added to this managed instance.
 - For *action=detach_child_software_source*, removes a child software source from a managed instance. Packages will no longer be able to be installed from these software sources.
 - For *action=detach_parent_software_source*, removes a software source from a managed instance. All child software sources will also be removed from the managed instance. Packages will no longer be able to be installed from these software sources.
+- For *action=disable_module_stream*, disables a module stream on a managed instance.  After the stream is disabled, it is no longer possible to install the profiles that are contained by the stream.  All installed profiles must be removed prior to disabling a module stream.
+- For *action=enable_module_stream*, enables a module stream on a managed instance.  After the stream is enabled, it is possible to install the profiles that are contained by the stream.  Enabling a stream that is already enabled will succeed.  Attempting to enable a different stream for a module that already has a stream enabled results in an error.
 - For *action=install_all_package_updates*, install all of the available package updates for the managed instance.
 - For *action=install_all_windows_updates*, install all of the available Windows updates for the managed instance.
+- For *action=install_module_stream_profile*, installs a profile for an module stream.  The stream must be enabled before a profile can be installed.  If a module stream defines multiple profiles, each one can be installed independently.
 - For *action=install_package*, installs a package on a managed instance.
 - For *action=install_package_update*, updates a package on a managed instance.
 - For *action=install_windows_update*, installs a Windows update on a managed instance.
+- For *action=manage_module_streams*, perform an operation involving modules, streams, and profiles on a managed instance.  Each operation may enable or disable an arbitrary amount of module streams, and install or remove an arbitrary number of module stream profiles.  When the operation is complete, the state of the modules, streams, and profiles on the managed instance will match the state indicated in the operation. Each module stream specified in the list of module streams to enable will be in the "ENABLED" state upon completion of the operation. If there was already a stream of that module enabled, any work required to switch from the current stream to the new stream is performed implicitly. Each module stream specified in the list of module streams to disable will be in the "DISABLED" state upon completion of the operation. Any profiles that are installed for the module stream will be removed as part of the operation. Each module stream profile specified in the list of profiles to install will be in the "INSTALLED" state upon completion of the operation, indicating that any packages that are part of the profile are installed on the managed instance.  If the module stream containing the profile is not enabled, it will be enabled as part of the operation.  There is an exception when attempting to install a stream of a profile when another stream of the same module is enabled.  It is an error to attempt to install a profile of another module stream, unless enabling the new module stream is explicitly included in this operation. Each module stream profile specified in the list of profiles to remove will be in the "AVAILABLE" state upon completion of the operation. The status of packages within the profile after the operation is complete is defined by the package manager on the managed instance. Operations that contain one or more elements that are not allowed are rejected. The result of this request is a WorkRequest object.  The returned WorkRequest is the parent of a structure of other WorkRequests.  Taken as a whole, this structure indicates the entire set of work to be performed to complete the operation. This interface can also be used to perform a dry run of the operation rather than committing it to a managed instance.  If a dry run is requested, the OS Management Service will evaluate the operation against the current module, stream, and profile state on the managed instance.  It will calculate the impact of the operation on all modules, streams, and profiles on the managed instance, including those that are implicitly impacted by the operation. The WorkRequest resulting from a dry run behaves differently than a WorkRequest resulting from a committable operation.  Dry run WorkRequests are always singletons and never have children.  The impact of the operation is returned using the log and error facilities of WorkRequests.  The impact of operations that are allowed by the OS Management Service are communicated as one or more work request log entries.  Operations that are not allowed by the OS Management Service are communicated as one or more work requst error entries.  Each entry, for either logs or errors, contains a structured message containing the results of one or more operations.
+- For *action=remove_module_stream_profile*, removes a profile for a module stream that is installed on a managed instance. If a module stream is provided, rather than a fully qualified profile, all profiles that have been installed for the module stream will be removed.
 - For *action=remove_package*, removes an installed package from a managed instance.
+- For *action=switch_module_stream*, enables a new stream for a module that already has a stream enabled. If any profiles or packages from the original module are installed, switching to a new stream will remove the existing packages and install their counterparts in the new stream.
 
 
 .. Aliases
@@ -91,12 +97,12 @@ Parameters
 
     <table  border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="1">Parameter</th>
+            <th colspan="2">Parameter</th>
             <th>Choices/<font color="blue">Defaults</font></th>
                         <th width="100%">Comments</th>
         </tr>
                     <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-action"></div>
                     <b>action</b>
                     <a class="ansibleOptionLink" href="#parameter-action" title="Permalink to this option"></a>
@@ -110,12 +116,18 @@ Parameters
                                                                                                                                                                                                 <li>attach_parent_software_source</li>
                                                                                                                                                                                                 <li>detach_child_software_source</li>
                                                                                                                                                                                                 <li>detach_parent_software_source</li>
+                                                                                                                                                                                                <li>disable_module_stream</li>
+                                                                                                                                                                                                <li>enable_module_stream</li>
                                                                                                                                                                                                 <li>install_all_package_updates</li>
                                                                                                                                                                                                 <li>install_all_windows_updates</li>
+                                                                                                                                                                                                <li>install_module_stream_profile</li>
                                                                                                                                                                                                 <li>install_package</li>
                                                                                                                                                                                                 <li>install_package_update</li>
                                                                                                                                                                                                 <li>install_windows_update</li>
+                                                                                                                                                                                                <li>manage_module_streams</li>
+                                                                                                                                                                                                <li>remove_module_stream_profile</li>
                                                                                                                                                                                                 <li>remove_package</li>
+                                                                                                                                                                                                <li>switch_module_stream</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -123,7 +135,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user"></div>
                     <b>api_user</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user" title="Permalink to this option"></a>
@@ -138,7 +150,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_fingerprint"></div>
                     <b>api_user_fingerprint</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_fingerprint" title="Permalink to this option"></a>
@@ -153,7 +165,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_key_file"></div>
                     <b>api_user_key_file</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_key_file" title="Permalink to this option"></a>
@@ -168,7 +180,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_key_pass_phrase"></div>
                     <b>api_user_key_pass_phrase</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_key_pass_phrase" title="Permalink to this option"></a>
@@ -183,7 +195,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-auth_purpose"></div>
                     <b>auth_purpose</b>
                     <a class="ansibleOptionLink" href="#parameter-auth_purpose" title="Permalink to this option"></a>
@@ -201,7 +213,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-auth_type"></div>
                     <b>auth_type</b>
                     <a class="ansibleOptionLink" href="#parameter-auth_type" title="Permalink to this option"></a>
@@ -222,7 +234,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-config_file_location"></div>
                     <b>config_file_location</b>
                     <a class="ansibleOptionLink" href="#parameter-config_file_location" title="Permalink to this option"></a>
@@ -237,7 +249,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-config_profile_name"></div>
                     <b>config_profile_name</b>
                     <a class="ansibleOptionLink" href="#parameter-config_profile_name" title="Permalink to this option"></a>
@@ -252,7 +264,190 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-disable"></div>
+                    <b>disable</b>
+                    <a class="ansibleOptionLink" href="#parameter-disable" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The set of module streams to disable.</div>
+                                            <div>Applicable only for <em>action=manage_module_streams</em>.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-disable/module_name"></div>
+                    <b>module_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-disable/module_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The name of a module</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-disable/stream_name"></div>
+                    <b>stream_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-disable/stream_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The name of a stream of the specified module</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-enable"></div>
+                    <b>enable</b>
+                    <a class="ansibleOptionLink" href="#parameter-enable" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The set of module streams to enable.</div>
+                                            <div>Applicable only for <em>action=manage_module_streams</em>.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-enable/module_name"></div>
+                    <b>module_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-enable/module_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The name of a module</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-enable/stream_name"></div>
+                    <b>stream_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-enable/stream_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The name of a stream of the specified module</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-install"></div>
+                    <b>install</b>
+                    <a class="ansibleOptionLink" href="#parameter-install" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The set of module stream profiles to install.</div>
+                                            <div>Applicable only for <em>action=manage_module_streams</em>.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-install/module_name"></div>
+                    <b>module_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-install/module_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The name of a module</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-install/profile_name"></div>
+                    <b>profile_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-install/profile_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The name of a profile of the specified module stream</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-install/stream_name"></div>
+                    <b>stream_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-install/stream_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The name of a stream of the specified module</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-is_dry_run"></div>
+                    <b>is_dry_run</b>
+                    <a class="ansibleOptionLink" href="#parameter-is_dry_run" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Indicates if this operation is a dry run or if the operation should be commited.  If set to true, the result of the operation will be evaluated but not committed.  If set to false, the operation is committed to the managed instance.  The default is false.</div>
+                                            <div>Applicable only for <em>action=manage_module_streams</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-managed_instance_id"></div>
                     <b>managed_instance_id</b>
                     <a class="ansibleOptionLink" href="#parameter-managed_instance_id" title="Permalink to this option"></a>
@@ -268,7 +463,39 @@ Parameters
                                     </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-module_name"></div>
+                    <b>module_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-module_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The name of a module.</div>
+                                            <div>Required for <em>action=disable_module_stream</em>, <em>action=enable_module_stream</em>, <em>action=install_module_stream_profile</em>, <em>action=remove_module_stream_profile</em>, <em>action=switch_module_stream</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-profile_name"></div>
+                    <b>profile_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-profile_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The name of the profile of the containing module stream</div>
+                                            <div>Applicable only for <em>action=install_module_stream_profile</em><em>action=remove_module_stream_profile</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#parameter-region" title="Permalink to this option"></a>
@@ -283,7 +510,72 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-remove"></div>
+                    <b>remove</b>
+                    <a class="ansibleOptionLink" href="#parameter-remove" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The set of module stream profiles to remove.</div>
+                                            <div>Applicable only for <em>action=manage_module_streams</em>.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-remove/module_name"></div>
+                    <b>module_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-remove/module_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The name of a module</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-remove/profile_name"></div>
+                    <b>profile_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-remove/profile_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The name of a profile of the specified module stream</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-remove/stream_name"></div>
+                    <b>stream_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-remove/stream_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The name of a stream of the specified module</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-software_package_name"></div>
                     <b>software_package_name</b>
                     <a class="ansibleOptionLink" href="#parameter-software_package_name" title="Permalink to this option"></a>
@@ -299,7 +591,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-software_source_id"></div>
                     <b>software_source_id</b>
                     <a class="ansibleOptionLink" href="#parameter-software_source_id" title="Permalink to this option"></a>
@@ -315,7 +607,23 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-stream_name"></div>
+                    <b>stream_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-stream_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The name of the stream of the containing module.  This parameter is required if a profileName is specified.</div>
+                                            <div>Applicable only for <em>action=disable_module_stream</em><em>action=enable_module_stream</em><em>action=install_module_stream_profile</em><em>action=remove_module_str eam_profile</em><em>action=switch_module_stream</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-tenancy"></div>
                     <b>tenancy</b>
                     <a class="ansibleOptionLink" href="#parameter-tenancy" title="Permalink to this option"></a>
@@ -330,7 +638,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-update_type"></div>
                     <b>update_type</b>
                     <a class="ansibleOptionLink" href="#parameter-update_type" title="Permalink to this option"></a>
@@ -354,7 +662,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-wait"></div>
                     <b>wait</b>
                     <a class="ansibleOptionLink" href="#parameter-wait" title="Permalink to this option"></a>
@@ -373,7 +681,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-wait_timeout"></div>
                     <b>wait_timeout</b>
                     <a class="ansibleOptionLink" href="#parameter-wait_timeout" title="Permalink to this option"></a>
@@ -388,7 +696,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-windows_update_name"></div>
                     <b>windows_update_name</b>
                     <a class="ansibleOptionLink" href="#parameter-windows_update_name" title="Permalink to this option"></a>
@@ -456,6 +764,26 @@ Examples
         managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
         action: detach_parent_software_source
 
+    - name: Perform action disable_module_stream on managed_instance
+      oci_os_management_managed_instance_actions:
+        # required
+        managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
+        module_name: module_name_example
+        action: disable_module_stream
+
+        # optional
+        stream_name: stream_name_example
+
+    - name: Perform action enable_module_stream on managed_instance
+      oci_os_management_managed_instance_actions:
+        # required
+        managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
+        module_name: module_name_example
+        action: enable_module_stream
+
+        # optional
+        stream_name: stream_name_example
+
     - name: Perform action install_all_package_updates on managed_instance
       oci_os_management_managed_instance_actions:
         # required
@@ -474,18 +802,29 @@ Examples
         # optional
         update_type: SECURITY
 
-    - name: Perform action install_package on managed_instance
+    - name: Perform action install_module_stream_profile on managed_instance
       oci_os_management_managed_instance_actions:
         # required
         managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
+        module_name: module_name_example
+        action: install_module_stream_profile
+
+        # optional
+        profile_name: profile_name_example
+        stream_name: stream_name_example
+
+    - name: Perform action install_package on managed_instance
+      oci_os_management_managed_instance_actions:
+        # required
         software_package_name: software_package_name_example
+        managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
         action: install_package
 
     - name: Perform action install_package_update on managed_instance
       oci_os_management_managed_instance_actions:
         # required
-        managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
         software_package_name: software_package_name_example
+        managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
         action: install_package_update
 
     - name: Perform action install_windows_update on managed_instance
@@ -495,12 +834,60 @@ Examples
         managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
         action: install_windows_update
 
-    - name: Perform action remove_package on managed_instance
+    - name: Perform action manage_module_streams on managed_instance
       oci_os_management_managed_instance_actions:
         # required
         managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
+        action: manage_module_streams
+
+        # optional
+        is_dry_run: true
+        enable:
+        - # required
+          module_name: module_name_example
+          stream_name: stream_name_example
+        disable:
+        - # required
+          module_name: module_name_example
+          stream_name: stream_name_example
+        install:
+        - # required
+          module_name: module_name_example
+          stream_name: stream_name_example
+          profile_name: profile_name_example
+        remove:
+        - # required
+          module_name: module_name_example
+          stream_name: stream_name_example
+          profile_name: profile_name_example
+
+    - name: Perform action remove_module_stream_profile on managed_instance
+      oci_os_management_managed_instance_actions:
+        # required
+        managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
+        module_name: module_name_example
+        action: remove_module_stream_profile
+
+        # optional
+        profile_name: profile_name_example
+        stream_name: stream_name_example
+
+    - name: Perform action remove_package on managed_instance
+      oci_os_management_managed_instance_actions:
+        # required
         software_package_name: software_package_name_example
+        managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
         action: remove_package
+
+    - name: Perform action switch_module_stream on managed_instance
+      oci_os_management_managed_instance_actions:
+        # required
+        managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
+        module_name: module_name_example
+        action: switch_module_stream
+
+        # optional
+        stream_name: stream_name_example
 
 
 

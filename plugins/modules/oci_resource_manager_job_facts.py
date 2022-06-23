@@ -316,8 +316,7 @@ jobs:
                             sample: 56
                         detailed_log_level:
                             description:
-                                - "Enables detailed logs at the specified verbosity for running the job (operation).
-                                  Used with the following operations: `PLAN`, `APPLY`, `DESTROY`."
+                                - Enables detailed logs at the specified verbosity for running the job (operation).
                             returned: on success
                             type: str
                             sample: ERROR

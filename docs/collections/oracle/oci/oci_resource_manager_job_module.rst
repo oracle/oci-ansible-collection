@@ -30,7 +30,7 @@ oracle.oci.oci_resource_manager_job -- Manage a Job resource in Oracle Cloud Inf
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.52.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.53.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -503,7 +503,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Enables detailed logs at the specified verbosity for running the job (operation). Used with the following operations: `PLAN`, `APPLY`, `DESTROY`.</div>
+                                            <div>Enables detailed logs at the specified verbosity for running the job (operation).</div>
                                             <div>Applicable when operation is &#x27;APPLY&#x27;</div>
                                                         </td>
             </tr>
@@ -1342,7 +1342,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Enables detailed logs at the specified verbosity for running the job (operation). Used with the following operations: `PLAN`, `APPLY`, `DESTROY`.</div>
+                                            <div>Enables detailed logs at the specified verbosity for running the job (operation).</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ERROR</div>

@@ -30,7 +30,7 @@ oracle.oci.oci_os_management_managed_instance -- Manage a ManagedInstance resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.52.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.53.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - This module allows the user to update a ManagedInstance resource in Oracle Cloud Infrastructure
-- This resource has the following action operations in the :ref:`oracle.oci.oci_os_management_managed_instance_actions <ansible_collections.oracle.oci.oci_os_management_managed_instance_actions_module>` module: attach_child_software_source, attach_parent_software_source, detach_child_software_source, detach_parent_software_source, install_all_package_updates, install_all_windows_updates, install_package, install_package_update, install_windows_update, remove_package.
+- This resource has the following action operations in the :ref:`oracle.oci.oci_os_management_managed_instance_actions <ansible_collections.oracle.oci.oci_os_management_managed_instance_actions_module>` module: attach_child_software_source, attach_parent_software_source, detach_child_software_source, detach_parent_software_source, disable_module_stream, enable_module_stream, install_all_package_updates, install_all_windows_updates, install_module_stream_profile, install_package, install_package_update, install_windows_update, manage_module_streams, remove_module_stream_profile, remove_package, switch_module_stream.
 
 
 .. Aliases

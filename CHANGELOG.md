@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.53.0]
+
+# 
+ ## Added
+
+ - Support for packaged skill and instance metadata management, role-based access options on instance creation, and assigned ownership in the Digital Assistant service
+ - Support for Oracle Linux 8 application streams in the OS Management service
+ - Support for private endpoints in Resource Manager service
+ - Support downloading generated Terraform plan output in JSON or binary format in Resource Manager service
+ - Support for querying OPSI Data Objects in the Operations Insights service
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.72.0
+
 ## [2.52.0]
 
 # 

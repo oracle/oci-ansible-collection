@@ -62,6 +62,12 @@ options:
             - "UPDATE"
             - "REMOVE"
             - "UPDATEALL"
+            - "ENABLEMODULESTREAM"
+            - "DISABLEMODULESTREAM"
+            - "SWITCHMODULESTREAM"
+            - "INSTALLMODULESTREAMPROFILE"
+            - "REMOVEMODULESTREAMPROFILE"
+            - "COMPOUND"
     sort_order:
         description:
             - The sort order to use, either 'asc' or 'desc'.
@@ -423,7 +429,19 @@ def main():
             managed_instance_id=dict(type="str"),
             managed_instance_group_id=dict(type="str"),
             operation_type=dict(
-                type="str", choices=["INSTALL", "UPDATE", "REMOVE", "UPDATEALL"]
+                type="str",
+                choices=[
+                    "INSTALL",
+                    "UPDATE",
+                    "REMOVE",
+                    "UPDATEALL",
+                    "ENABLEMODULESTREAM",
+                    "DISABLEMODULESTREAM",
+                    "SWITCHMODULESTREAM",
+                    "INSTALLMODULESTREAMPROFILE",
+                    "REMOVEMODULESTREAMPROFILE",
+                    "COMPOUND",
+                ],
             ),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),
