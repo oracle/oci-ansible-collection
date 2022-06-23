@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete an OdaInstance resource in Oracle Cloud Infrastructure
     - For I(state=present), starts an asynchronous job to create a Digital Assistant instance.
     - To monitor the status of the job, take the `opc-work-request-id` response
-      header value and use it to call `GET /workRequests/{workRequestID}`.
+      header value and use it to call `GET /workRequests/{workRequestId}`.
     - "This resource has the following action operations in the M(oracle.oci.oci_oda_instance_actions) module: change_compartment, start, stop."
 version_added: "2.9.0"
 author: Oracle (@oracle)
@@ -45,6 +45,17 @@ options:
         choices:
             - "DEVELOPMENT"
             - "PRODUCTION"
+    is_role_based_access:
+        description:
+            - Should this Digital Assistant instance use role-based authorization via an identity domain (true) or use the default policy-based authorization
+              via IAM policies (false)
+        type: bool
+    identity_domain:
+        description:
+            - If isRoleBasedAccess is set to true, this property specifies the identity domain that is to be used to implement this type of authorzation.
+              Digital Assistant will create an Identity Application instance and Application Roles within this identity domain. The caller may then perform and
+              user roll mappings they like to grant access to users within the identity domain.
+        type: str
     display_name:
         description:
             - User-friendly name for the instance. Avoid entering confidential information. You can change this value anytime.
@@ -59,8 +70,7 @@ options:
         type: str
     freeform_tags:
         description:
-            - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for
-              cross-compatibility only.
+            - "Simple key-value pair that is applied without any predefined name, type, or scope.
               Example: `{\\"bar-key\\": \\"value\\"}`"
             - This parameter is updatable.
         type: dict
@@ -97,6 +107,8 @@ EXAMPLES = """
     shape_name: DEVELOPMENT
 
     # optional
+    is_role_based_access: true
+    identity_domain: identity_domain_example
     display_name: display_name_example
     description: description_example
     freeform_tags: {'Department': 'Finance'}
@@ -236,6 +248,79 @@ oda_instance:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        is_role_based_access:
+            description:
+                - Should this Digital Assistant instance use role-based authorization via an identity domain (true) or use the default policy-based
+                  authorization via IAM policies (false)
+            returned: on success
+            type: bool
+            sample: true
+        identity_domain:
+            description:
+                - If isRoleBasedAccess is set to true, this property specifies the identity domain that is to be used to implement this type of authorzation.
+                  Digital Assistant will create an Identity Application instance and Application Roles within this identity domain. The caller may then perform
+                  and user roll mappings they like to grant access to users within the identity domain.
+            returned: on success
+            type: str
+            sample: identity_domain_example
+        identity_app_guid:
+            description:
+                - If isRoleBasedAccess is set to true, this property specifies the GUID of the Identity Application instance Digital Assistant has created
+                  inside the user-specified identity domain. This identity application instance may be used to host user roll mappings to grant access to this
+                  Digital Assistant instance for users within the identity domain.
+            returned: on success
+            type: str
+            sample: identity_app_guid_example
+        identity_app_console_url:
+            description:
+                - If isRoleBasedAccess is set to true, this property specifies the URL for the administration console used to manage the Identity Application
+                  instance Digital Assistant has created inside the user-specified identity domain.
+            returned: on success
+            type: str
+            sample: identity_app_console_url_example
+        imported_package_names:
+            description:
+                - A list of package names imported into this instance (if any). Use importedPackageIds field to get the details of the imported packages.
+            returned: on success
+            type: list
+            sample: []
+        imported_package_ids:
+            description:
+                - A list of package ids imported into this instance (if any). Use GetImportedPackage to get the details of the imported packages.
+            returned: on success
+            type: list
+            sample: []
+        attachment_types:
+            description:
+                - A list of attachment types for this instance (if any). Use attachmentIds to get the details of the attachments.
+            returned: on success
+            type: list
+            sample: []
+        attachment_ids:
+            description:
+                - A list of attachment identifiers for this instance (if any). Use GetOdaInstanceAttachment to get the details of the attachments.
+            returned: on success
+            type: list
+            sample: []
+        restricted_operations:
+            description:
+                - A list of restricted operations (across all attachments) for this instance (if any). Use GetOdaInstanceAttachment to get the details of the
+                  attachments.
+            returned: on success
+            type: complex
+            contains:
+                operation_name:
+                    description:
+                        - Name of the restricted operation.
+                    returned: on success
+                    type: str
+                    sample: operation_name_example
+                restricting_service:
+                    description:
+                        - Name of the service restricting the operation.
+                    returned: on success
+                    type: str
+                    sample: restricting_service_example
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -250,7 +335,19 @@ oda_instance:
         "lifecycle_sub_state": "CREATING",
         "state_message": "state_message_example",
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}}
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "is_role_based_access": true,
+        "identity_domain": "identity_domain_example",
+        "identity_app_guid": "identity_app_guid_example",
+        "identity_app_console_url": "identity_app_console_url_example",
+        "imported_package_names": [],
+        "imported_package_ids": [],
+        "attachment_types": [],
+        "attachment_ids": [],
+        "restricted_operations": [{
+            "operation_name": "operation_name_example",
+            "restricting_service": "restricting_service_example"
+        }]
     }
 """
 
@@ -409,6 +506,8 @@ def main():
         dict(
             compartment_id=dict(type="str"),
             shape_name=dict(type="str", choices=["DEVELOPMENT", "PRODUCTION"]),
+            is_role_based_access=dict(type="bool"),
+            identity_domain=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             description=dict(type="str"),
             freeform_tags=dict(type="dict"),

@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 2.52.0
+Collection version 2.53.0
 
 .. toctree::
     :maxdepth: 1
@@ -1157,9 +1157,24 @@ Modules
 * :ref:`oci_ocvp_supported_host_shape_facts <ansible_collections.oracle.oci.oci_ocvp_supported_host_shape_facts_module>` -- Fetches details about one or multiple SupportedHostShape resources in Oracle Cloud Infrastructure
 * :ref:`oci_ocvp_supported_sku_facts <ansible_collections.oracle.oci.oci_ocvp_supported_sku_facts_module>` -- Fetches details about one or multiple SupportedSku resources in Oracle Cloud Infrastructure
 * :ref:`oci_ocvp_supported_vmware_software_version_facts <ansible_collections.oracle.oci.oci_ocvp_supported_vmware_software_version_facts_module>` -- Fetches details about one or multiple SupportedVmwareSoftwareVersion resources in Oracle Cloud Infrastructure
+* :ref:`oci_oda_authentication_provider <ansible_collections.oracle.oci.oci_oda_authentication_provider_module>` -- Manage an AuthenticationProvider resource in Oracle Cloud Infrastructure
+* :ref:`oci_oda_authentication_provider_facts <ansible_collections.oracle.oci.oci_oda_authentication_provider_facts_module>` -- Fetches details about one or multiple AuthenticationProvider resources in Oracle Cloud Infrastructure
+* :ref:`oci_oda_channel <ansible_collections.oracle.oci.oci_oda_channel_module>` -- Manage a Channel resource in Oracle Cloud Infrastructure
+* :ref:`oci_oda_channel_actions <ansible_collections.oracle.oci.oci_oda_channel_actions_module>` -- Perform actions on a Channel resource in Oracle Cloud Infrastructure
+* :ref:`oci_oda_channel_facts <ansible_collections.oracle.oci.oci_oda_channel_facts_module>` -- Fetches details about one or multiple Channel resources in Oracle Cloud Infrastructure
+* :ref:`oci_oda_digital_assistant_facts <ansible_collections.oracle.oci.oci_oda_digital_assistant_facts_module>` -- Fetches details about one or multiple DigitalAssistant resources in Oracle Cloud Infrastructure
+* :ref:`oci_oda_digital_assistant_parameter <ansible_collections.oracle.oci.oci_oda_digital_assistant_parameter_module>` -- Manage a DigitalAssistantParameter resource in Oracle Cloud Infrastructure
+* :ref:`oci_oda_digital_assistant_parameter_facts <ansible_collections.oracle.oci.oci_oda_digital_assistant_parameter_facts_module>` -- Fetches details about one or multiple DigitalAssistantParameter resources in Oracle Cloud Infrastructure
+* :ref:`oci_oda_imported_package_facts <ansible_collections.oracle.oci.oci_oda_imported_package_facts_module>` -- Fetches details about one or multiple ImportedPackage resources in Oracle Cloud Infrastructure
 * :ref:`oci_oda_instance <ansible_collections.oracle.oci.oci_oda_instance_module>` -- Manage an OdaInstance resource in Oracle Cloud Infrastructure
 * :ref:`oci_oda_instance_actions <ansible_collections.oracle.oci.oci_oda_instance_actions_module>` -- Perform actions on an OdaInstance resource in Oracle Cloud Infrastructure
+* :ref:`oci_oda_instance_attachment_facts <ansible_collections.oracle.oci.oci_oda_instance_attachment_facts_module>` -- Fetches details about one or multiple OdaInstanceAttachment resources in Oracle Cloud Infrastructure
 * :ref:`oci_oda_instance_facts <ansible_collections.oracle.oci.oci_oda_instance_facts_module>` -- Fetches details about one or multiple OdaInstance resources in Oracle Cloud Infrastructure
+* :ref:`oci_oda_package_facts <ansible_collections.oracle.oci.oci_oda_package_facts_module>` -- Fetches details about one or multiple Package resources in Oracle Cloud Infrastructure
+* :ref:`oci_oda_skill_facts <ansible_collections.oracle.oci.oci_oda_skill_facts_module>` -- Fetches details about one or multiple Skill resources in Oracle Cloud Infrastructure
+* :ref:`oci_oda_skill_parameter_facts <ansible_collections.oracle.oci.oci_oda_skill_parameter_facts_module>` -- Fetches details about one or multiple SkillParameter resources in Oracle Cloud Infrastructure
+* :ref:`oci_oda_translator <ansible_collections.oracle.oci.oci_oda_translator_module>` -- Manage a Translator resource in Oracle Cloud Infrastructure
+* :ref:`oci_oda_translator_facts <ansible_collections.oracle.oci.oci_oda_translator_facts_module>` -- Fetches details about one or multiple Translator resources in Oracle Cloud Infrastructure
 * :ref:`oci_ons_notification_topic <ansible_collections.oracle.oci.oci_ons_notification_topic_module>` -- Manage a NotificationTopic resource in Oracle Cloud Infrastructure
 * :ref:`oci_ons_notification_topic_actions <ansible_collections.oracle.oci.oci_ons_notification_topic_actions_module>` -- Perform actions on a NotificationTopic resource in Oracle Cloud Infrastructure
 * :ref:`oci_ons_notification_topic_facts <ansible_collections.oracle.oci.oci_ons_notification_topic_facts_module>` -- Fetches details about one or multiple NotificationTopic resources in Oracle Cloud Infrastructure
@@ -1172,6 +1187,8 @@ Modules
 * :ref:`oci_opsi_awr_hub_facts <ansible_collections.oracle.oci.oci_opsi_awr_hub_facts_module>` -- Fetches details about one or multiple AwrHub resources in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_awr_report_facts <ansible_collections.oracle.oci.oci_opsi_awr_report_facts_module>` -- Fetches details about a AwrReport resource in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_awr_snapshot_facts <ansible_collections.oracle.oci.oci_opsi_awr_snapshot_facts_module>` -- Fetches details about one or multiple AwrSnapshot resources in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_data_objects_actions <ansible_collections.oracle.oci.oci_opsi_data_objects_actions_module>` -- Perform actions on an OpsiDataObjects resource in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_data_objects_facts <ansible_collections.oracle.oci.oci_opsi_data_objects_facts_module>` -- Fetches details about one or multiple OpsiDataObjects resources in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_database_configuration_facts <ansible_collections.oracle.oci.oci_opsi_database_configuration_facts_module>` -- Fetches details about one or multiple DatabaseConfiguration resources in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_database_insights <ansible_collections.oracle.oci.oci_opsi_database_insights_module>` -- Manage a DatabaseInsights resource in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_database_insights_actions <ansible_collections.oracle.oci.oci_opsi_database_insights_actions_module>` -- Perform actions on a DatabaseInsights resource in Oracle Cloud Infrastructure
@@ -1263,6 +1280,10 @@ Modules
 * :ref:`oci_os_management_managed_instance_group <ansible_collections.oracle.oci.oci_os_management_managed_instance_group_module>` -- Manage a ManagedInstanceGroup resource in Oracle Cloud Infrastructure
 * :ref:`oci_os_management_managed_instance_group_actions <ansible_collections.oracle.oci.oci_os_management_managed_instance_group_actions_module>` -- Perform actions on a ManagedInstanceGroup resource in Oracle Cloud Infrastructure
 * :ref:`oci_os_management_managed_instance_group_facts <ansible_collections.oracle.oci.oci_os_management_managed_instance_group_facts_module>` -- Fetches details about one or multiple ManagedInstanceGroup resources in Oracle Cloud Infrastructure
+* :ref:`oci_os_management_module_stream_facts <ansible_collections.oracle.oci.oci_os_management_module_stream_facts_module>` -- Fetches details about one or multiple ModuleStream resources in Oracle Cloud Infrastructure
+* :ref:`oci_os_management_module_stream_on_managed_instance_facts <ansible_collections.oracle.oci.oci_os_management_module_stream_on_managed_instance_facts_module>` -- Fetches details about one or multiple ModuleStreamOnManagedInstance resources in Oracle Cloud Infrastructure
+* :ref:`oci_os_management_module_stream_profile_facts <ansible_collections.oracle.oci.oci_os_management_module_stream_profile_facts_module>` -- Fetches details about one or multiple ModuleStreamProfile resources in Oracle Cloud Infrastructure
+* :ref:`oci_os_management_module_stream_profile_on_managed_instance_facts <ansible_collections.oracle.oci.oci_os_management_module_stream_profile_on_managed_instance_facts_module>` -- Fetches details about one or multiple ModuleStreamProfileOnManagedInstance resources in Oracle Cloud Infrastructure
 * :ref:`oci_os_management_related_event_facts <ansible_collections.oracle.oci.oci_os_management_related_event_facts_module>` -- Fetches details about one or multiple RelatedEvent resources in Oracle Cloud Infrastructure
 * :ref:`oci_os_management_scheduled_job <ansible_collections.oracle.oci.oci_os_management_scheduled_job_module>` -- Manage a ScheduledJob resource in Oracle Cloud Infrastructure
 * :ref:`oci_os_management_scheduled_job_actions <ansible_collections.oracle.oci.oci_os_management_scheduled_job_actions_module>` -- Perform actions on a ScheduledJob resource in Oracle Cloud Infrastructure
@@ -1295,7 +1316,12 @@ Modules
 * :ref:`oci_resource_manager_job_log_facts <ansible_collections.oracle.oci.oci_resource_manager_job_log_facts_module>` -- Fetches details about one or multiple JobLog resources in Oracle Cloud Infrastructure
 * :ref:`oci_resource_manager_job_logs_content_facts <ansible_collections.oracle.oci.oci_resource_manager_job_logs_content_facts_module>` -- Fetches details about a JobLogsContent resource in Oracle Cloud Infrastructure
 * :ref:`oci_resource_manager_job_tf_config_facts <ansible_collections.oracle.oci.oci_resource_manager_job_tf_config_facts_module>` -- Fetches details about a JobTfConfig resource in Oracle Cloud Infrastructure
+* :ref:`oci_resource_manager_job_tf_plan_facts <ansible_collections.oracle.oci.oci_resource_manager_job_tf_plan_facts_module>` -- Fetches details about a JobTfPlan resource in Oracle Cloud Infrastructure
 * :ref:`oci_resource_manager_job_tf_state_facts <ansible_collections.oracle.oci.oci_resource_manager_job_tf_state_facts_module>` -- Fetches details about a JobTfState resource in Oracle Cloud Infrastructure
+* :ref:`oci_resource_manager_private_endpoint <ansible_collections.oracle.oci.oci_resource_manager_private_endpoint_module>` -- Manage a PrivateEndpoint resource in Oracle Cloud Infrastructure
+* :ref:`oci_resource_manager_private_endpoint_actions <ansible_collections.oracle.oci.oci_resource_manager_private_endpoint_actions_module>` -- Perform actions on a PrivateEndpoint resource in Oracle Cloud Infrastructure
+* :ref:`oci_resource_manager_private_endpoint_facts <ansible_collections.oracle.oci.oci_resource_manager_private_endpoint_facts_module>` -- Fetches details about one or multiple PrivateEndpoint resources in Oracle Cloud Infrastructure
+* :ref:`oci_resource_manager_reachable_ip_facts <ansible_collections.oracle.oci.oci_resource_manager_reachable_ip_facts_module>` -- Fetches details about a ReachableIp resource in Oracle Cloud Infrastructure
 * :ref:`oci_resource_manager_resource_discovery_service_facts <ansible_collections.oracle.oci.oci_resource_manager_resource_discovery_service_facts_module>` -- Fetches details about one or multiple ResourceDiscoveryService resources in Oracle Cloud Infrastructure
 * :ref:`oci_resource_manager_stack <ansible_collections.oracle.oci.oci_resource_manager_stack_module>` -- Manage a Stack resource in Oracle Cloud Infrastructure
 * :ref:`oci_resource_manager_stack_actions <ansible_collections.oracle.oci.oci_resource_manager_stack_actions_module>` -- Perform actions on a Stack resource in Oracle Cloud Infrastructure
@@ -2608,9 +2634,24 @@ Modules
     oci_ocvp_supported_host_shape_facts_module
     oci_ocvp_supported_sku_facts_module
     oci_ocvp_supported_vmware_software_version_facts_module
+    oci_oda_authentication_provider_module
+    oci_oda_authentication_provider_facts_module
+    oci_oda_channel_module
+    oci_oda_channel_actions_module
+    oci_oda_channel_facts_module
+    oci_oda_digital_assistant_facts_module
+    oci_oda_digital_assistant_parameter_module
+    oci_oda_digital_assistant_parameter_facts_module
+    oci_oda_imported_package_facts_module
     oci_oda_instance_module
     oci_oda_instance_actions_module
+    oci_oda_instance_attachment_facts_module
     oci_oda_instance_facts_module
+    oci_oda_package_facts_module
+    oci_oda_skill_facts_module
+    oci_oda_skill_parameter_facts_module
+    oci_oda_translator_module
+    oci_oda_translator_facts_module
     oci_ons_notification_topic_module
     oci_ons_notification_topic_actions_module
     oci_ons_notification_topic_facts_module
@@ -2623,6 +2664,8 @@ Modules
     oci_opsi_awr_hub_facts_module
     oci_opsi_awr_report_facts_module
     oci_opsi_awr_snapshot_facts_module
+    oci_opsi_data_objects_actions_module
+    oci_opsi_data_objects_facts_module
     oci_opsi_database_configuration_facts_module
     oci_opsi_database_insights_module
     oci_opsi_database_insights_actions_module
@@ -2714,6 +2757,10 @@ Modules
     oci_os_management_managed_instance_group_module
     oci_os_management_managed_instance_group_actions_module
     oci_os_management_managed_instance_group_facts_module
+    oci_os_management_module_stream_facts_module
+    oci_os_management_module_stream_on_managed_instance_facts_module
+    oci_os_management_module_stream_profile_facts_module
+    oci_os_management_module_stream_profile_on_managed_instance_facts_module
     oci_os_management_related_event_facts_module
     oci_os_management_scheduled_job_module
     oci_os_management_scheduled_job_actions_module
@@ -2746,7 +2793,12 @@ Modules
     oci_resource_manager_job_log_facts_module
     oci_resource_manager_job_logs_content_facts_module
     oci_resource_manager_job_tf_config_facts_module
+    oci_resource_manager_job_tf_plan_facts_module
     oci_resource_manager_job_tf_state_facts_module
+    oci_resource_manager_private_endpoint_module
+    oci_resource_manager_private_endpoint_actions_module
+    oci_resource_manager_private_endpoint_facts_module
+    oci_resource_manager_reachable_ip_facts_module
     oci_resource_manager_resource_discovery_service_facts_module
     oci_resource_manager_stack_module
     oci_resource_manager_stack_actions_module

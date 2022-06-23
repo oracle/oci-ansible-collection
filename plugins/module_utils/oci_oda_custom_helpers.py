@@ -22,3 +22,30 @@ class OdaInstanceActionsHelperCustom:
                 "INACTIVE",
             ]
         return action_idempotent_states
+
+
+class ChannelActionsHelperCustom:
+    # When stopped lifecycle state of Channel changes to `INACTIVE`. adding state 'INACTIVE' to the list returned
+    # by `get_action_idempotent_states(action)` when performing `stop` operation.
+    def get_action_idempotent_states(self, action):
+        action_idempotent_states = super(
+            ChannelActionsHelperCustom, self
+        ).get_action_idempotent_states(action)
+
+        if action.lower() == "stop":
+            return action_idempotent_states + [
+                "INACTIVE",
+            ]
+        return action_idempotent_states
+
+    # When stopped lifecycle state of Channel changes to `INACTIVE`. adding state 'INACTIVE' to the list returned
+    # by `get_action_desired_states(self, action)` when performing `stop` operation.
+    def get_action_desired_states(self, action):
+        action_desired_states = super(
+            ChannelActionsHelperCustom, self
+        ).get_action_desired_states(action)
+        if action.lower() == "stop":
+            return action_desired_states + [
+                "INACTIVE",
+            ]
+        return action_desired_states

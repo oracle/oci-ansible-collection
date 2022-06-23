@@ -30,7 +30,7 @@ oracle.oci.oci_os_management_scheduled_job_facts -- Fetches details about one or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.52.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.53.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -336,6 +336,12 @@ Parameters
                                                                                                                                                                                                 <li>UPDATE</li>
                                                                                                                                                                                                 <li>REMOVE</li>
                                                                                                                                                                                                 <li>UPDATEALL</li>
+                                                                                                                                                                                                <li>ENABLEMODULESTREAM</li>
+                                                                                                                                                                                                <li>DISABLEMODULESTREAM</li>
+                                                                                                                                                                                                <li>SWITCHMODULESTREAM</li>
+                                                                                                                                                                                                <li>INSTALLMODULESTREAMPROFILE</li>
+                                                                                                                                                                                                <li>REMOVEMODULESTREAMPROFILE</li>
+                                                                                                                                                                                                <li>COMPOUND</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>

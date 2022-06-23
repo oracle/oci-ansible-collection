@@ -140,6 +140,12 @@ options:
             - "UPDATE"
             - "REMOVE"
             - "UPDATEALL"
+            - "ENABLEMODULESTREAM"
+            - "DISABLEMODULESTREAM"
+            - "SWITCHMODULESTREAM"
+            - "INSTALLMODULESTREAMPROFILE"
+            - "REMOVEMODULESTREAMPROFILE"
+            - "COMPOUND"
     update_type:
         description:
             - Type of the update (only if operation type is UPDATEALL)
@@ -690,7 +696,19 @@ def main():
             interval_type=dict(type="str", choices=["HOUR", "DAY", "WEEK", "MONTH"]),
             interval_value=dict(type="str"),
             operation_type=dict(
-                type="str", choices=["INSTALL", "UPDATE", "REMOVE", "UPDATEALL"]
+                type="str",
+                choices=[
+                    "INSTALL",
+                    "UPDATE",
+                    "REMOVE",
+                    "UPDATEALL",
+                    "ENABLEMODULESTREAM",
+                    "DISABLEMODULESTREAM",
+                    "SWITCHMODULESTREAM",
+                    "INSTALLMODULESTREAMPROFILE",
+                    "REMOVEMODULESTREAMPROFILE",
+                    "COMPOUND",
+                ],
             ),
             update_type=dict(
                 type="str",

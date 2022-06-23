@@ -175,6 +175,79 @@ oda_instance:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        is_role_based_access:
+            description:
+                - Should this Digital Assistant instance use role-based authorization via an identity domain (true) or use the default policy-based
+                  authorization via IAM policies (false)
+            returned: on success
+            type: bool
+            sample: true
+        identity_domain:
+            description:
+                - If isRoleBasedAccess is set to true, this property specifies the identity domain that is to be used to implement this type of authorzation.
+                  Digital Assistant will create an Identity Application instance and Application Roles within this identity domain. The caller may then perform
+                  and user roll mappings they like to grant access to users within the identity domain.
+            returned: on success
+            type: str
+            sample: identity_domain_example
+        identity_app_guid:
+            description:
+                - If isRoleBasedAccess is set to true, this property specifies the GUID of the Identity Application instance Digital Assistant has created
+                  inside the user-specified identity domain. This identity application instance may be used to host user roll mappings to grant access to this
+                  Digital Assistant instance for users within the identity domain.
+            returned: on success
+            type: str
+            sample: identity_app_guid_example
+        identity_app_console_url:
+            description:
+                - If isRoleBasedAccess is set to true, this property specifies the URL for the administration console used to manage the Identity Application
+                  instance Digital Assistant has created inside the user-specified identity domain.
+            returned: on success
+            type: str
+            sample: identity_app_console_url_example
+        imported_package_names:
+            description:
+                - A list of package names imported into this instance (if any). Use importedPackageIds field to get the details of the imported packages.
+            returned: on success
+            type: list
+            sample: []
+        imported_package_ids:
+            description:
+                - A list of package ids imported into this instance (if any). Use GetImportedPackage to get the details of the imported packages.
+            returned: on success
+            type: list
+            sample: []
+        attachment_types:
+            description:
+                - A list of attachment types for this instance (if any). Use attachmentIds to get the details of the attachments.
+            returned: on success
+            type: list
+            sample: []
+        attachment_ids:
+            description:
+                - A list of attachment identifiers for this instance (if any). Use GetOdaInstanceAttachment to get the details of the attachments.
+            returned: on success
+            type: list
+            sample: []
+        restricted_operations:
+            description:
+                - A list of restricted operations (across all attachments) for this instance (if any). Use GetOdaInstanceAttachment to get the details of the
+                  attachments.
+            returned: on success
+            type: complex
+            contains:
+                operation_name:
+                    description:
+                        - Name of the restricted operation.
+                    returned: on success
+                    type: str
+                    sample: operation_name_example
+                restricting_service:
+                    description:
+                        - Name of the service restricting the operation.
+                    returned: on success
+                    type: str
+                    sample: restricting_service_example
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -189,7 +262,19 @@ oda_instance:
         "lifecycle_sub_state": "CREATING",
         "state_message": "state_message_example",
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}}
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "is_role_based_access": true,
+        "identity_domain": "identity_domain_example",
+        "identity_app_guid": "identity_app_guid_example",
+        "identity_app_console_url": "identity_app_console_url_example",
+        "imported_package_names": [],
+        "imported_package_ids": [],
+        "attachment_types": [],
+        "attachment_ids": [],
+        "restricted_operations": [{
+            "operation_name": "operation_name_example",
+            "restricting_service": "restricting_service_example"
+        }]
     }
 """
 

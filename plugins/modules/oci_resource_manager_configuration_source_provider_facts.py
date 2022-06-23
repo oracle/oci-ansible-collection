@@ -155,6 +155,26 @@ configuration_source_providers:
             returned: on success
             type: str
             sample: GITLAB_ACCESS_TOKEN
+        private_server_config_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                private_endpoint_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of a private endpoint associated with the
+                          configuration source provider.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+                certificate_id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of a certificate associated with the
+                          configuration source provider.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags:
             description:
                 - "Free-form tags associated with this resource. Each tag is a key-value pair with no predefined name, type, or namespace.
@@ -180,6 +200,10 @@ configuration_source_providers:
         "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "ACTIVE",
         "config_source_provider_type": "GITLAB_ACCESS_TOKEN",
+        "private_server_config_details": {
+            "private_endpoint_id": "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx",
+            "certificate_id": "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
+        },
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]

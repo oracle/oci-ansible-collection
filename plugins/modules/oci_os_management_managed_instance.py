@@ -24,8 +24,9 @@ short_description: Manage a ManagedInstance resource in Oracle Cloud Infrastruct
 description:
     - This module allows the user to update a ManagedInstance resource in Oracle Cloud Infrastructure
     - "This resource has the following action operations in the M(oracle.oci.oci_os_management_managed_instance_actions) module: attach_child_software_source,
-      attach_parent_software_source, detach_child_software_source, detach_parent_software_source, install_all_package_updates, install_all_windows_updates,
-      install_package, install_package_update, install_windows_update, remove_package."
+      attach_parent_software_source, detach_child_software_source, detach_parent_software_source, disable_module_stream, enable_module_stream,
+      install_all_package_updates, install_all_windows_updates, install_module_stream_profile, install_package, install_package_update, install_windows_update,
+      manage_module_streams, remove_module_stream_profile, remove_package, switch_module_stream."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
