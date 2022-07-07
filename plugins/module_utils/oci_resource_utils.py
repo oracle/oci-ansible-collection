@@ -231,10 +231,30 @@ class OCIActionsHelperBase(OCIResourceCommonBase):
         return True
 
     def is_action_necessary(self, action, resource=None):
+        # when resource=None it means get api returned error response 404 mostly
+        if resource is None:
+            if (
+                action.upper()
+                in oci_common_utils.EXCLUDE_ACTIONS_FROM_IS_ACTION_NECESSARY
+            ):
+                return False
+
         if action.upper() in oci_common_utils.ALWAYS_PERFORM_ACTIONS:
             return True
 
-        resource = resource or self.get_resource().data
+        try:
+            resource = resource or self.get_resource().data
+        except ServiceError as se:
+            if se.status == 404:
+                # when get_resource() returns 404 we can set resource as None
+                # as we have already actions for which action is not necessary in
+                # EXCLUDE_ACTIONS_FROM_IS_ACTION_NECESSARY above
+                resource = None
+            else:
+                raise
+        except NotImplementedError as ex:
+            _debug("no get_resource implemented exception : {0}".format(str(ex)))
+            return True
         if action.upper() == "CHANGE_COMPARTMENT":
             return self.is_change_compartment_necessary(resource)
         if hasattr(
@@ -260,16 +280,34 @@ class OCIActionsHelperBase(OCIResourceCommonBase):
         try:
             get_response = self.get_resource()
         except ServiceError as se:
-            self.module.fail_json(
-                msg="Getting resource failed with exception: {0}".format(se.message)
-            )
+            if se.status == 404:
+                resource = None
+                try:
+                    is_action_necessary = self.is_action_necessary(action)
+                except ServiceError as se:
+                    self.module.fail_json(
+                        msg="Getting resource failed with exception: {0}".format(
+                            se.message
+                        )
+                    )
+            else:
+                self.module.fail_json(
+                    msg="Getting resource failed with exception: {0}".format(se.message)
+                )
         except NotImplementedError as ex:
             _debug("no get_resource impelemented exception : {0}".format(str(ex)))
             resource = {}
             is_action_necessary = True
         else:
             resource = to_dict(get_response.data)
-            is_action_necessary = self.is_action_necessary(action, get_response.data)
+            try:
+                is_action_necessary = self.is_action_necessary(
+                    action, get_response.data
+                )
+            except ServiceError as se:
+                self.module.fail_json(
+                    msg="Getting resource failed with exception: {0}".format(se.message)
+                )
 
         if not is_action_necessary:
             return self.prepare_result(
@@ -648,7 +686,7 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
         except TypeError:
             # There are cases where get takes multiple parameters one among them being the id. In most of those cases,
             # other parameters are available in module params. So set the resource id param and call get_resource.
-            id_orig = self.module.params[self.get_module_resource_id_param()]
+            id_orig = self.module.params.get(self.get_module_resource_id_param())
             self.module.params[self.get_module_resource_id_param()] = summary_model.id
             model = self.get_resource().data
             self.module.params[self.get_module_resource_id_param()] = id_orig
@@ -795,10 +833,8 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
                 get_response = self.get_resource_using_name()
             else:
                 get_response = self.get_resource()
-        except ServiceError as se:
-            self.module.fail_json(
-                msg="Getting resource failed with exception: {0}".format(se.message)
-            )
+        except ServiceError:
+            raise
         else:
             return to_dict(get_response.data)
 
@@ -840,7 +876,15 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
 
     def update(self):
 
-        resource = self.get_existing_resource_dict_for_update()
+        try:
+            resource = self.get_existing_resource_dict_for_update()
+        except ServiceError as se:
+            if se.status == 404:
+                resource = dict()
+            else:
+                self.module.fail_json(
+                    msg="Getting resource failed with exception: {0}".format(se.message)
+                )
         is_update_necessary = self.is_update_necessary(resource)
         if not is_update_necessary:
             return self.prepare_result(
@@ -876,9 +920,12 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
         try:
             get_response = self.get_resource()
         except ServiceError as se:
-            self.module.fail_json(
-                msg="Getting resource failed with exception: {0}".format(se.message)
-            )
+            if se.status == 404:
+                resource = None
+            else:
+                self.module.fail_json(
+                    msg="Getting resource failed with exception: {0}".format(se.message)
+                )
         else:
             resource = to_dict(get_response.data)
 
@@ -991,8 +1038,15 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
 
     def update_using_name(self):
 
-        resource = self.get_existing_resource_dict_for_update()
-
+        try:
+            resource = self.get_existing_resource_dict_for_update()
+        except ServiceError as se:
+            if se.status == 404:
+                resource = dict()
+            else:
+                self.module.fail_json(
+                    msg="Getting resource failed with exception: {0}".format(se.message)
+                )
         self.set_required_ids_in_module_when_name_is_identifier(resource)
         is_update_necessary = self.is_update_necessary(resource)
         if not is_update_necessary:

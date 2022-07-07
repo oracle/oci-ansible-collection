@@ -30,7 +30,7 @@ oracle.oci.oci_apm_config_config -- Manage a Config resource in Oracle Cloud Inf
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.53.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.54.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -261,6 +261,7 @@ Parameters
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>SPAN_FILTER</li>
                                                                                                                                                                                                 <li>METRIC_GROUP</li>
+                                                                                                                                                                                                <li>OPTIONS</li>
                                                                                                                                                                                                 <li>APDEX</li>
                                                                                     </ul>
                                                                             </td>
@@ -299,7 +300,7 @@ Parameters
                                                                 <td>
                                             <div>An optional string that describes what the filter is intended or used for.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when config_type is &#x27;SPAN_FILTER&#x27;</div>
+                                            <div>Applicable when config_type is one of [&#x27;OPTIONS&#x27;, &#x27;SPAN_FILTER&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -366,11 +367,11 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The name by which the span filter can be displayed in the UI.</div>
-                                            <div>Required for create using <em>state=present</em>.</div>
-                                            <div>Required for update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
+                                            <div>The name by which a configuration entity is displayed to the end user.</div>
+                                            <div>Required for create, update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                             <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
-                                            <div>Applicable when config_type is one of [&#x27;APDEX&#x27;, &#x27;METRIC_GROUP&#x27;, &#x27;SPAN_FILTER&#x27;]</div>
+                                            <div>Applicable when config_type is one of [&#x27;APDEX&#x27;, &#x27;METRIC_GROUP&#x27;, &#x27;OPTIONS&#x27;, &#x27;SPAN_FILTER&#x27;]</div>
+                                            <div>Required when config_type is one of [&#x27;APDEX&#x27;, &#x27;METRIC_GROUP&#x27;, &#x27;SPAN_FILTER&#x27;]</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
             </tr>
@@ -443,6 +444,23 @@ Parameters
                                                                 <td>
                                             <div>Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
                                             <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-group"></div>
+                    <b>group</b>
+                    <a class="ansibleOptionLink" href="#parameter-group" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A string that specifies the group that an OPTIONS item belongs to.</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when config_type is &#x27;OPTIONS&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -582,6 +600,23 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-options"></div>
+                    <b>options</b>
+                    <a class="ansibleOptionLink" href="#parameter-options" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The options are stored here as JSON.</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when config_type is &#x27;OPTIONS&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#parameter-region" title="Permalink to this option"></a>
@@ -625,7 +660,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A user-friendly name that provides a short description of this rule.</div>
+                                            <div>The name by which a configuration entity is displayed to the end user.</div>
                                             <div>Applicable when config_type is &#x27;APDEX&#x27;</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
@@ -808,10 +843,10 @@ Examples
         config_type: SPAN_FILTER
 
         # optional
+        filter_text: filter_text_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
-        filter_text: filter_text_example
         description: description_example
 
     - name: Create config with config_type = METRIC_GROUP
@@ -840,6 +875,19 @@ Examples
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
 
+    - name: Create config with config_type = OPTIONS
+      oci_apm_config_config:
+        # required
+        config_type: OPTIONS
+
+        # optional
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        display_name: display_name_example
+        options: null
+        group: group_example
+        description: description_example
+
     - name: Create config with config_type = APDEX
       oci_apm_config_config:
         # required
@@ -867,10 +915,10 @@ Examples
         config_type: SPAN_FILTER
 
         # optional
+        filter_text: filter_text_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
-        filter_text: filter_text_example
         description: description_example
 
     - name: Update config with config_type = METRIC_GROUP
@@ -899,6 +947,19 @@ Examples
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
 
+    - name: Update config with config_type = OPTIONS
+      oci_apm_config_config:
+        # required
+        config_type: OPTIONS
+
+        # optional
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        display_name: display_name_example
+        options: null
+        group: group_example
+        description: description_example
+
     - name: Update config with config_type = APDEX
       oci_apm_config_config:
         # required
@@ -926,10 +987,10 @@ Examples
         config_type: SPAN_FILTER
 
         # optional
+        filter_text: filter_text_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
-        filter_text: filter_text_example
         description: description_example
 
     - name: Update config using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with config_type = METRIC_GROUP
@@ -957,6 +1018,19 @@ Examples
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         display_name: display_name_example
+
+    - name: Update config using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with config_type = OPTIONS
+      oci_apm_config_config:
+        # required
+        config_type: OPTIONS
+
+        # optional
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        display_name: display_name_example
+        options: null
+        group: group_example
+        description: description_example
 
     - name: Update config using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with config_type = APDEX
       oci_apm_config_config:
@@ -1028,7 +1102,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Config resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;config_type&#x27;: &#x27;SPAN_FILTER&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;dimensions&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value_source&#x27;: &#x27;value_source_example&#x27;}], &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;filter_id&#x27;: &#x27;ocid1.filter.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;filter_text&#x27;: &#x27;filter_text_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;metrics&#x27;: [{&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value_source&#x27;: &#x27;value_source_example&#x27;}], &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;rules&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;filter_text&#x27;: &#x27;filter_text_example&#x27;, &#x27;is_apply_to_error_spans&#x27;: True, &#x27;is_enabled&#x27;: True, &#x27;priority&#x27;: 56, &#x27;satisfied_response_time&#x27;: 56, &#x27;tolerating_response_time&#x27;: 56}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;config_type&#x27;: &#x27;SPAN_FILTER&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;dimensions&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value_source&#x27;: &#x27;value_source_example&#x27;}], &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;filter_id&#x27;: &#x27;ocid1.filter.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;filter_text&#x27;: &#x27;filter_text_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;group&#x27;: &#x27;group_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;metrics&#x27;: [{&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value_source&#x27;: &#x27;value_source_example&#x27;}], &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;options&#x27;: {}, &#x27;rules&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;filter_text&#x27;: &#x27;filter_text_example&#x27;, &#x27;is_apply_to_error_spans&#x27;: True, &#x27;is_enabled&#x27;: True, &#x27;priority&#x27;: 56, &#x27;satisfied_response_time&#x27;: 56, &#x27;tolerating_response_time&#x27;: 56}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1079,7 +1153,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>An optional string that describes what the span filter is intended or used for.</div>
+                                            <div>An optional string that describes what the options are intended or used for.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
@@ -1152,7 +1226,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name by which the rule set is displayed to the end user.</div>
+                                            <div>The name by which a configuration entity is displayed to the end user.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
@@ -1210,6 +1284,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-config/group"></div>
+                    <b>group</b>
+                    <a class="ansibleOptionLink" href="#return-config/group" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A string that specifies the group that an OPTIONS item belongs to.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">group_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1344,6 +1436,22 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-config/options"></div>
+                    <b>options</b>
+                    <a class="ansibleOptionLink" href="#return-config/options" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The options are stored here as JSON.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-config/rules"></div>
                     <b>rules</b>
                     <a class="ansibleOptionLink" href="#return-config/rules" title="Permalink to this return value"></a>
@@ -1370,7 +1478,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A user-friendly name that provides a short description of this rule.</div>
+                                            <div>The name by which a configuration entity is displayed to the end user.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>

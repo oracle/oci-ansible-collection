@@ -30,7 +30,7 @@ oracle.oci.oci_database_tools_connection -- Manage a DatabaseToolsConnection res
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.53.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.54.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a DatabaseToolsConnection resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a new DatabaseToolsConnection.
+- For *state=present*, creates a new Database Tools connection.
 - This resource has the following action operations in the :ref:`oracle.oci.oci_database_tools_connection_actions <ansible_collections.oracle.oci.oci_database_tools_connection_actions_module>` module: change_compartment, validate.
 
 
@@ -99,7 +99,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Advanced connection properties key-value pair (e.g., oracle.net.ssl_server_dn_match).</div>
+                                            <div>The advanced connection properties key-value pair (e.g., `sslMode`).</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -214,7 +214,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the containing Compartment.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment containing the Database Tools connection.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for update when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                             <div>Required for delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
@@ -262,7 +262,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Connect descriptor or Easy Connect Naming method to connect to the database.</div>
+                                            <div>The connection string used to connect to the MySQL Server.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -278,7 +278,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of a DatabaseToolsConnection.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of a Database Tools connection.</div>
                                             <div>Required for update using <em>state=present</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                             <div>Required for delete using <em>state=absent</em> when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
@@ -316,7 +316,7 @@ Parameters
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                             <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
-                                            <div>Applicable when type is &#x27;ORACLE_DATABASE&#x27;</div>
+                                            <div>Applicable when type is one of [&#x27;MYSQL&#x27;, &#x27;ORACLE_DATABASE&#x27;]</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
             </tr>
@@ -382,7 +382,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Oracle wallet or Java Keystores containing trusted certificates for authenticating the server&#x27;s public certificate and the client private key and associated certificates required for client authentication.</div>
+                                            <div>The CA certificate to verify the server&#x27;s certificate and the client private key and associated certificate required for client authentication.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -506,7 +506,10 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>JAVA_KEY_STORE</li>
+                                                                                                                                                                <li>CLIENT_CERTIFICATE_PEM</li>
+                                                                                                                                                                                                <li>CLIENT_PRIVATE_KEY_PEM</li>
+                                                                                                                                                                                                <li>CA_CERTIFICATE_PEM</li>
+                                                                                                                                                                                                <li>JAVA_KEY_STORE</li>
                                                                                                                                                                                                 <li>JAVA_TRUST_STORE</li>
                                                                                                                                                                                                 <li>PKCS12</li>
                                                                                                                                                                                                 <li>SSO</li>
@@ -529,7 +532,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the DatabaseToolsPrivateEndpoint used to access the database in the Customer VCN.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Database Tools private endpoint used to access the database in the customer VCN.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -576,7 +579,8 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>AUTONOMOUSDATABASE</li>
+                                                                                                                                                                <li>MYSQLDBSYSTEM</li>
+                                                                                                                                                                                                <li>AUTONOMOUSDATABASE</li>
                                                                                                                                                                                                 <li>DATABASE</li>
                                                                                                                                                                                                 <li>PLUGGABLEDATABASE</li>
                                                                                     </ul>
@@ -584,7 +588,7 @@ Parameters
                                                                 <td>
                                             <div>The resource entity type.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when type is &#x27;ORACLE_DATABASE&#x27;</div>
+                                            <div>Applicable when type is one of [&#x27;MYSQL&#x27;, &#x27;ORACLE_DATABASE&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -602,7 +606,7 @@ Parameters
                                                                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the related resource.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when type is &#x27;ORACLE_DATABASE&#x27;</div>
+                                            <div>Applicable when type is one of [&#x27;MYSQL&#x27;, &#x27;ORACLE_DATABASE&#x27;]</div>
                                                         </td>
             </tr>
                     
@@ -653,7 +657,8 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>ORACLE_DATABASE</li>
+                                                                                                                                                                <li>MYSQL</li>
+                                                                                                                                                                                                <li>ORACLE_DATABASE</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -673,7 +678,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Database user name.</div>
+                                            <div>The user name.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -701,7 +706,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-user_password/secret_id" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                                    </div>
+                                                 / <span style="color: red">required</span>                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -788,6 +793,44 @@ Examples
 .. code-block:: yaml+jinja
 
     
+    - name: Create database_tools_connection with type = MYSQL
+      oci_database_tools_connection:
+        # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        type: MYSQL
+
+        # optional
+        display_name: display_name_example
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        freeform_tags: {'Department': 'Finance'}
+        related_resource:
+          # optional
+          entity_type: MYSQLDBSYSTEM
+          identifier: identifier_example
+        connection_string: connection_string_example
+        user_name: user_name_example
+        user_password:
+          # required
+          value_type: SECRETID
+          secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+        advanced_properties: null
+        key_stores:
+        - # optional
+          key_store_type: CLIENT_CERTIFICATE_PEM
+          key_store_content:
+            # required
+            value_type: SECRETID
+
+            # optional
+            secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+          key_store_password:
+            # required
+            value_type: SECRETID
+
+            # optional
+            secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+        private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+
     - name: Create database_tools_connection with type = ORACLE_DATABASE
       oci_database_tools_connection:
         # required
@@ -800,20 +843,55 @@ Examples
         freeform_tags: {'Department': 'Finance'}
         related_resource:
           # optional
-          entity_type: AUTONOMOUSDATABASE
+          entity_type: MYSQLDBSYSTEM
           identifier: identifier_example
         connection_string: connection_string_example
         user_name: user_name_example
         user_password:
           # required
           value_type: SECRETID
-
-          # optional
           secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
         advanced_properties: null
         key_stores:
         - # optional
-          key_store_type: JAVA_KEY_STORE
+          key_store_type: CLIENT_CERTIFICATE_PEM
+          key_store_content:
+            # required
+            value_type: SECRETID
+
+            # optional
+            secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+          key_store_password:
+            # required
+            value_type: SECRETID
+
+            # optional
+            secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+        private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+
+    - name: Update database_tools_connection with type = MYSQL
+      oci_database_tools_connection:
+        # required
+        type: MYSQL
+
+        # optional
+        display_name: display_name_example
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        freeform_tags: {'Department': 'Finance'}
+        related_resource:
+          # optional
+          entity_type: MYSQLDBSYSTEM
+          identifier: identifier_example
+        connection_string: connection_string_example
+        user_name: user_name_example
+        user_password:
+          # required
+          value_type: SECRETID
+          secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+        advanced_properties: null
+        key_stores:
+        - # optional
+          key_store_type: CLIENT_CERTIFICATE_PEM
           key_store_content:
             # required
             value_type: SECRETID
@@ -839,20 +917,56 @@ Examples
         freeform_tags: {'Department': 'Finance'}
         related_resource:
           # optional
-          entity_type: AUTONOMOUSDATABASE
+          entity_type: MYSQLDBSYSTEM
           identifier: identifier_example
         connection_string: connection_string_example
         user_name: user_name_example
         user_password:
           # required
           value_type: SECRETID
-
-          # optional
           secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
         advanced_properties: null
         key_stores:
         - # optional
-          key_store_type: JAVA_KEY_STORE
+          key_store_type: CLIENT_CERTIFICATE_PEM
+          key_store_content:
+            # required
+            value_type: SECRETID
+
+            # optional
+            secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+          key_store_password:
+            # required
+            value_type: SECRETID
+
+            # optional
+            secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+        private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+
+    - name: Update database_tools_connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with type = MYSQL
+      oci_database_tools_connection:
+        # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        type: MYSQL
+
+        # optional
+        display_name: display_name_example
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        freeform_tags: {'Department': 'Finance'}
+        related_resource:
+          # optional
+          entity_type: MYSQLDBSYSTEM
+          identifier: identifier_example
+        connection_string: connection_string_example
+        user_name: user_name_example
+        user_password:
+          # required
+          value_type: SECRETID
+          secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+        advanced_properties: null
+        key_stores:
+        - # optional
+          key_store_type: CLIENT_CERTIFICATE_PEM
           key_store_content:
             # required
             value_type: SECRETID
@@ -879,20 +993,18 @@ Examples
         freeform_tags: {'Department': 'Finance'}
         related_resource:
           # optional
-          entity_type: AUTONOMOUSDATABASE
+          entity_type: MYSQLDBSYSTEM
           identifier: identifier_example
         connection_string: connection_string_example
         user_name: user_name_example
         user_password:
           # required
           value_type: SECRETID
-
-          # optional
           secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
         advanced_properties: null
         key_stores:
         - # optional
-          key_store_type: JAVA_KEY_STORE
+          key_store_type: CLIENT_CERTIFICATE_PEM
           key_store_content:
             # required
             value_type: SECRETID
@@ -955,7 +1067,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the DatabaseToolsConnection resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;advanced_properties&#x27;: {}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_string&#x27;: &#x27;connection_string_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;key_stores&#x27;: [{&#x27;key_store_content&#x27;: {&#x27;secret_id&#x27;: &#x27;ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;value_type&#x27;: &#x27;SECRETID&#x27;}, &#x27;key_store_password&#x27;: {&#x27;secret_id&#x27;: &#x27;ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;value_type&#x27;: &#x27;SECRETID&#x27;}, &#x27;key_store_type&#x27;: &#x27;JAVA_KEY_STORE&#x27;}], &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;private_endpoint_id&#x27;: &#x27;ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;related_resource&#x27;: {&#x27;entity_type&#x27;: &#x27;AUTONOMOUSDATABASE&#x27;, &#x27;identifier&#x27;: &#x27;identifier_example&#x27;}, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;ORACLE_DATABASE&#x27;, &#x27;user_name&#x27;: &#x27;user_name_example&#x27;, &#x27;user_password&#x27;: {&#x27;secret_id&#x27;: &#x27;ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;value_type&#x27;: &#x27;SECRETID&#x27;}}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;advanced_properties&#x27;: {}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_string&#x27;: &#x27;connection_string_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;key_stores&#x27;: [{&#x27;key_store_content&#x27;: {&#x27;secret_id&#x27;: &#x27;ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;value_type&#x27;: &#x27;SECRETID&#x27;}, &#x27;key_store_password&#x27;: {&#x27;secret_id&#x27;: &#x27;ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;value_type&#x27;: &#x27;SECRETID&#x27;}, &#x27;key_store_type&#x27;: &#x27;CLIENT_CERTIFICATE_PEM&#x27;}], &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;private_endpoint_id&#x27;: &#x27;ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;related_resource&#x27;: {&#x27;entity_type&#x27;: &#x27;MYSQLDBSYSTEM&#x27;, &#x27;identifier&#x27;: &#x27;identifier_example&#x27;}, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;ORACLE_DATABASE&#x27;, &#x27;user_name&#x27;: &#x27;user_name_example&#x27;, &#x27;user_password&#x27;: {&#x27;secret_id&#x27;: &#x27;ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;value_type&#x27;: &#x27;SECRETID&#x27;}}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -970,7 +1082,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Advanced connection properties key-value pair (e.g., oracle.net.ssl_server_dn_match).</div>
+                                            <div>The advanced connection properties key-value pair (for example, `sslMode`).</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -986,7 +1098,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the containing Compartment.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment containing the Database Tools connection.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1004,7 +1116,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Connect descriptor or Easy Connect Naming method to connect to the database.</div>
+                                            <div>The connection string used to connect to the MySQL Server.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">connection_string_example</div>
@@ -1076,7 +1188,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the DatabaseToolsConnection.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Database Tools connection.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1094,7 +1206,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Oracle wallet or Java Keystores containing trusted certificates for authenticating the server&#x27;s public certificate and the client private key and associated certificates required for client authentication.</div>
+                                            <div>The CA certificate to verify the server&#x27;s certificate and the client private key and associated certificate required for client authentication.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1230,7 +1342,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The key store type.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">JAVA_KEY_STORE</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CLIENT_CERTIFICATE_PEM</div>
                                     </td>
             </tr>
                     
@@ -1246,7 +1358,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed state.</div>
+                                            <div>A message describing the current state in more detail. For example, this message can be used to provide actionable information for a resource in the Failed state.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">lifecycle_details_example</div>
@@ -1264,7 +1376,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The current state of the DatabaseToolsConnection.</div>
+                                            <div>The current state of the Database Tools connection.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
@@ -1282,7 +1394,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the DatabaseToolsPrivateEndpoint used to access the database in the Customer VCN.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Database Tools private endpoint used to access the database in the customer VCN.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1320,7 +1432,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The resource entity type.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">AUTONOMOUSDATABASE</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">MYSQLDBSYSTEM</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1371,7 +1483,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The time the DatabaseToolsConnection was created. An RFC3339 formatted datetime string</div>
+                                            <div>The time the Database Tools connection was created. An RFC3339 formatted datetime string.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -1389,7 +1501,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The time the DatabaseToolsConnection was updated. An RFC3339 formatted datetime string</div>
+                                            <div>The time the DatabaseToolsConnection was updated. An RFC3339 formatted datetime string.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -1407,7 +1519,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The DatabaseToolsConnection type.</div>
+                                            <div>The Database Tools connection type.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ORACLE_DATABASE</div>
@@ -1425,7 +1537,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Database user name.</div>
+                                            <div>The user name.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">user_name_example</div>

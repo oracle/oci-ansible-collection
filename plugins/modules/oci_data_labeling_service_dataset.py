@@ -49,25 +49,25 @@ options:
         suboptions:
             source_type:
                 description:
-                    - Source type.  OBJECT_STORAGE allows the customer to describe where the dataset is in object storage.
+                    - The source type. OBJECT_STORAGE allows the user to describe where in object storage the dataset is.
                 type: str
                 choices:
                     - "OBJECT_STORAGE"
                 required: true
             namespace:
                 description:
-                    - Namespace of the bucket that contains the dataset data source
+                    - The namespace of the bucket that contains the dataset data source.
                 type: str
                 required: true
             bucket:
                 description:
-                    - The object storage bucket that contains the dataset data source
+                    - The object storage bucket that contains the dataset data source.
                 type: str
                 required: true
             prefix:
                 description:
-                    - A common path prefix shared by the objects that make up the dataset. Records will not be generated for objects whose name match exactly
-                      with prefix.
+                    - A common path prefix shared by the objects that make up the dataset. Except for the CSV file type, records are not generated for the
+                      objects whose names exactly match with the prefix.
                 type: str
     dataset_format_details:
         description:
@@ -77,14 +77,48 @@ options:
         suboptions:
             format_type:
                 description:
-                    - Format type. DOCUMENT format is for record contents that are PDFs or TIFFs. IMAGE format is for record contents that are JPEGs or PNGs.
-                      TEXT format is for record contents that are txt files.
+                    - The format type. DOCUMENT format is for record contents that are PDFs or TIFFs. IMAGE format is for record contents that are JPEGs or
+                      PNGs. TEXT format is for record contents that are TXT files.
                 type: str
                 choices:
                     - "IMAGE"
                     - "DOCUMENT"
                     - "TEXT"
                 required: true
+            text_file_type_metadata:
+                description:
+                    - ""
+                    - Applicable when format_type is 'TEXT'
+                type: dict
+                suboptions:
+                    format_type:
+                        description:
+                            - It defines the format type of text files.
+                        type: str
+                        choices:
+                            - "DELIMITED"
+                        required: true
+                    column_name:
+                        description:
+                            - The name of a selected column.
+                        type: str
+                    column_index:
+                        description:
+                            - The index of a selected column. This is a zero-based index.
+                        type: int
+                        required: true
+                    column_delimiter:
+                        description:
+                            - A column delimiter
+                        type: str
+                    line_delimiter:
+                        description:
+                            - A line delimiter.
+                        type: str
+                    escape_character:
+                        description:
+                            - An escape character.
+                        type: str
     initial_record_generation_configuration:
         description:
             - ""
@@ -92,7 +126,7 @@ options:
         suboptions:
             limit:
                 description:
-                    - the maximum number of records to generate.
+                    - The maximum number of records to generate.
                 type: float
     label_set:
         description:
@@ -102,7 +136,7 @@ options:
         suboptions:
             items:
                 description:
-                    - An ordered collection of Labels that are unique by name.
+                    - An ordered collection of labels that are unique by name.
                 type: list
                 elements: dict
                 suboptions:
@@ -307,26 +341,26 @@ dataset:
             contains:
                 source_type:
                     description:
-                        - Source type.  OBJECT_STORAGE allows the customer to describe where the dataset is in object storage.
+                        - The source type. OBJECT_STORAGE allows the user to describe where in object storage the dataset is.
                     returned: on success
                     type: str
                     sample: OBJECT_STORAGE
                 namespace:
                     description:
-                        - Namespace of the bucket that contains the dataset data source
+                        - The namespace of the bucket that contains the dataset data source.
                     returned: on success
                     type: str
                     sample: namespace_example
                 bucket:
                     description:
-                        - The object storage bucket that contains the dataset data source
+                        - The object storage bucket that contains the dataset data source.
                     returned: on success
                     type: str
                     sample: bucket_example
                 prefix:
                     description:
-                        - A common path prefix shared by the objects that make up the dataset. Records will not be generated for objects whose name match
-                          exactly with prefix.
+                        - A common path prefix shared by the objects that make up the dataset. Except for the CSV file type, records are not generated for the
+                          objects whose names exactly match with the prefix.
                     returned: on success
                     type: str
                     sample: prefix_example
@@ -338,11 +372,53 @@ dataset:
             contains:
                 format_type:
                     description:
-                        - Format type. DOCUMENT format is for record contents that are PDFs or TIFFs. IMAGE format is for record contents that are JPEGs or
-                          PNGs. TEXT format is for record contents that are txt files.
+                        - The format type. DOCUMENT format is for record contents that are PDFs or TIFFs. IMAGE format is for record contents that are JPEGs or
+                          PNGs. TEXT format is for record contents that are TXT files.
                     returned: on success
                     type: str
                     sample: DOCUMENT
+                text_file_type_metadata:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        format_type:
+                            description:
+                                - It defines the format type of text files.
+                            returned: on success
+                            type: str
+                            sample: DELIMITED
+                        column_name:
+                            description:
+                                - The name of a selected column.
+                            returned: on success
+                            type: str
+                            sample: column_name_example
+                        column_index:
+                            description:
+                                - The index of a selected column. This is a zero-based index.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        column_delimiter:
+                            description:
+                                - A column delimiter
+                            returned: on success
+                            type: str
+                            sample: column_delimiter_example
+                        line_delimiter:
+                            description:
+                                - A line delimiter.
+                            returned: on success
+                            type: str
+                            sample: line_delimiter_example
+                        escape_character:
+                            description:
+                                - An escape character.
+                            returned: on success
+                            type: str
+                            sample: escape_character_example
         label_set:
             description:
                 - ""
@@ -351,7 +427,7 @@ dataset:
             contains:
                 items:
                     description:
-                        - An ordered collection of Labels that are unique by name.
+                        - An ordered collection of labels that are unique by name.
                     returned: on success
                     type: complex
                     contains:
@@ -369,7 +445,7 @@ dataset:
             contains:
                 limit:
                     description:
-                        - the maximum number of records to generate.
+                        - The maximum number of records to generate.
                     returned: on success
                     type: float
                     sample: 10
@@ -417,7 +493,15 @@ dataset:
             "prefix": "prefix_example"
         },
         "dataset_format_details": {
-            "format_type": "DOCUMENT"
+            "format_type": "DOCUMENT",
+            "text_file_type_metadata": {
+                "format_type": "DELIMITED",
+                "column_name": "column_name_example",
+                "column_index": 56,
+                "column_delimiter": "column_delimiter_example",
+                "line_delimiter": "line_delimiter_example",
+                "escape_character": "escape_character_example"
+            }
         },
         "label_set": {
             "items": [{
@@ -600,7 +684,20 @@ def main():
                 options=dict(
                     format_type=dict(
                         type="str", required=True, choices=["IMAGE", "DOCUMENT", "TEXT"]
-                    )
+                    ),
+                    text_file_type_metadata=dict(
+                        type="dict",
+                        options=dict(
+                            format_type=dict(
+                                type="str", required=True, choices=["DELIMITED"]
+                            ),
+                            column_name=dict(type="str"),
+                            column_index=dict(type="int", required=True),
+                            column_delimiter=dict(type="str"),
+                            line_delimiter=dict(type="str"),
+                            escape_character=dict(type="str"),
+                        ),
+                    ),
                 ),
             ),
             initial_record_generation_configuration=dict(

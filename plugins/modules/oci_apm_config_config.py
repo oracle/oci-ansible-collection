@@ -139,10 +139,17 @@ options:
                 type: bool
             display_name:
                 description:
-                    - A user-friendly name that provides a short description of this rule.
+                    - The name by which a configuration entity is displayed to the end user.
                     - Applicable when config_type is 'APDEX'
                 type: str
                 aliases: ["name"]
+    filter_text:
+        description:
+            - The string that defines the Span Filter expression.
+            - This parameter is updatable.
+            - Applicable when config_type is 'SPAN_FILTER'
+            - Required when config_type is 'SPAN_FILTER'
+        type: str
     config_type:
         description:
             - The type of configuration item.
@@ -151,6 +158,7 @@ options:
         choices:
             - "SPAN_FILTER"
             - "METRIC_GROUP"
+            - "OPTIONS"
             - "APDEX"
     freeform_tags:
         description:
@@ -166,25 +174,30 @@ options:
         type: dict
     display_name:
         description:
-            - The name by which the span filter can be displayed in the UI.
-            - Required for create using I(state=present).
-            - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
+            - The name by which a configuration entity is displayed to the end user.
+            - Required for create, update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-            - Applicable when config_type is one of ['APDEX', 'METRIC_GROUP', 'SPAN_FILTER']
+            - Applicable when config_type is one of ['APDEX', 'METRIC_GROUP', 'OPTIONS', 'SPAN_FILTER']
+            - Required when config_type is one of ['APDEX', 'METRIC_GROUP', 'SPAN_FILTER']
         type: str
         aliases: ["name"]
-    filter_text:
+    options:
         description:
-            - The string that defines the Span Filter expression.
+            - The options are stored here as JSON.
             - This parameter is updatable.
-            - Applicable when config_type is 'SPAN_FILTER'
-            - Required when config_type is 'SPAN_FILTER'
+            - Applicable when config_type is 'OPTIONS'
+        type: dict
+    group:
+        description:
+            - A string that specifies the group that an OPTIONS item belongs to.
+            - This parameter is updatable.
+            - Applicable when config_type is 'OPTIONS'
         type: str
     description:
         description:
             - An optional string that describes what the filter is intended or used for.
             - This parameter is updatable.
-            - Applicable when config_type is 'SPAN_FILTER'
+            - Applicable when config_type is one of ['OPTIONS', 'SPAN_FILTER']
         type: str
     opc_dry_run:
         description:
@@ -223,10 +236,10 @@ EXAMPLES = """
     config_type: SPAN_FILTER
 
     # optional
+    filter_text: filter_text_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
-    filter_text: filter_text_example
     description: description_example
 
 - name: Create config with config_type = METRIC_GROUP
@@ -255,6 +268,19 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
 
+- name: Create config with config_type = OPTIONS
+  oci_apm_config_config:
+    # required
+    config_type: OPTIONS
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: display_name_example
+    options: null
+    group: group_example
+    description: description_example
+
 - name: Create config with config_type = APDEX
   oci_apm_config_config:
     # required
@@ -282,10 +308,10 @@ EXAMPLES = """
     config_type: SPAN_FILTER
 
     # optional
+    filter_text: filter_text_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
-    filter_text: filter_text_example
     description: description_example
 
 - name: Update config with config_type = METRIC_GROUP
@@ -314,6 +340,19 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
 
+- name: Update config with config_type = OPTIONS
+  oci_apm_config_config:
+    # required
+    config_type: OPTIONS
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: display_name_example
+    options: null
+    group: group_example
+    description: description_example
+
 - name: Update config with config_type = APDEX
   oci_apm_config_config:
     # required
@@ -341,10 +380,10 @@ EXAMPLES = """
     config_type: SPAN_FILTER
 
     # optional
+    filter_text: filter_text_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
-    filter_text: filter_text_example
     description: description_example
 
 - name: Update config using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with config_type = METRIC_GROUP
@@ -372,6 +411,19 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
+
+- name: Update config using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with config_type = OPTIONS
+  oci_apm_config_config:
+    # required
+    config_type: OPTIONS
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    display_name: display_name_example
+    options: null
+    group: group_example
+    description: description_example
 
 - name: Update config using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with config_type = APDEX
   oci_apm_config_config:
@@ -468,7 +520,7 @@ config:
                     sample: true
                 display_name:
                     description:
-                        - A user-friendly name that provides a short description of this rule.
+                        - The name by which a configuration entity is displayed to the end user.
                     returned: on success
                     type: str
                     sample: display_name_example
@@ -534,6 +586,18 @@ config:
                     returned: on success
                     type: str
                     sample: description_example
+        options:
+            description:
+                - The options are stored here as JSON.
+            returned: on success
+            type: dict
+            sample: {}
+        group:
+            description:
+                - A string that specifies the group that an OPTIONS item belongs to.
+            returned: on success
+            type: str
+            sample: group_example
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the configuration item. An OCID is generated
@@ -579,7 +643,7 @@ config:
             sample: {'Operations': {'CostCenter': 'US'}}
         display_name:
             description:
-                - The name by which the rule set is displayed to the end user.
+                - The name by which a configuration entity is displayed to the end user.
             returned: on success
             type: str
             sample: display_name_example
@@ -591,7 +655,7 @@ config:
             sample: filter_text_example
         description:
             description:
-                - An optional string that describes what the span filter is intended or used for.
+                - An optional string that describes what the options are intended or used for.
             returned: on success
             type: str
             sample: description_example
@@ -617,6 +681,8 @@ config:
             "unit": "unit_example",
             "description": "description_example"
         }],
+        "options": {},
+        "group": "group_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "config_type": "SPAN_FILTER",
         "time_created": "2013-10-20T19:20:30+01:00",
@@ -823,13 +889,15 @@ def main():
                     display_name=dict(aliases=["name"], type="str"),
                 ),
             ),
+            filter_text=dict(type="str"),
             config_type=dict(
-                type="str", choices=["SPAN_FILTER", "METRIC_GROUP", "APDEX"]
+                type="str", choices=["SPAN_FILTER", "METRIC_GROUP", "OPTIONS", "APDEX"]
             ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             display_name=dict(aliases=["name"], type="str"),
-            filter_text=dict(type="str"),
+            options=dict(type="dict"),
+            group=dict(type="str"),
             description=dict(type="str"),
             opc_dry_run=dict(type="str"),
             apm_domain_id=dict(type="str", required=True),

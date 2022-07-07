@@ -23,21 +23,22 @@ module: oci_database_tools_private_endpoint
 short_description: Manage a DatabaseToolsPrivateEndpoint resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a DatabaseToolsPrivateEndpoint resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates a new DatabaseToolsPrivateEndpoint.
+    - For I(state=present), creates a new Database Tools private endpoint.
     - "This resource has the following action operations in the M(oracle.oci.oci_database_tools_private_endpoint_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the containing Compartment.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the Database Tools private
+              endpoint.
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
     endpoint_service_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DatabaseToolsEndpointService.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the `DatabaseToolsEndpointService`.
             - Required for create using I(state=present).
         type: str
     subnet_id:
@@ -71,7 +72,7 @@ options:
         aliases: ["name"]
     description:
         description:
-            - A description of the DatabaseToolsPrivateEndpoint.
+            - A description of the Database Tools private endpoint.
             - This parameter is updatable.
         type: str
     nsg_ids:
@@ -84,7 +85,7 @@ options:
         elements: str
     database_tools_private_endpoint_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a DatabaseToolsPrivateEndpoint.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a Database Tools private endpoint.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -165,7 +166,8 @@ database_tools_private_endpoint:
     contains:
         compartment_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the containing Compartment.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the Database Tools private
+                  endpoint.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -198,31 +200,31 @@ database_tools_private_endpoint:
             sample: display_name_example
         description:
             description:
-                - A description of the DatabaseToolsPrivateEndpoint.
+                - A description of the Database Tools private endpoint.
             returned: on success
             type: str
             sample: description_example
         id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DatabaseToolsPrivateEndpoint.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Tools private endpoint.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         endpoint_service_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DatabaseToolsEndpointService.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Tools Endpoint Service.
             returned: on success
             type: str
             sample: "ocid1.endpointservice.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
-                - The time the DatabaseToolsPrivateEndpoint was created. An RFC3339 formatted datetime string
+                - The time the Database Tools private endpoint was created. An RFC3339 formatted datetime string
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - The time the DatabaseToolsPrivateEndpoint was updated. An RFC3339 formatted datetime string
+                - The time the Database Tools private endpoint was updated. An RFC3339 formatted datetime string
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
@@ -264,7 +266,7 @@ database_tools_private_endpoint:
             sample: []
         lifecycle_state:
             description:
-                - The current state of the DatabaseToolsPrivateEndpoint.
+                - The current state of the Database Tools private endpoint.
             returned: on success
             type: str
             sample: CREATING

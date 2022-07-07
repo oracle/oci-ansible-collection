@@ -211,6 +211,9 @@ class InstancePoolInstanceActionsHelperCustom:
 
     # when we do a get resource, we sometimes get 404 error from backend while the resource is detaching
     # so we return a dummy response sometimes.
+    # Note: While detaching WORK_REQUEST_WAITER is used & it waits & after WORK REQUEST responses are finished
+    # then in wait utils it calls get_resource & get_resource returns 404 & module fails.
+    # This piece of code handles that
     def get_resource(self):
         try:
             return super(InstancePoolInstanceActionsHelperCustom, self).get_resource()
@@ -220,14 +223,3 @@ class InstancePoolInstanceActionsHelperCustom:
                     resource=None
                 )
             raise
-
-    # when we do a get resource, we sometimes get 404 error from backend while the resource is detaching
-    # so we return a dummy response sometimes (where response.data is set as None)
-    # parameter resource is passed from perform_action is actually response.data
-    def is_action_necessary(self, action, resource=None):
-        if action == "detach":
-            return resource is not None
-
-        return super(InstancePoolInstanceActionsHelperCustom, self).is_action_necessary(
-            action, resource
-        )

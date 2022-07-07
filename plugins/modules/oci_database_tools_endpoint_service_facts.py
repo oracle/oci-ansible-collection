@@ -23,14 +23,14 @@ module: oci_database_tools_endpoint_service_facts
 short_description: Fetches details about one or multiple DatabaseToolsEndpointService resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple DatabaseToolsEndpointService resources in Oracle Cloud Infrastructure
-    - Returns a list of DatabaseToolsEndpointServices.
+    - Returns a list of Database Tools endpoint services.
     - If I(database_tools_endpoint_service_id) is specified, the details of a single DatabaseToolsEndpointService will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     database_tools_endpoint_service_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a DatabaseToolsEndpointService.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a Database Tools Endpoint Service.
             - Required to get a specific database_tools_endpoint_service.
         type: str
         aliases: ["id"]
@@ -56,7 +56,7 @@ options:
             - "displayName"
     lifecycle_state:
         description:
-            - A filter to return only resources their lifecycleState matches the given lifecycleState.
+            - A filter to return only resources their `lifecycleState` matches the specified `lifecycleState`.
         type: str
         choices:
             - "CREATING"
@@ -67,11 +67,11 @@ options:
             - "FAILED"
     display_name:
         description:
-            - A filter to return only resources that match the entire display name given.
+            - A filter to return only resources that match the entire specified display name.
         type: str
     name:
         description:
-            - A filter to return only resources that match the entire name given.
+            - A filter to return only resources that match the entire specified name.
         type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
@@ -105,7 +105,7 @@ database_tools_endpoint_services:
     contains:
         id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DatabaseToolsEndpointService.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Tools Endpoint Service.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -123,7 +123,8 @@ database_tools_endpoint_services:
             sample: name_example
         compartment_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the containing Compartment.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the Database Tools Endpoint
+                  Service.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -150,19 +151,19 @@ database_tools_endpoint_services:
             sample: {}
         time_created:
             description:
-                - The time the DatabaseToolsEndpointService was created. An RFC3339 formatted datetime string
+                - The time the Database Tools Endpoint Service was created. An RFC3339 formatted datetime string
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - The time the DatabaseToolsEndpointService was updated. An RFC3339 formatted datetime string
+                - The time the Database Tools Endpoint Service was updated. An RFC3339 formatted datetime string
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
-                - The current state of the DatabaseToolsEndpointService.
+                - The current state of the Database Tools Endpoint Service.
             returned: on success
             type: str
             sample: CREATING
@@ -175,7 +176,7 @@ database_tools_endpoint_services:
             sample: lifecycle_details_example
         description:
             description:
-                - A description of the DatabaseToolsEndpointService.
+                - A description of the Database Tools Endpoint Service.
             returned: on success
             type: str
             sample: description_example

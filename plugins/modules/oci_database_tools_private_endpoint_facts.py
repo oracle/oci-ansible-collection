@@ -23,14 +23,14 @@ module: oci_database_tools_private_endpoint_facts
 short_description: Fetches details about one or multiple DatabaseToolsPrivateEndpoint resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple DatabaseToolsPrivateEndpoint resources in Oracle Cloud Infrastructure
-    - Returns a list of DatabaseToolsPrivateEndpoints.
+    - Returns a list of Database Tools private endpoints.
     - If I(database_tools_private_endpoint_id) is specified, the details of a single DatabaseToolsPrivateEndpoint will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     database_tools_private_endpoint_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a DatabaseToolsPrivateEndpoint.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a Database Tools private endpoint.
             - Required to get a specific database_tools_private_endpoint.
         type: str
         aliases: ["id"]
@@ -41,7 +41,7 @@ options:
         type: str
     subnet_id:
         description:
-            - A filter to return only resources their subnetId matches the given subnetId.
+            - A filter to return only resources their `subnetId` matches the specified `subnetId`.
         type: str
     sort_order:
         description:
@@ -60,11 +60,11 @@ options:
             - "displayName"
     endpoint_service_id:
         description:
-            - A filter to return only resources their type matches the given type.
+            - A filter to return only resources their `endpointServiceId` matches the specified `endpointServiceId`.
         type: str
     lifecycle_state:
         description:
-            - A filter to return only resources their lifecycleState matches the given lifecycleState.
+            - A filter to return only resources their `lifecycleState` matches the specified `lifecycleState`.
         type: str
         choices:
             - "CREATING"
@@ -75,7 +75,7 @@ options:
             - "FAILED"
     display_name:
         description:
-            - A filter to return only resources that match the entire display name given.
+            - A filter to return only resources that match the entire specified display name.
         type: str
         aliases: ["name"]
 extends_documentation_fragment: [ oracle.oci.oracle ]
@@ -111,7 +111,8 @@ database_tools_private_endpoints:
     contains:
         compartment_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the containing Compartment.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the Database Tools private
+                  endpoint.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -144,31 +145,31 @@ database_tools_private_endpoints:
             sample: display_name_example
         description:
             description:
-                - A description of the DatabaseToolsPrivateEndpoint.
+                - A description of the Database Tools private endpoint.
             returned: on success
             type: str
             sample: description_example
         id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DatabaseToolsPrivateEndpoint.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Tools private endpoint.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         endpoint_service_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DatabaseToolsEndpointService.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Tools Endpoint Service.
             returned: on success
             type: str
             sample: "ocid1.endpointservice.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
-                - The time the DatabaseToolsPrivateEndpoint was created. An RFC3339 formatted datetime string
+                - The time the Database Tools private endpoint was created. An RFC3339 formatted datetime string
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - The time the DatabaseToolsPrivateEndpoint was updated. An RFC3339 formatted datetime string
+                - The time the Database Tools private endpoint was updated. An RFC3339 formatted datetime string
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
@@ -210,7 +211,7 @@ database_tools_private_endpoints:
             sample: []
         lifecycle_state:
             description:
-                - The current state of the DatabaseToolsPrivateEndpoint.
+                - The current state of the Database Tools private endpoint.
             returned: on success
             type: str
             sample: CREATING

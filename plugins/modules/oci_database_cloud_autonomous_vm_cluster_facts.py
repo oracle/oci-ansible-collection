@@ -188,6 +188,12 @@ cloud_autonomous_vm_clusters:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        cluster_time_zone:
+            description:
+                - The time zone of the Cloud Autonomous VM Cluster.
+            returned: on success
+            type: str
+            sample: cluster_time_zone_example
         lifecycle_details:
             description:
                 - Additional information about the current lifecycle state.
@@ -301,7 +307,9 @@ cloud_autonomous_vm_clusters:
             sample: 3.4
         reclaimable_cpus:
             description:
-                - CPU cores that are not released to available pool after an Autonomous Database is terminated (Requires Autonomous Container Database restart).
+                - CPU cores that continue to be included in the count of OCPUs available to the Autonomous Container Database even after one of its Autonomous
+                  Database is terminated or scaled down. You can release them to the available OCPUs at its parent AVMC level by restarting the Autonomous
+                  Container Database.
             returned: on success
             type: float
             sample: 3.4
@@ -353,6 +361,7 @@ cloud_autonomous_vm_clusters:
         "display_name": "display_name_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
+        "cluster_time_zone": "cluster_time_zone_example",
         "lifecycle_details": "lifecycle_details_example",
         "hostname": "hostname_example",
         "domain": "domain_example",

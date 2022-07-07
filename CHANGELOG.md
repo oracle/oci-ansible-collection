@@ -4,6 +4,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.54.0]
+
+## Added
+
+ - Support for the OneSubscription service
+ - Support for the Governance Rules service
+ - Support for the Network Firewall service
+ - Support for the Web Application Acceleration (WAA) service
+ - Support for specifying application scan settings when creating or updating host scan recipes in the Vulnerability Scanning service
+ - Support for configuration options in the Application Performance Monitoring service
+ - Support for data collection logging events on Exadata instances in the Database service
+ - Support for time zone in Cloud Autonomous VM (CAVM) clusters in the Database service
+ - Support for shared infrastructure autonomous database character sets in the Database service
+ - Support for quota resource locking in the Limits service
+ - Support for returning the backup with the requested changes in the MySQL Database service
+ - Support for CSV file type datasets for text labeling and JSONL in the Data Labeling service
+ - Support for retries by default on the createAnnotation operation of the Data Labeling service
+
+ 
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.74.0
+
 ## [2.53.0]
 
 # 

@@ -225,25 +225,12 @@ class UnprocessedDataBucketFactsHelperCustom:
 class UnprocessedDataBucketActionsHelperCustom:
     SET_ACTION = "set"
 
-    def get_resource(self):
-        """ hanlding the service error for 404. This response means the resource does not exist"""
-        try:
-            return oci_common_utils.call_with_backoff(
-                self.client.get_unprocessed_data_bucket,
-                namespace_name=self.module.params.get("namespace_name"),
-            )
-        # first time `set_unprocessed_data_bucket` action should be performed for bucket.
-        # otherwise, 404 error is received.
-        except ServiceError as se:
-            if se.status == 404 and se.code == "NotAuthorizedOrNotFound":
-                return oci_common_utils.get_default_response_from_resource(
-                    resource=None
-                )
-            raise
-
     def is_action_necessary(self, action, resource=None):
         if action.lower() == self.SET_ACTION:
-            if self.module.params.get("bucket_name") == resource.bucket_name:
+            if (
+                resource is not None
+                and self.module.params.get("bucket_name") == resource.bucket_name
+            ):
                 return False
         return super(
             UnprocessedDataBucketActionsHelperCustom, self

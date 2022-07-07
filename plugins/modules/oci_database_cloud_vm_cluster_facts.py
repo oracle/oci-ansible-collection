@@ -434,6 +434,21 @@ cloud_vm_clusters:
             returned: on success
             type: int
             sample: 56
+        data_collection_options:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                is_diagnostics_events_enabled:
+                    description:
+                        - Indicates whether diagnostic collection is enabled for the VM cluster/Cloud VM cluster/VMBM DBCS. Enabling diagnostic collection
+                          allows you to receive Events service notifications for guest VM issues. Diagnostic collection also allows Oracle to provide enhanced
+                          service and proactive support for your Exadata system. You can enable diagnostic collection during VM cluster/Cloud VM cluster
+                          provisioning. You can also disable or enable it at any time using the `UpdateVmCluster` or `updateCloudVmCluster` API.
+                    returned: on success
+                    type: bool
+                    sample: true
     sample: [{
         "iorm_config_cache": {
             "lifecycle_state": "BOOTSTRAPPING",
@@ -484,7 +499,10 @@ cloud_vm_clusters:
         "scan_dns_name": "scan_dns_name_example",
         "zone_id": "ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx",
         "scan_listener_port_tcp": 56,
-        "scan_listener_port_tcp_ssl": 56
+        "scan_listener_port_tcp_ssl": 56,
+        "data_collection_options": {
+            "is_diagnostics_events_enabled": true
+        }
     }]
 """
 

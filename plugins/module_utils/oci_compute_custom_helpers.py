@@ -219,25 +219,6 @@ class ImageShapeCompatibilityEntryHelperCustom:
 
         return True
 
-    def get_existing_resource_dict_for_update(self):
-        try:
-            get_response = self.get_resource()
-        except ServiceError as se:
-            if se.status != 404:
-                raise
-            return dict()
-        else:
-            return to_dict(get_response.data)
-
-    def is_update_necessary(self, existing_resource_dict):
-
-        if not existing_resource_dict:
-            return True
-
-        return super(
-            ImageShapeCompatibilityEntryHelperCustom, self
-        ).is_update_necessary(existing_resource_dict)
-
 
 class VnicAttachmentHelperCustom:
     def get_create_model_dict_for_idempotence_check(self, create_model):

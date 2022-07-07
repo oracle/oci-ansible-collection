@@ -132,6 +132,37 @@ quotas:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        locks:
+            description:
+                - Locks associated with this resource.
+            returned: on success
+            type: complex
+            contains:
+                type:
+                    description:
+                        - Lock type.
+                    returned: on success
+                    type: str
+                    sample: FULL
+                related_resource_id:
+                    description:
+                        - The resource ID that is locking this resource. Indicates that deleting this resource removes the lock.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.relatedresource.oc1..xxxxxxEXAMPLExxxxxx"
+                message:
+                    description:
+                        - A message added by the lock creator. The message typically gives an
+                          indication of why the resource is locked.
+                    returned: on success
+                    type: str
+                    sample: message_example
+                time_created:
+                    description:
+                        - Indicates when the lock was created, in the format defined by RFC 3339.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
                 - The quota's current state. After creating a quota, make sure its `lifecycleState` is set to
@@ -162,6 +193,12 @@ quotas:
         "name": "name_example",
         "description": "description_example",
         "time_created": "2013-10-20T19:20:30+01:00",
+        "locks": [{
+            "type": "FULL",
+            "related_resource_id": "ocid1.relatedresource.oc1..xxxxxxEXAMPLExxxxxx",
+            "message": "message_example",
+            "time_created": "2013-10-20T19:20:30+01:00"
+        }],
         "lifecycle_state": "ACTIVE",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}

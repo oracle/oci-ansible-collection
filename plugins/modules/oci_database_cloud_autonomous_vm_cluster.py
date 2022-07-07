@@ -48,6 +48,11 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the cloud Exadata infrastructure.
             - Required for create using I(state=present).
         type: str
+    cluster_time_zone:
+        description:
+            - The time zone to use for the Cloud Autonomous VM cluster. For details, see L(DB System Time
+              Zones,https://docs.cloud.oracle.com/Content/Database/References/timezones.htm).
+        type: str
     description:
         description:
             - User defined description of the cloud Autonomous VM cluster.
@@ -127,6 +132,7 @@ EXAMPLES = """
     display_name: display_name_example
 
     # optional
+    cluster_time_zone: cluster_time_zone_example
     description: description_example
     license_model: LICENSE_INCLUDED
     nsg_ids: [ "nsg_ids_example" ]
@@ -258,6 +264,12 @@ cloud_autonomous_vm_cluster:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        cluster_time_zone:
+            description:
+                - The time zone of the Cloud Autonomous VM Cluster.
+            returned: on success
+            type: str
+            sample: cluster_time_zone_example
         lifecycle_details:
             description:
                 - Additional information about the current lifecycle state.
@@ -371,7 +383,9 @@ cloud_autonomous_vm_cluster:
             sample: 3.4
         reclaimable_cpus:
             description:
-                - CPU cores that are not released to available pool after an Autonomous Database is terminated (Requires Autonomous Container Database restart).
+                - CPU cores that continue to be included in the count of OCPUs available to the Autonomous Container Database even after one of its Autonomous
+                  Database is terminated or scaled down. You can release them to the available OCPUs at its parent AVMC level by restarting the Autonomous
+                  Container Database.
             returned: on success
             type: float
             sample: 3.4
@@ -423,6 +437,7 @@ cloud_autonomous_vm_cluster:
         "display_name": "display_name_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
+        "cluster_time_zone": "cluster_time_zone_example",
         "lifecycle_details": "lifecycle_details_example",
         "hostname": "hostname_example",
         "domain": "domain_example",
@@ -629,6 +644,7 @@ def main():
             compartment_id=dict(type="str"),
             subnet_id=dict(type="str"),
             cloud_exadata_infrastructure_id=dict(type="str"),
+            cluster_time_zone=dict(type="str"),
             description=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             license_model=dict(

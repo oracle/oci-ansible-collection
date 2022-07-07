@@ -730,7 +730,7 @@ class MysqlBackupHelperGen(OCIResourceHelperBase):
                 backup_id=self.module.params.get("backup_id"),
                 update_backup_details=update_details,
             ),
-            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.UPDATE_OPERATION_KEY,
             waiter_client=self.get_waiter_client(),
             resource_helper=self,

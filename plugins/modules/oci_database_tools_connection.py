@@ -23,14 +23,14 @@ module: oci_database_tools_connection
 short_description: Manage a DatabaseToolsConnection resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a DatabaseToolsConnection resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates a new DatabaseToolsConnection.
+    - For I(state=present), creates a new Database Tools connection.
     - "This resource has the following action operations in the M(oracle.oci.oci_database_tools_connection_actions) module: change_compartment, validate."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the containing Compartment.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the Database Tools connection.
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
@@ -41,7 +41,7 @@ options:
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
-            - Applicable when type is 'ORACLE_DATABASE'
+            - Applicable when type is one of ['MYSQL', 'ORACLE_DATABASE']
         type: str
         aliases: ["name"]
     defined_tags:
@@ -62,6 +62,7 @@ options:
             - Required for create using I(state=present), update using I(state=present) with database_tools_connection_id present.
         type: str
         choices:
+            - "MYSQL"
             - "ORACLE_DATABASE"
     related_resource:
         description:
@@ -73,9 +74,10 @@ options:
                 description:
                     - The resource entity type.
                     - This parameter is updatable.
-                    - Applicable when type is 'ORACLE_DATABASE'
+                    - Applicable when type is one of ['MYSQL', 'ORACLE_DATABASE']
                 type: str
                 choices:
+                    - "MYSQLDBSYSTEM"
                     - "AUTONOMOUSDATABASE"
                     - "DATABASE"
                     - "PLUGGABLEDATABASE"
@@ -83,16 +85,16 @@ options:
                 description:
                     - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the related resource.
                     - This parameter is updatable.
-                    - Applicable when type is 'ORACLE_DATABASE'
+                    - Applicable when type is one of ['MYSQL', 'ORACLE_DATABASE']
                 type: str
     connection_string:
         description:
-            - Connect descriptor or Easy Connect Naming method to connect to the database.
+            - The connection string used to connect to the MySQL Server.
             - This parameter is updatable.
         type: str
     user_name:
         description:
-            - Database user name.
+            - The user name.
             - This parameter is updatable.
         type: str
     user_password:
@@ -112,15 +114,16 @@ options:
                 description:
                     - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the secret containing the user password.
                 type: str
+                required: true
     advanced_properties:
         description:
-            - Advanced connection properties key-value pair (e.g., oracle.net.ssl_server_dn_match).
+            - The advanced connection properties key-value pair (e.g., `sslMode`).
             - This parameter is updatable.
         type: dict
     key_stores:
         description:
-            - Oracle wallet or Java Keystores containing trusted certificates for authenticating the server's public certificate and
-              the client private key and associated certificates required for client authentication.
+            - The CA certificate to verify the server's certificate and
+              the client private key and associated certificate required for client authentication.
             - This parameter is updatable.
         type: list
         elements: dict
@@ -130,6 +133,9 @@ options:
                     - The key store type.
                 type: str
                 choices:
+                    - "CLIENT_CERTIFICATE_PEM"
+                    - "CLIENT_PRIVATE_KEY_PEM"
+                    - "CA_CERTIFICATE_PEM"
                     - "JAVA_KEY_STORE"
                     - "JAVA_TRUST_STORE"
                     - "PKCS12"
@@ -169,13 +175,13 @@ options:
                         type: str
     private_endpoint_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DatabaseToolsPrivateEndpoint used to access the database
-              in the Customer VCN.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Tools private endpoint used to access the
+              database in the customer VCN.
             - This parameter is updatable.
         type: str
     database_tools_connection_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a DatabaseToolsConnection.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a Database Tools connection.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -193,6 +199,44 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 """
 
 EXAMPLES = """
+- name: Create database_tools_connection with type = MYSQL
+  oci_database_tools_connection:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    type: MYSQL
+
+    # optional
+    display_name: display_name_example
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    related_resource:
+      # optional
+      entity_type: MYSQLDBSYSTEM
+      identifier: identifier_example
+    connection_string: connection_string_example
+    user_name: user_name_example
+    user_password:
+      # required
+      value_type: SECRETID
+      secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+    advanced_properties: null
+    key_stores:
+    - # optional
+      key_store_type: CLIENT_CERTIFICATE_PEM
+      key_store_content:
+        # required
+        value_type: SECRETID
+
+        # optional
+        secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+      key_store_password:
+        # required
+        value_type: SECRETID
+
+        # optional
+        secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+    private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+
 - name: Create database_tools_connection with type = ORACLE_DATABASE
   oci_database_tools_connection:
     # required
@@ -205,20 +249,55 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     related_resource:
       # optional
-      entity_type: AUTONOMOUSDATABASE
+      entity_type: MYSQLDBSYSTEM
       identifier: identifier_example
     connection_string: connection_string_example
     user_name: user_name_example
     user_password:
       # required
       value_type: SECRETID
-
-      # optional
       secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
     advanced_properties: null
     key_stores:
     - # optional
-      key_store_type: JAVA_KEY_STORE
+      key_store_type: CLIENT_CERTIFICATE_PEM
+      key_store_content:
+        # required
+        value_type: SECRETID
+
+        # optional
+        secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+      key_store_password:
+        # required
+        value_type: SECRETID
+
+        # optional
+        secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+    private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Update database_tools_connection with type = MYSQL
+  oci_database_tools_connection:
+    # required
+    type: MYSQL
+
+    # optional
+    display_name: display_name_example
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    related_resource:
+      # optional
+      entity_type: MYSQLDBSYSTEM
+      identifier: identifier_example
+    connection_string: connection_string_example
+    user_name: user_name_example
+    user_password:
+      # required
+      value_type: SECRETID
+      secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+    advanced_properties: null
+    key_stores:
+    - # optional
+      key_store_type: CLIENT_CERTIFICATE_PEM
       key_store_content:
         # required
         value_type: SECRETID
@@ -244,20 +323,56 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     related_resource:
       # optional
-      entity_type: AUTONOMOUSDATABASE
+      entity_type: MYSQLDBSYSTEM
       identifier: identifier_example
     connection_string: connection_string_example
     user_name: user_name_example
     user_password:
       # required
       value_type: SECRETID
-
-      # optional
       secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
     advanced_properties: null
     key_stores:
     - # optional
-      key_store_type: JAVA_KEY_STORE
+      key_store_type: CLIENT_CERTIFICATE_PEM
+      key_store_content:
+        # required
+        value_type: SECRETID
+
+        # optional
+        secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+      key_store_password:
+        # required
+        value_type: SECRETID
+
+        # optional
+        secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+    private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Update database_tools_connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with type = MYSQL
+  oci_database_tools_connection:
+    # required
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    type: MYSQL
+
+    # optional
+    display_name: display_name_example
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    freeform_tags: {'Department': 'Finance'}
+    related_resource:
+      # optional
+      entity_type: MYSQLDBSYSTEM
+      identifier: identifier_example
+    connection_string: connection_string_example
+    user_name: user_name_example
+    user_password:
+      # required
+      value_type: SECRETID
+      secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
+    advanced_properties: null
+    key_stores:
+    - # optional
+      key_store_type: CLIENT_CERTIFICATE_PEM
       key_store_content:
         # required
         value_type: SECRETID
@@ -284,20 +399,18 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     related_resource:
       # optional
-      entity_type: AUTONOMOUSDATABASE
+      entity_type: MYSQLDBSYSTEM
       identifier: identifier_example
     connection_string: connection_string_example
     user_name: user_name_example
     user_password:
       # required
       value_type: SECRETID
-
-      # optional
       secret_id: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
     advanced_properties: null
     key_stores:
     - # optional
-      key_store_type: JAVA_KEY_STORE
+      key_store_type: CLIENT_CERTIFICATE_PEM
       key_store_content:
         # required
         value_type: SECRETID
@@ -336,7 +449,7 @@ database_tools_connection:
     contains:
         id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DatabaseToolsConnection.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Tools connection.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -348,32 +461,33 @@ database_tools_connection:
             sample: display_name_example
         compartment_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the containing Compartment.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the Database Tools
+                  connection.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
-                - The current state of the DatabaseToolsConnection.
+                - The current state of the Database Tools connection.
             returned: on success
             type: str
             sample: CREATING
         lifecycle_details:
             description:
-                - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
-                  state.
+                - A message describing the current state in more detail. For example, this message can be used to provide actionable information for a resource
+                  in the Failed state.
             returned: on success
             type: str
             sample: lifecycle_details_example
         time_created:
             description:
-                - The time the DatabaseToolsConnection was created. An RFC3339 formatted datetime string
+                - The time the Database Tools connection was created. An RFC3339 formatted datetime string.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - The time the DatabaseToolsConnection was updated. An RFC3339 formatted datetime string
+                - The time the DatabaseToolsConnection was updated. An RFC3339 formatted datetime string.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
@@ -400,7 +514,7 @@ database_tools_connection:
             sample: {}
         type:
             description:
-                - The DatabaseToolsConnection type.
+                - The Database Tools connection type.
             returned: on success
             type: str
             sample: ORACLE_DATABASE
@@ -415,7 +529,7 @@ database_tools_connection:
                         - The resource entity type.
                     returned: on success
                     type: str
-                    sample: AUTONOMOUSDATABASE
+                    sample: MYSQLDBSYSTEM
                 identifier:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the related resource.
@@ -424,13 +538,13 @@ database_tools_connection:
                     sample: identifier_example
         connection_string:
             description:
-                - Connect descriptor or Easy Connect Naming method to connect to the database.
+                - The connection string used to connect to the MySQL Server.
             returned: on success
             type: str
             sample: connection_string_example
         user_name:
             description:
-                - Database user name.
+                - The user name.
             returned: on success
             type: str
             sample: user_name_example
@@ -454,14 +568,14 @@ database_tools_connection:
                     sample: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
         advanced_properties:
             description:
-                - Advanced connection properties key-value pair (e.g., oracle.net.ssl_server_dn_match).
+                - The advanced connection properties key-value pair (for example, `sslMode`).
             returned: on success
             type: dict
             sample: {}
         key_stores:
             description:
-                - Oracle wallet or Java Keystores containing trusted certificates for authenticating the server's public certificate and
-                  the client private key and associated certificates required for client authentication.
+                - The CA certificate to verify the server's certificate and
+                  the client private key and associated certificate required for client authentication.
             returned: on success
             type: complex
             contains:
@@ -470,7 +584,7 @@ database_tools_connection:
                         - The key store type.
                     returned: on success
                     type: str
-                    sample: JAVA_KEY_STORE
+                    sample: CLIENT_CERTIFICATE_PEM
                 key_store_content:
                     description:
                         - ""
@@ -510,8 +624,8 @@ database_tools_connection:
                             sample: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
         private_endpoint_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DatabaseToolsPrivateEndpoint used to access the
-                  database in the Customer VCN.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Tools private endpoint used to access the
+                  database in the customer VCN.
             returned: on success
             type: str
             sample: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
@@ -528,7 +642,7 @@ database_tools_connection:
         "system_tags": {},
         "type": "ORACLE_DATABASE",
         "related_resource": {
-            "entity_type": "AUTONOMOUSDATABASE",
+            "entity_type": "MYSQLDBSYSTEM",
             "identifier": "identifier_example"
         },
         "connection_string": "connection_string_example",
@@ -539,7 +653,7 @@ database_tools_connection:
         },
         "advanced_properties": {},
         "key_stores": [{
-            "key_store_type": "JAVA_KEY_STORE",
+            "key_store_type": "CLIENT_CERTIFICATE_PEM",
             "key_store_content": {
                 "value_type": "SECRETID",
                 "secret_id": "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
@@ -727,13 +841,18 @@ def main():
             display_name=dict(aliases=["name"], type="str"),
             defined_tags=dict(type="dict"),
             freeform_tags=dict(type="dict"),
-            type=dict(type="str", choices=["ORACLE_DATABASE"]),
+            type=dict(type="str", choices=["MYSQL", "ORACLE_DATABASE"]),
             related_resource=dict(
                 type="dict",
                 options=dict(
                     entity_type=dict(
                         type="str",
-                        choices=["AUTONOMOUSDATABASE", "DATABASE", "PLUGGABLEDATABASE"],
+                        choices=[
+                            "MYSQLDBSYSTEM",
+                            "AUTONOMOUSDATABASE",
+                            "DATABASE",
+                            "PLUGGABLEDATABASE",
+                        ],
                     ),
                     identifier=dict(type="str"),
                 ),
@@ -745,7 +864,7 @@ def main():
                 no_log=False,
                 options=dict(
                     value_type=dict(type="str", required=True, choices=["SECRETID"]),
-                    secret_id=dict(type="str"),
+                    secret_id=dict(type="str", required=True),
                 ),
             ),
             advanced_properties=dict(type="dict"),
@@ -756,7 +875,15 @@ def main():
                 options=dict(
                     key_store_type=dict(
                         type="str",
-                        choices=["JAVA_KEY_STORE", "JAVA_TRUST_STORE", "PKCS12", "SSO"],
+                        choices=[
+                            "CLIENT_CERTIFICATE_PEM",
+                            "CLIENT_PRIVATE_KEY_PEM",
+                            "CA_CERTIFICATE_PEM",
+                            "JAVA_KEY_STORE",
+                            "JAVA_TRUST_STORE",
+                            "PKCS12",
+                            "SSO",
+                        ],
                     ),
                     key_store_content=dict(
                         type="dict",

@@ -30,7 +30,7 @@ oracle.oci.oci_apm_config_config_facts -- Fetches details about one or multiple 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.53.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.54.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -265,6 +265,36 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-defined_tag_equals"></div>
+                    <b>defined_tag_equals</b>
+                    <a class="ansibleOptionLink" href="#parameter-defined_tag_equals" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A list of tag filters to apply.  Only resources with a defined tag matching the value will be returned. Each item in the list has the format &quot;{namespace}.{tagName}.{value}&quot;.  All inputs are case-insensitive. Multiple values for the same key (i.e. same namespace and tag name) are interpreted as &quot;OR&quot;. Values for different keys (i.e. different namespaces, different tag names, or both) are interpreted as &quot;AND&quot;.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-defined_tag_exists"></div>
+                    <b>defined_tag_exists</b>
+                    <a class="ansibleOptionLink" href="#parameter-defined_tag_exists" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A list of tag existence filters to apply.  Only resources for which the specified defined tags exist will be returned. Each item in the list has the format &quot;{namespace}.{tagName}.true&quot; (for checking existence of a defined tag) or &quot;{namespace}.true&quot;.  All inputs are case-insensitive. Currently, only existence (&quot;true&quot; at the end) is supported. Absence (&quot;false&quot; at the end) is not supported. Multiple values for the same key (i.e. same namespace and tag name) are interpreted as &quot;OR&quot;. Values for different keys (i.e. different namespaces, different tag names, or both) are interpreted as &quot;AND&quot;.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#parameter-display_name" title="Permalink to this option"></a>
@@ -278,6 +308,51 @@ Parameters
                                             <div>A filter to return resources that match the given display name.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-freeform_tag_equals"></div>
+                    <b>freeform_tag_equals</b>
+                    <a class="ansibleOptionLink" href="#parameter-freeform_tag_equals" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A list of tag filters to apply.  Only resources with a freeform tag matching the value will be returned. The key for each tag is &quot;{tagName}.{value}&quot;.  All inputs are case-insensitive. Multiple values for the same tag name are interpreted as &quot;OR&quot;.  Values for different tag names are interpreted as &quot;AND&quot;.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-freeform_tag_exists"></div>
+                    <b>freeform_tag_exists</b>
+                    <a class="ansibleOptionLink" href="#parameter-freeform_tag_exists" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A list of tag existence filters to apply.  Only resources for which the specified freeform tags exist the value will be returned. The key for each tag is &quot;{tagName}.true&quot;.  All inputs are case-insensitive. Currently, only existence (&quot;true&quot; at the end) is supported. Absence (&quot;false&quot; at the end) is not supported. Multiple values for different tag names are interpreted as &quot;AND&quot;.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-options_group"></div>
+                    <b>options_group</b>
+                    <a class="ansibleOptionLink" href="#parameter-options_group" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A filter to return OPTIONS resources that match the given group.</div>
+                                                        </td>
             </tr>
                                 <tr>
                                                                 <td colspan="1">
@@ -389,6 +464,11 @@ Examples
         display_name: display_name_example
         sort_order: ASC
         sort_by: displayName
+        options_group: options_group_example
+        defined_tag_equals: [ "defined_tag_equals_example" ]
+        freeform_tag_equals: [ "freeform_tag_equals_example" ]
+        defined_tag_exists: [ "defined_tag_exists_example" ]
+        freeform_tag_exists: [ "freeform_tag_exists_example" ]
 
 
 
@@ -425,7 +505,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Config resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;config_type&#x27;: &#x27;SPAN_FILTER&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;dimensions&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value_source&#x27;: &#x27;value_source_example&#x27;}], &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;filter_id&#x27;: &#x27;ocid1.filter.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;filter_text&#x27;: &#x27;filter_text_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;metrics&#x27;: [{&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value_source&#x27;: &#x27;value_source_example&#x27;}], &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;rules&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;filter_text&#x27;: &#x27;filter_text_example&#x27;, &#x27;is_apply_to_error_spans&#x27;: True, &#x27;is_enabled&#x27;: True, &#x27;priority&#x27;: 56, &#x27;satisfied_response_time&#x27;: 56, &#x27;tolerating_response_time&#x27;: 56}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;config_type&#x27;: &#x27;SPAN_FILTER&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;dimensions&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value_source&#x27;: &#x27;value_source_example&#x27;}], &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;filter_id&#x27;: &#x27;ocid1.filter.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;filter_text&#x27;: &#x27;filter_text_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;group&#x27;: &#x27;group_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;metrics&#x27;: [{&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;unit&#x27;: &#x27;unit_example&#x27;, &#x27;value_source&#x27;: &#x27;value_source_example&#x27;}], &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;options&#x27;: {}, &#x27;rules&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;filter_text&#x27;: &#x27;filter_text_example&#x27;, &#x27;is_apply_to_error_spans&#x27;: True, &#x27;is_enabled&#x27;: True, &#x27;priority&#x27;: 56, &#x27;satisfied_response_time&#x27;: 56, &#x27;tolerating_response_time&#x27;: 56}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -476,7 +556,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>An optional string that describes what the span filter is intended or used for.</div>
+                                            <div>An optional string that describes what the options are intended or used for.</div>
                                             <div>Returned for get operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -551,7 +631,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name by which the rule set is displayed to the end user.</div>
+                                            <div>The name by which a configuration entity is displayed to the end user.</div>
                                             <div>Returned for get operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -612,6 +692,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-configs/group"></div>
+                    <b>group</b>
+                    <a class="ansibleOptionLink" href="#return-configs/group" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A string that specifies the group that an OPTIONS item belongs to.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">group_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -748,6 +847,23 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-configs/options"></div>
+                    <b>options</b>
+                    <a class="ansibleOptionLink" href="#return-configs/options" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The options are stored here as JSON.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-configs/rules"></div>
                     <b>rules</b>
                     <a class="ansibleOptionLink" href="#return-configs/rules" title="Permalink to this return value"></a>
@@ -775,7 +891,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A user-friendly name that provides a short description of this rule.</div>
+                                            <div>The name by which a configuration entity is displayed to the end user.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
