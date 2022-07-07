@@ -213,6 +213,19 @@ options:
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - This parameter is updatable.
         type: dict
+    data_collection_options:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            is_diagnostics_events_enabled:
+                description:
+                    - Indicates whether diagnostic collection is enabled for the VM cluster/Cloud VM cluster/VMBM DBCS. Enabling diagnostic collection allows
+                      you to receive Events service notifications for guest VM issues. Diagnostic collection also allows Oracle to provide enhanced service and
+                      proactive support for your Exadata system. You can enable diagnostic collection during VM cluster/Cloud VM cluster provisioning. You can
+                      also disable or enable it at any time using the `UpdateVmCluster` or `updateCloudVmCluster` API.
+                type: bool
     cloud_vm_cluster_id:
         description:
             - The cloud VM cluster L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -261,6 +274,9 @@ EXAMPLES = """
     backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    data_collection_options:
+      # optional
+      is_diagnostics_events_enabled: true
 
 - name: Update cloud_vm_cluster
   oci_database_cloud_vm_cluster:
@@ -283,6 +299,9 @@ EXAMPLES = """
     storage_size_in_gbs: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    data_collection_options:
+      # optional
+      is_diagnostics_events_enabled: true
 
 - name: Update cloud_vm_cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_cloud_vm_cluster:
@@ -305,6 +324,9 @@ EXAMPLES = """
     storage_size_in_gbs: 56
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    data_collection_options:
+      # optional
+      is_diagnostics_events_enabled: true
 
 - name: Delete cloud_vm_cluster
   oci_database_cloud_vm_cluster:
@@ -655,6 +677,21 @@ cloud_vm_cluster:
             returned: on success
             type: int
             sample: 56
+        data_collection_options:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                is_diagnostics_events_enabled:
+                    description:
+                        - Indicates whether diagnostic collection is enabled for the VM cluster/Cloud VM cluster/VMBM DBCS. Enabling diagnostic collection
+                          allows you to receive Events service notifications for guest VM issues. Diagnostic collection also allows Oracle to provide enhanced
+                          service and proactive support for your Exadata system. You can enable diagnostic collection during VM cluster/Cloud VM cluster
+                          provisioning. You can also disable or enable it at any time using the `UpdateVmCluster` or `updateCloudVmCluster` API.
+                    returned: on success
+                    type: bool
+                    sample: true
     sample: {
         "iorm_config_cache": {
             "lifecycle_state": "BOOTSTRAPPING",
@@ -705,7 +742,10 @@ cloud_vm_cluster:
         "scan_dns_name": "scan_dns_name_example",
         "zone_id": "ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx",
         "scan_listener_port_tcp": 56,
-        "scan_listener_port_tcp_ssl": 56
+        "scan_listener_port_tcp_ssl": 56,
+        "data_collection_options": {
+            "is_diagnostics_events_enabled": true
+        }
     }
 """
 
@@ -912,6 +952,10 @@ def main():
             storage_size_in_gbs=dict(type="int"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
+            data_collection_options=dict(
+                type="dict",
+                options=dict(is_diagnostics_events_enabled=dict(type="bool")),
+            ),
             cloud_vm_cluster_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

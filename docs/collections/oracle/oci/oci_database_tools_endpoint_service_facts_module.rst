@@ -30,7 +30,7 @@ oracle.oci.oci_database_tools_endpoint_service_facts -- Fetches details about on
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.53.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.54.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple DatabaseToolsEndpointService resources in Oracle Cloud Infrastructure
-- Returns a list of DatabaseToolsEndpointServices.
+- Returns a list of Database Tools endpoint services.
 - If *database_tools_endpoint_service_id* is specified, the details of a single DatabaseToolsEndpointService will be returned.
 
 
@@ -244,7 +244,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of a DatabaseToolsEndpointService.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of a Database Tools Endpoint Service.</div>
                                             <div>Required to get a specific database_tools_endpoint_service.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
@@ -261,7 +261,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A filter to return only resources that match the entire display name given.</div>
+                                            <div>A filter to return only resources that match the entire specified display name.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -284,7 +284,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>A filter to return only resources their lifecycleState matches the given lifecycleState.</div>
+                                            <div>A filter to return only resources their `lifecycleState` matches the specified `lifecycleState`.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -299,7 +299,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A filter to return only resources that match the entire name given.</div>
+                                            <div>A filter to return only resources that match the entire specified name.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -462,7 +462,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the containing Compartment.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment containing the Database Tools Endpoint Service.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -498,7 +498,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A description of the DatabaseToolsEndpointService.</div>
+                                            <div>A description of the Database Tools Endpoint Service.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
@@ -552,7 +552,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the DatabaseToolsEndpointService.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Database Tools Endpoint Service.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -588,7 +588,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The current state of the DatabaseToolsEndpointService.</div>
+                                            <div>The current state of the Database Tools Endpoint Service.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
@@ -640,7 +640,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The time the DatabaseToolsEndpointService was created. An RFC3339 formatted datetime string</div>
+                                            <div>The time the Database Tools Endpoint Service was created. An RFC3339 formatted datetime string</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -658,7 +658,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The time the DatabaseToolsEndpointService was updated. An RFC3339 formatted datetime string</div>
+                                            <div>The time the Database Tools Endpoint Service was updated. An RFC3339 formatted datetime string</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>

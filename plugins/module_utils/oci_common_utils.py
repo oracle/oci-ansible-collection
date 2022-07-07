@@ -88,6 +88,7 @@ ACTION_IDEMPOTENT_STATES = {
     "CANCEL": CANCELLED_STATES,
     "DEACTIVATE": ["INACTIVE"],
     "ACTIVATE": ["ACTIVE"],
+    "RESTORE": DEFAULT_READY_STATES,
 }
 
 ACTION_DESIRED_STATES = {
@@ -112,6 +113,10 @@ ACTION_DESIRED_STATES = {
 }
 
 ALWAYS_PERFORM_ACTIONS = ["RESET", "SOFTRESET", "EXPORT", "DETECT_STACK_DRIFT"]
+
+# EXCLUDE_ACTIONS_FROM_IS_ACTION_NECESSARY includes action for which if get_resource returns 404 after action is performed
+# then this action should not be performed as it is expected behavior
+EXCLUDE_ACTIONS_FROM_IS_ACTION_NECESSARY = ["DETACH", "REMOVE_CONTAINER_VERSION"]
 
 RESOURCE_TYPE_TO_ENTITY_TYPE_MAP = {
     "http_redirect": "redirect",

@@ -23,14 +23,14 @@ module: oci_database_tools_connection_facts
 short_description: Fetches details about one or multiple DatabaseToolsConnection resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple DatabaseToolsConnection resources in Oracle Cloud Infrastructure
-    - Returns a list of DatabaseToolsConnections.
+    - Returns a list of Database Tools connections.
     - If I(database_tools_connection_id) is specified, the details of a single DatabaseToolsConnection will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     database_tools_connection_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a DatabaseToolsConnection.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a Database Tools connection.
             - Required to get a specific database_tools_connection.
         type: str
         aliases: ["id"]
@@ -41,7 +41,7 @@ options:
         type: str
     lifecycle_state:
         description:
-            - A filter to return only resources their lifecycleState matches the given lifecycleState.
+            - A filter to return only resources their `lifecycleState` matches the specified `lifecycleState`.
         type: str
         choices:
             - "CREATING"
@@ -52,16 +52,17 @@ options:
             - "FAILED"
     display_name:
         description:
-            - A filter to return only resources that match the entire display name given.
+            - A filter to return only resources that match the entire specified display name.
         type: str
         aliases: ["name"]
     type:
         description:
-            - A filter to return only resources their endpointServiceId matches the given endpointServiceId.
+            - A filter to return only resources their type matches the specified type.
         type: list
         elements: str
         choices:
             - "ORACLE_DATABASE"
+            - "MYSQL"
     sort_order:
         description:
             - The sort order to use, either 'asc' or 'desc'.
@@ -119,7 +120,7 @@ database_tools_connections:
                         - The resource entity type.
                     returned: on success
                     type: str
-                    sample: AUTONOMOUSDATABASE
+                    sample: MYSQLDBSYSTEM
                 identifier:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the related resource.
@@ -128,14 +129,14 @@ database_tools_connections:
                     sample: identifier_example
         connection_string:
             description:
-                - Connect descriptor or Easy Connect Naming method to connect to the database.
+                - The connection string used to connect to the MySQL Server.
                 - Returned for get operation
             returned: on success
             type: str
             sample: connection_string_example
         user_name:
             description:
-                - Database user name.
+                - The user name.
                 - Returned for get operation
             returned: on success
             type: str
@@ -161,15 +162,15 @@ database_tools_connections:
                     sample: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
         advanced_properties:
             description:
-                - Advanced connection properties key-value pair (e.g., oracle.net.ssl_server_dn_match).
+                - The advanced connection properties key-value pair (for example, `sslMode`).
                 - Returned for get operation
             returned: on success
             type: dict
             sample: {}
         key_stores:
             description:
-                - Oracle wallet or Java Keystores containing trusted certificates for authenticating the server's public certificate and
-                  the client private key and associated certificates required for client authentication.
+                - The CA certificate to verify the server's certificate and
+                  the client private key and associated certificate required for client authentication.
                 - Returned for get operation
             returned: on success
             type: complex
@@ -179,7 +180,7 @@ database_tools_connections:
                         - The key store type.
                     returned: on success
                     type: str
-                    sample: JAVA_KEY_STORE
+                    sample: CLIENT_CERTIFICATE_PEM
                 key_store_content:
                     description:
                         - ""
@@ -219,15 +220,15 @@ database_tools_connections:
                             sample: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
         private_endpoint_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DatabaseToolsPrivateEndpoint used to access the
-                  database in the Customer VCN.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Tools private endpoint used to access the
+                  database in the customer VCN.
                 - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DatabaseToolsConnection.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Tools connection.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -239,32 +240,33 @@ database_tools_connections:
             sample: display_name_example
         compartment_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the containing Compartment.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the Database Tools
+                  connection.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
-                - The current state of the DatabaseToolsConnection.
+                - The current state of the Database Tools connection.
             returned: on success
             type: str
             sample: CREATING
         lifecycle_details:
             description:
-                - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
-                  state.
+                - A message describing the current state in more detail. For example, this message can be used to provide actionable information for a resource
+                  in the Failed state.
             returned: on success
             type: str
             sample: lifecycle_details_example
         time_created:
             description:
-                - The time the DatabaseToolsConnection was created. An RFC3339 formatted datetime string
+                - The time the Database Tools connection was created. An RFC3339 formatted datetime string.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - The time the DatabaseToolsConnection was updated. An RFC3339 formatted datetime string
+                - The time the DatabaseToolsConnection was updated. An RFC3339 formatted datetime string.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
@@ -291,13 +293,13 @@ database_tools_connections:
             sample: {}
         type:
             description:
-                - The DatabaseToolsConnection type.
+                - The Database Tools connection type.
             returned: on success
             type: str
             sample: ORACLE_DATABASE
     sample: [{
         "related_resource": {
-            "entity_type": "AUTONOMOUSDATABASE",
+            "entity_type": "MYSQLDBSYSTEM",
             "identifier": "identifier_example"
         },
         "connection_string": "connection_string_example",
@@ -308,7 +310,7 @@ database_tools_connections:
         },
         "advanced_properties": {},
         "key_stores": [{
-            "key_store_type": "JAVA_KEY_STORE",
+            "key_store_type": "CLIENT_CERTIFICATE_PEM",
             "key_store_content": {
                 "value_type": "SECRETID",
                 "secret_id": "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"
@@ -418,7 +420,9 @@ def main():
                 ],
             ),
             display_name=dict(aliases=["name"], type="str"),
-            type=dict(type="list", elements="str", choices=["ORACLE_DATABASE"]),
+            type=dict(
+                type="list", elements="str", choices=["ORACLE_DATABASE", "MYSQL"]
+            ),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["timeCreated", "displayName"]),
         )

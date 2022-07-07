@@ -71,7 +71,9 @@ options:
         type: str
     character_set:
         description:
-            - "The character set for the autonomous database.  The default is AL32UTF8. Allowed values are:"
+            - The character set for the autonomous database.  The default is AL32UTF8. Allowed values for an Autonomous Database on shared infrastructure as as
+              returned by L(List Autonomous Database Character Sets,https://docs.cloud.oracle.com/autonomousDatabaseCharacterSets)
+            - "For an Autonomous Database on dedicated infrastructure, the allowed values are:"
             - AL32UTF8, AR8ADOS710, AR8ADOS720, AR8APTEC715, AR8ARABICMACS, AR8ASMO8X, AR8ISO8859P6, AR8MSWIN1256, AR8MUSSAD768, AR8NAFITHA711, AR8NAFITHA721,
               AR8SAKHR706, AR8SAKHR707, AZ8ISO8859P9E, BG8MSWIN, BG8PC437S, BLT8CP921, BLT8ISO8859P13, BLT8MSWIN1257, BLT8PC775, BN8BSCII, CDN8PC863,
               CEL8ISO8859P14, CL8ISO8859P5, CL8ISOIR111, CL8KOI8R, CL8KOI8U, CL8MACCYRILLICS, CL8MSWIN1251, EE8ISO8859P2, EE8MACCES, EE8MACCROATIANS,
@@ -84,7 +86,10 @@ options:
         type: str
     ncharacter_set:
         description:
-            - "The national character set for the autonomous database.  The default is AL16UTF16. Allowed values are:
+            - "The character set for the Autonomous Database.  The default is AL32UTF8. Use L(List Autonomous Database Character
+              Sets,https://docs.cloud.oracle.com/autonomousDatabaseCharacterSets) to list the allowed values for an Autonomous Database on shared Exadata
+              infrastructure.
+              For an Autonomous Database on dedicated Exadata infrastructure, the allowed values are:
               AL16UTF16 or UTF8."
         type: str
     kms_key_id:

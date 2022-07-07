@@ -24,6 +24,7 @@ short_description: Manage a Quota resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Quota resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new quota with the details supplied.
+    - "This resource has the following action operations in the M(oracle.oci.oci_limits_quota_actions) module: add_quota_lock, remove_quota_lock."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -41,6 +42,29 @@ options:
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    locks:
+        description:
+            - Locks associated with this resource.
+        type: list
+        elements: dict
+        suboptions:
+            type:
+                description:
+                    - Lock type.
+                type: str
+                choices:
+                    - "FULL"
+                    - "DELETE"
+                required: true
+            related_resource_id:
+                description:
+                    - The resource ID that is locking this resource. Indicates that deleting this resource removes the lock.
+                type: str
+            message:
+                description:
+                    - A message added by the lock creator. The message typically gives an
+                      indication of why the resource is locked.
+                type: str
     description:
         description:
             - The description you assign to the quota.
@@ -75,6 +99,11 @@ options:
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["id"]
+    is_lock_override:
+        description:
+            - Whether to override locks (if any exist).
+            - This parameter is updatable.
+        type: bool
     state:
         description:
             - The state of the Quota.
@@ -97,6 +126,13 @@ EXAMPLES = """
     statements: [ "statements_example" ]
 
     # optional
+    locks:
+    - # required
+      type: FULL
+
+      # optional
+      related_resource_id: "ocid1.relatedresource.oc1..xxxxxxEXAMPLExxxxxx"
+      message: message_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -110,6 +146,7 @@ EXAMPLES = """
     statements: [ "statements_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    is_lock_override: true
 
 - name: Update quota using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_limits_quota:
@@ -122,12 +159,16 @@ EXAMPLES = """
     statements: [ "statements_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    is_lock_override: true
 
 - name: Delete quota
   oci_limits_quota:
     # required
     quota_id: "ocid1.quota.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
+
+    # optional
+    is_lock_override: true
 
 - name: Delete quota using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_limits_quota:
@@ -170,6 +211,37 @@ quota:
             returned: on success
             type: list
             sample: []
+        locks:
+            description:
+                - Locks associated with this resource.
+            returned: on success
+            type: complex
+            contains:
+                type:
+                    description:
+                        - Lock type.
+                    returned: on success
+                    type: str
+                    sample: FULL
+                related_resource_id:
+                    description:
+                        - The resource ID that is locking this resource. Indicates that deleting this resource removes the lock.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.relatedresource.oc1..xxxxxxEXAMPLExxxxxx"
+                message:
+                    description:
+                        - A message added by the lock creator. The message typically gives an
+                          indication of why the resource is locked.
+                    returned: on success
+                    type: str
+                    sample: message_example
+                time_created:
+                    description:
+                        - Indicates when the lock was created, in the format defined by RFC 3339.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
         description:
             description:
                 - The description you assign to the quota.
@@ -211,6 +283,12 @@ quota:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
         "statements": [],
+        "locks": [{
+            "type": "FULL",
+            "related_resource_id": "ocid1.relatedresource.oc1..xxxxxxEXAMPLExxxxxx",
+            "message": "message_example",
+            "time_created": "2013-10-20T19:20:30+01:00"
+        }],
         "description": "description_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "ACTIVE",
@@ -333,6 +411,7 @@ class QuotaHelperGen(OCIResourceHelperBase):
             call_fn_kwargs=dict(
                 quota_id=self.module.params.get("quota_id"),
                 update_quota_details=update_details,
+                is_lock_override=self.module.params.get("is_lock_override"),
             ),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.UPDATE_OPERATION_KEY,
@@ -347,7 +426,10 @@ class QuotaHelperGen(OCIResourceHelperBase):
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.delete_quota,
             call_fn_args=(),
-            call_fn_kwargs=dict(quota_id=self.module.params.get("quota_id"),),
+            call_fn_kwargs=dict(
+                quota_id=self.module.params.get("quota_id"),
+                is_lock_override=self.module.params.get("is_lock_override"),
+            ),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.DELETE_OPERATION_KEY,
             waiter_client=self.get_waiter_client(),
@@ -373,11 +455,21 @@ def main():
         dict(
             compartment_id=dict(type="str"),
             name=dict(type="str"),
+            locks=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    type=dict(type="str", required=True, choices=["FULL", "DELETE"]),
+                    related_resource_id=dict(type="str"),
+                    message=dict(type="str"),
+                ),
+            ),
             description=dict(type="str"),
             statements=dict(type="list", elements="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             quota_id=dict(aliases=["id"], type="str"),
+            is_lock_override=dict(type="bool"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

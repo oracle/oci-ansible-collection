@@ -332,7 +332,7 @@ autonomous_vm_clusters:
             sample: 1.2
         available_data_storage_size_in_tbs:
             description:
-                - "**Deprecated.** Use `availableAutonomousDataStorageSizeInTBs` for Autonomous Databases data storage available, in TBs."
+                - "**Deprecated.** Use `availableAutonomousDataStorageSizeInTBs` for Autonomous Databases' data storage availability in TBs."
             returned: on success
             type: float
             sample: 1.2
@@ -359,7 +359,9 @@ autonomous_vm_clusters:
             sample: {'Operations': {'CostCenter': 'US'}}
         reclaimable_cpus:
             description:
-                - CPU cores that are not released to available pool after an Autonomous Database is terminated (Requires Autonomous Container Database restart).
+                - CPU cores that continue to be included in the count of OCPUs available to the Autonomous Container Database even after one of its Autonomous
+                  Database is terminated or scaled down. You can release them to the available OCPUs at its parent AVMC level by restarting the Autonomous
+                  Container Database.
             returned: on success
             type: int
             sample: 56

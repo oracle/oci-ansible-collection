@@ -66,6 +66,43 @@ options:
             - "displayName"
             - "timeCreated"
             - "timeUpdated"
+    options_group:
+        description:
+            - A filter to return OPTIONS resources that match the given group.
+        type: str
+    defined_tag_equals:
+        description:
+            - "A list of tag filters to apply.  Only resources with a defined tag matching the value will be returned.
+              Each item in the list has the format \\"{namespace}.{tagName}.{value}\\".  All inputs are case-insensitive.
+              Multiple values for the same key (i.e. same namespace and tag name) are interpreted as \\"OR\\".
+              Values for different keys (i.e. different namespaces, different tag names, or both) are interpreted as \\"AND\\"."
+        type: list
+        elements: str
+    freeform_tag_equals:
+        description:
+            - "A list of tag filters to apply.  Only resources with a freeform tag matching the value will be returned.
+              The key for each tag is \\"{tagName}.{value}\\".  All inputs are case-insensitive.
+              Multiple values for the same tag name are interpreted as \\"OR\\".  Values for different tag names are interpreted as \\"AND\\"."
+        type: list
+        elements: str
+    defined_tag_exists:
+        description:
+            - "A list of tag existence filters to apply.  Only resources for which the specified defined tags exist will be returned.
+              Each item in the list has the format \\"{namespace}.{tagName}.true\\" (for checking existence of a defined tag)
+              or \\"{namespace}.true\\".  All inputs are case-insensitive.
+              Currently, only existence (\\"true\\" at the end) is supported. Absence (\\"false\\" at the end) is not supported.
+              Multiple values for the same key (i.e. same namespace and tag name) are interpreted as \\"OR\\".
+              Values for different keys (i.e. different namespaces, different tag names, or both) are interpreted as \\"AND\\"."
+        type: list
+        elements: str
+    freeform_tag_exists:
+        description:
+            - "A list of tag existence filters to apply.  Only resources for which the specified freeform tags exist the value will be returned.
+              The key for each tag is \\"{tagName}.true\\".  All inputs are case-insensitive.
+              Currently, only existence (\\"true\\" at the end) is supported. Absence (\\"false\\" at the end) is not supported.
+              Multiple values for different tag names are interpreted as \\"AND\\"."
+        type: list
+        elements: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -86,6 +123,11 @@ EXAMPLES = """
     display_name: display_name_example
     sort_order: ASC
     sort_by: displayName
+    options_group: options_group_example
+    defined_tag_equals: [ "defined_tag_equals_example" ]
+    freeform_tag_equals: [ "freeform_tag_equals_example" ]
+    defined_tag_exists: [ "defined_tag_exists_example" ]
+    freeform_tag_exists: [ "freeform_tag_exists_example" ]
 
 """
 
@@ -148,7 +190,7 @@ configs:
                     sample: true
                 display_name:
                     description:
-                        - A user-friendly name that provides a short description of this rule.
+                        - The name by which a configuration entity is displayed to the end user.
                     returned: on success
                     type: str
                     sample: display_name_example
@@ -218,9 +260,23 @@ configs:
                     returned: on success
                     type: str
                     sample: description_example
+        options:
+            description:
+                - The options are stored here as JSON.
+                - Returned for get operation
+            returned: on success
+            type: dict
+            sample: {}
+        group:
+            description:
+                - A string that specifies the group that an OPTIONS item belongs to.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: group_example
         display_name:
             description:
-                - The name by which the rule set is displayed to the end user.
+                - The name by which a configuration entity is displayed to the end user.
                 - Returned for get operation
             returned: on success
             type: str
@@ -234,7 +290,7 @@ configs:
             sample: filter_text_example
         description:
             description:
-                - An optional string that describes what the span filter is intended or used for.
+                - An optional string that describes what the options are intended or used for.
                 - Returned for get operation
             returned: on success
             type: str
@@ -304,6 +360,8 @@ configs:
             "unit": "unit_example",
             "description": "description_example"
         }],
+        "options": {},
+        "group": "group_example",
         "display_name": "display_name_example",
         "filter_text": "filter_text_example",
         "description": "description_example",
@@ -358,6 +416,11 @@ class ConfigFactsHelperGen(OCIResourceFactsHelperBase):
             "display_name",
             "sort_order",
             "sort_by",
+            "options_group",
+            "defined_tag_equals",
+            "freeform_tag_equals",
+            "defined_tag_exists",
+            "freeform_tag_exists",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -390,6 +453,11 @@ def main():
             sort_by=dict(
                 type="str", choices=["displayName", "timeCreated", "timeUpdated"]
             ),
+            options_group=dict(type="str"),
+            defined_tag_equals=dict(type="list", elements="str"),
+            freeform_tag_equals=dict(type="list", elements="str"),
+            defined_tag_exists=dict(type="list", elements="str"),
+            freeform_tag_exists=dict(type="list", elements="str"),
         )
     )
 

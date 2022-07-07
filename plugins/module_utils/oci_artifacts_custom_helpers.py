@@ -11,7 +11,6 @@ __metaclass__ = type
 from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
 
 try:
-    from oci.exceptions import ServiceError
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -43,11 +42,6 @@ class ContainerImageActionsHelperCustom:
         """ in remove_container_version, we need to check if the target version is already there in the available version of the resource(image)
         to decide if the remove_container_version action shoud be done """
 
-        if action == "restore":
-            if resource is None:
-                return True
-            return False
-
         if action == "remove_container_version":
             if resource is None:
                 return False
@@ -66,21 +60,6 @@ class ContainerImageActionsHelperCustom:
         return super(ContainerImageActionsHelperCustom, self).is_action_necessary(
             action, resource
         )
-
-    def get_resource(self):
-        """ hanlding the service error for 404 with code REPO_ID_UNKNOWN.
-         This response means the resource does not exit"""
-        try:
-            return oci_common_utils.call_with_backoff(
-                self.client.get_container_image,
-                image_id=self.module.params.get("image_id"),
-            )
-        except ServiceError as se:
-            if se.status == 404 and se.code == "REPO_ID_UNKNOWN":
-                return oci_common_utils.get_default_response_from_resource(
-                    resource=None
-                )
-            raise
 
 
 # similar to BudgetAlertRuleHelperCustom (oci_budget_custom_helpers). Check the

@@ -23,7 +23,7 @@ module: oci_database_tools_private_endpoint_actions
 short_description: Perform actions on a DatabaseToolsPrivateEndpoint resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a DatabaseToolsPrivateEndpoint resource in Oracle Cloud Infrastructure
-    - For I(action=change_compartment), moves a DatabaseToolsPrivateEndpoint into a different compartment within the same tenancy.
+    - For I(action=change_compartment), moves a Database Tools private endpoint into a different compartment in the same tenancy.
       For information about moving resources between compartments, see
       L(Moving Resources to a Different Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
 version_added: "2.9.0"
@@ -31,13 +31,13 @@ author: Oracle (@oracle)
 options:
     database_tools_private_endpoint_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a DatabaseToolsPrivateEndpoint.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a Database Tools private endpoint.
         type: str
         aliases: ["id"]
         required: true
     compartment_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment to move the DatabaseConnectionProfile to.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment to move the `DatabaseConnectionProfile` to.
         type: str
         required: true
     action:
@@ -69,7 +69,8 @@ database_tools_private_endpoint:
     contains:
         compartment_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the containing Compartment.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment containing the Database Tools private
+                  endpoint.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -102,31 +103,31 @@ database_tools_private_endpoint:
             sample: display_name_example
         description:
             description:
-                - A description of the DatabaseToolsPrivateEndpoint.
+                - A description of the Database Tools private endpoint.
             returned: on success
             type: str
             sample: description_example
         id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DatabaseToolsPrivateEndpoint.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Tools private endpoint.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         endpoint_service_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the DatabaseToolsEndpointService.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Database Tools Endpoint Service.
             returned: on success
             type: str
             sample: "ocid1.endpointservice.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
-                - The time the DatabaseToolsPrivateEndpoint was created. An RFC3339 formatted datetime string
+                - The time the Database Tools private endpoint was created. An RFC3339 formatted datetime string
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - The time the DatabaseToolsPrivateEndpoint was updated. An RFC3339 formatted datetime string
+                - The time the Database Tools private endpoint was updated. An RFC3339 formatted datetime string
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
@@ -168,7 +169,7 @@ database_tools_private_endpoint:
             sample: []
         lifecycle_state:
             description:
-                - The current state of the DatabaseToolsPrivateEndpoint.
+                - The current state of the Database Tools private endpoint.
             returned: on success
             type: str
             sample: CREATING

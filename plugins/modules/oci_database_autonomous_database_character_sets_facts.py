@@ -26,13 +26,29 @@ description:
     - Gets a list of supported character sets.
 version_added: "2.9.0"
 author: Oracle (@oracle)
-options: {}
+options:
+    is_shared:
+        description:
+            - Specifies whether this request is for Autonomous Database on Shared infrastructure. By default, this request will be for Autonomous Database on
+              Dedicated Exadata Infrastructure.
+        type: bool
+    character_set_type:
+        description:
+            - Specifies whether this request pertains to database character sets or national character sets.
+        type: str
+        choices:
+            - "DATABASE"
+            - "NATIONAL"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]
 """
 
 EXAMPLES = """
 - name: List autonomous_database_character_sets
   oci_database_autonomous_database_character_sets_facts:
+
+    # optional
+    is_shared: true
+    character_set_type: DATABASE
 
 """
 
@@ -77,6 +93,8 @@ class AutonomousDatabaseCharacterSetsFactsHelperGen(OCIResourceFactsHelperBase):
 
     def list_resources(self):
         optional_list_method_params = [
+            "is_shared",
+            "character_set_type",
             "name",
         ]
         optional_kwargs = dict(
@@ -103,7 +121,13 @@ class ResourceFactsHelper(
 
 def main():
     module_args = oci_common_utils.get_common_arg_spec()
-    module_args.update(dict(name=dict(type="str"),))
+    module_args.update(
+        dict(
+            is_shared=dict(type="bool"),
+            character_set_type=dict(type="str", choices=["DATABASE", "NATIONAL"]),
+            name=dict(type="str"),
+        )
+    )
 
     module = AnsibleModule(argument_spec=module_args)
 
