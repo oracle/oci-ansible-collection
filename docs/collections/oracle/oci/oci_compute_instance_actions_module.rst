@@ -30,7 +30,7 @@ oracle.oci.oci_compute_instance_actions -- Perform actions on an Instance resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.54.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.55.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -65,8 +65,9 @@ Synopsis
 - - **RESET** - Powers off the instance and then powers it back on.
 - - **SOFTSTOP** - Gracefully shuts down the instance by sending a shutdown command to the operating system. After waiting 15 minutes for the OS to shut down, the instance is powered off. If the applications that run on the instance take more than 15 minutes to shut down, they could be improperly stopped, resulting in data corruption. To avoid this, manually shut down the instance using the commands available in the OS before you softstop the instance.
 - - **SOFTRESET** - Gracefully reboots the instance by sending a shutdown command to the operating system. After waiting 15 minutes for the OS to shut down, the instance is powered off and then powered back on.
-- - **SENDDIAGNOSTICINTERRUPT** - For advanced users. **Warning: Sending a diagnostic interrupt to a live system can cause data corruption or system failure.** Sends a diagnostic interrupt that causes the instance's OS to crash and then reboot. Before you send a diagnostic interrupt, you must configure the instance to generate a crash dump file when it crashes. The crash dump captures information about the state of the OS at the time of the crash. After the OS restarts, you can analyze the crash dump to diagnose the issue. For more information, see `Sending a Diagnostic Interrupt <https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/sendingdiagnosticinterrupt.htm>`_.
-- - **DIAGNOSTICREBOOT** - Powers off the instance, rebuilds it on the physical host, and then powers it back on. Before you send a diagnostic reboot, restart the instance's OS, confirm that the instance and networking settings are configured correctly, and try other `troubleshooting steps <https://docs.cloud.oracle.com/iaas/Content/Compute/References/troubleshooting-compute-instances.htm>`_. Use diagnostic reboot as a final attempt to troubleshoot an unreachable instance. For virtual machine (VM) instances only. For more information, see `Performing a Diagnostic Reboot <https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/diagnostic-reboot.htm>`_.
+- - **SENDDIAGNOSTICINTERRUPT** - For advanced users. **Caution: Sending a diagnostic interrupt to a live system can cause data corruption or system failure.** Sends a diagnostic interrupt that causes the instance's OS to crash and then reboot. Before you send a diagnostic interrupt, you must configure the instance to generate a crash dump file when it crashes. The crash dump captures information about the state of the OS at the time of the crash. After the OS restarts, you can analyze the crash dump to diagnose the issue. For more information, see `Sending a Diagnostic Interrupt <https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/sendingdiagnosticinterrupt.htm>`_.
+- - **DIAGNOSTICREBOOT** - Powers off the instance, rebuilds it, and then powers it back on. Before you send a diagnostic reboot, restart the instance's OS, confirm that the instance and networking settings are configured correctly, and try other `troubleshooting steps <https://docs.cloud.oracle.com/iaas/Content/Compute/References/troubleshooting-compute-instances.htm>`_. Use diagnostic reboot as a final attempt to troubleshoot an unreachable instance. For virtual machine (VM) instances only. For more information, see `Performing a Diagnostic Reboot <https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/diagnostic-reboot.htm>`_.
+- - **REBOOTMIGRATE** - Powers off the instance, moves it to new hardware, and then powers it back on.
 - For more information about managing instance lifecycle states, see `Stopping and Starting an Instance <https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/restartinginstance.htm>`_.
 
 
@@ -115,6 +116,7 @@ Parameters
                                                                                                                                                                                                 <li>softstop</li>
                                                                                                                                                                                                 <li>senddiagnosticinterrupt</li>
                                                                                                                                                                                                 <li>diagnosticreboot</li>
+                                                                                                                                                                                                <li>rebootmigrate</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -133,6 +135,7 @@ Parameters
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>reset</li>
+                                                                                                                                                                                                <li>rebootMigrate</li>
                                                                                                                                                                                                 <li>softreset</li>
                                                                                     </ul>
                                                                             </td>
@@ -157,8 +160,12 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>For instances with a date in the Maintenance reboot field, the flag denoting whether reboot migration is enabled for instances that use the DenseIO shape. The default value is &#x27;false&#x27;.</div>
+                                            <div>For instances that use a DenseIO shape, the flag denoting whether <a href='https://docs.cloud.oracle.com/iaas/Content/Compute/References/infrastructure-maintenance.htm#reboot'>reboot migration</a> is performed for the instance. The default value is `false`.</div>
+                                            <div>If the instance has a date in the Maintenance reboot field and you do nothing (or set this flag to `false`), the instance will be rebuilt at the scheduled maintenance time. The instance will experience 2-6 hours of downtime during the maintenance process. The local NVMe-based SSD will be preserved.</div>
+                                            <div>If you want to minimize downtime and can delete the SSD, you can set this flag to `true` and proactively reboot the instance before the scheduled maintenance time. The instance will be reboot migrated to a healthy host and the SSD will be deleted. A short downtime occurs during the migration.</div>
+                                            <div>**Caution:** When `true`, the SSD is permanently deleted. We recommend that you create a backup of the SSD before proceeding.</div>
                                             <div>Applicable only for <em>action=instance_action</em>.</div>
+                                            <div>Applicable when action_type is one of [&#x27;softreset&#x27;, &#x27;reset&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -308,6 +315,27 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-delete_local_storage"></div>
+                    <b>delete_local_storage</b>
+                    <a class="ansibleOptionLink" href="#parameter-delete_local_storage" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>For bare metal instances that have local storage, this must be set to true to verify that the local storage will be deleted during the migration.  For instances without, this parameter has no effect.</div>
+                                            <div>Applicable only for <em>action=instance_action</em>.</div>
+                                            <div>Applicable when action_type is &#x27;rebootMigrate&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-instance_id"></div>
                     <b>instance_id</b>
                     <a class="ansibleOptionLink" href="#parameter-instance_id" title="Permalink to this option"></a>
@@ -350,6 +378,23 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>OCID of your tenancy. If not set, then the value of the OCI_TENANCY variable, if any, is used. This option is required if the tenancy OCID is not specified through a configuration file (See <code>config_file_location</code>). To get the tenancy OCID, please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a></div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-time_scheduled"></div>
+                    <b>time_scheduled</b>
+                    <a class="ansibleOptionLink" href="#parameter-time_scheduled" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>If present, this parameter will set (or re-set) the scheduled time that the instance will be reboot migrated in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>.  This will also change the timeRebootMigrationDue field on the instance. If not present, the reboot migration will be triggered immediately.</div>
+                                            <div>Applicable only for <em>action=instance_action</em>.</div>
+                                            <div>Applicable when action_type is &#x27;rebootMigrate&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -426,6 +471,15 @@ Examples
         # optional
         allow_dense_reboot_migration: true
 
+    - name: Perform action stop on instance with action_type = rebootMigrate
+      oci_compute_instance_actions:
+        # required
+        action_type: rebootMigrate
+
+        # optional
+        delete_local_storage: true
+        time_scheduled: time_scheduled_example
+
     - name: Perform action stop on instance with action_type = softreset
       oci_compute_instance_actions:
         # required
@@ -441,6 +495,15 @@ Examples
 
         # optional
         allow_dense_reboot_migration: true
+
+    - name: Perform action start on instance with action_type = rebootMigrate
+      oci_compute_instance_actions:
+        # required
+        action_type: rebootMigrate
+
+        # optional
+        delete_local_storage: true
+        time_scheduled: time_scheduled_example
 
     - name: Perform action start on instance with action_type = softreset
       oci_compute_instance_actions:
@@ -458,6 +521,15 @@ Examples
         # optional
         allow_dense_reboot_migration: true
 
+    - name: Perform action softreset on instance with action_type = rebootMigrate
+      oci_compute_instance_actions:
+        # required
+        action_type: rebootMigrate
+
+        # optional
+        delete_local_storage: true
+        time_scheduled: time_scheduled_example
+
     - name: Perform action softreset on instance with action_type = softreset
       oci_compute_instance_actions:
         # required
@@ -473,6 +545,15 @@ Examples
 
         # optional
         allow_dense_reboot_migration: true
+
+    - name: Perform action reset on instance with action_type = rebootMigrate
+      oci_compute_instance_actions:
+        # required
+        action_type: rebootMigrate
+
+        # optional
+        delete_local_storage: true
+        time_scheduled: time_scheduled_example
 
     - name: Perform action reset on instance with action_type = softreset
       oci_compute_instance_actions:
@@ -490,6 +571,15 @@ Examples
         # optional
         allow_dense_reboot_migration: true
 
+    - name: Perform action softstop on instance with action_type = rebootMigrate
+      oci_compute_instance_actions:
+        # required
+        action_type: rebootMigrate
+
+        # optional
+        delete_local_storage: true
+        time_scheduled: time_scheduled_example
+
     - name: Perform action softstop on instance with action_type = softreset
       oci_compute_instance_actions:
         # required
@@ -505,6 +595,15 @@ Examples
 
         # optional
         allow_dense_reboot_migration: true
+
+    - name: Perform action senddiagnosticinterrupt on instance with action_type = rebootMigrate
+      oci_compute_instance_actions:
+        # required
+        action_type: rebootMigrate
+
+        # optional
+        delete_local_storage: true
+        time_scheduled: time_scheduled_example
 
     - name: Perform action senddiagnosticinterrupt on instance with action_type = softreset
       oci_compute_instance_actions:
@@ -522,7 +621,41 @@ Examples
         # optional
         allow_dense_reboot_migration: true
 
+    - name: Perform action diagnosticreboot on instance with action_type = rebootMigrate
+      oci_compute_instance_actions:
+        # required
+        action_type: rebootMigrate
+
+        # optional
+        delete_local_storage: true
+        time_scheduled: time_scheduled_example
+
     - name: Perform action diagnosticreboot on instance with action_type = softreset
+      oci_compute_instance_actions:
+        # required
+        action_type: softreset
+
+        # optional
+        allow_dense_reboot_migration: true
+
+    - name: Perform action rebootmigrate on instance with action_type = reset
+      oci_compute_instance_actions:
+        # required
+        action_type: reset
+
+        # optional
+        allow_dense_reboot_migration: true
+
+    - name: Perform action rebootmigrate on instance with action_type = rebootMigrate
+      oci_compute_instance_actions:
+        # required
+        action_type: rebootMigrate
+
+        # optional
+        delete_local_storage: true
+        time_scheduled: time_scheduled_example
+
+    - name: Perform action rebootmigrate on instance with action_type = softreset
       oci_compute_instance_actions:
         # required
         action_type: softreset
@@ -565,7 +698,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Instance resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;agent_config&#x27;: {&#x27;are_all_plugins_disabled&#x27;: True, &#x27;is_management_disabled&#x27;: True, &#x27;is_monitoring_disabled&#x27;: True, &#x27;plugins_config&#x27;: [{&#x27;desired_state&#x27;: &#x27;ENABLED&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}]}, &#x27;availability_config&#x27;: {&#x27;is_live_migration_preferred&#x27;: True, &#x27;recovery_action&#x27;: &#x27;RESTORE_INSTANCE&#x27;}, &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;capacity_reservation_id&#x27;: &#x27;ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;dedicated_vm_host_id&#x27;: &#x27;ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;extended_metadata&#x27;: {}, &#x27;fault_domain&#x27;: &#x27;FAULT-DOMAIN-1&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_options&#x27;: {&#x27;are_legacy_imds_endpoints_disabled&#x27;: True}, &#x27;ipxe_script&#x27;: &#x27;ipxe_script_example&#x27;, &#x27;launch_mode&#x27;: &#x27;NATIVE&#x27;, &#x27;launch_options&#x27;: {&#x27;boot_volume_type&#x27;: &#x27;ISCSI&#x27;, &#x27;firmware&#x27;: &#x27;BIOS&#x27;, &#x27;is_consistent_volume_naming_enabled&#x27;: True, &#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;network_type&#x27;: &#x27;E1000&#x27;, &#x27;remote_data_volume_type&#x27;: &#x27;ISCSI&#x27;}, &#x27;lifecycle_state&#x27;: &#x27;MOVING&#x27;, &#x27;metadata&#x27;: {}, &#x27;platform_config&#x27;: {&#x27;are_virtual_instructions_enabled&#x27;: True, &#x27;is_access_control_service_enabled&#x27;: True, &#x27;is_input_output_memory_management_unit_enabled&#x27;: True, &#x27;is_measured_boot_enabled&#x27;: True, &#x27;is_secure_boot_enabled&#x27;: True, &#x27;is_symmetric_multi_threading_enabled&#x27;: True, &#x27;is_trusted_platform_module_enabled&#x27;: True, &#x27;numa_nodes_per_socket&#x27;: &#x27;NPS0&#x27;, &#x27;percentage_of_cores_enabled&#x27;: 56, &#x27;type&#x27;: &#x27;AMD_MILAN_BM&#x27;}, &#x27;preemptible_instance_config&#x27;: {&#x27;preemption_action&#x27;: {&#x27;preserve_boot_volume&#x27;: True, &#x27;type&#x27;: &#x27;TERMINATE&#x27;}}, &#x27;region&#x27;: &#x27;us-phoenix-1&#x27;, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;shape_config&#x27;: {&#x27;baseline_ocpu_utilization&#x27;: &#x27;BASELINE_1_8&#x27;, &#x27;gpu_description&#x27;: &#x27;gpu_description_example&#x27;, &#x27;gpus&#x27;: 56, &#x27;local_disk_description&#x27;: &#x27;local_disk_description_example&#x27;, &#x27;local_disks&#x27;: 56, &#x27;local_disks_total_size_in_gbs&#x27;: 3.4, &#x27;max_vnic_attachments&#x27;: 56, &#x27;memory_in_gbs&#x27;: 3.4, &#x27;networking_bandwidth_in_gbps&#x27;: 3.4, &#x27;ocpus&#x27;: 3.4, &#x27;processor_description&#x27;: &#x27;processor_description_example&#x27;}, &#x27;source_details&#x27;: {&#x27;boot_volume_id&#x27;: &#x27;ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;boot_volume_size_in_gbs&#x27;: 56, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_type&#x27;: &#x27;bootVolume&#x27;}, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_maintenance_reboot_due&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;agent_config&#x27;: {&#x27;are_all_plugins_disabled&#x27;: True, &#x27;is_management_disabled&#x27;: True, &#x27;is_monitoring_disabled&#x27;: True, &#x27;plugins_config&#x27;: [{&#x27;desired_state&#x27;: &#x27;ENABLED&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}]}, &#x27;availability_config&#x27;: {&#x27;is_live_migration_preferred&#x27;: True, &#x27;recovery_action&#x27;: &#x27;RESTORE_INSTANCE&#x27;}, &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;capacity_reservation_id&#x27;: &#x27;ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;dedicated_vm_host_id&#x27;: &#x27;ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;extended_metadata&#x27;: {}, &#x27;fault_domain&#x27;: &#x27;FAULT-DOMAIN-1&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_options&#x27;: {&#x27;are_legacy_imds_endpoints_disabled&#x27;: True}, &#x27;ipxe_script&#x27;: &#x27;ipxe_script_example&#x27;, &#x27;launch_mode&#x27;: &#x27;NATIVE&#x27;, &#x27;launch_options&#x27;: {&#x27;boot_volume_type&#x27;: &#x27;ISCSI&#x27;, &#x27;firmware&#x27;: &#x27;BIOS&#x27;, &#x27;is_consistent_volume_naming_enabled&#x27;: True, &#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;network_type&#x27;: &#x27;E1000&#x27;, &#x27;remote_data_volume_type&#x27;: &#x27;ISCSI&#x27;}, &#x27;lifecycle_state&#x27;: &#x27;MOVING&#x27;, &#x27;metadata&#x27;: {}, &#x27;platform_config&#x27;: {&#x27;are_virtual_instructions_enabled&#x27;: True, &#x27;is_access_control_service_enabled&#x27;: True, &#x27;is_input_output_memory_management_unit_enabled&#x27;: True, &#x27;is_measured_boot_enabled&#x27;: True, &#x27;is_secure_boot_enabled&#x27;: True, &#x27;is_symmetric_multi_threading_enabled&#x27;: True, &#x27;is_trusted_platform_module_enabled&#x27;: True, &#x27;numa_nodes_per_socket&#x27;: &#x27;NPS0&#x27;, &#x27;percentage_of_cores_enabled&#x27;: 56, &#x27;type&#x27;: &#x27;AMD_MILAN_BM&#x27;}, &#x27;preemptible_instance_config&#x27;: {&#x27;preemption_action&#x27;: {&#x27;preserve_boot_volume&#x27;: True, &#x27;type&#x27;: &#x27;TERMINATE&#x27;}}, &#x27;region&#x27;: &#x27;us-phoenix-1&#x27;, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;shape_config&#x27;: {&#x27;baseline_ocpu_utilization&#x27;: &#x27;BASELINE_1_8&#x27;, &#x27;gpu_description&#x27;: &#x27;gpu_description_example&#x27;, &#x27;gpus&#x27;: 56, &#x27;local_disk_description&#x27;: &#x27;local_disk_description_example&#x27;, &#x27;local_disks&#x27;: 56, &#x27;local_disks_total_size_in_gbs&#x27;: 3.4, &#x27;max_vnic_attachments&#x27;: 56, &#x27;memory_in_gbs&#x27;: 3.4, &#x27;networking_bandwidth_in_gbps&#x27;: 3.4, &#x27;ocpus&#x27;: 3.4, &#x27;processor_description&#x27;: &#x27;processor_description_example&#x27;}, &#x27;source_details&#x27;: {&#x27;boot_volume_id&#x27;: &#x27;ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;boot_volume_size_in_gbs&#x27;: 56, &#x27;boot_volume_vpus_per_gb&#x27;: 56, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_type&#x27;: &#x27;bootVolume&#x27;}, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_maintenance_reboot_due&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1809,6 +1942,30 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>The size of the boot volume in GBs. Minimum value is 50 GB and maximum value is 32,768 GB (32 TB).</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-instance/source_details/boot_volume_vpus_per_gb"></div>
+                    <b>boot_volume_vpus_per_gb</b>
+                    <a class="ansibleOptionLink" href="#return-instance/source_details/boot_volume_vpus_per_gb" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The number of volume performance units (VPUs) that will be applied to this volume per GB, representing the Block Volume service&#x27;s elastic performance options. See <a href='https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/blockvolumeperformance.htm#perf_levels'>Block Volume Performance Levels</a> for more information.</div>
+                                            <div>Allowed values:</div>
+                                            <div>* `10`: Represents Balanced option.</div>
+                                            <div>* `20`: Represents Higher Performance option.</div>
+                                            <div>* `30`-`120`: Represents the Ultra High Performance option.</div>
+                                            <div>For volumes with the auto-tuned performance feature enabled, this is set to the default (minimum) VPUs/GB.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>

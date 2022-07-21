@@ -30,7 +30,7 @@ oracle.oci.oci_container_engine_node_pool -- Manage a NodePool resource in Oracl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.54.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.55.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -351,6 +351,26 @@ Parameters
                     
                                 <tr>
                                                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-is_force_deletion_after_override_grace_duration"></div>
+                    <b>is_force_deletion_after_override_grace_duration</b>
+                    <a class="ansibleOptionLink" href="#parameter-is_force_deletion_after_override_grace_duration" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>If the underlying compute instance should be deleted if you cannot evict all the pods in grace period</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-key_by"></div>
                     <b>key_by</b>
                     <a class="ansibleOptionLink" href="#parameter-key_by" title="Permalink to this option"></a>
@@ -489,6 +509,98 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-node_config_details/node_pool_pod_network_option_details"></div>
+                    <b>node_pool_pod_network_option_details</b>
+                    <a class="ansibleOptionLink" href="#parameter-node_config_details/node_pool_pod_network_option_details" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The CNI related configuration of pods in the node pool.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-node_config_details/node_pool_pod_network_option_details/cni_type"></div>
+                    <b>cni_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-node_config_details/node_pool_pod_network_option_details/cni_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>OCI_VCN_IP_NATIVE</li>
+                                                                                                                                                                                                <li>FLANNEL_OVERLAY</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The CNI plugin used by this node pool</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-node_config_details/node_pool_pod_network_option_details/max_pods_per_node"></div>
+                    <b>max_pods_per_node</b>
+                    <a class="ansibleOptionLink" href="#parameter-node_config_details/node_pool_pod_network_option_details/max_pods_per_node" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The max number of pods per node in the node pool. This value will be limited by the number of VNICs attachable to the node pool shape</div>
+                                            <div>Applicable when cni_type is &#x27;OCI_VCN_IP_NATIVE&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-node_config_details/node_pool_pod_network_option_details/pod_nsg_ids"></div>
+                    <b>pod_nsg_ids</b>
+                    <a class="ansibleOptionLink" href="#parameter-node_config_details/node_pool_pod_network_option_details/pod_nsg_ids" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The OCIDs of the Network Security Group(s) to associate pods for this node pool with. For more information about NSGs, see <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NetworkSecurityGroup/'>NetworkSecurityGroup</a>.</div>
+                                            <div>Applicable when cni_type is &#x27;OCI_VCN_IP_NATIVE&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-node_config_details/node_pool_pod_network_option_details/pod_subnet_ids"></div>
+                    <b>pod_subnet_ids</b>
+                    <a class="ansibleOptionLink" href="#parameter-node_config_details/node_pool_pod_network_option_details/pod_subnet_ids" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The OCIDs of the subnets in which to place pods for this node pool. This can be one of the node pool subnet IDs</div>
+                                            <div>Required when cni_type is &#x27;OCI_VCN_IP_NATIVE&#x27;</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-node_config_details/nsg_ids"></div>
                     <b>nsg_ids</b>
                     <a class="ansibleOptionLink" href="#parameter-node_config_details/nsg_ids" title="Permalink to this option"></a>
@@ -604,6 +716,59 @@ Parameters
                                                                 <td>
                                             <div>The number of nodes that should be in the node pool.</div>
                                             <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-node_eviction_node_pool_settings"></div>
+                    <b>node_eviction_node_pool_settings</b>
+                    <a class="ansibleOptionLink" href="#parameter-node_eviction_node_pool_settings" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-node_eviction_node_pool_settings/eviction_grace_duration"></div>
+                    <b>eviction_grace_duration</b>
+                    <a class="ansibleOptionLink" href="#parameter-node_eviction_node_pool_settings/eviction_grace_duration" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Duration after which OKE will give up eviction of the pods on the node. PT0M will indicate you want to delete the node without cordon and drain. Default PT60M, Min PT0M, Max: PT60M. Format ISO 8601 e.g PT30M</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-node_eviction_node_pool_settings/is_force_delete_after_grace_duration"></div>
+                    <b>is_force_delete_after_grace_duration</b>
+                    <a class="ansibleOptionLink" href="#parameter-node_eviction_node_pool_settings/is_force_delete_after_grace_duration" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>If the underlying compute instance should be deleted if you cannot evict all the pods in grace period</div>
                                                         </td>
             </tr>
                     
@@ -792,6 +957,22 @@ Parameters
                                                         </td>
             </tr>
                     
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-override_eviction_grace_duration"></div>
+                    <b>override_eviction_grace_duration</b>
+                    <a class="ansibleOptionLink" href="#parameter-override_eviction_grace_duration" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Duration after which OKE will give up eviction of the pods on the node. PT0M will indicate you want to delete the node without cordon and drain. Default PT60M, Min PT0M, Max: PT60M. Format ISO 8601 e.g PT30M</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
                                 <tr>
                                                                 <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-quantity_per_subnet"></div>
@@ -983,6 +1164,14 @@ Examples
             # optional
             capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
             fault_domains: [ "fault_domains_example" ]
+          node_pool_pod_network_option_details:
+            # required
+            pod_subnet_ids: [ "pod_subnet_ids_example" ]
+            cni_type: OCI_VCN_IP_NATIVE
+
+            # optional
+            max_pods_per_node: 56
+            pod_nsg_ids: [ "pod_nsg_ids_example" ]
         node_metadata: null
         node_source_details:
           # required
@@ -998,6 +1187,10 @@ Examples
           memory_in_gbs: 3.4
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
+        node_eviction_node_pool_settings:
+          # optional
+          eviction_grace_duration: eviction_grace_duration_example
+          is_force_delete_after_grace_duration: true
 
     - name: Update node_pool
       oci_container_engine_node_pool:
@@ -1029,6 +1222,14 @@ Examples
             # optional
             capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
             fault_domains: [ "fault_domains_example" ]
+          node_pool_pod_network_option_details:
+            # required
+            pod_subnet_ids: [ "pod_subnet_ids_example" ]
+            cni_type: OCI_VCN_IP_NATIVE
+
+            # optional
+            max_pods_per_node: 56
+            pod_nsg_ids: [ "pod_nsg_ids_example" ]
         node_metadata: null
         node_source_details:
           # required
@@ -1045,6 +1246,12 @@ Examples
           memory_in_gbs: 3.4
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
+        node_eviction_node_pool_settings:
+          # optional
+          eviction_grace_duration: eviction_grace_duration_example
+          is_force_delete_after_grace_duration: true
+        override_eviction_grace_duration: override_eviction_grace_duration_example
+        is_force_deletion_after_override_grace_duration: true
 
     - name: Update node_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_container_engine_node_pool:
@@ -1076,6 +1283,14 @@ Examples
             # optional
             capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
             fault_domains: [ "fault_domains_example" ]
+          node_pool_pod_network_option_details:
+            # required
+            pod_subnet_ids: [ "pod_subnet_ids_example" ]
+            cni_type: OCI_VCN_IP_NATIVE
+
+            # optional
+            max_pods_per_node: 56
+            pod_nsg_ids: [ "pod_nsg_ids_example" ]
         node_metadata: null
         node_source_details:
           # required
@@ -1092,12 +1307,22 @@ Examples
           memory_in_gbs: 3.4
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
+        node_eviction_node_pool_settings:
+          # optional
+          eviction_grace_duration: eviction_grace_duration_example
+          is_force_delete_after_grace_duration: true
+        override_eviction_grace_duration: override_eviction_grace_duration_example
+        is_force_deletion_after_override_grace_duration: true
 
     - name: Delete node_pool
       oci_container_engine_node_pool:
         # required
         node_pool_id: "ocid1.nodepool.oc1..xxxxxxEXAMPLExxxxxx"
         state: absent
+
+        # optional
+        override_eviction_grace_duration: override_eviction_grace_duration_example
+        is_force_deletion_after_override_grace_duration: true
 
     - name: Delete node_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_container_engine_node_pool:
@@ -1141,7 +1366,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the NodePool resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;cluster_id&#x27;: &#x27;ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;initial_node_labels&#x27;: [{&#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;kubernetes_version&#x27;: &#x27;kubernetes_version_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;node_config_details&#x27;: {&#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;placement_configs&#x27;: [{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;capacity_reservation_id&#x27;: &#x27;ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;fault_domains&#x27;: [], &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;size&#x27;: 56}, &#x27;node_image_id&#x27;: &#x27;ocid1.nodeimage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;node_image_name&#x27;: &#x27;node_image_name_example&#x27;, &#x27;node_metadata&#x27;: {}, &#x27;node_shape&#x27;: &#x27;node_shape_example&#x27;, &#x27;node_shape_config&#x27;: {&#x27;memory_in_gbs&#x27;: 3.4, &#x27;ocpus&#x27;: 3.4}, &#x27;node_source&#x27;: {&#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_name&#x27;: &#x27;source_name_example&#x27;, &#x27;source_type&#x27;: &#x27;IMAGE&#x27;}, &#x27;node_source_details&#x27;: {&#x27;boot_volume_size_in_gbs&#x27;: 56, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_type&#x27;: &#x27;IMAGE&#x27;}, &#x27;nodes&#x27;: [{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;fault_domain&#x27;: &#x27;FAULT-DOMAIN-1&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kubernetes_version&#x27;: &#x27;kubernetes_version_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;node_error&#x27;: {&#x27;code&#x27;: &#x27;code_example&#x27;, &#x27;message&#x27;: &#x27;message_example&#x27;, &#x27;opc_request_id&#x27;: &#x27;ocid1.opcrequest.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;status&#x27;: &#x27;status_example&#x27;}, &#x27;node_pool_id&#x27;: &#x27;ocid1.nodepool.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;private_ip&#x27;: &#x27;private_ip_example&#x27;, &#x27;public_ip&#x27;: &#x27;public_ip_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}}], &#x27;quantity_per_subnet&#x27;: 56, &#x27;ssh_public_key&#x27;: &#x27;ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...&#x27;, &#x27;subnet_ids&#x27;: [], &#x27;system_tags&#x27;: {}}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;cluster_id&#x27;: &#x27;ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;initial_node_labels&#x27;: [{&#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;kubernetes_version&#x27;: &#x27;kubernetes_version_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;DELETED&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;node_config_details&#x27;: {&#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;is_pv_encryption_in_transit_enabled&#x27;: True, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;node_pool_pod_network_option_details&#x27;: {&#x27;cni_type&#x27;: &#x27;OCI_VCN_IP_NATIVE&#x27;, &#x27;max_pods_per_node&#x27;: 56, &#x27;pod_nsg_ids&#x27;: [], &#x27;pod_subnet_ids&#x27;: []}, &#x27;nsg_ids&#x27;: [], &#x27;placement_configs&#x27;: [{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;capacity_reservation_id&#x27;: &#x27;ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;fault_domains&#x27;: [], &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;size&#x27;: 56}, &#x27;node_eviction_node_pool_settings&#x27;: {&#x27;eviction_grace_duration&#x27;: &#x27;eviction_grace_duration_example&#x27;, &#x27;is_force_delete_after_grace_duration&#x27;: True}, &#x27;node_image_id&#x27;: &#x27;ocid1.nodeimage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;node_image_name&#x27;: &#x27;node_image_name_example&#x27;, &#x27;node_metadata&#x27;: {}, &#x27;node_shape&#x27;: &#x27;node_shape_example&#x27;, &#x27;node_shape_config&#x27;: {&#x27;memory_in_gbs&#x27;: 3.4, &#x27;ocpus&#x27;: 3.4}, &#x27;node_source&#x27;: {&#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_name&#x27;: &#x27;source_name_example&#x27;, &#x27;source_type&#x27;: &#x27;IMAGE&#x27;}, &#x27;node_source_details&#x27;: {&#x27;boot_volume_size_in_gbs&#x27;: 56, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_type&#x27;: &#x27;IMAGE&#x27;}, &#x27;nodes&#x27;: [{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;fault_domain&#x27;: &#x27;FAULT-DOMAIN-1&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kubernetes_version&#x27;: &#x27;kubernetes_version_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;node_error&#x27;: {&#x27;code&#x27;: &#x27;code_example&#x27;, &#x27;message&#x27;: &#x27;message_example&#x27;, &#x27;opc_request_id&#x27;: &#x27;ocid1.opcrequest.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;status&#x27;: &#x27;status_example&#x27;}, &#x27;node_pool_id&#x27;: &#x27;ocid1.nodepool.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;private_ip&#x27;: &#x27;private_ip_example&#x27;, &#x27;public_ip&#x27;: &#x27;public_ip_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}}], &#x27;quantity_per_subnet&#x27;: 56, &#x27;ssh_public_key&#x27;: &#x27;ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...&#x27;, &#x27;subnet_ids&#x27;: [], &#x27;system_tags&#x27;: {}}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1310,6 +1535,42 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-node_pool/lifecycle_details"></div>
+                    <b>lifecycle_details</b>
+                    <a class="ansibleOptionLink" href="#return-node_pool/lifecycle_details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Details about the state of the nodepool.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">lifecycle_details_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-node_pool/lifecycle_state"></div>
+                    <b>lifecycle_state</b>
+                    <a class="ansibleOptionLink" href="#return-node_pool/lifecycle_state" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The state of the nodepool.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">DELETED</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-node_pool/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#return-node_pool/name" title="Permalink to this return value"></a>
@@ -1417,6 +1678,100 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-node_pool/node_config_details/node_pool_pod_network_option_details"></div>
+                    <b>node_pool_pod_network_option_details</b>
+                    <a class="ansibleOptionLink" href="#return-node_pool/node_config_details/node_pool_pod_network_option_details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The CNI related configuration of pods in the node pool.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-node_pool/node_config_details/node_pool_pod_network_option_details/cni_type"></div>
+                    <b>cni_type</b>
+                    <a class="ansibleOptionLink" href="#return-node_pool/node_config_details/node_pool_pod_network_option_details/cni_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The CNI plugin used by this node pool</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">OCI_VCN_IP_NATIVE</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-node_pool/node_config_details/node_pool_pod_network_option_details/max_pods_per_node"></div>
+                    <b>max_pods_per_node</b>
+                    <a class="ansibleOptionLink" href="#return-node_pool/node_config_details/node_pool_pod_network_option_details/max_pods_per_node" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The max number of pods per node in the node pool. This value will be limited by the number of VNICs attachable to the node pool shape</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-node_pool/node_config_details/node_pool_pod_network_option_details/pod_nsg_ids"></div>
+                    <b>pod_nsg_ids</b>
+                    <a class="ansibleOptionLink" href="#return-node_pool/node_config_details/node_pool_pod_network_option_details/pod_nsg_ids" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCIDs of the Network Security Group(s) to associate pods for this node pool with. For more information about NSGs, see <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NetworkSecurityGroup/'>NetworkSecurityGroup</a>.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-node_pool/node_config_details/node_pool_pod_network_option_details/pod_subnet_ids"></div>
+                    <b>pod_subnet_ids</b>
+                    <a class="ansibleOptionLink" href="#return-node_pool/node_config_details/node_pool_pod_network_option_details/pod_subnet_ids" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCIDs of the subnets in which to place pods for this node pool. This can be one of the node pool subnet IDs</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1548,6 +1903,61 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-node_pool/node_eviction_node_pool_settings"></div>
+                    <b>node_eviction_node_pool_settings</b>
+                    <a class="ansibleOptionLink" href="#return-node_pool/node_eviction_node_pool_settings" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-node_pool/node_eviction_node_pool_settings/eviction_grace_duration"></div>
+                    <b>eviction_grace_duration</b>
+                    <a class="ansibleOptionLink" href="#return-node_pool/node_eviction_node_pool_settings/eviction_grace_duration" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Duration after which OKE will give up eviction of the pods on the node. PT0M will indicate you want to delete the node without cordon and drain. Default PT60M, Min PT0M, Max: PT60M. Format ISO 8601 e.g PT30M</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">eviction_grace_duration_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-node_pool/node_eviction_node_pool_settings/is_force_delete_after_grace_duration"></div>
+                    <b>is_force_delete_after_grace_duration</b>
+                    <a class="ansibleOptionLink" href="#return-node_pool/node_eviction_node_pool_settings/is_force_delete_after_grace_duration" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>If the underlying compute instance should be deleted if you cannot evict all the pods in grace period</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
                     

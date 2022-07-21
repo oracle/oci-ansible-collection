@@ -124,6 +124,44 @@ tag_defaults:
             returned: on success
             type: str
             sample: ACTIVE
+        locks:
+            description:
+                - Locks associated with this resource.
+                - Returned for list operation
+            returned: on success
+            type: complex
+            contains:
+                type:
+                    description:
+                        - Type of the lock.
+                    returned: on success
+                    type: str
+                    sample: FULL
+                related_resource_id:
+                    description:
+                        - The ID of the resource that is locking this resource. Indicates that deleting this resource will remove the lock.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.relatedresource.oc1..xxxxxxEXAMPLExxxxxx"
+                message:
+                    description:
+                        - A message added by the creator of the lock. This is typically used to give an
+                          indication of why the resource is locked.
+                    returned: on success
+                    type: str
+                    sample: message_example
+                time_created:
+                    description:
+                        - When the lock was created.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
+                is_active:
+                    description:
+                        - Indicates if the lock is active or not. For example, if there are mutliple FULL locks, the first-created FULL lock will be effective.
+                    returned: on success
+                    type: bool
+                    sample: true
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -132,7 +170,14 @@ tag_defaults:
         "tag_definition_name": "tag_definition_name_example",
         "value": "value_example",
         "time_created": "2013-10-20T19:20:30+01:00",
-        "lifecycle_state": "ACTIVE"
+        "lifecycle_state": "ACTIVE",
+        "locks": [{
+            "type": "FULL",
+            "related_resource_id": "ocid1.relatedresource.oc1..xxxxxxEXAMPLExxxxxx",
+            "message": "message_example",
+            "time_created": "2013-10-20T19:20:30+01:00",
+            "is_active": true
+        }]
     }]
 """
 

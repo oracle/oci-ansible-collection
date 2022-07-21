@@ -482,6 +482,19 @@ options:
                                     - The OCID of the image used to boot the instance.
                                     - Applicable when source_type is 'image'
                                 type: str
+                            boot_volume_vpus_per_gb:
+                                description:
+                                    - The number of volume performance units (VPUs) that will be applied to this volume per GB,
+                                      representing the Block Volume service's elastic performance options.
+                                      See L(Block Volume Performance
+                                      Levels,https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/blockvolumeperformance.htm#perf_levels) for more
+                                      information.
+                                    - "Allowed values:"
+                                    - " * `10`: Represents Balanced option."
+                                    - " * `20`: Represents Higher Performance option."
+                                    - " * `30`-`120`: Represents the Ultra High Performance option."
+                                    - Applicable when source_type is 'image'
+                                type: int
                             source_type:
                                 description:
                                     - The source type for the instance.
@@ -998,6 +1011,7 @@ EXAMPLES = """
           # optional
           boot_volume_size_in_gbs: 56
           image_id: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
+          boot_volume_vpus_per_gb: 56
         fault_domain: FAULT-DOMAIN-1
         dedicated_vm_host_id: "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx"
         launch_mode: NATIVE
@@ -1691,6 +1705,20 @@ instance_configuration:
                                     returned: on success
                                     type: str
                                     sample: "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
+                                boot_volume_vpus_per_gb:
+                                    description:
+                                        - The number of volume performance units (VPUs) that will be applied to this volume per GB,
+                                          representing the Block Volume service's elastic performance options.
+                                          See L(Block Volume Performance
+                                          Levels,https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/blockvolumeperformance.htm#perf_levels) for more
+                                          information.
+                                        - "Allowed values:"
+                                        - " * `10`: Represents Balanced option."
+                                        - " * `20`: Represents Higher Performance option."
+                                        - " * `30`-`120`: Represents the Ultra High Performance option."
+                                    returned: on success
+                                    type: int
+                                    sample: 56
                         fault_domain:
                             description:
                                 - A fault domain is a grouping of hardware and infrastructure within an availability domain.
@@ -2140,7 +2168,8 @@ instance_configuration:
                     "boot_volume_id": "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx",
                     "source_type": "bootVolume",
                     "boot_volume_size_in_gbs": 56,
-                    "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx"
+                    "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx",
+                    "boot_volume_vpus_per_gb": 56
                 },
                 "fault_domain": "FAULT-DOMAIN-1",
                 "dedicated_vm_host_id": "ocid1.dedicatedvmhost.oc1..xxxxxxEXAMPLExxxxxx",
@@ -2496,6 +2525,7 @@ def main():
                                 options=dict(
                                     boot_volume_size_in_gbs=dict(type="int"),
                                     image_id=dict(type="str"),
+                                    boot_volume_vpus_per_gb=dict(type="int"),
                                     source_type=dict(
                                         type="str",
                                         required=True,

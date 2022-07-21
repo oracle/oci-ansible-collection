@@ -23,6 +23,7 @@ module: oci_identity_tag_namespace_actions
 short_description: Perform actions on a TagNamespace resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a TagNamespace resource in Oracle Cloud Infrastructure
+    - For I(action=add_tag_namespace_lock), add a resource lock to a tag namespace.
     - "For I(action=cascade_delete), deletes the specified tag namespace. This operation triggers a process that removes all of the tags
       defined in the specified tag namespace from all resources in your tenancy and then deletes the tag namespace.
       After you start the delete operation:
@@ -42,44 +43,96 @@ description:
       To move the tag namespace, you must have the manage tag-namespaces permission on both compartments.
       For more information about IAM policies, see L(Details for IAM,https://docs.cloud.oracle.com/Content/Identity/policyreference/iampolicyreference.htm).
       Moving a tag namespace moves all the tag key definitions contained in the tag namespace.
+    - For I(action=remove_tag_namespace_lock), remove a resource lock from a tag namespace.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    related_resource_id:
+        description:
+            - The ID of the resource that is locking this resource. Indicates that deleting this resource will remove the lock.
+            - Applicable only for I(action=add_tag_namespace_lock).
+        type: str
+    msg:
+        description:
+            - A message added by the creator of the lock. This is typically used to give an
+              indication of why the resource is locked.
+            - Applicable only for I(action=add_tag_namespace_lock).
+        type: str
+        aliases: ["message"]
+    compartment_id:
+        description:
+            - The Oracle Cloud ID (OCID) of the destination compartment.
+            - Required for I(action=change_compartment).
+        type: str
+    is_lock_override:
+        description:
+            - Whether to override locks (if any exist).
+            - Applicable only for I(action=cascade_delete)I(action=change_compartment).
+        type: bool
     tag_namespace_id:
         description:
             - The OCID of the tag namespace.
         type: str
         aliases: ["id"]
         required: true
-    compartment_id:
+    type:
         description:
-            - The Oracle Cloud ID (OCID) of the destination compartment.
-            - Required for I(action=change_compartment).
+            - Type of the lock.
+            - Required for I(action=add_tag_namespace_lock), I(action=remove_tag_namespace_lock).
         type: str
+        choices:
+            - "FULL"
+            - "DELETE"
     action:
         description:
             - The action to perform on the TagNamespace.
         type: str
         required: true
         choices:
+            - "add_tag_namespace_lock"
             - "cascade_delete"
             - "change_compartment"
+            - "remove_tag_namespace_lock"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
 EXAMPLES = """
+- name: Perform action add_tag_namespace_lock on tag_namespace
+  oci_identity_tag_namespace_actions:
+    # required
+    tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
+    type: FULL
+    action: add_tag_namespace_lock
+
+    # optional
+    related_resource_id: "ocid1.relatedresource.oc1..xxxxxxEXAMPLExxxxxx"
+    msg: msg_example
+
 - name: Perform action cascade_delete on tag_namespace
   oci_identity_tag_namespace_actions:
     # required
     tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
     action: cascade_delete
 
+    # optional
+    is_lock_override: true
+
 - name: Perform action change_compartment on tag_namespace
   oci_identity_tag_namespace_actions:
     # required
-    tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
+
+    # optional
+    is_lock_override: true
+
+- name: Perform action remove_tag_namespace_lock on tag_namespace
+  oci_identity_tag_namespace_actions:
+    # required
+    tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
+    type: FULL
+    action: remove_tag_namespace_lock
 
 """
 
@@ -152,6 +205,43 @@ tag_namespace:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        locks:
+            description:
+                - Locks associated with this resource.
+            returned: on success
+            type: complex
+            contains:
+                type:
+                    description:
+                        - Type of the lock.
+                    returned: on success
+                    type: str
+                    sample: FULL
+                related_resource_id:
+                    description:
+                        - The ID of the resource that is locking this resource. Indicates that deleting this resource will remove the lock.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.relatedresource.oc1..xxxxxxEXAMPLExxxxxx"
+                message:
+                    description:
+                        - A message added by the creator of the lock. This is typically used to give an
+                          indication of why the resource is locked.
+                    returned: on success
+                    type: str
+                    sample: message_example
+                time_created:
+                    description:
+                        - When the lock was created.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
+                is_active:
+                    description:
+                        - Indicates if the lock is active or not. For example, if there are mutliple FULL locks, the first-created FULL lock will be effective.
+                    returned: on success
+                    type: bool
+                    sample: true
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -161,7 +251,14 @@ tag_namespace:
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "is_retired": true,
         "lifecycle_state": "ACTIVE",
-        "time_created": "2013-10-20T19:20:30+01:00"
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "locks": [{
+            "type": "FULL",
+            "related_resource_id": "ocid1.relatedresource.oc1..xxxxxxEXAMPLExxxxxx",
+            "message": "message_example",
+            "time_created": "2013-10-20T19:20:30+01:00",
+            "is_active": true
+        }]
     }
 """
 
@@ -177,7 +274,9 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 
 try:
     from oci.identity import IdentityClient
+    from oci.identity.models import AddLockDetails
     from oci.identity.models import ChangeTagNamespaceCompartmentDetail
+    from oci.identity.models import RemoveLockDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -187,8 +286,10 @@ except ImportError:
 class TagNamespaceActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        add_tag_namespace_lock
         cascade_delete
         change_compartment
+        remove_tag_namespace_lock
     """
 
     @staticmethod
@@ -207,12 +308,36 @@ class TagNamespaceActionsHelperGen(OCIActionsHelperBase):
             tag_namespace_id=self.module.params.get("tag_namespace_id"),
         )
 
+    def add_tag_namespace_lock(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, AddLockDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.add_tag_namespace_lock,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                tag_namespace_id=self.module.params.get("tag_namespace_id"),
+                add_lock_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
+
     def cascade_delete(self):
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.cascade_delete_tag_namespace,
             call_fn_args=(),
             call_fn_kwargs=dict(
                 tag_namespace_id=self.module.params.get("tag_namespace_id"),
+                is_lock_override=self.module.params.get("is_lock_override"),
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -234,8 +359,32 @@ class TagNamespaceActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 tag_namespace_id=self.module.params.get("tag_namespace_id"),
                 change_tag_namespace_compartment_detail=action_details,
+                is_lock_override=self.module.params.get("is_lock_override"),
             ),
             waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
+
+    def remove_tag_namespace_lock(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, RemoveLockDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.remove_tag_namespace_lock,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                tag_namespace_id=self.module.params.get("tag_namespace_id"),
+                remove_lock_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation="{0}_{1}".format(
                 self.module.params.get("action").upper(),
                 oci_common_utils.ACTION_OPERATION_KEY,
@@ -261,12 +410,21 @@ def main():
     )
     module_args.update(
         dict(
-            tag_namespace_id=dict(aliases=["id"], type="str", required=True),
+            related_resource_id=dict(type="str"),
+            msg=dict(aliases=["message"], type="str"),
             compartment_id=dict(type="str"),
+            is_lock_override=dict(type="bool"),
+            tag_namespace_id=dict(aliases=["id"], type="str", required=True),
+            type=dict(type="str", choices=["FULL", "DELETE"]),
             action=dict(
                 type="str",
                 required=True,
-                choices=["cascade_delete", "change_compartment"],
+                choices=[
+                    "add_tag_namespace_lock",
+                    "cascade_delete",
+                    "change_compartment",
+                    "remove_tag_namespace_lock",
+                ],
             ),
         )
     )

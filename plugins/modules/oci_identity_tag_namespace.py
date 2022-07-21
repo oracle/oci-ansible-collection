@@ -34,7 +34,8 @@ description:
     - "You must also specify a *description* for the namespace.
       It does not have to be unique, and you can change it with
       L(UpdateTagNamespace,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/latest/TagNamespace/UpdateTagNamespace)."
-    - "This resource has the following action operations in the M(oracle.oci.oci_identity_tag_namespace_actions) module: cascade_delete, change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_identity_tag_namespace_actions) module: add_tag_namespace_lock, cascade_delete,
+      change_compartment, remove_tag_namespace_lock."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -51,6 +52,29 @@ options:
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
+    locks:
+        description:
+            - Locks associated with this resource.
+        type: list
+        elements: dict
+        suboptions:
+            type:
+                description:
+                    - Type of the lock.
+                type: str
+                choices:
+                    - "FULL"
+                    - "DELETE"
+                required: true
+            related_resource_id:
+                description:
+                    - The ID of the resource that is locking this resource. Indicates that deleting this resource will remove the lock.
+                type: str
+            message:
+                description:
+                    - A message added by the creator of the lock. This is typically used to give an
+                      indication of why the resource is locked.
+                type: str
     description:
         description:
             - The description you assign to the tag namespace during creation.
@@ -85,6 +109,11 @@ options:
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["id"]
+    is_lock_override:
+        description:
+            - Whether to override locks (if any exist).
+            - This parameter is updatable.
+        type: bool
     state:
         description:
             - The state of the TagNamespace.
@@ -106,6 +135,13 @@ EXAMPLES = """
     description: description_example
 
     # optional
+    locks:
+    - # required
+      type: FULL
+
+      # optional
+      related_resource_id: "ocid1.relatedresource.oc1..xxxxxxEXAMPLExxxxxx"
+      message: message_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -119,6 +155,7 @@ EXAMPLES = """
     is_retired: true
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    is_lock_override: true
 
 - name: Update tag_namespace using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_tag_namespace:
@@ -131,12 +168,16 @@ EXAMPLES = """
     is_retired: true
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    is_lock_override: true
 
 - name: Delete tag_namespace
   oci_identity_tag_namespace:
     # required
     tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
+
+    # optional
+    is_lock_override: true
 
 - name: Delete tag_namespace using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_identity_tag_namespace:
@@ -216,6 +257,43 @@ tag_namespace:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        locks:
+            description:
+                - Locks associated with this resource.
+            returned: on success
+            type: complex
+            contains:
+                type:
+                    description:
+                        - Type of the lock.
+                    returned: on success
+                    type: str
+                    sample: FULL
+                related_resource_id:
+                    description:
+                        - The ID of the resource that is locking this resource. Indicates that deleting this resource will remove the lock.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.relatedresource.oc1..xxxxxxEXAMPLExxxxxx"
+                message:
+                    description:
+                        - A message added by the creator of the lock. This is typically used to give an
+                          indication of why the resource is locked.
+                    returned: on success
+                    type: str
+                    sample: message_example
+                time_created:
+                    description:
+                        - When the lock was created.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
+                is_active:
+                    description:
+                        - Indicates if the lock is active or not. For example, if there are mutliple FULL locks, the first-created FULL lock will be effective.
+                    returned: on success
+                    type: bool
+                    sample: true
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -225,7 +303,14 @@ tag_namespace:
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "is_retired": true,
         "lifecycle_state": "ACTIVE",
-        "time_created": "2013-10-20T19:20:30+01:00"
+        "time_created": "2013-10-20T19:20:30+01:00",
+        "locks": [{
+            "type": "FULL",
+            "related_resource_id": "ocid1.relatedresource.oc1..xxxxxxEXAMPLExxxxxx",
+            "message": "message_example",
+            "time_created": "2013-10-20T19:20:30+01:00",
+            "is_active": true
+        }]
     }
 """
 
@@ -333,6 +418,7 @@ class TagNamespaceHelperGen(OCIResourceHelperBase):
             call_fn_kwargs=dict(
                 tag_namespace_id=self.module.params.get("tag_namespace_id"),
                 update_tag_namespace_details=update_details,
+                is_lock_override=self.module.params.get("is_lock_override"),
             ),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.UPDATE_OPERATION_KEY,
@@ -349,6 +435,7 @@ class TagNamespaceHelperGen(OCIResourceHelperBase):
             call_fn_args=(),
             call_fn_kwargs=dict(
                 tag_namespace_id=self.module.params.get("tag_namespace_id"),
+                is_lock_override=self.module.params.get("is_lock_override"),
             ),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.DELETE_OPERATION_KEY,
@@ -375,11 +462,21 @@ def main():
         dict(
             compartment_id=dict(type="str"),
             name=dict(type="str"),
+            locks=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    type=dict(type="str", required=True, choices=["FULL", "DELETE"]),
+                    related_resource_id=dict(type="str"),
+                    message=dict(type="str"),
+                ),
+            ),
             description=dict(type="str"),
             is_retired=dict(type="bool"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             tag_namespace_id=dict(aliases=["id"], type="str"),
+            is_lock_override=dict(type="bool"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

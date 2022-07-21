@@ -35,12 +35,6 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
-    dest:
-        description:
-            - The destination file path to write the output. The file will be created if it does not exist. If the file already exists, the content will be
-              overwritten.
-            - Required to get a specific object.
-        type: str
     object_name:
         description:
             - "The name of the object. Avoid entering confidential information.
@@ -143,7 +137,6 @@ EXAMPLES = """
 - name: Get a specific object
   oci_object_storage_object_facts:
     # required
-    dest: /tmp/myfile
     object_name: object_name_example
     namespace_name: namespace_name_example
     bucket_name: bucket_name_example
@@ -334,7 +327,6 @@ def main():
     module_args = oci_common_utils.get_common_arg_spec()
     module_args.update(
         dict(
-            dest=dict(type="str"),
             object_name=dict(type="str"),
             version_id=dict(type="str"),
             range=dict(type="str"),

@@ -30,7 +30,7 @@ oracle.oci.oci_database_management_managed_database_actions -- Perform actions o
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.54.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.55.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -422,8 +422,8 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The array of the details of SQL statement on which tuning is performed.</div>
-                                            <div>Required for <em>action=start_sql_tuning_task</em>.</div>
+                                            <div>The details of the SQL statement on which tuning is performed. To obtain the details of the SQL statement, you must provide either the sqlTuningSet or the tuple of sqlDetails/timeStarted/timeEnded.</div>
+                                            <div>Applicable only for <em>action=start_sql_tuning_task</em>.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -440,6 +440,55 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The identifier of a SQL statement.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-sql_tuning_set"></div>
+                    <b>sql_tuning_set</b>
+                    <a class="ansibleOptionLink" href="#parameter-sql_tuning_set" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Applicable only for <em>action=start_sql_tuning_task</em>.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-sql_tuning_set/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#parameter-sql_tuning_set/name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The name of the SQL tuning set.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-sql_tuning_set/owner"></div>
+                    <b>owner</b>
+                    <a class="ansibleOptionLink" href="#parameter-sql_tuning_set/owner" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The owner of the SQL tuning set.</div>
                                                         </td>
             </tr>
                     
@@ -535,7 +584,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The end time of the period in which SQL statements are running.</div>
-                                            <div>Required for <em>action=start_sql_tuning_task</em>.</div>
+                                            <div>Applicable only for <em>action=start_sql_tuning_task</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -551,7 +600,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The start time of the period in which SQL statements are running.</div>
-                                            <div>Required for <em>action=start_sql_tuning_task</em>.</div>
+                                            <div>Applicable only for <em>action=start_sql_tuning_task</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -638,16 +687,20 @@ Examples
           role: NORMAL
         total_time_limit_in_minutes: 56
         scope: LIMITED
-        sql_details:
-        - # required
-          sql_id: "ocid1.sql.oc1..xxxxxxEXAMPLExxxxxx"
-        time_started: time_started_example
-        time_ended: time_ended_example
         action: start_sql_tuning_task
 
         # optional
         task_description: task_description_example
         statement_time_limit_in_minutes: 56
+        sql_tuning_set:
+          # required
+          name: name_example
+          owner: owner_example
+        sql_details:
+        - # required
+          sql_id: "ocid1.sql.oc1..xxxxxxEXAMPLExxxxxx"
+        time_started: time_started_example
+        time_ended: time_ended_example
 
 
 

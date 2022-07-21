@@ -110,7 +110,7 @@ scripts:
                 - Returned for get operation
             returned: on success
             type: str
-            sample: sample_content
+            sample: content_example
         time_uploaded:
             description:
                 - The time the script was uploaded.
@@ -250,7 +250,7 @@ scripts:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
-        "content": "sample_content",
+        "content": "content_example",
         "time_uploaded": "2013-10-20T19:20:30+01:00",
         "content_size_in_bytes": 56,
         "content_file_name": "content_file_name_example",

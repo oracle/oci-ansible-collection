@@ -40,17 +40,18 @@ description:
     - "- **SOFTRESET** - Gracefully reboots the instance by sending a shutdown command to the operating system.
       After waiting 15 minutes for the OS to shut down, the instance is powered off and
       then powered back on."
-    - "- **SENDDIAGNOSTICINTERRUPT** - For advanced users. **Warning: Sending a diagnostic interrupt to a live system can
+    - "- **SENDDIAGNOSTICINTERRUPT** - For advanced users. **Caution: Sending a diagnostic interrupt to a live system can
       cause data corruption or system failure.** Sends a diagnostic interrupt that causes the instance's
       OS to crash and then reboot. Before you send a diagnostic interrupt, you must configure the instance to generate a
       crash dump file when it crashes. The crash dump captures information about the state of the OS at the time of
       the crash. After the OS restarts, you can analyze the crash dump to diagnose the issue. For more information, see
       L(Sending a Diagnostic Interrupt,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/sendingdiagnosticinterrupt.htm)."
-    - "- **DIAGNOSTICREBOOT** - Powers off the instance, rebuilds it on the physical host, and then powers it back on.
+    - "- **DIAGNOSTICREBOOT** - Powers off the instance, rebuilds it, and then powers it back on.
       Before you send a diagnostic reboot, restart the instance's OS, confirm that the instance and networking settings are configured
       correctly, and try other L(troubleshooting steps,https://docs.cloud.oracle.com/iaas/Content/Compute/References/troubleshooting-compute-instances.htm).
       Use diagnostic reboot as a final attempt to troubleshoot an unreachable instance. For virtual machine (VM) instances only.
       For more information, see L(Performing a Diagnostic Reboot,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/diagnostic-reboot.htm)."
+    - "- **REBOOTMIGRATE** - Powers off the instance, moves it to new hardware, and then powers it back on."
     - For more information about managing instance lifecycle states, see
       L(Stopping and Starting an Instance,https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/restartinginstance.htm).
 version_added: "2.9.0"
@@ -81,6 +82,23 @@ options:
             - "softstop"
             - "senddiagnosticinterrupt"
             - "diagnosticreboot"
+            - "rebootmigrate"
+    delete_local_storage:
+        description:
+            - For bare metal instances that have local storage, this must be set to true to verify that the local storage
+              will be deleted during the migration.  For instances without, this parameter has no effect.
+            - Applicable only for I(action=instance_action).
+            - Applicable when action_type is 'rebootMigrate'
+        type: bool
+    time_scheduled:
+        description:
+            - If present, this parameter will set (or re-set) the scheduled time that the instance will be reboot
+              migrated in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).  This will also change
+              the timeRebootMigrationDue field on the instance.
+              If not present, the reboot migration will be triggered immediately.
+            - Applicable only for I(action=instance_action).
+            - Applicable when action_type is 'rebootMigrate'
+        type: str
     action_type:
         description:
             - The type of power action to perform.
@@ -88,12 +106,22 @@ options:
         type: str
         choices:
             - "reset"
+            - "rebootMigrate"
             - "softreset"
     allow_dense_reboot_migration:
         description:
-            - For instances with a date in the Maintenance reboot field, the flag denoting whether reboot migration is enabled for instances that use the
-              DenseIO shape. The default value is 'false'.
+            - For instances that use a DenseIO shape, the flag denoting whether
+              L(reboot migration,https://docs.cloud.oracle.com/iaas/Content/Compute/References/infrastructure-maintenance.htm#reboot)
+              is performed for the instance. The default value is `false`.
+            - If the instance has a date in the Maintenance reboot field and you do nothing (or set this flag to `false`), the instance
+              will be rebuilt at the scheduled maintenance time. The instance will experience 2-6 hours of downtime during the
+              maintenance process. The local NVMe-based SSD will be preserved.
+            - If you want to minimize downtime and can delete the SSD, you can set this flag to `true` and proactively reboot the
+              instance before the scheduled maintenance time. The instance will be reboot migrated to a healthy host and the SSD will be
+              deleted. A short downtime occurs during the migration.
+            - "**Caution:** When `true`, the SSD is permanently deleted. We recommend that you create a backup of the SSD before proceeding."
             - Applicable only for I(action=instance_action).
+            - Applicable when action_type is one of ['softreset', 'reset']
         type: bool
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
@@ -114,6 +142,15 @@ EXAMPLES = """
     # optional
     allow_dense_reboot_migration: true
 
+- name: Perform action stop on instance with action_type = rebootMigrate
+  oci_compute_instance_actions:
+    # required
+    action_type: rebootMigrate
+
+    # optional
+    delete_local_storage: true
+    time_scheduled: time_scheduled_example
+
 - name: Perform action stop on instance with action_type = softreset
   oci_compute_instance_actions:
     # required
@@ -129,6 +166,15 @@ EXAMPLES = """
 
     # optional
     allow_dense_reboot_migration: true
+
+- name: Perform action start on instance with action_type = rebootMigrate
+  oci_compute_instance_actions:
+    # required
+    action_type: rebootMigrate
+
+    # optional
+    delete_local_storage: true
+    time_scheduled: time_scheduled_example
 
 - name: Perform action start on instance with action_type = softreset
   oci_compute_instance_actions:
@@ -146,6 +192,15 @@ EXAMPLES = """
     # optional
     allow_dense_reboot_migration: true
 
+- name: Perform action softreset on instance with action_type = rebootMigrate
+  oci_compute_instance_actions:
+    # required
+    action_type: rebootMigrate
+
+    # optional
+    delete_local_storage: true
+    time_scheduled: time_scheduled_example
+
 - name: Perform action softreset on instance with action_type = softreset
   oci_compute_instance_actions:
     # required
@@ -161,6 +216,15 @@ EXAMPLES = """
 
     # optional
     allow_dense_reboot_migration: true
+
+- name: Perform action reset on instance with action_type = rebootMigrate
+  oci_compute_instance_actions:
+    # required
+    action_type: rebootMigrate
+
+    # optional
+    delete_local_storage: true
+    time_scheduled: time_scheduled_example
 
 - name: Perform action reset on instance with action_type = softreset
   oci_compute_instance_actions:
@@ -178,6 +242,15 @@ EXAMPLES = """
     # optional
     allow_dense_reboot_migration: true
 
+- name: Perform action softstop on instance with action_type = rebootMigrate
+  oci_compute_instance_actions:
+    # required
+    action_type: rebootMigrate
+
+    # optional
+    delete_local_storage: true
+    time_scheduled: time_scheduled_example
+
 - name: Perform action softstop on instance with action_type = softreset
   oci_compute_instance_actions:
     # required
@@ -193,6 +266,15 @@ EXAMPLES = """
 
     # optional
     allow_dense_reboot_migration: true
+
+- name: Perform action senddiagnosticinterrupt on instance with action_type = rebootMigrate
+  oci_compute_instance_actions:
+    # required
+    action_type: rebootMigrate
+
+    # optional
+    delete_local_storage: true
+    time_scheduled: time_scheduled_example
 
 - name: Perform action senddiagnosticinterrupt on instance with action_type = softreset
   oci_compute_instance_actions:
@@ -210,7 +292,41 @@ EXAMPLES = """
     # optional
     allow_dense_reboot_migration: true
 
+- name: Perform action diagnosticreboot on instance with action_type = rebootMigrate
+  oci_compute_instance_actions:
+    # required
+    action_type: rebootMigrate
+
+    # optional
+    delete_local_storage: true
+    time_scheduled: time_scheduled_example
+
 - name: Perform action diagnosticreboot on instance with action_type = softreset
+  oci_compute_instance_actions:
+    # required
+    action_type: softreset
+
+    # optional
+    allow_dense_reboot_migration: true
+
+- name: Perform action rebootmigrate on instance with action_type = reset
+  oci_compute_instance_actions:
+    # required
+    action_type: reset
+
+    # optional
+    allow_dense_reboot_migration: true
+
+- name: Perform action rebootmigrate on instance with action_type = rebootMigrate
+  oci_compute_instance_actions:
+    # required
+    action_type: rebootMigrate
+
+    # optional
+    delete_local_storage: true
+    time_scheduled: time_scheduled_example
+
+- name: Perform action rebootmigrate on instance with action_type = softreset
   oci_compute_instance_actions:
     # required
     action_type: softreset
@@ -624,6 +740,20 @@ instance:
                     returned: on success
                     type: str
                     sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+                boot_volume_vpus_per_gb:
+                    description:
+                        - The number of volume performance units (VPUs) that will be applied to this volume per GB,
+                          representing the Block Volume service's elastic performance options.
+                          See L(Block Volume Performance
+                          Levels,https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/blockvolumeperformance.htm#perf_levels) for more information.
+                        - "Allowed values:"
+                        - " * `10`: Represents Balanced option."
+                        - " * `20`: Represents Higher Performance option."
+                        - " * `30`-`120`: Represents the Ultra High Performance option."
+                        - For volumes with the auto-tuned performance feature enabled, this is set to the default (minimum) VPUs/GB.
+                    returned: on success
+                    type: int
+                    sample: 56
         system_tags:
             description:
                 - "System tags for this resource. Each key is predefined and scoped to a namespace.
@@ -852,7 +982,8 @@ instance:
             "source_type": "bootVolume",
             "boot_volume_size_in_gbs": 56,
             "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx",
-            "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+            "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
+            "boot_volume_vpus_per_gb": 56
         },
         "system_tags": {},
         "time_created": "2013-10-20T19:20:30+01:00",
@@ -1003,9 +1134,14 @@ def main():
                     "softstop",
                     "senddiagnosticinterrupt",
                     "diagnosticreboot",
+                    "rebootmigrate",
                 ],
             ),
-            action_type=dict(type="str", choices=["reset", "softreset"]),
+            delete_local_storage=dict(type="bool"),
+            time_scheduled=dict(type="str"),
+            action_type=dict(
+                type="str", choices=["reset", "rebootMigrate", "softreset"]
+            ),
             allow_dense_reboot_migration=dict(type="bool"),
         )
     )

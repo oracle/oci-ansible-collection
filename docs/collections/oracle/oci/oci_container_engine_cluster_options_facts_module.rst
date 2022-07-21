@@ -30,7 +30,7 @@ oracle.oci.oci_container_engine_cluster_options_facts -- Fetches details about a
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.54.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.55.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -326,12 +326,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="2">Key</th>
+            <th colspan="3">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-cluster_options"></div>
                     <b>cluster_options</b>
                     <a class="ansibleOptionLink" href="#return-cluster_options" title="Permalink to this return value"></a>
@@ -344,12 +344,48 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>ClusterOptions resource</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;kubernetes_versions&#x27;: []}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;cluster_pod_network_options&#x27;: [{&#x27;cni_type&#x27;: &#x27;OCI_VCN_IP_NATIVE&#x27;}], &#x27;kubernetes_versions&#x27;: []}</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-cluster_options/cluster_pod_network_options"></div>
+                    <b>cluster_pod_network_options</b>
+                    <a class="ansibleOptionLink" href="#return-cluster_options/cluster_pod_network_options" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Available CNIs and network options for existing and new node pools of the cluster</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-cluster_options/cluster_pod_network_options/cni_type"></div>
+                    <b>cni_type</b>
+                    <a class="ansibleOptionLink" href="#return-cluster_options/cluster_pod_network_options/cni_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The CNI used by the node pools of this cluster</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">OCI_VCN_IP_NATIVE</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-cluster_options/kubernetes_versions"></div>
                     <b>kubernetes_versions</b>
                     <a class="ansibleOptionLink" href="#return-cluster_options/kubernetes_versions" title="Permalink to this return value"></a>

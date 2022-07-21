@@ -24,6 +24,8 @@ short_description: Manage a TagDefault resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a TagDefault resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new tag default in the specified compartment for the specified tag definition.
+    - "This resource has the following action operations in the M(oracle.oci.oci_identity_tag_default_actions) module: add_tag_default_lock,
+      remove_tag_default_lock."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -37,6 +39,29 @@ options:
             - The OCID of the tag definition. The tag default will always assign a default value for this tag definition.
             - Required for create using I(state=present).
         type: str
+    locks:
+        description:
+            - Locks associated with this resource.
+        type: list
+        elements: dict
+        suboptions:
+            type:
+                description:
+                    - Type of the lock.
+                type: str
+                choices:
+                    - "FULL"
+                    - "DELETE"
+                required: true
+            related_resource_id:
+                description:
+                    - The ID of the resource that is locking this resource. Indicates that deleting this resource will remove the lock.
+                type: str
+            message:
+                description:
+                    - A message added by the creator of the lock. This is typically used to give an
+                      indication of why the resource is locked.
+                type: str
     value:
         description:
             - The default value for the tag definition. This will be applied to all new resources created in the compartment.
@@ -49,6 +74,11 @@ options:
             - Required for delete using I(state=absent).
         type: str
         aliases: ["id"]
+    is_lock_override:
+        description:
+            - Whether to override locks (if any exist).
+            - This parameter is updatable.
+        type: bool
     state:
         description:
             - The state of the TagDefault.
@@ -69,17 +99,32 @@ EXAMPLES = """
     tag_definition_id: "ocid1.tagdefinition.oc1..xxxxxxEXAMPLExxxxxx"
     value: value_example
 
+    # optional
+    locks:
+    - # required
+      type: FULL
+
+      # optional
+      related_resource_id: "ocid1.relatedresource.oc1..xxxxxxEXAMPLExxxxxx"
+      message: message_example
+
 - name: Update tag_default
   oci_identity_tag_default:
     # required
     value: value_example
     tag_default_id: "ocid1.tagdefault.oc1..xxxxxxEXAMPLExxxxxx"
 
+    # optional
+    is_lock_override: true
+
 - name: Delete tag_default
   oci_identity_tag_default:
     # required
     tag_default_id: "ocid1.tagdefault.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
+
+    # optional
+    is_lock_override: true
 
 """
 
@@ -263,6 +308,7 @@ class TagDefaultHelperGen(OCIResourceHelperBase):
             call_fn_kwargs=dict(
                 tag_default_id=self.module.params.get("tag_default_id"),
                 update_tag_default_details=update_details,
+                is_lock_override=self.module.params.get("is_lock_override"),
             ),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.UPDATE_OPERATION_KEY,
@@ -279,6 +325,7 @@ class TagDefaultHelperGen(OCIResourceHelperBase):
             call_fn_args=(),
             call_fn_kwargs=dict(
                 tag_default_id=self.module.params.get("tag_default_id"),
+                is_lock_override=self.module.params.get("is_lock_override"),
             ),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.DELETE_OPERATION_KEY,
@@ -305,8 +352,18 @@ def main():
         dict(
             compartment_id=dict(type="str"),
             tag_definition_id=dict(type="str"),
+            locks=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    type=dict(type="str", required=True, choices=["FULL", "DELETE"]),
+                    related_resource_id=dict(type="str"),
+                    message=dict(type="str"),
+                ),
+            ),
             value=dict(type="str"),
             tag_default_id=dict(aliases=["id"], type="str"),
+            is_lock_override=dict(type="bool"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

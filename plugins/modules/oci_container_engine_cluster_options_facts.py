@@ -64,8 +64,23 @@ cluster_options:
             returned: on success
             type: list
             sample: []
+        cluster_pod_network_options:
+            description:
+                - Available CNIs and network options for existing and new node pools of the cluster
+            returned: on success
+            type: complex
+            contains:
+                cni_type:
+                    description:
+                        - The CNI used by the node pools of this cluster
+                    returned: on success
+                    type: str
+                    sample: OCI_VCN_IP_NATIVE
     sample: {
-        "kubernetes_versions": []
+        "kubernetes_versions": [],
+        "cluster_pod_network_options": [{
+            "cni_type": "OCI_VCN_IP_NATIVE"
+        }]
     }
 """
 

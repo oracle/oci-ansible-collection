@@ -60,7 +60,7 @@ description:
       L(GetAppCatalogListingResourceVersion,https://docs.cloud.oracle.com/en-
       us/iaas/api/#/en/iaas/latest/AppCatalogListingResourceVersion/GetAppCatalogListingResourceVersion).
     - "This resource has the following action operations in the M(oracle.oci.oci_compute_instance_actions) module: stop, start, softreset, reset, softstop,
-      senddiagnosticinterrupt, diagnosticreboot."
+      senddiagnosticinterrupt, diagnosticreboot, rebootmigrate."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -294,6 +294,19 @@ options:
                     - The OCID of the Key Management key to assign as the master encryption key for the boot volume.
                     - Applicable when source_type is 'image'
                 type: str
+            boot_volume_vpus_per_gb:
+                description:
+                    - The number of volume performance units (VPUs) that will be applied to this volume per GB,
+                      representing the Block Volume service's elastic performance options.
+                      See L(Block Volume Performance Levels,https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/blockvolumeperformance.htm#perf_levels)
+                      for more information.
+                    - "Allowed values:"
+                    - " * `10`: Represents Balanced option."
+                    - " * `20`: Represents Higher Performance option."
+                    - " * `30`-`120`: Represents the Ultra High Performance option."
+                    - For volumes with the auto-tuned performance feature enabled, this is set to the default (minimum) VPUs/GB.
+                    - Applicable when source_type is 'image'
+                type: int
             source_type:
                 description:
                     - The source type for the instance.
@@ -728,11 +741,6 @@ options:
             - Specifies whether to delete or preserve the boot volume when terminating an instance.
               When set to `true`, the boot volume is preserved. The default value is `false`.
         type: bool
-    preserve_data_volumes:
-        description:
-            - Specifies whether to delete or preserve the data volumes when terminating an instance.
-              When set to `true`, the boot volume is preserved. The default value is `false`.
-        type: bool
     state:
         description:
             - The state of the Instance.
@@ -787,6 +795,7 @@ EXAMPLES = """
       # optional
       boot_volume_size_in_gbs: 56
       kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+      boot_volume_vpus_per_gb: 56
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     is_pv_encryption_in_transit_enabled: true
     platform_config:
@@ -938,7 +947,6 @@ EXAMPLES = """
 
     # optional
     preserve_boot_volume: true
-    preserve_data_volumes: true
 
 - name: Delete instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_instance:
@@ -1353,6 +1361,20 @@ instance:
                     returned: on success
                     type: str
                     sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+                boot_volume_vpus_per_gb:
+                    description:
+                        - The number of volume performance units (VPUs) that will be applied to this volume per GB,
+                          representing the Block Volume service's elastic performance options.
+                          See L(Block Volume Performance
+                          Levels,https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/blockvolumeperformance.htm#perf_levels) for more information.
+                        - "Allowed values:"
+                        - " * `10`: Represents Balanced option."
+                        - " * `20`: Represents Higher Performance option."
+                        - " * `30`-`120`: Represents the Ultra High Performance option."
+                        - For volumes with the auto-tuned performance feature enabled, this is set to the default (minimum) VPUs/GB.
+                    returned: on success
+                    type: int
+                    sample: 56
         system_tags:
             description:
                 - "System tags for this resource. Each key is predefined and scoped to a namespace.
@@ -1593,7 +1615,8 @@ instance:
             "source_type": "bootVolume",
             "boot_volume_size_in_gbs": 56,
             "image_id": "ocid1.image.oc1..xxxxxxEXAMPLExxxxxx",
-            "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+            "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
+            "boot_volume_vpus_per_gb": 56
         },
         "system_tags": {},
         "time_created": "2013-10-20T19:20:30+01:00",
@@ -1766,7 +1789,6 @@ class InstanceHelperGen(OCIResourceHelperBase):
             call_fn_kwargs=dict(
                 instance_id=self.module.params.get("instance_id"),
                 preserve_boot_volume=self.module.params.get("preserve_boot_volume"),
-                preserve_data_volumes=self.module.params.get("preserve_data_volumes"),
             ),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.DELETE_OPERATION_KEY,
@@ -1832,6 +1854,7 @@ def main():
                     boot_volume_size_in_gbs=dict(type="int"),
                     image_id=dict(type="str"),
                     kms_key_id=dict(type="str"),
+                    boot_volume_vpus_per_gb=dict(type="int"),
                     source_type=dict(
                         type="str", required=True, choices=["image", "bootVolume"]
                     ),
@@ -1943,7 +1966,6 @@ def main():
             ),
             instance_id=dict(aliases=["id"], type="str"),
             preserve_boot_volume=dict(type="bool"),
-            preserve_data_volumes=dict(type="bool"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

@@ -108,6 +108,11 @@ options:
               The name must be unique within the tag namespace and cannot be changed.
         type: str
         required: true
+    is_lock_override:
+        description:
+            - Whether to override locks (if any exist).
+            - This parameter is updatable.
+        type: bool
     state:
         description:
             - The state of the Tag.
@@ -135,6 +140,7 @@ EXAMPLES = """
     validator:
       # required
       validator_type: DEFAULT
+    is_lock_override: true
 
 - name: Update tag
   oci_identity_tag:
@@ -151,6 +157,7 @@ EXAMPLES = """
     validator:
       # required
       validator_type: DEFAULT
+    is_lock_override: true
 
 - name: Delete tag
   oci_identity_tag:
@@ -158,6 +165,9 @@ EXAMPLES = """
     tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
     state: absent
+
+    # optional
+    is_lock_override: true
 
 """
 
@@ -313,12 +323,6 @@ class TagHelperGen(OCIResourceHelperBase):
 
     def get_possible_entity_types(self):
         return super(TagHelperGen, self).get_possible_entity_types() + [
-            "tagdefinition",
-            "tagdefinitions",
-            "identitytagdefinition",
-            "identitytagdefinitions",
-            "tagdefinitionresource",
-            "tagdefinitionsresource",
             "tag",
             "tags",
             "identitytag",
@@ -393,6 +397,7 @@ class TagHelperGen(OCIResourceHelperBase):
             call_fn_kwargs=dict(
                 tag_namespace_id=self.module.params.get("tag_namespace_id"),
                 create_tag_details=create_details,
+                is_lock_override=self.module.params.get("is_lock_override"),
             ),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.CREATE_OPERATION_KEY,
@@ -415,6 +420,7 @@ class TagHelperGen(OCIResourceHelperBase):
                 tag_namespace_id=self.module.params.get("tag_namespace_id"),
                 tag_name=self.module.params.get("name"),
                 update_tag_details=update_details,
+                is_lock_override=self.module.params.get("is_lock_override"),
             ),
             waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
             operation=oci_common_utils.UPDATE_OPERATION_KEY,
@@ -432,6 +438,7 @@ class TagHelperGen(OCIResourceHelperBase):
             call_fn_kwargs=dict(
                 tag_namespace_id=self.module.params.get("tag_namespace_id"),
                 tag_name=self.module.params.get("name"),
+                is_lock_override=self.module.params.get("is_lock_override"),
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation=oci_common_utils.DELETE_OPERATION_KEY,
@@ -470,6 +477,7 @@ def main():
             ),
             tag_namespace_id=dict(type="str", required=True),
             name=dict(type="str", required=True),
+            is_lock_override=dict(type="bool"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

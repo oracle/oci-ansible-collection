@@ -234,7 +234,7 @@ script:
                   Side script format. If the content type is JS, then the content should be in JavaScript format."
             returned: on success
             type: str
-            sample: sample_content
+            sample: content_example
         time_uploaded:
             description:
                 - The time the script was uploaded.
@@ -354,7 +354,7 @@ script:
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "content_type": "SIDE",
-        "content": "sample_content",
+        "content": "content_example",
         "time_uploaded": "2013-10-20T19:20:30+01:00",
         "content_size_in_bytes": 56,
         "content_file_name": "content_file_name_example",

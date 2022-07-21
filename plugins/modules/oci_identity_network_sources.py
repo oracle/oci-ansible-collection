@@ -89,9 +89,7 @@ options:
                 elements: str
     services:
         description:
-            - A list of services allowed to make on-behalf-of requests. These requests can have different source IP addresses
-              than those listed in the network source.
-              Currently, only `all` and `none` are supported. The default is `all`.
+            - "-- The services attribute has no effect and is reserved for use by Oracle. --"
             - This parameter is updatable.
         type: list
         elements: str
@@ -253,9 +251,7 @@ network_sources:
                     sample: []
         services:
             description:
-                - A list of services allowed to make on-behalf-of requests. These requests can have different source IPs than
-                  those specified in the network source.
-                  Currently, only `all` and `none` are supported. The default is `all`.
+                - "-- The services attribute has no effect and is reserved for use by Oracle. --"
             returned: on success
             type: list
             sample: []

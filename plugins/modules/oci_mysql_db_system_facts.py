@@ -135,67 +135,6 @@ db_systems:
             returned: on success
             type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-        shape_name:
-            description:
-                - "The shape of the primary instances of the DB System. The shape
-                  determines resources allocated to a DB System - CPU cores
-                  and memory for VM shapes; CPU cores, memory and storage for non-VM
-                  (or bare metal) shapes. To get a list of shapes, use (the
-                  L(ListShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/mysql/20181021/ShapeSummary/ListShapes) operation."
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: shape_name_example
-        backup_policy:
-            description:
-                - ""
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                is_enabled:
-                    description:
-                        - If automated backups are enabled or disabled.
-                    returned: on success
-                    type: bool
-                    sample: true
-                window_start_time:
-                    description:
-                        - The start of a 30-minute window of time in which daily, automated backups occur.
-                        - "This should be in the format of the \\"Time\\" portion of an RFC3339-formatted timestamp. Any second or sub-second time data will be
-                          truncated to zero."
-                        - At some point in the window, the system may incur a brief service disruption as the backup is performed.
-                        - "If not defined, a window is selected from the following Region-based time-spans:
-                          - eu-frankfurt-1: 20:00 - 04:00 UTC
-                          - us-ashburn-1: 03:00 - 11:00 UTC
-                          - uk-london-1: 06:00 - 14:00 UTC
-                          - ap-tokyo-1: 13:00 - 21:00
-                          - us-phoenix-1: 06:00 - 14:00"
-                    returned: on success
-                    type: str
-                    sample: window_start_time_example
-                retention_in_days:
-                    description:
-                        - The number of days automated backups are retained.
-                    returned: on success
-                    type: int
-                    sample: 56
-                freeform_tags:
-                    description:
-                        - Simple key-value pair applied without any predefined name, type or scope. Exists for cross-compatibility only.
-                        - Tags defined here will be copied verbatim as tags on the Backup resource created by this BackupPolicy.
-                        - "Example: `{\\"bar-key\\": \\"value\\"}`"
-                    returned: on success
-                    type: dict
-                    sample: {'Department': 'Finance'}
-                defined_tags:
-                    description:
-                        - Usage of predefined tag keys. These predefined keys are scoped to namespaces.
-                        - Tags defined here will be copied verbatim as tags on the Backup resource created by this BackupPolicy.
-                        - "Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
-                    returned: on success
-                    type: dict
-                    sample: {'Operations': {'CostCenter': 'US'}}
         source:
             description:
                 - ""
@@ -716,6 +655,65 @@ db_systems:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        backup_policy:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                is_enabled:
+                    description:
+                        - If automated backups are enabled or disabled.
+                    returned: on success
+                    type: bool
+                    sample: true
+                window_start_time:
+                    description:
+                        - The start of a 30-minute window of time in which daily, automated backups occur.
+                        - "This should be in the format of the \\"Time\\" portion of an RFC3339-formatted timestamp. Any second or sub-second time data will be
+                          truncated to zero."
+                        - At some point in the window, the system may incur a brief service disruption as the backup is performed.
+                        - "If not defined, a window is selected from the following Region-based time-spans:
+                          - eu-frankfurt-1: 20:00 - 04:00 UTC
+                          - us-ashburn-1: 03:00 - 11:00 UTC
+                          - uk-london-1: 06:00 - 14:00 UTC
+                          - ap-tokyo-1: 13:00 - 21:00
+                          - us-phoenix-1: 06:00 - 14:00"
+                    returned: on success
+                    type: str
+                    sample: window_start_time_example
+                retention_in_days:
+                    description:
+                        - The number of days automated backups are retained.
+                    returned: on success
+                    type: int
+                    sample: 56
+                freeform_tags:
+                    description:
+                        - Simple key-value pair applied without any predefined name, type or scope. Exists for cross-compatibility only.
+                        - Tags defined here will be copied verbatim as tags on the Backup resource created by this BackupPolicy.
+                        - "Example: `{\\"bar-key\\": \\"value\\"}`"
+                    returned: on success
+                    type: dict
+                    sample: {'Department': 'Finance'}
+                defined_tags:
+                    description:
+                        - Usage of predefined tag keys. These predefined keys are scoped to namespaces.
+                        - Tags defined here will be copied verbatim as tags on the Backup resource created by this BackupPolicy.
+                        - "Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+                    returned: on success
+                    type: dict
+                    sample: {'Operations': {'CostCenter': 'US'}}
+        shape_name:
+            description:
+                - "The shape of the primary instances of the DB System. The shape
+                  determines resources allocated to a DB System - CPU cores
+                  and memory for VM shapes; CPU cores, memory and storage for non-VM
+                  (or bare metal) shapes. To get a list of shapes, use (the
+                  L(ListShapes,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/mysql/20181021/ShapeSummary/ListShapes) operation."
+            returned: on success
+            type: str
+            sample: shape_name_example
         crash_recovery:
             description:
                 - Whether to run the DB System with InnoDB Redo Logs and the Double Write Buffer enabled or disabled,
@@ -725,14 +723,6 @@ db_systems:
             sample: ENABLED
     sample: [{
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
-        "shape_name": "shape_name_example",
-        "backup_policy": {
-            "is_enabled": true,
-            "window_start_time": "window_start_time_example",
-            "retention_in_days": 56,
-            "freeform_tags": {'Department': 'Finance'},
-            "defined_tags": {'Operations': {'CostCenter': 'US'}}
-        },
         "source": {
             "backup_id": "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx",
             "source_type": "NONE"
@@ -823,6 +813,14 @@ db_systems:
         },
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "backup_policy": {
+            "is_enabled": true,
+            "window_start_time": "window_start_time_example",
+            "retention_in_days": 56,
+            "freeform_tags": {'Department': 'Finance'},
+            "defined_tags": {'Operations': {'CostCenter': 'US'}}
+        },
+        "shape_name": "shape_name_example",
         "crash_recovery": "ENABLED"
     }]
 """
