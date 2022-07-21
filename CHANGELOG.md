@@ -4,6 +4,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.55.0]
+
+# 
+ ## Added
+
+ - Support for EmWarehouse Service
+ - Support for native pod networking in the Container Engine for Kubernetes service
+ - Support for safe-deleting nodes in the Container Engine for Kubernetes service
+ - Support for backup policies returned as part of the database system list operation in the MySQL Database service
+ - Support for diagnostics in the Database Management service
+ - Support for the Network Monitoring service
+ - Support for triggering reboot migration on instances with pending maintenance in the Compute service
+ - Support for resource locking in the Identity service
+
+     2. Breaking
+ * Parameter {{preserve_data_volumes}} is removed from operation {{terminate_instance}} in the Compute service.
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.75.1
+
 ## [2.54.0]
 
 ## Added
@@ -20,8 +39,6 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
  - Support for quota resource locking in the Limits service
  - Support for returning the backup with the requested changes in the MySQL Database service
  - Support for CSV file type datasets for text labeling and JSONL in the Data Labeling service
- - Support for retries by default on the createAnnotation operation of the Data Labeling service
-
  
 ## Changed
 - Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.74.0

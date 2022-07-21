@@ -30,7 +30,7 @@ oracle.oci.oci_object_storage_object_facts -- Fetches details about one or multi
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.54.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.55.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -246,22 +246,6 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>When this parameter is set, only objects whose names do not contain the delimiter character (after an optionally specified prefix) are returned in the objects key of the response body. Scanned objects whose names contain the delimiter have the part of their name up to the first occurrence of the delimiter (including the optional prefix) returned as a set of prefixes. Note that only &#x27;/&#x27; is a supported delimiter character at this time.</div>
-                                                        </td>
-            </tr>
-                                <tr>
-                                                                <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="parameter-dest"></div>
-                    <b>dest</b>
-                    <a class="ansibleOptionLink" href="#parameter-dest" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">string</span>
-                                                                    </div>
-                                                        </td>
-                                <td>
-                                                                                                                                                            </td>
-                                                                <td>
-                                            <div>The destination file path to write the output. The file will be created if it does not exist. If the file already exists, the content will be overwritten.</div>
-                                            <div>Required to get a specific object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -578,7 +562,6 @@ Examples
     - name: Get a specific object
       oci_object_storage_object_facts:
         # required
-        dest: /tmp/myfile
         object_name: object_name_example
         namespace_name: namespace_name_example
         bucket_name: bucket_name_example

@@ -160,6 +160,38 @@ options:
                             - A list of fault domains in which to place nodes.
                         type: list
                         elements: str
+            node_pool_pod_network_option_details:
+                description:
+                    - The CNI related configuration of pods in the node pool.
+                type: dict
+                suboptions:
+                    max_pods_per_node:
+                        description:
+                            - The max number of pods per node in the node pool. This value will be limited by the number of VNICs attachable to the node pool
+                              shape
+                            - Applicable when cni_type is 'OCI_VCN_IP_NATIVE'
+                        type: int
+                    pod_nsg_ids:
+                        description:
+                            - The OCIDs of the Network Security Group(s) to associate pods for this node pool with. For more information about NSGs, see
+                              L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NetworkSecurityGroup/).
+                            - Applicable when cni_type is 'OCI_VCN_IP_NATIVE'
+                        type: list
+                        elements: str
+                    pod_subnet_ids:
+                        description:
+                            - The OCIDs of the subnets in which to place pods for this node pool. This can be one of the node pool subnet IDs
+                            - Required when cni_type is 'OCI_VCN_IP_NATIVE'
+                        type: list
+                        elements: str
+                    cni_type:
+                        description:
+                            - The CNI plugin used by this node pool
+                        type: str
+                        choices:
+                            - "OCI_VCN_IP_NATIVE"
+                            - "FLANNEL_OVERLAY"
+                        required: true
     node_metadata:
         description:
             - A list of key/value pairs to add to each underlying OCI instance in the node pool on launch.
@@ -231,6 +263,22 @@ options:
               Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             - This parameter is updatable.
         type: dict
+    node_eviction_node_pool_settings:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            eviction_grace_duration:
+                description:
+                    - "Duration after which OKE will give up eviction of the pods on the node. PT0M will indicate you want to delete the node without cordon and
+                      drain.
+                      Default PT60M, Min PT0M, Max: PT60M. Format ISO 8601 e.g PT30M"
+                type: str
+            is_force_delete_after_grace_duration:
+                description:
+                    - If the underlying compute instance should be deleted if you cannot evict all the pods in grace period
+                type: bool
     node_pool_id:
         description:
             - The OCID of the node pool.
@@ -238,6 +286,17 @@ options:
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["id"]
+    override_eviction_grace_duration:
+        description:
+            - "Duration after which OKE will give up eviction of the pods on the node.
+              PT0M will indicate you want to delete the node without cordon and drain. Default PT60M, Min PT0M, Max: PT60M. Format ISO 8601 e.g PT30M"
+            - This parameter is updatable.
+        type: str
+    is_force_deletion_after_override_grace_duration:
+        description:
+            - If the underlying compute instance should be deleted if you cannot evict all the pods in grace period
+            - This parameter is updatable.
+        type: bool
     state:
         description:
             - The state of the NodePool.
@@ -284,6 +343,14 @@ EXAMPLES = """
         # optional
         capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
         fault_domains: [ "fault_domains_example" ]
+      node_pool_pod_network_option_details:
+        # required
+        pod_subnet_ids: [ "pod_subnet_ids_example" ]
+        cni_type: OCI_VCN_IP_NATIVE
+
+        # optional
+        max_pods_per_node: 56
+        pod_nsg_ids: [ "pod_nsg_ids_example" ]
     node_metadata: null
     node_source_details:
       # required
@@ -299,6 +366,10 @@ EXAMPLES = """
       memory_in_gbs: 3.4
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    node_eviction_node_pool_settings:
+      # optional
+      eviction_grace_duration: eviction_grace_duration_example
+      is_force_delete_after_grace_duration: true
 
 - name: Update node_pool
   oci_container_engine_node_pool:
@@ -330,6 +401,14 @@ EXAMPLES = """
         # optional
         capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
         fault_domains: [ "fault_domains_example" ]
+      node_pool_pod_network_option_details:
+        # required
+        pod_subnet_ids: [ "pod_subnet_ids_example" ]
+        cni_type: OCI_VCN_IP_NATIVE
+
+        # optional
+        max_pods_per_node: 56
+        pod_nsg_ids: [ "pod_nsg_ids_example" ]
     node_metadata: null
     node_source_details:
       # required
@@ -346,6 +425,12 @@ EXAMPLES = """
       memory_in_gbs: 3.4
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    node_eviction_node_pool_settings:
+      # optional
+      eviction_grace_duration: eviction_grace_duration_example
+      is_force_delete_after_grace_duration: true
+    override_eviction_grace_duration: override_eviction_grace_duration_example
+    is_force_deletion_after_override_grace_duration: true
 
 - name: Update node_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_container_engine_node_pool:
@@ -377,6 +462,14 @@ EXAMPLES = """
         # optional
         capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
         fault_domains: [ "fault_domains_example" ]
+      node_pool_pod_network_option_details:
+        # required
+        pod_subnet_ids: [ "pod_subnet_ids_example" ]
+        cni_type: OCI_VCN_IP_NATIVE
+
+        # optional
+        max_pods_per_node: 56
+        pod_nsg_ids: [ "pod_nsg_ids_example" ]
     node_metadata: null
     node_source_details:
       # required
@@ -393,12 +486,22 @@ EXAMPLES = """
       memory_in_gbs: 3.4
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    node_eviction_node_pool_settings:
+      # optional
+      eviction_grace_duration: eviction_grace_duration_example
+      is_force_delete_after_grace_duration: true
+    override_eviction_grace_duration: override_eviction_grace_duration_example
+    is_force_deletion_after_override_grace_duration: true
 
 - name: Delete node_pool
   oci_container_engine_node_pool:
     # required
     node_pool_id: "ocid1.nodepool.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
+
+    # optional
+    override_eviction_grace_duration: override_eviction_grace_duration_example
+    is_force_deletion_after_override_grace_duration: true
 
 - name: Delete node_pool using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_container_engine_node_pool:
@@ -422,6 +525,18 @@ node_pool:
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        lifecycle_state:
+            description:
+                - The state of the nodepool.
+            returned: on success
+            type: str
+            sample: DELETED
+        lifecycle_details:
+            description:
+                - Details about the state of the nodepool.
+            returned: on success
+            type: str
+            sample: lifecycle_details_example
         compartment_id:
             description:
                 - The OCID of the compartment in which the node pool exists.
@@ -786,6 +901,38 @@ node_pool:
                             returned: on success
                             type: list
                             sample: []
+                node_pool_pod_network_option_details:
+                    description:
+                        - The CNI related configuration of pods in the node pool.
+                    returned: on success
+                    type: complex
+                    contains:
+                        cni_type:
+                            description:
+                                - The CNI plugin used by this node pool
+                            returned: on success
+                            type: str
+                            sample: OCI_VCN_IP_NATIVE
+                        max_pods_per_node:
+                            description:
+                                - The max number of pods per node in the node pool. This value will be limited by the number of VNICs attachable to the node
+                                  pool shape
+                            returned: on success
+                            type: int
+                            sample: 56
+                        pod_nsg_ids:
+                            description:
+                                - The OCIDs of the Network Security Group(s) to associate pods for this node pool with. For more information about NSGs, see
+                                  L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NetworkSecurityGroup/).
+                            returned: on success
+                            type: list
+                            sample: []
+                        pod_subnet_ids:
+                            description:
+                                - The OCIDs of the subnets in which to place pods for this node pool. This can be one of the node pool subnet IDs
+                            returned: on success
+                            type: list
+                            sample: []
         freeform_tags:
             description:
                 - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -809,8 +956,30 @@ node_pool:
             returned: on success
             type: dict
             sample: {}
+        node_eviction_node_pool_settings:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                eviction_grace_duration:
+                    description:
+                        - "Duration after which OKE will give up eviction of the pods on the node. PT0M will indicate you want to delete the node without cordon
+                          and drain.
+                          Default PT60M, Min PT0M, Max: PT60M. Format ISO 8601 e.g PT30M"
+                    returned: on success
+                    type: str
+                    sample: eviction_grace_duration_example
+                is_force_delete_after_grace_duration:
+                    description:
+                        - If the underlying compute instance should be deleted if you cannot evict all the pods in grace period
+                    returned: on success
+                    type: bool
+                    sample: true
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "lifecycle_state": "DELETED",
+        "lifecycle_details": "lifecycle_details_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "cluster_id": "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
@@ -874,11 +1043,21 @@ node_pool:
                 "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
                 "capacity_reservation_id": "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx",
                 "fault_domains": []
-            }]
+            }],
+            "node_pool_pod_network_option_details": {
+                "cni_type": "OCI_VCN_IP_NATIVE",
+                "max_pods_per_node": 56,
+                "pod_nsg_ids": [],
+                "pod_subnet_ids": []
+            }
         },
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "system_tags": {}
+        "system_tags": {},
+        "node_eviction_node_pool_settings": {
+            "eviction_grace_duration": "eviction_grace_duration_example",
+            "is_force_delete_after_grace_duration": true
+        }
     }
 """
 
@@ -997,6 +1176,12 @@ class NodePoolHelperGen(OCIResourceHelperBase):
             call_fn_kwargs=dict(
                 node_pool_id=self.module.params.get("node_pool_id"),
                 update_node_pool_details=update_details,
+                override_eviction_grace_duration=self.module.params.get(
+                    "override_eviction_grace_duration"
+                ),
+                is_force_deletion_after_override_grace_duration=self.module.params.get(
+                    "is_force_deletion_after_override_grace_duration"
+                ),
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation=oci_common_utils.UPDATE_OPERATION_KEY,
@@ -1009,7 +1194,15 @@ class NodePoolHelperGen(OCIResourceHelperBase):
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.delete_node_pool,
             call_fn_args=(),
-            call_fn_kwargs=dict(node_pool_id=self.module.params.get("node_pool_id"),),
+            call_fn_kwargs=dict(
+                node_pool_id=self.module.params.get("node_pool_id"),
+                override_eviction_grace_duration=self.module.params.get(
+                    "override_eviction_grace_duration"
+                ),
+                is_force_deletion_after_override_grace_duration=self.module.params.get(
+                    "is_force_deletion_after_override_grace_duration"
+                ),
+            ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation=oci_common_utils.DELETE_OPERATION_KEY,
             waiter_client=self.get_waiter_client(),
@@ -1062,6 +1255,19 @@ def main():
                             fault_domains=dict(type="list", elements="str"),
                         ),
                     ),
+                    node_pool_pod_network_option_details=dict(
+                        type="dict",
+                        options=dict(
+                            max_pods_per_node=dict(type="int"),
+                            pod_nsg_ids=dict(type="list", elements="str"),
+                            pod_subnet_ids=dict(type="list", elements="str"),
+                            cni_type=dict(
+                                type="str",
+                                required=True,
+                                choices=["OCI_VCN_IP_NATIVE", "FLANNEL_OVERLAY"],
+                            ),
+                        ),
+                    ),
                 ),
             ),
             node_metadata=dict(type="dict"),
@@ -1083,7 +1289,16 @@ def main():
             ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
+            node_eviction_node_pool_settings=dict(
+                type="dict",
+                options=dict(
+                    eviction_grace_duration=dict(type="str"),
+                    is_force_delete_after_grace_duration=dict(type="bool"),
+                ),
+            ),
             node_pool_id=dict(aliases=["id"], type="str"),
+            override_eviction_grace_duration=dict(type="str"),
+            is_force_deletion_after_override_grace_duration=dict(type="bool"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

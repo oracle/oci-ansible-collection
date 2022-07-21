@@ -66,6 +66,20 @@ options:
             - The OCID of the KMS key to be used as the master encryption key for Kubernetes secret encryption.
               When used, `kubernetesVersion` must be at least `v1.13.0`.
         type: str
+    cluster_pod_network_options:
+        description:
+            - Available CNIs and network options for existing and new node pools of the cluster
+        type: list
+        elements: dict
+        suboptions:
+            cni_type:
+                description:
+                    - The CNI used by the node pools of this cluster
+                type: str
+                choices:
+                    - "FLANNEL_OVERLAY"
+                    - "OCI_VCN_IP_NATIVE"
+                required: true
     name:
         description:
             - The name of the cluster. Avoid entering confidential information.
@@ -232,6 +246,9 @@ EXAMPLES = """
       nsg_ids: [ "nsg_ids_example" ]
       is_public_ip_enabled: true
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+    cluster_pod_network_options:
+    - # required
+      cni_type: FLANNEL_OVERLAY
     options:
       # optional
       service_lb_subnet_ids: [ "service_lb_subnet_ids_example" ]
@@ -686,6 +703,18 @@ cluster:
                             returned: on success
                             type: str
                             sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        cluster_pod_network_options:
+            description:
+                - Available CNIs and network options for existing and new node pools of the cluster
+            returned: on success
+            type: complex
+            contains:
+                cni_type:
+                    description:
+                        - The CNI used by the node pools of this cluster
+                    returned: on success
+                    type: str
+                    sample: OCI_VCN_IP_NATIVE
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
@@ -748,7 +777,10 @@ cluster:
             "key_details": [{
                 "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
             }]
-        }
+        },
+        "cluster_pod_network_options": [{
+            "cni_type": "OCI_VCN_IP_NATIVE"
+        }]
     }
 """
 
@@ -909,6 +941,17 @@ def main():
             ),
             vcn_id=dict(type="str"),
             kms_key_id=dict(type="str"),
+            cluster_pod_network_options=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    cni_type=dict(
+                        type="str",
+                        required=True,
+                        choices=["FLANNEL_OVERLAY", "OCI_VCN_IP_NATIVE"],
+                    )
+                ),
+            ),
             name=dict(type="str"),
             kubernetes_version=dict(type="str"),
             options=dict(

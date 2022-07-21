@@ -423,6 +423,18 @@ clusters:
                             returned: on success
                             type: str
                             sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        cluster_pod_network_options:
+            description:
+                - Available CNIs and network options for existing and new node pools of the cluster
+            returned: on success
+            type: complex
+            contains:
+                cni_type:
+                    description:
+                        - The CNI used by the node pools of this cluster
+                    returned: on success
+                    type: str
+                    sample: OCI_VCN_IP_NATIVE
     sample: [{
         "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
@@ -485,7 +497,10 @@ clusters:
             "key_details": [{
                 "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
             }]
-        }
+        },
+        "cluster_pod_network_options": [{
+            "cni_type": "OCI_VCN_IP_NATIVE"
+        }]
     }]
 """
 

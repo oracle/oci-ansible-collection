@@ -63,6 +63,11 @@ options:
             - Required for I(action=bulk_delete).
         type: list
         elements: str
+    is_lock_override:
+        description:
+            - Whether to override locks (if any exist).
+            - Applicable only for I(action=bulk_delete).
+        type: bool
     resources:
         description:
             - The resources to be updated.
@@ -144,6 +149,9 @@ EXAMPLES = """
     tag_definition_ids: [ "tag_definition_ids_example" ]
     action: bulk_delete
 
+    # optional
+    is_lock_override: true
+
 - name: Perform action bulk_edit on tag
   oci_identity_tag_actions:
     # required
@@ -217,7 +225,10 @@ class TagActionsHelperGen(OCIActionsHelperBase):
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.bulk_delete_tags,
             call_fn_args=(),
-            call_fn_kwargs=dict(bulk_delete_tags_details=action_details,),
+            call_fn_kwargs=dict(
+                bulk_delete_tags_details=action_details,
+                is_lock_override=self.module.params.get("is_lock_override"),
+            ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
                 self.module.params.get("action").upper(),
@@ -279,6 +290,7 @@ def main():
     module_args.update(
         dict(
             tag_definition_ids=dict(type="list", elements="str"),
+            is_lock_override=dict(type="bool"),
             resources=dict(
                 type="list",
                 elements="dict",

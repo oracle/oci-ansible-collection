@@ -30,7 +30,7 @@ oracle.oci.oci_identity_tag -- Manage a Tag resource in Oracle Cloud Infrastruct
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.54.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.55.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -313,6 +313,26 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-is_lock_override"></div>
+                    <b>is_lock_override</b>
+                    <a class="ansibleOptionLink" href="#parameter-is_lock_override" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Whether to override locks (if any exist).</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-is_retired"></div>
                     <b>is_retired</b>
                     <a class="ansibleOptionLink" href="#parameter-is_retired" title="Permalink to this option"></a>
@@ -554,6 +574,7 @@ Examples
         validator:
           # required
           validator_type: DEFAULT
+        is_lock_override: true
 
     - name: Update tag
       oci_identity_tag:
@@ -570,6 +591,7 @@ Examples
         validator:
           # required
           validator_type: DEFAULT
+        is_lock_override: true
 
     - name: Delete tag
       oci_identity_tag:
@@ -577,6 +599,9 @@ Examples
         tag_namespace_id: "ocid1.tagnamespace.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
         state: absent
+
+        # optional
+        is_lock_override: true
 
 
 

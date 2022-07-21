@@ -172,9 +172,7 @@ network_sources:
                     sample: []
         services:
             description:
-                - A list of services allowed to make on-behalf-of requests. These requests can have different source IPs than
-                  those specified in the network source.
-                  Currently, only `all` and `none` are supported. The default is `all`.
+                - "-- The services attribute has no effect and is reserved for use by Oracle. --"
             returned: on success
             type: list
             sample: []

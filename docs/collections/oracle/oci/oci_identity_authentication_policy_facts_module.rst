@@ -30,7 +30,7 @@ oracle.oci.oci_identity_authentication_policy_facts -- Fetches details about a A
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.54.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.55.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about a AuthenticationPolicy resource in Oracle Cloud Infrastructure
-- Gets the authentication policy for the given tenancy. You must specify your tenant's OCID as the value for the compartment ID (remember that the tenancy is simply the root compartment).
+- Gets the authentication policy for the given tenancy. You must specify your tenant’s OCID as the value for the compartment ID (remember that the tenancy is simply the root compartment).
 
 
 .. Aliases

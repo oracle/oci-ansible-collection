@@ -122,10 +122,28 @@ options:
               The time limit per SQL statement should not be more than the total time limit.
             - Applicable only for I(action=start_sql_tuning_task).
         type: int
+    sql_tuning_set:
+        description:
+            - ""
+            - Applicable only for I(action=start_sql_tuning_task).
+        type: dict
+        suboptions:
+            name:
+                description:
+                    - The name of the SQL tuning set.
+                type: str
+                required: true
+            owner:
+                description:
+                    - The owner of the SQL tuning set.
+                type: str
+                required: true
     sql_details:
         description:
-            - The array of the details of SQL statement on which tuning is performed.
-            - Required for I(action=start_sql_tuning_task).
+            - The details of the SQL statement on which tuning is performed.
+              To obtain the details of the SQL statement, you must provide either the sqlTuningSet
+              or the tuple of sqlDetails/timeStarted/timeEnded.
+            - Applicable only for I(action=start_sql_tuning_task).
         type: list
         elements: dict
         suboptions:
@@ -137,12 +155,12 @@ options:
     time_started:
         description:
             - The start time of the period in which SQL statements are running.
-            - Required for I(action=start_sql_tuning_task).
+            - Applicable only for I(action=start_sql_tuning_task).
         type: str
     time_ended:
         description:
             - The end time of the period in which SQL statements are running.
-            - Required for I(action=start_sql_tuning_task).
+            - Applicable only for I(action=start_sql_tuning_task).
         type: str
     action:
         description:
@@ -200,16 +218,20 @@ EXAMPLES = """
       role: NORMAL
     total_time_limit_in_minutes: 56
     scope: LIMITED
-    sql_details:
-    - # required
-      sql_id: "ocid1.sql.oc1..xxxxxxEXAMPLExxxxxx"
-    time_started: time_started_example
-    time_ended: time_ended_example
     action: start_sql_tuning_task
 
     # optional
     task_description: task_description_example
     statement_time_limit_in_minutes: 56
+    sql_tuning_set:
+      # required
+      name: name_example
+      owner: owner_example
+    sql_details:
+    - # required
+      sql_id: "ocid1.sql.oc1..xxxxxxEXAMPLExxxxxx"
+    time_started: time_started_example
+    time_ended: time_ended_example
 
 """
 
@@ -590,6 +612,13 @@ def main():
             total_time_limit_in_minutes=dict(type="int"),
             scope=dict(type="str", choices=["LIMITED", "COMPREHENSIVE"]),
             statement_time_limit_in_minutes=dict(type="int"),
+            sql_tuning_set=dict(
+                type="dict",
+                options=dict(
+                    name=dict(type="str", required=True),
+                    owner=dict(type="str", required=True),
+                ),
+            ),
             sql_details=dict(
                 type="list",
                 elements="dict",

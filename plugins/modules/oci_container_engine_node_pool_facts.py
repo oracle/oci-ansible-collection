@@ -62,6 +62,20 @@ options:
             - "ID"
             - "NAME"
             - "TIME_CREATED"
+    lifecycle_state:
+        description:
+            - A list of nodepool lifecycle states on which to filter on, matching any of the list items (OR logic). eg. [ACTIVE, DELETING]
+        type: list
+        elements: str
+        choices:
+            - "DELETED"
+            - "CREATING"
+            - "ACTIVE"
+            - "UPDATING"
+            - "DELETING"
+            - "FAILED"
+            - "INACTIVE"
+            - "NEEDS_ATTENTION"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -81,6 +95,7 @@ EXAMPLES = """
     name: name_example
     sort_order: ASC
     sort_by: ID
+    lifecycle_state: [ "DELETED" ]
 
 """
 
@@ -232,6 +247,18 @@ node_pools:
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        lifecycle_state:
+            description:
+                - The state of the nodepool.
+            returned: on success
+            type: str
+            sample: DELETED
+        lifecycle_details:
+            description:
+                - Details about the state of the nodepool.
+            returned: on success
+            type: str
+            sample: lifecycle_details_example
         compartment_id:
             description:
                 - The OCID of the compartment in which the node pool exists.
@@ -463,6 +490,38 @@ node_pools:
                             returned: on success
                             type: list
                             sample: []
+                node_pool_pod_network_option_details:
+                    description:
+                        - The CNI related configuration of pods in the node pool.
+                    returned: on success
+                    type: complex
+                    contains:
+                        cni_type:
+                            description:
+                                - The CNI plugin used by this node pool
+                            returned: on success
+                            type: str
+                            sample: OCI_VCN_IP_NATIVE
+                        max_pods_per_node:
+                            description:
+                                - The max number of pods per node in the node pool. This value will be limited by the number of VNICs attachable to the node
+                                  pool shape
+                            returned: on success
+                            type: int
+                            sample: 56
+                        pod_nsg_ids:
+                            description:
+                                - The OCIDs of the Network Security Group(s) to associate pods for this node pool with. For more information about NSGs, see
+                                  L(NetworkSecurityGroup,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/NetworkSecurityGroup/).
+                            returned: on success
+                            type: list
+                            sample: []
+                        pod_subnet_ids:
+                            description:
+                                - The OCIDs of the subnets in which to place pods for this node pool. This can be one of the node pool subnet IDs
+                            returned: on success
+                            type: list
+                            sample: []
         freeform_tags:
             description:
                 - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -486,6 +545,26 @@ node_pools:
             returned: on success
             type: dict
             sample: {}
+        node_eviction_node_pool_settings:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                eviction_grace_duration:
+                    description:
+                        - "Duration after which OKE will give up eviction of the pods on the node. PT0M will indicate you want to delete the node without cordon
+                          and drain.
+                          Default PT60M, Min PT0M, Max: PT60M. Format ISO 8601 e.g PT30M"
+                    returned: on success
+                    type: str
+                    sample: eviction_grace_duration_example
+                is_force_delete_after_grace_duration:
+                    description:
+                        - If the underlying compute instance should be deleted if you cannot evict all the pods in grace period
+                    returned: on success
+                    type: bool
+                    sample: true
     sample: [{
         "node_metadata": {},
         "nodes": [{
@@ -511,6 +590,8 @@ node_pools:
             "lifecycle_details": "lifecycle_details_example"
         }],
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "lifecycle_state": "DELETED",
+        "lifecycle_details": "lifecycle_details_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "cluster_id": "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
@@ -551,11 +632,21 @@ node_pools:
                 "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
                 "capacity_reservation_id": "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx",
                 "fault_domains": []
-            }]
+            }],
+            "node_pool_pod_network_option_details": {
+                "cni_type": "OCI_VCN_IP_NATIVE",
+                "max_pods_per_node": 56,
+                "pod_nsg_ids": [],
+                "pod_subnet_ids": []
+            }
         },
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "system_tags": {}
+        "system_tags": {},
+        "node_eviction_node_pool_settings": {
+            "eviction_grace_duration": "eviction_grace_duration_example",
+            "is_force_delete_after_grace_duration": true
+        }
     }]
 """
 
@@ -599,6 +690,7 @@ class NodePoolFactsHelperGen(OCIResourceFactsHelperBase):
             "name",
             "sort_order",
             "sort_by",
+            "lifecycle_state",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -629,6 +721,20 @@ def main():
             name=dict(type="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["ID", "NAME", "TIME_CREATED"]),
+            lifecycle_state=dict(
+                type="list",
+                elements="str",
+                choices=[
+                    "DELETED",
+                    "CREATING",
+                    "ACTIVE",
+                    "UPDATING",
+                    "DELETING",
+                    "FAILED",
+                    "INACTIVE",
+                    "NEEDS_ATTENTION",
+                ],
+            ),
         )
     )
 

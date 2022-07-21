@@ -309,3 +309,17 @@ class ManagedDatabaseGroupActionsHelperCustom:
             return super(
                 ManagedDatabaseGroupActionsHelperCustom, self
             ).is_action_necessary(action, resource)
+
+
+class HistoricAddmResultActionsHelperCustom:
+    # resource does not have get operation. dummy implementation to make
+    # the base class work.
+    def get_resource(self):
+        return oci_common_utils.get_default_response_from_resource(resource=None)
+
+
+class SnapshotActionsHelperCustom:
+    # resource does not have get operation. dummy implementation to make
+    # the base class work.
+    def get_resource(self):
+        return oci_common_utils.get_default_response_from_resource(resource=None)

@@ -30,7 +30,7 @@ oracle.oci.oci_apm_synthetics_script -- Manage a Script resource in Oracle Cloud
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.54.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.55.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -642,7 +642,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Script resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;content&#x27;: &#x27;sample_content&#x27;, &#x27;content_file_name&#x27;: &#x27;content_file_name_example&#x27;, &#x27;content_size_in_bytes&#x27;: 56, &#x27;content_type&#x27;: &#x27;SIDE&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;monitor_status_count_map&#x27;: {&#x27;disabled&#x27;: 56, &#x27;enabled&#x27;: 56, &#x27;invalid&#x27;: 56, &#x27;total&#x27;: 56}, &#x27;parameters&#x27;: [{&#x27;is_overwritten&#x27;: True, &#x27;script_parameter&#x27;: {&#x27;is_secret&#x27;: True, &#x27;param_name&#x27;: &#x27;param_name_example&#x27;, &#x27;param_value&#x27;: &#x27;param_value_example&#x27;}}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_uploaded&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;content&#x27;: &#x27;content_example&#x27;, &#x27;content_file_name&#x27;: &#x27;content_file_name_example&#x27;, &#x27;content_size_in_bytes&#x27;: 56, &#x27;content_type&#x27;: &#x27;SIDE&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;monitor_status_count_map&#x27;: {&#x27;disabled&#x27;: 56, &#x27;enabled&#x27;: 56, &#x27;invalid&#x27;: 56, &#x27;total&#x27;: 56}, &#x27;parameters&#x27;: [{&#x27;is_overwritten&#x27;: True, &#x27;script_parameter&#x27;: {&#x27;is_secret&#x27;: True, &#x27;param_name&#x27;: &#x27;param_name_example&#x27;, &#x27;param_value&#x27;: &#x27;param_value_example&#x27;}}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_uploaded&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -660,7 +660,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The content of the script. It may contain custom-defined tags that can be used for setting dynamic parameters. The format to set dynamic parameters is: `&lt;ORAP&gt;&lt;ON&gt;param name&lt;/ON&gt;&lt;OV&gt;param value&lt;/OV&gt;&lt;OS&gt;isParamValueSecret(true/false)&lt;/OS&gt;&lt;/ORAP&gt;`. Param value and isParamValueSecret are optional, the default value for isParamValueSecret is false. Examples: With mandatory param name : `&lt;ORAP&gt;&lt;ON&gt;param name&lt;/ON&gt;&lt;/ORAP&gt;` With parameter name and value : `&lt;ORAP&gt;&lt;ON&gt;param name&lt;/ON&gt;&lt;OV&gt;param value&lt;/OV&gt;&lt;/ORAP&gt;` Note that the content is valid if it matches the given content type. For example, if the content type is SIDE, then the content should be in Side script format. If the content type is JS, then the content should be in JavaScript format.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">sample_content</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">content_example</div>
                                     </td>
             </tr>
                                 <tr>
