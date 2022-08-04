@@ -30,7 +30,7 @@ oracle.oci.oci_compute_instance -- Manage an Instance resource in Oracle Cloud I
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.55.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.56.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -426,6 +426,21 @@ Parameters
                                                                 <td>
                                             <div>The OCID of the compute capacity reservation this instance is launched under. You can opt out of all default reservations by specifying an empty string as input for this field. For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/reserve-capacity.htm#default'>Capacity Reservations</a>.</div>
                                             <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-cert_bundle"></div>
+                    <b>cert_bundle</b>
+                    <a class="ansibleOptionLink" href="#parameter-cert_bundle" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The full path to a CA certificate bundle to be used for SSL verification. This will override the default CA certificate bundle. If not set, then the value of the OCI_ANSIBLE_CERT_BUNDLE variable, if any, is used.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1761,6 +1776,23 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-time_maintenance_reboot_due"></div>
+                    <b>time_maintenance_reboot_due</b>
+                    <a class="ansibleOptionLink" href="#parameter-time_maintenance_reboot_due" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The date and time the instance is expected to be stopped and restarted, in the format defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>. If the instance hasn&#x27;t been rebooted after this date, Oracle reboots the instance within 24 hours of the time and date that maintenance is due. Regardless of how the instance is stopped, this flag is reset to empty as soon as the instance reaches Stopped state.</div>
+                                            <div>Example: `2018-05-25T21:10:29.600Z`</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-wait"></div>
                     <b>wait</b>
                     <a class="ansibleOptionLink" href="#parameter-wait" title="Permalink to this option"></a>
@@ -1957,6 +1989,7 @@ Examples
           # optional
           is_live_migration_preferred: true
           recovery_action: RESTORE_INSTANCE
+        time_maintenance_reboot_due: time_maintenance_reboot_due_example
 
     - name: Update instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_compute_instance:
@@ -2002,6 +2035,7 @@ Examples
           # optional
           is_live_migration_preferred: true
           recovery_action: RESTORE_INSTANCE
+        time_maintenance_reboot_due: time_maintenance_reboot_due_example
 
     - name: Delete instance
       oci_compute_instance:

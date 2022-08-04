@@ -64,6 +64,9 @@ options:
                     - "WEBLOGIC_DOMAIN"
                     - "EBS_INSTANCE"
                     - "ORACLE_DATABASE"
+                    - "OCI_ORACLE_DB"
+                    - "OCI_ORACLE_CDB"
+                    - "OCI_ORACLE_PDB"
                 required: true
             resource_name:
                 description:
@@ -534,7 +537,14 @@ def main():
                     resource_type=dict(
                         type="str",
                         required=True,
-                        choices=["WEBLOGIC_DOMAIN", "EBS_INSTANCE", "ORACLE_DATABASE"],
+                        choices=[
+                            "WEBLOGIC_DOMAIN",
+                            "EBS_INSTANCE",
+                            "ORACLE_DATABASE",
+                            "OCI_ORACLE_DB",
+                            "OCI_ORACLE_CDB",
+                            "OCI_ORACLE_PDB",
+                        ],
                     ),
                     resource_name=dict(type="str", required=True),
                     properties=dict(

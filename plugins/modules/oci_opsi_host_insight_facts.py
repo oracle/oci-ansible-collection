@@ -68,6 +68,8 @@ options:
               Possible value is EXTERNAL-HOST.
         type: list
         elements: str
+        choices:
+            - "EXTERNAL-HOST"
     platform_type:
         description:
             - "Filter by one or more platform types.
@@ -122,7 +124,7 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     status: [ "DISABLED" ]
     lifecycle_state: [ "CREATING" ]
-    host_type: [ "host_type_example" ]
+    host_type: [ "EXTERNAL-HOST" ]
     platform_type: [ "LINUX" ]
     sort_order: ASC
     sort_by: hostName
@@ -281,6 +283,13 @@ host_insights:
             returned: on success
             type: dict
             sample: {}
+        opsi_private_endpoint_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the OPSI private endpoint
+                - Returned for list operation
+            returned: on success
+            type: str
+            sample: "ocid1.opsiprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
         status:
             description:
                 - Indicates the status of a host insight in Operations Insights
@@ -334,6 +343,7 @@ host_insights:
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "system_tags": {},
+        "opsi_private_endpoint_id": "ocid1.opsiprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx",
         "status": "DISABLED",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
@@ -428,7 +438,7 @@ def main():
                     "NEEDS_ATTENTION",
                 ],
             ),
-            host_type=dict(type="list", elements="str"),
+            host_type=dict(type="list", elements="str", choices=["EXTERNAL-HOST"]),
             platform_type=dict(
                 type="list",
                 elements="str",

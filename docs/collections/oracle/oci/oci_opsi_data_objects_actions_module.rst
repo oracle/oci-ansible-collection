@@ -30,7 +30,7 @@ oracle.oci.oci_opsi_data_objects_actions -- Perform actions on an OpsiDataObject
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.55.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.56.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -201,6 +201,21 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The type of authentication to use for making API requests. By default <code>auth_type=&quot;api_key&quot;</code> based authentication is performed and the API key (see <em>api_user_key_file</em>) in your config file will be used. If this &#x27;auth_type&#x27; module option is not specified, the value of the OCI_ANSIBLE_AUTH_TYPE, if any, is used. Use <code>auth_type=&quot;instance_principal&quot;</code> to use instance principal based authentication when running ansible playbooks within an OCI compute instance.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-cert_bundle"></div>
+                    <b>cert_bundle</b>
+                    <a class="ansibleOptionLink" href="#parameter-cert_bundle" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The full path to a CA certificate bundle to be used for SSL verification. This will override the default CA certificate bundle. If not set, then the value of the OCI_ANSIBLE_CERT_BUNDLE variable, if any, is used.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -655,9 +670,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
         </tr>
                     <tr>
                                 <td colspan="5">
-                    <div class="ansibleOptionAnchor" id="return-opsi_data_object"></div>
-                    <b>opsi_data_object</b>
-                    <a class="ansibleOptionLink" href="#return-opsi_data_object" title="Permalink to this return value"></a>
+                    <div class="ansibleOptionAnchor" id="return-opsi_data_objects"></div>
+                    <b>opsi_data_objects</b>
+                    <a class="ansibleOptionLink" href="#return-opsi_data_objects" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">complex</span>
                                           </div>
@@ -673,9 +688,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-opsi_data_object/columns_metadata"></div>
+                    <div class="ansibleOptionAnchor" id="return-opsi_data_objects/columns_metadata"></div>
                     <b>columns_metadata</b>
-                    <a class="ansibleOptionLink" href="#return-opsi_data_object/columns_metadata" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-opsi_data_objects/columns_metadata" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">complex</span>
                                           </div>
@@ -690,9 +705,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-opsi_data_object/columns_metadata/category"></div>
+                    <div class="ansibleOptionAnchor" id="return-opsi_data_objects/columns_metadata/category"></div>
                     <b>category</b>
-                    <a class="ansibleOptionLink" href="#return-opsi_data_object/columns_metadata/category" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-opsi_data_objects/columns_metadata/category" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -709,9 +724,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-opsi_data_object/columns_metadata/data_type_name"></div>
+                    <div class="ansibleOptionAnchor" id="return-opsi_data_objects/columns_metadata/data_type_name"></div>
                     <b>data_type_name</b>
-                    <a class="ansibleOptionLink" href="#return-opsi_data_object/columns_metadata/data_type_name" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-opsi_data_objects/columns_metadata/data_type_name" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -728,9 +743,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-opsi_data_object/columns_metadata/description"></div>
+                    <div class="ansibleOptionAnchor" id="return-opsi_data_objects/columns_metadata/description"></div>
                     <b>description</b>
-                    <a class="ansibleOptionLink" href="#return-opsi_data_object/columns_metadata/description" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-opsi_data_objects/columns_metadata/description" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -747,9 +762,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-opsi_data_object/columns_metadata/display_name"></div>
+                    <div class="ansibleOptionAnchor" id="return-opsi_data_objects/columns_metadata/display_name"></div>
                     <b>display_name</b>
-                    <a class="ansibleOptionLink" href="#return-opsi_data_object/columns_metadata/display_name" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-opsi_data_objects/columns_metadata/display_name" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -766,9 +781,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-opsi_data_object/columns_metadata/group_name"></div>
+                    <div class="ansibleOptionAnchor" id="return-opsi_data_objects/columns_metadata/group_name"></div>
                     <b>group_name</b>
-                    <a class="ansibleOptionLink" href="#return-opsi_data_object/columns_metadata/group_name" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-opsi_data_objects/columns_metadata/group_name" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -785,9 +800,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-opsi_data_object/columns_metadata/name"></div>
+                    <div class="ansibleOptionAnchor" id="return-opsi_data_objects/columns_metadata/name"></div>
                     <b>name</b>
-                    <a class="ansibleOptionLink" href="#return-opsi_data_object/columns_metadata/name" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-opsi_data_objects/columns_metadata/name" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -804,9 +819,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
-                    <div class="ansibleOptionAnchor" id="return-opsi_data_object/columns_metadata/unit_details"></div>
+                    <div class="ansibleOptionAnchor" id="return-opsi_data_objects/columns_metadata/unit_details"></div>
                     <b>unit_details</b>
-                    <a class="ansibleOptionLink" href="#return-opsi_data_object/columns_metadata/unit_details" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-opsi_data_objects/columns_metadata/unit_details" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">complex</span>
                                           </div>
@@ -822,9 +837,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-opsi_data_object/columns_metadata/unit_details/denominator"></div>
+                    <div class="ansibleOptionAnchor" id="return-opsi_data_objects/columns_metadata/unit_details/denominator"></div>
                     <b>denominator</b>
-                    <a class="ansibleOptionLink" href="#return-opsi_data_object/columns_metadata/unit_details/denominator" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-opsi_data_objects/columns_metadata/unit_details/denominator" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">complex</span>
                                           </div>
@@ -841,9 +856,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-opsi_data_object/columns_metadata/unit_details/denominator/display_name"></div>
+                    <div class="ansibleOptionAnchor" id="return-opsi_data_objects/columns_metadata/unit_details/denominator/display_name"></div>
                     <b>display_name</b>
-                    <a class="ansibleOptionLink" href="#return-opsi_data_object/columns_metadata/unit_details/denominator/display_name" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-opsi_data_objects/columns_metadata/unit_details/denominator/display_name" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -862,9 +877,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-opsi_data_object/columns_metadata/unit_details/denominator/unit_category"></div>
+                    <div class="ansibleOptionAnchor" id="return-opsi_data_objects/columns_metadata/unit_details/denominator/unit_category"></div>
                     <b>unit_category</b>
-                    <a class="ansibleOptionLink" href="#return-opsi_data_object/columns_metadata/unit_details/denominator/unit_category" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-opsi_data_objects/columns_metadata/unit_details/denominator/unit_category" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -883,9 +898,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-opsi_data_object/columns_metadata/unit_details/display_name"></div>
+                    <div class="ansibleOptionAnchor" id="return-opsi_data_objects/columns_metadata/unit_details/display_name"></div>
                     <b>display_name</b>
-                    <a class="ansibleOptionLink" href="#return-opsi_data_object/columns_metadata/unit_details/display_name" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-opsi_data_objects/columns_metadata/unit_details/display_name" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -903,9 +918,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-opsi_data_object/columns_metadata/unit_details/numerator"></div>
+                    <div class="ansibleOptionAnchor" id="return-opsi_data_objects/columns_metadata/unit_details/numerator"></div>
                     <b>numerator</b>
-                    <a class="ansibleOptionLink" href="#return-opsi_data_object/columns_metadata/unit_details/numerator" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-opsi_data_objects/columns_metadata/unit_details/numerator" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">complex</span>
                                           </div>
@@ -922,9 +937,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-opsi_data_object/columns_metadata/unit_details/numerator/display_name"></div>
+                    <div class="ansibleOptionAnchor" id="return-opsi_data_objects/columns_metadata/unit_details/numerator/display_name"></div>
                     <b>display_name</b>
-                    <a class="ansibleOptionLink" href="#return-opsi_data_object/columns_metadata/unit_details/numerator/display_name" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-opsi_data_objects/columns_metadata/unit_details/numerator/display_name" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -943,9 +958,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-opsi_data_object/columns_metadata/unit_details/numerator/unit_category"></div>
+                    <div class="ansibleOptionAnchor" id="return-opsi_data_objects/columns_metadata/unit_details/numerator/unit_category"></div>
                     <b>unit_category</b>
-                    <a class="ansibleOptionLink" href="#return-opsi_data_object/columns_metadata/unit_details/numerator/unit_category" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-opsi_data_objects/columns_metadata/unit_details/numerator/unit_category" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -964,9 +979,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-opsi_data_object/columns_metadata/unit_details/unit"></div>
+                    <div class="ansibleOptionAnchor" id="return-opsi_data_objects/columns_metadata/unit_details/unit"></div>
                     <b>unit</b>
-                    <a class="ansibleOptionLink" href="#return-opsi_data_object/columns_metadata/unit_details/unit" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-opsi_data_objects/columns_metadata/unit_details/unit" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -984,9 +999,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-opsi_data_object/columns_metadata/unit_details/unit_category"></div>
+                    <div class="ansibleOptionAnchor" id="return-opsi_data_objects/columns_metadata/unit_details/unit_category"></div>
                     <b>unit_category</b>
-                    <a class="ansibleOptionLink" href="#return-opsi_data_object/columns_metadata/unit_details/unit_category" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-opsi_data_objects/columns_metadata/unit_details/unit_category" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -1004,9 +1019,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-opsi_data_object/data_object_type"></div>
+                    <div class="ansibleOptionAnchor" id="return-opsi_data_objects/data_object_type"></div>
                     <b>data_object_type</b>
-                    <a class="ansibleOptionLink" href="#return-opsi_data_object/data_object_type" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-opsi_data_objects/data_object_type" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -1022,9 +1037,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-opsi_data_object/description"></div>
+                    <div class="ansibleOptionAnchor" id="return-opsi_data_objects/description"></div>
                     <b>description</b>
-                    <a class="ansibleOptionLink" href="#return-opsi_data_object/description" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-opsi_data_objects/description" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -1040,9 +1055,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-opsi_data_object/display_name"></div>
+                    <div class="ansibleOptionAnchor" id="return-opsi_data_objects/display_name"></div>
                     <b>display_name</b>
-                    <a class="ansibleOptionLink" href="#return-opsi_data_object/display_name" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-opsi_data_objects/display_name" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -1058,9 +1073,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="4">
-                    <div class="ansibleOptionAnchor" id="return-opsi_data_object/identifier"></div>
+                    <div class="ansibleOptionAnchor" id="return-opsi_data_objects/identifier"></div>
                     <b>identifier</b>
-                    <a class="ansibleOptionLink" href="#return-opsi_data_object/identifier" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-opsi_data_objects/identifier" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>

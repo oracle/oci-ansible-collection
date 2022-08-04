@@ -88,4 +88,10 @@ class ModuleDocFragment(object):
                   U(https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/regions.htm) for more information
                   on OCI regions.
             type: str
+        cert_bundle:
+            description:
+                - The full path to a CA certificate bundle to be used for SSL verification.
+                  This will override the default CA certificate bundle. If not set, then the value
+                  of the OCI_ANSIBLE_CERT_BUNDLE variable, if any, is used.
+            type: str
     """

@@ -85,6 +85,11 @@ options:
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: bool
+    route_table_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the route table the Internet Gateway is using.
+            - This parameter is updatable.
+        type: str
     ig_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the internet gateway.
@@ -116,6 +121,7 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
+    route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update internet_gateway
   oci_network_internet_gateway:
@@ -127,6 +133,7 @@ EXAMPLES = """
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     is_enabled: true
+    route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update internet_gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_internet_gateway:
@@ -138,6 +145,7 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
     is_enabled: true
+    route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete internet_gateway
   oci_network_internet_gateway:
@@ -223,6 +231,12 @@ internet_gateway:
             returned: on success
             type: str
             sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+        route_table_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the route table the Internet Gateway is using.
+            returned: on success
+            type: str
+            sample: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -232,7 +246,8 @@ internet_gateway:
         "is_enabled": true,
         "lifecycle_state": "PROVISIONING",
         "time_created": "2013-10-20T19:20:30+01:00",
-        "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+        "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx",
+        "route_table_id": "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """
 
@@ -391,6 +406,7 @@ def main():
             display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
             is_enabled=dict(type="bool"),
+            route_table_id=dict(type="str"),
             ig_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

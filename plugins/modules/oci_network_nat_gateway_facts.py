@@ -188,6 +188,15 @@ nat_gateways:
             returned: on success
             type: str
             sample: "ocid1.publicip.oc1..xxxxxxEXAMPLExxxxxx"
+        route_table_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the route table used by the NAT gateway.
+                - If you don't specify a route table here, the NAT gateway is created without an associated route
+                  table. The Networking service does NOT automatically associate the attached VCN's default route table
+                  with the NAT gateway.
+            returned: on success
+            type: str
+            sample: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -199,7 +208,8 @@ nat_gateways:
         "nat_ip": "nat_ip_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx",
-        "public_ip_id": "ocid1.publicip.oc1..xxxxxxEXAMPLExxxxxx"
+        "public_ip_id": "ocid1.publicip.oc1..xxxxxxEXAMPLExxxxxx",
+        "route_table_id": "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
     }]
 """
 

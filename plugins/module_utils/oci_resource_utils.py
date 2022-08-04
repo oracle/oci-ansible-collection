@@ -909,6 +909,16 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
                 msg="Updating resource failed with exception: {0}".format(se.message)
             )
         else:
+            # sometimes when there is no waiting and also update operation does not return anything. For ex: update
+            # operation in "oci_apigateway_sdk" & "oci_log_analytics_entity_type" returns None and there is no waiting.
+            # In those cases, get the resource and return it instead.
+            try:
+                updated_resource = updated_resource or self.get_resource().data
+            except (ServiceError, NotImplementedError) as ex:
+                _debug(
+                    "Update operation succeeded but did not return the resource. Error fetching the resource using "
+                    "the get operation: {0}".format(ex)
+                )
             return self.prepare_result(
                 changed=True,
                 resource_type=self.get_response_field_name(),

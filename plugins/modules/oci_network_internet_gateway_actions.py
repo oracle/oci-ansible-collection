@@ -130,6 +130,12 @@ internet_gateway:
             returned: on success
             type: str
             sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+        route_table_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the route table the Internet Gateway is using.
+            returned: on success
+            type: str
+            sample: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -139,7 +145,8 @@ internet_gateway:
         "is_enabled": true,
         "lifecycle_state": "PROVISIONING",
         "time_created": "2013-10-20T19:20:30+01:00",
-        "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
+        "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx",
+        "route_table_id": "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """
 

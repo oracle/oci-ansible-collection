@@ -30,7 +30,7 @@ oracle.oci.oci_opsi_exadata_insights_actions -- Perform actions on an ExadataIns
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.55.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.56.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -201,6 +201,21 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The type of authentication to use for making API requests. By default <code>auth_type=&quot;api_key&quot;</code> based authentication is performed and the API key (see <em>api_user_key_file</em>) in your config file will be used. If this &#x27;auth_type&#x27; module option is not specified, the value of the OCI_ANSIBLE_AUTH_TYPE, if any, is used. Use <code>auth_type=&quot;instance_principal&quot;</code> to use instance principal based authentication when running ansible playbooks within an OCI compute instance.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-cert_bundle"></div>
+                    <b>cert_bundle</b>
+                    <a class="ansibleOptionLink" href="#parameter-cert_bundle" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The full path to a CA certificate bundle to be used for SSL verification. This will override the default CA certificate bundle. If not set, then the value of the OCI_ANSIBLE_CERT_BUNDLE variable, if any, is used.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -383,9 +398,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
         </tr>
                     <tr>
                                 <td colspan="2">
-                    <div class="ansibleOptionAnchor" id="return-exadata_insight"></div>
-                    <b>exadata_insight</b>
-                    <a class="ansibleOptionLink" href="#return-exadata_insight" title="Permalink to this return value"></a>
+                    <div class="ansibleOptionAnchor" id="return-exadata_insights"></div>
+                    <b>exadata_insights</b>
+                    <a class="ansibleOptionLink" href="#return-exadata_insights" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">complex</span>
                                           </div>
@@ -401,9 +416,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-exadata_insight/compartment_id"></div>
+                    <div class="ansibleOptionAnchor" id="return-exadata_insights/compartment_id"></div>
                     <b>compartment_id</b>
-                    <a class="ansibleOptionLink" href="#return-exadata_insight/compartment_id" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-exadata_insights/compartment_id" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -419,9 +434,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-exadata_insight/defined_tags"></div>
+                    <div class="ansibleOptionAnchor" id="return-exadata_insights/defined_tags"></div>
                     <b>defined_tags</b>
-                    <a class="ansibleOptionLink" href="#return-exadata_insight/defined_tags" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-exadata_insights/defined_tags" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">dictionary</span>
                                           </div>
@@ -437,9 +452,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-exadata_insight/enterprise_manager_bridge_id"></div>
+                    <div class="ansibleOptionAnchor" id="return-exadata_insights/enterprise_manager_bridge_id"></div>
                     <b>enterprise_manager_bridge_id</b>
-                    <a class="ansibleOptionLink" href="#return-exadata_insight/enterprise_manager_bridge_id" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-exadata_insights/enterprise_manager_bridge_id" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -455,9 +470,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-exadata_insight/enterprise_manager_entity_display_name"></div>
+                    <div class="ansibleOptionAnchor" id="return-exadata_insights/enterprise_manager_entity_display_name"></div>
                     <b>enterprise_manager_entity_display_name</b>
-                    <a class="ansibleOptionLink" href="#return-exadata_insight/enterprise_manager_entity_display_name" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-exadata_insights/enterprise_manager_entity_display_name" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -473,9 +488,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-exadata_insight/enterprise_manager_entity_identifier"></div>
+                    <div class="ansibleOptionAnchor" id="return-exadata_insights/enterprise_manager_entity_identifier"></div>
                     <b>enterprise_manager_entity_identifier</b>
-                    <a class="ansibleOptionLink" href="#return-exadata_insight/enterprise_manager_entity_identifier" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-exadata_insights/enterprise_manager_entity_identifier" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -491,9 +506,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-exadata_insight/enterprise_manager_entity_name"></div>
+                    <div class="ansibleOptionAnchor" id="return-exadata_insights/enterprise_manager_entity_name"></div>
                     <b>enterprise_manager_entity_name</b>
-                    <a class="ansibleOptionLink" href="#return-exadata_insight/enterprise_manager_entity_name" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-exadata_insights/enterprise_manager_entity_name" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -509,9 +524,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-exadata_insight/enterprise_manager_entity_type"></div>
+                    <div class="ansibleOptionAnchor" id="return-exadata_insights/enterprise_manager_entity_type"></div>
                     <b>enterprise_manager_entity_type</b>
-                    <a class="ansibleOptionLink" href="#return-exadata_insight/enterprise_manager_entity_type" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-exadata_insights/enterprise_manager_entity_type" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -527,9 +542,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-exadata_insight/enterprise_manager_identifier"></div>
+                    <div class="ansibleOptionAnchor" id="return-exadata_insights/enterprise_manager_identifier"></div>
                     <b>enterprise_manager_identifier</b>
-                    <a class="ansibleOptionLink" href="#return-exadata_insight/enterprise_manager_identifier" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-exadata_insights/enterprise_manager_identifier" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -545,9 +560,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-exadata_insight/entity_source"></div>
+                    <div class="ansibleOptionAnchor" id="return-exadata_insights/entity_source"></div>
                     <b>entity_source</b>
-                    <a class="ansibleOptionLink" href="#return-exadata_insight/entity_source" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-exadata_insights/entity_source" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -563,9 +578,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-exadata_insight/exadata_display_name"></div>
+                    <div class="ansibleOptionAnchor" id="return-exadata_insights/exadata_display_name"></div>
                     <b>exadata_display_name</b>
-                    <a class="ansibleOptionLink" href="#return-exadata_insight/exadata_display_name" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-exadata_insights/exadata_display_name" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -581,9 +596,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-exadata_insight/exadata_name"></div>
+                    <div class="ansibleOptionAnchor" id="return-exadata_insights/exadata_name"></div>
                     <b>exadata_name</b>
-                    <a class="ansibleOptionLink" href="#return-exadata_insight/exadata_name" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-exadata_insights/exadata_name" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -599,9 +614,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-exadata_insight/exadata_rack_type"></div>
+                    <div class="ansibleOptionAnchor" id="return-exadata_insights/exadata_rack_type"></div>
                     <b>exadata_rack_type</b>
-                    <a class="ansibleOptionLink" href="#return-exadata_insight/exadata_rack_type" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-exadata_insights/exadata_rack_type" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -617,9 +632,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-exadata_insight/exadata_type"></div>
+                    <div class="ansibleOptionAnchor" id="return-exadata_insights/exadata_type"></div>
                     <b>exadata_type</b>
-                    <a class="ansibleOptionLink" href="#return-exadata_insight/exadata_type" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-exadata_insights/exadata_type" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -635,9 +650,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-exadata_insight/freeform_tags"></div>
+                    <div class="ansibleOptionAnchor" id="return-exadata_insights/freeform_tags"></div>
                     <b>freeform_tags</b>
-                    <a class="ansibleOptionLink" href="#return-exadata_insight/freeform_tags" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-exadata_insights/freeform_tags" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">dictionary</span>
                                           </div>
@@ -653,9 +668,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-exadata_insight/id"></div>
+                    <div class="ansibleOptionAnchor" id="return-exadata_insights/id"></div>
                     <b>id</b>
-                    <a class="ansibleOptionLink" href="#return-exadata_insight/id" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-exadata_insights/id" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -671,9 +686,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-exadata_insight/is_auto_sync_enabled"></div>
+                    <div class="ansibleOptionAnchor" id="return-exadata_insights/is_auto_sync_enabled"></div>
                     <b>is_auto_sync_enabled</b>
-                    <a class="ansibleOptionLink" href="#return-exadata_insight/is_auto_sync_enabled" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-exadata_insights/is_auto_sync_enabled" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">boolean</span>
                                           </div>
@@ -689,9 +704,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-exadata_insight/is_virtualized_exadata"></div>
+                    <div class="ansibleOptionAnchor" id="return-exadata_insights/is_virtualized_exadata"></div>
                     <b>is_virtualized_exadata</b>
-                    <a class="ansibleOptionLink" href="#return-exadata_insight/is_virtualized_exadata" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-exadata_insights/is_virtualized_exadata" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">boolean</span>
                                           </div>
@@ -707,9 +722,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-exadata_insight/lifecycle_details"></div>
+                    <div class="ansibleOptionAnchor" id="return-exadata_insights/lifecycle_details"></div>
                     <b>lifecycle_details</b>
-                    <a class="ansibleOptionLink" href="#return-exadata_insight/lifecycle_details" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-exadata_insights/lifecycle_details" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -725,9 +740,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-exadata_insight/lifecycle_state"></div>
+                    <div class="ansibleOptionAnchor" id="return-exadata_insights/lifecycle_state"></div>
                     <b>lifecycle_state</b>
-                    <a class="ansibleOptionLink" href="#return-exadata_insight/lifecycle_state" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-exadata_insights/lifecycle_state" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -743,9 +758,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-exadata_insight/status"></div>
+                    <div class="ansibleOptionAnchor" id="return-exadata_insights/status"></div>
                     <b>status</b>
-                    <a class="ansibleOptionLink" href="#return-exadata_insight/status" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-exadata_insights/status" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -761,9 +776,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-exadata_insight/system_tags"></div>
+                    <div class="ansibleOptionAnchor" id="return-exadata_insights/system_tags"></div>
                     <b>system_tags</b>
-                    <a class="ansibleOptionLink" href="#return-exadata_insight/system_tags" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-exadata_insights/system_tags" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">dictionary</span>
                                           </div>
@@ -777,9 +792,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-exadata_insight/time_created"></div>
+                    <div class="ansibleOptionAnchor" id="return-exadata_insights/time_created"></div>
                     <b>time_created</b>
-                    <a class="ansibleOptionLink" href="#return-exadata_insight/time_created" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-exadata_insights/time_created" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>
@@ -795,9 +810,9 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
-                    <div class="ansibleOptionAnchor" id="return-exadata_insight/time_updated"></div>
+                    <div class="ansibleOptionAnchor" id="return-exadata_insights/time_updated"></div>
                     <b>time_updated</b>
-                    <a class="ansibleOptionLink" href="#return-exadata_insight/time_updated" title="Permalink to this return value"></a>
+                    <a class="ansibleOptionLink" href="#return-exadata_insights/time_updated" title="Permalink to this return value"></a>
                     <div style="font-size: small">
                       <span style="color: purple">string</span>
                                           </div>

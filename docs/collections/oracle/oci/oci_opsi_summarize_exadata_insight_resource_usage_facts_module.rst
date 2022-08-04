@@ -30,7 +30,7 @@ oracle.oci.oci_opsi_summarize_exadata_insight_resource_usage_facts -- Fetches de
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.55.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.56.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -213,6 +213,21 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Filter by one or more cdb name.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-cert_bundle"></div>
+                    <b>cert_bundle</b>
+                    <a class="ansibleOptionLink" href="#parameter-cert_bundle" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The full path to a CA certificate bundle to be used for SSL verification. This will override the default CA certificate bundle. If not set, then the value of the OCI_ANSIBLE_CERT_BUNDLE variable, if any, is used.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -593,7 +608,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of SummarizeExadataInsightResourceUsage resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;capacity&#x27;: 1.2, &#x27;exadata_insight_id&#x27;: &#x27;ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;usage&#x27;: 1.2, &#x27;usage_change_percent&#x27;: 1.2, &#x27;utilization_percent&#x27;: 1.2}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;capacity&#x27;: 1.2, &#x27;exadata_display_name&#x27;: &#x27;exadata_display_name_example&#x27;, &#x27;exadata_insight_id&#x27;: &#x27;ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;usage&#x27;: 1.2, &#x27;usage_change_percent&#x27;: 1.2, &#x27;utilization_percent&#x27;: 1.2}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -612,6 +627,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-summarize_exadata_insight_resource_usages/exadata_display_name"></div>
+                    <b>exadata_display_name</b>
+                    <a class="ansibleOptionLink" href="#return-summarize_exadata_insight_resource_usages/exadata_display_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The user-friendly name for the Exadata system. The name does not have to be unique.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">exadata_display_name_example</div>
                                     </td>
             </tr>
                                 <tr>

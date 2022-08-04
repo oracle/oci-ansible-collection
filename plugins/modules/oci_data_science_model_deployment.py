@@ -94,6 +94,21 @@ options:
                                     - The shape used to launch the model deployment instances.
                                 type: str
                                 required: true
+                            model_deployment_instance_shape_config_details:
+                                description:
+                                    - ""
+                                type: dict
+                                suboptions:
+                                    ocpus:
+                                        description:
+                                            - A model-deployment instance of type VM.Standard.E3.Flex or VM.Standard.E4.Flex allows the ocpu count to be
+                                              specified.
+                                        type: float
+                                    memory_in_gbs:
+                                        description:
+                                            - A model-deployment instance of type VM.Standard.E3.Flex or VM.Standard.E4.Flex allows memory to be specified. This
+                                              specifies the size of the memory in GBs.
+                                        type: float
                     scaling_policy:
                         description:
                             - ""
@@ -202,6 +217,12 @@ EXAMPLES = """
         instance_configuration:
           # required
           instance_shape_name: instance_shape_name_example
+
+          # optional
+          model_deployment_instance_shape_config_details:
+            # optional
+            ocpus: 3.4
+            memory_in_gbs: 3.4
         scaling_policy:
           # required
           policy_type: FIXED_SIZE
@@ -243,6 +264,12 @@ EXAMPLES = """
         instance_configuration:
           # required
           instance_shape_name: instance_shape_name_example
+
+          # optional
+          model_deployment_instance_shape_config_details:
+            # optional
+            ocpus: 3.4
+            memory_in_gbs: 3.4
         scaling_policy:
           # required
           policy_type: FIXED_SIZE
@@ -280,6 +307,12 @@ EXAMPLES = """
         instance_configuration:
           # required
           instance_shape_name: instance_shape_name_example
+
+          # optional
+          model_deployment_instance_shape_config_details:
+            # optional
+            ocpus: 3.4
+            memory_in_gbs: 3.4
         scaling_policy:
           # required
           policy_type: FIXED_SIZE
@@ -400,6 +433,26 @@ model_deployment:
                                     returned: on success
                                     type: str
                                     sample: instance_shape_name_example
+                                model_deployment_instance_shape_config_details:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        ocpus:
+                                            description:
+                                                - A model-deployment instance of type VM.Standard.E3.Flex or VM.Standard.E4.Flex allows the ocpu count to be
+                                                  specified.
+                                            returned: on success
+                                            type: float
+                                            sample: 3.4
+                                        memory_in_gbs:
+                                            description:
+                                                - A model-deployment instance of type VM.Standard.E3.Flex or VM.Standard.E4.Flex allows memory to be specified.
+                                                  This specifies the size of the memory in GBs.
+                                            returned: on success
+                                            type: float
+                                            sample: 3.4
                         scaling_policy:
                             description:
                                 - ""
@@ -513,7 +566,11 @@ model_deployment:
             "model_configuration_details": {
                 "model_id": "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx",
                 "instance_configuration": {
-                    "instance_shape_name": "instance_shape_name_example"
+                    "instance_shape_name": "instance_shape_name_example",
+                    "model_deployment_instance_shape_config_details": {
+                        "ocpus": 3.4,
+                        "memory_in_gbs": 3.4
+                    }
                 },
                 "scaling_policy": {
                     "policy_type": "FIXED_SIZE",
@@ -714,7 +771,14 @@ def main():
                             instance_configuration=dict(
                                 type="dict",
                                 options=dict(
-                                    instance_shape_name=dict(type="str", required=True)
+                                    instance_shape_name=dict(type="str", required=True),
+                                    model_deployment_instance_shape_config_details=dict(
+                                        type="dict",
+                                        options=dict(
+                                            ocpus=dict(type="float"),
+                                            memory_in_gbs=dict(type="float"),
+                                        ),
+                                    ),
                                 ),
                             ),
                             scaling_policy=dict(

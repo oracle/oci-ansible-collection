@@ -30,7 +30,7 @@ oracle.oci.oci_data_science_model_deployment_facts -- Fetches details about one 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.55.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.56.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -184,6 +184,21 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The type of authentication to use for making API requests. By default <code>auth_type=&quot;api_key&quot;</code> based authentication is performed and the API key (see <em>api_user_key_file</em>) in your config file will be used. If this &#x27;auth_type&#x27; module option is not specified, the value of the OCI_ANSIBLE_AUTH_TYPE, if any, is used. Use <code>auth_type=&quot;instance_principal&quot;</code> to use instance principal based authentication when running ansible playbooks within an OCI compute instance.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-cert_bundle"></div>
+                    <b>cert_bundle</b>
+                    <a class="ansibleOptionLink" href="#parameter-cert_bundle" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The full path to a CA certificate bundle to be used for SSL verification. This will override the default CA certificate bundle. If not set, then the value of the OCI_ANSIBLE_CERT_BUNDLE variable, if any, is used.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -448,12 +463,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="5">Key</th>
+            <th colspan="6">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="5">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-model_deployments"></div>
                     <b>model_deployments</b>
                     <a class="ansibleOptionLink" href="#return-model_deployments" title="Permalink to this return value"></a>
@@ -466,12 +481,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of ModelDeployment resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;category_log_details&#x27;: {&#x27;access&#x27;: {&#x27;log_group_id&#x27;: &#x27;ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;log_id&#x27;: &#x27;ocid1.log.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;predict&#x27;: {&#x27;log_group_id&#x27;: &#x27;ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;log_id&#x27;: &#x27;ocid1.log.oc1..xxxxxxEXAMPLExxxxxx&#x27;}}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by&#x27;: &#x27;created_by_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;model_deployment_configuration_details&#x27;: {&#x27;deployment_type&#x27;: &#x27;SINGLE_MODEL&#x27;, &#x27;model_configuration_details&#x27;: {&#x27;bandwidth_mbps&#x27;: 56, &#x27;instance_configuration&#x27;: {&#x27;instance_shape_name&#x27;: &#x27;instance_shape_name_example&#x27;}, &#x27;model_id&#x27;: &#x27;ocid1.model.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;scaling_policy&#x27;: {&#x27;instance_count&#x27;: 56, &#x27;policy_type&#x27;: &#x27;FIXED_SIZE&#x27;}}}, &#x27;model_deployment_url&#x27;: &#x27;model_deployment_url_example&#x27;, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;category_log_details&#x27;: {&#x27;access&#x27;: {&#x27;log_group_id&#x27;: &#x27;ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;log_id&#x27;: &#x27;ocid1.log.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;predict&#x27;: {&#x27;log_group_id&#x27;: &#x27;ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;log_id&#x27;: &#x27;ocid1.log.oc1..xxxxxxEXAMPLExxxxxx&#x27;}}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by&#x27;: &#x27;created_by_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;model_deployment_configuration_details&#x27;: {&#x27;deployment_type&#x27;: &#x27;SINGLE_MODEL&#x27;, &#x27;model_configuration_details&#x27;: {&#x27;bandwidth_mbps&#x27;: 56, &#x27;instance_configuration&#x27;: {&#x27;instance_shape_name&#x27;: &#x27;instance_shape_name_example&#x27;, &#x27;model_deployment_instance_shape_config_details&#x27;: {&#x27;memory_in_gbs&#x27;: 3.4, &#x27;ocpus&#x27;: 3.4}}, &#x27;model_id&#x27;: &#x27;ocid1.model.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;scaling_policy&#x27;: {&#x27;instance_count&#x27;: 56, &#x27;policy_type&#x27;: &#x27;FIXED_SIZE&#x27;}}}, &#x27;model_deployment_url&#x27;: &#x27;model_deployment_url_example&#x27;, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-model_deployments/category_log_details"></div>
                     <b>category_log_details</b>
                     <a class="ansibleOptionLink" href="#return-model_deployments/category_log_details" title="Permalink to this return value"></a>
@@ -488,7 +503,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-model_deployments/category_log_details/access"></div>
                     <b>access</b>
                     <a class="ansibleOptionLink" href="#return-model_deployments/category_log_details/access" title="Permalink to this return value"></a>
@@ -506,7 +521,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-model_deployments/category_log_details/access/log_group_id"></div>
                     <b>log_group_id</b>
                     <a class="ansibleOptionLink" href="#return-model_deployments/category_log_details/access/log_group_id" title="Permalink to this return value"></a>
@@ -526,7 +541,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-model_deployments/category_log_details/access/log_id"></div>
                     <b>log_id</b>
                     <a class="ansibleOptionLink" href="#return-model_deployments/category_log_details/access/log_id" title="Permalink to this return value"></a>
@@ -546,7 +561,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-model_deployments/category_log_details/predict"></div>
                     <b>predict</b>
                     <a class="ansibleOptionLink" href="#return-model_deployments/category_log_details/predict" title="Permalink to this return value"></a>
@@ -564,7 +579,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-model_deployments/category_log_details/predict/log_group_id"></div>
                     <b>log_group_id</b>
                     <a class="ansibleOptionLink" href="#return-model_deployments/category_log_details/predict/log_group_id" title="Permalink to this return value"></a>
@@ -584,7 +599,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-model_deployments/category_log_details/predict/log_id"></div>
                     <b>log_id</b>
                     <a class="ansibleOptionLink" href="#return-model_deployments/category_log_details/predict/log_id" title="Permalink to this return value"></a>
@@ -604,7 +619,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-model_deployments/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-model_deployments/compartment_id" title="Permalink to this return value"></a>
@@ -622,7 +637,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-model_deployments/created_by"></div>
                     <b>created_by</b>
                     <a class="ansibleOptionLink" href="#return-model_deployments/created_by" title="Permalink to this return value"></a>
@@ -640,7 +655,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-model_deployments/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-model_deployments/defined_tags" title="Permalink to this return value"></a>
@@ -658,7 +673,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-model_deployments/description"></div>
                     <b>description</b>
                     <a class="ansibleOptionLink" href="#return-model_deployments/description" title="Permalink to this return value"></a>
@@ -676,7 +691,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-model_deployments/display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#return-model_deployments/display_name" title="Permalink to this return value"></a>
@@ -694,7 +709,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-model_deployments/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-model_deployments/freeform_tags" title="Permalink to this return value"></a>
@@ -712,7 +727,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-model_deployments/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-model_deployments/id" title="Permalink to this return value"></a>
@@ -730,7 +745,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-model_deployments/lifecycle_details"></div>
                     <b>lifecycle_details</b>
                     <a class="ansibleOptionLink" href="#return-model_deployments/lifecycle_details" title="Permalink to this return value"></a>
@@ -749,7 +764,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-model_deployments/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-model_deployments/lifecycle_state" title="Permalink to this return value"></a>
@@ -767,7 +782,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-model_deployments/model_deployment_configuration_details"></div>
                     <b>model_deployment_configuration_details</b>
                     <a class="ansibleOptionLink" href="#return-model_deployments/model_deployment_configuration_details" title="Permalink to this return value"></a>
@@ -784,7 +799,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-model_deployments/model_deployment_configuration_details/deployment_type"></div>
                     <b>deployment_type</b>
                     <a class="ansibleOptionLink" href="#return-model_deployments/model_deployment_configuration_details/deployment_type" title="Permalink to this return value"></a>
@@ -803,7 +818,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-model_deployments/model_deployment_configuration_details/model_configuration_details"></div>
                     <b>model_configuration_details</b>
                     <a class="ansibleOptionLink" href="#return-model_deployments/model_deployment_configuration_details/model_configuration_details" title="Permalink to this return value"></a>
@@ -821,7 +836,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-model_deployments/model_deployment_configuration_details/model_configuration_details/bandwidth_mbps"></div>
                     <b>bandwidth_mbps</b>
                     <a class="ansibleOptionLink" href="#return-model_deployments/model_deployment_configuration_details/model_configuration_details/bandwidth_mbps" title="Permalink to this return value"></a>
@@ -841,7 +856,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-model_deployments/model_deployment_configuration_details/model_configuration_details/instance_configuration"></div>
                     <b>instance_configuration</b>
                     <a class="ansibleOptionLink" href="#return-model_deployments/model_deployment_configuration_details/model_configuration_details/instance_configuration" title="Permalink to this return value"></a>
@@ -860,7 +875,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-model_deployments/model_deployment_configuration_details/model_configuration_details/instance_configuration/instance_shape_name"></div>
                     <b>instance_shape_name</b>
                     <a class="ansibleOptionLink" href="#return-model_deployments/model_deployment_configuration_details/model_configuration_details/instance_configuration/instance_shape_name" title="Permalink to this return value"></a>
@@ -876,12 +891,76 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">instance_shape_name_example</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-model_deployments/model_deployment_configuration_details/model_configuration_details/instance_configuration/model_deployment_instance_shape_config_details"></div>
+                    <b>model_deployment_instance_shape_config_details</b>
+                    <a class="ansibleOptionLink" href="#return-model_deployments/model_deployment_configuration_details/model_configuration_details/instance_configuration/model_deployment_instance_shape_config_details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-model_deployments/model_deployment_configuration_details/model_configuration_details/instance_configuration/model_deployment_instance_shape_config_details/memory_in_gbs"></div>
+                    <b>memory_in_gbs</b>
+                    <a class="ansibleOptionLink" href="#return-model_deployments/model_deployment_configuration_details/model_configuration_details/instance_configuration/model_deployment_instance_shape_config_details/memory_in_gbs" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A model-deployment instance of type VM.Standard.E3.Flex or VM.Standard.E4.Flex allows memory to be specified. This specifies the size of the memory in GBs.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-model_deployments/model_deployment_configuration_details/model_configuration_details/instance_configuration/model_deployment_instance_shape_config_details/ocpus"></div>
+                    <b>ocpus</b>
+                    <a class="ansibleOptionLink" href="#return-model_deployments/model_deployment_configuration_details/model_configuration_details/instance_configuration/model_deployment_instance_shape_config_details/ocpus" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A model-deployment instance of type VM.Standard.E3.Flex or VM.Standard.E4.Flex allows the ocpu count to be specified.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
+                                    </td>
+            </tr>
+                    
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-model_deployments/model_deployment_configuration_details/model_configuration_details/model_id"></div>
                     <b>model_id</b>
                     <a class="ansibleOptionLink" href="#return-model_deployments/model_deployment_configuration_details/model_configuration_details/model_id" title="Permalink to this return value"></a>
@@ -901,7 +980,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-model_deployments/model_deployment_configuration_details/model_configuration_details/scaling_policy"></div>
                     <b>scaling_policy</b>
                     <a class="ansibleOptionLink" href="#return-model_deployments/model_deployment_configuration_details/model_configuration_details/scaling_policy" title="Permalink to this return value"></a>
@@ -920,7 +999,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-model_deployments/model_deployment_configuration_details/model_configuration_details/scaling_policy/instance_count"></div>
                     <b>instance_count</b>
                     <a class="ansibleOptionLink" href="#return-model_deployments/model_deployment_configuration_details/model_configuration_details/scaling_policy/instance_count" title="Permalink to this return value"></a>
@@ -941,7 +1020,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-model_deployments/model_deployment_configuration_details/model_configuration_details/scaling_policy/policy_type"></div>
                     <b>policy_type</b>
                     <a class="ansibleOptionLink" href="#return-model_deployments/model_deployment_configuration_details/model_configuration_details/scaling_policy/policy_type" title="Permalink to this return value"></a>
@@ -962,7 +1041,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-model_deployments/model_deployment_url"></div>
                     <b>model_deployment_url</b>
                     <a class="ansibleOptionLink" href="#return-model_deployments/model_deployment_url" title="Permalink to this return value"></a>
@@ -980,7 +1059,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-model_deployments/project_id"></div>
                     <b>project_id</b>
                     <a class="ansibleOptionLink" href="#return-model_deployments/project_id" title="Permalink to this return value"></a>
@@ -998,7 +1077,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-model_deployments/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-model_deployments/time_created" title="Permalink to this return value"></a>

@@ -30,7 +30,7 @@ oracle.oci.oci_oda_channel -- Manage a Channel resource in Oracle Cloud Infrastr
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.55.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.56.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -344,6 +344,21 @@ Parameters
                                             <div>The ID of the Skill or Digital Assistant that the Channel is routed to.</div>
                                             <div>This parameter is updatable.</div>
                                             <div>Applicable when type is one of [&#x27;FACEBOOK&#x27;, &#x27;MSTEAMS&#x27;, &#x27;OSVC&#x27;, &#x27;WEB&#x27;, &#x27;SLACK&#x27;, &#x27;WEBHOOK&#x27;, &#x27;ANDROID&#x27;, &#x27;IOS&#x27;, &#x27;CORTANA&#x27;, &#x27;TWILIO&#x27;]</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-cert_bundle"></div>
+                    <b>cert_bundle</b>
+                    <a class="ansibleOptionLink" href="#parameter-cert_bundle" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The full path to a CA certificate bundle to be used for SSL verification. This will override the default CA certificate bundle. If not set, then the value of the OCI_ANSIBLE_CERT_BUNDLE variable, if any, is used.</div>
                                                         </td>
             </tr>
                                 <tr>

@@ -188,7 +188,7 @@ EXAMPLES = """
 """
 
 RETURN = """
-opsi_data_object:
+opsi_data_objects:
     description:
         - Details of the OpsiDataObjects resource acted upon by the current operation
     returned: on success
