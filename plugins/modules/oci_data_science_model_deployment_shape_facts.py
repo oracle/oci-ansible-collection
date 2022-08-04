@@ -68,10 +68,17 @@ model_deployment_shapes:
             returned: on success
             type: int
             sample: 56
+        shape_series:
+            description:
+                - The family that the compute shape belongs to.
+            returned: on success
+            type: str
+            sample: AMD_ROME
     sample: [{
         "name": "name_example",
         "core_count": 56,
-        "memory_in_gbs": 56
+        "memory_in_gbs": 56,
+        "shape_series": "AMD_ROME"
     }]
 """
 

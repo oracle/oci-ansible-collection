@@ -71,6 +71,12 @@ options:
         choices:
             - "BALANCED"
             - "HIGH_PERFORMANCE"
+    node_count:
+        description:
+            - The number of nodes to launch for the DB system of the standby in the Data Guard association. For a 2-node RAC virtual machine DB system, specify
+              either 1 or 2. If you do not supply this parameter, the default is the node count of the primary DB system.
+            - Applicable when creation_type is 'NewDbSystem'
+        type: int
     subnet_id:
         description:
             - "The OCID of the subnet the DB system is associated with.
@@ -105,6 +111,70 @@ options:
             - The hostname for the DB node.
             - Applicable when creation_type is 'NewDbSystem'
         type: str
+    time_zone:
+        description:
+            - The time zone of the dataguard standby DB system. For details, see L(DB System Time
+              Zones,https://docs.cloud.oracle.com/Content/Database/References/timezones.htm).
+            - Applicable when creation_type is 'NewDbSystem'
+        type: str
+    fault_domains:
+        description:
+            - A Fault Domain is a grouping of hardware and infrastructure within an availability domain.
+              Fault Domains let you distribute your instances so that they are not on the same physical
+              hardware within a single availability domain. A hardware failure or maintenance
+              that affects one Fault Domain does not affect DB systems in other Fault Domains.
+            - If you do not specify the Fault Domain, the system selects one for you. To change the Fault
+              Domain for a DB system, terminate it and launch a new DB system in the preferred Fault Domain.
+            - If the node count is greater than 1, you can specify which Fault Domains these nodes will be distributed into.
+              The system assigns your nodes automatically to the Fault Domains you specify so that
+              no Fault Domain contains more than one node.
+            - To get a list of Fault Domains, use the
+              L(ListFaultDomains,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/latest/FaultDomain/ListFaultDomains) operation in the
+              Identity and Access Management Service API.
+            - "Example: `FAULT-DOMAIN-1`"
+            - Applicable when creation_type is 'NewDbSystem'
+        type: list
+        elements: str
+    private_ip:
+        description:
+            - The IPv4 address from the provided OCI subnet which needs to be assigned to the VNIC. If not provided, it will
+              be auto-assigned with an available IPv4 address from the subnet.
+            - Applicable when creation_type is 'NewDbSystem'
+        type: str
+    license_model:
+        description:
+            - The Oracle license model that applies to all the databases on the dataguard standby DB system. The default is LICENSE_INCLUDED.
+            - Applicable when creation_type is 'NewDbSystem'
+        type: str
+        choices:
+            - "LICENSE_INCLUDED"
+            - "BRING_YOUR_OWN_LICENSE"
+    db_system_freeform_tags:
+        description:
+            - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - Applicable when creation_type is 'NewDbSystem'
+        type: dict
+    db_system_defined_tags:
+        description:
+            - Defined tags for this resource. Each key is predefined and scoped to a namespace.
+              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+            - Applicable when creation_type is 'NewDbSystem'
+        type: dict
+    database_freeform_tags:
+        description:
+            - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
+              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+            - "Example: `{\\"Department\\": \\"Finance\\"}`"
+            - Applicable when creation_type is 'NewDbSystem'
+        type: dict
+    database_defined_tags:
+        description:
+            - Defined tags for this resource. Each key is predefined and scoped to a namespace.
+              For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
+            - Applicable when creation_type is 'NewDbSystem'
+        type: dict
     peer_vm_cluster_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VM Cluster in which to create the standby database.
@@ -228,10 +298,19 @@ EXAMPLES = """
     shape: shape_example
     cpu_core_count: 56
     storage_volume_performance_mode: BALANCED
+    node_count: 56
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     nsg_ids: [ "nsg_ids_example" ]
     backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
     hostname: hostname_example
+    time_zone: time_zone_example
+    fault_domains: [ "fault_domains_example" ]
+    private_ip: private_ip_example
+    license_model: LICENSE_INCLUDED
+    db_system_freeform_tags: null
+    db_system_defined_tags: null
+    database_freeform_tags: null
+    database_defined_tags: null
     database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
     peer_db_unique_name: peer_db_unique_name_example
     peer_sid_prefix: peer_sid_prefix_example
@@ -522,19 +601,28 @@ class DataGuardAssociationHelperGen(OCIResourceHelperBase):
     def get_exclude_attributes(self):
         return [
             "database_software_image_id",
+            "db_system_freeform_tags",
+            "db_system_defined_tags",
             "shape",
             "availability_domain",
+            "license_model",
             "peer_vm_cluster_id",
             "display_name",
+            "time_zone",
+            "fault_domains",
+            "private_ip",
             "hostname",
             "database_admin_password",
             "peer_db_unique_name",
             "peer_sid_prefix",
             "creation_type",
+            "database_freeform_tags",
             "storage_volume_performance_mode",
             "nsg_ids",
             "subnet_id",
             "backup_network_nsg_ids",
+            "database_defined_tags",
+            "node_count",
             "cpu_core_count",
         ]
 
@@ -597,10 +685,21 @@ def main():
             storage_volume_performance_mode=dict(
                 type="str", choices=["BALANCED", "HIGH_PERFORMANCE"]
             ),
+            node_count=dict(type="int"),
             subnet_id=dict(type="str"),
             nsg_ids=dict(type="list", elements="str"),
             backup_network_nsg_ids=dict(type="list", elements="str"),
             hostname=dict(type="str"),
+            time_zone=dict(type="str"),
+            fault_domains=dict(type="list", elements="str"),
+            private_ip=dict(type="str"),
+            license_model=dict(
+                type="str", choices=["LICENSE_INCLUDED", "BRING_YOUR_OWN_LICENSE"]
+            ),
+            db_system_freeform_tags=dict(type="dict"),
+            db_system_defined_tags=dict(type="dict"),
+            database_freeform_tags=dict(type="dict"),
+            database_defined_tags=dict(type="dict"),
             peer_vm_cluster_id=dict(type="str"),
             database_software_image_id=dict(type="str"),
             creation_type=dict(

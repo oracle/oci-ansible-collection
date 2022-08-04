@@ -124,10 +124,6 @@ class LogAnalyticsEntityTypeHelperCustom:
         super(LogAnalyticsEntityTypeHelperCustom, self).create_resource()
         return self.get_resource().data
 
-    def update_resource(self):
-        super(LogAnalyticsEntityTypeHelperCustom, self).update_resource()
-        return self.get_resource().data
-
     def delete_resource(self):
         super(LogAnalyticsEntityTypeHelperCustom, self).delete_resource()
         return self.get_resource().data

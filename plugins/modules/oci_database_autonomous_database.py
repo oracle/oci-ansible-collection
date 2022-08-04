@@ -87,8 +87,8 @@ options:
     ncharacter_set:
         description:
             - "The character set for the Autonomous Database.  The default is AL32UTF8. Use L(List Autonomous Database Character
-              Sets,https://docs.cloud.oracle.com/autonomousDatabaseCharacterSets) to list the allowed values for an Autonomous Database on shared Exadata
-              infrastructure.
+              Sets,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/latest/autonomousDatabaseCharacterSets/ListAutonomousDatabaseCharacterSets) to
+              list the allowed values for an Autonomous Database on shared Exadata infrastructure.
               For an Autonomous Database on dedicated Exadata infrastructure, the allowed values are:
               AL16UTF16 or UTF8."
         type: str

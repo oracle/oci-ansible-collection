@@ -4,6 +4,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.56.0]
+
+## Added
+
+ - Support for the Process Automation service
+ - Support for the Digital Media service
+ - Support for the Managed Access (lockbox) service
+ - Support for the Fusion Apps as a Service service
+ - Support for `cert_bundle` param to override the default ssl certificate
+ - Support for extending maintenance reboot due dates on virtual machines in the Compute service
+ - Support for ingress routing tables on NAT gateways and internet gateways in the Networking service
+ - Support for displaying rack serial numbers for Exadata infrastructure resources in the Database service
+ - Support for creating Data Guard associations with new database systems in the Database service
+ - Support for grace periods for wallet rotation on autonomous databases in the Database service
+ - Support for container database and pluggable database discovery in the Stack Monitoring service
+ - Support to provide database management private endpoint ID as input to enable DBCS databases in Operations Insights service
+ - Support for hosting models on flexible compute shapes with customizable OCPUs and memory in the Data Science service
+
+## Breaking
+
+ - Parameter host_type in module `oci_opsi_host_insight_facts` in the Operations Insights service has strict value checking for allowed values.
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.77.0
+
 ## [2.55.0]
 
 # 

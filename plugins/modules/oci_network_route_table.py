@@ -148,6 +148,13 @@ options:
                 description:
                     - An optional description of your choice for the rule.
                 type: str
+            route_type:
+                description:
+                    - A route rule can be STATIC if manually added to the route table, LOCAL if added by OCI to the route table.
+                type: str
+                choices:
+                    - "STATIC"
+                    - "LOCAL"
     rt_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the route table.
@@ -182,6 +189,7 @@ EXAMPLES = """
       destination: destination_example
       destination_type: CIDR_BLOCK
       description: description_example
+      route_type: STATIC
 
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -208,6 +216,7 @@ EXAMPLES = """
       destination: destination_example
       destination_type: CIDR_BLOCK
       description: description_example
+      route_type: STATIC
 
 - name: Update route_table using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_route_table:
@@ -229,6 +238,7 @@ EXAMPLES = """
       destination: destination_example
       destination_type: CIDR_BLOCK
       description: description_example
+      route_type: STATIC
 
 - name: Delete route_table
   oci_network_route_table:
@@ -352,6 +362,12 @@ route_table:
                     returned: on success
                     type: str
                     sample: description_example
+                route_type:
+                    description:
+                        - A route rule can be STATIC if manually added to the route table, LOCAL if added by OCI to the route table.
+                    returned: on success
+                    type: str
+                    sample: STATIC
         time_created:
             description:
                 - The date and time the route table was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
@@ -377,7 +393,8 @@ route_table:
             "destination": "destination_example",
             "destination_type": "CIDR_BLOCK",
             "network_entity_id": "ocid1.networkentity.oc1..xxxxxxEXAMPLExxxxxx",
-            "description": "description_example"
+            "description": "description_example",
+            "route_type": "STATIC"
         }],
         "time_created": "2013-10-20T19:20:30+01:00",
         "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
@@ -551,6 +568,7 @@ def main():
                     ),
                     network_entity_id=dict(type="str", required=True),
                     description=dict(type="str"),
+                    route_type=dict(type="str", choices=["STATIC", "LOCAL"]),
                 ),
             ),
             rt_id=dict(aliases=["id"], type="str"),

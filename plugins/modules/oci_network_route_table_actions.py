@@ -168,6 +168,12 @@ route_table:
                     returned: on success
                     type: str
                     sample: description_example
+                route_type:
+                    description:
+                        - A route rule can be STATIC if manually added to the route table, LOCAL if added by OCI to the route table.
+                    returned: on success
+                    type: str
+                    sample: STATIC
         time_created:
             description:
                 - The date and time the route table was created, in the format defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
@@ -193,7 +199,8 @@ route_table:
             "destination": "destination_example",
             "destination_type": "CIDR_BLOCK",
             "network_entity_id": "ocid1.networkentity.oc1..xxxxxxEXAMPLExxxxxx",
-            "description": "description_example"
+            "description": "description_example",
+            "route_type": "STATIC"
         }],
         "time_created": "2013-10-20T19:20:30+01:00",
         "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"

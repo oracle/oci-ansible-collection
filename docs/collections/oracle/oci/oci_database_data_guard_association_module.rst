@@ -30,7 +30,7 @@ oracle.oci.oci_database_data_guard_association -- Manage a DataGuardAssociation 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.55.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.56.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -221,6 +221,21 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-cert_bundle"></div>
+                    <b>cert_bundle</b>
+                    <a class="ansibleOptionLink" href="#parameter-cert_bundle" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The full path to a CA certificate bundle to be used for SSL verification. This will override the default CA certificate bundle. If not set, then the value of the OCI_ANSIBLE_CERT_BUNDLE variable, if any, is used.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-config_file_location"></div>
                     <b>config_file_location</b>
                     <a class="ansibleOptionLink" href="#parameter-config_file_location" title="Permalink to this option"></a>
@@ -328,6 +343,39 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-database_defined_tags"></div>
+                    <b>database_defined_tags</b>
+                    <a class="ansibleOptionLink" href="#parameter-database_defined_tags" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Applicable when creation_type is &#x27;NewDbSystem&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-database_freeform_tags"></div>
+                    <b>database_freeform_tags</b>
+                    <a class="ansibleOptionLink" href="#parameter-database_freeform_tags" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
+                                            <div>Applicable when creation_type is &#x27;NewDbSystem&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-database_id"></div>
                     <b>database_id</b>
                     <a class="ansibleOptionLink" href="#parameter-database_id" title="Permalink to this option"></a>
@@ -358,6 +406,39 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-db_system_defined_tags"></div>
+                    <b>db_system_defined_tags</b>
+                    <a class="ansibleOptionLink" href="#parameter-db_system_defined_tags" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Applicable when creation_type is &#x27;NewDbSystem&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-db_system_freeform_tags"></div>
+                    <b>db_system_freeform_tags</b>
+                    <a class="ansibleOptionLink" href="#parameter-db_system_freeform_tags" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Example: `{&quot;Department&quot;: &quot;Finance&quot;}`</div>
+                                            <div>Applicable when creation_type is &#x27;NewDbSystem&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#parameter-display_name" title="Permalink to this option"></a>
@@ -373,6 +454,26 @@ Parameters
                                             <div>Applicable when creation_type is &#x27;NewDbSystem&#x27;</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-fault_domains"></div>
+                    <b>fault_domains</b>
+                    <a class="ansibleOptionLink" href="#parameter-fault_domains" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A Fault Domain is a grouping of hardware and infrastructure within an availability domain. Fault Domains let you distribute your instances so that they are not on the same physical hardware within a single availability domain. A hardware failure or maintenance that affects one Fault Domain does not affect DB systems in other Fault Domains.</div>
+                                            <div>If you do not specify the Fault Domain, the system selects one for you. To change the Fault Domain for a DB system, terminate it and launch a new DB system in the preferred Fault Domain.</div>
+                                            <div>If the node count is greater than 1, you can specify which Fault Domains these nodes will be distributed into. The system assigns your nodes automatically to the Fault Domains you specify so that no Fault Domain contains more than one node.</div>
+                                            <div>To get a list of Fault Domains, use the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/identity/latest/FaultDomain/ListFaultDomains'>ListFaultDomains</a> operation in the Identity and Access Management Service API.</div>
+                                            <div>Example: `FAULT-DOMAIN-1`</div>
+                                            <div>Applicable when creation_type is &#x27;NewDbSystem&#x27;</div>
+                                                        </td>
             </tr>
                                 <tr>
                                                                 <td colspan="1">
@@ -442,6 +543,42 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The list of attributes of this resource which should be used to uniquely identify an instance of the resource. By default, all the attributes of a resource are used to uniquely identify a resource.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-license_model"></div>
+                    <b>license_model</b>
+                    <a class="ansibleOptionLink" href="#parameter-license_model" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>LICENSE_INCLUDED</li>
+                                                                                                                                                                                                <li>BRING_YOUR_OWN_LICENSE</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The Oracle license model that applies to all the databases on the dataguard standby DB system. The default is LICENSE_INCLUDED.</div>
+                                            <div>Applicable when creation_type is &#x27;NewDbSystem&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-node_count"></div>
+                    <b>node_count</b>
+                    <a class="ansibleOptionLink" href="#parameter-node_count" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The number of nodes to launch for the DB system of the standby in the Data Guard association. For a 2-node RAC virtual machine DB system, specify either 1 or 2. If you do not supply this parameter, the default is the node count of the primary DB system.</div>
+                                            <div>Applicable when creation_type is &#x27;NewDbSystem&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -536,6 +673,22 @@ Parameters
                                                                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the VM Cluster in which to create the standby database. You must supply this value if creationType is `ExistingVmCluster`.</div>
                                             <div>Applicable when creation_type is &#x27;ExistingVmCluster&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-private_ip"></div>
+                    <b>private_ip</b>
+                    <a class="ansibleOptionLink" href="#parameter-private_ip" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The IPv4 address from the provided OCI subnet which needs to be assigned to the VNIC. If not provided, it will be auto-assigned with an available IPv4 address from the subnet.</div>
+                                            <div>Applicable when creation_type is &#x27;NewDbSystem&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -666,6 +819,22 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-time_zone"></div>
+                    <b>time_zone</b>
+                    <a class="ansibleOptionLink" href="#parameter-time_zone" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The time zone of the dataguard standby DB system. For details, see <a href='https://docs.cloud.oracle.com/Content/Database/References/timezones.htm'>DB System Time Zones</a>.</div>
+                                            <div>Applicable when creation_type is &#x27;NewDbSystem&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-transport_type"></div>
                     <b>transport_type</b>
                     <a class="ansibleOptionLink" href="#parameter-transport_type" title="Permalink to this option"></a>
@@ -762,10 +931,19 @@ Examples
         shape: shape_example
         cpu_core_count: 56
         storage_volume_performance_mode: BALANCED
+        node_count: 56
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
         backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
         hostname: hostname_example
+        time_zone: time_zone_example
+        fault_domains: [ "fault_domains_example" ]
+        private_ip: private_ip_example
+        license_model: LICENSE_INCLUDED
+        db_system_freeform_tags: null
+        db_system_defined_tags: null
+        database_freeform_tags: null
+        database_defined_tags: null
         database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
         peer_db_unique_name: peer_db_unique_name_example
         peer_sid_prefix: peer_sid_prefix_example

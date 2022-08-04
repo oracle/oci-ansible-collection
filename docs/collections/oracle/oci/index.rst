@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 2.55.0
+Collection version 2.56.0
 
 .. toctree::
     :maxdepth: 1
@@ -279,6 +279,7 @@ Modules
 * :ref:`oci_compute_instance_console_history_facts <ansible_collections.oracle.oci.oci_compute_instance_console_history_facts_module>` -- Fetches details about one or multiple InstanceConsoleHistory resources in Oracle Cloud Infrastructure
 * :ref:`oci_compute_instance_credentials_facts <ansible_collections.oracle.oci.oci_compute_instance_credentials_facts_module>` -- Fetches details about a InstanceCredentials resource in Oracle Cloud Infrastructure
 * :ref:`oci_compute_instance_facts <ansible_collections.oracle.oci.oci_compute_instance_facts_module>` -- Fetches details about one or multiple Instance resources in Oracle Cloud Infrastructure
+* :ref:`oci_compute_instance_maintenance_reboot_facts <ansible_collections.oracle.oci.oci_compute_instance_maintenance_reboot_facts_module>` -- Fetches details about a InstanceMaintenanceReboot resource in Oracle Cloud Infrastructure
 * :ref:`oci_compute_management_cluster_network <ansible_collections.oracle.oci.oci_compute_management_cluster_network_module>` -- Manage a ClusterNetwork resource in Oracle Cloud Infrastructure
 * :ref:`oci_compute_management_cluster_network_actions <ansible_collections.oracle.oci.oci_compute_management_cluster_network_actions_module>` -- Perform actions on a ClusterNetwork resource in Oracle Cloud Infrastructure
 * :ref:`oci_compute_management_cluster_network_facts <ansible_collections.oracle.oci.oci_compute_management_cluster_network_facts_module>` -- Fetches details about one or multiple ClusterNetwork resources in Oracle Cloud Infrastructure
@@ -729,6 +730,20 @@ Modules
 * :ref:`oci_functions_function <ansible_collections.oracle.oci.oci_functions_function_module>` -- Manage a Function resource in Oracle Cloud Infrastructure
 * :ref:`oci_functions_function_actions <ansible_collections.oracle.oci.oci_functions_function_actions_module>` -- Perform actions on a Function resource in Oracle Cloud Infrastructure
 * :ref:`oci_functions_function_facts <ansible_collections.oracle.oci.oci_functions_function_facts_module>` -- Fetches details about one or multiple Function resources in Oracle Cloud Infrastructure
+* :ref:`oci_fusion_apps_admin_user_facts <ansible_collections.oracle.oci.oci_fusion_apps_admin_user_facts_module>` -- Fetches details about one or multiple AdminUser resources in Oracle Cloud Infrastructure
+* :ref:`oci_fusion_apps_data_masking_activity_facts <ansible_collections.oracle.oci.oci_fusion_apps_data_masking_activity_facts_module>` -- Fetches details about one or multiple DataMaskingActivity resources in Oracle Cloud Infrastructure
+* :ref:`oci_fusion_apps_fusion_environment_actions <ansible_collections.oracle.oci.oci_fusion_apps_fusion_environment_actions_module>` -- Perform actions on a FusionEnvironment resource in Oracle Cloud Infrastructure
+* :ref:`oci_fusion_apps_fusion_environment_facts <ansible_collections.oracle.oci.oci_fusion_apps_fusion_environment_facts_module>` -- Fetches details about one or multiple FusionEnvironment resources in Oracle Cloud Infrastructure
+* :ref:`oci_fusion_apps_fusion_environment_family <ansible_collections.oracle.oci.oci_fusion_apps_fusion_environment_family_module>` -- Manage a FusionEnvironmentFamily resource in Oracle Cloud Infrastructure
+* :ref:`oci_fusion_apps_fusion_environment_family_actions <ansible_collections.oracle.oci.oci_fusion_apps_fusion_environment_family_actions_module>` -- Perform actions on a FusionEnvironmentFamily resource in Oracle Cloud Infrastructure
+* :ref:`oci_fusion_apps_fusion_environment_family_facts <ansible_collections.oracle.oci.oci_fusion_apps_fusion_environment_family_facts_module>` -- Fetches details about one or multiple FusionEnvironmentFamily resources in Oracle Cloud Infrastructure
+* :ref:`oci_fusion_apps_fusion_environment_family_limits_and_usage_facts <ansible_collections.oracle.oci.oci_fusion_apps_fusion_environment_family_limits_and_usage_facts_module>` -- Fetches details about a FusionEnvironmentFamilyLimitsAndUsage resource in Oracle Cloud Infrastructure
+* :ref:`oci_fusion_apps_fusion_environment_status_facts <ansible_collections.oracle.oci.oci_fusion_apps_fusion_environment_status_facts_module>` -- Fetches details about a FusionEnvironmentStatus resource in Oracle Cloud Infrastructure
+* :ref:`oci_fusion_apps_refresh_activity_facts <ansible_collections.oracle.oci.oci_fusion_apps_refresh_activity_facts_module>` -- Fetches details about one or multiple RefreshActivity resources in Oracle Cloud Infrastructure
+* :ref:`oci_fusion_apps_scheduled_activity_facts <ansible_collections.oracle.oci.oci_fusion_apps_scheduled_activity_facts_module>` -- Fetches details about one or multiple ScheduledActivity resources in Oracle Cloud Infrastructure
+* :ref:`oci_fusion_apps_service_attachment_facts <ansible_collections.oracle.oci.oci_fusion_apps_service_attachment_facts_module>` -- Fetches details about one or multiple ServiceAttachment resources in Oracle Cloud Infrastructure
+* :ref:`oci_fusion_apps_subscription_facts <ansible_collections.oracle.oci.oci_fusion_apps_subscription_facts_module>` -- Fetches details about a Subscription resource in Oracle Cloud Infrastructure
+* :ref:`oci_fusion_apps_time_available_for_refresh_facts <ansible_collections.oracle.oci.oci_fusion_apps_time_available_for_refresh_facts_module>` -- Fetches details about one or multiple TimeAvailableForRefresh resources in Oracle Cloud Infrastructure
 * :ref:`oci_generic_artifacts_content_generic_artifact_content <ansible_collections.oracle.oci.oci_generic_artifacts_content_generic_artifact_content_module>` -- Manage a GenericArtifactContent resource in Oracle Cloud Infrastructure
 * :ref:`oci_generic_artifacts_content_generic_artifact_content_facts <ansible_collections.oracle.oci.oci_generic_artifacts_content_generic_artifact_content_facts_module>` -- Fetches details about a GenericArtifactContent resource in Oracle Cloud Infrastructure
 * :ref:`oci_generic_artifacts_content_generic_artifact_facts <ansible_collections.oracle.oci.oci_generic_artifacts_content_generic_artifact_facts_module>` -- Fetches details about a GenericArtifact resource in Oracle Cloud Infrastructure
@@ -900,6 +915,16 @@ Modules
 * :ref:`oci_loadbalancer_shape_facts <ansible_collections.oracle.oci.oci_loadbalancer_shape_facts_module>` -- Fetches details about one or multiple LoadBalancerShape resources in Oracle Cloud Infrastructure
 * :ref:`oci_loadbalancer_ssl_cipher_suite <ansible_collections.oracle.oci.oci_loadbalancer_ssl_cipher_suite_module>` -- Manage a SslCipherSuite resource in Oracle Cloud Infrastructure
 * :ref:`oci_loadbalancer_ssl_cipher_suite_facts <ansible_collections.oracle.oci.oci_loadbalancer_ssl_cipher_suite_facts_module>` -- Fetches details about one or multiple SslCipherSuite resources in Oracle Cloud Infrastructure
+* :ref:`oci_lockbox <ansible_collections.oracle.oci.oci_lockbox_module>` -- Manage a Lockbox resource in Oracle Cloud Infrastructure
+* :ref:`oci_lockbox_access_materials_facts <ansible_collections.oracle.oci.oci_lockbox_access_materials_facts_module>` -- Fetches details about a AccessMaterials resource in Oracle Cloud Infrastructure
+* :ref:`oci_lockbox_access_request <ansible_collections.oracle.oci.oci_lockbox_access_request_module>` -- Manage an AccessRequest resource in Oracle Cloud Infrastructure
+* :ref:`oci_lockbox_access_request_actions <ansible_collections.oracle.oci.oci_lockbox_access_request_actions_module>` -- Perform actions on an AccessRequest resource in Oracle Cloud Infrastructure
+* :ref:`oci_lockbox_access_request_facts <ansible_collections.oracle.oci.oci_lockbox_access_request_facts_module>` -- Fetches details about one or multiple AccessRequest resources in Oracle Cloud Infrastructure
+* :ref:`oci_lockbox_actions <ansible_collections.oracle.oci.oci_lockbox_actions_module>` -- Perform actions on a Lockbox resource in Oracle Cloud Infrastructure
+* :ref:`oci_lockbox_approval_template <ansible_collections.oracle.oci.oci_lockbox_approval_template_module>` -- Manage an ApprovalTemplate resource in Oracle Cloud Infrastructure
+* :ref:`oci_lockbox_approval_template_actions <ansible_collections.oracle.oci.oci_lockbox_approval_template_actions_module>` -- Perform actions on an ApprovalTemplate resource in Oracle Cloud Infrastructure
+* :ref:`oci_lockbox_approval_template_facts <ansible_collections.oracle.oci.oci_lockbox_approval_template_facts_module>` -- Fetches details about one or multiple ApprovalTemplate resources in Oracle Cloud Infrastructure
+* :ref:`oci_lockbox_facts <ansible_collections.oracle.oci.oci_lockbox_facts_module>` -- Fetches details about one or multiple Lockbox resources in Oracle Cloud Infrastructure
 * :ref:`oci_log_analytics_category_facts <ansible_collections.oracle.oci.oci_log_analytics_category_facts_module>` -- Fetches details about one or multiple LogAnalyticsCategory resources in Oracle Cloud Infrastructure
 * :ref:`oci_log_analytics_entity <ansible_collections.oracle.oci.oci_log_analytics_entity_module>` -- Manage a LogAnalyticsEntity resource in Oracle Cloud Infrastructure
 * :ref:`oci_log_analytics_entity_actions <ansible_collections.oracle.oci.oci_log_analytics_entity_actions_module>` -- Perform actions on a LogAnalyticsEntity resource in Oracle Cloud Infrastructure
@@ -973,6 +998,30 @@ Modules
 * :ref:`oci_marketplace_search_listings_facts <ansible_collections.oracle.oci.oci_marketplace_search_listings_facts_module>` -- Fetches details about one or multiple SearchListings resources in Oracle Cloud Infrastructure
 * :ref:`oci_marketplace_tax_facts <ansible_collections.oracle.oci.oci_marketplace_tax_facts_module>` -- Fetches details about one or multiple Tax resources in Oracle Cloud Infrastructure
 * :ref:`oci_marketplace_third_party_paid_listing_eligibility_facts <ansible_collections.oracle.oci.oci_marketplace_third_party_paid_listing_eligibility_facts_module>` -- Fetches details about a ThirdPartyPaidListingEligibility resource in Oracle Cloud Infrastructure
+* :ref:`oci_media_services_media_asset <ansible_collections.oracle.oci.oci_media_services_media_asset_module>` -- Manage a MediaAsset resource in Oracle Cloud Infrastructure
+* :ref:`oci_media_services_media_asset_actions <ansible_collections.oracle.oci.oci_media_services_media_asset_actions_module>` -- Perform actions on a MediaAsset resource in Oracle Cloud Infrastructure
+* :ref:`oci_media_services_media_asset_distribution_channel_attachment <ansible_collections.oracle.oci.oci_media_services_media_asset_distribution_channel_attachment_module>` -- Manage a MediaAssetDistributionChannelAttachment resource in Oracle Cloud Infrastructure
+* :ref:`oci_media_services_media_asset_distribution_channel_attachment_facts <ansible_collections.oracle.oci.oci_media_services_media_asset_distribution_channel_attachment_facts_module>` -- Fetches details about one or multiple MediaAssetDistributionChannelAttachment resources in Oracle Cloud Infrastructure
+* :ref:`oci_media_services_media_asset_facts <ansible_collections.oracle.oci.oci_media_services_media_asset_facts_module>` -- Fetches details about one or multiple MediaAsset resources in Oracle Cloud Infrastructure
+* :ref:`oci_media_services_media_workflow <ansible_collections.oracle.oci.oci_media_services_media_workflow_module>` -- Manage a MediaWorkflow resource in Oracle Cloud Infrastructure
+* :ref:`oci_media_services_media_workflow_actions <ansible_collections.oracle.oci.oci_media_services_media_workflow_actions_module>` -- Perform actions on a MediaWorkflow resource in Oracle Cloud Infrastructure
+* :ref:`oci_media_services_media_workflow_configuration <ansible_collections.oracle.oci.oci_media_services_media_workflow_configuration_module>` -- Manage a MediaWorkflowConfiguration resource in Oracle Cloud Infrastructure
+* :ref:`oci_media_services_media_workflow_configuration_actions <ansible_collections.oracle.oci.oci_media_services_media_workflow_configuration_actions_module>` -- Perform actions on a MediaWorkflowConfiguration resource in Oracle Cloud Infrastructure
+* :ref:`oci_media_services_media_workflow_configuration_facts <ansible_collections.oracle.oci.oci_media_services_media_workflow_configuration_facts_module>` -- Fetches details about one or multiple MediaWorkflowConfiguration resources in Oracle Cloud Infrastructure
+* :ref:`oci_media_services_media_workflow_facts <ansible_collections.oracle.oci.oci_media_services_media_workflow_facts_module>` -- Fetches details about one or multiple MediaWorkflow resources in Oracle Cloud Infrastructure
+* :ref:`oci_media_services_media_workflow_job <ansible_collections.oracle.oci.oci_media_services_media_workflow_job_module>` -- Manage a MediaWorkflowJob resource in Oracle Cloud Infrastructure
+* :ref:`oci_media_services_media_workflow_job_actions <ansible_collections.oracle.oci.oci_media_services_media_workflow_job_actions_module>` -- Perform actions on a MediaWorkflowJob resource in Oracle Cloud Infrastructure
+* :ref:`oci_media_services_media_workflow_job_fact_facts <ansible_collections.oracle.oci.oci_media_services_media_workflow_job_fact_facts_module>` -- Fetches details about one or multiple MediaWorkflowJobFact resources in Oracle Cloud Infrastructure
+* :ref:`oci_media_services_media_workflow_job_facts <ansible_collections.oracle.oci.oci_media_services_media_workflow_job_facts_module>` -- Fetches details about one or multiple MediaWorkflowJob resources in Oracle Cloud Infrastructure
+* :ref:`oci_media_services_media_workflow_task_declaration_facts <ansible_collections.oracle.oci.oci_media_services_media_workflow_task_declaration_facts_module>` -- Fetches details about one or multiple MediaWorkflowTaskDeclaration resources in Oracle Cloud Infrastructure
+* :ref:`oci_media_services_stream_cdn_config <ansible_collections.oracle.oci.oci_media_services_stream_cdn_config_module>` -- Manage a StreamCdnConfig resource in Oracle Cloud Infrastructure
+* :ref:`oci_media_services_stream_cdn_config_facts <ansible_collections.oracle.oci.oci_media_services_stream_cdn_config_facts_module>` -- Fetches details about one or multiple StreamCdnConfig resources in Oracle Cloud Infrastructure
+* :ref:`oci_media_services_stream_distribution_channel <ansible_collections.oracle.oci.oci_media_services_stream_distribution_channel_module>` -- Manage a StreamDistributionChannel resource in Oracle Cloud Infrastructure
+* :ref:`oci_media_services_stream_distribution_channel_actions <ansible_collections.oracle.oci.oci_media_services_stream_distribution_channel_actions_module>` -- Perform actions on a StreamDistributionChannel resource in Oracle Cloud Infrastructure
+* :ref:`oci_media_services_stream_distribution_channel_facts <ansible_collections.oracle.oci.oci_media_services_stream_distribution_channel_facts_module>` -- Fetches details about one or multiple StreamDistributionChannel resources in Oracle Cloud Infrastructure
+* :ref:`oci_media_services_stream_packaging_config <ansible_collections.oracle.oci.oci_media_services_stream_packaging_config_module>` -- Manage a StreamPackagingConfig resource in Oracle Cloud Infrastructure
+* :ref:`oci_media_services_stream_packaging_config_facts <ansible_collections.oracle.oci.oci_media_services_stream_packaging_config_facts_module>` -- Fetches details about one or multiple StreamPackagingConfig resources in Oracle Cloud Infrastructure
+* :ref:`oci_media_services_system_media_workflow_facts <ansible_collections.oracle.oci.oci_media_services_system_media_workflow_facts_module>` -- Fetches details about one or multiple SystemMediaWorkflow resources in Oracle Cloud Infrastructure
 * :ref:`oci_monitoring_alarm <ansible_collections.oracle.oci.oci_monitoring_alarm_module>` -- Manage an Alarm resource in Oracle Cloud Infrastructure
 * :ref:`oci_monitoring_alarm_actions <ansible_collections.oracle.oci.oci_monitoring_alarm_actions_module>` -- Perform actions on an Alarm resource in Oracle Cloud Infrastructure
 * :ref:`oci_monitoring_alarm_facts <ansible_collections.oracle.oci.oci_monitoring_alarm_facts_module>` -- Fetches details about one or multiple Alarm resources in Oracle Cloud Infrastructure
@@ -1225,6 +1274,9 @@ Modules
 * :ref:`oci_ons_subscription_actions <ansible_collections.oracle.oci.oci_ons_subscription_actions_module>` -- Perform actions on a Subscription resource in Oracle Cloud Infrastructure
 * :ref:`oci_ons_subscription_confirmation_facts <ansible_collections.oracle.oci.oci_ons_subscription_confirmation_facts_module>` -- Fetches details about a SubscriptionConfirmation resource in Oracle Cloud Infrastructure
 * :ref:`oci_ons_subscription_facts <ansible_collections.oracle.oci.oci_ons_subscription_facts_module>` -- Fetches details about one or multiple Subscription resources in Oracle Cloud Infrastructure
+* :ref:`oci_opa_instance <ansible_collections.oracle.oci.oci_opa_instance_module>` -- Manage an OpaInstance resource in Oracle Cloud Infrastructure
+* :ref:`oci_opa_instance_actions <ansible_collections.oracle.oci.oci_opa_instance_actions_module>` -- Perform actions on an OpaInstance resource in Oracle Cloud Infrastructure
+* :ref:`oci_opa_instance_facts <ansible_collections.oracle.oci.oci_opa_instance_facts_module>` -- Fetches details about one or multiple OpaInstance resources in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_awr_hub <ansible_collections.oracle.oci.oci_opsi_awr_hub_module>` -- Manage an AwrHub resource in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_awr_hub_facts <ansible_collections.oracle.oci.oci_opsi_awr_hub_facts_module>` -- Fetches details about one or multiple AwrHub resources in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_awr_report_facts <ansible_collections.oracle.oci.oci_opsi_awr_report_facts_module>` -- Fetches details about a AwrReport resource in Oracle Cloud Infrastructure
@@ -1807,6 +1859,7 @@ Modules
     oci_compute_instance_console_history_facts_module
     oci_compute_instance_credentials_facts_module
     oci_compute_instance_facts_module
+    oci_compute_instance_maintenance_reboot_facts_module
     oci_compute_management_cluster_network_module
     oci_compute_management_cluster_network_actions_module
     oci_compute_management_cluster_network_facts_module
@@ -2257,6 +2310,20 @@ Modules
     oci_functions_function_module
     oci_functions_function_actions_module
     oci_functions_function_facts_module
+    oci_fusion_apps_admin_user_facts_module
+    oci_fusion_apps_data_masking_activity_facts_module
+    oci_fusion_apps_fusion_environment_actions_module
+    oci_fusion_apps_fusion_environment_facts_module
+    oci_fusion_apps_fusion_environment_family_module
+    oci_fusion_apps_fusion_environment_family_actions_module
+    oci_fusion_apps_fusion_environment_family_facts_module
+    oci_fusion_apps_fusion_environment_family_limits_and_usage_facts_module
+    oci_fusion_apps_fusion_environment_status_facts_module
+    oci_fusion_apps_refresh_activity_facts_module
+    oci_fusion_apps_scheduled_activity_facts_module
+    oci_fusion_apps_service_attachment_facts_module
+    oci_fusion_apps_subscription_facts_module
+    oci_fusion_apps_time_available_for_refresh_facts_module
     oci_generic_artifacts_content_generic_artifact_content_module
     oci_generic_artifacts_content_generic_artifact_content_facts_module
     oci_generic_artifacts_content_generic_artifact_facts_module
@@ -2428,6 +2495,16 @@ Modules
     oci_loadbalancer_shape_facts_module
     oci_loadbalancer_ssl_cipher_suite_module
     oci_loadbalancer_ssl_cipher_suite_facts_module
+    oci_lockbox_module
+    oci_lockbox_access_materials_facts_module
+    oci_lockbox_access_request_module
+    oci_lockbox_access_request_actions_module
+    oci_lockbox_access_request_facts_module
+    oci_lockbox_actions_module
+    oci_lockbox_approval_template_module
+    oci_lockbox_approval_template_actions_module
+    oci_lockbox_approval_template_facts_module
+    oci_lockbox_facts_module
     oci_log_analytics_category_facts_module
     oci_log_analytics_entity_module
     oci_log_analytics_entity_actions_module
@@ -2501,6 +2578,30 @@ Modules
     oci_marketplace_search_listings_facts_module
     oci_marketplace_tax_facts_module
     oci_marketplace_third_party_paid_listing_eligibility_facts_module
+    oci_media_services_media_asset_module
+    oci_media_services_media_asset_actions_module
+    oci_media_services_media_asset_distribution_channel_attachment_module
+    oci_media_services_media_asset_distribution_channel_attachment_facts_module
+    oci_media_services_media_asset_facts_module
+    oci_media_services_media_workflow_module
+    oci_media_services_media_workflow_actions_module
+    oci_media_services_media_workflow_configuration_module
+    oci_media_services_media_workflow_configuration_actions_module
+    oci_media_services_media_workflow_configuration_facts_module
+    oci_media_services_media_workflow_facts_module
+    oci_media_services_media_workflow_job_module
+    oci_media_services_media_workflow_job_actions_module
+    oci_media_services_media_workflow_job_fact_facts_module
+    oci_media_services_media_workflow_job_facts_module
+    oci_media_services_media_workflow_task_declaration_facts_module
+    oci_media_services_stream_cdn_config_module
+    oci_media_services_stream_cdn_config_facts_module
+    oci_media_services_stream_distribution_channel_module
+    oci_media_services_stream_distribution_channel_actions_module
+    oci_media_services_stream_distribution_channel_facts_module
+    oci_media_services_stream_packaging_config_module
+    oci_media_services_stream_packaging_config_facts_module
+    oci_media_services_system_media_workflow_facts_module
     oci_monitoring_alarm_module
     oci_monitoring_alarm_actions_module
     oci_monitoring_alarm_facts_module
@@ -2753,6 +2854,9 @@ Modules
     oci_ons_subscription_actions_module
     oci_ons_subscription_confirmation_facts_module
     oci_ons_subscription_facts_module
+    oci_opa_instance_module
+    oci_opa_instance_actions_module
+    oci_opa_instance_facts_module
     oci_opsi_awr_hub_module
     oci_opsi_awr_hub_facts_module
     oci_opsi_awr_report_facts_module

@@ -15,7 +15,6 @@ from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
 try:
     import oci
     from oci.announcements_service.models import AnnouncementsCollection
-    from oci.util import to_dict
 
     HAS_OCI_PY_SDK = True
 
@@ -59,7 +58,6 @@ class AnnouncementsCollectionFactsHelperCustom:
 
 
 class AnnouncementsPreferencesHelperCustom:
-
     # `type` received after getting the resource = `AnnouncementsPreferences`
     # `type` we input in module params = `UpdateAnnouncementsPreferencesDetails`
     # due to mismatch in type we are updating the type of existing resource by input param to handle idempotence
@@ -68,12 +66,3 @@ class AnnouncementsPreferencesHelperCustom:
         return super(AnnouncementsPreferencesHelperCustom, self).is_update_necessary(
             existing_resource_dict
         )
-
-
-class AnnouncementUserStatusDetailsHelperCustom:
-    # Operation `UpdateAnnouncementUserStatus` returns response with no body content.
-    # Thus we are returning `AnnouncementUserStatusDetails` of the announcement on which user just performed
-    # the update action.
-    def update_resource(self):
-        super(AnnouncementUserStatusDetailsHelperCustom, self).update_resource()
-        return to_dict(self.get_resource().data)

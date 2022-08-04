@@ -69,7 +69,12 @@ options:
     opsi_private_endpoint_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the OPSI private endpoint
-            - Required when entity_source is 'PE_COMANAGED_DATABASE'
+            - Applicable when entity_source is 'PE_COMANAGED_DATABASE'
+        type: str
+    dbm_private_endpoint_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Database Management private endpoint
+            - Applicable when entity_source is 'PE_COMANAGED_DATABASE'
         type: str
     service_name:
         description:
@@ -189,7 +194,6 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
     database_resource_type: database_resource_type_example
-    opsi_private_endpoint_id: "ocid1.opsiprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
     service_name: service_name_example
     credential_details:
       # required
@@ -199,6 +203,8 @@ EXAMPLES = """
     entity_source: PE_COMANAGED_DATABASE
 
     # optional
+    opsi_private_endpoint_id: "ocid1.opsiprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+    dbm_private_endpoint_id: "ocid1.dbmprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
     system_tags: null
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -729,7 +735,7 @@ class DatabaseInsightsHelperGen(OCIResourceHelperBase):
         return CreateDatabaseInsightDetails
 
     def get_exclude_attributes(self):
-        return ["deployment_type", "service_name"]
+        return ["deployment_type", "service_name", "dbm_private_endpoint_id"]
 
     def create_resource(self):
         create_details = self.get_create_model()
@@ -799,6 +805,7 @@ def main():
             database_id=dict(type="str"),
             database_resource_type=dict(type="str"),
             opsi_private_endpoint_id=dict(type="str"),
+            dbm_private_endpoint_id=dict(type="str"),
             service_name=dict(type="str"),
             credential_details=dict(
                 type="dict",

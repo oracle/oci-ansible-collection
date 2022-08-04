@@ -61,7 +61,7 @@ EXAMPLES = """
 """
 
 RETURN = """
-exadata_insight:
+exadata_insights:
     description:
         - Details of the ExadataInsights resource acted upon by the current operation
     returned: on success

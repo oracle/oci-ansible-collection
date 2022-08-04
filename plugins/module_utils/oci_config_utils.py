@@ -188,6 +188,12 @@ def create_service_client(
 
     # Create service client class (optionally with signer)
     client = service_client_class(config, **kwargs)
+    if not _is_instance_principal_auth(module) and not _is_delegation_token_auth(
+        module
+    ):
+        cert_bundle = get_cert_bundle(module)
+        if cert_bundle is not None:
+            client.base_client.session.verify = cert_bundle
 
     # Redirect calls to home region for IAM service.
     do_not_redirect = module.params.get(
@@ -229,6 +235,7 @@ def create_service_client(
 
 def _create_instance_principal_signer(module, delegation_token_location=None):
     signer = None
+    cert_bundle = get_cert_bundle(module)
     try:
         if delegation_token_location:  # instance_obo_user
             signer_kwargs = {}
@@ -249,6 +256,8 @@ def _create_instance_principal_signer(module, delegation_token_location=None):
                 raise ValueError("ERROR: delegation_token was not provided.")
             # fill up kwarg
             signer_kwargs["delegation_token"] = delegation_token
+            if cert_bundle is not None:
+                signer_kwargs["federation_client_cert_bundle_verify"] = cert_bundle
             # create instance_principal_delegation_auth signer
             signer = oci.auth.signers.InstancePrincipalsDelegationTokenSigner(
                 **signer_kwargs
@@ -257,6 +266,8 @@ def _create_instance_principal_signer(module, delegation_token_location=None):
             signer_kwargs = {}
             if _is_instance_principal_auth_purpose(module):
                 signer_kwargs["purpose"] = "service_principal"
+            if cert_bundle is not None:
+                signer_kwargs["federation_client_cert_bundle_verify"] = cert_bundle
             signer = oci.auth.signers.InstancePrincipalsSecurityTokenSigner(
                 **signer_kwargs
             )
@@ -298,6 +309,15 @@ def _is_instance_principal_auth(module):
             and os.environ["OCI_ANSIBLE_AUTH_TYPE"] == "instance_principal"
         )
     return instance_principal_auth
+
+
+def get_cert_bundle(module):
+    # check if cert bundle is overridden via module params
+    cert_bundle = module.params.get("cert_bundle")
+    if cert_bundle is None:
+        if "OCI_ANSIBLE_CERT_BUNDLE" in os.environ:
+            cert_bundle = os.environ.get("OCI_ANSIBLE_CERT_BUNDLE")
+    return cert_bundle
 
 
 def _merge_auth_option(

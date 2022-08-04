@@ -75,6 +75,14 @@ options:
             - "Example: `true`"
             - This parameter is updatable.
         type: bool
+    route_table_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the route table used by the NAT gateway.
+            - If you don't specify a route table here, the NAT gateway is created without an associated route
+              table. The Networking service does NOT automatically associate the attached VCN's default route table
+              with the NAT gateway.
+            - This parameter is updatable.
+        type: str
     nat_gateway_id:
         description:
             - The NAT gateway's L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm).
@@ -107,6 +115,7 @@ EXAMPLES = """
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     block_traffic: true
+    route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update nat_gateway
   oci_network_nat_gateway:
@@ -118,6 +127,7 @@ EXAMPLES = """
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     block_traffic: true
+    route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update nat_gateway using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_network_nat_gateway:
@@ -129,6 +139,7 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
     block_traffic: true
+    route_table_id: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete nat_gateway
   oci_network_nat_gateway:
@@ -230,6 +241,15 @@ nat_gateway:
             returned: on success
             type: str
             sample: "ocid1.publicip.oc1..xxxxxxEXAMPLExxxxxx"
+        route_table_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the route table used by the NAT gateway.
+                - If you don't specify a route table here, the NAT gateway is created without an associated route
+                  table. The Networking service does NOT automatically associate the attached VCN's default route table
+                  with the NAT gateway.
+            returned: on success
+            type: str
+            sample: "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -241,7 +261,8 @@ nat_gateway:
         "nat_ip": "nat_ip_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx",
-        "public_ip_id": "ocid1.publicip.oc1..xxxxxxEXAMPLExxxxxx"
+        "public_ip_id": "ocid1.publicip.oc1..xxxxxxEXAMPLExxxxxx",
+        "route_table_id": "ocid1.routetable.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """
 
@@ -404,6 +425,7 @@ def main():
             display_name=dict(aliases=["name"], type="str"),
             freeform_tags=dict(type="dict"),
             block_traffic=dict(type="bool"),
+            route_table_id=dict(type="str"),
             nat_gateway_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

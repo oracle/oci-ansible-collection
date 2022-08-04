@@ -31,6 +31,11 @@ options:
             - Indicates whether to rotate the wallet or not. If `false`, the wallet will not be rotated. The default is `false`.
             - This parameter is updatable.
         type: bool
+    grace_period:
+        description:
+            - Grace period in hours to keep the existing wallet valid after rotation.
+            - This parameter is updatable.
+        type: int
     state:
         description:
             - The state of the AutonomousDatabaseRegionalWallet.
@@ -48,6 +53,7 @@ EXAMPLES = """
 
     # optional
     should_rotate: true
+    grace_period: 56
 
 """
 
@@ -170,6 +176,7 @@ def main():
     module_args.update(
         dict(
             should_rotate=dict(type="bool"),
+            grace_period=dict(type="int"),
             state=dict(type="str", default="present", choices=["present"]),
         )
     )

@@ -188,6 +188,12 @@ summarize_exadata_insight_resource_usages:
             returned: on success
             type: str
             sample: "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx"
+        exadata_display_name:
+            description:
+                - The user-friendly name for the Exadata system. The name does not have to be unique.
+            returned: on success
+            type: str
+            sample: exadata_display_name_example
         usage:
             description:
                 - Total amount used of the resource metric type (CPU, STORAGE).
@@ -214,6 +220,7 @@ summarize_exadata_insight_resource_usages:
             sample: 1.2
     sample: [{
         "exadata_insight_id": "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx",
+        "exadata_display_name": "exadata_display_name_example",
         "usage": 1.2,
         "capacity": 1.2,
         "utilization_percent": 1.2,

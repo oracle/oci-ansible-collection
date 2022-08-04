@@ -191,6 +191,12 @@ exadata_infrastructures:
             returned: on success
             type: float
             sample: 1.2
+        rack_serial_number:
+            description:
+                - The serial number for the Exadata infrastructure.
+            returned: on success
+            type: str
+            sample: rack_serial_number_example
         storage_count:
             description:
                 - The number of Exadata storage servers for the Exadata infrastructure.
@@ -326,7 +332,7 @@ exadata_infrastructures:
                     sample: true
         maintenance_slo_status:
             description:
-                - A field to capture 'Maintenance SLO Status' for the Exadata infrastructure with values 'OK', 'DEGRADED'. Default is 'OK' when the
+                - A field to capture ‘Maintenance SLO Status’ for the Exadata infrastructure with values ‘OK’, ‘DEGRADED’. Default is ‘OK’ when the
                   infrastructure is provisioned.
             returned: on success
             type: str
@@ -479,6 +485,7 @@ exadata_infrastructures:
         "max_db_node_storage_in_g_bs": 56,
         "data_storage_size_in_tbs": 1.2,
         "max_data_storage_in_t_bs": 1.2,
+        "rack_serial_number": "rack_serial_number_example",
         "storage_count": 56,
         "additional_storage_count": 56,
         "activated_storage_count": 56,

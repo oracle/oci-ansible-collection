@@ -729,6 +729,17 @@ options:
                 choices:
                     - "RESTORE_INSTANCE"
                     - "STOP_INSTANCE"
+    time_maintenance_reboot_due:
+        description:
+            - The date and time the instance is expected to be stopped and restarted, in the format defined by
+              L(RFC3339,https://tools.ietf.org/html/rfc3339).
+              If the instance hasn't been rebooted after this date, Oracle reboots the instance within 24 hours of the time
+              and date that maintenance is due.
+              Regardless of how the instance is stopped, this flag is reset to empty as soon as the instance reaches
+              Stopped state.
+            - "Example: `2018-05-25T21:10:29.600Z`"
+            - This parameter is updatable.
+        type: str
     instance_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the instance.
@@ -893,6 +904,7 @@ EXAMPLES = """
       # optional
       is_live_migration_preferred: true
       recovery_action: RESTORE_INSTANCE
+    time_maintenance_reboot_due: time_maintenance_reboot_due_example
 
 - name: Update instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_compute_instance:
@@ -938,6 +950,7 @@ EXAMPLES = """
       # optional
       is_live_migration_preferred: true
       recovery_action: RESTORE_INSTANCE
+    time_maintenance_reboot_due: time_maintenance_reboot_due_example
 
 - name: Delete instance
   oci_compute_instance:
@@ -1964,6 +1977,7 @@ def main():
                     ),
                 ),
             ),
+            time_maintenance_reboot_due=dict(type="str"),
             instance_id=dict(aliases=["id"], type="str"),
             preserve_boot_volume=dict(type="bool"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
