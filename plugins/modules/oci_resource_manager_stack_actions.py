@@ -50,6 +50,13 @@ options:
             - Applicable only for I(action=detect_stack_drift).
         type: list
         elements: str
+    is_provider_upgrade_required:
+        description:
+            - Specifies whether or not to upgrade provider versions.
+              Within the version constraints of your Terraform configuration, use the latest versions available from the source of Terraform providers.
+              For more information about this option, see L(Dependency Lock File (terraform.io),https://www.terraform.io/language/files/dependency-lock).
+            - Applicable only for I(action=detect_stack_drift).
+        type: bool
     action:
         description:
             - The action to perform on the Stack.
@@ -77,6 +84,7 @@ EXAMPLES = """
 
     # optional
     resource_addresses: [ "resource_addresses_example" ]
+    is_provider_upgrade_required: true
 
 """
 
@@ -196,7 +204,7 @@ stack:
                         - The type of configuration source to use for the Terraform configuration.
                     returned: on success
                     type: str
-                    sample: ZIP_UPLOAD
+                    sample: COMPARTMENT_CONFIG_SOURCE
                 working_directory:
                     description:
                         - File path to the directory to use for running Terraform.
@@ -209,6 +217,47 @@ stack:
                     returned: on success
                     type: str
                     sample: working_directory_example
+        custom_terraform_provider:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                region:
+                    description:
+                        - "The name of the region that contains the bucket you want.
+                          For information about regions, see L(Regions and Availability
+                          Domains,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm).
+                          Example: `us-phoenix-1`"
+                    returned: on success
+                    type: str
+                    sample: us-phoenix-1
+                namespace:
+                    description:
+                        - The Object Storage namespace that contains the bucket you want.
+                          For information about Object Storage namespaces, see L(Understanding Object Storage
+                          Namespaces,https://docs.cloud.oracle.com/iaas/Content/Object/Tasks/understandingnamespaces.htm).
+                    returned: on success
+                    type: str
+                    sample: namespace_example
+                bucket_name:
+                    description:
+                        - The name of the bucket that contains the binary files for the custom Terraform providers.
+                          For information about buckets, see L(Managing Buckets,https://docs.cloud.oracle.com/iaas/Content/Object/Tasks/managingbuckets.htm).
+                    returned: on success
+                    type: str
+                    sample: bucket_name_example
+        is_third_party_provider_experience_enabled:
+            description:
+                - When `true`, the stack sources third-party Terraform providers from
+                  L(Terraform Registry,https://registry.terraform.io/browse/providers) and allows
+                  L(custom providers,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/resourcemanager/latest/datatypes/CustomTerraformProvider).
+                  For more information about stack sourcing of third-party Terraform providers, see
+                  L(Third-party Provider
+                  Configuration,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/terraformconfigresourcemanager.htm#third-party-providers).
+            returned: on success
+            type: bool
+            sample: true
         variables:
             description:
                 - "Terraform variables associated with this resource.
@@ -271,9 +320,15 @@ stack:
             "region": "us-phoenix-1",
             "namespace": "namespace_example",
             "bucket_name": "bucket_name_example",
-            "config_source_type": "ZIP_UPLOAD",
+            "config_source_type": "COMPARTMENT_CONFIG_SOURCE",
             "working_directory": "working_directory_example"
         },
+        "custom_terraform_provider": {
+            "region": "us-phoenix-1",
+            "namespace": "namespace_example",
+            "bucket_name": "bucket_name_example"
+        },
+        "is_third_party_provider_experience_enabled": true,
         "variables": {},
         "terraform_version": "terraform_version_example",
         "stack_drift_status": "NOT_CHECKED",
@@ -384,6 +439,7 @@ def main():
             compartment_id=dict(type="str"),
             stack_id=dict(aliases=["id"], type="str", required=True),
             resource_addresses=dict(type="list", elements="str"),
+            is_provider_upgrade_required=dict(type="bool"),
             action=dict(
                 type="str",
                 required=True,

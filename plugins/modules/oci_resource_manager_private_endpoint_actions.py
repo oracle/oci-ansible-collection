@@ -70,14 +70,13 @@ private_endpoint:
     contains:
         id:
             description:
-                - Unique identifier (L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm)) of the private endpoint details.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the private endpoint.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing this private endpoint
-                  details.
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing this private endpoint.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -107,13 +106,16 @@ private_endpoint:
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         source_ips:
             description:
-                - The source IPs which resource manager service will use to connect to customer's network. Automatically assigned by Resource Manager Service.
+                - The source IP addresses that Resource Manager uses to connect to your network. Automatically assigned by Resource Manager.
             returned: on success
             type: list
             sample: []
         nsg_id_list:
             description:
-                - An array of network security groups (NSG) that the customer can optionally provide.
+                - The L(OCIDs,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of
+                  L(network security groups (NSGs),https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/networksecuritygroups.htm)
+                  for the private endpoint.
+                  Order does not matter.
             returned: on success
             type: list
             sample: []
@@ -125,8 +127,12 @@ private_endpoint:
             sample: true
         dns_zones:
             description:
-                - DNS Proxy forwards any DNS FQDN queries over into the consumer DNS resolver if the DNS FQDN is included in the dns zones list otherwise it
-                  goes to service provider VCN resolver.
+                - "DNS zones to use for accessing private Git servers.
+                  For private Git server instructions, see
+                  L(Private Git Server,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Tasks/private-endpoints.htm#private-git).
+                  Specify DNS fully qualified domain names (FQDNs); DNS Proxy forwards related DNS FQDN queries to the consumer DNS resolver.
+                  For DNS FQDNs not specified, queries go to service provider VCN resolver.
+                  Example: `abc.oraclevcn.com`"
             returned: on success
             type: list
             sample: []

@@ -214,6 +214,18 @@ management_agent:
                     returned: on success
                     type: str
                     sample: plugin_version_example
+                plugin_status:
+                    description:
+                        - Plugin Status
+                    returned: on success
+                    type: str
+                    sample: RUNNING
+                plugin_status_message:
+                    description:
+                        - Status message of the Plugin
+                    returned: on success
+                    type: str
+                    sample: plugin_status_message_example
                 is_enabled:
                     description:
                         - flag indicating whether the plugin is in enabled mode or disabled mode.
@@ -314,6 +326,8 @@ management_agent:
             "plugin_name": "plugin_name_example",
             "plugin_display_name": "plugin_display_name_example",
             "plugin_version": "plugin_version_example",
+            "plugin_status": "RUNNING",
+            "plugin_status_message": "plugin_status_message_example",
             "is_enabled": true
         }],
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

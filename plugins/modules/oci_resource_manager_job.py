@@ -62,6 +62,13 @@ options:
                     - "PLAN"
                     - "DESTROY"
                 required: true
+            is_provider_upgrade_required:
+                description:
+                    - Specifies whether or not to upgrade provider versions.
+                      Within the version constraints of your Terraform configuration, use the latest versions available from the source of Terraform providers.
+                      For more information about this option, see L(Dependency Lock File (terraform.io),https://www.terraform.io/language/files/dependency-
+                      lock).
+                type: bool
             terraform_advanced_options:
                 description:
                     - ""
@@ -183,6 +190,9 @@ EXAMPLES = """
       # required
       tf_state_base64_encoded: tf_state_base64_encoded_example
       operation: IMPORT_TF_STATE
+
+      # optional
+      is_provider_upgrade_required: true
     apply_job_plan_resolution:
       # optional
       plan_job_id: "ocid1.planjob.oc1..xxxxxxEXAMPLExxxxxx"
@@ -266,6 +276,14 @@ job:
             returned: on success
             type: str
             sample: PLAN
+        is_provider_upgrade_required:
+            description:
+                - Specifies whether or not to upgrade provider versions.
+                  Within the version constraints of your Terraform configuration, use the latest versions available from the source of Terraform providers.
+                  For more information about this option, see L(Dependency Lock File (terraform.io),https://www.terraform.io/language/files/dependency-lock).
+            returned: on success
+            type: bool
+            sample: true
         job_operation_details:
             description:
                 - ""
@@ -493,7 +511,7 @@ job:
                         - The type of configuration source to use for the Terraform configuration.
                     returned: on success
                     type: str
-                    sample: ZIP_UPLOAD
+                    sample: COMPARTMENT_CONFIG_SOURCE
         freeform_tags:
             description:
                 - "Free-form tags associated with this resource. Each tag is a key-value pair with no predefined name, type, or namespace.
@@ -516,6 +534,7 @@ job:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "operation": "PLAN",
+        "is_provider_upgrade_required": true,
         "job_operation_details": {
             "execution_plan_job_id": "ocid1.executionplanjob.oc1..xxxxxxEXAMPLExxxxxx",
             "execution_plan_strategy": "FROM_PLAN_JOB_ID",
@@ -552,7 +571,7 @@ job:
             "region": "us-phoenix-1",
             "namespace": "namespace_example",
             "bucket_name": "bucket_name_example",
-            "config_source_record_type": "ZIP_UPLOAD"
+            "config_source_record_type": "COMPARTMENT_CONFIG_SOURCE"
         },
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
@@ -642,7 +661,10 @@ class JobHelperGen(OCIResourceHelperBase):
         return CreateJobDetails
 
     def get_exclude_attributes(self):
-        return ["job_operation_details.tf_state_base64_encoded"]
+        return [
+            "job_operation_details.is_provider_upgrade_required",
+            "job_operation_details.tf_state_base64_encoded",
+        ]
 
     def create_resource(self):
         create_details = self.get_create_model()
@@ -723,6 +745,7 @@ def main():
                         required=True,
                         choices=["IMPORT_TF_STATE", "APPLY", "PLAN", "DESTROY"],
                     ),
+                    is_provider_upgrade_required=dict(type="bool"),
                     terraform_advanced_options=dict(
                         type="dict",
                         options=dict(

@@ -68,7 +68,7 @@ options:
     shape_config:
         description:
             - ""
-            - Applicable only for I(action=add_worker_nodes).
+            - Applicable only for I(action=add_cloud_sql)I(action=add_worker_nodes).
         type: dict
         suboptions:
             ocpus:
@@ -228,6 +228,10 @@ EXAMPLES = """
 
     # optional
     block_volume_size_in_gbs: 56
+    shape_config:
+      # optional
+      ocpus: 56
+      memory_in_gbs: 56
 
 - name: Perform action add_worker_nodes on bds_instance
   oci_bds_instance_actions:
@@ -701,6 +705,12 @@ bds_instance:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        kms_key_id:
+            description:
+                - The OCID of the Key Management master encryption key.
+            returned: on success
+            type: str
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -769,7 +779,8 @@ bds_instance:
         "number_of_nodes": 56,
         "bootstrap_script_url": "bootstrap_script_url_example",
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}}
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """
 

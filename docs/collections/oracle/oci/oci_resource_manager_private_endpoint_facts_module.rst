@@ -30,7 +30,7 @@ oracle.oci.oci_resource_manager_private_endpoint_facts -- Fetches details about 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.56.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.57.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple PrivateEndpoint resources in Oracle Cloud Infrastructure
-- Lists private endpoints according to the specified filter. - For `compartmentId`, lists all private endpoint in the matching compartment. - For `privateEndpointId`, lists the matching private endpoint.
+- Lists private endpoints according to the specified filter. - For `compartmentId`, lists all private endpoints in the matching compartment. - For `privateEndpointId`, lists the matching private endpoint.
 - If *private_endpoint_id* is specified, the details of a single PrivateEndpoint will be returned.
 
 
@@ -453,7 +453,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment containing this private endpoint details.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment containing this private endpoint.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -525,7 +525,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>DNS Proxy forwards any DNS FQDN queries over into the consumer DNS resolver if the DNS FQDN is included in the dns zones list otherwise it goes to service provider VCN resolver.</div>
+                                            <div>DNS zones to use for accessing private Git servers. For private Git server instructions, see <a href='https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Tasks/private-endpoints.htm#private-git'>Private Git Server</a>. Specify DNS fully qualified domain names (FQDNs); DNS Proxy forwards related DNS FQDN queries to the consumer DNS resolver. For DNS FQDNs not specified, queries go to service provider VCN resolver. Example: `abc.oraclevcn.com`</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -559,7 +559,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Unique identifier (<a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a>) of the private endpoint details.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the private endpoint.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -613,7 +613,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>An array of network security groups (NSG) that the customer can optionally provide.</div>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCIDs</a> of L(network security groups (NSGs),https://docs.cloud.oracle.com/iaas/Content/Network/Concepts/networksecuritygroups.htm) for the private endpoint. Order does not matter.</div>
                                             <div>Returned for get operation</div>
                                         <br/>
                                                         </td>
@@ -630,7 +630,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The source IPs which resource manager service will use to connect to customer&#x27;s network. Automatically assigned by Resource Manager Service.</div>
+                                            <div>The source IP addresses that Resource Manager uses to connect to your network. Automatically assigned by Resource Manager.</div>
                                             <div>Returned for get operation</div>
                                         <br/>
                                                         </td>

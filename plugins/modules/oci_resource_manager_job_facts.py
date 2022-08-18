@@ -118,6 +118,15 @@ jobs:
     returned: on success
     type: complex
     contains:
+        is_provider_upgrade_required:
+            description:
+                - Specifies whether or not to upgrade provider versions.
+                  Within the version constraints of your Terraform configuration, use the latest versions available from the source of Terraform providers.
+                  For more information about this option, see L(Dependency Lock File (terraform.io),https://www.terraform.io/language/files/dependency-lock).
+                - Returned for get operation
+            returned: on success
+            type: bool
+            sample: true
         failure_details:
             description:
                 - ""
@@ -231,7 +240,7 @@ jobs:
                         - The type of configuration source to use for the Terraform configuration.
                     returned: on success
                     type: str
-                    sample: ZIP_UPLOAD
+                    sample: COMPARTMENT_CONFIG_SOURCE
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the job.
@@ -399,6 +408,7 @@ jobs:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
+        "is_provider_upgrade_required": true,
         "failure_details": {
             "code": "INTERNAL_SERVICE_ERROR",
             "message": "message_example"
@@ -416,7 +426,7 @@ jobs:
             "region": "us-phoenix-1",
             "namespace": "namespace_example",
             "bucket_name": "bucket_name_example",
-            "config_source_record_type": "ZIP_UPLOAD"
+            "config_source_record_type": "COMPARTMENT_CONFIG_SOURCE"
         },
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "stack_id": "ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx",
