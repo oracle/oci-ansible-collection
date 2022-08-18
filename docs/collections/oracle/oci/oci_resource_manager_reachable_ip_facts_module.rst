@@ -30,7 +30,7 @@ oracle.oci.oci_resource_manager_reachable_ip_facts -- Fetches details about a Re
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.56.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.57.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about a ReachableIp resource in Oracle Cloud Infrastructure
-- Gets the alternative IP address of the private resource. This IP will be used by Resource Manager Service to connect to the private resource.
+- Gets the reachable, or alternative, IP address for a nonpublic IP address that is associated with the private endpoint. Resource Manager uses this IP address to connect to nonpublic resources through the associated private endpoint.
 
 
 .. Aliases
@@ -372,7 +372,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>An IP address for the Resource Manager service to use for connection to the private resource.</div>
+                                            <div>Reachable IP address associated with the private endpoint.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ip_address_example</div>

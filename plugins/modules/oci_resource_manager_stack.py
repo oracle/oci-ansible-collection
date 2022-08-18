@@ -153,6 +153,46 @@ options:
                     - Applicable when config_source_type is 'ZIP_UPLOAD'
                     - Required when config_source_type is 'ZIP_UPLOAD'
                 type: str
+    custom_terraform_provider:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            region:
+                description:
+                    - "The name of the region that contains the bucket you want.
+                      For information about regions, see L(Regions and Availability
+                      Domains,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm).
+                      Example: `us-phoenix-1`"
+                type: str
+                required: true
+            namespace:
+                description:
+                    - The Object Storage namespace that contains the bucket you want.
+                      For information about Object Storage namespaces, see L(Understanding Object Storage
+                      Namespaces,https://docs.cloud.oracle.com/iaas/Content/Object/Tasks/understandingnamespaces.htm).
+                type: str
+                required: true
+            bucket_name:
+                description:
+                    - The name of the bucket that contains the binary files for the custom Terraform providers.
+                      For information about buckets, see L(Managing Buckets,https://docs.cloud.oracle.com/iaas/Content/Object/Tasks/managingbuckets.htm).
+                type: str
+                required: true
+    is_third_party_provider_experience_enabled:
+        description:
+            - When `true`, changes the stack's sourcing of third-party Terraform providers to
+              L(Terraform Registry,https://registry.terraform.io/browse/providers) and allows
+              L(custom providers,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/resourcemanager/latest/datatypes/CustomTerraformProvider).
+              Applies to older stacks that use Terraform version 0.12.x and 0.13.x only.
+              (Older stacks that use other Terraform versions are automatically updated.)
+              Once set to `true`, cannot be reverted.
+              For more information about stack sourcing of third-party Terraform providers, see
+              L(Third-party Provider Configuration,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/terraformconfigresourcemanager.htm#third-
+              party-providers).
+            - This parameter is updatable.
+        type: bool
     variables:
         description:
             - "Terraform variables associated with this resource.
@@ -215,6 +255,11 @@ EXAMPLES = """
     # optional
     display_name: display_name_example
     description: description_example
+    custom_terraform_provider:
+      # required
+      region: us-phoenix-1
+      namespace: namespace_example
+      bucket_name: bucket_name_example
     variables: null
     terraform_version: terraform_version_example
     freeform_tags: {'Department': 'Finance'}
@@ -235,6 +280,12 @@ EXAMPLES = """
 
       # optional
       working_directory: working_directory_example
+    custom_terraform_provider:
+      # required
+      region: us-phoenix-1
+      namespace: namespace_example
+      bucket_name: bucket_name_example
+    is_third_party_provider_experience_enabled: true
     variables: null
     terraform_version: terraform_version_example
     freeform_tags: {'Department': 'Finance'}
@@ -254,6 +305,12 @@ EXAMPLES = """
 
       # optional
       working_directory: working_directory_example
+    custom_terraform_provider:
+      # required
+      region: us-phoenix-1
+      namespace: namespace_example
+      bucket_name: bucket_name_example
+    is_third_party_provider_experience_enabled: true
     variables: null
     terraform_version: terraform_version_example
     freeform_tags: {'Department': 'Finance'}
@@ -389,7 +446,7 @@ stack:
                         - The type of configuration source to use for the Terraform configuration.
                     returned: on success
                     type: str
-                    sample: ZIP_UPLOAD
+                    sample: COMPARTMENT_CONFIG_SOURCE
                 working_directory:
                     description:
                         - File path to the directory to use for running Terraform.
@@ -402,6 +459,47 @@ stack:
                     returned: on success
                     type: str
                     sample: working_directory_example
+        custom_terraform_provider:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                region:
+                    description:
+                        - "The name of the region that contains the bucket you want.
+                          For information about regions, see L(Regions and Availability
+                          Domains,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm).
+                          Example: `us-phoenix-1`"
+                    returned: on success
+                    type: str
+                    sample: us-phoenix-1
+                namespace:
+                    description:
+                        - The Object Storage namespace that contains the bucket you want.
+                          For information about Object Storage namespaces, see L(Understanding Object Storage
+                          Namespaces,https://docs.cloud.oracle.com/iaas/Content/Object/Tasks/understandingnamespaces.htm).
+                    returned: on success
+                    type: str
+                    sample: namespace_example
+                bucket_name:
+                    description:
+                        - The name of the bucket that contains the binary files for the custom Terraform providers.
+                          For information about buckets, see L(Managing Buckets,https://docs.cloud.oracle.com/iaas/Content/Object/Tasks/managingbuckets.htm).
+                    returned: on success
+                    type: str
+                    sample: bucket_name_example
+        is_third_party_provider_experience_enabled:
+            description:
+                - When `true`, the stack sources third-party Terraform providers from
+                  L(Terraform Registry,https://registry.terraform.io/browse/providers) and allows
+                  L(custom providers,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/resourcemanager/latest/datatypes/CustomTerraformProvider).
+                  For more information about stack sourcing of third-party Terraform providers, see
+                  L(Third-party Provider
+                  Configuration,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/terraformconfigresourcemanager.htm#third-party-providers).
+            returned: on success
+            type: bool
+            sample: true
         variables:
             description:
                 - "Terraform variables associated with this resource.
@@ -464,9 +562,15 @@ stack:
             "region": "us-phoenix-1",
             "namespace": "namespace_example",
             "bucket_name": "bucket_name_example",
-            "config_source_type": "ZIP_UPLOAD",
+            "config_source_type": "COMPARTMENT_CONFIG_SOURCE",
             "working_directory": "working_directory_example"
         },
+        "custom_terraform_provider": {
+            "region": "us-phoenix-1",
+            "namespace": "namespace_example",
+            "bucket_name": "bucket_name_example"
+        },
+        "is_third_party_provider_experience_enabled": true,
         "variables": {},
         "terraform_version": "terraform_version_example",
         "stack_drift_status": "NOT_CHECKED",
@@ -501,12 +605,6 @@ class StackHelperGen(OCIResourceHelperBase):
 
     def get_possible_entity_types(self):
         return super(StackHelperGen, self).get_possible_entity_types() + [
-            "ormstack",
-            "ormstacks",
-            "resourceManagerormstack",
-            "resourceManagerormstacks",
-            "ormstackresource",
-            "ormstacksresource",
             "stack",
             "stacks",
             "resourceManagerstack",
@@ -659,6 +757,15 @@ def main():
                     zip_file_base64_encoded=dict(type="str"),
                 ),
             ),
+            custom_terraform_provider=dict(
+                type="dict",
+                options=dict(
+                    region=dict(type="str", required=True),
+                    namespace=dict(type="str", required=True),
+                    bucket_name=dict(type="str", required=True),
+                ),
+            ),
+            is_third_party_provider_experience_enabled=dict(type="bool"),
             variables=dict(type="dict"),
             terraform_version=dict(type="str"),
             freeform_tags=dict(type="dict"),

@@ -144,6 +144,11 @@ options:
               For example, `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             - This parameter is updatable.
         type: dict
+    kms_key_id:
+        description:
+            - The OCID of the Key Management master encryption key.
+            - This parameter is updatable.
+        type: str
     bds_instance_id:
         description:
             - The OCID of the cluster.
@@ -196,6 +201,7 @@ EXAMPLES = """
     bootstrap_script_url: bootstrap_script_url_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update bds_instance
   oci_bds_instance:
@@ -207,6 +213,7 @@ EXAMPLES = """
     bootstrap_script_url: bootstrap_script_url_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update bds_instance using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_bds_instance:
@@ -218,6 +225,7 @@ EXAMPLES = """
     bootstrap_script_url: bootstrap_script_url_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete bds_instance
   oci_bds_instance:
@@ -617,6 +625,12 @@ bds_instance:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        kms_key_id:
+            description:
+                - The OCID of the Key Management master encryption key.
+            returned: on success
+            type: str
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -685,7 +699,8 @@ bds_instance:
         "number_of_nodes": 56,
         "bootstrap_script_url": "bootstrap_script_url_example",
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}}
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """
 
@@ -883,6 +898,7 @@ def main():
             bootstrap_script_url=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
+            kms_key_id=dict(type="str"),
             bds_instance_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

@@ -30,7 +30,7 @@ oracle.oci.oci_management_agent_plugin_facts -- Fetches details about one or mul
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.56.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.57.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -87,6 +87,21 @@ Parameters
                         <th width="100%">Comments</th>
         </tr>
                     <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-agent_id"></div>
+                    <b>agent_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-agent_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The ManagementAgentID of the agent from which the Management Agents to be filtered.</div>
+                                                        </td>
+            </tr>
+                                <tr>
                                                                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-api_user"></div>
                     <b>api_user</b>
@@ -423,6 +438,7 @@ Examples
         sort_by: displayName
         lifecycle_state: CREATING
         platform_type: [ "LINUX" ]
+        agent_id: "ocid1.agent.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

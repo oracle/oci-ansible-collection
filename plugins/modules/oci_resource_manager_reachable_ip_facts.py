@@ -23,7 +23,8 @@ module: oci_resource_manager_reachable_ip_facts
 short_description: Fetches details about a ReachableIp resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a ReachableIp resource in Oracle Cloud Infrastructure
-    - Gets the alternative IP address of the private resource. This IP will be used by Resource Manager Service to connect to the private resource.
+    - Gets the reachable, or alternative, IP address for a nonpublic IP address that is associated with the private endpoint.
+      Resource Manager uses this IP address to connect to nonpublic resources through the associated private endpoint.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -59,7 +60,7 @@ reachable_ip:
     contains:
         ip_address:
             description:
-                - An IP address for the Resource Manager service to use for connection to the private resource.
+                - Reachable IP address associated with the private endpoint.
             returned: on success
             type: str
             sample: ip_address_example

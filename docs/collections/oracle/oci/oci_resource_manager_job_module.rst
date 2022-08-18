@@ -30,7 +30,7 @@ oracle.oci.oci_resource_manager_job -- Manage a Job resource in Oracle Cloud Inf
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.56.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.57.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -461,6 +461,26 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-job_operation_details/is_provider_upgrade_required"></div>
+                    <b>is_provider_upgrade_required</b>
+                    <a class="ansibleOptionLink" href="#parameter-job_operation_details/is_provider_upgrade_required" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Specifies whether or not to upgrade provider versions. Within the version constraints of your Terraform configuration, use the latest versions available from the source of Terraform providers. For more information about this option, see L(Dependency Lock File (terraform.io),https://www.terraform.io/language/files/dependency- lock).</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-job_operation_details/operation"></div>
                     <b>operation</b>
                     <a class="ansibleOptionLink" href="#parameter-job_operation_details/operation" title="Permalink to this option"></a>
@@ -748,6 +768,9 @@ Examples
           # required
           tf_state_base64_encoded: tf_state_base64_encoded_example
           operation: IMPORT_TF_STATE
+
+          # optional
+          is_provider_upgrade_required: true
         apply_job_plan_resolution:
           # optional
           plan_job_id: "ocid1.planjob.oc1..xxxxxxEXAMPLExxxxxx"
@@ -826,7 +849,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Job resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;apply_job_plan_resolution&#x27;: {&#x27;is_auto_approved&#x27;: True, &#x27;is_use_latest_job_id&#x27;: True, &#x27;plan_job_id&#x27;: &#x27;ocid1.planjob.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;cancellation_details&#x27;: {&#x27;is_forced&#x27;: True}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source&#x27;: {&#x27;branch_name&#x27;: &#x27;branch_name_example&#x27;, &#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;commit_id&#x27;: &#x27;ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source_record_type&#x27;: &#x27;ZIP_UPLOAD&#x27;, &#x27;configuration_source_provider_id&#x27;: &#x27;ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;region&#x27;: &#x27;us-phoenix-1&#x27;, &#x27;repository_url&#x27;: &#x27;repository_url_example&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;failure_details&#x27;: {&#x27;code&#x27;: &#x27;INTERNAL_SERVICE_ERROR&#x27;, &#x27;message&#x27;: &#x27;message_example&#x27;}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;job_operation_details&#x27;: {&#x27;execution_plan_job_id&#x27;: &#x27;ocid1.executionplanjob.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;execution_plan_strategy&#x27;: &#x27;FROM_PLAN_JOB_ID&#x27;, &#x27;operation&#x27;: &#x27;APPLY&#x27;, &#x27;terraform_advanced_options&#x27;: {&#x27;detailed_log_level&#x27;: &#x27;ERROR&#x27;, &#x27;is_refresh_required&#x27;: True, &#x27;parallelism&#x27;: 56}}, &#x27;lifecycle_state&#x27;: &#x27;ACCEPTED&#x27;, &#x27;operation&#x27;: &#x27;PLAN&#x27;, &#x27;resolved_plan_job_id&#x27;: &#x27;ocid1.resolvedplanjob.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;stack_id&#x27;: &#x27;ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;variables&#x27;: {}, &#x27;working_directory&#x27;: &#x27;working_directory_example&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;apply_job_plan_resolution&#x27;: {&#x27;is_auto_approved&#x27;: True, &#x27;is_use_latest_job_id&#x27;: True, &#x27;plan_job_id&#x27;: &#x27;ocid1.planjob.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;cancellation_details&#x27;: {&#x27;is_forced&#x27;: True}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source&#x27;: {&#x27;branch_name&#x27;: &#x27;branch_name_example&#x27;, &#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;commit_id&#x27;: &#x27;ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source_record_type&#x27;: &#x27;COMPARTMENT_CONFIG_SOURCE&#x27;, &#x27;configuration_source_provider_id&#x27;: &#x27;ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;region&#x27;: &#x27;us-phoenix-1&#x27;, &#x27;repository_url&#x27;: &#x27;repository_url_example&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;failure_details&#x27;: {&#x27;code&#x27;: &#x27;INTERNAL_SERVICE_ERROR&#x27;, &#x27;message&#x27;: &#x27;message_example&#x27;}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_provider_upgrade_required&#x27;: True, &#x27;job_operation_details&#x27;: {&#x27;execution_plan_job_id&#x27;: &#x27;ocid1.executionplanjob.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;execution_plan_strategy&#x27;: &#x27;FROM_PLAN_JOB_ID&#x27;, &#x27;operation&#x27;: &#x27;APPLY&#x27;, &#x27;terraform_advanced_options&#x27;: {&#x27;detailed_log_level&#x27;: &#x27;ERROR&#x27;, &#x27;is_refresh_required&#x27;: True, &#x27;parallelism&#x27;: 56}}, &#x27;lifecycle_state&#x27;: &#x27;ACCEPTED&#x27;, &#x27;operation&#x27;: &#x27;PLAN&#x27;, &#x27;resolved_plan_job_id&#x27;: &#x27;ocid1.resolvedplanjob.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;stack_id&#x27;: &#x27;ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;variables&#x27;: {}, &#x27;working_directory&#x27;: &#x27;working_directory_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1046,7 +1069,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>The type of configuration source to use for the Terraform configuration.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ZIP_UPLOAD</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">COMPARTMENT_CONFIG_SOURCE</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1251,6 +1274,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-job/is_provider_upgrade_required"></div>
+                    <b>is_provider_upgrade_required</b>
+                    <a class="ansibleOptionLink" href="#return-job/is_provider_upgrade_required" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Specifies whether or not to upgrade provider versions. Within the version constraints of your Terraform configuration, use the latest versions available from the source of Terraform providers. For more information about this option, see L(Dependency Lock File (terraform.io),https://www.terraform.io/language/files/dependency-lock).</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
                                 <tr>

@@ -30,7 +30,7 @@ oracle.oci.oci_management_agent -- Manage a ManagementAgent resource in Oracle C
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.56.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.57.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -493,7 +493,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the ManagementAgent resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;availability_status&#x27;: &#x27;ACTIVE&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;host_id&#x27;: &#x27;ocid1.host.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;install_key_id&#x27;: &#x27;ocid1.installkey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;install_path&#x27;: &#x27;install_path_example&#x27;, &#x27;install_type&#x27;: &#x27;AGENT&#x27;, &#x27;is_agent_auto_upgradable&#x27;: True, &#x27;is_customer_deployed&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;platform_name&#x27;: &#x27;platform_name_example&#x27;, &#x27;platform_type&#x27;: &#x27;LINUX&#x27;, &#x27;platform_version&#x27;: &#x27;platform_version_example&#x27;, &#x27;plugin_list&#x27;: [{&#x27;is_enabled&#x27;: True, &#x27;plugin_display_name&#x27;: &#x27;plugin_display_name_example&#x27;, &#x27;plugin_id&#x27;: &#x27;ocid1.plugin.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;plugin_name&#x27;: &#x27;plugin_name_example&#x27;, &#x27;plugin_version&#x27;: &#x27;plugin_version_example&#x27;}], &#x27;resource_artifact_version&#x27;: &#x27;resource_artifact_version_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_last_heartbeat&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;availability_status&#x27;: &#x27;ACTIVE&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;host_id&#x27;: &#x27;ocid1.host.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;install_key_id&#x27;: &#x27;ocid1.installkey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;install_path&#x27;: &#x27;install_path_example&#x27;, &#x27;install_type&#x27;: &#x27;AGENT&#x27;, &#x27;is_agent_auto_upgradable&#x27;: True, &#x27;is_customer_deployed&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;platform_name&#x27;: &#x27;platform_name_example&#x27;, &#x27;platform_type&#x27;: &#x27;LINUX&#x27;, &#x27;platform_version&#x27;: &#x27;platform_version_example&#x27;, &#x27;plugin_list&#x27;: [{&#x27;is_enabled&#x27;: True, &#x27;plugin_display_name&#x27;: &#x27;plugin_display_name_example&#x27;, &#x27;plugin_id&#x27;: &#x27;ocid1.plugin.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;plugin_name&#x27;: &#x27;plugin_name_example&#x27;, &#x27;plugin_status&#x27;: &#x27;RUNNING&#x27;, &#x27;plugin_status_message&#x27;: &#x27;plugin_status_message_example&#x27;, &#x27;plugin_version&#x27;: &#x27;plugin_version_example&#x27;}], &#x27;resource_artifact_version&#x27;: &#x27;resource_artifact_version_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_last_heartbeat&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -910,6 +910,44 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">plugin_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_agent/plugin_list/plugin_status"></div>
+                    <b>plugin_status</b>
+                    <a class="ansibleOptionLink" href="#return-management_agent/plugin_list/plugin_status" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Plugin Status</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">RUNNING</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-management_agent/plugin_list/plugin_status_message"></div>
+                    <b>plugin_status_message</b>
+                    <a class="ansibleOptionLink" href="#return-management_agent/plugin_list/plugin_status_message" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Status message of the Plugin</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">plugin_status_message_example</div>
                                     </td>
             </tr>
                                 <tr>

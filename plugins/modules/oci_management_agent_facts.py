@@ -24,7 +24,8 @@ short_description: Fetches details about one or multiple ManagementAgent resourc
 description:
     - Fetches details about one or multiple ManagementAgent resources in Oracle Cloud Infrastructure
     - Returns a list of Management Agents.
-      If no explicit page size limit is specified, it will default to 5000.
+      If no explicit page size limit is specified, it will default to 1000 when compartmentIdInSubtree is true and 5000 otherwise.
+      The response is limited to maximum 1000 records when compartmentIdInSubtree is true.
     - If I(management_agent_id) is specified, the details of a single ManagementAgent will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)
@@ -121,6 +122,15 @@ options:
             - "platformType"
             - "pluginDisplayNames"
             - "version"
+    compartment_id_in_subtree:
+        description:
+            - if set to true then it fetches resources for all compartments where user has access to else only on the compartment specified.
+        type: bool
+    access_level:
+        description:
+            - "When the value is \\"ACCESSIBLE\\", insufficient permissions for a compartment will filter out resources in that compartment without rejecting
+              the request."
+        type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -147,6 +157,8 @@ EXAMPLES = """
     install_type: AGENT
     sort_order: ASC
     sort_by: timeCreated
+    compartment_id_in_subtree: true
+    access_level: access_level_example
 
 """
 
@@ -277,6 +289,18 @@ management_agents:
                     returned: on success
                     type: str
                     sample: plugin_version_example
+                plugin_status:
+                    description:
+                        - Plugin Status
+                    returned: on success
+                    type: str
+                    sample: RUNNING
+                plugin_status_message:
+                    description:
+                        - Status message of the Plugin
+                    returned: on success
+                    type: str
+                    sample: plugin_status_message_example
                 is_enabled:
                     description:
                         - flag indicating whether the plugin is in enabled mode or disabled mode.
@@ -361,6 +385,8 @@ management_agents:
             "plugin_name": "plugin_name_example",
             "plugin_display_name": "plugin_display_name_example",
             "plugin_version": "plugin_version_example",
+            "plugin_status": "RUNNING",
+            "plugin_status_message": "plugin_status_message_example",
             "is_enabled": true
         }],
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -422,6 +448,8 @@ class ManagementAgentFactsHelperGen(OCIResourceFactsHelperBase):
             "install_type",
             "sort_order",
             "sort_by",
+            "compartment_id_in_subtree",
+            "access_level",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -488,6 +516,8 @@ def main():
                     "version",
                 ],
             ),
+            compartment_id_in_subtree=dict(type="bool"),
+            access_level=dict(type="str"),
         )
     )
 

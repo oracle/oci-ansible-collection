@@ -181,7 +181,7 @@ stacks:
                         - The type of configuration source to use for the Terraform configuration.
                     returned: on success
                     type: str
-                    sample: ZIP_UPLOAD
+                    sample: COMPARTMENT_CONFIG_SOURCE
                 working_directory:
                     description:
                         - File path to the directory to use for running Terraform.
@@ -194,6 +194,49 @@ stacks:
                     returned: on success
                     type: str
                     sample: working_directory_example
+        custom_terraform_provider:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                region:
+                    description:
+                        - "The name of the region that contains the bucket you want.
+                          For information about regions, see L(Regions and Availability
+                          Domains,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm).
+                          Example: `us-phoenix-1`"
+                    returned: on success
+                    type: str
+                    sample: us-phoenix-1
+                namespace:
+                    description:
+                        - The Object Storage namespace that contains the bucket you want.
+                          For information about Object Storage namespaces, see L(Understanding Object Storage
+                          Namespaces,https://docs.cloud.oracle.com/iaas/Content/Object/Tasks/understandingnamespaces.htm).
+                    returned: on success
+                    type: str
+                    sample: namespace_example
+                bucket_name:
+                    description:
+                        - The name of the bucket that contains the binary files for the custom Terraform providers.
+                          For information about buckets, see L(Managing Buckets,https://docs.cloud.oracle.com/iaas/Content/Object/Tasks/managingbuckets.htm).
+                    returned: on success
+                    type: str
+                    sample: bucket_name_example
+        is_third_party_provider_experience_enabled:
+            description:
+                - When `true`, the stack sources third-party Terraform providers from
+                  L(Terraform Registry,https://registry.terraform.io/browse/providers) and allows
+                  L(custom providers,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/resourcemanager/latest/datatypes/CustomTerraformProvider).
+                  For more information about stack sourcing of third-party Terraform providers, see
+                  L(Third-party Provider
+                  Configuration,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/terraformconfigresourcemanager.htm#third-party-providers).
+                - Returned for get operation
+            returned: on success
+            type: bool
+            sample: true
         variables:
             description:
                 - "Terraform variables associated with this resource.
@@ -294,9 +337,15 @@ stacks:
             "region": "us-phoenix-1",
             "namespace": "namespace_example",
             "bucket_name": "bucket_name_example",
-            "config_source_type": "ZIP_UPLOAD",
+            "config_source_type": "COMPARTMENT_CONFIG_SOURCE",
             "working_directory": "working_directory_example"
         },
+        "custom_terraform_provider": {
+            "region": "us-phoenix-1",
+            "namespace": "namespace_example",
+            "bucket_name": "bucket_name_example"
+        },
+        "is_third_party_provider_experience_enabled": true,
         "variables": {},
         "stack_drift_status": "NOT_CHECKED",
         "time_drift_last_checked": "2013-10-20T19:20:30+01:00",

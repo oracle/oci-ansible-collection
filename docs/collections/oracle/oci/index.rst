@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 2.56.0
+Collection version 2.57.0
 
 .. toctree::
     :maxdepth: 1
@@ -43,6 +43,16 @@ Modules
 * :ref:`oci_ai_anomaly_detection_project <ansible_collections.oracle.oci.oci_ai_anomaly_detection_project_module>` -- Manage a Project resource in Oracle Cloud Infrastructure
 * :ref:`oci_ai_anomaly_detection_project_actions <ansible_collections.oracle.oci.oci_ai_anomaly_detection_project_actions_module>` -- Perform actions on a Project resource in Oracle Cloud Infrastructure
 * :ref:`oci_ai_anomaly_detection_project_facts <ansible_collections.oracle.oci.oci_ai_anomaly_detection_project_facts_module>` -- Fetches details about one or multiple Project resources in Oracle Cloud Infrastructure
+* :ref:`oci_ai_language_batch_detect_dominant_language_actions <ansible_collections.oracle.oci.oci_ai_language_batch_detect_dominant_language_actions_module>` -- Perform actions on a BatchDetectDominantLanguage resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_language_batch_detect_language_entities_actions <ansible_collections.oracle.oci.oci_ai_language_batch_detect_language_entities_actions_module>` -- Perform actions on a BatchDetectLanguageEntities resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_language_batch_detect_language_key_phrases_actions <ansible_collections.oracle.oci.oci_ai_language_batch_detect_language_key_phrases_actions_module>` -- Perform actions on a BatchDetectLanguageKeyPhrases resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_language_batch_detect_language_sentiments_actions <ansible_collections.oracle.oci.oci_ai_language_batch_detect_language_sentiments_actions_module>` -- Perform actions on a BatchDetectLanguageSentiments resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_language_batch_detect_language_text_classification_actions <ansible_collections.oracle.oci.oci_ai_language_batch_detect_language_text_classification_actions_module>` -- Perform actions on a BatchDetectLanguageTextClassification resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_language_detect_dominant_language_actions <ansible_collections.oracle.oci.oci_ai_language_detect_dominant_language_actions_module>` -- Perform actions on a DetectDominantLanguage resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_language_detect_language_entities_actions <ansible_collections.oracle.oci.oci_ai_language_detect_language_entities_actions_module>` -- Perform actions on a DetectLanguageEntities resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_language_detect_language_key_phrases_actions <ansible_collections.oracle.oci.oci_ai_language_detect_language_key_phrases_actions_module>` -- Perform actions on a DetectLanguageKeyPhrases resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_language_detect_language_sentiments_actions <ansible_collections.oracle.oci.oci_ai_language_detect_language_sentiments_actions_module>` -- Perform actions on a DetectLanguageSentiments resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_language_detect_language_text_classification_actions <ansible_collections.oracle.oci.oci_ai_language_detect_language_text_classification_actions_module>` -- Perform actions on a DetectLanguageTextClassification resource in Oracle Cloud Infrastructure
 * :ref:`oci_ai_speech_transcription_job <ansible_collections.oracle.oci.oci_ai_speech_transcription_job_module>` -- Manage a TranscriptionJob resource in Oracle Cloud Infrastructure
 * :ref:`oci_ai_speech_transcription_job_actions <ansible_collections.oracle.oci.oci_ai_speech_transcription_job_actions_module>` -- Perform actions on a TranscriptionJob resource in Oracle Cloud Infrastructure
 * :ref:`oci_ai_speech_transcription_job_facts <ansible_collections.oracle.oci.oci_ai_speech_transcription_job_facts_module>` -- Fetches details about one or multiple TranscriptionJob resources in Oracle Cloud Infrastructure
@@ -117,6 +127,12 @@ Modules
 * :ref:`oci_apm_synthetics_public_vantage_point_facts <ansible_collections.oracle.oci.oci_apm_synthetics_public_vantage_point_facts_module>` -- Fetches details about one or multiple PublicVantagePoint resources in Oracle Cloud Infrastructure
 * :ref:`oci_apm_synthetics_script <ansible_collections.oracle.oci.oci_apm_synthetics_script_module>` -- Manage a Script resource in Oracle Cloud Infrastructure
 * :ref:`oci_apm_synthetics_script_facts <ansible_collections.oracle.oci.oci_apm_synthetics_script_facts_module>` -- Fetches details about one or multiple Script resources in Oracle Cloud Infrastructure
+* :ref:`oci_apm_traces_aggregated_snapshot_facts <ansible_collections.oracle.oci.oci_apm_traces_aggregated_snapshot_facts_module>` -- Fetches details about a AggregatedSnapshot resource in Oracle Cloud Infrastructure
+* :ref:`oci_apm_traces_query_result_actions <ansible_collections.oracle.oci.oci_apm_traces_query_result_actions_module>` -- Perform actions on a QueryResult resource in Oracle Cloud Infrastructure
+* :ref:`oci_apm_traces_quick_pick_facts <ansible_collections.oracle.oci.oci_apm_traces_quick_pick_facts_module>` -- Fetches details about one or multiple QuickPick resources in Oracle Cloud Infrastructure
+* :ref:`oci_apm_traces_span_facts <ansible_collections.oracle.oci.oci_apm_traces_span_facts_module>` -- Fetches details about a Span resource in Oracle Cloud Infrastructure
+* :ref:`oci_apm_traces_trace_facts <ansible_collections.oracle.oci.oci_apm_traces_trace_facts_module>` -- Fetches details about a Trace resource in Oracle Cloud Infrastructure
+* :ref:`oci_apm_traces_trace_snapshot_facts <ansible_collections.oracle.oci.oci_apm_traces_trace_snapshot_facts_module>` -- Fetches details about a TraceSnapshot resource in Oracle Cloud Infrastructure
 * :ref:`oci_appmgmt_control_monitored_instance_actions <ansible_collections.oracle.oci.oci_appmgmt_control_monitored_instance_actions_module>` -- Perform actions on a MonitoredInstance resource in Oracle Cloud Infrastructure
 * :ref:`oci_appmgmt_control_monitored_instance_facts <ansible_collections.oracle.oci.oci_appmgmt_control_monitored_instance_facts_module>` -- Fetches details about one or multiple MonitoredInstance resources in Oracle Cloud Infrastructure
 * :ref:`oci_artifacts_container_configuration <ansible_collections.oracle.oci.oci_artifacts_container_configuration_module>` -- Manage a ContainerConfiguration resource in Oracle Cloud Infrastructure
@@ -1277,6 +1293,12 @@ Modules
 * :ref:`oci_opa_instance <ansible_collections.oracle.oci.oci_opa_instance_module>` -- Manage an OpaInstance resource in Oracle Cloud Infrastructure
 * :ref:`oci_opa_instance_actions <ansible_collections.oracle.oci.oci_opa_instance_actions_module>` -- Perform actions on an OpaInstance resource in Oracle Cloud Infrastructure
 * :ref:`oci_opa_instance_facts <ansible_collections.oracle.oci.oci_opa_instance_facts_module>` -- Fetches details about one or multiple OpaInstance resources in Oracle Cloud Infrastructure
+* :ref:`oci_opensearch_cluster <ansible_collections.oracle.oci.oci_opensearch_cluster_module>` -- Manage an OpensearchCluster resource in Oracle Cloud Infrastructure
+* :ref:`oci_opensearch_cluster_actions <ansible_collections.oracle.oci.oci_opensearch_cluster_actions_module>` -- Perform actions on an OpensearchCluster resource in Oracle Cloud Infrastructure
+* :ref:`oci_opensearch_cluster_backup <ansible_collections.oracle.oci.oci_opensearch_cluster_backup_module>` -- Manage an OpensearchClusterBackup resource in Oracle Cloud Infrastructure
+* :ref:`oci_opensearch_cluster_backup_facts <ansible_collections.oracle.oci.oci_opensearch_cluster_backup_facts_module>` -- Fetches details about one or multiple OpensearchClusterBackup resources in Oracle Cloud Infrastructure
+* :ref:`oci_opensearch_cluster_facts <ansible_collections.oracle.oci.oci_opensearch_cluster_facts_module>` -- Fetches details about one or multiple OpensearchCluster resources in Oracle Cloud Infrastructure
+* :ref:`oci_opensearch_versions_facts <ansible_collections.oracle.oci.oci_opensearch_versions_facts_module>` -- Fetches details about one or multiple OpensearchVersions resources in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_awr_hub <ansible_collections.oracle.oci.oci_opsi_awr_hub_module>` -- Manage an AwrHub resource in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_awr_hub_facts <ansible_collections.oracle.oci.oci_opsi_awr_hub_facts_module>` -- Fetches details about one or multiple AwrHub resources in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_awr_report_facts <ansible_collections.oracle.oci.oci_opsi_awr_report_facts_module>` -- Fetches details about a AwrReport resource in Oracle Cloud Infrastructure
@@ -1623,6 +1645,16 @@ Modules
     oci_ai_anomaly_detection_project_module
     oci_ai_anomaly_detection_project_actions_module
     oci_ai_anomaly_detection_project_facts_module
+    oci_ai_language_batch_detect_dominant_language_actions_module
+    oci_ai_language_batch_detect_language_entities_actions_module
+    oci_ai_language_batch_detect_language_key_phrases_actions_module
+    oci_ai_language_batch_detect_language_sentiments_actions_module
+    oci_ai_language_batch_detect_language_text_classification_actions_module
+    oci_ai_language_detect_dominant_language_actions_module
+    oci_ai_language_detect_language_entities_actions_module
+    oci_ai_language_detect_language_key_phrases_actions_module
+    oci_ai_language_detect_language_sentiments_actions_module
+    oci_ai_language_detect_language_text_classification_actions_module
     oci_ai_speech_transcription_job_module
     oci_ai_speech_transcription_job_actions_module
     oci_ai_speech_transcription_job_facts_module
@@ -1697,6 +1729,12 @@ Modules
     oci_apm_synthetics_public_vantage_point_facts_module
     oci_apm_synthetics_script_module
     oci_apm_synthetics_script_facts_module
+    oci_apm_traces_aggregated_snapshot_facts_module
+    oci_apm_traces_query_result_actions_module
+    oci_apm_traces_quick_pick_facts_module
+    oci_apm_traces_span_facts_module
+    oci_apm_traces_trace_facts_module
+    oci_apm_traces_trace_snapshot_facts_module
     oci_appmgmt_control_monitored_instance_actions_module
     oci_appmgmt_control_monitored_instance_facts_module
     oci_artifacts_container_configuration_module
@@ -2857,6 +2895,12 @@ Modules
     oci_opa_instance_module
     oci_opa_instance_actions_module
     oci_opa_instance_facts_module
+    oci_opensearch_cluster_module
+    oci_opensearch_cluster_actions_module
+    oci_opensearch_cluster_backup_module
+    oci_opensearch_cluster_backup_facts_module
+    oci_opensearch_cluster_facts_module
+    oci_opensearch_versions_facts_module
     oci_opsi_awr_hub_module
     oci_opsi_awr_hub_facts_module
     oci_opsi_awr_report_facts_module

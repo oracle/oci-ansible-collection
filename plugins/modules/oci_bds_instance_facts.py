@@ -411,6 +411,13 @@ bds_instances:
             returned: on success
             type: str
             sample: bootstrap_script_url_example
+        kms_key_id:
+            description:
+                - The OCID of the Key Management master encryption key.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - The OCID of the Big Data Service resource.
@@ -542,6 +549,7 @@ bds_instances:
         "created_by": "created_by_example",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "bootstrap_script_url": "bootstrap_script_url_example",
+        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",

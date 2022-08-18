@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.57.0]
+
+
+## Added
+
+- Support for AI Language Service
+- Support for Application Performance Monitoring Traces Service
+- Support for OpenSearch Service
+- Support for accessing all Terraform providers from Hashicorp Registry, as well as bringing your own providers, in the Resource Manager service
+- Support for encryption of boot and block volumes associated with a cluster using customer-specified KMS keys in the Big Data service
+- Support for the VM.Standard.E4.Flex shape for Cloud SQL (CSQL) nodes in the Big Data service
+- Support for compartmentIdInSubtree and accessLevel filters when listing management agents in the Management Agent Cloud service
+- Support for filtering by agent id when listing management agent plugins in the Management Agent Cloud service
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.79.0
+
 ## [2.56.0]
 
 ## Added

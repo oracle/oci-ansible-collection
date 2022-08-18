@@ -71,6 +71,10 @@ options:
             - "LINUX"
             - "WINDOWS"
             - "SOLARIS"
+    agent_id:
+        description:
+            - The ManagementAgentID of the agent from which the Management Agents to be filtered.
+        type: str
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_name_option ]
 """
 
@@ -86,6 +90,7 @@ EXAMPLES = """
     sort_by: displayName
     lifecycle_state: CREATING
     platform_type: [ "LINUX" ]
+    agent_id: "ocid1.agent.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -186,6 +191,7 @@ class ManagementAgentPluginFactsHelperGen(OCIResourceFactsHelperBase):
             "sort_by",
             "lifecycle_state",
             "platform_type",
+            "agent_id",
             "name",
         ]
         optional_kwargs = dict(
@@ -235,6 +241,7 @@ def main():
             platform_type=dict(
                 type="list", elements="str", choices=["LINUX", "WINDOWS", "SOLARIS"]
             ),
+            agent_id=dict(type="str"),
             name=dict(type="str"),
         )
     )
