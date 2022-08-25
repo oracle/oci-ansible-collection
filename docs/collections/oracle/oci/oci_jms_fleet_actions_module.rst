@@ -30,7 +30,7 @@ oracle.oci.oci_jms_fleet_actions -- Perform actions on a Fleet resource in Oracl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.57.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.58.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -58,6 +58,7 @@ Synopsis
 
 - Perform actions on a Fleet resource in Oracle Cloud Infrastructure
 - For *action=change_compartment*, move a specified Fleet into the compartment identified in the POST form. When provided, If-Match is checked against ETag values of the resource.
+- For *action=generate_agent_deploy_script*, generates Agent Deploy Script for Fleet using the information provided.
 
 
 .. Aliases
@@ -98,6 +99,7 @@ Parameters
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>change_compartment</li>
+                                                                                                                                                                                                <li>generate_agent_deploy_script</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -225,12 +227,13 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment into which the Fleet should be moved.</div>
+                                            <div>Required for <em>action=change_compartment</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -265,6 +268,22 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-dest"></div>
+                    <b>dest</b>
+                    <a class="ansibleOptionLink" href="#parameter-dest" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The destination file path to write the output. The file will be created if it does not exist. If the file already exists, the content will be overwritten.</div>
+                                            <div>Required for <em>action=generate_agent_deploy_script</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-fleet_id"></div>
                     <b>fleet_id</b>
                     <a class="ansibleOptionLink" href="#parameter-fleet_id" title="Permalink to this option"></a>
@@ -278,6 +297,64 @@ Parameters
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Fleet.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-install_key_id"></div>
+                    <b>install_key_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-install_key_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the install key for which to generate the script.</div>
+                                            <div>Required for <em>action=generate_agent_deploy_script</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-is_user_name_enabled"></div>
+                    <b>is_user_name_enabled</b>
+                    <a class="ansibleOptionLink" href="#parameter-is_user_name_enabled" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Enable/disable user name collection on agent.</div>
+                                            <div>Required for <em>action=generate_agent_deploy_script</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-os_family"></div>
+                    <b>os_family</b>
+                    <a class="ansibleOptionLink" href="#parameter-os_family" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>LINUX</li>
+                                                                                                                                                                                                <li>WINDOWS</li>
+                                                                                                                                                                                                <li>MACOS</li>
+                                                                                                                                                                                                <li>UNKNOWN</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The operating system type for the script. Currently only &#x27;LINUX&#x27; and &#x27;WINDOWS&#x27; are supported.</div>
+                                            <div>Required for <em>action=generate_agent_deploy_script</em>.</div>
+                                                        </td>
             </tr>
                                 <tr>
                                                                 <td colspan="1">
@@ -371,9 +448,19 @@ Examples
     - name: Perform action change_compartment on fleet
       oci_jms_fleet_actions:
         # required
-        fleet_id: "ocid1.fleet.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        fleet_id: "ocid1.fleet.oc1..xxxxxxEXAMPLExxxxxx"
         action: change_compartment
+
+    - name: Perform action generate_agent_deploy_script on fleet
+      oci_jms_fleet_actions:
+        # required
+        dest: /tmp/myfile
+        fleet_id: "ocid1.fleet.oc1..xxxxxxEXAMPLExxxxxx"
+        install_key_id: "ocid1.installkey.oc1..xxxxxxEXAMPLExxxxxx"
+        os_family: LINUX
+        is_user_name_enabled: true
+        action: generate_agent_deploy_script
 
 
 
@@ -410,7 +497,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Fleet resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;approximate_application_count&#x27;: 56, &#x27;approximate_installation_count&#x27;: 56, &#x27;approximate_jre_count&#x27;: 56, &#x27;approximate_managed_instance_count&#x27;: 56, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;inventory_log&#x27;: {&#x27;log_group_id&#x27;: &#x27;ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;log_id&#x27;: &#x27;ocid1.log.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;operation_log&#x27;: {&#x27;log_group_id&#x27;: &#x27;ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;log_id&#x27;: &#x27;ocid1.log.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;approximate_application_count&#x27;: 56, &#x27;approximate_installation_count&#x27;: 56, &#x27;approximate_jre_count&#x27;: 56, &#x27;approximate_managed_instance_count&#x27;: 56, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;inventory_log&#x27;: {&#x27;log_group_id&#x27;: &#x27;ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;log_id&#x27;: &#x27;ocid1.log.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;is_advanced_features_enabled&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;operation_log&#x27;: {&#x27;log_group_id&#x27;: &#x27;ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;log_id&#x27;: &#x27;ocid1.log.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -648,6 +735,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                     
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-fleet/is_advanced_features_enabled"></div>
+                    <b>is_advanced_features_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-fleet/is_advanced_features_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Whether or not advanced features are enabled in this fleet.  By default, this is set to false.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">

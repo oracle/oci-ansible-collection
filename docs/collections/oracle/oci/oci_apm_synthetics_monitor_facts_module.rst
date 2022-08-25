@@ -30,7 +30,7 @@ oracle.oci.oci_apm_synthetics_monitor_facts -- Fetches details about one or mult
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.57.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.58.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -495,10 +495,28 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Monitor resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;configuration&#x27;: {&#x27;config_type&#x27;: &#x27;BROWSER_CONFIG&#x27;, &#x27;is_certificate_validation_enabled&#x27;: True, &#x27;is_failure_retried&#x27;: True, &#x27;is_redirection_enabled&#x27;: True, &#x27;network_configuration&#x27;: {&#x27;number_of_hops&#x27;: 56, &#x27;probe_mode&#x27;: &#x27;SACK&#x27;, &#x27;probe_per_hop&#x27;: 56, &#x27;protocol&#x27;: &#x27;ICMP&#x27;, &#x27;transmission_rate&#x27;: 56}, &#x27;req_authentication_details&#x27;: {&#x27;auth_headers&#x27;: [{&#x27;header_name&#x27;: &#x27;header_name_example&#x27;, &#x27;header_value&#x27;: &#x27;header_value_example&#x27;}], &#x27;auth_request_method&#x27;: &#x27;GET&#x27;, &#x27;auth_request_post_body&#x27;: &#x27;auth_request_post_body_example&#x27;, &#x27;auth_token&#x27;: &#x27;auth_token_example&#x27;, &#x27;auth_url&#x27;: &#x27;auth_url_example&#x27;, &#x27;auth_user_name&#x27;: &#x27;auth_user_name_example&#x27;, &#x27;auth_user_password&#x27;: &#x27;example-password&#x27;, &#x27;oauth_scheme&#x27;: &#x27;NONE&#x27;}, &#x27;req_authentication_scheme&#x27;: &#x27;OAUTH&#x27;, &#x27;request_headers&#x27;: [{&#x27;header_name&#x27;: &#x27;header_name_example&#x27;, &#x27;header_value&#x27;: &#x27;header_value_example&#x27;}], &#x27;request_method&#x27;: &#x27;GET&#x27;, &#x27;request_post_body&#x27;: &#x27;request_post_body_example&#x27;, &#x27;request_query_params&#x27;: [{&#x27;param_name&#x27;: &#x27;param_name_example&#x27;, &#x27;param_value&#x27;: &#x27;param_value_example&#x27;}], &#x27;verify_response_codes&#x27;: [], &#x27;verify_response_content&#x27;: &#x27;verify_response_content_example&#x27;, &#x27;verify_texts&#x27;: [{&#x27;text&#x27;: &#x27;text_example&#x27;}]}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_run_once&#x27;: True, &#x27;monitor_type&#x27;: &#x27;SCRIPTED_BROWSER&#x27;, &#x27;repeat_interval_in_seconds&#x27;: 56, &#x27;script_id&#x27;: &#x27;ocid1.script.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;script_name&#x27;: &#x27;script_name_example&#x27;, &#x27;script_parameters&#x27;: [{&#x27;is_overwritten&#x27;: True, &#x27;is_secret&#x27;: True, &#x27;monitor_script_parameter&#x27;: {&#x27;param_name&#x27;: &#x27;param_name_example&#x27;, &#x27;param_value&#x27;: &#x27;param_value_example&#x27;}}], &#x27;status&#x27;: &#x27;ENABLED&#x27;, &#x27;target&#x27;: &#x27;target_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;timeout_in_seconds&#x27;: 56, &#x27;vantage_point_count&#x27;: 56, &#x27;vantage_points&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}]}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;batch_interval_in_seconds&#x27;: 56, &#x27;configuration&#x27;: {&#x27;config_type&#x27;: &#x27;BROWSER_CONFIG&#x27;, &#x27;dns_configuration&#x27;: {&#x27;is_override_dns&#x27;: True, &#x27;override_dns_ip&#x27;: &#x27;override_dns_ip_example&#x27;}, &#x27;is_certificate_validation_enabled&#x27;: True, &#x27;is_failure_retried&#x27;: True, &#x27;is_redirection_enabled&#x27;: True, &#x27;network_configuration&#x27;: {&#x27;number_of_hops&#x27;: 56, &#x27;probe_mode&#x27;: &#x27;SACK&#x27;, &#x27;probe_per_hop&#x27;: 56, &#x27;protocol&#x27;: &#x27;ICMP&#x27;, &#x27;transmission_rate&#x27;: 56}, &#x27;req_authentication_details&#x27;: {&#x27;auth_headers&#x27;: [{&#x27;header_name&#x27;: &#x27;header_name_example&#x27;, &#x27;header_value&#x27;: &#x27;header_value_example&#x27;}], &#x27;auth_request_method&#x27;: &#x27;GET&#x27;, &#x27;auth_request_post_body&#x27;: &#x27;auth_request_post_body_example&#x27;, &#x27;auth_token&#x27;: &#x27;auth_token_example&#x27;, &#x27;auth_url&#x27;: &#x27;auth_url_example&#x27;, &#x27;auth_user_name&#x27;: &#x27;auth_user_name_example&#x27;, &#x27;auth_user_password&#x27;: &#x27;example-password&#x27;, &#x27;oauth_scheme&#x27;: &#x27;NONE&#x27;}, &#x27;req_authentication_scheme&#x27;: &#x27;OAUTH&#x27;, &#x27;request_headers&#x27;: [{&#x27;header_name&#x27;: &#x27;header_name_example&#x27;, &#x27;header_value&#x27;: &#x27;header_value_example&#x27;}], &#x27;request_method&#x27;: &#x27;GET&#x27;, &#x27;request_post_body&#x27;: &#x27;request_post_body_example&#x27;, &#x27;request_query_params&#x27;: [{&#x27;param_name&#x27;: &#x27;param_name_example&#x27;, &#x27;param_value&#x27;: &#x27;param_value_example&#x27;}], &#x27;verify_response_codes&#x27;: [], &#x27;verify_response_content&#x27;: &#x27;verify_response_content_example&#x27;, &#x27;verify_texts&#x27;: [{&#x27;text&#x27;: &#x27;text_example&#x27;}]}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_run_now&#x27;: True, &#x27;is_run_once&#x27;: True, &#x27;monitor_type&#x27;: &#x27;SCRIPTED_BROWSER&#x27;, &#x27;repeat_interval_in_seconds&#x27;: 56, &#x27;scheduling_policy&#x27;: &#x27;ALL&#x27;, &#x27;script_id&#x27;: &#x27;ocid1.script.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;script_name&#x27;: &#x27;script_name_example&#x27;, &#x27;script_parameters&#x27;: [{&#x27;is_overwritten&#x27;: True, &#x27;is_secret&#x27;: True, &#x27;monitor_script_parameter&#x27;: {&#x27;param_name&#x27;: &#x27;param_name_example&#x27;, &#x27;param_value&#x27;: &#x27;param_value_example&#x27;}}], &#x27;status&#x27;: &#x27;ENABLED&#x27;, &#x27;target&#x27;: &#x27;target_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;timeout_in_seconds&#x27;: 56, &#x27;vantage_point_count&#x27;: 56, &#x27;vantage_points&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}]}]</div>
                                     </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-monitors/batch_interval_in_seconds"></div>
+                    <b>batch_interval_in_seconds</b>
+                    <a class="ansibleOptionLink" href="#return-monitors/batch_interval_in_seconds" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Time interval between 2 runs in round robin batch mode (*SchedulingPolicy - BATCHED_ROUND_ROBIN).</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-monitors/configuration"></div>
@@ -534,6 +552,64 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">BROWSER_CONFIG</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-monitors/configuration/dns_configuration"></div>
+                    <b>dns_configuration</b>
+                    <a class="ansibleOptionLink" href="#return-monitors/configuration/dns_configuration" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-monitors/configuration/dns_configuration/is_override_dns"></div>
+                    <b>is_override_dns</b>
+                    <a class="ansibleOptionLink" href="#return-monitors/configuration/dns_configuration/is_override_dns" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>If isOverrideDns is true, then dns will be overridden.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-monitors/configuration/dns_configuration/override_dns_ip"></div>
+                    <b>override_dns_ip</b>
+                    <a class="ansibleOptionLink" href="#return-monitors/configuration/dns_configuration/override_dns_ip" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Override dns ip value. This value will be honored only if *ref-isOverrideDns is set to true.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">override_dns_ip_example</div>
+                                    </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1251,6 +1327,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-monitors/is_run_now"></div>
+                    <b>is_run_now</b>
+                    <a class="ansibleOptionLink" href="#return-monitors/is_run_now" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>If isRunNow is enabled, then the monitor will run now.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-monitors/is_run_once"></div>
                     <b>is_run_once</b>
                     <a class="ansibleOptionLink" href="#return-monitors/is_run_once" title="Permalink to this return value"></a>
@@ -1300,6 +1394,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-monitors/scheduling_policy"></div>
+                    <b>scheduling_policy</b>
+                    <a class="ansibleOptionLink" href="#return-monitors/scheduling_policy" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Scheduling policy on Vantage points.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ALL</div>
                                     </td>
             </tr>
                                 <tr>

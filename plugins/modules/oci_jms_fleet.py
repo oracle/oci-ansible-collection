@@ -24,7 +24,12 @@ short_description: Manage a Fleet resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Fleet resource in Oracle Cloud Infrastructure
     - For I(state=present), create a new Fleet using the information provided.
-    - "This resource has the following action operations in the M(oracle.oci.oci_jms_fleet_actions) module: change_compartment."
+    - "`inventoryLog` is now a required parameter for CreateFleet API.
+      Update existing applications using this API
+      before July 15, 2022 to ensure the applications continue to work.
+      See the L(Service Change Notice,https://docs.oracle.com/en-us/iaas/Content/servicechanges.htm#JMS) for more details.
+      Migrate existing fleets using the `UpdateFleet` API to set the `inventoryLog` parameter."
+    - "This resource has the following action operations in the M(oracle.oci.oci_jms_fleet_actions) module: change_compartment, generate_agent_deploy_script."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -49,6 +54,7 @@ options:
     inventory_log:
         description:
             - ""
+            - Required for create using I(state=present).
             - This parameter is updatable.
         type: dict
         suboptions:
@@ -78,6 +84,11 @@ options:
                     - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the log.
                 type: str
                 required: true
+    is_advanced_features_enabled:
+        description:
+            - Whether or not advanced features are enabled in this fleet.  By default, this is set to false.
+            - This parameter is updatable.
+        type: bool
     defined_tags:
         description:
             - "Defined tags for this resource. Each key is predefined and scoped to a namespace.
@@ -117,17 +128,18 @@ EXAMPLES = """
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
-
-    # optional
-    description: description_example
     inventory_log:
       # required
       log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
       log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    description: description_example
     operation_log:
       # required
       log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
       log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+    is_advanced_features_enabled: true
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
 
@@ -147,6 +159,7 @@ EXAMPLES = """
       # required
       log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
       log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+    is_advanced_features_enabled: true
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
 
@@ -165,6 +178,7 @@ EXAMPLES = """
       # required
       log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
       log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+    is_advanced_features_enabled: true
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
 
@@ -277,6 +291,12 @@ fleet:
                     returned: on success
                     type: str
                     sample: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+        is_advanced_features_enabled:
+            description:
+                - Whether or not advanced features are enabled in this fleet.  By default, this is set to false.
+            returned: on success
+            type: bool
+            sample: true
         time_created:
             description:
                 - The creation date and time of the Fleet (formatted according to L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339)).
@@ -331,6 +351,7 @@ fleet:
             "log_group_id": "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx",
             "log_id": "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
         },
+        "is_advanced_features_enabled": true,
         "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "ACTIVE",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -500,6 +521,7 @@ def main():
                     log_id=dict(type="str", required=True),
                 ),
             ),
+            is_advanced_features_enabled=dict(type="bool"),
             defined_tags=dict(type="dict"),
             freeform_tags=dict(type="dict"),
             fleet_id=dict(aliases=["id"], type="str"),

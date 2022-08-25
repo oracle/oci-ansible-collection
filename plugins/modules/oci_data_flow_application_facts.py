@@ -103,6 +103,25 @@ applications:
     returned: on success
     type: complex
     contains:
+        application_log_config:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                log_group_id:
+                    description:
+                        - The log group id for where log objects will be for Data Flow Runs.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
+                log_id:
+                    description:
+                        - The log id of the log object the Application Logs of Data Flow Run will be shipped to.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
         archive_uri:
             description:
                 - An Oracle Cloud Infrastructure URI of an archive.zip file containing custom dependencies that may be used to support the execution a Python,
@@ -378,6 +397,10 @@ applications:
             type: str
             sample: BATCH
     sample: [{
+        "application_log_config": {
+            "log_group_id": "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx",
+            "log_id": "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+        },
         "archive_uri": "archive_uri_example",
         "arguments": [],
         "class_name": "class_name_example",

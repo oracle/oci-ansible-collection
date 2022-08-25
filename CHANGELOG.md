@@ -4,6 +4,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.58.0]
+
+## Added
+
+- Support for Etags on operations in the Load Balancing service
+- Support for `STANDARDX` and `ENTERPRISEX` instance types in Integration service
+- Support for moving resources in the Console Dashboard service
+- Support for streaming application logs to the Logging service in the Data Flow service
+- Support for round-robin alerting in the Application Performance Monitoring Synthetics service
+- Support for aggregated network data of synthetic monitors in the Application Performance Monitoring Synthetics service
+- Support for dedicated vantage points in the Application Performance Monitoring Synthetics service
+- Support for installation scripts in the Java Management service
+
+## Breaking
+
+- The property `inventory_log` is now a required property for create in `oci_jms_fleet` module
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.80.0
+
 ## [2.57.0]
 
 

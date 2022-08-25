@@ -71,6 +71,22 @@ options:
             - "JAVA"
             - "PYTHON"
             - "SQL"
+    application_log_config:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            log_group_id:
+                description:
+                    - The log group id for where log objects will be for Data Flow Runs.
+                type: str
+                required: true
+            log_id:
+                description:
+                    - The log id of the log object the Application Logs of Data Flow Run will be shipped to.
+                type: str
+                required: true
     archive_uri:
         description:
             - An Oracle Cloud Infrastructure URI of an archive.zip file containing custom dependencies that may be used to support the execution a Python, Java,
@@ -270,6 +286,10 @@ EXAMPLES = """
     # optional
     type: BATCH
     class_name: class_name_example
+    application_log_config:
+      # required
+      log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
+      log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
     archive_uri: archive_uri_example
     arguments: [ "arguments_example" ]
     configuration: null
@@ -304,6 +324,10 @@ EXAMPLES = """
     file_uri: file_uri_example
     spark_version: spark_version_example
     language: SCALA
+    application_log_config:
+      # required
+      log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
+      log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
     archive_uri: archive_uri_example
     arguments: [ "arguments_example" ]
     configuration: null
@@ -343,6 +367,10 @@ EXAMPLES = """
     file_uri: file_uri_example
     spark_version: spark_version_example
     language: SCALA
+    application_log_config:
+      # required
+      log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
+      log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
     archive_uri: archive_uri_example
     arguments: [ "arguments_example" ]
     configuration: null
@@ -392,6 +420,24 @@ application:
     returned: on success
     type: complex
     contains:
+        application_log_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                log_group_id:
+                    description:
+                        - The log group id for where log objects will be for Data Flow Runs.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
+                log_id:
+                    description:
+                        - The log id of the log object the Application Logs of Data Flow Run will be shipped to.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
         archive_uri:
             description:
                 - An Oracle Cloud Infrastructure URI of an archive.zip file containing custom dependencies that may be used to support the execution a Python,
@@ -650,6 +696,10 @@ application:
             type: str
             sample: warehouse_bucket_uri_example
     sample: {
+        "application_log_config": {
+            "log_group_id": "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx",
+            "log_id": "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+        },
         "archive_uri": "archive_uri_example",
         "arguments": [],
         "class_name": "class_name_example",
@@ -865,6 +915,13 @@ def main():
             file_uri=dict(type="str"),
             spark_version=dict(type="str"),
             language=dict(type="str", choices=["SCALA", "JAVA", "PYTHON", "SQL"]),
+            application_log_config=dict(
+                type="dict",
+                options=dict(
+                    log_group_id=dict(type="str", required=True),
+                    log_id=dict(type="str", required=True),
+                ),
+            ),
             archive_uri=dict(type="str"),
             arguments=dict(type="list", elements="str"),
             configuration=dict(type="dict"),

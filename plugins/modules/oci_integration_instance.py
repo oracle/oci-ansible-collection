@@ -62,7 +62,8 @@ options:
                 required: true
             allowlisted_http_ips:
                 description:
-                    - Source IP addresses or IP address ranges ingress rules.
+                    - "Source IP addresses or IP address ranges ingress rules. (ex: \\"168.122.59.5\\", \\"10.20.30.0/26\\")
+                      An invalid IP or CIDR block will result in a 400 response."
                 type: list
                 elements: str
             allowlisted_http_vcns:
@@ -78,13 +79,21 @@ options:
                         required: true
                     allowlisted_ips:
                         description:
-                            - Source IP addresses or IP address ranges ingress rules.
+                            - "Source IP addresses or IP address ranges ingress rules. (ex: \\"168.122.59.5\\", \\"10.20.30.0/26\\")
+                              An invalid IP or CIDR block will result in a 400 response."
                         type: list
                         elements: str
             is_integration_vcn_allowlisted:
                 description:
                     - The Integration service's VCN is allow-listed to allow integrations to call back into other integrations
                 type: bool
+    shape:
+        description:
+            - Shape
+        type: str
+        choices:
+            - "DEVELOPMENT"
+            - "PRODUCTION"
     display_name:
         description:
             - Integration Instance Identifier.
@@ -95,13 +104,17 @@ options:
         aliases: ["name"]
     integration_instance_type:
         description:
-            - Standard or Enterprise type
+            - Standard or Enterprise type,
+              Oracle Integration Generation 2 uses ENTERPRISE and STANDARD,
+              Oracle Integration 3 uses ENTERPRISEX and STANDARDX
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
         choices:
             - "STANDARD"
             - "ENTERPRISE"
+            - "STANDARDX"
+            - "ENTERPRISEX"
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name,
@@ -223,6 +236,7 @@ EXAMPLES = """
         # optional
         allowlisted_ips: [ "allowlisted_ips_example" ]
       is_integration_vcn_allowlisted: true
+    shape: DEVELOPMENT
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     is_file_server_enabled: true
@@ -336,7 +350,9 @@ integration_instance:
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         integration_instance_type:
             description:
-                - Standard or Enterprise type
+                - Standard or Enterprise type,
+                  Oracle Integration Generation 2 uses ENTERPRISE and STANDARD,
+                  Oracle Integration 3 uses ENTERPRISEX and STANDARDX
             returned: on success
             type: str
             sample: STANDARD
@@ -435,6 +451,12 @@ integration_instance:
                     returned: on success
                     type: int
                     sample: 56
+                alias:
+                    description:
+                        - When creating the DNS CNAME record for the custom hostname, this value must be specified in the rdata.
+                    returned: on success
+                    type: str
+                    sample: alias_example
         alternate_custom_endpoints:
             description:
                 - A list of alternate custom endpoints used for the integration instance URL.
@@ -459,6 +481,12 @@ integration_instance:
                     returned: on success
                     type: int
                     sample: 56
+                alias:
+                    description:
+                        - When creating the DNS CNAME record for the custom hostname, this value must be specified in the rdata.
+                    returned: on success
+                    type: str
+                    sample: alias_example
         consumption_model:
             description:
                 - The entitlement used for billing purposes.
@@ -479,7 +507,8 @@ integration_instance:
                     sample: PUBLIC
                 allowlisted_http_ips:
                     description:
-                        - Source IP addresses or IP address ranges ingress rules.
+                        - "Source IP addresses or IP address ranges ingress rules. (ex: \\"168.122.59.5\\", \\"10.20.30.0/26\\")
+                          An invalid IP or CIDR block will result in a 400 response."
                     returned: on success
                     type: list
                     sample: []
@@ -497,7 +526,8 @@ integration_instance:
                             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         allowlisted_ips:
                             description:
-                                - Source IP addresses or IP address ranges ingress rules.
+                                - "Source IP addresses or IP address ranges ingress rules. (ex: \\"168.122.59.5\\", \\"10.20.30.0/26\\")
+                                  An invalid IP or CIDR block will result in a 400 response."
                             returned: on success
                             type: list
                             sample: []
@@ -507,6 +537,88 @@ integration_instance:
                     returned: on success
                     type: bool
                     sample: true
+        idcs_info:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                idcs_app_location_url:
+                    description:
+                        - URL for the location of the IDCS Application (used by IDCS APIs)
+                    returned: on success
+                    type: str
+                    sample: idcs_app_location_url_example
+                idcs_app_display_name:
+                    description:
+                        - The IDCS application display name associated with the instance
+                    returned: on success
+                    type: str
+                    sample: idcs_app_display_name_example
+                idcs_app_id:
+                    description:
+                        - The IDCS application ID associated with the instance
+                    returned: on success
+                    type: str
+                    sample: "ocid1.idcsapp.oc1..xxxxxxEXAMPLExxxxxx"
+                idcs_app_name:
+                    description:
+                        - The IDCS application name associated with the instance
+                    returned: on success
+                    type: str
+                    sample: idcs_app_name_example
+                instance_primary_audience_url:
+                    description:
+                        - "The URL used as the primary audience for integration flows in this instance
+                          type: string"
+                    returned: on success
+                    type: str
+                    sample: instance_primary_audience_url_example
+        attachments:
+            description:
+                - A list of associated attachments to other services
+            returned: on success
+            type: complex
+            contains:
+                target_role:
+                    description:
+                        - "The role of the target attachment.
+                             * `PARENT` - The target instance is the parent of this attachment.
+                             * `CHILD` - The target instance is the child of this attachment."
+                    returned: on success
+                    type: str
+                    sample: PARENT
+                is_implicit:
+                    description:
+                        - "* If role == `PARENT`, the attached instance was created by this service instance
+                          * If role == `CHILD`, this instance was created from attached instance on behalf of a user"
+                    returned: on success
+                    type: bool
+                    sample: true
+                target_id:
+                    description:
+                        - The OCID of the target instance (which could be any other OCI PaaS/SaaS resource), to which this instance is attached.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.target.oc1..xxxxxxEXAMPLExxxxxx"
+                target_instance_url:
+                    description:
+                        - The dataplane instance URL of the attached instance
+                    returned: on success
+                    type: str
+                    sample: target_instance_url_example
+                target_service_type:
+                    description:
+                        - "The type of the target instance, such as \\"FUSION\\"."
+                    returned: on success
+                    type: str
+                    sample: target_service_type_example
+        shape:
+            description:
+                - Shape
+            returned: on success
+            type: str
+            sample: DEVELOPMENT
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -526,12 +638,14 @@ integration_instance:
         "custom_endpoint": {
             "hostname": "hostname_example",
             "certificate_secret_id": "ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx",
-            "certificate_secret_version": 56
+            "certificate_secret_version": 56,
+            "alias": "alias_example"
         },
         "alternate_custom_endpoints": [{
             "hostname": "hostname_example",
             "certificate_secret_id": "ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx",
-            "certificate_secret_version": 56
+            "certificate_secret_version": 56,
+            "alias": "alias_example"
         }],
         "consumption_model": "UCM",
         "network_endpoint_details": {
@@ -542,7 +656,22 @@ integration_instance:
                 "allowlisted_ips": []
             }],
             "is_integration_vcn_allowlisted": true
-        }
+        },
+        "idcs_info": {
+            "idcs_app_location_url": "idcs_app_location_url_example",
+            "idcs_app_display_name": "idcs_app_display_name_example",
+            "idcs_app_id": "ocid1.idcsapp.oc1..xxxxxxEXAMPLExxxxxx",
+            "idcs_app_name": "idcs_app_name_example",
+            "instance_primary_audience_url": "instance_primary_audience_url_example"
+        },
+        "attachments": [{
+            "target_role": "PARENT",
+            "is_implicit": true,
+            "target_id": "ocid1.target.oc1..xxxxxxEXAMPLExxxxxx",
+            "target_instance_url": "target_instance_url_example",
+            "target_service_type": "target_service_type_example"
+        }],
+        "shape": "DEVELOPMENT"
     }
 """
 
@@ -726,9 +855,11 @@ def main():
                     is_integration_vcn_allowlisted=dict(type="bool"),
                 ),
             ),
+            shape=dict(type="str", choices=["DEVELOPMENT", "PRODUCTION"]),
             display_name=dict(aliases=["name"], type="str"),
             integration_instance_type=dict(
-                type="str", choices=["STANDARD", "ENTERPRISE"]
+                type="str",
+                choices=["STANDARD", "ENTERPRISE", "STANDARDX", "ENTERPRISEX"],
             ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),

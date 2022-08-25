@@ -30,7 +30,7 @@ oracle.oci.oci_jms_fleet -- Manage a Fleet resource in Oracle Cloud Infrastructu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.57.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.58.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -58,7 +58,8 @@ Synopsis
 
 - This module allows the user to create, update and delete a Fleet resource in Oracle Cloud Infrastructure
 - For *state=present*, create a new Fleet using the information provided.
-- This resource has the following action operations in the :ref:`oracle.oci.oci_jms_fleet_actions <ansible_collections.oracle.oci.oci_jms_fleet_actions_module>` module: change_compartment.
+- `inventoryLog` is now a required parameter for CreateFleet API. Update existing applications using this API before July 15, 2022 to ensure the applications continue to work. See the `Service Change Notice <https://docs.oracle.com/en-us/iaas/Content/servicechanges.htm#JMS>`_ for more details. Migrate existing fleets using the `UpdateFleet` API to set the `inventoryLog` parameter.
+- This resource has the following action operations in the :ref:`oracle.oci.oci_jms_fleet_actions <ansible_collections.oracle.oci.oci_jms_fleet_actions_module>` module: change_compartment, generate_agent_deploy_script.
 
 
 .. Aliases
@@ -364,6 +365,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div></div>
+                                            <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -400,6 +402,26 @@ Parameters
                                                         </td>
             </tr>
                     
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-is_advanced_features_enabled"></div>
+                    <b>is_advanced_features_enabled</b>
+                    <a class="ansibleOptionLink" href="#parameter-is_advanced_features_enabled" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Whether or not advanced features are enabled in this fleet.  By default, this is set to false.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
                                 <tr>
                                                                 <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-key_by"></div>
@@ -579,17 +601,18 @@ Examples
         # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
-
-        # optional
-        description: description_example
         inventory_log:
           # required
           log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
           log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        description: description_example
         operation_log:
           # required
           log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
           log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+        is_advanced_features_enabled: true
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         freeform_tags: {'Department': 'Finance'}
 
@@ -609,6 +632,7 @@ Examples
           # required
           log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
           log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+        is_advanced_features_enabled: true
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         freeform_tags: {'Department': 'Finance'}
 
@@ -627,6 +651,7 @@ Examples
           # required
           log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
           log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+        is_advanced_features_enabled: true
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         freeform_tags: {'Department': 'Finance'}
 
@@ -677,7 +702,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Fleet resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;approximate_application_count&#x27;: 56, &#x27;approximate_installation_count&#x27;: 56, &#x27;approximate_jre_count&#x27;: 56, &#x27;approximate_managed_instance_count&#x27;: 56, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;inventory_log&#x27;: {&#x27;log_group_id&#x27;: &#x27;ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;log_id&#x27;: &#x27;ocid1.log.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;operation_log&#x27;: {&#x27;log_group_id&#x27;: &#x27;ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;log_id&#x27;: &#x27;ocid1.log.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;approximate_application_count&#x27;: 56, &#x27;approximate_installation_count&#x27;: 56, &#x27;approximate_jre_count&#x27;: 56, &#x27;approximate_managed_instance_count&#x27;: 56, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;inventory_log&#x27;: {&#x27;log_group_id&#x27;: &#x27;ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;log_id&#x27;: &#x27;ocid1.log.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;is_advanced_features_enabled&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;operation_log&#x27;: {&#x27;log_group_id&#x27;: &#x27;ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;log_id&#x27;: &#x27;ocid1.log.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -915,6 +940,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                     
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-fleet/is_advanced_features_enabled"></div>
+                    <b>is_advanced_features_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-fleet/is_advanced_features_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Whether or not advanced features are enabled in this fleet.  By default, this is set to false.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">

@@ -12,7 +12,7 @@ Oracle Cloud Infrastructure Ansible Collection - |version|
    Installation <installation/index>
    Authentication <guides/authentication.md>
    Idempotence <guides/idempotence-guide.md>
-   Troubleshooting <guides/troubleshooting-guide.md>
+   Troubleshooting <guides/troubleshooting-guide.rst>
    Wait Configuration <guides/wait-timeout.md>
    Modules Index <collections/oracle/oci/index>
    Inventory Plugin <inventory_plugin/index>

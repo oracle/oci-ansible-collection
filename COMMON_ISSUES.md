@@ -15,7 +15,7 @@ If it is already installed, it could be because the version you are using might 
 Try first upgrading the OCI python SDK:
 `pip install oci --upgrade`
 
-If the python SDK is not installed correctly, check [Ansible Install Troubleshooting Guide](ansible-oci-customer-troubleshooting/ansible-install-troubleshooting-guide.md).
+If the python SDK is not installed correctly, check [Ansible Install Troubleshooting Guide](https://docs.oracle.com/en-us/iaas/tools/oci-ansible-collection/latest/guides/troubleshooting-guide.html#oci-python-sdk-required-for-this-module).
 
 -----------------------------------
 ## Error: "Could not find config file at ~/.oci/config"
