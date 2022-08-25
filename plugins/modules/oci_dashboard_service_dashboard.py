@@ -28,6 +28,7 @@ description:
       Although it is possible to create dashboard resource in regions other than the home region,
       you won't be able to view those resources in the Console.
       Therefore, creating resources outside of the home region is not recommended."
+    - "This resource has the following action operations in the M(oracle.oci.oci_dashboard_service_dashboard_actions) module: change_dashboard_group."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:

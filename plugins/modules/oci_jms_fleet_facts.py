@@ -74,6 +74,10 @@ options:
         choices:
             - "displayName"
             - "timeCreated"
+    display_name_contains:
+        description:
+            - Filter the list with displayName contains the given value.
+        type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -92,6 +96,7 @@ EXAMPLES = """
     display_name: display_name_example
     sort_order: ASC
     sort_by: displayName
+    display_name_contains: display_name_contains_example
 
 """
 
@@ -190,6 +195,12 @@ fleets:
                     returned: on success
                     type: str
                     sample: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+        is_advanced_features_enabled:
+            description:
+                - Whether or not advanced features are enabled in this fleet.  By default, this is set to false.
+            returned: on success
+            type: bool
+            sample: true
         time_created:
             description:
                 - The creation date and time of the Fleet (formatted according to L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339)).
@@ -244,6 +255,7 @@ fleets:
             "log_group_id": "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx",
             "log_id": "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
         },
+        "is_advanced_features_enabled": true,
         "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "ACTIVE",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -290,6 +302,7 @@ class FleetFactsHelperGen(OCIResourceFactsHelperBase):
             "display_name",
             "sort_order",
             "sort_by",
+            "display_name_contains",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -329,6 +342,7 @@ def main():
             display_name=dict(aliases=["name"], type="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["displayName", "timeCreated"]),
+            display_name_contains=dict(type="str"),
         )
     )
 

@@ -30,7 +30,7 @@ oracle.oci.oci_integration_instance_actions -- Perform actions on an Integration
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.57.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.58.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -315,7 +315,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Source IP addresses or IP address ranges ingress rules.</div>
+                                            <div>Source IP addresses or IP address ranges ingress rules. (ex: &quot;168.122.59.5&quot;, &quot;10.20.30.0/26&quot;) An invalid IP or CIDR block will result in a 400 response.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -348,7 +348,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Source IP addresses or IP address ranges ingress rules.</div>
+                                            <div>Source IP addresses or IP address ranges ingress rules. (ex: &quot;168.122.59.5&quot;, &quot;10.20.30.0/26&quot;) An invalid IP or CIDR block will result in a 400 response.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -575,7 +575,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the IntegrationInstance resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;alternate_custom_endpoints&#x27;: [{&#x27;certificate_secret_id&#x27;: &#x27;ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;certificate_secret_version&#x27;: 56, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;}], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;consumption_model&#x27;: &#x27;UCM&#x27;, &#x27;custom_endpoint&#x27;: {&#x27;certificate_secret_id&#x27;: &#x27;ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;certificate_secret_version&#x27;: 56, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_url&#x27;: &#x27;instance_url_example&#x27;, &#x27;integration_instance_type&#x27;: &#x27;STANDARD&#x27;, &#x27;is_byol&#x27;: True, &#x27;is_file_server_enabled&#x27;: True, &#x27;is_visual_builder_enabled&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;message_packs&#x27;: 56, &#x27;network_endpoint_details&#x27;: {&#x27;allowlisted_http_ips&#x27;: [], &#x27;allowlisted_http_vcns&#x27;: [{&#x27;allowlisted_ips&#x27;: [], &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;is_integration_vcn_allowlisted&#x27;: True, &#x27;network_endpoint_type&#x27;: &#x27;PUBLIC&#x27;}, &#x27;state_message&#x27;: &#x27;state_message_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;alternate_custom_endpoints&#x27;: [{&#x27;alias&#x27;: &#x27;alias_example&#x27;, &#x27;certificate_secret_id&#x27;: &#x27;ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;certificate_secret_version&#x27;: 56, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;}], &#x27;attachments&#x27;: [{&#x27;is_implicit&#x27;: True, &#x27;target_id&#x27;: &#x27;ocid1.target.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;target_instance_url&#x27;: &#x27;target_instance_url_example&#x27;, &#x27;target_role&#x27;: &#x27;PARENT&#x27;, &#x27;target_service_type&#x27;: &#x27;target_service_type_example&#x27;}], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;consumption_model&#x27;: &#x27;UCM&#x27;, &#x27;custom_endpoint&#x27;: {&#x27;alias&#x27;: &#x27;alias_example&#x27;, &#x27;certificate_secret_id&#x27;: &#x27;ocid1.certificatesecret.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;certificate_secret_version&#x27;: 56, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;idcs_info&#x27;: {&#x27;idcs_app_display_name&#x27;: &#x27;idcs_app_display_name_example&#x27;, &#x27;idcs_app_id&#x27;: &#x27;ocid1.idcsapp.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;idcs_app_location_url&#x27;: &#x27;idcs_app_location_url_example&#x27;, &#x27;idcs_app_name&#x27;: &#x27;idcs_app_name_example&#x27;, &#x27;instance_primary_audience_url&#x27;: &#x27;instance_primary_audience_url_example&#x27;}, &#x27;instance_url&#x27;: &#x27;instance_url_example&#x27;, &#x27;integration_instance_type&#x27;: &#x27;STANDARD&#x27;, &#x27;is_byol&#x27;: True, &#x27;is_file_server_enabled&#x27;: True, &#x27;is_visual_builder_enabled&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;message_packs&#x27;: 56, &#x27;network_endpoint_details&#x27;: {&#x27;allowlisted_http_ips&#x27;: [], &#x27;allowlisted_http_vcns&#x27;: [{&#x27;allowlisted_ips&#x27;: [], &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;is_integration_vcn_allowlisted&#x27;: True, &#x27;network_endpoint_type&#x27;: &#x27;PUBLIC&#x27;}, &#x27;shape&#x27;: &#x27;DEVELOPMENT&#x27;, &#x27;state_message&#x27;: &#x27;state_message_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -595,6 +595,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                         </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-integration_instance/alternate_custom_endpoints/alias"></div>
+                    <b>alias</b>
+                    <a class="ansibleOptionLink" href="#return-integration_instance/alternate_custom_endpoints/alias" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>When creating the DNS CNAME record for the custom hostname, this value must be specified in the rdata.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">alias_example</div>
+                                    </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
@@ -655,6 +674,118 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-integration_instance/attachments"></div>
+                    <b>attachments</b>
+                    <a class="ansibleOptionLink" href="#return-integration_instance/attachments" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A list of associated attachments to other services</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-integration_instance/attachments/is_implicit"></div>
+                    <b>is_implicit</b>
+                    <a class="ansibleOptionLink" href="#return-integration_instance/attachments/is_implicit" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>* If role == `PARENT`, the attached instance was created by this service instance * If role == `CHILD`, this instance was created from attached instance on behalf of a user</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-integration_instance/attachments/target_id"></div>
+                    <b>target_id</b>
+                    <a class="ansibleOptionLink" href="#return-integration_instance/attachments/target_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the target instance (which could be any other OCI PaaS/SaaS resource), to which this instance is attached.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.target.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-integration_instance/attachments/target_instance_url"></div>
+                    <b>target_instance_url</b>
+                    <a class="ansibleOptionLink" href="#return-integration_instance/attachments/target_instance_url" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The dataplane instance URL of the attached instance</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">target_instance_url_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-integration_instance/attachments/target_role"></div>
+                    <b>target_role</b>
+                    <a class="ansibleOptionLink" href="#return-integration_instance/attachments/target_role" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The role of the target attachment. * `PARENT` - The target instance is the parent of this attachment. * `CHILD` - The target instance is the child of this attachment.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PARENT</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-integration_instance/attachments/target_service_type"></div>
+                    <b>target_service_type</b>
+                    <a class="ansibleOptionLink" href="#return-integration_instance/attachments/target_service_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The type of the target instance, such as &quot;FUSION&quot;.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">target_service_type_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-integration_instance/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-integration_instance/compartment_id" title="Permalink to this return value"></a>
@@ -705,6 +836,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                         </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-integration_instance/custom_endpoint/alias"></div>
+                    <b>alias</b>
+                    <a class="ansibleOptionLink" href="#return-integration_instance/custom_endpoint/alias" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>When creating the DNS CNAME record for the custom hostname, this value must be specified in the rdata.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">alias_example</div>
+                                    </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
@@ -837,6 +987,118 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-integration_instance/idcs_info"></div>
+                    <b>idcs_info</b>
+                    <a class="ansibleOptionLink" href="#return-integration_instance/idcs_info" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-integration_instance/idcs_info/idcs_app_display_name"></div>
+                    <b>idcs_app_display_name</b>
+                    <a class="ansibleOptionLink" href="#return-integration_instance/idcs_info/idcs_app_display_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The IDCS application display name associated with the instance</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">idcs_app_display_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-integration_instance/idcs_info/idcs_app_id"></div>
+                    <b>idcs_app_id</b>
+                    <a class="ansibleOptionLink" href="#return-integration_instance/idcs_info/idcs_app_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The IDCS application ID associated with the instance</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.idcsapp.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-integration_instance/idcs_info/idcs_app_location_url"></div>
+                    <b>idcs_app_location_url</b>
+                    <a class="ansibleOptionLink" href="#return-integration_instance/idcs_info/idcs_app_location_url" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>URL for the location of the IDCS Application (used by IDCS APIs)</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">idcs_app_location_url_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-integration_instance/idcs_info/idcs_app_name"></div>
+                    <b>idcs_app_name</b>
+                    <a class="ansibleOptionLink" href="#return-integration_instance/idcs_info/idcs_app_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The IDCS application name associated with the instance</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">idcs_app_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-integration_instance/idcs_info/instance_primary_audience_url"></div>
+                    <b>instance_primary_audience_url</b>
+                    <a class="ansibleOptionLink" href="#return-integration_instance/idcs_info/instance_primary_audience_url" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The URL used as the primary audience for integration flows in this instance type: string</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">instance_primary_audience_url_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-integration_instance/instance_url"></div>
                     <b>instance_url</b>
                     <a class="ansibleOptionLink" href="#return-integration_instance/instance_url" title="Permalink to this return value"></a>
@@ -864,7 +1126,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Standard or Enterprise type</div>
+                                            <div>Standard or Enterprise type, Oracle Integration Generation 2 uses ENTERPRISE and STANDARD, Oracle Integration 3 uses ENTERPRISEX and STANDARDX</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">STANDARD</div>
@@ -989,7 +1251,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Source IP addresses or IP address ranges ingress rules.</div>
+                                            <div>Source IP addresses or IP address ranges ingress rules. (ex: &quot;168.122.59.5&quot;, &quot;10.20.30.0/26&quot;) An invalid IP or CIDR block will result in a 400 response.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1024,7 +1286,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Source IP addresses or IP address ranges ingress rules.</div>
+                                            <div>Source IP addresses or IP address ranges ingress rules. (ex: &quot;168.122.59.5&quot;, &quot;10.20.30.0/26&quot;) An invalid IP or CIDR block will result in a 400 response.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1088,6 +1350,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                     
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-integration_instance/shape"></div>
+                    <b>shape</b>
+                    <a class="ansibleOptionLink" href="#return-integration_instance/shape" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Shape</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">DEVELOPMENT</div>
+                                    </td>
+            </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">

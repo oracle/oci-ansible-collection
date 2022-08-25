@@ -23,7 +23,8 @@ module: oci_data_flow_private_endpoint_facts
 short_description: Fetches details about one or multiple PrivateEndpoint resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple PrivateEndpoint resources in Oracle Cloud Infrastructure
-    - Lists all private endpoints in the specified compartment.
+    - Lists all private endpoints in the specified compartment. The query must include compartmentId. The query may also include one other parameter. If the
+      query does not include compartmentId, or includes compartmentId, but with two or more other parameters, an error is returned.
     - If I(private_endpoint_id) is specified, the details of a single PrivateEndpoint will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)

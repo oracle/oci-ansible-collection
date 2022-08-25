@@ -25,20 +25,47 @@ description:
     - Perform actions on a Fleet resource in Oracle Cloud Infrastructure
     - For I(action=change_compartment), move a specified Fleet into the compartment identified in the POST form. When provided, If-Match is checked against ETag
       values of the resource.
+    - For I(action=generate_agent_deploy_script), generates Agent Deploy Script for Fleet using the information provided.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment into which the Fleet should be moved.
+            - Required for I(action=change_compartment).
+        type: str
+    dest:
+        description:
+            - The destination file path to write the output. The file will be created if it does not exist. If the file already exists, the content will be
+              overwritten.
+            - Required for I(action=generate_agent_deploy_script).
+        type: str
     fleet_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Fleet.
         type: str
         aliases: ["id"]
         required: true
-    compartment_id:
+    install_key_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment into which the Fleet should be moved.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the install key for which to generate the script.
+            - Required for I(action=generate_agent_deploy_script).
         type: str
-        required: true
+    os_family:
+        description:
+            - The operating system type for the script. Currently only 'LINUX' and 'WINDOWS' are supported.
+            - Required for I(action=generate_agent_deploy_script).
+        type: str
+        choices:
+            - "LINUX"
+            - "WINDOWS"
+            - "MACOS"
+            - "UNKNOWN"
+    is_user_name_enabled:
+        description:
+            - Enable/disable user name collection on agent.
+            - Required for I(action=generate_agent_deploy_script).
+        type: bool
     action:
         description:
             - The action to perform on the Fleet.
@@ -46,6 +73,7 @@ options:
         required: true
         choices:
             - "change_compartment"
+            - "generate_agent_deploy_script"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
@@ -53,9 +81,19 @@ EXAMPLES = """
 - name: Perform action change_compartment on fleet
   oci_jms_fleet_actions:
     # required
-    fleet_id: "ocid1.fleet.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    fleet_id: "ocid1.fleet.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
+
+- name: Perform action generate_agent_deploy_script on fleet
+  oci_jms_fleet_actions:
+    # required
+    dest: /tmp/myfile
+    fleet_id: "ocid1.fleet.oc1..xxxxxxEXAMPLExxxxxx"
+    install_key_id: "ocid1.installkey.oc1..xxxxxxEXAMPLExxxxxx"
+    os_family: LINUX
+    is_user_name_enabled: true
+    action: generate_agent_deploy_script
 
 """
 
@@ -154,6 +192,12 @@ fleet:
                     returned: on success
                     type: str
                     sample: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+        is_advanced_features_enabled:
+            description:
+                - Whether or not advanced features are enabled in this fleet.  By default, this is set to false.
+            returned: on success
+            type: bool
+            sample: true
         time_created:
             description:
                 - The creation date and time of the Fleet (formatted according to L(RFC3339,https://datatracker.ietf.org/doc/html/rfc3339)).
@@ -208,6 +252,7 @@ fleet:
             "log_group_id": "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx",
             "log_id": "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
         },
+        "is_advanced_features_enabled": true,
         "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "ACTIVE",
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -217,6 +262,7 @@ fleet:
 """
 
 from ansible.module_utils.basic import AnsibleModule
+from ansible.module_utils._text import to_bytes
 from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_common_utils,
     oci_wait_utils,
@@ -229,6 +275,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 try:
     from oci.jms import JavaManagementServiceClient
     from oci.jms.models import ChangeFleetCompartmentDetails
+    from oci.jms.models import GenerateAgentDeployScriptDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -239,6 +286,7 @@ class FleetActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         change_compartment
+        generate_agent_deploy_script
     """
 
     @staticmethod
@@ -277,6 +325,35 @@ class FleetActionsHelperGen(OCIActionsHelperBase):
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
+    def generate_agent_deploy_script(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, GenerateAgentDeployScriptDetails
+        )
+        response = oci_wait_utils.call_and_wait(
+            call_fn=self.client.generate_agent_deploy_script,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                fleet_id=self.module.params.get("fleet_id"),
+                generate_agent_deploy_script_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
+        dest = self.module.params.get("dest")
+        chunk_size = oci_common_utils.MEBIBYTE
+        with open(to_bytes(dest), "wb") as dest_file:
+            for chunk in response.raw.stream(chunk_size, decode_content=True):
+                dest_file.write(chunk)
+        return None
+
 
 FleetActionsHelperCustom = get_custom_class("FleetActionsHelperCustom")
 
@@ -291,9 +368,19 @@ def main():
     )
     module_args.update(
         dict(
+            compartment_id=dict(type="str"),
+            dest=dict(type="str"),
             fleet_id=dict(aliases=["id"], type="str", required=True),
-            compartment_id=dict(type="str", required=True),
-            action=dict(type="str", required=True, choices=["change_compartment"]),
+            install_key_id=dict(type="str"),
+            os_family=dict(
+                type="str", choices=["LINUX", "WINDOWS", "MACOS", "UNKNOWN"]
+            ),
+            is_user_name_enabled=dict(type="bool"),
+            action=dict(
+                type="str",
+                required=True,
+                choices=["change_compartment", "generate_agent_deploy_script"],
+            ),
         )
     )
 

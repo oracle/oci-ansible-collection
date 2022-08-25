@@ -276,6 +276,21 @@ options:
                 description:
                     - If isFailureRetried is enabled, then a failed call will be retried.
                 type: bool
+            dns_configuration:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    is_override_dns:
+                        description:
+                            - If isOverrideDns is true, then dns will be overridden.
+                            - Applicable when config_type is 'SCRIPTED_REST_CONFIG'
+                        type: bool
+                    override_dns_ip:
+                        description:
+                            - "Override dns ip value. This value will be honored only if *ref-isOverrideDns is set to true."
+                            - Applicable when config_type is 'SCRIPTED_REST_CONFIG'
+                        type: str
             is_certificate_validation_enabled:
                 description:
                     - If certificate validation is enabled, then the call will fail in case of certification errors.
@@ -342,6 +357,25 @@ options:
               Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             - This parameter is updatable.
         type: dict
+    is_run_now:
+        description:
+            - If isRunNow is enabled, then the monitor will run now.
+            - This parameter is updatable.
+        type: bool
+    scheduling_policy:
+        description:
+            - Scheduling policy on Vantage points.
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "ALL"
+            - "ROUND_ROBIN"
+            - "BATCHED_ROUND_ROBIN"
+    batch_interval_in_seconds:
+        description:
+            - "Time interval between 2 runs in round robin batch mode (*SchedulingPolicy - BATCHED_ROUND_ROBIN)."
+            - This parameter is updatable.
+        type: int
     apm_domain_id:
         description:
             - The APM domain ID the request is intended for.
@@ -392,6 +426,10 @@ EXAMPLES = """
 
       # optional
       is_failure_retried: true
+      dns_configuration:
+        # optional
+        is_override_dns: true
+        override_dns_ip: override_dns_ip_example
       network_configuration:
         # optional
         number_of_hops: 56
@@ -401,6 +439,9 @@ EXAMPLES = """
         probe_mode: SACK
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    is_run_now: true
+    scheduling_policy: ALL
+    batch_interval_in_seconds: 56
 
 - name: Update monitor
   oci_apm_synthetics_monitor:
@@ -427,6 +468,10 @@ EXAMPLES = """
 
       # optional
       is_failure_retried: true
+      dns_configuration:
+        # optional
+        is_override_dns: true
+        override_dns_ip: override_dns_ip_example
       network_configuration:
         # optional
         number_of_hops: 56
@@ -436,6 +481,9 @@ EXAMPLES = """
         probe_mode: SACK
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    is_run_now: true
+    scheduling_policy: ALL
+    batch_interval_in_seconds: 56
 
 - name: Update monitor using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_apm_synthetics_monitor:
@@ -461,6 +509,10 @@ EXAMPLES = """
 
       # optional
       is_failure_retried: true
+      dns_configuration:
+        # optional
+        is_override_dns: true
+        override_dns_ip: override_dns_ip_example
       network_configuration:
         # optional
         number_of_hops: 56
@@ -470,6 +522,9 @@ EXAMPLES = """
         probe_mode: SACK
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    is_run_now: true
+    scheduling_policy: ALL
+    batch_interval_in_seconds: 56
 
 - name: Delete monitor
   oci_apm_synthetics_monitor:
@@ -801,6 +856,24 @@ monitor:
                     returned: on success
                     type: bool
                     sample: true
+                dns_configuration:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        is_override_dns:
+                            description:
+                                - If isOverrideDns is true, then dns will be overridden.
+                            returned: on success
+                            type: bool
+                            sample: true
+                        override_dns_ip:
+                            description:
+                                - "Override dns ip value. This value will be honored only if *ref-isOverrideDns is set to true."
+                            returned: on success
+                            type: str
+                            sample: override_dns_ip_example
                 network_configuration:
                     description:
                         - ""
@@ -867,6 +940,24 @@ monitor:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        is_run_now:
+            description:
+                - If isRunNow is enabled, then the monitor will run now.
+            returned: on success
+            type: bool
+            sample: true
+        scheduling_policy:
+            description:
+                - Scheduling policy on Vantage points.
+            returned: on success
+            type: str
+            sample: ALL
+        batch_interval_in_seconds:
+            description:
+                - "Time interval between 2 runs in round robin batch mode (*SchedulingPolicy - BATCHED_ROUND_ROBIN)."
+            returned: on success
+            type: int
+            sample: 56
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -925,6 +1016,10 @@ monitor:
             "is_certificate_validation_enabled": true,
             "config_type": "BROWSER_CONFIG",
             "is_failure_retried": true,
+            "dns_configuration": {
+                "is_override_dns": true,
+                "override_dns_ip": "override_dns_ip_example"
+            },
             "network_configuration": {
                 "number_of_hops": 56,
                 "probe_per_hop": 56,
@@ -936,7 +1031,10 @@ monitor:
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}}
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "is_run_now": true,
+        "scheduling_policy": "ALL",
+        "batch_interval_in_seconds": 56
     }
 """
 
@@ -1183,6 +1281,13 @@ def main():
                         ],
                     ),
                     is_failure_retried=dict(type="bool"),
+                    dns_configuration=dict(
+                        type="dict",
+                        options=dict(
+                            is_override_dns=dict(type="bool"),
+                            override_dns_ip=dict(type="str"),
+                        ),
+                    ),
                     is_certificate_validation_enabled=dict(type="bool"),
                     verify_texts=dict(
                         type="list",
@@ -1203,6 +1308,11 @@ def main():
             ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
+            is_run_now=dict(type="bool"),
+            scheduling_policy=dict(
+                type="str", choices=["ALL", "ROUND_ROBIN", "BATCHED_ROUND_ROBIN"]
+            ),
+            batch_interval_in_seconds=dict(type="int"),
             apm_domain_id=dict(type="str", required=True),
             monitor_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),

@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 2.57.0
+Collection version 2.58.0
 
 .. toctree::
     :maxdepth: 1
@@ -121,6 +121,9 @@ Modules
 * :ref:`oci_apm_control_plane_apm_domain_facts <ansible_collections.oracle.oci.oci_apm_control_plane_apm_domain_facts_module>` -- Fetches details about one or multiple ApmDomain resources in Oracle Cloud Infrastructure
 * :ref:`oci_apm_control_plane_data_keys_actions <ansible_collections.oracle.oci.oci_apm_control_plane_data_keys_actions_module>` -- Perform actions on a DataKeys resource in Oracle Cloud Infrastructure
 * :ref:`oci_apm_control_plane_data_keys_facts <ansible_collections.oracle.oci.oci_apm_control_plane_data_keys_facts_module>` -- Fetches details about one or multiple DataKeys resources in Oracle Cloud Infrastructure
+* :ref:`oci_apm_synthetics_aggregated_network_data_result_actions <ansible_collections.oracle.oci.oci_apm_synthetics_aggregated_network_data_result_actions_module>` -- 
+* :ref:`oci_apm_synthetics_dedicated_vantage_point <ansible_collections.oracle.oci.oci_apm_synthetics_dedicated_vantage_point_module>` -- Manage a DedicatedVantagePoint resource in Oracle Cloud Infrastructure
+* :ref:`oci_apm_synthetics_dedicated_vantage_point_facts <ansible_collections.oracle.oci.oci_apm_synthetics_dedicated_vantage_point_facts_module>` -- Fetches details about one or multiple DedicatedVantagePoint resources in Oracle Cloud Infrastructure
 * :ref:`oci_apm_synthetics_monitor <ansible_collections.oracle.oci.oci_apm_synthetics_monitor_module>` -- Manage a Monitor resource in Oracle Cloud Infrastructure
 * :ref:`oci_apm_synthetics_monitor_facts <ansible_collections.oracle.oci.oci_apm_synthetics_monitor_facts_module>` -- Fetches details about one or multiple Monitor resources in Oracle Cloud Infrastructure
 * :ref:`oci_apm_synthetics_monitor_result_facts <ansible_collections.oracle.oci.oci_apm_synthetics_monitor_result_facts_module>` -- Fetches details about a MonitorResult resource in Oracle Cloud Infrastructure
@@ -328,8 +331,10 @@ Modules
 * :ref:`oci_container_engine_node_pool_facts <ansible_collections.oracle.oci.oci_container_engine_node_pool_facts_module>` -- Fetches details about one or multiple NodePool resources in Oracle Cloud Infrastructure
 * :ref:`oci_container_engine_node_pool_options_facts <ansible_collections.oracle.oci.oci_container_engine_node_pool_options_facts_module>` -- Fetches details about a NodePoolOptions resource in Oracle Cloud Infrastructure
 * :ref:`oci_dashboard_service_dashboard <ansible_collections.oracle.oci.oci_dashboard_service_dashboard_module>` -- Manage a Dashboard resource in Oracle Cloud Infrastructure
+* :ref:`oci_dashboard_service_dashboard_actions <ansible_collections.oracle.oci.oci_dashboard_service_dashboard_actions_module>` -- Perform actions on a Dashboard resource in Oracle Cloud Infrastructure
 * :ref:`oci_dashboard_service_dashboard_facts <ansible_collections.oracle.oci.oci_dashboard_service_dashboard_facts_module>` -- Fetches details about one or multiple Dashboard resources in Oracle Cloud Infrastructure
 * :ref:`oci_dashboard_service_dashboard_group <ansible_collections.oracle.oci.oci_dashboard_service_dashboard_group_module>` -- Manage a DashboardGroup resource in Oracle Cloud Infrastructure
+* :ref:`oci_dashboard_service_dashboard_group_actions <ansible_collections.oracle.oci.oci_dashboard_service_dashboard_group_actions_module>` -- Perform actions on a DashboardGroup resource in Oracle Cloud Infrastructure
 * :ref:`oci_dashboard_service_dashboard_group_facts <ansible_collections.oracle.oci.oci_dashboard_service_dashboard_group_facts_module>` -- Fetches details about one or multiple DashboardGroup resources in Oracle Cloud Infrastructure
 * :ref:`oci_data_catalog_catalog <ansible_collections.oracle.oci.oci_data_catalog_catalog_module>` -- Manage a Catalog resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_catalog_catalog_actions <ansible_collections.oracle.oci.oci_data_catalog_catalog_actions_module>` -- Perform actions on a Catalog resource in Oracle Cloud Infrastructure
@@ -1723,6 +1728,9 @@ Modules
     oci_apm_control_plane_apm_domain_facts_module
     oci_apm_control_plane_data_keys_actions_module
     oci_apm_control_plane_data_keys_facts_module
+    oci_apm_synthetics_aggregated_network_data_result_actions_module
+    oci_apm_synthetics_dedicated_vantage_point_module
+    oci_apm_synthetics_dedicated_vantage_point_facts_module
     oci_apm_synthetics_monitor_module
     oci_apm_synthetics_monitor_facts_module
     oci_apm_synthetics_monitor_result_facts_module
@@ -1930,8 +1938,10 @@ Modules
     oci_container_engine_node_pool_facts_module
     oci_container_engine_node_pool_options_facts_module
     oci_dashboard_service_dashboard_module
+    oci_dashboard_service_dashboard_actions_module
     oci_dashboard_service_dashboard_facts_module
     oci_dashboard_service_dashboard_group_module
+    oci_dashboard_service_dashboard_group_actions_module
     oci_dashboard_service_dashboard_group_facts_module
     oci_data_catalog_catalog_module
     oci_data_catalog_catalog_actions_module

@@ -73,7 +73,7 @@ options:
                     - Bandwidth in Mbps that determines the maximum bandwidth (ingress plus egress) that the load balancer can
                       achieve. This bandwidth cannot be always guaranteed. For a guaranteed bandwidth use the minimumBandwidthInMbps
                       parameter.
-                    - The values must be between minimumBandwidthInMbps and 8192 (8Gbps).
+                    - The values must be between minimumBandwidthInMbps and 8000 (8Gbps).
                     - "Example: `1500`"
                 type: int
                 required: true
@@ -120,7 +120,9 @@ options:
               To get a list of available shapes, use the L(ListShapes,https://docs.cloud.oracle.com/en-
               us/iaas/api/#/en/loadbalancer/20170115/LoadBalancerShape/ListShapes)
               operation.
-            - "Example: `100Mbps`"
+            - "Example: `flexible`
+              NOTE: Starting May 2023, Fixed shapes - 10Mbps, 100Mbps, 400Mbps, 8000Mbps would be deprecated and only shape
+                    allowed would be `Flexible`"
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
@@ -327,7 +329,7 @@ load_balancer:
                         - Bandwidth in Mbps that determines the maximum bandwidth (ingress plus egress) that the load balancer can
                           achieve. This bandwidth cannot be always guaranteed. For a guaranteed bandwidth use the minimumBandwidthInMbps
                           parameter.
-                        - The values must be between minimumBandwidthInMbps and 8192 (8Gbps).
+                        - The values must be between minimumBandwidthInMbps and 8000 (8Gbps).
                         - "Example: `1500`"
                     returned: on success
                     type: int

@@ -30,7 +30,7 @@ oracle.oci.oci_loadbalancer_load_balancer -- Manage a LoadBalancer resource in O
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.57.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.58.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -482,7 +482,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Bandwidth in Mbps that determines the maximum bandwidth (ingress plus egress) that the load balancer can achieve. This bandwidth cannot be always guaranteed. For a guaranteed bandwidth use the minimumBandwidthInMbps parameter.</div>
-                                            <div>The values must be between minimumBandwidthInMbps and 8192 (8Gbps).</div>
+                                            <div>The values must be between minimumBandwidthInMbps and 8000 (8Gbps).</div>
                                             <div>Example: `1500`</div>
                                                         </td>
             </tr>
@@ -517,7 +517,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A template that determines the total pre-provisioned bandwidth (ingress plus egress). To get a list of available shapes, use the <a href='https://docs.cloud.oracle.com/en- us/iaas/api/#/en/loadbalancer/20170115/LoadBalancerShape/ListShapes'>ListShapes</a> operation.</div>
-                                            <div>Example: `100Mbps`</div>
+                                            <div>Example: `flexible` NOTE: Starting May 2023, Fixed shapes - 10Mbps, 100Mbps, 400Mbps, 8000Mbps would be deprecated and only shape allowed would be `Flexible`</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -3258,7 +3258,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Bandwidth in Mbps that determines the maximum bandwidth (ingress plus egress) that the load balancer can achieve. This bandwidth cannot be always guaranteed. For a guaranteed bandwidth use the minimumBandwidthInMbps parameter.</div>
-                                            <div>The values must be between minimumBandwidthInMbps and 8192 (8Gbps).</div>
+                                            <div>The values must be between minimumBandwidthInMbps and 8000 (8Gbps).</div>
                                             <div>Example: `1500`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>

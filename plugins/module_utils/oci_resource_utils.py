@@ -785,7 +785,14 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
                     resource=dict(),
                 )
         else:
-            resource_matched = self.get_matching_resource()
+            try:
+                resource_matched = self.get_matching_resource()
+            except NotImplementedError as ex:
+                _debug(
+                    "create() >> NotImplementedError raised while getting matching resource. skipping create "
+                    "idempotence. exception : {0}".format(str(ex))
+                )
+                resource_matched = None
             if resource_matched:
                 _debug(
                     "found matching {resource_type}".format(
@@ -828,15 +835,11 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
             )
 
     def get_existing_resource_dict_for_update(self):
-        try:
-            if self._use_name_as_identifier():
-                get_response = self.get_resource_using_name()
-            else:
-                get_response = self.get_resource()
-        except ServiceError:
-            raise
+        if self._use_name_as_identifier():
+            get_response = self.get_resource_using_name()
         else:
-            return to_dict(get_response.data)
+            get_response = self.get_resource()
+        return to_dict(get_response.data)
 
     def is_update_necessary(self, existing_resource_dict):
 
@@ -885,6 +888,12 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
                 self.module.fail_json(
                     msg="Getting resource failed with exception: {0}".format(se.message)
                 )
+        except NotImplementedError as ex:
+            _debug(
+                "update() >> NotImplementedError raised while getting existing resource. skipping update idempotence. "
+                "exception : {0}".format(str(ex))
+            )
+            resource = dict()
         is_update_necessary = self.is_update_necessary(resource)
         if not is_update_necessary:
             return self.prepare_result(
@@ -936,6 +945,12 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
                 self.module.fail_json(
                     msg="Getting resource failed with exception: {0}".format(se.message)
                 )
+        except NotImplementedError as ex:
+            _debug(
+                "patch() >> NotImplementedError raised while getting resource. skipping patch idempotence. "
+                "exception : {}".format(str(ex))
+            )
+            resource = dict()
         else:
             resource = to_dict(get_response.data)
 
@@ -998,6 +1013,12 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
             self.module.fail_json(
                 msg="Getting resource failed with exception: {0}".format(se.message)
             )
+        except NotImplementedError as ex:
+            _debug(
+                "delete() >> NotImplementedError raised while getting resource. skipping delete idempotence. "
+                "exception : {0}".format(str(ex))
+            )
+            resource = dict()
         else:
             resource = to_dict(get_response.data)
             if self.is_resource_dead(get_response.data):

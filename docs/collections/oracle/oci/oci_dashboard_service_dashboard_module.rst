@@ -30,7 +30,7 @@ oracle.oci.oci_dashboard_service_dashboard -- Manage a Dashboard resource in Ora
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.57.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.58.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -59,6 +59,7 @@ Synopsis
 - This module allows the user to create, update and delete a Dashboard resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new dashboard in the dashboard group's compartment using the details provided in request body.
 - **Caution:** Resources for the Dashboard service are created in the tenacy's home region. Although it is possible to create dashboard resource in regions other than the home region, you won't be able to view those resources in the Console. Therefore, creating resources outside of the home region is not recommended.
+- This resource has the following action operations in the :ref:`oracle.oci.oci_dashboard_service_dashboard_actions <ansible_collections.oracle.oci.oci_dashboard_service_dashboard_actions_module>` module: change_dashboard_group.
 
 
 .. Aliases

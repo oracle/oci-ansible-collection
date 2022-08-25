@@ -28,6 +28,21 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    application_log_config:
+        description:
+            - ""
+        type: dict
+        suboptions:
+            log_group_id:
+                description:
+                    - The log group id for where log objects will be for Data Flow Runs.
+                type: str
+                required: true
+            log_id:
+                description:
+                    - The log id of the log object the Application Logs of Data Flow Run will be shipped to.
+                type: str
+                required: true
     application_id:
         description:
             - The OCID of the associated application. If this value is set, then no value for the execute parameter is required. If this value is not set, then
@@ -212,6 +227,10 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    application_log_config:
+      # required
+      log_group_id: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
+      log_id: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
     application_id: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
     archive_uri: archive_uri_example
     arguments: [ "arguments_example" ]
@@ -296,6 +315,24 @@ run:
             returned: on success
             type: str
             sample: "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx"
+        application_log_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                log_group_id:
+                    description:
+                        - The log group id for where log objects will be for Data Flow Runs.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
+                log_id:
+                    description:
+                        - The log id of the log object the Application Logs of Data Flow Run will be shipped to.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
         class_name:
             description:
                 - The class for the application.
@@ -595,6 +632,10 @@ run:
         "archive_uri": "archive_uri_example",
         "arguments": [],
         "application_id": "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx",
+        "application_log_config": {
+            "log_group_id": "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx",
+            "log_id": "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
+        },
         "class_name": "class_name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "configuration": {},
@@ -788,6 +829,13 @@ def main():
     )
     module_args.update(
         dict(
+            application_log_config=dict(
+                type="dict",
+                options=dict(
+                    log_group_id=dict(type="str", required=True),
+                    log_id=dict(type="str", required=True),
+                ),
+            ),
             application_id=dict(type="str"),
             archive_uri=dict(type="str"),
             arguments=dict(type="list", elements="str"),
