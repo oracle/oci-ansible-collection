@@ -35,7 +35,7 @@ options:
         type: str
     additional_transcription_formats:
         description:
-            - Transcription Format. By default JSON format will be considered.
+            - Transcription Format. By default, the JSON format is used.
         type: list
         elements: str
         choices:
@@ -53,12 +53,29 @@ options:
                     - "GENERIC"
             language_code:
                 description:
-                    - Locale value as per given in [https://datatracker.ietf.org/doc/html/rfc5646].
+                    - "Locale value as per given in [https://datatracker.ietf.org/doc/html/rfc5646].
+                      - en-US: English - United States
+                      - es-ES: Spanish - Spain
+                      - pt-BR: Portuguese - Brazil
+                      - en-GB: English - Great Britain
+                      - en-AU: English - Australia
+                      - en-IN: English - India
+                      - hi-IN: Hindi - India
+                      - fr-FR: French - France
+                      - de-DE: German - Germany
+                      - it-IT: Italian - Italy"
                 type: str
                 choices:
                     - "en-US"
                     - "es-ES"
                     - "pt-BR"
+                    - "en-GB"
+                    - "en-AU"
+                    - "en-IN"
+                    - "hi-IN"
+                    - "fr-FR"
+                    - "de-DE"
+                    - "it-IT"
     normalization:
         description:
             - ""
@@ -66,7 +83,7 @@ options:
         suboptions:
             is_punctuation_enabled:
                 description:
-                    - Whether to add punctuation in generated transcription. By default it is enabled.
+                    - Whether to add punctuation in the generated transcription. Enabled by default.
                 type: bool
             filters:
                 description:
@@ -324,7 +341,17 @@ transcription_job:
                     sample: GENERIC
                 language_code:
                     description:
-                        - Locale value as per given in [https://datatracker.ietf.org/doc/html/rfc5646].
+                        - "Locale value as per given in [https://datatracker.ietf.org/doc/html/rfc5646].
+                          - en-US: English - United States
+                          - es-ES: Spanish - Spain
+                          - pt-BR: Portuguese - Brazil
+                          - en-GB: English - Great Britain
+                          - en-AU: English - Australia
+                          - en-IN: English - India
+                          - hi-IN: Hindi - India
+                          - fr-FR: French - France
+                          - de-DE: German - Germany
+                          - it-IT: Italian - Italy"
                     returned: on success
                     type: str
                     sample: en-US
@@ -336,7 +363,7 @@ transcription_job:
             contains:
                 is_punctuation_enabled:
                     description:
-                        - Whether to add punctuation in generated transcription. By default it is enabled.
+                        - Whether to add punctuation in the generated transcription. Enabled by default.
                     returned: on success
                     type: bool
                     sample: true
@@ -739,7 +766,21 @@ def main():
                 type="dict",
                 options=dict(
                     domain=dict(type="str", choices=["GENERIC"]),
-                    language_code=dict(type="str", choices=["en-US", "es-ES", "pt-BR"]),
+                    language_code=dict(
+                        type="str",
+                        choices=[
+                            "en-US",
+                            "es-ES",
+                            "pt-BR",
+                            "en-GB",
+                            "en-AU",
+                            "en-IN",
+                            "hi-IN",
+                            "fr-FR",
+                            "de-DE",
+                            "it-IT",
+                        ],
+                    ),
                 ),
             ),
             normalization=dict(

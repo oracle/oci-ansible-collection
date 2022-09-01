@@ -20,9 +20,9 @@ ANSIBLE_METADATA = {
 DOCUMENTATION = """
 ---
 module: oci_dns_domain_records_facts
-short_description: Fetches details about a DomainRecords resource in Oracle Cloud Infrastructure
+short_description: Fetches details about one or multiple DomainRecords resources in Oracle Cloud Infrastructure
 description:
-    - Fetches details about a DomainRecords resource in Oracle Cloud Infrastructure
+    - Fetches details about one or multiple DomainRecords resources in Oracle Cloud Infrastructure
     - Gets a list of all records at the specified zone and domain.
     - The results are sorted by `rtype` in alphabetical order by default. You can optionally filter and/or sort
       the results using the listed parameters. When the zone name is provided as a path parameter and `PRIVATE`
@@ -92,7 +92,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: Get a specific domain_records
+- name: List domain_records
   oci_dns_domain_records_facts:
     # required
     zone_name_or_id: "ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx"
@@ -113,7 +113,7 @@ EXAMPLES = """
 RETURN = """
 domain_records:
     description:
-        - DomainRecords resource
+        - List of DomainRecords resources
     returned: on success
     type: complex
     contains:
@@ -166,7 +166,7 @@ domain_records:
             returned: on success
             type: int
             sample: 56
-    sample: {
+    sample: [{
         "domain": "domain_example",
         "record_hash": "record_hash_example",
         "is_protected": true,
@@ -174,7 +174,7 @@ domain_records:
         "rrset_version": "rrset_version_example",
         "rtype": "rtype_example",
         "ttl": 56
-    }
+    }]
 """
 
 from ansible.module_utils.basic import AnsibleModule
@@ -193,16 +193,16 @@ except ImportError:
 
 
 class DomainRecordsFactsHelperGen(OCIResourceFactsHelperBase):
-    """Supported operations: get"""
+    """Supported operations: list"""
 
-    def get_required_params_for_get(self):
+    def get_required_params_for_list(self):
         return [
             "zone_name_or_id",
             "domain",
         ]
 
-    def get_resource(self):
-        optional_get_method_params = [
+    def list_resources(self):
+        optional_list_method_params = [
             "if_modified_since",
             "zone_version",
             "rtype",
@@ -214,16 +214,14 @@ class DomainRecordsFactsHelperGen(OCIResourceFactsHelperBase):
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
-            for param in optional_get_method_params
+            for param in optional_list_method_params
             if self.module.params.get(param) is not None
         )
-        return oci_common_utils.get_default_response_from_resource(
-            oci_common_utils.list_all_resources(
-                self.client.get_domain_records,
-                zone_name_or_id=self.module.params.get("zone_name_or_id"),
-                domain=self.module.params.get("domain"),
-                **optional_kwargs
-            ).items
+        return oci_common_utils.list_all_resources(
+            self.client.get_domain_records,
+            zone_name_or_id=self.module.params.get("zone_name_or_id"),
+            domain=self.module.params.get("domain"),
+            **optional_kwargs
         )
 
 
@@ -269,8 +267,8 @@ def main():
 
     result = []
 
-    if resource_facts_helper.is_get():
-        result = resource_facts_helper.get()
+    if resource_facts_helper.is_list():
+        result = resource_facts_helper.list()
     else:
         resource_facts_helper.fail()
 

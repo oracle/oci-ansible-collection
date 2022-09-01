@@ -299,7 +299,7 @@ except ImportError:
 
 
 class ZoneRecordsHelperGen(OCIResourceHelperBase):
-    """Supported operations: update, patch and get"""
+    """Supported operations: update, patch and list"""
 
     def get_possible_entity_types(self):
         return super(ZoneRecordsHelperGen, self).get_possible_entity_types() + [
@@ -324,26 +324,46 @@ class ZoneRecordsHelperGen(OCIResourceHelperBase):
     def get_module_resource_id(self):
         return self.module.params.get("zone_name_or_id")
 
-    def get_get_fn(self):
-        return self.client.get_zone_records
-
     def get_resource(self):
-        optional_params = [
-            "compartment_id",
-            "scope",
-            "view_id",
+        resources = self.list_resources()
+        for resource in resources:
+            if self.get_module_resource_id() == resource.id:
+                return oci_common_utils.get_default_response_from_resource(resource)
+
+        oci_common_utils.raise_does_not_exist_service_error()
+
+    def get_required_kwargs_for_list(self):
+        required_list_method_params = [
+            "zone_name_or_id",
         ]
-        optional_kwargs = dict(
-            (param, self.module.params[param])
-            for param in optional_params
-            if self.module.params.get(param) is not None
+
+        return dict(
+            (param, self.module.params[param]) for param in required_list_method_params
         )
-        return oci_common_utils.get_default_response_from_resource(
-            oci_common_utils.list_all_resources(
-                self.client.get_zone_records,
-                zone_name_or_id=self.module.params.get("zone_name_or_id"),
-                **optional_kwargs
-            ).items
+
+    def get_optional_kwargs_for_list(self):
+        optional_list_method_params = ["compartment_id", "scope", "view_id"]
+
+        return dict(
+            (param, self.module.params[param])
+            for param in optional_list_method_params
+            if self.module.params.get(param) is not None
+            and (
+                self._use_name_as_identifier()
+                or (
+                    not self.module.params.get("key_by")
+                    or param in self.module.params.get("key_by")
+                )
+            )
+        )
+
+    def list_resources(self):
+
+        required_kwargs = self.get_required_kwargs_for_list()
+        optional_kwargs = self.get_optional_kwargs_for_list()
+        kwargs = oci_common_utils.merge_dicts(required_kwargs, optional_kwargs)
+        return oci_common_utils.list_all_resources(
+            self.client.get_zone_records, **kwargs
         )
 
     def get_update_model_class(self):

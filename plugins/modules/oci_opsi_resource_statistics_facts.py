@@ -187,7 +187,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: Get a specific resource_statistics
+- name: List resource_statistics
   oci_opsi_resource_statistics_facts:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -466,16 +466,16 @@ except ImportError:
 
 
 class ResourceStatisticsFactsHelperGen(OCIResourceFactsHelperBase):
-    """Supported operations: get"""
+    """Supported operations: list"""
 
-    def get_required_params_for_get(self):
+    def get_required_params_for_list(self):
         return [
             "compartment_id",
             "resource_metric",
         ]
 
-    def get_resource(self):
-        optional_get_method_params = [
+    def list_resources(self):
+        optional_list_method_params = [
             "analysis_time_interval",
             "time_interval_start",
             "time_interval_end",
@@ -499,10 +499,10 @@ class ResourceStatisticsFactsHelperGen(OCIResourceFactsHelperBase):
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
-            for param in optional_get_method_params
+            for param in optional_list_method_params
             if self.module.params.get(param) is not None
         )
-        return oci_common_utils.call_with_backoff(
+        return oci_common_utils.list_all_resources(
             self.client.summarize_database_insight_resource_statistics,
             compartment_id=self.module.params.get("compartment_id"),
             resource_metric=self.module.params.get("resource_metric"),
@@ -593,8 +593,8 @@ def main():
 
     result = []
 
-    if resource_facts_helper.is_get():
-        result = resource_facts_helper.get()
+    if resource_facts_helper.is_list():
+        result = resource_facts_helper.list()
     else:
         resource_facts_helper.fail()
 

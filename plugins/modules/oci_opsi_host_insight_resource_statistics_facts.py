@@ -20,9 +20,9 @@ ANSIBLE_METADATA = {
 DOCUMENTATION = """
 ---
 module: oci_opsi_host_insight_resource_statistics_facts
-short_description: Fetches details about a HostInsightResourceStatistics resource in Oracle Cloud Infrastructure
+short_description: Fetches details about one or multiple HostInsightResourceStatistics resources in Oracle Cloud Infrastructure
 description:
-    - Fetches details about a HostInsightResourceStatistics resource in Oracle Cloud Infrastructure
+    - Fetches details about one or multiple HostInsightResourceStatistics resources in Oracle Cloud Infrastructure
     - Lists the resource statistics (usage, capacity, usage change percent, utilization percent, load) for each host filtered
       by utilization level in a compartment and in all sub-compartments if specified.
 version_added: "2.9.0"
@@ -156,7 +156,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: Get a specific host_insight_resource_statistics
+- name: List host_insight_resource_statistics
   oci_opsi_host_insight_resource_statistics_facts:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -185,7 +185,7 @@ EXAMPLES = """
 RETURN = """
 host_insight_resource_statistics:
     description:
-        - HostInsightResourceStatistics resource
+        - List of HostInsightResourceStatistics resources
     returned: on success
     type: complex
     contains:
@@ -377,7 +377,7 @@ host_insight_resource_statistics:
                                     returned: on success
                                     type: float
                                     sample: 1.2
-    sample: {
+    sample: [{
         "time_interval_start": "2013-10-20T19:20:30+01:00",
         "time_interval_end": "2013-10-20T19:20:30+01:00",
         "resource_metric": "CPU",
@@ -413,7 +413,7 @@ host_insight_resource_statistics:
                 }
             }
         }]
-    }
+    }]
 """
 
 from ansible.module_utils.basic import AnsibleModule
@@ -432,16 +432,16 @@ except ImportError:
 
 
 class HostInsightResourceStatisticsFactsHelperGen(OCIResourceFactsHelperBase):
-    """Supported operations: get"""
+    """Supported operations: list"""
 
-    def get_required_params_for_get(self):
+    def get_required_params_for_list(self):
         return [
             "compartment_id",
             "resource_metric",
         ]
 
-    def get_resource(self):
-        optional_get_method_params = [
+    def list_resources(self):
+        optional_list_method_params = [
             "analysis_time_interval",
             "time_interval_start",
             "time_interval_end",
@@ -461,10 +461,10 @@ class HostInsightResourceStatisticsFactsHelperGen(OCIResourceFactsHelperBase):
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
-            for param in optional_get_method_params
+            for param in optional_list_method_params
             if self.module.params.get(param) is not None
         )
-        return oci_common_utils.call_with_backoff(
+        return oci_common_utils.list_all_resources(
             self.client.summarize_host_insight_resource_statistics,
             compartment_id=self.module.params.get("compartment_id"),
             resource_metric=self.module.params.get("resource_metric"),
@@ -536,8 +536,8 @@ def main():
 
     result = []
 
-    if resource_facts_helper.is_get():
-        result = resource_facts_helper.get()
+    if resource_facts_helper.is_list():
+        result = resource_facts_helper.list()
     else:
         resource_facts_helper.fail()
 

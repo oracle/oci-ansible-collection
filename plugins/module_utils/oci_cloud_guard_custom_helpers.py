@@ -115,3 +115,25 @@ class TargetHelperCustom:
                     del rules_list["details"]
 
         return create_model_dict
+
+
+class SecurityZoneActionsHelperCustom:
+    def is_action_necessary(self, action, resource=None):
+        # this logic is decided by reading about api from the below link
+        # https://docs.oracle.com/en-us/iaas/security-zone/using/managing-security-zones.htm
+
+        if resource is not None:
+            if action == "add_compartment":
+                compartment_to_add = self.module.params.get("compartment_id")
+                return (compartment_to_add != resource.compartment_id) and (
+                    compartment_to_add not in resource.inherited_by_compartments
+                )
+            elif action == "remove_compartment":
+                compartment_to_remove = self.module.params.get("compartment_id")
+                return (compartment_to_remove != resource.compartment_id) and (
+                    compartment_to_remove in resource.inherited_by_compartments
+                )
+
+        return super(SecurityZoneActionsHelperCustom, self).is_action_necessary(
+            action, resource
+        )

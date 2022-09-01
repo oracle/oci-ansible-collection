@@ -74,7 +74,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: Get a specific sql_plan_insights
+- name: List sql_plan_insights
   oci_opsi_sql_plan_insights_facts:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -227,16 +227,16 @@ except ImportError:
 
 
 class SqlPlanInsightsFactsHelperGen(OCIResourceFactsHelperBase):
-    """Supported operations: get"""
+    """Supported operations: list"""
 
-    def get_required_params_for_get(self):
+    def get_required_params_for_list(self):
         return [
             "compartment_id",
             "sql_identifier",
         ]
 
-    def get_resource(self):
-        optional_get_method_params = [
+    def list_resources(self):
+        optional_list_method_params = [
             "database_id",
             "id",
             "analysis_time_interval",
@@ -245,10 +245,10 @@ class SqlPlanInsightsFactsHelperGen(OCIResourceFactsHelperBase):
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
-            for param in optional_get_method_params
+            for param in optional_list_method_params
             if self.module.params.get(param) is not None
         )
-        return oci_common_utils.call_with_backoff(
+        return oci_common_utils.list_all_resources(
             self.client.summarize_sql_plan_insights,
             compartment_id=self.module.params.get("compartment_id"),
             sql_identifier=self.module.params.get("sql_identifier"),
@@ -293,8 +293,8 @@ def main():
 
     result = []
 
-    if resource_facts_helper.is_get():
-        result = resource_facts_helper.get()
+    if resource_facts_helper.is_list():
+        result = resource_facts_helper.list()
     else:
         resource_facts_helper.fail()
 

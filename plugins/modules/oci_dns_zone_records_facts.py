@@ -20,9 +20,9 @@ ANSIBLE_METADATA = {
 DOCUMENTATION = """
 ---
 module: oci_dns_zone_records_facts
-short_description: Fetches details about a ZoneRecords resource in Oracle Cloud Infrastructure
+short_description: Fetches details about one or multiple ZoneRecords resources in Oracle Cloud Infrastructure
 description:
-    - Fetches details about a ZoneRecords resource in Oracle Cloud Infrastructure
+    - Fetches details about one or multiple ZoneRecords resources in Oracle Cloud Infrastructure
     - Gets all records in the specified zone.
     - The results are sorted by `domain` in alphabetical order by default. For more information about records,
       see L(Resource Record (RR) TYPEs,https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4).
@@ -99,7 +99,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: Get a specific zone_records
+- name: List zone_records
   oci_dns_zone_records_facts:
     # required
     zone_name_or_id: "ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx"
@@ -121,7 +121,7 @@ EXAMPLES = """
 RETURN = """
 zone_records:
     description:
-        - ZoneRecords resource
+        - List of ZoneRecords resources
     returned: on success
     type: complex
     contains:
@@ -174,7 +174,7 @@ zone_records:
             returned: on success
             type: int
             sample: 56
-    sample: {
+    sample: [{
         "domain": "domain_example",
         "record_hash": "record_hash_example",
         "is_protected": true,
@@ -182,7 +182,7 @@ zone_records:
         "rrset_version": "rrset_version_example",
         "rtype": "rtype_example",
         "ttl": 56
-    }
+    }]
 """
 
 from ansible.module_utils.basic import AnsibleModule
@@ -201,15 +201,15 @@ except ImportError:
 
 
 class ZoneRecordsFactsHelperGen(OCIResourceFactsHelperBase):
-    """Supported operations: get"""
+    """Supported operations: list"""
 
-    def get_required_params_for_get(self):
+    def get_required_params_for_list(self):
         return [
             "zone_name_or_id",
         ]
 
-    def get_resource(self):
-        optional_get_method_params = [
+    def list_resources(self):
+        optional_list_method_params = [
             "if_modified_since",
             "zone_version",
             "domain",
@@ -223,15 +223,13 @@ class ZoneRecordsFactsHelperGen(OCIResourceFactsHelperBase):
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
-            for param in optional_get_method_params
+            for param in optional_list_method_params
             if self.module.params.get(param) is not None
         )
-        return oci_common_utils.get_default_response_from_resource(
-            oci_common_utils.list_all_resources(
-                self.client.get_zone_records,
-                zone_name_or_id=self.module.params.get("zone_name_or_id"),
-                **optional_kwargs
-            ).items
+        return oci_common_utils.list_all_resources(
+            self.client.get_zone_records,
+            zone_name_or_id=self.module.params.get("zone_name_or_id"),
+            **optional_kwargs
         )
 
 
@@ -278,8 +276,8 @@ def main():
 
     result = []
 
-    if resource_facts_helper.is_get():
-        result = resource_facts_helper.get()
+    if resource_facts_helper.is_list():
+        result = resource_facts_helper.list()
     else:
         resource_facts_helper.fail()
 

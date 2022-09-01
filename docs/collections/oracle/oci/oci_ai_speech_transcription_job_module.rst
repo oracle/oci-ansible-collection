@@ -30,7 +30,7 @@ oracle.oci.oci_ai_speech_transcription_job -- Manage a TranscriptionJob resource
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.58.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.0.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -102,7 +102,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Transcription Format. By default JSON format will be considered.</div>
+                                            <div>Transcription Format. By default, the JSON format is used.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -595,10 +595,17 @@ Parameters
                                                                                                                                                                 <li>en-US</li>
                                                                                                                                                                                                 <li>es-ES</li>
                                                                                                                                                                                                 <li>pt-BR</li>
+                                                                                                                                                                                                <li>en-GB</li>
+                                                                                                                                                                                                <li>en-AU</li>
+                                                                                                                                                                                                <li>en-IN</li>
+                                                                                                                                                                                                <li>hi-IN</li>
+                                                                                                                                                                                                <li>fr-FR</li>
+                                                                                                                                                                                                <li>de-DE</li>
+                                                                                                                                                                                                <li>it-IT</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Locale value as per given in [https://datatracker.ietf.org/doc/html/rfc5646].</div>
+                                            <div>Locale value as per given in [https://datatracker.ietf.org/doc/html/rfc5646]. - en-US: English - United States - es-ES: Spanish - Spain - pt-BR: Portuguese - Brazil - en-GB: English - Great Britain - en-AU: English - Australia - en-IN: English - India - hi-IN: Hindi - India - fr-FR: French - France - de-DE: German - Germany - it-IT: Italian - Italy</div>
                                                         </td>
             </tr>
                     
@@ -693,7 +700,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Whether to add punctuation in generated transcription. By default it is enabled.</div>
+                                            <div>Whether to add punctuation in the generated transcription. Enabled by default.</div>
                                                         </td>
             </tr>
                     
@@ -1396,7 +1403,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Locale value as per given in [https://datatracker.ietf.org/doc/html/rfc5646].</div>
+                                            <div>Locale value as per given in [https://datatracker.ietf.org/doc/html/rfc5646]. - en-US: English - United States - es-ES: Spanish - Spain - pt-BR: Portuguese - Brazil - en-GB: English - Great Britain - en-AU: English - Australia - en-IN: English - India - hi-IN: Hindi - India - fr-FR: French - France - de-DE: German - Germany - it-IT: Italian - Italy</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">en-US</div>
@@ -1490,7 +1497,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Whether to add punctuation in generated transcription. By default it is enabled.</div>
+                                            <div>Whether to add punctuation in the generated transcription. Enabled by default.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>

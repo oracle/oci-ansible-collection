@@ -282,11 +282,6 @@ class CrossConnectGroupHelperCustom:
         return ["INACTIVE", "PROVISIONED"]
 
 
-class CrossConnectHelperCustom:
-    def get_resource_active_states(self):
-        return ["PENDING_CUSTOMER", "PENDING_PROVIDER", "PROVISIONED"]
-
-
 class VirtualCircuitHelperCustom:
     def get_create_model_dict_for_idempotence_check(self, create_model):
         create_model_dict = super(

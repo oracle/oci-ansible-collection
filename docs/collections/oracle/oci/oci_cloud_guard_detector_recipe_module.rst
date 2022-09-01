@@ -30,7 +30,7 @@ oracle.oci.oci_cloud_guard_detector_recipe -- Manage a DetectorRecipe resource i
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.58.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.0.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -280,6 +280,27 @@ Parameters
                                             <div>Detector recipe description.</div>
                                             <div>Avoid entering confidential information.</div>
                                             <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="parameter-detector"></div>
+                    <b>detector</b>
+                    <a class="ansibleOptionLink" href="#parameter-detector" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>IAAS_ACTIVITY_DETECTOR</li>
+                                                                                                                                                                                                <li>IAAS_CONFIGURATION_DETECTOR</li>
+                                                                                                                                                                                                <li>IAAS_THREAT_DETECTOR</li>
+                                                                                                                                                                                                <li>IAAS_LOG_INSIGHT_DETECTOR</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>detector for the rule</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -741,6 +762,119 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-detector_rules/details/data_source_id"></div>
+                    <b>data_source_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-detector_rules/details/data_source_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The id of the attached DataSource.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-detector_rules/details/description"></div>
+                    <b>description</b>
+                    <a class="ansibleOptionLink" href="#parameter-detector_rules/details/description" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Description for DetectorRecipeDetectorRule.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-detector_rules/details/entities_mappings"></div>
+                    <b>entities_mappings</b>
+                    <a class="ansibleOptionLink" href="#parameter-detector_rules/details/entities_mappings" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Data Source entities mapping for a Detector Rule</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-detector_rules/details/entities_mappings/display_name"></div>
+                    <b>display_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-detector_rules/details/entities_mappings/display_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The display name of entity</div>
+                                                                <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-detector_rules/details/entities_mappings/entity_type"></div>
+                    <b>entity_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-detector_rules/details/entities_mappings/entity_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>EXTERNAL_IP</li>
+                                                                                                                                                                                                <li>INTERNAL_IP</li>
+                                                                                                                                                                                                <li>TEXT</li>
+                                                                                                                                                                                                <li>JSON_LIST</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Possible type of entity</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-detector_rules/details/entities_mappings/query_field"></div>
+                    <b>query_field</b>
+                    <a class="ansibleOptionLink" href="#parameter-detector_rules/details/entities_mappings/query_field" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The entity value mapped to a data source query</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-detector_rules/details/is_enabled"></div>
                     <b>is_enabled</b>
                     <a class="ansibleOptionLink" href="#parameter-detector_rules/details/is_enabled" title="Permalink to this option"></a>
@@ -773,6 +907,23 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>user defined labels for a detector rule</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-detector_rules/details/recommendation"></div>
+                    <b>recommendation</b>
+                    <a class="ansibleOptionLink" href="#parameter-detector_rules/details/recommendation" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Recommendation for DetectorRecipeDetectorRule</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -916,7 +1067,6 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The id of the source detector recipe.</div>
-                                            <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1017,11 +1167,12 @@ Examples
     - name: Create detector_recipe
       oci_cloud_guard_detector_recipe:
         # required
-        source_detector_recipe_id: "ocid1.sourcedetectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
 
         # optional
+        detector: IAAS_ACTIVITY_DETECTOR
+        source_detector_recipe_id: "ocid1.sourcedetectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
         description: description_example
         detector_rules:
         - # required
@@ -1055,6 +1206,16 @@ Examples
               value: value_example
               value_type: MANAGED
             labels: [ "labels_example" ]
+            description: description_example
+            recommendation: recommendation_example
+            data_source_id: "ocid1.datasource.oc1..xxxxxxEXAMPLExxxxxx"
+            entities_mappings:
+            - # required
+              query_field: query_field_example
+
+              # optional
+              display_name: display_name_example
+              entity_type: EXTERNAL_IP
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -1098,6 +1259,16 @@ Examples
               value: value_example
               value_type: MANAGED
             labels: [ "labels_example" ]
+            description: description_example
+            recommendation: recommendation_example
+            data_source_id: "ocid1.datasource.oc1..xxxxxxEXAMPLExxxxxx"
+            entities_mappings:
+            - # required
+              query_field: query_field_example
+
+              # optional
+              display_name: display_name_example
+              entity_type: EXTERNAL_IP
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -1141,6 +1312,16 @@ Examples
               value: value_example
               value_type: MANAGED
             labels: [ "labels_example" ]
+            description: description_example
+            recommendation: recommendation_example
+            data_source_id: "ocid1.datasource.oc1..xxxxxxEXAMPLExxxxxx"
+            entities_mappings:
+            - # required
+              query_field: query_field_example
+
+              # optional
+              display_name: display_name_example
+              entity_type: EXTERNAL_IP
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -1192,7 +1373,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the DetectorRecipe resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;detector&#x27;: &#x27;IAAS_ACTIVITY_DETECTOR&#x27;, &#x27;detector_rules&#x27;: [{&#x27;candidate_responder_rules&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_preferred&#x27;: True}], &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;details&#x27;: {&#x27;condition&#x27;: {&#x27;composite_operator&#x27;: &#x27;AND&#x27;, &#x27;kind&#x27;: &#x27;COMPOSITE&#x27;, &#x27;left_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;operator&#x27;: &#x27;IN&#x27;, &#x27;parameter&#x27;: &#x27;parameter_example&#x27;, &#x27;right_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;value_type&#x27;: &#x27;MANAGED&#x27;}, &#x27;configurations&#x27;: [{&#x27;config_key&#x27;: &#x27;config_key_example&#x27;, &#x27;data_type&#x27;: &#x27;data_type_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;values&#x27;: [{&#x27;list_type&#x27;: &#x27;MANAGED&#x27;, &#x27;managed_list_type&#x27;: &#x27;managed_list_type_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}], &#x27;is_configuration_allowed&#x27;: True, &#x27;is_enabled&#x27;: True, &#x27;labels&#x27;: [], &#x27;problem_threshold&#x27;: 56, &#x27;risk_level&#x27;: &#x27;CRITICAL&#x27;, &#x27;sighting_types&#x27;: [{&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;mitre_link&#x27;: &#x27;mitre_link_example&#x27;, &#x27;tactic&#x27;: &#x27;tactic_example&#x27;, &#x27;techniques&#x27;: []}], &#x27;target_types&#x27;: []}, &#x27;detector&#x27;: &#x27;IAAS_ACTIVITY_DETECTOR&#x27;, &#x27;detector_rule_id&#x27;: &#x27;ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;managed_list_types&#x27;: [], &#x27;recommendation&#x27;: &#x27;recommendation_example&#x27;, &#x27;resource_type&#x27;: &#x27;resource_type_example&#x27;, &#x27;service_type&#x27;: &#x27;service_type_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;effective_detector_rules&#x27;: [{&#x27;candidate_responder_rules&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_preferred&#x27;: True}], &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;details&#x27;: {&#x27;condition&#x27;: {&#x27;composite_operator&#x27;: &#x27;AND&#x27;, &#x27;kind&#x27;: &#x27;COMPOSITE&#x27;, &#x27;left_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;operator&#x27;: &#x27;IN&#x27;, &#x27;parameter&#x27;: &#x27;parameter_example&#x27;, &#x27;right_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;value_type&#x27;: &#x27;MANAGED&#x27;}, &#x27;configurations&#x27;: [{&#x27;config_key&#x27;: &#x27;config_key_example&#x27;, &#x27;data_type&#x27;: &#x27;data_type_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;values&#x27;: [{&#x27;list_type&#x27;: &#x27;MANAGED&#x27;, &#x27;managed_list_type&#x27;: &#x27;managed_list_type_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}], &#x27;is_configuration_allowed&#x27;: True, &#x27;is_enabled&#x27;: True, &#x27;labels&#x27;: [], &#x27;problem_threshold&#x27;: 56, &#x27;risk_level&#x27;: &#x27;CRITICAL&#x27;, &#x27;sighting_types&#x27;: [{&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;mitre_link&#x27;: &#x27;mitre_link_example&#x27;, &#x27;tactic&#x27;: &#x27;tactic_example&#x27;, &#x27;techniques&#x27;: []}], &#x27;target_types&#x27;: []}, &#x27;detector&#x27;: &#x27;IAAS_ACTIVITY_DETECTOR&#x27;, &#x27;detector_rule_id&#x27;: &#x27;ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;managed_list_types&#x27;: [], &#x27;recommendation&#x27;: &#x27;recommendation_example&#x27;, &#x27;resource_type&#x27;: &#x27;resource_type_example&#x27;, &#x27;service_type&#x27;: &#x27;service_type_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;owner&#x27;: &#x27;CUSTOMER&#x27;, &#x27;source_data_retention&#x27;: 56, &#x27;source_detector_recipe_id&#x27;: &#x27;ocid1.sourcedetectorrecipe.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;detector&#x27;: &#x27;IAAS_ACTIVITY_DETECTOR&#x27;, &#x27;detector_rules&#x27;: [{&#x27;candidate_responder_rules&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_preferred&#x27;: True}], &#x27;data_source_id&#x27;: &#x27;ocid1.datasource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;details&#x27;: {&#x27;condition&#x27;: {&#x27;composite_operator&#x27;: &#x27;AND&#x27;, &#x27;kind&#x27;: &#x27;COMPOSITE&#x27;, &#x27;left_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;operator&#x27;: &#x27;IN&#x27;, &#x27;parameter&#x27;: &#x27;parameter_example&#x27;, &#x27;right_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;value_type&#x27;: &#x27;MANAGED&#x27;}, &#x27;configurations&#x27;: [{&#x27;config_key&#x27;: &#x27;config_key_example&#x27;, &#x27;data_type&#x27;: &#x27;data_type_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;values&#x27;: [{&#x27;list_type&#x27;: &#x27;MANAGED&#x27;, &#x27;managed_list_type&#x27;: &#x27;managed_list_type_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}], &#x27;is_configuration_allowed&#x27;: True, &#x27;is_enabled&#x27;: True, &#x27;labels&#x27;: [], &#x27;problem_threshold&#x27;: 56, &#x27;risk_level&#x27;: &#x27;CRITICAL&#x27;, &#x27;sighting_types&#x27;: [{&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;mitre_link&#x27;: &#x27;mitre_link_example&#x27;, &#x27;tactic&#x27;: &#x27;tactic_example&#x27;, &#x27;techniques&#x27;: []}], &#x27;target_types&#x27;: []}, &#x27;detector&#x27;: &#x27;IAAS_ACTIVITY_DETECTOR&#x27;, &#x27;detector_rule_id&#x27;: &#x27;ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;entities_mappings&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;entity_type&#x27;: &#x27;EXTERNAL_IP&#x27;, &#x27;query_field&#x27;: &#x27;query_field_example&#x27;}], &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;managed_list_types&#x27;: [], &#x27;recommendation&#x27;: &#x27;recommendation_example&#x27;, &#x27;resource_type&#x27;: &#x27;resource_type_example&#x27;, &#x27;service_type&#x27;: &#x27;service_type_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;effective_detector_rules&#x27;: [{&#x27;candidate_responder_rules&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_preferred&#x27;: True}], &#x27;data_source_id&#x27;: &#x27;ocid1.datasource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;details&#x27;: {&#x27;condition&#x27;: {&#x27;composite_operator&#x27;: &#x27;AND&#x27;, &#x27;kind&#x27;: &#x27;COMPOSITE&#x27;, &#x27;left_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;operator&#x27;: &#x27;IN&#x27;, &#x27;parameter&#x27;: &#x27;parameter_example&#x27;, &#x27;right_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;value_type&#x27;: &#x27;MANAGED&#x27;}, &#x27;configurations&#x27;: [{&#x27;config_key&#x27;: &#x27;config_key_example&#x27;, &#x27;data_type&#x27;: &#x27;data_type_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;values&#x27;: [{&#x27;list_type&#x27;: &#x27;MANAGED&#x27;, &#x27;managed_list_type&#x27;: &#x27;managed_list_type_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}], &#x27;is_configuration_allowed&#x27;: True, &#x27;is_enabled&#x27;: True, &#x27;labels&#x27;: [], &#x27;problem_threshold&#x27;: 56, &#x27;risk_level&#x27;: &#x27;CRITICAL&#x27;, &#x27;sighting_types&#x27;: [{&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;mitre_link&#x27;: &#x27;mitre_link_example&#x27;, &#x27;tactic&#x27;: &#x27;tactic_example&#x27;, &#x27;techniques&#x27;: []}], &#x27;target_types&#x27;: []}, &#x27;detector&#x27;: &#x27;IAAS_ACTIVITY_DETECTOR&#x27;, &#x27;detector_rule_id&#x27;: &#x27;ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;entities_mappings&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;entity_type&#x27;: &#x27;EXTERNAL_IP&#x27;, &#x27;query_field&#x27;: &#x27;query_field_example&#x27;}], &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;managed_list_types&#x27;: [], &#x27;recommendation&#x27;: &#x27;recommendation_example&#x27;, &#x27;resource_type&#x27;: &#x27;resource_type_example&#x27;, &#x27;service_type&#x27;: &#x27;service_type_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;owner&#x27;: &#x27;CUSTOMER&#x27;, &#x27;source_data_retention&#x27;: 56, &#x27;source_detector_recipe_id&#x27;: &#x27;ocid1.sourcedetectorrecipe.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;target_ids&#x27;: [], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1361,6 +1542,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                     
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-detector_recipe/detector_rules/data_source_id"></div>
+                    <b>data_source_id</b>
+                    <a class="ansibleOptionLink" href="#return-detector_recipe/detector_rules/data_source_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The id of the attached DataSource.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.datasource.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -2136,6 +2336,84 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-detector_recipe/detector_rules/entities_mappings"></div>
+                    <b>entities_mappings</b>
+                    <a class="ansibleOptionLink" href="#return-detector_recipe/detector_rules/entities_mappings" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Data Source entities mapping for a Detector Rule</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-detector_recipe/detector_rules/entities_mappings/display_name"></div>
+                    <b>display_name</b>
+                    <a class="ansibleOptionLink" href="#return-detector_recipe/detector_rules/entities_mappings/display_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The display name of entity</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-detector_recipe/detector_rules/entities_mappings/entity_type"></div>
+                    <b>entity_type</b>
+                    <a class="ansibleOptionLink" href="#return-detector_recipe/detector_rules/entities_mappings/entity_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Possible type of entity</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">EXTERNAL_IP</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-detector_recipe/detector_rules/entities_mappings/query_field"></div>
+                    <b>query_field</b>
+                    <a class="ansibleOptionLink" href="#return-detector_recipe/detector_rules/entities_mappings/query_field" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The entity value mapped to a data source query</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">query_field_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-detector_recipe/detector_rules/lifecycle_details"></div>
                     <b>lifecycle_details</b>
                     <a class="ansibleOptionLink" href="#return-detector_recipe/detector_rules/lifecycle_details" title="Permalink to this return value"></a>
@@ -2395,6 +2673,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                     
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-detector_recipe/effective_detector_rules/data_source_id"></div>
+                    <b>data_source_id</b>
+                    <a class="ansibleOptionLink" href="#return-detector_recipe/effective_detector_rules/data_source_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The id of the attached DataSource.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.datasource.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -3170,6 +3467,84 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-detector_recipe/effective_detector_rules/entities_mappings"></div>
+                    <b>entities_mappings</b>
+                    <a class="ansibleOptionLink" href="#return-detector_recipe/effective_detector_rules/entities_mappings" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Data Source entities mapping for a Detector Rule</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-detector_recipe/effective_detector_rules/entities_mappings/display_name"></div>
+                    <b>display_name</b>
+                    <a class="ansibleOptionLink" href="#return-detector_recipe/effective_detector_rules/entities_mappings/display_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The display name of entity</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-detector_recipe/effective_detector_rules/entities_mappings/entity_type"></div>
+                    <b>entity_type</b>
+                    <a class="ansibleOptionLink" href="#return-detector_recipe/effective_detector_rules/entities_mappings/entity_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Possible type of entity</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">EXTERNAL_IP</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-detector_recipe/effective_detector_rules/entities_mappings/query_field"></div>
+                    <b>query_field</b>
+                    <a class="ansibleOptionLink" href="#return-detector_recipe/effective_detector_rules/entities_mappings/query_field" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The entity value mapped to a data source query</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">query_field_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-detector_recipe/effective_detector_rules/lifecycle_details"></div>
                     <b>lifecycle_details</b>
                     <a class="ansibleOptionLink" href="#return-detector_recipe/effective_detector_rules/lifecycle_details" title="Permalink to this return value"></a>
@@ -3440,6 +3815,22 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>System tags for this resource. Each key is predefined and scoped to a namespace. For more information, see <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. System tags can be viewed by users, but can only be created by the system.</div>
                                             <div>Example: `{&quot;orcl-cloud&quot;: {&quot;free-tier-retained&quot;: &quot;true&quot;}}`</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-detector_recipe/target_ids"></div>
+                    <b>target_ids</b>
+                    <a class="ansibleOptionLink" href="#return-detector_recipe/target_ids" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The recipe attached to targets</div>
                                         <br/>
                                                         </td>
             </tr>

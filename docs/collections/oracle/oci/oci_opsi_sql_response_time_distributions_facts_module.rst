@@ -24,13 +24,13 @@
 
 .. Title
 
-oracle.oci.oci_opsi_sql_response_time_distributions_facts -- Fetches details about a SqlResponseTimeDistributions resource in Oracle Cloud Infrastructure
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+oracle.oci.oci_opsi_sql_response_time_distributions_facts -- Fetches details about one or multiple SqlResponseTimeDistributions resources in Oracle Cloud Infrastructure
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.58.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.0.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -56,7 +56,7 @@ Synopsis
 
 .. Description
 
-- Fetches details about a SqlResponseTimeDistributions resource in Oracle Cloud Infrastructure
+- Fetches details about one or multiple SqlResponseTimeDistributions resources in Oracle Cloud Infrastructure
 - Query SQL Warehouse to summarize the response time distribution of query executions for a given SQL for a given time period. Either databaseId or id must be specified.
 
 
@@ -390,7 +390,7 @@ Examples
 .. code-block:: yaml+jinja
 
     
-    - name: Get a specific sql_response_time_distributions
+    - name: List sql_response_time_distributions
       oci_opsi_sql_response_time_distributions_facts:
         # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -435,10 +435,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>SqlResponseTimeDistributions resource</div>
+                                            <div>List of SqlResponseTimeDistributions resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;bucket_id&#x27;: &#x27;ocid1.bucket.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;executions_count&#x27;: 56}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;bucket_id&#x27;: &#x27;ocid1.bucket.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;executions_count&#x27;: 56}]</div>
                                     </td>
             </tr>
                                         <tr>

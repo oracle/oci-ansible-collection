@@ -319,7 +319,7 @@ except ImportError:
 
 
 class DomainRecordsHelperGen(OCIResourceHelperBase):
-    """Supported operations: update, patch, get and delete"""
+    """Supported operations: update, patch, list and delete"""
 
     def get_possible_entity_types(self):
         return super(DomainRecordsHelperGen, self).get_possible_entity_types() + [
@@ -344,27 +344,47 @@ class DomainRecordsHelperGen(OCIResourceHelperBase):
     def get_module_resource_id(self):
         return self.module.params.get("domain")
 
-    def get_get_fn(self):
-        return self.client.get_domain_records
-
     def get_resource(self):
-        optional_params = [
-            "scope",
-            "view_id",
-            "compartment_id",
+        resources = self.list_resources()
+        for resource in resources:
+            if self.get_module_resource_id() == resource.domain:
+                return oci_common_utils.get_default_response_from_resource(resource)
+
+        oci_common_utils.raise_does_not_exist_service_error()
+
+    def get_required_kwargs_for_list(self):
+        required_list_method_params = [
+            "zone_name_or_id",
+            "domain",
         ]
-        optional_kwargs = dict(
-            (param, self.module.params[param])
-            for param in optional_params
-            if self.module.params.get(param) is not None
+
+        return dict(
+            (param, self.module.params[param]) for param in required_list_method_params
         )
-        return oci_common_utils.get_default_response_from_resource(
-            oci_common_utils.list_all_resources(
-                self.client.get_domain_records,
-                zone_name_or_id=self.module.params.get("zone_name_or_id"),
-                domain=self.module.params.get("domain"),
-                **optional_kwargs
-            ).items
+
+    def get_optional_kwargs_for_list(self):
+        optional_list_method_params = ["scope", "view_id", "compartment_id"]
+
+        return dict(
+            (param, self.module.params[param])
+            for param in optional_list_method_params
+            if self.module.params.get(param) is not None
+            and (
+                self._use_name_as_identifier()
+                or (
+                    not self.module.params.get("key_by")
+                    or param in self.module.params.get("key_by")
+                )
+            )
+        )
+
+    def list_resources(self):
+
+        required_kwargs = self.get_required_kwargs_for_list()
+        optional_kwargs = self.get_optional_kwargs_for_list()
+        kwargs = oci_common_utils.merge_dicts(required_kwargs, optional_kwargs)
+        return oci_common_utils.list_all_resources(
+            self.client.get_domain_records, **kwargs
         )
 
     def get_update_model_class(self):
@@ -463,12 +483,6 @@ class DomainRecordsHelperGen(OCIResourceHelperBase):
                 oci_common_utils.DELETE_OPERATION_KEY,
             ),
         )
-
-    def is_resource_dead(self, resource):
-        # response model returns a collection. Consider existence of a value as active.
-        if not resource:
-            return True
-        return False
 
 
 DomainRecordsHelperCustom = get_custom_class("DomainRecordsHelperCustom")

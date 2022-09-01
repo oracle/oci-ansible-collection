@@ -334,7 +334,7 @@ except ImportError:
 
 
 class RrsetHelperGen(OCIResourceHelperBase):
-    """Supported operations: update, patch, get and delete"""
+    """Supported operations: update, patch, list and delete"""
 
     def get_possible_entity_types(self):
         return super(RrsetHelperGen, self).get_possible_entity_types() + [
@@ -359,29 +359,47 @@ class RrsetHelperGen(OCIResourceHelperBase):
     def get_module_resource_id(self):
         return self.module.params.get("rtype")
 
-    def get_get_fn(self):
-        return self.client.get_rr_set
-
     def get_resource(self):
-        optional_params = [
-            "compartment_id",
-            "scope",
-            "view_id",
+        resources = self.list_resources()
+        for resource in resources:
+            if self.get_module_resource_id() == resource.rtype:
+                return oci_common_utils.get_default_response_from_resource(resource)
+
+        oci_common_utils.raise_does_not_exist_service_error()
+
+    def get_required_kwargs_for_list(self):
+        required_list_method_params = [
+            "zone_name_or_id",
+            "domain",
+            "rtype",
         ]
-        optional_kwargs = dict(
+
+        return dict(
+            (param, self.module.params[param]) for param in required_list_method_params
+        )
+
+    def get_optional_kwargs_for_list(self):
+        optional_list_method_params = ["compartment_id", "scope", "view_id"]
+
+        return dict(
             (param, self.module.params[param])
-            for param in optional_params
+            for param in optional_list_method_params
             if self.module.params.get(param) is not None
+            and (
+                self._use_name_as_identifier()
+                or (
+                    not self.module.params.get("key_by")
+                    or param in self.module.params.get("key_by")
+                )
+            )
         )
-        return oci_common_utils.get_default_response_from_resource(
-            oci_common_utils.list_all_resources(
-                self.client.get_rr_set,
-                zone_name_or_id=self.module.params.get("zone_name_or_id"),
-                domain=self.module.params.get("domain"),
-                rtype=self.module.params.get("rtype"),
-                **optional_kwargs
-            ).items
-        )
+
+    def list_resources(self):
+
+        required_kwargs = self.get_required_kwargs_for_list()
+        optional_kwargs = self.get_optional_kwargs_for_list()
+        kwargs = oci_common_utils.merge_dicts(required_kwargs, optional_kwargs)
+        return oci_common_utils.list_all_resources(self.client.get_rr_set, **kwargs)
 
     def get_update_model_class(self):
         return UpdateRRSetDetails
@@ -482,12 +500,6 @@ class RrsetHelperGen(OCIResourceHelperBase):
                 oci_common_utils.DELETE_OPERATION_KEY,
             ),
         )
-
-    def is_resource_dead(self, resource):
-        # response model returns a collection. Consider existence of a value as active.
-        if not resource:
-            return True
-        return False
 
 
 RrsetHelperCustom = get_custom_class("RrsetHelperCustom")

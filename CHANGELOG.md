@@ -4,6 +4,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [3.0.0]
+
+## Added
+
+ - Support for CIMS service
+ - Support for work_requests service
+ - Support for additional languages and multimedia formats in transcription jobs in the AI Speech service
+ - Support for security zones in the Cloud Guard service
+
+ ## Breaking
+
+ - Changed the response of the modules `oci_opsi_host_insight_resource_statistics_facts` , `oci_opsi_resource_statistics_facts`, `oci_opsi_sql_insights_facts` , `oci_opsi_sql_plan_insights_facts`, `oci_opsi_sql_response_time_distributions_facts` , `oci_opsi_sql_statistics_facts` , `oci_opsi_sql_statistics_time_series_by_plan_facts` , `oci_opsi_sql_statistics_time_series_facts` to list
+ - Changed key of the return block of module `oci_opsi_tablespace_usage_trend_facts` from `tablespace_usage_trend` to `tablespace_usage_trends`
+
+## Fixed
+
+- Idempotence issue [#170|https://github.com/oracle/oci-ansible-collection/issues/170] in `oci_identity_api_key` module.
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.80.1
+
 ## [2.58.0]
 
 ## Added

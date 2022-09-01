@@ -20,9 +20,9 @@ ANSIBLE_METADATA = {
 DOCUMENTATION = """
 ---
 module: oci_opsi_sql_statistics_facts
-short_description: Fetches details about a SqlStatistics resource in Oracle Cloud Infrastructure
+short_description: Fetches details about one or multiple SqlStatistics resources in Oracle Cloud Infrastructure
 description:
-    - Fetches details about a SqlStatistics resource in Oracle Cloud Infrastructure
+    - Fetches details about one or multiple SqlStatistics resources in Oracle Cloud Infrastructure
     - Query SQL Warehouse to get the performance statistics for SQLs taking greater than X% database time for a given
       time period across the given databases or database types in a compartment and in all sub-compartments if specified.
 version_added: "2.9.0"
@@ -217,7 +217,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: Get a specific sql_statistics
+- name: List sql_statistics
   oci_opsi_sql_statistics_facts:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -248,7 +248,7 @@ EXAMPLES = """
 RETURN = """
 sql_statistics:
     description:
-        - SqlStatistics resource
+        - List of SqlStatistics resources
     returned: on success
     type: complex
     contains:
@@ -457,7 +457,7 @@ sql_statistics:
                     returned: on success
                     type: float
                     sample: 1.2
-    sample: {
+    sample: [{
         "sql_identifier": "sql_identifier_example",
         "database_details": {
             "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
@@ -495,7 +495,7 @@ sql_statistics:
             "change_in_executions_per_hour_in_pct": 1.2,
             "change_in_inefficiency_in_pct": 1.2
         }
-    }
+    }]
 """
 
 from ansible.module_utils.basic import AnsibleModule
@@ -514,15 +514,15 @@ except ImportError:
 
 
 class SqlStatisticsFactsHelperGen(OCIResourceFactsHelperBase):
-    """Supported operations: get"""
+    """Supported operations: list"""
 
-    def get_required_params_for_get(self):
+    def get_required_params_for_list(self):
         return [
             "compartment_id",
         ]
 
-    def get_resource(self):
-        optional_get_method_params = [
+    def list_resources(self):
+        optional_list_method_params = [
             "database_type",
             "database_id",
             "id",
@@ -545,15 +545,13 @@ class SqlStatisticsFactsHelperGen(OCIResourceFactsHelperBase):
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
-            for param in optional_get_method_params
+            for param in optional_list_method_params
             if self.module.params.get(param) is not None
         )
-        return oci_common_utils.get_default_response_from_resource(
-            oci_common_utils.list_all_resources(
-                self.client.summarize_sql_statistics,
-                compartment_id=self.module.params.get("compartment_id"),
-                **optional_kwargs
-            )
+        return oci_common_utils.list_all_resources(
+            self.client.summarize_sql_statistics,
+            compartment_id=self.module.params.get("compartment_id"),
+            **optional_kwargs
         )
 
 
@@ -678,8 +676,8 @@ def main():
 
     result = []
 
-    if resource_facts_helper.is_get():
-        result = resource_facts_helper.get()
+    if resource_facts_helper.is_list():
+        result = resource_facts_helper.list()
     else:
         resource_facts_helper.fail()
 

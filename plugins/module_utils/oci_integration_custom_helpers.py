@@ -24,27 +24,9 @@ class IntegrationInstanceHelperCustom:
 
 
 class IntegrationInstanceActionsHelperCustom:
-    STOP_ACTION_KEY = "STOP"
     CHANGE_INTEGRATION_INSTANCE_NETWORK_ENDPOINT_ACTION_KEY = (
         "CHANGE_INTEGRATION_INSTANCE_NETWORK_ENDPOINT"
     )
-    LIFECYCLE_STATE_INACTIVE = "INACTIVE"
-
-    def get_action_idempotent_states(self, action):
-        action_idempotent_states = super(
-            IntegrationInstanceActionsHelperCustom, self
-        ).get_action_idempotent_states(action)
-        if action.upper() == self.STOP_ACTION_KEY:
-            return action_idempotent_states + [self.LIFECYCLE_STATE_INACTIVE]
-        return action_idempotent_states
-
-    def get_action_desired_states(self, action):
-        action_desired_states = super(
-            IntegrationInstanceActionsHelperCustom, self
-        ).get_action_desired_states(action)
-        if action.upper() == self.STOP_ACTION_KEY:
-            return action_desired_states + [self.LIFECYCLE_STATE_INACTIVE]
-        return action_desired_states
 
     def is_action_necessary(self, action, resource=None):
         if (

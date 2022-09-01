@@ -95,18 +95,3 @@ class DataScienceJobHelperCustom:
         ).get_resource_active_states()
         wait_for_states.append("CREATING")
         return wait_for_states
-
-
-class DataScienceJobRunActionsHelperCustom:
-    # adding state 'CANCELING' to the list returned by `get_action_idempotent_states(action)` when performing
-    # `cancel` operation.
-    def get_action_idempotent_states(self, action):
-        action_idempotent_states = super(
-            DataScienceJobRunActionsHelperCustom, self
-        ).get_action_idempotent_states(action)
-
-        if action.lower() == "cancel":
-            return action_idempotent_states + [
-                "CANCELING",
-            ]
-        return action_idempotent_states

@@ -30,24 +30,6 @@ class BlockchainPlatformHelperCustom:
         return 2400
 
 
-class BlockchainPlatformActionsHelperCustom:
-    def get_action_idempotent_states(self, action):
-        if action.upper() == "START":
-            return ["ACTIVE"]
-        if action.upper() == "STOP":
-            return ["INACTIVE"]
-        return oci_common_utils.ACTION_IDEMPOTENT_STATES.get(action.upper(), [])
-
-    def get_action_desired_states(self, action):
-        if action.upper() == "START":
-            return ["ACTIVE"]
-        if action.upper() == "STOP":
-            return ["INACTIVE"]
-        return oci_common_utils.ACTION_DESIRED_STATES.get(
-            action.upper(), oci_common_utils.DEFAULT_READY_STATES
-        )
-
-
 class BlockchainPlatformOsnHelperCustom:
     # The create operation is not idempotent since it is valid to have multiple nodes with the given values and there is
     # no way for us to distinguish if the user wants to create another or not.

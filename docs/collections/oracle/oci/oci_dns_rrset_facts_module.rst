@@ -24,13 +24,13 @@
 
 .. Title
 
-oracle.oci.oci_dns_rrset_facts -- Fetches details about a Rrset resource in Oracle Cloud Infrastructure
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+oracle.oci.oci_dns_rrset_facts -- Fetches details about one or multiple Rrset resources in Oracle Cloud Infrastructure
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.58.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.0.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -56,7 +56,7 @@ Synopsis
 
 .. Description
 
-- Fetches details about a Rrset resource in Oracle Cloud Infrastructure
+- Fetches details about one or multiple Rrset resources in Oracle Cloud Infrastructure
 - Gets a list of all records in the specified RRSet.
 - The results are sorted by `recordHash` by default. When the zone name is provided as a path parameter and `PRIVATE` is used for the scope query parameter then the viewId query parameter is required.
 
@@ -412,7 +412,7 @@ Examples
 .. code-block:: yaml+jinja
 
     
-    - name: Get a specific rrset
+    - name: List rrset
       oci_dns_rrset_facts:
         # required
         zone_name_or_id: "ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx"
@@ -458,10 +458,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Rrset resource</div>
+                                            <div>List of Rrset resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;items&#x27;: [{&#x27;domain&#x27;: &#x27;domain_example&#x27;, &#x27;is_protected&#x27;: True, &#x27;rdata&#x27;: &#x27;rdata_example&#x27;, &#x27;record_hash&#x27;: &#x27;record_hash_example&#x27;, &#x27;rrset_version&#x27;: &#x27;rrset_version_example&#x27;, &#x27;rtype&#x27;: &#x27;rtype_example&#x27;, &#x27;ttl&#x27;: 56}]}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;items&#x27;: [{&#x27;domain&#x27;: &#x27;domain_example&#x27;, &#x27;is_protected&#x27;: True, &#x27;rdata&#x27;: &#x27;rdata_example&#x27;, &#x27;record_hash&#x27;: &#x27;record_hash_example&#x27;, &#x27;rrset_version&#x27;: &#x27;rrset_version_example&#x27;, &#x27;rtype&#x27;: &#x27;rtype_example&#x27;, &#x27;ttl&#x27;: 56}]}]</div>
                                     </td>
             </tr>
                                         <tr>

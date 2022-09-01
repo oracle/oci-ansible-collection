@@ -24,13 +24,13 @@
 
 .. Title
 
-oracle.oci.oci_opsi_host_insight_resource_statistics_facts -- Fetches details about a HostInsightResourceStatistics resource in Oracle Cloud Infrastructure
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+oracle.oci.oci_opsi_host_insight_resource_statistics_facts -- Fetches details about one or multiple HostInsightResourceStatistics resources in Oracle Cloud Infrastructure
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.58.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.0.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -56,7 +56,7 @@ Synopsis
 
 .. Description
 
-- Fetches details about a HostInsightResourceStatistics resource in Oracle Cloud Infrastructure
+- Fetches details about one or multiple HostInsightResourceStatistics resources in Oracle Cloud Infrastructure
 - Lists the resource statistics (usage, capacity, usage change percent, utilization percent, load) for each host filtered by utilization level in a compartment and in all sub-compartments if specified.
 
 
@@ -576,7 +576,7 @@ Examples
 .. code-block:: yaml+jinja
 
     
-    - name: Get a specific host_insight_resource_statistics
+    - name: List host_insight_resource_statistics
       oci_opsi_host_insight_resource_statistics_facts:
         # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -632,10 +632,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>HostInsightResourceStatistics resource</div>
+                                            <div>List of HostInsightResourceStatistics resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;items&#x27;: [{&#x27;current_statistics&#x27;: {&#x27;available_memory&#x27;: 1.2, &#x27;capacity&#x27;: 1.2, &#x27;free_memory&#x27;: 1.2, &#x27;huge_page_size_in_mb&#x27;: 1.2, &#x27;huge_pages_free&#x27;: 56, &#x27;huge_pages_reserved&#x27;: 56, &#x27;huge_pages_total&#x27;: 56, &#x27;load&#x27;: {&#x27;average&#x27;: 1.2, &#x27;lower_quartile&#x27;: 1.2, &#x27;maximum&#x27;: 1.2, &#x27;median&#x27;: 1.2, &#x27;minimum&#x27;: 1.2, &#x27;upper_quartile&#x27;: 1.2}, &#x27;resource_name&#x27;: &#x27;HOST_CPU_STATISTICS&#x27;, &#x27;usage&#x27;: 1.2, &#x27;usage_change_percent&#x27;: 1.2, &#x27;utilization_percent&#x27;: 1.2}, &#x27;host_details&#x27;: {&#x27;agent_identifier&#x27;: &#x27;agent_identifier_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;host_display_name&#x27;: &#x27;host_display_name_example&#x27;, &#x27;host_name&#x27;: &#x27;host_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;platform_type&#x27;: &#x27;LINUX&#x27;}}], &#x27;resource_metric&#x27;: &#x27;CPU&#x27;, &#x27;time_interval_end&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_interval_start&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;usage_unit&#x27;: &#x27;CORES&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;items&#x27;: [{&#x27;current_statistics&#x27;: {&#x27;available_memory&#x27;: 1.2, &#x27;capacity&#x27;: 1.2, &#x27;free_memory&#x27;: 1.2, &#x27;huge_page_size_in_mb&#x27;: 1.2, &#x27;huge_pages_free&#x27;: 56, &#x27;huge_pages_reserved&#x27;: 56, &#x27;huge_pages_total&#x27;: 56, &#x27;load&#x27;: {&#x27;average&#x27;: 1.2, &#x27;lower_quartile&#x27;: 1.2, &#x27;maximum&#x27;: 1.2, &#x27;median&#x27;: 1.2, &#x27;minimum&#x27;: 1.2, &#x27;upper_quartile&#x27;: 1.2}, &#x27;resource_name&#x27;: &#x27;HOST_CPU_STATISTICS&#x27;, &#x27;usage&#x27;: 1.2, &#x27;usage_change_percent&#x27;: 1.2, &#x27;utilization_percent&#x27;: 1.2}, &#x27;host_details&#x27;: {&#x27;agent_identifier&#x27;: &#x27;agent_identifier_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;host_display_name&#x27;: &#x27;host_display_name_example&#x27;, &#x27;host_name&#x27;: &#x27;host_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;platform_type&#x27;: &#x27;LINUX&#x27;}}], &#x27;resource_metric&#x27;: &#x27;CPU&#x27;, &#x27;time_interval_end&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_interval_start&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;usage_unit&#x27;: &#x27;CORES&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
