@@ -30,7 +30,7 @@ oracle.oci.oci_opsi_sql_statistics_time_series_by_plan_facts -- Fetches details 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.58.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.0.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -390,7 +390,7 @@ Examples
 .. code-block:: yaml+jinja
 
     
-    - name: Get a specific sql_statistics_time_series_by_plan
+    - name: List sql_statistics_time_series_by_plan
       oci_opsi_sql_statistics_time_series_by_plan_facts:
         # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"

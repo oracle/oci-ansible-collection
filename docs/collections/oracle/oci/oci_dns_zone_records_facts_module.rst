@@ -24,13 +24,13 @@
 
 .. Title
 
-oracle.oci.oci_dns_zone_records_facts -- Fetches details about a ZoneRecords resource in Oracle Cloud Infrastructure
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+oracle.oci.oci_dns_zone_records_facts -- Fetches details about one or multiple ZoneRecords resources in Oracle Cloud Infrastructure
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.58.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.0.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -56,7 +56,7 @@ Synopsis
 
 .. Description
 
-- Fetches details about a ZoneRecords resource in Oracle Cloud Infrastructure
+- Fetches details about one or multiple ZoneRecords resources in Oracle Cloud Infrastructure
 - Gets all records in the specified zone.
 - The results are sorted by `domain` in alphabetical order by default. For more information about records, see L(Resource Record (RR) TYPEs,https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4). When the zone name is provided as a path parameter and `PRIVATE` is used for the scope query parameter then the viewId query parameter is required.
 
@@ -466,7 +466,7 @@ Examples
 .. code-block:: yaml+jinja
 
     
-    - name: Get a specific zone_records
+    - name: List zone_records
       oci_dns_zone_records_facts:
         # required
         zone_name_or_id: "ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx"
@@ -515,10 +515,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>ZoneRecords resource</div>
+                                            <div>List of ZoneRecords resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;domain&#x27;: &#x27;domain_example&#x27;, &#x27;is_protected&#x27;: True, &#x27;rdata&#x27;: &#x27;rdata_example&#x27;, &#x27;record_hash&#x27;: &#x27;record_hash_example&#x27;, &#x27;rrset_version&#x27;: &#x27;rrset_version_example&#x27;, &#x27;rtype&#x27;: &#x27;rtype_example&#x27;, &#x27;ttl&#x27;: 56}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;domain&#x27;: &#x27;domain_example&#x27;, &#x27;is_protected&#x27;: True, &#x27;rdata&#x27;: &#x27;rdata_example&#x27;, &#x27;record_hash&#x27;: &#x27;record_hash_example&#x27;, &#x27;rrset_version&#x27;: &#x27;rrset_version_example&#x27;, &#x27;rtype&#x27;: &#x27;rtype_example&#x27;, &#x27;ttl&#x27;: 56}]</div>
                                     </td>
             </tr>
                                         <tr>

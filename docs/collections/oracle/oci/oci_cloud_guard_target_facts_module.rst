@@ -30,7 +30,7 @@ oracle.oci.oci_cloud_guard_target_facts -- Fetches details about one or multiple
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.58.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.0.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -510,7 +510,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Target resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;inherited_by_compartments&#x27;: [], &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;lifecyle_details&#x27;: &#x27;lifecyle_details_example&#x27;, &#x27;recipe_count&#x27;: 56, &#x27;system_tags&#x27;: {}, &#x27;target_details&#x27;: {&#x27;security_zone_display_name&#x27;: &#x27;security_zone_display_name_example&#x27;, &#x27;security_zone_id&#x27;: &#x27;ocid1.securityzone.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;target_resource_type&#x27;: &#x27;COMPARTMENT&#x27;, &#x27;target_security_zone_recipes&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;owner&#x27;: &#x27;CUSTOMER&#x27;, &#x27;security_policies&#x27;: [], &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]}, &#x27;target_detector_recipes&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;detector&#x27;: &#x27;IAAS_ACTIVITY_DETECTOR&#x27;, &#x27;detector_recipe_id&#x27;: &#x27;ocid1.detectorrecipe.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;detector_rules&#x27;: [{&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;details&#x27;: {&#x27;condition_groups&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;condition&#x27;: {&#x27;composite_operator&#x27;: &#x27;AND&#x27;, &#x27;kind&#x27;: &#x27;COMPOSITE&#x27;, &#x27;left_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;operator&#x27;: &#x27;IN&#x27;, &#x27;parameter&#x27;: &#x27;parameter_example&#x27;, &#x27;right_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;value_type&#x27;: &#x27;MANAGED&#x27;}}], &#x27;configurations&#x27;: [{&#x27;config_key&#x27;: &#x27;config_key_example&#x27;, &#x27;data_type&#x27;: &#x27;data_type_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;values&#x27;: [{&#x27;list_type&#x27;: &#x27;MANAGED&#x27;, &#x27;managed_list_type&#x27;: &#x27;managed_list_type_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}], &#x27;is_configuration_allowed&#x27;: True, &#x27;is_enabled&#x27;: True, &#x27;labels&#x27;: [], &#x27;problem_threshold&#x27;: 56, &#x27;risk_level&#x27;: &#x27;CRITICAL&#x27;, &#x27;sighting_types&#x27;: [{&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;mitre_link&#x27;: &#x27;mitre_link_example&#x27;, &#x27;tactic&#x27;: &#x27;tactic_example&#x27;, &#x27;techniques&#x27;: []}], &#x27;target_types&#x27;: []}, &#x27;detector&#x27;: &#x27;IAAS_ACTIVITY_DETECTOR&#x27;, &#x27;detector_rule_id&#x27;: &#x27;ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;managed_list_types&#x27;: [], &#x27;recommendation&#x27;: &#x27;recommendation_example&#x27;, &#x27;resource_type&#x27;: &#x27;resource_type_example&#x27;, &#x27;service_type&#x27;: &#x27;service_type_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;effective_detector_rules&#x27;: [{&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;details&#x27;: {&#x27;condition_groups&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;condition&#x27;: {&#x27;composite_operator&#x27;: &#x27;AND&#x27;, &#x27;kind&#x27;: &#x27;COMPOSITE&#x27;, &#x27;left_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;operator&#x27;: &#x27;IN&#x27;, &#x27;parameter&#x27;: &#x27;parameter_example&#x27;, &#x27;right_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;value_type&#x27;: &#x27;MANAGED&#x27;}}], &#x27;configurations&#x27;: [{&#x27;config_key&#x27;: &#x27;config_key_example&#x27;, &#x27;data_type&#x27;: &#x27;data_type_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;values&#x27;: [{&#x27;list_type&#x27;: &#x27;MANAGED&#x27;, &#x27;managed_list_type&#x27;: &#x27;managed_list_type_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}], &#x27;is_configuration_allowed&#x27;: True, &#x27;is_enabled&#x27;: True, &#x27;labels&#x27;: [], &#x27;problem_threshold&#x27;: 56, &#x27;risk_level&#x27;: &#x27;CRITICAL&#x27;, &#x27;sighting_types&#x27;: [{&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;mitre_link&#x27;: &#x27;mitre_link_example&#x27;, &#x27;tactic&#x27;: &#x27;tactic_example&#x27;, &#x27;techniques&#x27;: []}], &#x27;target_types&#x27;: []}, &#x27;detector&#x27;: &#x27;IAAS_ACTIVITY_DETECTOR&#x27;, &#x27;detector_rule_id&#x27;: &#x27;ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;managed_list_types&#x27;: [], &#x27;recommendation&#x27;: &#x27;recommendation_example&#x27;, &#x27;resource_type&#x27;: &#x27;resource_type_example&#x27;, &#x27;service_type&#x27;: &#x27;service_type_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;owner&#x27;: &#x27;CUSTOMER&#x27;, &#x27;source_data_retention&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;target_resource_id&#x27;: &#x27;ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;target_resource_type&#x27;: &#x27;COMPARTMENT&#x27;, &#x27;target_responder_recipes&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;effective_responder_rules&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;details&#x27;: {&#x27;condition&#x27;: {&#x27;composite_operator&#x27;: &#x27;AND&#x27;, &#x27;kind&#x27;: &#x27;COMPOSITE&#x27;, &#x27;left_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;operator&#x27;: &#x27;IN&#x27;, &#x27;parameter&#x27;: &#x27;parameter_example&#x27;, &#x27;right_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;value_type&#x27;: &#x27;MANAGED&#x27;}, &#x27;configurations&#x27;: [{&#x27;config_key&#x27;: &#x27;config_key_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;is_enabled&#x27;: True, &#x27;mode&#x27;: &#x27;AUTOACTION&#x27;}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;policies&#x27;: [], &#x27;responder_rule_id&#x27;: &#x27;ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;supported_modes&#x27;: [], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;REMEDIATION&#x27;}], &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;owner&#x27;: &#x27;CUSTOMER&#x27;, &#x27;responder_recipe_id&#x27;: &#x27;ocid1.responderrecipe.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;responder_rules&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;details&#x27;: {&#x27;condition&#x27;: {&#x27;composite_operator&#x27;: &#x27;AND&#x27;, &#x27;kind&#x27;: &#x27;COMPOSITE&#x27;, &#x27;left_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;operator&#x27;: &#x27;IN&#x27;, &#x27;parameter&#x27;: &#x27;parameter_example&#x27;, &#x27;right_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;value_type&#x27;: &#x27;MANAGED&#x27;}, &#x27;configurations&#x27;: [{&#x27;config_key&#x27;: &#x27;config_key_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;is_enabled&#x27;: True, &#x27;mode&#x27;: &#x27;AUTOACTION&#x27;}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;policies&#x27;: [], &#x27;responder_rule_id&#x27;: &#x27;ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;supported_modes&#x27;: [], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;REMEDIATION&#x27;}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;inherited_by_compartments&#x27;: [], &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;lifecyle_details&#x27;: &#x27;lifecyle_details_example&#x27;, &#x27;recipe_count&#x27;: 56, &#x27;system_tags&#x27;: {}, &#x27;target_details&#x27;: {&#x27;security_zone_display_name&#x27;: &#x27;security_zone_display_name_example&#x27;, &#x27;security_zone_id&#x27;: &#x27;ocid1.securityzone.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;target_resource_type&#x27;: &#x27;COMPARTMENT&#x27;, &#x27;target_security_zone_recipes&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;owner&#x27;: &#x27;CUSTOMER&#x27;, &#x27;security_policies&#x27;: [], &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]}, &#x27;target_detector_recipes&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;detector&#x27;: &#x27;IAAS_ACTIVITY_DETECTOR&#x27;, &#x27;detector_recipe_id&#x27;: &#x27;ocid1.detectorrecipe.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;detector_rules&#x27;: [{&#x27;data_source_id&#x27;: &#x27;ocid1.datasource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;details&#x27;: {&#x27;condition_groups&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;condition&#x27;: {&#x27;composite_operator&#x27;: &#x27;AND&#x27;, &#x27;kind&#x27;: &#x27;COMPOSITE&#x27;, &#x27;left_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;operator&#x27;: &#x27;IN&#x27;, &#x27;parameter&#x27;: &#x27;parameter_example&#x27;, &#x27;right_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;value_type&#x27;: &#x27;MANAGED&#x27;}}], &#x27;configurations&#x27;: [{&#x27;config_key&#x27;: &#x27;config_key_example&#x27;, &#x27;data_type&#x27;: &#x27;data_type_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;values&#x27;: [{&#x27;list_type&#x27;: &#x27;MANAGED&#x27;, &#x27;managed_list_type&#x27;: &#x27;managed_list_type_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}], &#x27;is_configuration_allowed&#x27;: True, &#x27;is_enabled&#x27;: True, &#x27;labels&#x27;: [], &#x27;problem_threshold&#x27;: 56, &#x27;risk_level&#x27;: &#x27;CRITICAL&#x27;, &#x27;sighting_types&#x27;: [{&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;mitre_link&#x27;: &#x27;mitre_link_example&#x27;, &#x27;tactic&#x27;: &#x27;tactic_example&#x27;, &#x27;techniques&#x27;: []}], &#x27;target_types&#x27;: []}, &#x27;detector&#x27;: &#x27;IAAS_ACTIVITY_DETECTOR&#x27;, &#x27;detector_rule_id&#x27;: &#x27;ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;entities_mappings&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;entity_type&#x27;: &#x27;EXTERNAL_IP&#x27;, &#x27;query_field&#x27;: &#x27;query_field_example&#x27;}], &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;managed_list_types&#x27;: [], &#x27;recommendation&#x27;: &#x27;recommendation_example&#x27;, &#x27;resource_type&#x27;: &#x27;resource_type_example&#x27;, &#x27;service_type&#x27;: &#x27;service_type_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;effective_detector_rules&#x27;: [{&#x27;data_source_id&#x27;: &#x27;ocid1.datasource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;details&#x27;: {&#x27;condition_groups&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;condition&#x27;: {&#x27;composite_operator&#x27;: &#x27;AND&#x27;, &#x27;kind&#x27;: &#x27;COMPOSITE&#x27;, &#x27;left_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;operator&#x27;: &#x27;IN&#x27;, &#x27;parameter&#x27;: &#x27;parameter_example&#x27;, &#x27;right_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;value_type&#x27;: &#x27;MANAGED&#x27;}}], &#x27;configurations&#x27;: [{&#x27;config_key&#x27;: &#x27;config_key_example&#x27;, &#x27;data_type&#x27;: &#x27;data_type_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;values&#x27;: [{&#x27;list_type&#x27;: &#x27;MANAGED&#x27;, &#x27;managed_list_type&#x27;: &#x27;managed_list_type_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}], &#x27;is_configuration_allowed&#x27;: True, &#x27;is_enabled&#x27;: True, &#x27;labels&#x27;: [], &#x27;problem_threshold&#x27;: 56, &#x27;risk_level&#x27;: &#x27;CRITICAL&#x27;, &#x27;sighting_types&#x27;: [{&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;mitre_link&#x27;: &#x27;mitre_link_example&#x27;, &#x27;tactic&#x27;: &#x27;tactic_example&#x27;, &#x27;techniques&#x27;: []}], &#x27;target_types&#x27;: []}, &#x27;detector&#x27;: &#x27;IAAS_ACTIVITY_DETECTOR&#x27;, &#x27;detector_rule_id&#x27;: &#x27;ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;entities_mappings&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;entity_type&#x27;: &#x27;EXTERNAL_IP&#x27;, &#x27;query_field&#x27;: &#x27;query_field_example&#x27;}], &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;managed_list_types&#x27;: [], &#x27;recommendation&#x27;: &#x27;recommendation_example&#x27;, &#x27;resource_type&#x27;: &#x27;resource_type_example&#x27;, &#x27;service_type&#x27;: &#x27;service_type_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;owner&#x27;: &#x27;CUSTOMER&#x27;, &#x27;source_data_retention&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;target_resource_id&#x27;: &#x27;ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;target_resource_type&#x27;: &#x27;COMPARTMENT&#x27;, &#x27;target_responder_recipes&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;effective_responder_rules&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;details&#x27;: {&#x27;condition&#x27;: {&#x27;composite_operator&#x27;: &#x27;AND&#x27;, &#x27;kind&#x27;: &#x27;COMPOSITE&#x27;, &#x27;left_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;operator&#x27;: &#x27;IN&#x27;, &#x27;parameter&#x27;: &#x27;parameter_example&#x27;, &#x27;right_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;value_type&#x27;: &#x27;MANAGED&#x27;}, &#x27;configurations&#x27;: [{&#x27;config_key&#x27;: &#x27;config_key_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;is_enabled&#x27;: True, &#x27;mode&#x27;: &#x27;AUTOACTION&#x27;}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;policies&#x27;: [], &#x27;responder_rule_id&#x27;: &#x27;ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;supported_modes&#x27;: [], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;REMEDIATION&#x27;}], &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;owner&#x27;: &#x27;CUSTOMER&#x27;, &#x27;responder_recipe_id&#x27;: &#x27;ocid1.responderrecipe.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;responder_rules&#x27;: [{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;details&#x27;: {&#x27;condition&#x27;: {&#x27;composite_operator&#x27;: &#x27;AND&#x27;, &#x27;kind&#x27;: &#x27;COMPOSITE&#x27;, &#x27;left_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;operator&#x27;: &#x27;IN&#x27;, &#x27;parameter&#x27;: &#x27;parameter_example&#x27;, &#x27;right_operand&#x27;: {&#x27;kind&#x27;: &#x27;COMPOSITE&#x27;}, &#x27;value&#x27;: &#x27;value_example&#x27;, &#x27;value_type&#x27;: &#x27;MANAGED&#x27;}, &#x27;configurations&#x27;: [{&#x27;config_key&#x27;: &#x27;config_key_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;is_enabled&#x27;: True, &#x27;mode&#x27;: &#x27;AUTOACTION&#x27;}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;policies&#x27;: [], &#x27;responder_rule_id&#x27;: &#x27;ocid1.responderrule.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;supported_modes&#x27;: [], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;REMEDIATION&#x27;}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1173,6 +1173,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                         </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-targets/target_detector_recipes/detector_rules/data_source_id"></div>
+                    <b>data_source_id</b>
+                    <a class="ansibleOptionLink" href="#return-targets/target_detector_recipes/detector_rules/data_source_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The id of the attached DataSource.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.datasource.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -2039,6 +2059,88 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-targets/target_detector_recipes/detector_rules/entities_mappings"></div>
+                    <b>entities_mappings</b>
+                    <a class="ansibleOptionLink" href="#return-targets/target_detector_recipes/detector_rules/entities_mappings" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Data Source entities mapping for a Detector Rule</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-targets/target_detector_recipes/detector_rules/entities_mappings/display_name"></div>
+                    <b>display_name</b>
+                    <a class="ansibleOptionLink" href="#return-targets/target_detector_recipes/detector_rules/entities_mappings/display_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The display name of entity</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-targets/target_detector_recipes/detector_rules/entities_mappings/entity_type"></div>
+                    <b>entity_type</b>
+                    <a class="ansibleOptionLink" href="#return-targets/target_detector_recipes/detector_rules/entities_mappings/entity_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Possible type of entity</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">EXTERNAL_IP</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-targets/target_detector_recipes/detector_rules/entities_mappings/query_field"></div>
+                    <b>query_field</b>
+                    <a class="ansibleOptionLink" href="#return-targets/target_detector_recipes/detector_rules/entities_mappings/query_field" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The entity value mapped to a data source query</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">query_field_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-targets/target_detector_recipes/detector_rules/lifecycle_details"></div>
                     <b>lifecycle_details</b>
                     <a class="ansibleOptionLink" href="#return-targets/target_detector_recipes/detector_rules/lifecycle_details" title="Permalink to this return value"></a>
@@ -2230,6 +2332,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                         </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-targets/target_detector_recipes/effective_detector_rules/data_source_id"></div>
+                    <b>data_source_id</b>
+                    <a class="ansibleOptionLink" href="#return-targets/target_detector_recipes/effective_detector_rules/data_source_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The id of the attached DataSource.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.datasource.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -3091,6 +3213,88 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-targets/target_detector_recipes/effective_detector_rules/entities_mappings"></div>
+                    <b>entities_mappings</b>
+                    <a class="ansibleOptionLink" href="#return-targets/target_detector_recipes/effective_detector_rules/entities_mappings" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Data Source entities mapping for a Detector Rule</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-targets/target_detector_recipes/effective_detector_rules/entities_mappings/display_name"></div>
+                    <b>display_name</b>
+                    <a class="ansibleOptionLink" href="#return-targets/target_detector_recipes/effective_detector_rules/entities_mappings/display_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The display name of entity</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-targets/target_detector_recipes/effective_detector_rules/entities_mappings/entity_type"></div>
+                    <b>entity_type</b>
+                    <a class="ansibleOptionLink" href="#return-targets/target_detector_recipes/effective_detector_rules/entities_mappings/entity_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Possible type of entity</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">EXTERNAL_IP</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-targets/target_detector_recipes/effective_detector_rules/entities_mappings/query_field"></div>
+                    <b>query_field</b>
+                    <a class="ansibleOptionLink" href="#return-targets/target_detector_recipes/effective_detector_rules/entities_mappings/query_field" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The entity value mapped to a data source query</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">query_field_example</div>
+                                    </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>

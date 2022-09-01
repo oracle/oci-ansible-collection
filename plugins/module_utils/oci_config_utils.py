@@ -314,9 +314,13 @@ def _is_instance_principal_auth(module):
 def get_cert_bundle(module):
     # check if cert bundle is overridden via module params
     cert_bundle = module.params.get("cert_bundle")
-    if cert_bundle is None:
+    if cert_bundle:
+        cert_bundle = os.path.expanduser(cert_bundle)
+    else:
         if "OCI_ANSIBLE_CERT_BUNDLE" in os.environ:
-            cert_bundle = os.environ.get("OCI_ANSIBLE_CERT_BUNDLE")
+            cert_bundle = os.path.expanduser(
+                os.path.expandvars(os.environ.get("OCI_ANSIBLE_CERT_BUNDLE"))
+            )
     return cert_bundle
 
 

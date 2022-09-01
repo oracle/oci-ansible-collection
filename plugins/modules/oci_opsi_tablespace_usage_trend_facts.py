@@ -20,9 +20,9 @@ ANSIBLE_METADATA = {
 DOCUMENTATION = """
 ---
 module: oci_opsi_tablespace_usage_trend_facts
-short_description: Fetches details about a TablespaceUsageTrend resource in Oracle Cloud Infrastructure
+short_description: Fetches details about one or multiple TablespaceUsageTrend resources in Oracle Cloud Infrastructure
 description:
-    - Fetches details about a TablespaceUsageTrend resource in Oracle Cloud Infrastructure
+    - Fetches details about one or multiple TablespaceUsageTrend resources in Oracle Cloud Infrastructure
     - Returns response with usage time series data (endTimestamp, usage, capacity) with breakdown by tablespaceName for the time period specified.
       The maximum time range for analysis is 2 years, hence this is intentionally not paginated.
       Either databaseId or id must be specified.
@@ -69,7 +69,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: Get a specific tablespace_usage_trend
+- name: List tablespace_usage_trends
   oci_opsi_tablespace_usage_trend_facts:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -84,9 +84,9 @@ EXAMPLES = """
 """
 
 RETURN = """
-tablespace_usage_trend:
+tablespace_usage_trends:
     description:
-        - TablespaceUsageTrend resource
+        - List of TablespaceUsageTrend resources
     returned: on success
     type: complex
     contains:
@@ -126,7 +126,7 @@ tablespace_usage_trend:
                     returned: on success
                     type: float
                     sample: 1.2
-    sample: {
+    sample: [{
         "tablespace_name": "tablespace_name_example",
         "tablespace_type": "tablespace_type_example",
         "usage_data": [{
@@ -134,7 +134,7 @@ tablespace_usage_trend:
             "usage": 1.2,
             "capacity": 1.2
         }]
-    }
+    }]
 """
 
 from ansible.module_utils.basic import AnsibleModule
@@ -153,15 +153,15 @@ except ImportError:
 
 
 class TablespaceUsageTrendFactsHelperGen(OCIResourceFactsHelperBase):
-    """Supported operations: get"""
+    """Supported operations: list"""
 
-    def get_required_params_for_get(self):
+    def get_required_params_for_list(self):
         return [
             "compartment_id",
         ]
 
-    def get_resource(self):
-        optional_get_method_params = [
+    def list_resources(self):
+        optional_list_method_params = [
             "analysis_time_interval",
             "time_interval_start",
             "time_interval_end",
@@ -170,10 +170,10 @@ class TablespaceUsageTrendFactsHelperGen(OCIResourceFactsHelperBase):
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
-            for param in optional_get_method_params
+            for param in optional_list_method_params
             if self.module.params.get(param) is not None
         )
-        return oci_common_utils.call_with_backoff(
+        return oci_common_utils.list_all_resources(
             self.client.summarize_database_insight_tablespace_usage_trend,
             compartment_id=self.module.params.get("compartment_id"),
             **optional_kwargs
@@ -218,12 +218,12 @@ def main():
 
     result = []
 
-    if resource_facts_helper.is_get():
-        result = resource_facts_helper.get()
+    if resource_facts_helper.is_list():
+        result = resource_facts_helper.list()
     else:
         resource_facts_helper.fail()
 
-    module.exit_json(tablespace_usage_trend=result)
+    module.exit_json(tablespace_usage_trends=result)
 
 
 if __name__ == "__main__":

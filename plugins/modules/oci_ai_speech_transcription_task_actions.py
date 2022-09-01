@@ -115,7 +115,17 @@ transcription_task:
                     sample: GENERIC
                 language_code:
                     description:
-                        - Locale value as per given in [https://datatracker.ietf.org/doc/html/rfc5646].
+                        - "Locale value as per given in [https://datatracker.ietf.org/doc/html/rfc5646].
+                          - en-US: English - United States
+                          - es-ES: Spanish - Spain
+                          - pt-BR: Portuguese - Brazil
+                          - en-GB: English - Great Britain
+                          - en-AU: English - Australia
+                          - en-IN: English - India
+                          - hi-IN: Hindi - India
+                          - fr-FR: French - France
+                          - de-DE: German - Germany
+                          - it-IT: Italian - Italy"
                     returned: on success
                     type: str
                     sample: en-US
@@ -158,6 +168,12 @@ transcription_task:
         file_duration_in_seconds:
             description:
                 - Duration of input file in Seconds.
+            returned: on success
+            type: int
+            sample: 56
+        processing_duration_in_seconds:
+            description:
+                - Task proccessing duration, which excludes waiting time in the system.
             returned: on success
             type: int
             sample: 56
@@ -241,6 +257,7 @@ transcription_task:
         },
         "file_size_in_bytes": 56,
         "file_duration_in_seconds": 56,
+        "processing_duration_in_seconds": 56,
         "input_location": {
             "namespace_name": "namespace_name_example",
             "bucket_name": "bucket_name_example",

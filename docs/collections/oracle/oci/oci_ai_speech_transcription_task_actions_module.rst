@@ -30,7 +30,7 @@ oracle.oci.oci_ai_speech_transcription_task_actions -- Perform actions on a Tran
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.58.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.0.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -376,7 +376,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the TranscriptionTask resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;audio_format_details&#x27;: {&#x27;encoding&#x27;: &#x27;encoding_example&#x27;, &#x27;format&#x27;: &#x27;format_example&#x27;, &#x27;number_of_channels&#x27;: 56, &#x27;sample_rate_in_hz&#x27;: 56}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;file_duration_in_seconds&#x27;: 56, &#x27;file_size_in_bytes&#x27;: 56, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;input_location&#x27;: {&#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;object_names&#x27;: []}, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACCEPTED&#x27;, &#x27;model_details&#x27;: {&#x27;domain&#x27;: &#x27;GENERIC&#x27;, &#x27;language_code&#x27;: &#x27;en-US&#x27;}, &#x27;output_location&#x27;: {&#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;object_names&#x27;: []}, &#x27;percent_complete&#x27;: 56, &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;ttl_in_days&#x27;: 56}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;audio_format_details&#x27;: {&#x27;encoding&#x27;: &#x27;encoding_example&#x27;, &#x27;format&#x27;: &#x27;format_example&#x27;, &#x27;number_of_channels&#x27;: 56, &#x27;sample_rate_in_hz&#x27;: 56}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;file_duration_in_seconds&#x27;: 56, &#x27;file_size_in_bytes&#x27;: 56, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;input_location&#x27;: {&#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;object_names&#x27;: []}, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACCEPTED&#x27;, &#x27;model_details&#x27;: {&#x27;domain&#x27;: &#x27;GENERIC&#x27;, &#x27;language_code&#x27;: &#x27;en-US&#x27;}, &#x27;output_location&#x27;: {&#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;object_names&#x27;: []}, &#x27;percent_complete&#x27;: 56, &#x27;processing_duration_in_seconds&#x27;: 56, &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;ttl_in_days&#x27;: 56}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -700,7 +700,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Locale value as per given in [https://datatracker.ietf.org/doc/html/rfc5646].</div>
+                                            <div>Locale value as per given in [https://datatracker.ietf.org/doc/html/rfc5646]. - en-US: English - United States - es-ES: Spanish - Spain - pt-BR: Portuguese - Brazil - en-GB: English - Great Britain - en-AU: English - Australia - en-IN: English - India - hi-IN: Hindi - India - fr-FR: French - France - de-DE: German - Germany - it-IT: Italian - Italy</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">en-US</div>
@@ -792,6 +792,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>How much progress the operation has made, vs the total amount of work that must be performed.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-transcription_task/processing_duration_in_seconds"></div>
+                    <b>processing_duration_in_seconds</b>
+                    <a class="ansibleOptionLink" href="#return-transcription_task/processing_duration_in_seconds" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Task proccessing duration, which excludes waiting time in the system.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>

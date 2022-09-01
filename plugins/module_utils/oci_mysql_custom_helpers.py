@@ -35,30 +35,6 @@ def get_logger():
     return logger
 
 
-class MysqlDbSystemActionsHelperCustom:
-    def get_action_desired_states(self, action):
-        action_desired_states = super(
-            MysqlDbSystemActionsHelperCustom, self
-        ).get_action_desired_states(action)
-
-        if action.lower() == "stop":
-            return action_desired_states + [
-                "INACTIVE",
-            ]
-        return action_desired_states
-
-    def get_action_idempotent_states(self, action):
-        action_idempotent_states = super(
-            MysqlDbSystemActionsHelperCustom, self
-        ).get_action_idempotent_states(action)
-
-        if action.lower() == "stop":
-            return action_idempotent_states + [
-                "INACTIVE",
-            ]
-        return action_idempotent_states
-
-
 class MysqlDbSystemHelperCustom:
 
     # get model doesn't return admin_username and admin_password of existing database resources. Thus, excluding
@@ -133,7 +109,6 @@ class MysqlBackupHelperCustom:
 
 class MysqlAnalyticsClusterActionsHelperCustom:
     ADD_ACTION_KEY = "add"
-    STOP_ACTION_KEY = "stop"
 
     def perform_action(self, action):
         if action != self.ADD_ACTION_KEY:
@@ -175,28 +150,6 @@ class MysqlAnalyticsClusterActionsHelperCustom:
                 resource_type=self.get_response_field_name(action),
                 resource=to_dict(actioned_resource),
             )
-
-    def get_action_desired_states(self, action):
-        action_desired_states = super(
-            MysqlAnalyticsClusterActionsHelperCustom, self
-        ).get_action_desired_states(action)
-
-        if action.lower() == self.STOP_ACTION_KEY:
-            return action_desired_states + [
-                "INACTIVE",
-            ]
-        return action_desired_states
-
-    def get_action_idempotent_states(self, action):
-        action_idempotent_states = super(
-            MysqlAnalyticsClusterActionsHelperCustom, self
-        ).get_action_idempotent_states(action)
-
-        if action.lower() == self.STOP_ACTION_KEY:
-            return action_idempotent_states + [
-                "INACTIVE",
-            ]
-        return action_idempotent_states
 
 
 class MysqlAnalyticsClusterMemoryEstimateActionsHelperCustom:
@@ -291,7 +244,6 @@ class MysqlChannelActionsHelperCustom:
 
 class MysqlHeatWaveClusterActionsHelperCustom:
     ADD_ACTION_KEY = "add"
-    STOP_ACTION_KEY = "stop"
 
     def perform_action(self, action):
         if action != self.ADD_ACTION_KEY:
@@ -333,28 +285,6 @@ class MysqlHeatWaveClusterActionsHelperCustom:
                 resource_type=self.get_response_field_name(action),
                 resource=to_dict(actioned_resource),
             )
-
-    def get_action_desired_states(self, action):
-        action_desired_states = super(
-            MysqlHeatWaveClusterActionsHelperCustom, self
-        ).get_action_desired_states(action)
-
-        if action.lower() == self.STOP_ACTION_KEY:
-            return action_desired_states + [
-                "INACTIVE",
-            ]
-        return action_desired_states
-
-    def get_action_idempotent_states(self, action):
-        action_idempotent_states = super(
-            MysqlHeatWaveClusterActionsHelperCustom, self
-        ).get_action_idempotent_states(action)
-
-        if action.lower() == self.STOP_ACTION_KEY:
-            return action_idempotent_states + [
-                "INACTIVE",
-            ]
-        return action_idempotent_states
 
 
 class MysqlHeatWaveClusterMemoryEstimateActionsHelperCustom:

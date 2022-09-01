@@ -46,7 +46,7 @@ class ApiKeyHelperCustom:
         remove_exlcuded_attributes = ["key"]
 
         exclude_attributes = [
-            x not in remove_exlcuded_attributes for x in exclude_attributes
+            x for x in exclude_attributes if x not in remove_exlcuded_attributes
         ]
 
         return exclude_attributes

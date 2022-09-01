@@ -11,21 +11,9 @@ __metaclass__ = type
 from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
 
 try:
-    from oci.util import to_dict
-
     HAS_OCI_PY_SDK = True
 except ImportError:
     HAS_OCI_PY_SDK = False
-
-logger = oci_common_utils.get_logger("oci_dns_custom_helpers")
-
-
-def _debug(s):
-    get_logger().debug(s)
-
-
-def get_logger():
-    return logger
 
 
 class ZoneHelperCustom:
@@ -95,35 +83,14 @@ class DNSRecordsHelperCustom:
             return False
         return True
 
-    def update(self):
-        existing_zone_records = self.get_resource().data
-        updated_resource = self.update_resource()
-        updated_zone_records = self.get_resource().data
-        changed = not oci_common_utils.compare_lists(
-            to_dict(updated_zone_records), to_dict(existing_zone_records)
-        )
-        return self.prepare_result(
-            changed=changed,
-            resource_type=self.get_response_field_name(),
-            resource=to_dict(updated_resource.items),
-        )
-
-    def patch(self):
-        existing_zone_records = self.get_resource().data
-        patched_resource = self.patch_resource()
-        patched_zone_records = self.get_resource().data
-        changed = not oci_common_utils.compare_lists(
-            to_dict(patched_zone_records), to_dict(existing_zone_records)
-        )
-        return self.prepare_result(
-            changed=changed,
-            resource_type=self.get_response_field_name(),
-            resource=to_dict(patched_resource.items),
-        )
-
 
 class ZoneRecordsHelperCustom(DNSRecordsHelperCustom):
-    pass
+    # This is one of scenarios where the update takes a list of items.
+    # The list API returns a list of items and we need to know if we need to do update or not
+    # It is not possible to find which resource user is trying to update because
+    # we have the input as list of items. So returning None for get_resource so the update always happens
+    def get_resource(self):
+        return oci_common_utils.get_default_response_from_resource(resource=None)
 
 
 class DomainRecordsHelperCustom(DNSRecordsHelperCustom):

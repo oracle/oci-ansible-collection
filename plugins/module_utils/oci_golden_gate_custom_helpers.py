@@ -9,26 +9,6 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 
-class DeploymentActionsHelperCustom:
-    def get_action_idempotent_states(self, action):
-        if action.upper() == "START":
-            return ["ACTIVE"]
-        if action.upper() == "STOP":
-            return ["INACTIVE"]
-        return super(DeploymentActionsHelperCustom, self).get_action_idempotent_states(
-            action
-        )
-
-    def get_action_desired_states(self, action):
-        if action.upper() == "START":
-            return ["ACTIVE"]
-        if action.upper() == "STOP":
-            return ["INACTIVE"]
-        return super(DeploymentActionsHelperCustom, self).get_action_desired_states(
-            action
-        )
-
-
 class DatabaseRegistrationHelperCustom:
     def is_update_necessary(self, existing_resource_dict):
 

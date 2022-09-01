@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 2.58.0
+Collection version 3.0.0
 
 .. toctree::
     :maxdepth: 1
@@ -238,6 +238,12 @@ Modules
 * :ref:`oci_certificates_management_certificate_authority_version_facts <ansible_collections.oracle.oci.oci_certificates_management_certificate_authority_version_facts_module>` -- Fetches details about one or multiple CertificateAuthorityVersion resources in Oracle Cloud Infrastructure
 * :ref:`oci_certificates_management_certificate_facts <ansible_collections.oracle.oci.oci_certificates_management_certificate_facts_module>` -- Fetches details about one or multiple Certificate resources in Oracle Cloud Infrastructure
 * :ref:`oci_certificates_management_certificate_version_facts <ansible_collections.oracle.oci.oci_certificates_management_certificate_version_facts_module>` -- Fetches details about one or multiple CertificateVersion resources in Oracle Cloud Infrastructure
+* :ref:`oci_cims_incident <ansible_collections.oracle.oci.oci_cims_incident_module>` -- Manage an Incident resource in Oracle Cloud Infrastructure
+* :ref:`oci_cims_incident_facts <ansible_collections.oracle.oci.oci_cims_incident_facts_module>` -- Fetches details about one or multiple Incident resources in Oracle Cloud Infrastructure
+* :ref:`oci_cims_incident_resource_type_facts <ansible_collections.oracle.oci.oci_cims_incident_resource_type_facts_module>` -- Fetches details about one or multiple IncidentResourceType resources in Oracle Cloud Infrastructure
+* :ref:`oci_cims_status_facts <ansible_collections.oracle.oci.oci_cims_status_facts_module>` -- Fetches details about a Status resource in Oracle Cloud Infrastructure
+* :ref:`oci_cims_user <ansible_collections.oracle.oci.oci_cims_user_module>` -- Manage an User resource in Oracle Cloud Infrastructure
+* :ref:`oci_cims_validation_facts <ansible_collections.oracle.oci.oci_cims_validation_facts_module>` -- Fetches details about a Validation resource in Oracle Cloud Infrastructure
 * :ref:`oci_cloud_guard_configuration <ansible_collections.oracle.oci.oci_cloud_guard_configuration_module>` -- Manage a Configuration resource in Oracle Cloud Infrastructure
 * :ref:`oci_cloud_guard_configuration_facts <ansible_collections.oracle.oci.oci_cloud_guard_configuration_facts_module>` -- Fetches details about a Configuration resource in Oracle Cloud Infrastructure
 * :ref:`oci_cloud_guard_data_mask_rule <ansible_collections.oracle.oci.oci_cloud_guard_data_mask_rule_module>` -- Manage a DataMaskRule resource in Oracle Cloud Infrastructure
@@ -253,6 +259,9 @@ Modules
 * :ref:`oci_cloud_guard_responder_recipe <ansible_collections.oracle.oci.oci_cloud_guard_responder_recipe_module>` -- Manage a ResponderRecipe resource in Oracle Cloud Infrastructure
 * :ref:`oci_cloud_guard_responder_recipe_actions <ansible_collections.oracle.oci.oci_cloud_guard_responder_recipe_actions_module>` -- Perform actions on a ResponderRecipe resource in Oracle Cloud Infrastructure
 * :ref:`oci_cloud_guard_responder_recipe_facts <ansible_collections.oracle.oci.oci_cloud_guard_responder_recipe_facts_module>` -- Fetches details about one or multiple ResponderRecipe resources in Oracle Cloud Infrastructure
+* :ref:`oci_cloud_guard_security_zone <ansible_collections.oracle.oci.oci_cloud_guard_security_zone_module>` -- Manage a SecurityZone resource in Oracle Cloud Infrastructure
+* :ref:`oci_cloud_guard_security_zone_actions <ansible_collections.oracle.oci.oci_cloud_guard_security_zone_actions_module>` -- Perform actions on a SecurityZone resource in Oracle Cloud Infrastructure
+* :ref:`oci_cloud_guard_security_zone_facts <ansible_collections.oracle.oci.oci_cloud_guard_security_zone_facts_module>` -- Fetches details about one or multiple SecurityZone resources in Oracle Cloud Infrastructure
 * :ref:`oci_cloud_guard_target <ansible_collections.oracle.oci.oci_cloud_guard_target_module>` -- Manage a Target resource in Oracle Cloud Infrastructure
 * :ref:`oci_cloud_guard_target_facts <ansible_collections.oracle.oci.oci_cloud_guard_target_facts_module>` -- Fetches details about one or multiple Target resources in Oracle Cloud Infrastructure
 * :ref:`oci_compute_app_catalog_listing_facts <ansible_collections.oracle.oci.oci_compute_app_catalog_listing_facts_module>` -- Fetches details about one or multiple AppCatalogListing resources in Oracle Cloud Infrastructure
@@ -689,14 +698,14 @@ Modules
 * :ref:`oci_devops_trigger <ansible_collections.oracle.oci.oci_devops_trigger_module>` -- Manage a Trigger resource in Oracle Cloud Infrastructure
 * :ref:`oci_devops_trigger_facts <ansible_collections.oracle.oci.oci_devops_trigger_facts_module>` -- Fetches details about one or multiple Trigger resources in Oracle Cloud Infrastructure
 * :ref:`oci_dns_domain_records <ansible_collections.oracle.oci.oci_dns_domain_records_module>` -- Manage a DomainRecords resource in Oracle Cloud Infrastructure
-* :ref:`oci_dns_domain_records_facts <ansible_collections.oracle.oci.oci_dns_domain_records_facts_module>` -- Fetches details about a DomainRecords resource in Oracle Cloud Infrastructure
+* :ref:`oci_dns_domain_records_facts <ansible_collections.oracle.oci.oci_dns_domain_records_facts_module>` -- Fetches details about one or multiple DomainRecords resources in Oracle Cloud Infrastructure
 * :ref:`oci_dns_resolver <ansible_collections.oracle.oci.oci_dns_resolver_module>` -- Manage a Resolver resource in Oracle Cloud Infrastructure
 * :ref:`oci_dns_resolver_actions <ansible_collections.oracle.oci.oci_dns_resolver_actions_module>` -- Perform actions on a Resolver resource in Oracle Cloud Infrastructure
 * :ref:`oci_dns_resolver_endpoint <ansible_collections.oracle.oci.oci_dns_resolver_endpoint_module>` -- Manage a ResolverEndpoint resource in Oracle Cloud Infrastructure
 * :ref:`oci_dns_resolver_endpoint_facts <ansible_collections.oracle.oci.oci_dns_resolver_endpoint_facts_module>` -- Fetches details about one or multiple ResolverEndpoint resources in Oracle Cloud Infrastructure
 * :ref:`oci_dns_resolver_facts <ansible_collections.oracle.oci.oci_dns_resolver_facts_module>` -- Fetches details about one or multiple Resolver resources in Oracle Cloud Infrastructure
 * :ref:`oci_dns_rrset <ansible_collections.oracle.oci.oci_dns_rrset_module>` -- Manage a Rrset resource in Oracle Cloud Infrastructure
-* :ref:`oci_dns_rrset_facts <ansible_collections.oracle.oci.oci_dns_rrset_facts_module>` -- Fetches details about a Rrset resource in Oracle Cloud Infrastructure
+* :ref:`oci_dns_rrset_facts <ansible_collections.oracle.oci.oci_dns_rrset_facts_module>` -- Fetches details about one or multiple Rrset resources in Oracle Cloud Infrastructure
 * :ref:`oci_dns_steering_policy <ansible_collections.oracle.oci.oci_dns_steering_policy_module>` -- Manage a SteeringPolicy resource in Oracle Cloud Infrastructure
 * :ref:`oci_dns_steering_policy_actions <ansible_collections.oracle.oci.oci_dns_steering_policy_actions_module>` -- Perform actions on a SteeringPolicy resource in Oracle Cloud Infrastructure
 * :ref:`oci_dns_steering_policy_attachment <ansible_collections.oracle.oci.oci_dns_steering_policy_attachment_module>` -- Manage a SteeringPolicyAttachment resource in Oracle Cloud Infrastructure
@@ -713,7 +722,7 @@ Modules
 * :ref:`oci_dns_zone_content_facts <ansible_collections.oracle.oci.oci_dns_zone_content_facts_module>` -- Fetches details about a ZoneContent resource in Oracle Cloud Infrastructure
 * :ref:`oci_dns_zone_facts <ansible_collections.oracle.oci.oci_dns_zone_facts_module>` -- Fetches details about one or multiple Zone resources in Oracle Cloud Infrastructure
 * :ref:`oci_dns_zone_records <ansible_collections.oracle.oci.oci_dns_zone_records_module>` -- Manage a ZoneRecords resource in Oracle Cloud Infrastructure
-* :ref:`oci_dns_zone_records_facts <ansible_collections.oracle.oci.oci_dns_zone_records_facts_module>` -- Fetches details about a ZoneRecords resource in Oracle Cloud Infrastructure
+* :ref:`oci_dns_zone_records_facts <ansible_collections.oracle.oci.oci_dns_zone_records_facts_module>` -- Fetches details about one or multiple ZoneRecords resources in Oracle Cloud Infrastructure
 * :ref:`oci_dns_zone_transfer_server_facts <ansible_collections.oracle.oci.oci_dns_zone_transfer_server_facts_module>` -- Fetches details about one or multiple ZoneTransferServer resources in Oracle Cloud Infrastructure
 * :ref:`oci_em_warehouse <ansible_collections.oracle.oci.oci_em_warehouse_module>` -- Manage an EmWarehouse resource in Oracle Cloud Infrastructure
 * :ref:`oci_em_warehouse_actions <ansible_collections.oracle.oci.oci_em_warehouse_actions_module>` -- Perform actions on an EmWarehouse resource in Oracle Cloud Infrastructure
@@ -1329,7 +1338,7 @@ Modules
 * :ref:`oci_opsi_host_insight_hosted_entity_facts <ansible_collections.oracle.oci.oci_opsi_host_insight_hosted_entity_facts_module>` -- Fetches details about one or multiple HostInsightHostedEntity resources in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_host_insight_resource_capacity_trend_facts <ansible_collections.oracle.oci.oci_opsi_host_insight_resource_capacity_trend_facts_module>` -- Fetches details about a HostInsightResourceCapacityTrend resource in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_host_insight_resource_forecast_trend_facts <ansible_collections.oracle.oci.oci_opsi_host_insight_resource_forecast_trend_facts_module>` -- Fetches details about a HostInsightResourceForecastTrend resource in Oracle Cloud Infrastructure
-* :ref:`oci_opsi_host_insight_resource_statistics_facts <ansible_collections.oracle.oci.oci_opsi_host_insight_resource_statistics_facts_module>` -- Fetches details about a HostInsightResourceStatistics resource in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_host_insight_resource_statistics_facts <ansible_collections.oracle.oci.oci_opsi_host_insight_resource_statistics_facts_module>` -- Fetches details about one or multiple HostInsightResourceStatistics resources in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_host_insight_resource_usage_summary_facts <ansible_collections.oracle.oci.oci_opsi_host_insight_resource_usage_summary_facts_module>` -- Fetches details about a HostInsightResourceUsageSummary resource in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_host_insight_resource_usage_trend_facts <ansible_collections.oracle.oci.oci_opsi_host_insight_resource_usage_trend_facts_module>` -- Fetches details about a HostInsightResourceUsageTrend resource in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_host_insight_resource_utilization_insight_facts <ansible_collections.oracle.oci.oci_opsi_host_insight_resource_utilization_insight_facts_module>` -- Fetches details about a HostInsightResourceUtilizationInsight resource in Oracle Cloud Infrastructure
@@ -1353,9 +1362,9 @@ Modules
 * :ref:`oci_opsi_sql_insights_facts <ansible_collections.oracle.oci.oci_opsi_sql_insights_facts_module>` -- Fetches details about a SqlInsights resource in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_sql_plan_facts <ansible_collections.oracle.oci.oci_opsi_sql_plan_facts_module>` -- Fetches details about one or multiple SqlPlan resources in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_sql_plan_insights_facts <ansible_collections.oracle.oci.oci_opsi_sql_plan_insights_facts_module>` -- Fetches details about a SqlPlanInsights resource in Oracle Cloud Infrastructure
-* :ref:`oci_opsi_sql_response_time_distributions_facts <ansible_collections.oracle.oci.oci_opsi_sql_response_time_distributions_facts_module>` -- Fetches details about a SqlResponseTimeDistributions resource in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_sql_response_time_distributions_facts <ansible_collections.oracle.oci.oci_opsi_sql_response_time_distributions_facts_module>` -- Fetches details about one or multiple SqlResponseTimeDistributions resources in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_sql_searches_facts <ansible_collections.oracle.oci.oci_opsi_sql_searches_facts_module>` -- Fetches details about one or multiple SqlSearches resources in Oracle Cloud Infrastructure
-* :ref:`oci_opsi_sql_statistics_facts <ansible_collections.oracle.oci.oci_opsi_sql_statistics_facts_module>` -- Fetches details about a SqlStatistics resource in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_sql_statistics_facts <ansible_collections.oracle.oci.oci_opsi_sql_statistics_facts_module>` -- Fetches details about one or multiple SqlStatistics resources in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_sql_statistics_time_series_by_plan_facts <ansible_collections.oracle.oci.oci_opsi_sql_statistics_time_series_by_plan_facts_module>` -- Fetches details about a SqlStatisticsTimeSeriesByPlan resource in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_sql_statistics_time_series_facts <ansible_collections.oracle.oci.oci_opsi_sql_statistics_time_series_facts_module>` -- Fetches details about a SqlStatisticsTimeSeries resource in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_sql_texts_facts <ansible_collections.oracle.oci.oci_opsi_sql_texts_facts_module>` -- Fetches details about one or multiple SqlTexts resources in Oracle Cloud Infrastructure
@@ -1365,7 +1374,7 @@ Modules
 * :ref:`oci_opsi_summarize_exadata_insight_resource_statistics_aggregation_facts <ansible_collections.oracle.oci.oci_opsi_summarize_exadata_insight_resource_statistics_aggregation_facts_module>` -- Fetches details about one or multiple SummarizeExadataInsightResourceStatisticsAggregation resources in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_summarize_exadata_insight_resource_usage_facts <ansible_collections.oracle.oci.oci_opsi_summarize_exadata_insight_resource_usage_facts_module>` -- Fetches details about one or multiple SummarizeExadataInsightResourceUsage resources in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_summarize_host_insights_top_processes_usage_trend_facts <ansible_collections.oracle.oci.oci_opsi_summarize_host_insights_top_processes_usage_trend_facts_module>` -- Fetches details about one or multiple SummarizeHostInsightsTopProcessesUsageTrend resources in Oracle Cloud Infrastructure
-* :ref:`oci_opsi_tablespace_usage_trend_facts <ansible_collections.oracle.oci.oci_opsi_tablespace_usage_trend_facts_module>` -- Fetches details about a TablespaceUsageTrend resource in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_tablespace_usage_trend_facts <ansible_collections.oracle.oci.oci_opsi_tablespace_usage_trend_facts_module>` -- Fetches details about one or multiple TablespaceUsageTrend resources in Oracle Cloud Infrastructure
 * :ref:`oci_optimizer_category_facts <ansible_collections.oracle.oci.oci_optimizer_category_facts_module>` -- Fetches details about one or multiple Category resources in Oracle Cloud Infrastructure
 * :ref:`oci_optimizer_enrollment_status <ansible_collections.oracle.oci.oci_optimizer_enrollment_status_module>` -- Manage an EnrollmentStatus resource in Oracle Cloud Infrastructure
 * :ref:`oci_optimizer_enrollment_status_facts <ansible_collections.oracle.oci.oci_optimizer_enrollment_status_facts_module>` -- Fetches details about one or multiple EnrollmentStatus resources in Oracle Cloud Infrastructure
@@ -1619,6 +1628,9 @@ Modules
 * :ref:`oci_waf_web_app_firewall_policy <ansible_collections.oracle.oci.oci_waf_web_app_firewall_policy_module>` -- Manage a WebAppFirewallPolicy resource in Oracle Cloud Infrastructure
 * :ref:`oci_waf_web_app_firewall_policy_actions <ansible_collections.oracle.oci.oci_waf_web_app_firewall_policy_actions_module>` -- Perform actions on a WebAppFirewallPolicy resource in Oracle Cloud Infrastructure
 * :ref:`oci_waf_web_app_firewall_policy_facts <ansible_collections.oracle.oci.oci_waf_web_app_firewall_policy_facts_module>` -- Fetches details about one or multiple WebAppFirewallPolicy resources in Oracle Cloud Infrastructure
+* :ref:`oci_work_requests_work_request_error_facts <ansible_collections.oracle.oci.oci_work_requests_work_request_error_facts_module>` -- Fetches details about one or multiple WorkRequestError resources in Oracle Cloud Infrastructure
+* :ref:`oci_work_requests_work_request_facts <ansible_collections.oracle.oci.oci_work_requests_work_request_facts_module>` -- Fetches details about one or multiple WorkRequest resources in Oracle Cloud Infrastructure
+* :ref:`oci_work_requests_work_request_log_entry_facts <ansible_collections.oracle.oci.oci_work_requests_work_request_log_entry_facts_module>` -- Fetches details about one or multiple WorkRequestLogEntry resources in Oracle Cloud Infrastructure
 
 
 
@@ -1845,6 +1857,12 @@ Modules
     oci_certificates_management_certificate_authority_version_facts_module
     oci_certificates_management_certificate_facts_module
     oci_certificates_management_certificate_version_facts_module
+    oci_cims_incident_module
+    oci_cims_incident_facts_module
+    oci_cims_incident_resource_type_facts_module
+    oci_cims_status_facts_module
+    oci_cims_user_module
+    oci_cims_validation_facts_module
     oci_cloud_guard_configuration_module
     oci_cloud_guard_configuration_facts_module
     oci_cloud_guard_data_mask_rule_module
@@ -1860,6 +1878,9 @@ Modules
     oci_cloud_guard_responder_recipe_module
     oci_cloud_guard_responder_recipe_actions_module
     oci_cloud_guard_responder_recipe_facts_module
+    oci_cloud_guard_security_zone_module
+    oci_cloud_guard_security_zone_actions_module
+    oci_cloud_guard_security_zone_facts_module
     oci_cloud_guard_target_module
     oci_cloud_guard_target_facts_module
     oci_compute_app_catalog_listing_facts_module
@@ -3226,3 +3247,6 @@ Modules
     oci_waf_web_app_firewall_policy_module
     oci_waf_web_app_firewall_policy_actions_module
     oci_waf_web_app_firewall_policy_facts_module
+    oci_work_requests_work_request_error_facts_module
+    oci_work_requests_work_request_facts_module
+    oci_work_requests_work_request_log_entry_facts_module

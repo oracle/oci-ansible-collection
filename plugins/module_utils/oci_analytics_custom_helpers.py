@@ -196,16 +196,3 @@ class AnalyticsInstanceActionsHelperCustom:
         return super(AnalyticsInstanceActionsHelperCustom, self).is_action_necessary(
             action, resource
         )
-
-    # adding state 'INACTIVE' to the list returned by `get_action_idempotent_states(action)` when performing
-    # `stop` operation.
-    def get_action_idempotent_states(self, action):
-        action_idempotent_states = super(
-            AnalyticsInstanceActionsHelperCustom, self
-        ).get_action_idempotent_states(action)
-
-        if action.lower() == "stop":
-            return action_idempotent_states + [
-                "INACTIVE",
-            ]
-        return action_idempotent_states

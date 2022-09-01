@@ -30,7 +30,7 @@ oracle.oci.oci -- Oracle Cloud Infrastructure (OCI) inventory plugin
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.58.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.0.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -471,7 +471,8 @@ Parameters
                                                               	
                                     </td>
                                 <td>
-                                                                                                                                                            </td>
+                                                                                                                                                                    <b>Default:</b><br/><div style="color: blue">"~/.oci/config"</div>
+                                    </td>
                                                     <td>
                                                                             <div>
                                 env:OCI_CONFIG_FILE
@@ -493,7 +494,8 @@ Parameters
                                                               	
                                     </td>
                                 <td>
-                                                                                                                                                            </td>
+                                                                                                                                                                    <b>Default:</b><br/><div style="color: blue">"DEFAULT"</div>
+                                    </td>
                                                     <td>
                                                                             <div>
                                 env:OCI_CONFIG_PROFILE

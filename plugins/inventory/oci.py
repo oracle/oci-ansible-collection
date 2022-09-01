@@ -24,10 +24,12 @@ DOCUMENTATION = """
             description: The oci config path. Either pass the '/full/path/to/config/file' in inventory plugin configuration file.
                          Or pass the 'relative/path/to/config/file' with respect to the directory from where inventory command is executed.
                          Relative path should not be relative with respect to inventory plugin configuration file.
+            default: '~/.oci/config'
             env:
                - name: OCI_CONFIG_FILE
         config_profile:
              description: The config profile to use.
+             default: 'DEFAULT'
              env:
                - name: OCI_CONFIG_PROFILE
         api_user_key_file:
@@ -284,7 +286,6 @@ from functools import partial
 from contextlib import contextmanager
 
 from ansible_collections.oracle.oci.plugins.module_utils import (
-    oci_config_utils,
     oci_common_utils,
     oci_version,
 )
@@ -311,6 +312,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
     LIFECYCLE_ACTIVE_STATE = "ACTIVE"
     LIFECYCLE_RUNNING_STATE = "RUNNING"
     LIFECYCLE_ATTACHED_STATE = "ATTACHED"
+    AGENT_NAME = "Oracle-Ansible-Inv/"
 
     def __init__(self):
         super(InventoryModule, self).__init__()
@@ -364,51 +366,38 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             "defined_tags",
         ]
 
-    def _get_config_file(self):
-        """
-            :param config_data: contents of the inventory config file
-        """
-        # Preference order: .oci.yml > environment variable > settings from config file.
-        if self.get_option("config_file") is not None:
-            self.params["config_file"] = os.path.expanduser(
-                self.get_option("config_file")
-            )
-        elif "OCI_CONFIG_FILE" in os.environ:
-            self.params["config_file"] = os.path.expanduser(
-                os.path.expandvars(os.environ.get("OCI_CONFIG_FILE"))
-            )
+    def _get_config_file_path(self):
+        # get_option takes care of preference order: .oci.yml > environment variable
+        config_file_path = self.get_option("config_file")
 
-        if self.get_option("config_profile") is not None:
-            self.params["profile"] = self.get_option("config_profile")
-        elif "OCI_CONFIG_PROFILE" in os.environ:
-            self.params["profile"] = os.environ.get("OCI_CONFIG_PROFILE")
+        if config_file_path is not None:
+            self.params["config_file"] = os.path.expanduser(config_file_path)
+
+    def _get_config_profile(self):
+        # get_option takes care of preference order: .oci.yml > environment variable
+        config_profile = self.get_option("config_profile")
+
+        if config_profile is not None:
+            self.params["profile"] = config_profile
 
     def _get_key_file(self):
-        # preference order: .oci.yml > environment variable > settings from config file.
-        if self.get_option("api_user_key_file") is not None:
-            self.params["key_file"] = os.path.expanduser(
-                self.get_option("api_user_key_file")
-            )
-        elif "OCI_USER_KEY_FILE" in os.environ:
-            self.params["key_file"] = os.path.expanduser(
-                os.path.expandvars(os.environ.get("OCI_USER_KEY_FILE"))
-            )
+        # preference order: .oci.yml > environment variable > settings from config file
+        api_user_key_file = self.get_option("api_user_key_file")
+
+        if api_user_key_file is not None:
+            self.params["key_file"] = os.path.expanduser(api_user_key_file)
 
     def _get_pass_phrase(self):
         # preference order: .oci.yml > environment variable > settings from config file
-        if self.get_option("api_user_key_pass_phrase") is not None:
-            self.params["pass_phrase"] = self.get_option("api_user_key_pass_phrase")
-        elif "OCI_USER_KEY_PASS_PHRASE" in os.environ:
-            self.params["pass_phrase"] = os.path.expandvars(
-                os.environ.get("OCI_USER_KEY_PASS_PHRASE")
-            )
+        api_user_key_pass_phrase = self.get_option("api_user_key_pass_phrase")
+
+        if api_user_key_pass_phrase is not None:
+            self.params["pass_phrase"] = api_user_key_pass_phrase
 
     def _get_hostname_format(self):
-        # Preference order: .oci.yml > environment variable
+        # get_option takes care of Preference order: .oci.yml > environment variable
         if self.get_option("hostname_format"):
             return self.get_option("hostname_format")
-        if os.environ.get("OCI_HOSTNAME_FORMAT"):
-            return os.environ.get("OCI_HOSTNAME_FORMAT")
         return "public_ip"
 
     def _get_hostname_from_preference(self, host_vars):
@@ -468,28 +457,24 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             )
 
     def _get_primary_vnic_only(self):
-        # Preference order: .oci.yml > environment variable
+        # get_option takes care of Preference order: .oci.yml > environment variable
         if self.get_option("primary_vnic_only"):
             return self.get_option("primary_vnic_only")
-        if os.environ.get("OCI_PRIMARY_VNIC_ONLY"):
-            return os.environ.get("OCI_PRIMARY_VNIC_ONLY")
         return False
 
-    def read_config(self):
-
-        self._get_config_file()
-        # Read values from config file
+    def read_oci_config_file(self):
+        self._get_config_file_path()
+        self._get_config_profile()
         if os.path.isfile(to_bytes(self.params["config_file"])):
             self.config = oci.config.from_file(
-                file_location=self.params["config_file"],
-                profile_name=self.params["profile"],
+                file_location=self.params.get("config_file"),
+                profile_name=self.params.get("profile"),
             )
 
-        self.config["additional_user_agent"] = (
-            oci_config_utils.inventory_agent_name + oci_version.__version__
-        )
+        self.config["additional_user_agent"] = self.AGENT_NAME + oci_version.__version__
         self.debug(self.config["additional_user_agent"])
 
+        # set options from oci config
         for setting in self.config:
             self.params[setting] = self.config[setting]
 
@@ -563,72 +548,43 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             region = self.params["region"]
         params = dict(self.params, region=region)
         kwargs = {}
-        if self._is_instance_principal_auth():
-            self.params["auth_type"] = "instance_principal"
-            kwargs["signer"] = self.create_instance_principal_signer()
+        auth_type = self.get_auth_type()
+        self.debug("auth_type : {0}".format(auth_type))
 
-        elif self._is_delegation_token_auth():
-            self.params["auth_type"] = "instance_obo_user"
+        if auth_type == "instance_principal":
+            kwargs["signer"] = self.create_instance_principal_signer()
+        elif auth_type == "instance_obo_user":
             delegation_token_location = self._get_delegation_token_file()
             kwargs["signer"] = self.create_instance_principal_signer(
                 delegation_token_location=delegation_token_location
             )
-
-        elif self._is_resource_principal_auth():
-            self.params["auth_type"] = "resource_principal"
+        elif auth_type == "resource_principal":
             kwargs["signer"] = get_resource_principals_signer()
-        self.debug("auth_type : {0}".format(self.params["auth_type"]))
+
         # Create service client class with the signer.
         client = service_client_class(params, **kwargs)
 
         return client
 
-    def _is_instance_principal_auth(self):
-        # check if auth is set to `instance_principal`. Support for backward compatibility.
+    def get_auth_type(self):
+        auth_type = self.get_option("auth_type")
+
         if self.get_option("instance_principal_authentication") == "instance_principal":
             self.debug(
                 "instance_principal_authentication parameter is DEPRECATED. Please use auth_type parameter instead."
             )
-            return True
-        # check if auth type is overridden via module params
-        if self.get_option("auth_type") == "instance_principal":
-            return True
-        elif (
-            self.get_option("auth_type") is None
-            and os.environ.get("OCI_ANSIBLE_AUTH_TYPE") == "instance_principal"
-        ):
-            return True
-        return False
+            auth_type = self.get_option("instance_principal_authentication")
 
-    def _is_delegation_token_auth(self):
-        # check if auth type is overridden via module params
-        if self.get_option("auth_type") == "instance_obo_user":
-            return True
-        elif (
-            self.get_option("auth_type") is None
-            and os.environ.get("OCI_ANSIBLE_AUTH_TYPE") == "instance_obo_user"
-        ):
-            return True
-        return False
-
-    def _is_resource_principal_auth(self):
-        if self.get_option("auth_type") == "resource_principal":
-            return True
-        elif (
-            self.get_option("auth_type") is None
-            and os.environ.get("OCI_ANSIBLE_AUTH_TYPE") == "resource_principal"
-        ):
-            return True
-        return False
+        self.params["auth_type"] = auth_type
+        return auth_type
 
     def _get_delegation_token_file(self):
-        if self.get_option("delegation_token_file") is not None:
+        # preference order: .oci.yml > environment variable
+        delegation_token_file = self.get_option("delegation_token_file")
+
+        if delegation_token_file is not None:
             self.params["delegation_token_file"] = os.path.expanduser(
-                self.get_option("delegation_token_file")
-            )
-        elif "OCI_DELEGATION_TOKEN_FILE" in os.environ:
-            self.params["delegation_token_file"] = os.environ.get(
-                "OCI_DELEGATION_TOKEN_FILE"
+                delegation_token_file
             )
         return self.params.get("delegation_token_file")
 
@@ -1927,7 +1883,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         self.debug("The debug flag is set to {0}".format(self.params["debug"]))
 
         # read oci config
-        self.read_config()
+        self.read_oci_config_file()
 
         # read the key_file and passphrase
         self._get_key_file()

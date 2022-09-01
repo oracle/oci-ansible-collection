@@ -20,9 +20,9 @@ ANSIBLE_METADATA = {
 DOCUMENTATION = """
 ---
 module: oci_dns_rrset_facts
-short_description: Fetches details about a Rrset resource in Oracle Cloud Infrastructure
+short_description: Fetches details about one or multiple Rrset resources in Oracle Cloud Infrastructure
 description:
-    - Fetches details about a Rrset resource in Oracle Cloud Infrastructure
+    - Fetches details about one or multiple Rrset resources in Oracle Cloud Infrastructure
     - Gets a list of all records in the specified RRSet.
     - The results are sorted by `recordHash` by default. When the zone name is provided as a path parameter
       and `PRIVATE` is used for the scope query parameter then the viewId query parameter is required.
@@ -76,7 +76,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: Get a specific rrset
+- name: List rrset
   oci_dns_rrset_facts:
     # required
     zone_name_or_id: "ocid1.zonenameor.oc1..xxxxxxEXAMPLExxxxxx"
@@ -95,7 +95,7 @@ EXAMPLES = """
 RETURN = """
 rrset:
     description:
-        - Rrset resource
+        - List of Rrset resources
     returned: on success
     type: complex
     contains:
@@ -154,7 +154,7 @@ rrset:
                     returned: on success
                     type: int
                     sample: 56
-    sample: {
+    sample: [{
         "items": [{
             "domain": "domain_example",
             "record_hash": "record_hash_example",
@@ -164,7 +164,7 @@ rrset:
             "rtype": "rtype_example",
             "ttl": 56
         }]
-    }
+    }]
 """
 
 from ansible.module_utils.basic import AnsibleModule
@@ -183,17 +183,17 @@ except ImportError:
 
 
 class RrsetFactsHelperGen(OCIResourceFactsHelperBase):
-    """Supported operations: get"""
+    """Supported operations: list"""
 
-    def get_required_params_for_get(self):
+    def get_required_params_for_list(self):
         return [
             "zone_name_or_id",
             "domain",
             "rtype",
         ]
 
-    def get_resource(self):
-        optional_get_method_params = [
+    def list_resources(self):
+        optional_list_method_params = [
             "if_modified_since",
             "zone_version",
             "compartment_id",
@@ -202,17 +202,15 @@ class RrsetFactsHelperGen(OCIResourceFactsHelperBase):
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
-            for param in optional_get_method_params
+            for param in optional_list_method_params
             if self.module.params.get(param) is not None
         )
-        return oci_common_utils.get_default_response_from_resource(
-            oci_common_utils.list_all_resources(
-                self.client.get_rr_set,
-                zone_name_or_id=self.module.params.get("zone_name_or_id"),
-                domain=self.module.params.get("domain"),
-                rtype=self.module.params.get("rtype"),
-                **optional_kwargs
-            ).items
+        return oci_common_utils.list_all_resources(
+            self.client.get_rr_set,
+            zone_name_or_id=self.module.params.get("zone_name_or_id"),
+            domain=self.module.params.get("domain"),
+            rtype=self.module.params.get("rtype"),
+            **optional_kwargs
         )
 
 
@@ -256,8 +254,8 @@ def main():
 
     result = []
 
-    if resource_facts_helper.is_get():
-        result = resource_facts_helper.get()
+    if resource_facts_helper.is_list():
+        result = resource_facts_helper.list()
     else:
         resource_facts_helper.fail()
 

@@ -446,6 +446,43 @@ detector_recipes:
                     returned: on success
                     type: str
                     sample: lifecycle_details_example
+                data_source_id:
+                    description:
+                        - The id of the attached DataSource.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.datasource.oc1..xxxxxxEXAMPLExxxxxx"
+                entities_mappings:
+                    description:
+                        - Data Source entities mapping for a Detector Rule
+                    returned: on success
+                    type: complex
+                    contains:
+                        display_name:
+                            description:
+                                - The display name of entity
+                            returned: on success
+                            type: str
+                            sample: display_name_example
+                        query_field:
+                            description:
+                                - The entity value mapped to a data source query
+                            returned: on success
+                            type: str
+                            sample: query_field_example
+                        entity_type:
+                            description:
+                                - Possible type of entity
+                            returned: on success
+                            type: str
+                            sample: EXTERNAL_IP
+        target_ids:
+            description:
+                - The recipe attached to targets
+                - Returned for get operation
+            returned: on success
+            type: list
+            sample: []
         id:
             description:
                 - Ocid for detector recipe
@@ -795,6 +832,36 @@ detector_recipes:
                     returned: on success
                     type: str
                     sample: lifecycle_details_example
+                data_source_id:
+                    description:
+                        - The id of the attached DataSource.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.datasource.oc1..xxxxxxEXAMPLExxxxxx"
+                entities_mappings:
+                    description:
+                        - Data Source entities mapping for a Detector Rule
+                    returned: on success
+                    type: complex
+                    contains:
+                        display_name:
+                            description:
+                                - The display name of entity
+                            returned: on success
+                            type: str
+                            sample: display_name_example
+                        query_field:
+                            description:
+                                - The entity value mapped to a data source query
+                            returned: on success
+                            type: str
+                            sample: query_field_example
+                        entity_type:
+                            description:
+                                - Possible type of entity
+                            returned: on success
+                            type: str
+                            sample: EXTERNAL_IP
         time_created:
             description:
                 - The date and time the detector recipe was created. Format defined by RFC3339.
@@ -902,8 +969,15 @@ detector_recipes:
             "time_created": "2013-10-20T19:20:30+01:00",
             "time_updated": "2013-10-20T19:20:30+01:00",
             "lifecycle_state": "CREATING",
-            "lifecycle_details": "lifecycle_details_example"
+            "lifecycle_details": "lifecycle_details_example",
+            "data_source_id": "ocid1.datasource.oc1..xxxxxxEXAMPLExxxxxx",
+            "entities_mappings": [{
+                "display_name": "display_name_example",
+                "query_field": "query_field_example",
+                "entity_type": "EXTERNAL_IP"
+            }]
         }],
+        "target_ids": [],
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "description": "description_example",
@@ -969,7 +1043,13 @@ detector_recipes:
             "time_created": "2013-10-20T19:20:30+01:00",
             "time_updated": "2013-10-20T19:20:30+01:00",
             "lifecycle_state": "CREATING",
-            "lifecycle_details": "lifecycle_details_example"
+            "lifecycle_details": "lifecycle_details_example",
+            "data_source_id": "ocid1.datasource.oc1..xxxxxxEXAMPLExxxxxx",
+            "entities_mappings": [{
+                "display_name": "display_name_example",
+                "query_field": "query_field_example",
+                "entity_type": "EXTERNAL_IP"
+            }]
         }],
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",

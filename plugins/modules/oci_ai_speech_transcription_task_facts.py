@@ -121,7 +121,17 @@ transcription_tasks:
                     sample: GENERIC
                 language_code:
                     description:
-                        - Locale value as per given in [https://datatracker.ietf.org/doc/html/rfc5646].
+                        - "Locale value as per given in [https://datatracker.ietf.org/doc/html/rfc5646].
+                          - en-US: English - United States
+                          - es-ES: Spanish - Spain
+                          - pt-BR: Portuguese - Brazil
+                          - en-GB: English - Great Britain
+                          - en-AU: English - Australia
+                          - en-IN: English - India
+                          - hi-IN: Hindi - India
+                          - fr-FR: French - France
+                          - de-DE: German - Germany
+                          - it-IT: Italian - Italy"
                     returned: on success
                     type: str
                     sample: en-US
@@ -236,6 +246,12 @@ transcription_tasks:
             returned: on success
             type: int
             sample: 56
+        processing_duration_in_seconds:
+            description:
+                - Task proccessing duration, which excludes waiting time in the system.
+            returned: on success
+            type: int
+            sample: 56
         time_started:
             description:
                 - Task started time.
@@ -288,6 +304,7 @@ transcription_tasks:
         "percent_complete": 56,
         "file_size_in_bytes": 56,
         "file_duration_in_seconds": 56,
+        "processing_duration_in_seconds": 56,
         "time_started": "2013-10-20T19:20:30+01:00",
         "time_finished": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "ACCEPTED",

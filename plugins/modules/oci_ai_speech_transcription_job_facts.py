@@ -119,7 +119,17 @@ transcription_jobs:
                     sample: GENERIC
                 language_code:
                     description:
-                        - Locale value as per given in [https://datatracker.ietf.org/doc/html/rfc5646].
+                        - "Locale value as per given in [https://datatracker.ietf.org/doc/html/rfc5646].
+                          - en-US: English - United States
+                          - es-ES: Spanish - Spain
+                          - pt-BR: Portuguese - Brazil
+                          - en-GB: English - Great Britain
+                          - en-AU: English - Australia
+                          - en-IN: English - India
+                          - hi-IN: Hindi - India
+                          - fr-FR: French - France
+                          - de-DE: German - Germany
+                          - it-IT: Italian - Italy"
                     returned: on success
                     type: str
                     sample: en-US
@@ -132,7 +142,7 @@ transcription_jobs:
             contains:
                 is_punctuation_enabled:
                     description:
-                        - Whether to add punctuation in generated transcription. By default it is enabled.
+                        - Whether to add punctuation in the generated transcription. Enabled by default.
                     returned: on success
                     type: bool
                     sample: true

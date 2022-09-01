@@ -20,9 +20,9 @@ ANSIBLE_METADATA = {
 DOCUMENTATION = """
 ---
 module: oci_opsi_sql_response_time_distributions_facts
-short_description: Fetches details about a SqlResponseTimeDistributions resource in Oracle Cloud Infrastructure
+short_description: Fetches details about one or multiple SqlResponseTimeDistributions resources in Oracle Cloud Infrastructure
 description:
-    - Fetches details about a SqlResponseTimeDistributions resource in Oracle Cloud Infrastructure
+    - Fetches details about one or multiple SqlResponseTimeDistributions resources in Oracle Cloud Infrastructure
     - Query SQL Warehouse to summarize the response time distribution of query executions for a given SQL for a given time period.
       Either databaseId or id must be specified.
 version_added: "2.9.0"
@@ -74,7 +74,7 @@ extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
 EXAMPLES = """
-- name: Get a specific sql_response_time_distributions
+- name: List sql_response_time_distributions
   oci_opsi_sql_response_time_distributions_facts:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -92,7 +92,7 @@ EXAMPLES = """
 RETURN = """
 sql_response_time_distributions:
     description:
-        - SqlResponseTimeDistributions resource
+        - List of SqlResponseTimeDistributions resources
     returned: on success
     type: complex
     contains:
@@ -108,10 +108,10 @@ sql_response_time_distributions:
             returned: on success
             type: int
             sample: 56
-    sample: {
+    sample: [{
         "bucket_id": "ocid1.bucket.oc1..xxxxxxEXAMPLExxxxxx",
         "executions_count": 56
-    }
+    }]
 """
 
 from ansible.module_utils.basic import AnsibleModule
@@ -130,16 +130,16 @@ except ImportError:
 
 
 class SqlResponseTimeDistributionsFactsHelperGen(OCIResourceFactsHelperBase):
-    """Supported operations: get"""
+    """Supported operations: list"""
 
-    def get_required_params_for_get(self):
+    def get_required_params_for_list(self):
         return [
             "compartment_id",
             "sql_identifier",
         ]
 
-    def get_resource(self):
-        optional_get_method_params = [
+    def list_resources(self):
+        optional_list_method_params = [
             "database_id",
             "id",
             "analysis_time_interval",
@@ -148,16 +148,14 @@ class SqlResponseTimeDistributionsFactsHelperGen(OCIResourceFactsHelperBase):
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
-            for param in optional_get_method_params
+            for param in optional_list_method_params
             if self.module.params.get(param) is not None
         )
-        return oci_common_utils.get_default_response_from_resource(
-            oci_common_utils.list_all_resources(
-                self.client.summarize_sql_response_time_distributions,
-                compartment_id=self.module.params.get("compartment_id"),
-                sql_identifier=self.module.params.get("sql_identifier"),
-                **optional_kwargs
-            )
+        return oci_common_utils.list_all_resources(
+            self.client.summarize_sql_response_time_distributions,
+            compartment_id=self.module.params.get("compartment_id"),
+            sql_identifier=self.module.params.get("sql_identifier"),
+            **optional_kwargs
         )
 
 
@@ -201,8 +199,8 @@ def main():
 
     result = []
 
-    if resource_facts_helper.is_get():
-        result = resource_facts_helper.get()
+    if resource_facts_helper.is_list():
+        result = resource_facts_helper.list()
     else:
         resource_facts_helper.fail()
 

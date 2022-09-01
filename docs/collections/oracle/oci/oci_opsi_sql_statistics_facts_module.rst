@@ -24,13 +24,13 @@
 
 .. Title
 
-oracle.oci.oci_opsi_sql_statistics_facts -- Fetches details about a SqlStatistics resource in Oracle Cloud Infrastructure
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+oracle.oci.oci_opsi_sql_statistics_facts -- Fetches details about one or multiple SqlStatistics resources in Oracle Cloud Infrastructure
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 2.58.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.0.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -56,7 +56,7 @@ Synopsis
 
 .. Description
 
-- Fetches details about a SqlStatistics resource in Oracle Cloud Infrastructure
+- Fetches details about one or multiple SqlStatistics resources in Oracle Cloud Infrastructure
 - Query SQL Warehouse to get the performance statistics for SQLs taking greater than X% database time for a given time period across the given databases or database types in a compartment and in all sub-compartments if specified.
 
 
@@ -658,7 +658,7 @@ Examples
 .. code-block:: yaml+jinja
 
     
-    - name: Get a specific sql_statistics
+    - name: List sql_statistics
       oci_opsi_sql_statistics_facts:
         # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -716,10 +716,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>SqlStatistics resource</div>
+                                            <div>List of SqlStatistics resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;category&#x27;: [], &#x27;database_details&#x27;: {&#x27;cdb_name&#x27;: &#x27;cdb_name_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_display_name&#x27;: &#x27;database_display_name_example&#x27;, &#x27;database_id&#x27;: &#x27;ocid1.database.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_name&#x27;: &#x27;database_name_example&#x27;, &#x27;database_type&#x27;: &#x27;database_type_example&#x27;, &#x27;database_version&#x27;: &#x27;database_version_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instances&#x27;: [{&#x27;host_name&#x27;: &#x27;host_name_example&#x27;, &#x27;instance_name&#x27;: &#x27;instance_name_example&#x27;}]}, &#x27;sql_identifier&#x27;: &#x27;sql_identifier_example&#x27;, &#x27;statistics&#x27;: {&#x27;average_active_sessions&#x27;: 1.2, &#x27;change_in_average_active_sessions_in_pct&#x27;: 1.2, &#x27;change_in_cpu_time_in_pct&#x27;: 1.2, &#x27;change_in_executions_per_hour_in_pct&#x27;: 1.2, &#x27;change_in_inefficiency_in_pct&#x27;: 1.2, &#x27;change_in_inefficient_wait_time_in_pct&#x27;: 1.2, &#x27;change_in_io_time_in_pct&#x27;: 1.2, &#x27;change_in_response_time_in_pct&#x27;: 1.2, &#x27;cpu_time_in_sec&#x27;: 1.2, &#x27;database_time_in_sec&#x27;: 1.2, &#x27;database_time_pct&#x27;: 1.2, &#x27;executions_count&#x27;: 56, &#x27;executions_per_hour&#x27;: 1.2, &#x27;inefficiency_in_pct&#x27;: 1.2, &#x27;inefficient_wait_time_in_sec&#x27;: 1.2, &#x27;io_time_in_sec&#x27;: 1.2, &#x27;plan_count&#x27;: 56, &#x27;response_time_in_sec&#x27;: 1.2, &#x27;variability&#x27;: 1.2}}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;category&#x27;: [], &#x27;database_details&#x27;: {&#x27;cdb_name&#x27;: &#x27;cdb_name_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_display_name&#x27;: &#x27;database_display_name_example&#x27;, &#x27;database_id&#x27;: &#x27;ocid1.database.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_name&#x27;: &#x27;database_name_example&#x27;, &#x27;database_type&#x27;: &#x27;database_type_example&#x27;, &#x27;database_version&#x27;: &#x27;database_version_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instances&#x27;: [{&#x27;host_name&#x27;: &#x27;host_name_example&#x27;, &#x27;instance_name&#x27;: &#x27;instance_name_example&#x27;}]}, &#x27;sql_identifier&#x27;: &#x27;sql_identifier_example&#x27;, &#x27;statistics&#x27;: {&#x27;average_active_sessions&#x27;: 1.2, &#x27;change_in_average_active_sessions_in_pct&#x27;: 1.2, &#x27;change_in_cpu_time_in_pct&#x27;: 1.2, &#x27;change_in_executions_per_hour_in_pct&#x27;: 1.2, &#x27;change_in_inefficiency_in_pct&#x27;: 1.2, &#x27;change_in_inefficient_wait_time_in_pct&#x27;: 1.2, &#x27;change_in_io_time_in_pct&#x27;: 1.2, &#x27;change_in_response_time_in_pct&#x27;: 1.2, &#x27;cpu_time_in_sec&#x27;: 1.2, &#x27;database_time_in_sec&#x27;: 1.2, &#x27;database_time_pct&#x27;: 1.2, &#x27;executions_count&#x27;: 56, &#x27;executions_per_hour&#x27;: 1.2, &#x27;inefficiency_in_pct&#x27;: 1.2, &#x27;inefficient_wait_time_in_sec&#x27;: 1.2, &#x27;io_time_in_sec&#x27;: 1.2, &#x27;plan_count&#x27;: 56, &#x27;response_time_in_sec&#x27;: 1.2, &#x27;variability&#x27;: 1.2}}]</div>
                                     </td>
             </tr>
                                         <tr>

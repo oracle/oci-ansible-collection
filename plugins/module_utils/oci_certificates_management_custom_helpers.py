@@ -8,10 +8,7 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
-from ansible_collections.oracle.oci.plugins.module_utils import (
-    oci_config_utils,
-    oci_common_utils,
-)
+from ansible_collections.oracle.oci.plugins.module_utils import oci_config_utils
 
 try:
     from oci.certificates import CertificatesClient
@@ -19,55 +16,6 @@ try:
     HAS_OCI_PY_SDK = True
 except ImportError:
     HAS_OCI_PY_SDK = False
-
-
-class CertificateActionsHelperCustom:
-
-    SCHEDULE_CERTIFICATE_DELETION = "schedule_certificate_deletion"
-    CANCEL_CERTIFICATE_DELETION = "cancel_certificate_deletion"
-
-    def get_action_desired_states(self, action):
-        if action.upper() == self.SCHEDULE_CERTIFICATE_DELETION.upper():
-            # for schedule_certificate_deletion we should wait till the resource comes to PENDING_DELETION state
-            return ["PENDING_DELETION"]
-
-        return super(CertificateActionsHelperCustom, self).get_action_desired_states(
-            action
-        )
-
-    def get_action_idempotent_states(self, action):
-        if action.upper() == self.SCHEDULE_CERTIFICATE_DELETION.upper():
-            return ["PENDING_DELETION", "SCHEDULING_DELETION"]
-        if action.upper() == self.CANCEL_CERTIFICATE_DELETION.upper():
-            return ["CANCELLING_DELETION"] + oci_common_utils.DEFAULT_READY_STATES
-        return super(CertificateActionsHelperCustom, self).get_action_idempotent_states(
-            action
-        )
-
-
-class CertificateAuthorityActionsHelperCustom:
-
-    SCHEDULE_CERTIFICATE_AUTHORITY_DELETION = "schedule_certificate_authority_deletion"
-    CANCEL_CERTIFICATE_AUTHORITY_DELETION = "cancel_certificate_authority_deletion"
-
-    def get_action_desired_states(self, action):
-        if action.upper() == self.SCHEDULE_CERTIFICATE_AUTHORITY_DELETION.upper():
-            # for schedule_certificate_authority_deletion we should wait till the resource comes to PENDING_DELETION
-            # state
-            return ["PENDING_DELETION"]
-
-        return super(
-            CertificateAuthorityActionsHelperCustom, self
-        ).get_action_desired_states(action)
-
-    def get_action_idempotent_states(self, action):
-        if action.upper() == self.SCHEDULE_CERTIFICATE_AUTHORITY_DELETION.upper():
-            return ["PENDING_DELETION", "SCHEDULING_DELETION"]
-        if action.upper() == self.CANCEL_CERTIFICATE_AUTHORITY_DELETION.upper():
-            return ["CANCELLING_DELETION"] + oci_common_utils.DEFAULT_READY_STATES
-        return super(
-            CertificateAuthorityActionsHelperCustom, self
-        ).get_action_idempotent_states(action)
 
 
 class CaBundleHelperCustom:

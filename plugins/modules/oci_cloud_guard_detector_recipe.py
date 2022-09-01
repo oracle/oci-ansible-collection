@@ -28,10 +28,18 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    detector:
+        description:
+            - detector for the rule
+        type: str
+        choices:
+            - "IAAS_ACTIVITY_DETECTOR"
+            - "IAAS_CONFIGURATION_DETECTOR"
+            - "IAAS_THREAT_DETECTOR"
+            - "IAAS_LOG_INSIGHT_DETECTOR"
     source_detector_recipe_id:
         description:
             - The id of the source detector recipe.
-            - Required for create using I(state=present).
         type: str
     compartment_id:
         description:
@@ -218,6 +226,43 @@ options:
                             - user defined labels for a detector rule
                         type: list
                         elements: str
+                    description:
+                        description:
+                            - Description for DetectorRecipeDetectorRule.
+                        type: str
+                    recommendation:
+                        description:
+                            - Recommendation for DetectorRecipeDetectorRule
+                        type: str
+                    data_source_id:
+                        description:
+                            - The id of the attached DataSource.
+                        type: str
+                    entities_mappings:
+                        description:
+                            - Data Source entities mapping for a Detector Rule
+                        type: list
+                        elements: dict
+                        suboptions:
+                            display_name:
+                                description:
+                                    - The display name of entity
+                                type: str
+                                aliases: ["name"]
+                            query_field:
+                                description:
+                                    - The entity value mapped to a data source query
+                                type: str
+                                required: true
+                            entity_type:
+                                description:
+                                    - Possible type of entity
+                                type: str
+                                choices:
+                                    - "EXTERNAL_IP"
+                                    - "INTERNAL_IP"
+                                    - "TEXT"
+                                    - "JSON_LIST"
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -254,11 +299,12 @@ EXAMPLES = """
 - name: Create detector_recipe
   oci_cloud_guard_detector_recipe:
     # required
-    source_detector_recipe_id: "ocid1.sourcedetectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
 
     # optional
+    detector: IAAS_ACTIVITY_DETECTOR
+    source_detector_recipe_id: "ocid1.sourcedetectorrecipe.oc1..xxxxxxEXAMPLExxxxxx"
     description: description_example
     detector_rules:
     - # required
@@ -292,6 +338,16 @@ EXAMPLES = """
           value: value_example
           value_type: MANAGED
         labels: [ "labels_example" ]
+        description: description_example
+        recommendation: recommendation_example
+        data_source_id: "ocid1.datasource.oc1..xxxxxxEXAMPLExxxxxx"
+        entities_mappings:
+        - # required
+          query_field: query_field_example
+
+          # optional
+          display_name: display_name_example
+          entity_type: EXTERNAL_IP
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -335,6 +391,16 @@ EXAMPLES = """
           value: value_example
           value_type: MANAGED
         labels: [ "labels_example" ]
+        description: description_example
+        recommendation: recommendation_example
+        data_source_id: "ocid1.datasource.oc1..xxxxxxEXAMPLExxxxxx"
+        entities_mappings:
+        - # required
+          query_field: query_field_example
+
+          # optional
+          display_name: display_name_example
+          entity_type: EXTERNAL_IP
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -378,6 +444,16 @@ EXAMPLES = """
           value: value_example
           value_type: MANAGED
         labels: [ "labels_example" ]
+        description: description_example
+        recommendation: recommendation_example
+        data_source_id: "ocid1.datasource.oc1..xxxxxxEXAMPLExxxxxx"
+        entities_mappings:
+        - # required
+          query_field: query_field_example
+
+          # optional
+          display_name: display_name_example
+          entity_type: EXTERNAL_IP
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -752,6 +828,36 @@ detector_recipe:
                     returned: on success
                     type: str
                     sample: lifecycle_details_example
+                data_source_id:
+                    description:
+                        - The id of the attached DataSource.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.datasource.oc1..xxxxxxEXAMPLExxxxxx"
+                entities_mappings:
+                    description:
+                        - Data Source entities mapping for a Detector Rule
+                    returned: on success
+                    type: complex
+                    contains:
+                        display_name:
+                            description:
+                                - The display name of entity
+                            returned: on success
+                            type: str
+                            sample: display_name_example
+                        query_field:
+                            description:
+                                - The entity value mapped to a data source query
+                            returned: on success
+                            type: str
+                            sample: query_field_example
+                        entity_type:
+                            description:
+                                - Possible type of entity
+                            returned: on success
+                            type: str
+                            sample: EXTERNAL_IP
         effective_detector_rules:
             description:
                 - List of effective detector rules for the detector type for recipe after applying defaults
@@ -1059,6 +1165,36 @@ detector_recipe:
                     returned: on success
                     type: str
                     sample: lifecycle_details_example
+                data_source_id:
+                    description:
+                        - The id of the attached DataSource.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.datasource.oc1..xxxxxxEXAMPLExxxxxx"
+                entities_mappings:
+                    description:
+                        - Data Source entities mapping for a Detector Rule
+                    returned: on success
+                    type: complex
+                    contains:
+                        display_name:
+                            description:
+                                - The display name of entity
+                            returned: on success
+                            type: str
+                            sample: display_name_example
+                        query_field:
+                            description:
+                                - The entity value mapped to a data source query
+                            returned: on success
+                            type: str
+                            sample: query_field_example
+                        entity_type:
+                            description:
+                                - Possible type of entity
+                            returned: on success
+                            type: str
+                            sample: EXTERNAL_IP
         time_created:
             description:
                 - The date and time the detector recipe was created. Format defined by RFC3339.
@@ -1107,6 +1243,12 @@ detector_recipe:
             returned: on success
             type: dict
             sample: {}
+        target_ids:
+            description:
+                - The recipe attached to targets
+            returned: on success
+            type: list
+            sample: []
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -1173,7 +1315,13 @@ detector_recipe:
             "time_created": "2013-10-20T19:20:30+01:00",
             "time_updated": "2013-10-20T19:20:30+01:00",
             "lifecycle_state": "CREATING",
-            "lifecycle_details": "lifecycle_details_example"
+            "lifecycle_details": "lifecycle_details_example",
+            "data_source_id": "ocid1.datasource.oc1..xxxxxxEXAMPLExxxxxx",
+            "entities_mappings": [{
+                "display_name": "display_name_example",
+                "query_field": "query_field_example",
+                "entity_type": "EXTERNAL_IP"
+            }]
         }],
         "effective_detector_rules": [{
             "detector_rule_id": "ocid1.detectorrule.oc1..xxxxxxEXAMPLExxxxxx",
@@ -1233,7 +1381,13 @@ detector_recipe:
             "time_created": "2013-10-20T19:20:30+01:00",
             "time_updated": "2013-10-20T19:20:30+01:00",
             "lifecycle_state": "CREATING",
-            "lifecycle_details": "lifecycle_details_example"
+            "lifecycle_details": "lifecycle_details_example",
+            "data_source_id": "ocid1.datasource.oc1..xxxxxxEXAMPLExxxxxx",
+            "entities_mappings": [{
+                "display_name": "display_name_example",
+                "query_field": "query_field_example",
+                "entity_type": "EXTERNAL_IP"
+            }]
         }],
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
@@ -1241,7 +1395,8 @@ detector_recipe:
         "source_data_retention": 56,
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "system_tags": {}
+        "system_tags": {},
+        "target_ids": []
     }
 """
 
@@ -1342,6 +1497,14 @@ class DetectorRecipeHelperGen(OCIResourceHelperBase):
     def get_create_model_class(self):
         return CreateDetectorRecipeDetails
 
+    def get_exclude_attributes(self):
+        return [
+            "detector_rules.details.entities_mappings",
+            "detector_rules.details.data_source_id",
+            "detector_rules.details.recommendation",
+            "detector_rules.details.description",
+        ]
+
     def create_resource(self):
         create_details = self.get_create_model()
         return oci_wait_utils.call_and_wait(
@@ -1408,6 +1571,15 @@ def main():
     )
     module_args.update(
         dict(
+            detector=dict(
+                type="str",
+                choices=[
+                    "IAAS_ACTIVITY_DETECTOR",
+                    "IAAS_CONFIGURATION_DETECTOR",
+                    "IAAS_THREAT_DETECTOR",
+                    "IAAS_LOG_INSIGHT_DETECTOR",
+                ],
+            ),
             source_detector_recipe_id=dict(type="str"),
             compartment_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
@@ -1501,6 +1673,26 @@ def main():
                                 ),
                             ),
                             labels=dict(type="list", elements="str"),
+                            description=dict(type="str"),
+                            recommendation=dict(type="str"),
+                            data_source_id=dict(type="str"),
+                            entities_mappings=dict(
+                                type="list",
+                                elements="dict",
+                                options=dict(
+                                    display_name=dict(aliases=["name"], type="str"),
+                                    query_field=dict(type="str", required=True),
+                                    entity_type=dict(
+                                        type="str",
+                                        choices=[
+                                            "EXTERNAL_IP",
+                                            "INTERNAL_IP",
+                                            "TEXT",
+                                            "JSON_LIST",
+                                        ],
+                                    ),
+                                ),
+                            ),
                         ),
                     ),
                 ),

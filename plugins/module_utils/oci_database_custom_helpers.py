@@ -659,28 +659,6 @@ class VmClusterNetworkHelperCustom:
 
 
 class VmClusterNetworkActionsHelperCustom:
-    def get_action_desired_states(self, action):
-        action_desired_states = super(
-            VmClusterNetworkActionsHelperCustom, self
-        ).get_action_desired_states(action)
-
-        if action.lower() == "validate":
-            return action_desired_states + [
-                "VALIDATED",
-            ]
-        return action_desired_states
-
-    def get_action_idempotent_states(self, action):
-        action_idempotent_states = super(
-            VmClusterNetworkActionsHelperCustom, self
-        ).get_action_idempotent_states(action)
-
-        if action.lower() == "validate":
-            return action_idempotent_states + [
-                "VALIDATED",
-            ]
-        return action_idempotent_states
-
     def download_vm_cluster_network_config_file(self):
         operation_response = oci_common_utils.call_with_backoff(
             self.client.download_vm_cluster_network_config_file,
