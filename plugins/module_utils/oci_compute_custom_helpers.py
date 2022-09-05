@@ -11,6 +11,7 @@ __metaclass__ = type
 from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_common_utils,
     oci_config_utils,
+    oci_wait_utils,
 )
 from ansible.module_utils import six
 
@@ -18,6 +19,7 @@ try:
     from oci.core import VirtualNetworkClient
     from oci.util import to_dict
     from oci.exceptions import ServiceError
+    from oci.core.models import InstancePowerActionDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -522,6 +524,36 @@ class InstanceActionsHelperCustom:
     def get_action_fn(self, action):
         action_fn_name = get_compute_instane_action_fn_attr(action)
         return super(InstanceActionsHelperCustom, self).get_action_fn(action_fn_name)
+
+    def instance_action(self):
+        if self.module.params.get("action_type") is not None:
+            action_details = oci_common_utils.convert_input_data_to_model_class(
+                self.module.params, InstancePowerActionDetails
+            )
+        else:
+            # if action_type param is not passed with module params, null value is sent to SDK.
+            # And, SDK is sending empty body in request. API is giving error as "Invalid typeId provided".
+            # So, setting action_details to None in case action_type is null.
+            action_details = None
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.instance_action,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                instance_id=self.module.params.get("instance_id"),
+                action=self.module.params.get("action"),
+                instance_power_action_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.LIFECYCLE_STATE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
 
 
 class InstanceConsoleConnectionHelperCustom:
