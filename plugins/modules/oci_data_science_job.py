@@ -128,6 +128,21 @@ options:
                     - The size of the block storage volume to attach to the instance running the job
                 type: int
                 required: true
+            job_shape_config_details:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    ocpus:
+                        description:
+                            - A job run instance of type VM.Standard.E3.Flex allows the ocpu count to be specified.
+                            - Applicable when job_infrastructure_type is 'ME_STANDALONE'
+                        type: float
+                    memory_in_gbs:
+                        description:
+                            - A job run instance of type VM.Standard.E3.Flex allows memory to be specified. This specifies the size of the memory in GBs.
+                            - Applicable when job_infrastructure_type is 'ME_STANDALONE'
+                        type: float
     freeform_tags:
         description:
             - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. See L(Resource
@@ -185,6 +200,12 @@ EXAMPLES = """
       shape_name: shape_name_example
       block_storage_size_in_gbs: 56
 
+      # optional
+      job_shape_config_details:
+        # optional
+        ocpus: 3.4
+        memory_in_gbs: 3.4
+
     # optional
     job_log_configuration_details:
       # optional
@@ -210,6 +231,12 @@ EXAMPLES = """
       job_infrastructure_type: ME_STANDALONE
       shape_name: shape_name_example
       block_storage_size_in_gbs: 56
+
+      # optional
+      job_shape_config_details:
+        # optional
+        ocpus: 3.4
+        memory_in_gbs: 3.4
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -226,6 +253,12 @@ EXAMPLES = """
       job_infrastructure_type: ME_STANDALONE
       shape_name: shape_name_example
       block_storage_size_in_gbs: 56
+
+      # optional
+      job_shape_config_details:
+        # optional
+        ocpus: 3.4
+        memory_in_gbs: 3.4
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -357,6 +390,24 @@ job:
                     returned: on success
                     type: int
                     sample: 56
+                job_shape_config_details:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        ocpus:
+                            description:
+                                - A job run instance of type VM.Standard.E3.Flex allows the ocpu count to be specified.
+                            returned: on success
+                            type: float
+                            sample: 3.4
+                        memory_in_gbs:
+                            description:
+                                - A job run instance of type VM.Standard.E3.Flex allows memory to be specified. This specifies the size of the memory in GBs.
+                            returned: on success
+                            type: float
+                            sample: 3.4
         job_log_configuration_details:
             description:
                 - ""
@@ -433,7 +484,11 @@ job:
             "job_infrastructure_type": "STANDALONE",
             "shape_name": "shape_name_example",
             "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
-            "block_storage_size_in_gbs": 56
+            "block_storage_size_in_gbs": 56,
+            "job_shape_config_details": {
+                "ocpus": 3.4,
+                "memory_in_gbs": 3.4
+            }
         },
         "job_log_configuration_details": {
             "enable_logging": true,
@@ -636,6 +691,12 @@ def main():
                     shape_name=dict(type="str", required=True),
                     subnet_id=dict(type="str"),
                     block_storage_size_in_gbs=dict(type="int", required=True),
+                    job_shape_config_details=dict(
+                        type="dict",
+                        options=dict(
+                            ocpus=dict(type="float"), memory_in_gbs=dict(type="float")
+                        ),
+                    ),
                 ),
             ),
             freeform_tags=dict(type="dict"),

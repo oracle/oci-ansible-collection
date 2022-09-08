@@ -30,7 +30,7 @@ oracle.oci.oci_devops_deploy_stage_facts -- Fetches details about one or multipl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.0.1).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.1.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -865,7 +865,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Optional binary artifact OCID user may provide to this stage.</div>
+                                            <div>Optional artifact OCID. The artifact will be included in the body for the function invocation during the stage&#x27;s execution. If the DeployArtifact.argumentSubstituitionMode is set to SUBSTITUTE_PLACEHOLDERS, then the pipeline parameter values will be used to replace the placeholders in the artifact content.</div>
                                             <div>Returned for get operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>

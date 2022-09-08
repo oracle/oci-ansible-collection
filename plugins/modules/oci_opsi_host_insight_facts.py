@@ -65,11 +65,9 @@ options:
     host_type:
         description:
             - Filter by one or more host types.
-              Possible value is EXTERNAL-HOST.
+              Possible values are CLOUD-HOST, EXTERNAL-HOST
         type: list
         elements: str
-        choices:
-            - "EXTERNAL-HOST"
     platform_type:
         description:
             - "Filter by one or more platform types.
@@ -124,7 +122,7 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     status: [ "DISABLED" ]
     lifecycle_state: [ "CREATING" ]
-    host_type: [ "EXTERNAL-HOST" ]
+    host_type: [ "host_type_example" ]
     platform_type: [ "LINUX" ]
     sort_order: ASC
     sort_by: hostName
@@ -190,6 +188,13 @@ host_insights:
             returned: on success
             type: str
             sample: "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx"
+        compute_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Compute Instance
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.compute.oc1..xxxxxxEXAMPLExxxxxx"
         management_agent_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Management Agent
@@ -329,6 +334,7 @@ host_insights:
         "enterprise_manager_entity_display_name": "enterprise_manager_entity_display_name_example",
         "enterprise_manager_bridge_id": "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx",
         "exadata_insight_id": "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx",
+        "compute_id": "ocid1.compute.oc1..xxxxxxEXAMPLExxxxxx",
         "management_agent_id": "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx",
         "platform_name": "platform_name_example",
         "platform_type": "LINUX",
@@ -438,7 +444,7 @@ def main():
                     "NEEDS_ATTENTION",
                 ],
             ),
-            host_type=dict(type="list", elements="str", choices=["EXTERNAL-HOST"]),
+            host_type=dict(type="list", elements="str"),
             platform_type=dict(
                 type="list",
                 elements="str",

@@ -271,7 +271,9 @@ deploy_stages:
             sample: "ocid1.functiondeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
         deploy_artifact_id:
             description:
-                - Optional binary artifact OCID user may provide to this stage.
+                - Optional artifact OCID. The artifact will be included in the body for the function invocation during the stage's execution.
+                  If the DeployArtifact.argumentSubstituitionMode is set to SUBSTITUTE_PLACEHOLDERS, then the pipeline parameter values will be used to replace
+                  the placeholders in the artifact content.
                 - Returned for get operation
             returned: on success
             type: str

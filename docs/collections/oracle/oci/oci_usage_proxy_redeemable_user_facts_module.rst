@@ -30,7 +30,7 @@ oracle.oci.oci_usage_proxy_redeemable_user_facts -- Fetches details about one or
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.0.1).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.1.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple RedeemableUser resources in Oracle Cloud Infrastructure
-- Provides the email IDs of users that can redeem rewards for the given subscription ID.
+- Provides the list of user summary that can redeem rewards for the given subscription ID.
 
 
 .. Aliases
@@ -398,7 +398,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of RedeemableUser resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;email_id&#x27;: &#x27;ocid1.email.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;email_id&#x27;: &#x27;ocid1.email.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;first_name&#x27;: &#x27;first_name_example&#x27;, &#x27;last_name&#x27;: &#x27;last_name_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -413,10 +413,46 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The email ID of a user that can redeem rewards.</div>
+                                            <div>The email ID of the user that can redeem rewards.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.email.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-redeemable_users/first_name"></div>
+                    <b>first_name</b>
+                    <a class="ansibleOptionLink" href="#return-redeemable_users/first_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The first name of the user that can redeem rewards.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">first_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-redeemable_users/last_name"></div>
+                    <b>last_name</b>
+                    <a class="ansibleOptionLink" href="#return-redeemable_users/last_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The last name of the user that can redeem rewards.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">last_name_example</div>
                                     </td>
             </tr>
                     

@@ -270,6 +270,36 @@ build_run:
                                                     returned: on success
                                                     type: str
                                                     sample: base_ref_example
+                                                file_filter:
+                                                    description:
+                                                        - ""
+                                                    returned: on success
+                                                    type: complex
+                                                    contains:
+                                                        file_paths:
+                                                            description:
+                                                                - The file paths/glob pattern for files.
+                                                            returned: on success
+                                                            type: list
+                                                            sample: []
+                                        exclude:
+                                            description:
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                file_filter:
+                                                    description:
+                                                        - ""
+                                                    returned: on success
+                                                    type: complex
+                                                    contains:
+                                                        file_paths:
+                                                            description:
+                                                                - The file paths/glob pattern for files.
+                                                            returned: on success
+                                                            type: list
+                                                            sample: []
                                 build_pipeline_id:
                                     description:
                                         - The OCID of the build pipeline to be triggered.
@@ -485,6 +515,30 @@ build_run:
                                     returned: on success
                                     type: str
                                     sample: "2013-10-20T19:20:30+01:00"
+                        private_access_config:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                network_channel_type:
+                                    description:
+                                        - Network channel type.
+                                    returned: on success
+                                    type: str
+                                    sample: PRIVATE_ENDPOINT_CHANNEL
+                                subnet_id:
+                                    description:
+                                        - The OCID of the subnet where VNIC resources will be created for private endpoint.
+                                    returned: on success
+                                    type: str
+                                    sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+                                nsg_ids:
+                                    description:
+                                        - An array of network security group OCIDs.
+                                    returned: on success
+                                    type: list
+                                    sample: []
                         delivered_artifacts:
                             description:
                                 - ""
@@ -886,7 +940,15 @@ build_run:
                         "events": [],
                         "include": {
                             "head_ref": "head_ref_example",
-                            "base_ref": "base_ref_example"
+                            "base_ref": "base_ref_example",
+                            "file_filter": {
+                                "file_paths": []
+                            }
+                        },
+                        "exclude": {
+                            "file_filter": {
+                                "file_paths": []
+                            }
                         }
                     },
                     "build_pipeline_id": "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
@@ -933,6 +995,11 @@ build_run:
                     "time_started": "2013-10-20T19:20:30+01:00",
                     "time_finished": "2013-10-20T19:20:30+01:00"
                 }],
+                "private_access_config": {
+                    "network_channel_type": "PRIVATE_ENDPOINT_CHANNEL",
+                    "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+                    "nsg_ids": []
+                },
                 "delivered_artifacts": {
                     "items": [{
                         "artifact_repository_id": "ocid1.artifactrepository.oc1..xxxxxxEXAMPLExxxxxx",

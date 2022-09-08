@@ -30,7 +30,7 @@ oracle.oci.oci_devops_build_run_facts -- Fetches details about one or multiple B
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.0.1).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.1.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -459,12 +459,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="7">Key</th>
+            <th colspan="8">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="7">
+                                <td colspan="8">
                     <div class="ansibleOptionAnchor" id="return-build_runs"></div>
                     <b>build_runs</b>
                     <a class="ansibleOptionLink" href="#return-build_runs" title="Permalink to this return value"></a>
@@ -477,12 +477,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of BuildRun resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;build_outputs&#x27;: {&#x27;artifact_override_parameters&#x27;: {&#x27;items&#x27;: [{&#x27;deploy_artifact_id&#x27;: &#x27;ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}, &#x27;delivered_artifacts&#x27;: {&#x27;items&#x27;: [{&#x27;artifact_repository_id&#x27;: &#x27;ocid1.artifactrepository.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;artifact_type&#x27;: &#x27;GENERIC_ARTIFACT&#x27;, &#x27;delivered_artifact_hash&#x27;: &#x27;delivered_artifact_hash_example&#x27;, &#x27;delivered_artifact_id&#x27;: &#x27;ocid1.deliveredartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_artifact_id&#x27;: &#x27;ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;image_uri&#x27;: &#x27;image_uri_example&#x27;, &#x27;output_artifact_name&#x27;: &#x27;output_artifact_name_example&#x27;, &#x27;path&#x27;: &#x27;path_example&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;}]}, &#x27;exported_variables&#x27;: {&#x27;items&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}, &#x27;vulnerability_audit_summary_collection&#x27;: {&#x27;items&#x27;: [{&#x27;build_stage_id&#x27;: &#x27;ocid1.buildstage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;commit_hash&#x27;: &#x27;commit_hash_example&#x27;, &#x27;vulnerability_audit_id&#x27;: &#x27;ocid1.vulnerabilityaudit.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}}, &#x27;build_pipeline_id&#x27;: &#x27;ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;build_run_arguments&#x27;: {&#x27;items&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}, &#x27;build_run_progress&#x27;: {&#x27;build_pipeline_stage_run_progress&#x27;: {&#x27;actual_build_runner_shape&#x27;: &#x27;actual_build_runner_shape_example&#x27;, &#x27;actual_build_runner_shape_config&#x27;: {&#x27;memory_in_gbs&#x27;: 1.2, &#x27;ocpus&#x27;: 1.2}, &#x27;artifact_override_parameters&#x27;: {&#x27;items&#x27;: [{&#x27;deploy_artifact_id&#x27;: &#x27;ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}, &#x27;build_pipeline_stage_id&#x27;: &#x27;ocid1.buildpipelinestage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;build_pipeline_stage_predecessors&#x27;: {&#x27;items&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}, &#x27;build_pipeline_stage_type&#x27;: &#x27;BUILD&#x27;, &#x27;build_source_collection&#x27;: {&#x27;items&#x27;: [{&#x27;branch&#x27;: &#x27;branch_example&#x27;, &#x27;connection_id&#x27;: &#x27;ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_type&#x27;: &#x27;GITHUB&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;repository_id&#x27;: &#x27;ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;repository_url&#x27;: &#x27;repository_url_example&#x27;}]}, &#x27;build_spec_file&#x27;: &#x27;build_spec_file_example&#x27;, &#x27;delivered_artifacts&#x27;: {&#x27;items&#x27;: [{&#x27;artifact_repository_id&#x27;: &#x27;ocid1.artifactrepository.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;artifact_type&#x27;: &#x27;GENERIC_ARTIFACT&#x27;, &#x27;delivered_artifact_hash&#x27;: &#x27;delivered_artifact_hash_example&#x27;, &#x27;delivered_artifact_id&#x27;: &#x27;ocid1.deliveredartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_artifact_id&#x27;: &#x27;ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;image_uri&#x27;: &#x27;image_uri_example&#x27;, &#x27;output_artifact_name&#x27;: &#x27;output_artifact_name_example&#x27;, &#x27;path&#x27;: &#x27;path_example&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;}]}, &#x27;deployment_id&#x27;: &#x27;ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;exported_variables&#x27;: {&#x27;items&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}, &#x27;image&#x27;: &#x27;OL7_X86_64_STANDARD_10&#x27;, &#x27;primary_build_source&#x27;: &#x27;primary_build_source_example&#x27;, &#x27;stage_display_name&#x27;: &#x27;stage_display_name_example&#x27;, &#x27;stage_execution_timeout_in_seconds&#x27;: 56, &#x27;status&#x27;: &#x27;ACCEPTED&#x27;, &#x27;steps&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;state&#x27;: &#x27;WAITING&#x27;, &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;build_run_progress_summary&#x27;: {&#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;build_run_source&#x27;: {&#x27;repository_id&#x27;: &#x27;ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_type&#x27;: &#x27;MANUAL&#x27;, &#x27;trigger_id&#x27;: &#x27;ocid1.trigger.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;trigger_info&#x27;: {&#x27;actions&#x27;: [{&#x27;build_pipeline_id&#x27;: &#x27;ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;filter&#x27;: {&#x27;events&#x27;: [], &#x27;include&#x27;: {&#x27;base_ref&#x27;: &#x27;base_ref_example&#x27;, &#x27;head_ref&#x27;: &#x27;head_ref_example&#x27;}, &#x27;trigger_source&#x27;: &#x27;BITBUCKET_CLOUD&#x27;}, &#x27;type&#x27;: &#x27;TRIGGER_BUILD_PIPELINE&#x27;}], &#x27;display_name&#x27;: &#x27;display_name_example&#x27;}}, &#x27;commit_info&#x27;: {&#x27;commit_hash&#x27;: &#x27;commit_hash_example&#x27;, &#x27;repository_branch&#x27;: &#x27;repository_branch_example&#x27;, &#x27;repository_url&#x27;: &#x27;repository_url_example&#x27;}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACCEPTED&#x27;, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;build_outputs&#x27;: {&#x27;artifact_override_parameters&#x27;: {&#x27;items&#x27;: [{&#x27;deploy_artifact_id&#x27;: &#x27;ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}, &#x27;delivered_artifacts&#x27;: {&#x27;items&#x27;: [{&#x27;artifact_repository_id&#x27;: &#x27;ocid1.artifactrepository.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;artifact_type&#x27;: &#x27;GENERIC_ARTIFACT&#x27;, &#x27;delivered_artifact_hash&#x27;: &#x27;delivered_artifact_hash_example&#x27;, &#x27;delivered_artifact_id&#x27;: &#x27;ocid1.deliveredartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_artifact_id&#x27;: &#x27;ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;image_uri&#x27;: &#x27;image_uri_example&#x27;, &#x27;output_artifact_name&#x27;: &#x27;output_artifact_name_example&#x27;, &#x27;path&#x27;: &#x27;path_example&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;}]}, &#x27;exported_variables&#x27;: {&#x27;items&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}, &#x27;vulnerability_audit_summary_collection&#x27;: {&#x27;items&#x27;: [{&#x27;build_stage_id&#x27;: &#x27;ocid1.buildstage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;commit_hash&#x27;: &#x27;commit_hash_example&#x27;, &#x27;vulnerability_audit_id&#x27;: &#x27;ocid1.vulnerabilityaudit.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}}, &#x27;build_pipeline_id&#x27;: &#x27;ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;build_run_arguments&#x27;: {&#x27;items&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}, &#x27;build_run_progress&#x27;: {&#x27;build_pipeline_stage_run_progress&#x27;: {&#x27;actual_build_runner_shape&#x27;: &#x27;actual_build_runner_shape_example&#x27;, &#x27;actual_build_runner_shape_config&#x27;: {&#x27;memory_in_gbs&#x27;: 1.2, &#x27;ocpus&#x27;: 1.2}, &#x27;artifact_override_parameters&#x27;: {&#x27;items&#x27;: [{&#x27;deploy_artifact_id&#x27;: &#x27;ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}, &#x27;build_pipeline_stage_id&#x27;: &#x27;ocid1.buildpipelinestage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;build_pipeline_stage_predecessors&#x27;: {&#x27;items&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}, &#x27;build_pipeline_stage_type&#x27;: &#x27;BUILD&#x27;, &#x27;build_source_collection&#x27;: {&#x27;items&#x27;: [{&#x27;branch&#x27;: &#x27;branch_example&#x27;, &#x27;connection_id&#x27;: &#x27;ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_type&#x27;: &#x27;GITHUB&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;repository_id&#x27;: &#x27;ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;repository_url&#x27;: &#x27;repository_url_example&#x27;}]}, &#x27;build_spec_file&#x27;: &#x27;build_spec_file_example&#x27;, &#x27;delivered_artifacts&#x27;: {&#x27;items&#x27;: [{&#x27;artifact_repository_id&#x27;: &#x27;ocid1.artifactrepository.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;artifact_type&#x27;: &#x27;GENERIC_ARTIFACT&#x27;, &#x27;delivered_artifact_hash&#x27;: &#x27;delivered_artifact_hash_example&#x27;, &#x27;delivered_artifact_id&#x27;: &#x27;ocid1.deliveredartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_artifact_id&#x27;: &#x27;ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;image_uri&#x27;: &#x27;image_uri_example&#x27;, &#x27;output_artifact_name&#x27;: &#x27;output_artifact_name_example&#x27;, &#x27;path&#x27;: &#x27;path_example&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;}]}, &#x27;deployment_id&#x27;: &#x27;ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;exported_variables&#x27;: {&#x27;items&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}, &#x27;image&#x27;: &#x27;OL7_X86_64_STANDARD_10&#x27;, &#x27;primary_build_source&#x27;: &#x27;primary_build_source_example&#x27;, &#x27;private_access_config&#x27;: {&#x27;network_channel_type&#x27;: &#x27;PRIVATE_ENDPOINT_CHANNEL&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;stage_display_name&#x27;: &#x27;stage_display_name_example&#x27;, &#x27;stage_execution_timeout_in_seconds&#x27;: 56, &#x27;status&#x27;: &#x27;ACCEPTED&#x27;, &#x27;steps&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;state&#x27;: &#x27;WAITING&#x27;, &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;build_run_progress_summary&#x27;: {&#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;build_run_source&#x27;: {&#x27;repository_id&#x27;: &#x27;ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;source_type&#x27;: &#x27;MANUAL&#x27;, &#x27;trigger_id&#x27;: &#x27;ocid1.trigger.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;trigger_info&#x27;: {&#x27;actions&#x27;: [{&#x27;build_pipeline_id&#x27;: &#x27;ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;filter&#x27;: {&#x27;events&#x27;: [], &#x27;exclude&#x27;: {&#x27;file_filter&#x27;: {&#x27;file_paths&#x27;: []}}, &#x27;include&#x27;: {&#x27;base_ref&#x27;: &#x27;base_ref_example&#x27;, &#x27;file_filter&#x27;: {&#x27;file_paths&#x27;: []}, &#x27;head_ref&#x27;: &#x27;head_ref_example&#x27;}, &#x27;trigger_source&#x27;: &#x27;BITBUCKET_CLOUD&#x27;}, &#x27;type&#x27;: &#x27;TRIGGER_BUILD_PIPELINE&#x27;}], &#x27;display_name&#x27;: &#x27;display_name_example&#x27;}}, &#x27;commit_info&#x27;: {&#x27;commit_hash&#x27;: &#x27;commit_hash_example&#x27;, &#x27;repository_branch&#x27;: &#x27;repository_branch_example&#x27;, &#x27;repository_url&#x27;: &#x27;repository_url_example&#x27;}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACCEPTED&#x27;, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="6">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_outputs"></div>
                     <b>build_outputs</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_outputs" title="Permalink to this return value"></a>
@@ -500,7 +500,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_outputs/artifact_override_parameters"></div>
                     <b>artifact_override_parameters</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_outputs/artifact_override_parameters" title="Permalink to this return value"></a>
@@ -518,7 +518,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_outputs/artifact_override_parameters/items"></div>
                     <b>items</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_outputs/artifact_override_parameters/items" title="Permalink to this return value"></a>
@@ -537,7 +537,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_outputs/artifact_override_parameters/items/deploy_artifact_id"></div>
                     <b>deploy_artifact_id</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_outputs/artifact_override_parameters/items/deploy_artifact_id" title="Permalink to this return value"></a>
@@ -558,7 +558,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_outputs/artifact_override_parameters/items/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_outputs/artifact_override_parameters/items/name" title="Permalink to this return value"></a>
@@ -579,7 +579,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_outputs/artifact_override_parameters/items/value"></div>
                     <b>value</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_outputs/artifact_override_parameters/items/value" title="Permalink to this return value"></a>
@@ -600,7 +600,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_outputs/delivered_artifacts"></div>
                     <b>delivered_artifacts</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_outputs/delivered_artifacts" title="Permalink to this return value"></a>
@@ -618,7 +618,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_outputs/delivered_artifacts/items"></div>
                     <b>items</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_outputs/delivered_artifacts/items" title="Permalink to this return value"></a>
@@ -637,7 +637,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_outputs/delivered_artifacts/items/artifact_repository_id"></div>
                     <b>artifact_repository_id</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_outputs/delivered_artifacts/items/artifact_repository_id" title="Permalink to this return value"></a>
@@ -658,7 +658,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_outputs/delivered_artifacts/items/artifact_type"></div>
                     <b>artifact_type</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_outputs/delivered_artifacts/items/artifact_type" title="Permalink to this return value"></a>
@@ -679,7 +679,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_outputs/delivered_artifacts/items/delivered_artifact_hash"></div>
                     <b>delivered_artifact_hash</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_outputs/delivered_artifacts/items/delivered_artifact_hash" title="Permalink to this return value"></a>
@@ -700,7 +700,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_outputs/delivered_artifacts/items/delivered_artifact_id"></div>
                     <b>delivered_artifact_id</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_outputs/delivered_artifacts/items/delivered_artifact_id" title="Permalink to this return value"></a>
@@ -721,7 +721,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_outputs/delivered_artifacts/items/deploy_artifact_id"></div>
                     <b>deploy_artifact_id</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_outputs/delivered_artifacts/items/deploy_artifact_id" title="Permalink to this return value"></a>
@@ -742,7 +742,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_outputs/delivered_artifacts/items/image_uri"></div>
                     <b>image_uri</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_outputs/delivered_artifacts/items/image_uri" title="Permalink to this return value"></a>
@@ -763,7 +763,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_outputs/delivered_artifacts/items/output_artifact_name"></div>
                     <b>output_artifact_name</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_outputs/delivered_artifacts/items/output_artifact_name" title="Permalink to this return value"></a>
@@ -784,7 +784,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_outputs/delivered_artifacts/items/path"></div>
                     <b>path</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_outputs/delivered_artifacts/items/path" title="Permalink to this return value"></a>
@@ -805,7 +805,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_outputs/delivered_artifacts/items/version"></div>
                     <b>version</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_outputs/delivered_artifacts/items/version" title="Permalink to this return value"></a>
@@ -826,7 +826,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_outputs/exported_variables"></div>
                     <b>exported_variables</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_outputs/exported_variables" title="Permalink to this return value"></a>
@@ -844,7 +844,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_outputs/exported_variables/items"></div>
                     <b>items</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_outputs/exported_variables/items" title="Permalink to this return value"></a>
@@ -863,7 +863,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_outputs/exported_variables/items/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_outputs/exported_variables/items/name" title="Permalink to this return value"></a>
@@ -884,7 +884,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_outputs/exported_variables/items/value"></div>
                     <b>value</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_outputs/exported_variables/items/value" title="Permalink to this return value"></a>
@@ -905,7 +905,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_outputs/vulnerability_audit_summary_collection"></div>
                     <b>vulnerability_audit_summary_collection</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_outputs/vulnerability_audit_summary_collection" title="Permalink to this return value"></a>
@@ -923,7 +923,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_outputs/vulnerability_audit_summary_collection/items"></div>
                     <b>items</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_outputs/vulnerability_audit_summary_collection/items" title="Permalink to this return value"></a>
@@ -942,7 +942,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_outputs/vulnerability_audit_summary_collection/items/build_stage_id"></div>
                     <b>build_stage_id</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_outputs/vulnerability_audit_summary_collection/items/build_stage_id" title="Permalink to this return value"></a>
@@ -963,7 +963,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_outputs/vulnerability_audit_summary_collection/items/commit_hash"></div>
                     <b>commit_hash</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_outputs/vulnerability_audit_summary_collection/items/commit_hash" title="Permalink to this return value"></a>
@@ -984,7 +984,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_outputs/vulnerability_audit_summary_collection/items/vulnerability_audit_id"></div>
                     <b>vulnerability_audit_id</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_outputs/vulnerability_audit_summary_collection/items/vulnerability_audit_id" title="Permalink to this return value"></a>
@@ -1005,7 +1005,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="6">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_pipeline_id"></div>
                     <b>build_pipeline_id</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_pipeline_id" title="Permalink to this return value"></a>
@@ -1023,7 +1023,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="6">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_arguments"></div>
                     <b>build_run_arguments</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_arguments" title="Permalink to this return value"></a>
@@ -1040,7 +1040,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_arguments/items"></div>
                     <b>items</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_arguments/items" title="Permalink to this return value"></a>
@@ -1058,7 +1058,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_arguments/items/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_arguments/items/name" title="Permalink to this return value"></a>
@@ -1078,7 +1078,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_arguments/items/value"></div>
                     <b>value</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_arguments/items/value" title="Permalink to this return value"></a>
@@ -1098,7 +1098,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="6">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress"></div>
                     <b>build_run_progress</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress" title="Permalink to this return value"></a>
@@ -1116,7 +1116,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress"></div>
                     <b>build_pipeline_stage_run_progress</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress" title="Permalink to this return value"></a>
@@ -1134,7 +1134,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/actual_build_runner_shape"></div>
                     <b>actual_build_runner_shape</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/actual_build_runner_shape" title="Permalink to this return value"></a>
@@ -1154,7 +1154,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/actual_build_runner_shape_config"></div>
                     <b>actual_build_runner_shape_config</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/actual_build_runner_shape_config" title="Permalink to this return value"></a>
@@ -1173,7 +1173,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/actual_build_runner_shape_config/memory_in_gbs"></div>
                     <b>memory_in_gbs</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/actual_build_runner_shape_config/memory_in_gbs" title="Permalink to this return value"></a>
@@ -1194,7 +1194,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/actual_build_runner_shape_config/ocpus"></div>
                     <b>ocpus</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/actual_build_runner_shape_config/ocpus" title="Permalink to this return value"></a>
@@ -1215,7 +1215,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/artifact_override_parameters"></div>
                     <b>artifact_override_parameters</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/artifact_override_parameters" title="Permalink to this return value"></a>
@@ -1234,7 +1234,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/artifact_override_parameters/items"></div>
                     <b>items</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/artifact_override_parameters/items" title="Permalink to this return value"></a>
@@ -1254,7 +1254,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/artifact_override_parameters/items/deploy_artifact_id"></div>
                     <b>deploy_artifact_id</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/artifact_override_parameters/items/deploy_artifact_id" title="Permalink to this return value"></a>
@@ -1276,7 +1276,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/artifact_override_parameters/items/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/artifact_override_parameters/items/name" title="Permalink to this return value"></a>
@@ -1298,7 +1298,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/artifact_override_parameters/items/value"></div>
                     <b>value</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/artifact_override_parameters/items/value" title="Permalink to this return value"></a>
@@ -1320,7 +1320,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/build_pipeline_stage_id"></div>
                     <b>build_pipeline_stage_id</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/build_pipeline_stage_id" title="Permalink to this return value"></a>
@@ -1340,7 +1340,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/build_pipeline_stage_predecessors"></div>
                     <b>build_pipeline_stage_predecessors</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/build_pipeline_stage_predecessors" title="Permalink to this return value"></a>
@@ -1359,7 +1359,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/build_pipeline_stage_predecessors/items"></div>
                     <b>items</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/build_pipeline_stage_predecessors/items" title="Permalink to this return value"></a>
@@ -1379,7 +1379,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/build_pipeline_stage_predecessors/items/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/build_pipeline_stage_predecessors/items/id" title="Permalink to this return value"></a>
@@ -1401,7 +1401,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/build_pipeline_stage_type"></div>
                     <b>build_pipeline_stage_type</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/build_pipeline_stage_type" title="Permalink to this return value"></a>
@@ -1421,7 +1421,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/build_source_collection"></div>
                     <b>build_source_collection</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/build_source_collection" title="Permalink to this return value"></a>
@@ -1440,7 +1440,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/build_source_collection/items"></div>
                     <b>items</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/build_source_collection/items" title="Permalink to this return value"></a>
@@ -1460,7 +1460,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/build_source_collection/items/branch"></div>
                     <b>branch</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/build_source_collection/items/branch" title="Permalink to this return value"></a>
@@ -1482,7 +1482,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/build_source_collection/items/connection_id"></div>
                     <b>connection_id</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/build_source_collection/items/connection_id" title="Permalink to this return value"></a>
@@ -1504,7 +1504,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/build_source_collection/items/connection_type"></div>
                     <b>connection_type</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/build_source_collection/items/connection_type" title="Permalink to this return value"></a>
@@ -1526,7 +1526,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/build_source_collection/items/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/build_source_collection/items/name" title="Permalink to this return value"></a>
@@ -1548,7 +1548,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/build_source_collection/items/repository_id"></div>
                     <b>repository_id</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/build_source_collection/items/repository_id" title="Permalink to this return value"></a>
@@ -1570,7 +1570,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/build_source_collection/items/repository_url"></div>
                     <b>repository_url</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/build_source_collection/items/repository_url" title="Permalink to this return value"></a>
@@ -1592,7 +1592,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/build_spec_file"></div>
                     <b>build_spec_file</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/build_spec_file" title="Permalink to this return value"></a>
@@ -1612,7 +1612,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/delivered_artifacts"></div>
                     <b>delivered_artifacts</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/delivered_artifacts" title="Permalink to this return value"></a>
@@ -1631,7 +1631,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/delivered_artifacts/items"></div>
                     <b>items</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/delivered_artifacts/items" title="Permalink to this return value"></a>
@@ -1651,7 +1651,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/delivered_artifacts/items/artifact_repository_id"></div>
                     <b>artifact_repository_id</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/delivered_artifacts/items/artifact_repository_id" title="Permalink to this return value"></a>
@@ -1673,7 +1673,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/delivered_artifacts/items/artifact_type"></div>
                     <b>artifact_type</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/delivered_artifacts/items/artifact_type" title="Permalink to this return value"></a>
@@ -1695,7 +1695,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/delivered_artifacts/items/delivered_artifact_hash"></div>
                     <b>delivered_artifact_hash</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/delivered_artifacts/items/delivered_artifact_hash" title="Permalink to this return value"></a>
@@ -1717,7 +1717,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/delivered_artifacts/items/delivered_artifact_id"></div>
                     <b>delivered_artifact_id</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/delivered_artifacts/items/delivered_artifact_id" title="Permalink to this return value"></a>
@@ -1739,7 +1739,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/delivered_artifacts/items/deploy_artifact_id"></div>
                     <b>deploy_artifact_id</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/delivered_artifacts/items/deploy_artifact_id" title="Permalink to this return value"></a>
@@ -1761,7 +1761,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/delivered_artifacts/items/image_uri"></div>
                     <b>image_uri</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/delivered_artifacts/items/image_uri" title="Permalink to this return value"></a>
@@ -1783,7 +1783,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/delivered_artifacts/items/output_artifact_name"></div>
                     <b>output_artifact_name</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/delivered_artifacts/items/output_artifact_name" title="Permalink to this return value"></a>
@@ -1805,7 +1805,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/delivered_artifacts/items/path"></div>
                     <b>path</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/delivered_artifacts/items/path" title="Permalink to this return value"></a>
@@ -1827,7 +1827,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/delivered_artifacts/items/version"></div>
                     <b>version</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/delivered_artifacts/items/version" title="Permalink to this return value"></a>
@@ -1849,7 +1849,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/deployment_id"></div>
                     <b>deployment_id</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/deployment_id" title="Permalink to this return value"></a>
@@ -1869,7 +1869,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/exported_variables"></div>
                     <b>exported_variables</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/exported_variables" title="Permalink to this return value"></a>
@@ -1888,7 +1888,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/exported_variables/items"></div>
                     <b>items</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/exported_variables/items" title="Permalink to this return value"></a>
@@ -1908,7 +1908,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/exported_variables/items/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/exported_variables/items/name" title="Permalink to this return value"></a>
@@ -1930,7 +1930,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/exported_variables/items/value"></div>
                     <b>value</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/exported_variables/items/value" title="Permalink to this return value"></a>
@@ -1952,7 +1952,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/image"></div>
                     <b>image</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/image" title="Permalink to this return value"></a>
@@ -1972,7 +1972,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/primary_build_source"></div>
                     <b>primary_build_source</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/primary_build_source" title="Permalink to this return value"></a>
@@ -1992,7 +1992,87 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/private_access_config"></div>
+                    <b>private_access_config</b>
+                    <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/private_access_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/private_access_config/network_channel_type"></div>
+                    <b>network_channel_type</b>
+                    <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/private_access_config/network_channel_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Network channel type.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">PRIVATE_ENDPOINT_CHANNEL</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/private_access_config/nsg_ids"></div>
+                    <b>nsg_ids</b>
+                    <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/private_access_config/nsg_ids" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>An array of network security group OCIDs.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/private_access_config/subnet_id"></div>
+                    <b>subnet_id</b>
+                    <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/private_access_config/subnet_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the subnet where VNIC resources will be created for private endpoint.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/stage_display_name"></div>
                     <b>stage_display_name</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/stage_display_name" title="Permalink to this return value"></a>
@@ -2012,7 +2092,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/stage_execution_timeout_in_seconds"></div>
                     <b>stage_execution_timeout_in_seconds</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/stage_execution_timeout_in_seconds" title="Permalink to this return value"></a>
@@ -2032,7 +2112,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/status"></div>
                     <b>status</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/status" title="Permalink to this return value"></a>
@@ -2052,7 +2132,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/steps"></div>
                     <b>steps</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/steps" title="Permalink to this return value"></a>
@@ -2071,7 +2151,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/steps/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/steps/name" title="Permalink to this return value"></a>
@@ -2092,7 +2172,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/steps/state"></div>
                     <b>state</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/steps/state" title="Permalink to this return value"></a>
@@ -2113,7 +2193,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/steps/time_finished"></div>
                     <b>time_finished</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/steps/time_finished" title="Permalink to this return value"></a>
@@ -2134,7 +2214,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/steps/time_started"></div>
                     <b>time_started</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/steps/time_started" title="Permalink to this return value"></a>
@@ -2155,7 +2235,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/time_finished"></div>
                     <b>time_finished</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/time_finished" title="Permalink to this return value"></a>
@@ -2175,7 +2255,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/build_pipeline_stage_run_progress/time_started"></div>
                     <b>time_started</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/build_pipeline_stage_run_progress/time_started" title="Permalink to this return value"></a>
@@ -2195,7 +2275,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/time_finished"></div>
                     <b>time_finished</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/time_finished" title="Permalink to this return value"></a>
@@ -2214,7 +2294,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress/time_started"></div>
                     <b>time_started</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress/time_started" title="Permalink to this return value"></a>
@@ -2233,7 +2313,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="6">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress_summary"></div>
                     <b>build_run_progress_summary</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress_summary" title="Permalink to this return value"></a>
@@ -2251,7 +2331,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress_summary/time_finished"></div>
                     <b>time_finished</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress_summary/time_finished" title="Permalink to this return value"></a>
@@ -2270,7 +2350,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_progress_summary/time_started"></div>
                     <b>time_started</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_progress_summary/time_started" title="Permalink to this return value"></a>
@@ -2289,7 +2369,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="6">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_source"></div>
                     <b>build_run_source</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_source" title="Permalink to this return value"></a>
@@ -2306,7 +2386,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_source/repository_id"></div>
                     <b>repository_id</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_source/repository_id" title="Permalink to this return value"></a>
@@ -2325,7 +2405,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_source/source_type"></div>
                     <b>source_type</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_source/source_type" title="Permalink to this return value"></a>
@@ -2344,7 +2424,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_source/trigger_id"></div>
                     <b>trigger_id</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_source/trigger_id" title="Permalink to this return value"></a>
@@ -2363,7 +2443,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_source/trigger_info"></div>
                     <b>trigger_info</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_source/trigger_info" title="Permalink to this return value"></a>
@@ -2381,7 +2461,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_source/trigger_info/actions"></div>
                     <b>actions</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_source/trigger_info/actions" title="Permalink to this return value"></a>
@@ -2400,7 +2480,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_source/trigger_info/actions/build_pipeline_id"></div>
                     <b>build_pipeline_id</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_source/trigger_info/actions/build_pipeline_id" title="Permalink to this return value"></a>
@@ -2421,7 +2501,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_source/trigger_info/actions/filter"></div>
                     <b>filter</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_source/trigger_info/actions/filter" title="Permalink to this return value"></a>
@@ -2441,7 +2521,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_source/trigger_info/actions/filter/events"></div>
                     <b>events</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_source/trigger_info/actions/filter/events" title="Permalink to this return value"></a>
@@ -2461,7 +2541,72 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-build_runs/build_run_source/trigger_info/actions/filter/exclude"></div>
+                    <b>exclude</b>
+                    <a class="ansibleOptionLink" href="#return-build_runs/build_run_source/trigger_info/actions/filter/exclude" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-build_runs/build_run_source/trigger_info/actions/filter/exclude/file_filter"></div>
+                    <b>file_filter</b>
+                    <a class="ansibleOptionLink" href="#return-build_runs/build_run_source/trigger_info/actions/filter/exclude/file_filter" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-build_runs/build_run_source/trigger_info/actions/filter/exclude/file_filter/file_paths"></div>
+                    <b>file_paths</b>
+                    <a class="ansibleOptionLink" href="#return-build_runs/build_run_source/trigger_info/actions/filter/exclude/file_filter/file_paths" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The file paths/glob pattern for files.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                    
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_source/trigger_info/actions/filter/include"></div>
                     <b>include</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_source/trigger_info/actions/filter/include" title="Permalink to this return value"></a>
@@ -2482,7 +2627,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_source/trigger_info/actions/filter/include/base_ref"></div>
                     <b>base_ref</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_source/trigger_info/actions/filter/include/base_ref" title="Permalink to this return value"></a>
@@ -2505,7 +2650,51 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-build_runs/build_run_source/trigger_info/actions/filter/include/file_filter"></div>
+                    <b>file_filter</b>
+                    <a class="ansibleOptionLink" href="#return-build_runs/build_run_source/trigger_info/actions/filter/include/file_filter" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-build_runs/build_run_source/trigger_info/actions/filter/include/file_filter/file_paths"></div>
+                    <b>file_paths</b>
+                    <a class="ansibleOptionLink" href="#return-build_runs/build_run_source/trigger_info/actions/filter/include/file_filter/file_paths" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The file paths/glob pattern for files.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_source/trigger_info/actions/filter/include/head_ref"></div>
                     <b>head_ref</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_source/trigger_info/actions/filter/include/head_ref" title="Permalink to this return value"></a>
@@ -2528,7 +2717,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_source/trigger_info/actions/filter/trigger_source"></div>
                     <b>trigger_source</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_source/trigger_info/actions/filter/trigger_source" title="Permalink to this return value"></a>
@@ -2550,7 +2739,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_source/trigger_info/actions/type"></div>
                     <b>type</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_source/trigger_info/actions/type" title="Permalink to this return value"></a>
@@ -2571,7 +2760,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-build_runs/build_run_source/trigger_info/display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/build_run_source/trigger_info/display_name" title="Permalink to this return value"></a>
@@ -2591,7 +2780,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="6">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-build_runs/commit_info"></div>
                     <b>commit_info</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/commit_info" title="Permalink to this return value"></a>
@@ -2608,7 +2797,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-build_runs/commit_info/commit_hash"></div>
                     <b>commit_hash</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/commit_info/commit_hash" title="Permalink to this return value"></a>
@@ -2627,7 +2816,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-build_runs/commit_info/repository_branch"></div>
                     <b>repository_branch</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/commit_info/repository_branch" title="Permalink to this return value"></a>
@@ -2646,7 +2835,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-build_runs/commit_info/repository_url"></div>
                     <b>repository_url</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/commit_info/repository_url" title="Permalink to this return value"></a>
@@ -2665,7 +2854,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="6">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-build_runs/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/compartment_id" title="Permalink to this return value"></a>
@@ -2683,7 +2872,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="6">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-build_runs/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/defined_tags" title="Permalink to this return value"></a>
@@ -2701,7 +2890,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="6">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-build_runs/display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/display_name" title="Permalink to this return value"></a>
@@ -2719,7 +2908,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="6">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-build_runs/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/freeform_tags" title="Permalink to this return value"></a>
@@ -2737,7 +2926,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="6">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-build_runs/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/id" title="Permalink to this return value"></a>
@@ -2755,7 +2944,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="6">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-build_runs/lifecycle_details"></div>
                     <b>lifecycle_details</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/lifecycle_details" title="Permalink to this return value"></a>
@@ -2773,7 +2962,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="6">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-build_runs/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/lifecycle_state" title="Permalink to this return value"></a>
@@ -2791,7 +2980,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="6">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-build_runs/project_id"></div>
                     <b>project_id</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/project_id" title="Permalink to this return value"></a>
@@ -2809,7 +2998,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="6">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-build_runs/system_tags"></div>
                     <b>system_tags</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/system_tags" title="Permalink to this return value"></a>
@@ -2825,7 +3014,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="6">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-build_runs/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/time_created" title="Permalink to this return value"></a>
@@ -2843,7 +3032,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="6">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-build_runs/time_updated"></div>
                     <b>time_updated</b>
                     <a class="ansibleOptionLink" href="#return-build_runs/time_updated" title="Permalink to this return value"></a>

@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 3.0.1
+Collection version 3.1.0
 
 .. toctree::
     :maxdepth: 1
@@ -407,6 +407,15 @@ Modules
 * :ref:`oci_data_integration_workspace_actions <ansible_collections.oracle.oci.oci_data_integration_workspace_actions_module>` -- Perform actions on a Workspace resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_integration_workspace_facts <ansible_collections.oracle.oci.oci_data_integration_workspace_facts_module>` -- Fetches details about one or multiple Workspace resources in Oracle Cloud Infrastructure
 * :ref:`oci_data_labeling_service_annotation_format_facts <ansible_collections.oracle.oci.oci_data_labeling_service_annotation_format_facts_module>` -- Fetches details about one or multiple AnnotationFormat resources in Oracle Cloud Infrastructure
+* :ref:`oci_data_labeling_service_dataplane_annotation <ansible_collections.oracle.oci.oci_data_labeling_service_dataplane_annotation_module>` -- Manage an Annotation resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_labeling_service_dataplane_annotation_analytics_aggregation_facts <ansible_collections.oracle.oci.oci_data_labeling_service_dataplane_annotation_analytics_aggregation_facts_module>` -- Fetches details about one or multiple AnnotationAnalyticsAggregation resources in Oracle Cloud Infrastructure
+* :ref:`oci_data_labeling_service_dataplane_annotation_facts <ansible_collections.oracle.oci.oci_data_labeling_service_dataplane_annotation_facts_module>` -- Fetches details about one or multiple Annotation resources in Oracle Cloud Infrastructure
+* :ref:`oci_data_labeling_service_dataplane_dataset_facts <ansible_collections.oracle.oci.oci_data_labeling_service_dataplane_dataset_facts_module>` -- Fetches details about a Dataset resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_labeling_service_dataplane_record <ansible_collections.oracle.oci.oci_data_labeling_service_dataplane_record_module>` -- Manage a Record resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_labeling_service_dataplane_record_analytics_aggregation_facts <ansible_collections.oracle.oci.oci_data_labeling_service_dataplane_record_analytics_aggregation_facts_module>` -- Fetches details about one or multiple RecordAnalyticsAggregation resources in Oracle Cloud Infrastructure
+* :ref:`oci_data_labeling_service_dataplane_record_content_facts <ansible_collections.oracle.oci.oci_data_labeling_service_dataplane_record_content_facts_module>` -- Fetches details about a RecordContent resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_labeling_service_dataplane_record_facts <ansible_collections.oracle.oci.oci_data_labeling_service_dataplane_record_facts_module>` -- Fetches details about one or multiple Record resources in Oracle Cloud Infrastructure
+* :ref:`oci_data_labeling_service_dataplane_record_preview_content_facts <ansible_collections.oracle.oci.oci_data_labeling_service_dataplane_record_preview_content_facts_module>` -- Fetches details about a RecordPreviewContent resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_labeling_service_dataset <ansible_collections.oracle.oci.oci_data_labeling_service_dataset_module>` -- Manage a Dataset resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_labeling_service_dataset_actions <ansible_collections.oracle.oci.oci_data_labeling_service_dataset_actions_module>` -- Perform actions on a Dataset resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_labeling_service_dataset_facts <ansible_collections.oracle.oci.oci_data_labeling_service_dataset_facts_module>` -- Fetches details about one or multiple Dataset resources in Oracle Cloud Infrastructure
@@ -1313,6 +1322,30 @@ Modules
 * :ref:`oci_opensearch_cluster_backup_facts <ansible_collections.oracle.oci.oci_opensearch_cluster_backup_facts_module>` -- Fetches details about one or multiple OpensearchClusterBackup resources in Oracle Cloud Infrastructure
 * :ref:`oci_opensearch_cluster_facts <ansible_collections.oracle.oci.oci_opensearch_cluster_facts_module>` -- Fetches details about one or multiple OpensearchCluster resources in Oracle Cloud Infrastructure
 * :ref:`oci_opensearch_versions_facts <ansible_collections.oracle.oci.oci_opensearch_versions_facts_module>` -- Fetches details about one or multiple OpensearchVersions resources in Oracle Cloud Infrastructure
+* :ref:`oci_operator_access_control_access_request_actions <ansible_collections.oracle.oci.oci_operator_access_control_access_request_actions_module>` -- Perform actions on an AccessRequest resource in Oracle Cloud Infrastructure
+* :ref:`oci_operator_access_control_access_request_facts <ansible_collections.oracle.oci.oci_operator_access_control_access_request_facts_module>` -- Fetches details about one or multiple AccessRequest resources in Oracle Cloud Infrastructure
+* :ref:`oci_operator_access_control_access_request_history_facts <ansible_collections.oracle.oci.oci_operator_access_control_access_request_history_facts_module>` -- Fetches details about one or multiple AccessRequestHistory resources in Oracle Cloud Infrastructure
+* :ref:`oci_operator_access_control_interaction_facts <ansible_collections.oracle.oci.oci_operator_access_control_interaction_facts_module>` -- Fetches details about one or multiple Interaction resources in Oracle Cloud Infrastructure
+* :ref:`oci_operator_access_control_operator_action_facts <ansible_collections.oracle.oci.oci_operator_access_control_operator_action_facts_module>` -- Fetches details about one or multiple OperatorAction resources in Oracle Cloud Infrastructure
+* :ref:`oci_operator_access_control_operator_control <ansible_collections.oracle.oci.oci_operator_access_control_operator_control_module>` -- Manage an OperatorControl resource in Oracle Cloud Infrastructure
+* :ref:`oci_operator_access_control_operator_control_actions <ansible_collections.oracle.oci.oci_operator_access_control_operator_control_actions_module>` -- Perform actions on an OperatorControl resource in Oracle Cloud Infrastructure
+* :ref:`oci_operator_access_control_operator_control_assignment <ansible_collections.oracle.oci.oci_operator_access_control_operator_control_assignment_module>` -- Manage an OperatorControlAssignment resource in Oracle Cloud Infrastructure
+* :ref:`oci_operator_access_control_operator_control_assignment_actions <ansible_collections.oracle.oci.oci_operator_access_control_operator_control_assignment_actions_module>` -- Perform actions on an OperatorControlAssignment resource in Oracle Cloud Infrastructure
+* :ref:`oci_operator_access_control_operator_control_assignment_facts <ansible_collections.oracle.oci.oci_operator_access_control_operator_control_assignment_facts_module>` -- Fetches details about one or multiple OperatorControlAssignment resources in Oracle Cloud Infrastructure
+* :ref:`oci_operator_access_control_operator_control_facts <ansible_collections.oracle.oci.oci_operator_access_control_operator_control_facts_module>` -- Fetches details about one or multiple OperatorControl resources in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_awr_database_cpu_usage_facts <ansible_collections.oracle.oci.oci_opsi_awr_database_cpu_usage_facts_module>` -- Fetches details about one or multiple AwrDatabaseCpuUsage resources in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_awr_database_facts <ansible_collections.oracle.oci.oci_opsi_awr_database_facts_module>` -- Fetches details about one or multiple AwrDatabase resources in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_awr_database_metric_facts <ansible_collections.oracle.oci.oci_opsi_awr_database_metric_facts_module>` -- Fetches details about one or multiple AwrDatabaseMetric resources in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_awr_database_parameter_change_facts <ansible_collections.oracle.oci.oci_opsi_awr_database_parameter_change_facts_module>` -- Fetches details about one or multiple AwrDatabaseParameterChange resources in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_awr_database_parameter_facts <ansible_collections.oracle.oci.oci_opsi_awr_database_parameter_facts_module>` -- Fetches details about one or multiple AwrDatabaseParameter resources in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_awr_database_report_facts <ansible_collections.oracle.oci.oci_opsi_awr_database_report_facts_module>` -- Fetches details about a AwrDatabaseReport resource in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_awr_database_snapshot_facts <ansible_collections.oracle.oci.oci_opsi_awr_database_snapshot_facts_module>` -- Fetches details about one or multiple AwrDatabaseSnapshot resources in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_awr_database_snapshot_range_facts <ansible_collections.oracle.oci.oci_opsi_awr_database_snapshot_range_facts_module>` -- Fetches details about one or multiple AwrDatabaseSnapshotRange resources in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_awr_database_sql_report_facts <ansible_collections.oracle.oci.oci_opsi_awr_database_sql_report_facts_module>` -- Fetches details about a AwrDatabaseSqlReport resource in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_awr_database_sysstat_facts <ansible_collections.oracle.oci.oci_opsi_awr_database_sysstat_facts_module>` -- Fetches details about one or multiple AwrDatabaseSysstat resources in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_awr_database_top_wait_event_facts <ansible_collections.oracle.oci.oci_opsi_awr_database_top_wait_event_facts_module>` -- Fetches details about one or multiple AwrDatabaseTopWaitEvent resources in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_awr_database_wait_event_bucket_facts <ansible_collections.oracle.oci.oci_opsi_awr_database_wait_event_bucket_facts_module>` -- Fetches details about one or multiple AwrDatabaseWaitEventBucket resources in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_awr_database_wait_event_facts <ansible_collections.oracle.oci.oci_opsi_awr_database_wait_event_facts_module>` -- Fetches details about one or multiple AwrDatabaseWaitEvent resources in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_awr_hub <ansible_collections.oracle.oci.oci_opsi_awr_hub_module>` -- Manage an AwrHub resource in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_awr_hub_facts <ansible_collections.oracle.oci.oci_opsi_awr_hub_facts_module>` -- Fetches details about one or multiple AwrHub resources in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_awr_report_facts <ansible_collections.oracle.oci.oci_opsi_awr_report_facts_module>` -- Fetches details about a AwrReport resource in Oracle Cloud Infrastructure
@@ -1343,6 +1376,7 @@ Modules
 * :ref:`oci_opsi_host_insight_resource_usage_trend_facts <ansible_collections.oracle.oci.oci_opsi_host_insight_resource_usage_trend_facts_module>` -- Fetches details about a HostInsightResourceUsageTrend resource in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_host_insight_resource_utilization_insight_facts <ansible_collections.oracle.oci.oci_opsi_host_insight_resource_utilization_insight_facts_module>` -- Fetches details about a HostInsightResourceUtilizationInsight resource in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_importable_agent_entity_facts <ansible_collections.oracle.oci.oci_opsi_importable_agent_entity_facts_module>` -- Fetches details about one or multiple ImportableAgentEntity resources in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_importable_compute_entity_facts <ansible_collections.oracle.oci.oci_opsi_importable_compute_entity_facts_module>` -- Fetches details about one or multiple ImportableComputeEntity resources in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_importable_enterprise_manager_entity_facts <ansible_collections.oracle.oci.oci_opsi_importable_enterprise_manager_entity_facts_module>` -- Fetches details about one or multiple ImportableEnterpriseManagerEntity resources in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_operations_insights_private_endpoint <ansible_collections.oracle.oci.oci_opsi_operations_insights_private_endpoint_module>` -- Manage an OperationsInsightsPrivateEndpoint resource in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_operations_insights_private_endpoint_actions <ansible_collections.oracle.oci.oci_opsi_operations_insights_private_endpoint_actions_module>` -- Perform actions on an OperationsInsightsPrivateEndpoint resource in Oracle Cloud Infrastructure
@@ -1533,6 +1567,7 @@ Modules
 * :ref:`oci_usage_proxy_monthly_reward_facts <ansible_collections.oracle.oci.oci_usage_proxy_monthly_reward_facts_module>` -- Fetches details about one or multiple MonthlyReward resources in Oracle Cloud Infrastructure
 * :ref:`oci_usage_proxy_product_facts <ansible_collections.oracle.oci.oci_usage_proxy_product_facts_module>` -- Fetches details about one or multiple Product resources in Oracle Cloud Infrastructure
 * :ref:`oci_usage_proxy_redeemable_user_facts <ansible_collections.oracle.oci.oci_usage_proxy_redeemable_user_facts_module>` -- Fetches details about one or multiple RedeemableUser resources in Oracle Cloud Infrastructure
+* :ref:`oci_usage_proxy_redemption_facts <ansible_collections.oracle.oci.oci_usage_proxy_redemption_facts_module>` -- Fetches details about one or multiple Redemption resources in Oracle Cloud Infrastructure
 * :ref:`oci_usage_query <ansible_collections.oracle.oci.oci_usage_query_module>` -- Manage a Query resource in Oracle Cloud Infrastructure
 * :ref:`oci_usage_query_facts <ansible_collections.oracle.oci.oci_usage_query_facts_module>` -- Fetches details about one or multiple Query resources in Oracle Cloud Infrastructure
 * :ref:`oci_usage_schedule <ansible_collections.oracle.oci.oci_usage_schedule_module>` -- Manage a Schedule resource in Oracle Cloud Infrastructure
@@ -2026,6 +2061,15 @@ Modules
     oci_data_integration_workspace_actions_module
     oci_data_integration_workspace_facts_module
     oci_data_labeling_service_annotation_format_facts_module
+    oci_data_labeling_service_dataplane_annotation_module
+    oci_data_labeling_service_dataplane_annotation_analytics_aggregation_facts_module
+    oci_data_labeling_service_dataplane_annotation_facts_module
+    oci_data_labeling_service_dataplane_dataset_facts_module
+    oci_data_labeling_service_dataplane_record_module
+    oci_data_labeling_service_dataplane_record_analytics_aggregation_facts_module
+    oci_data_labeling_service_dataplane_record_content_facts_module
+    oci_data_labeling_service_dataplane_record_facts_module
+    oci_data_labeling_service_dataplane_record_preview_content_facts_module
     oci_data_labeling_service_dataset_module
     oci_data_labeling_service_dataset_actions_module
     oci_data_labeling_service_dataset_facts_module
@@ -2932,6 +2976,30 @@ Modules
     oci_opensearch_cluster_backup_facts_module
     oci_opensearch_cluster_facts_module
     oci_opensearch_versions_facts_module
+    oci_operator_access_control_access_request_actions_module
+    oci_operator_access_control_access_request_facts_module
+    oci_operator_access_control_access_request_history_facts_module
+    oci_operator_access_control_interaction_facts_module
+    oci_operator_access_control_operator_action_facts_module
+    oci_operator_access_control_operator_control_module
+    oci_operator_access_control_operator_control_actions_module
+    oci_operator_access_control_operator_control_assignment_module
+    oci_operator_access_control_operator_control_assignment_actions_module
+    oci_operator_access_control_operator_control_assignment_facts_module
+    oci_operator_access_control_operator_control_facts_module
+    oci_opsi_awr_database_cpu_usage_facts_module
+    oci_opsi_awr_database_facts_module
+    oci_opsi_awr_database_metric_facts_module
+    oci_opsi_awr_database_parameter_change_facts_module
+    oci_opsi_awr_database_parameter_facts_module
+    oci_opsi_awr_database_report_facts_module
+    oci_opsi_awr_database_snapshot_facts_module
+    oci_opsi_awr_database_snapshot_range_facts_module
+    oci_opsi_awr_database_sql_report_facts_module
+    oci_opsi_awr_database_sysstat_facts_module
+    oci_opsi_awr_database_top_wait_event_facts_module
+    oci_opsi_awr_database_wait_event_bucket_facts_module
+    oci_opsi_awr_database_wait_event_facts_module
     oci_opsi_awr_hub_module
     oci_opsi_awr_hub_facts_module
     oci_opsi_awr_report_facts_module
@@ -2962,6 +3030,7 @@ Modules
     oci_opsi_host_insight_resource_usage_trend_facts_module
     oci_opsi_host_insight_resource_utilization_insight_facts_module
     oci_opsi_importable_agent_entity_facts_module
+    oci_opsi_importable_compute_entity_facts_module
     oci_opsi_importable_enterprise_manager_entity_facts_module
     oci_opsi_operations_insights_private_endpoint_module
     oci_opsi_operations_insights_private_endpoint_actions_module
@@ -3152,6 +3221,7 @@ Modules
     oci_usage_proxy_monthly_reward_facts_module
     oci_usage_proxy_product_facts_module
     oci_usage_proxy_redeemable_user_facts_module
+    oci_usage_proxy_redemption_facts_module
     oci_usage_query_module
     oci_usage_query_facts_module
     oci_usage_schedule_module

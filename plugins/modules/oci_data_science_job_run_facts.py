@@ -177,6 +177,24 @@ job_runs:
                     returned: on success
                     type: int
                     sample: 56
+                job_shape_config_details:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        ocpus:
+                            description:
+                                - A job run instance of type VM.Standard.E3.Flex allows the ocpu count to be specified.
+                            returned: on success
+                            type: float
+                            sample: 3.4
+                        memory_in_gbs:
+                            description:
+                                - A job run instance of type VM.Standard.E3.Flex allows memory to be specified. This specifies the size of the memory in GBs.
+                            returned: on success
+                            type: float
+                            sample: 3.4
         job_log_configuration_override_details:
             description:
                 - ""
@@ -320,7 +338,11 @@ job_runs:
             "job_infrastructure_type": "STANDALONE",
             "shape_name": "shape_name_example",
             "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
-            "block_storage_size_in_gbs": 56
+            "block_storage_size_in_gbs": 56,
+            "job_shape_config_details": {
+                "ocpus": 3.4,
+                "memory_in_gbs": 3.4
+            }
         },
         "job_log_configuration_override_details": {
             "enable_logging": true,

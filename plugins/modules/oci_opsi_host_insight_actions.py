@@ -42,6 +42,7 @@ options:
         type: str
         choices:
             - "MACS_MANAGED_EXTERNAL_HOST"
+            - "MACS_MANAGED_CLOUD_HOST"
             - "EM_MANAGED_EXTERNAL_HOST"
     host_insight_id:
         description:
@@ -79,6 +80,11 @@ EXAMPLES = """
   oci_opsi_host_insight_actions:
     # required
     entity_source: MACS_MANAGED_EXTERNAL_HOST
+
+- name: Perform action enable on host_insight with entity_source = MACS_MANAGED_CLOUD_HOST
+  oci_opsi_host_insight_actions:
+    # required
+    entity_source: MACS_MANAGED_CLOUD_HOST
 
 - name: Perform action enable on host_insight with entity_source = EM_MANAGED_EXTERNAL_HOST
   oci_opsi_host_insight_actions:
@@ -136,6 +142,12 @@ host_insight:
             returned: on success
             type: str
             sample: "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx"
+        compute_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Compute Instance
+            returned: on success
+            type: str
+            sample: "ocid1.compute.oc1..xxxxxxEXAMPLExxxxxx"
         entity_source:
             description:
                 - Source of the host entity.
@@ -264,6 +276,7 @@ host_insight:
         "enterprise_manager_entity_display_name": "enterprise_manager_entity_display_name_example",
         "enterprise_manager_bridge_id": "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx",
         "exadata_insight_id": "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx",
+        "compute_id": "ocid1.compute.oc1..xxxxxxEXAMPLExxxxxx",
         "entity_source": "MACS_MANAGED_EXTERNAL_HOST",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -406,7 +419,11 @@ def main():
             compartment_id=dict(type="str"),
             entity_source=dict(
                 type="str",
-                choices=["MACS_MANAGED_EXTERNAL_HOST", "EM_MANAGED_EXTERNAL_HOST"],
+                choices=[
+                    "MACS_MANAGED_EXTERNAL_HOST",
+                    "MACS_MANAGED_CLOUD_HOST",
+                    "EM_MANAGED_EXTERNAL_HOST",
+                ],
             ),
             host_insight_id=dict(aliases=["id"], type="str", required=True),
             action=dict(

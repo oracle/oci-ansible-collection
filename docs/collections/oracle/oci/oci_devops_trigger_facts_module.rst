@@ -30,7 +30,7 @@ oracle.oci.oci_devops_trigger_facts -- Fetches details about one or multiple Tri
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.0.1).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.1.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -438,12 +438,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="5">Key</th>
+            <th colspan="6">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="5">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-triggers"></div>
                     <b>triggers</b>
                     <a class="ansibleOptionLink" href="#return-triggers" title="Permalink to this return value"></a>
@@ -456,12 +456,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Trigger resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;actions&#x27;: [{&#x27;build_pipeline_id&#x27;: &#x27;ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;filter&#x27;: {&#x27;events&#x27;: [], &#x27;include&#x27;: {&#x27;base_ref&#x27;: &#x27;base_ref_example&#x27;, &#x27;head_ref&#x27;: &#x27;head_ref_example&#x27;}, &#x27;trigger_source&#x27;: &#x27;BITBUCKET_CLOUD&#x27;}, &#x27;type&#x27;: &#x27;TRIGGER_BUILD_PIPELINE&#x27;}], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;repository_id&#x27;: &#x27;ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;trigger_source&#x27;: &#x27;GITHUB&#x27;, &#x27;trigger_url&#x27;: &#x27;trigger_url_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;actions&#x27;: [{&#x27;build_pipeline_id&#x27;: &#x27;ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;filter&#x27;: {&#x27;events&#x27;: [], &#x27;exclude&#x27;: {&#x27;file_filter&#x27;: {&#x27;file_paths&#x27;: []}}, &#x27;include&#x27;: {&#x27;base_ref&#x27;: &#x27;base_ref_example&#x27;, &#x27;file_filter&#x27;: {&#x27;file_paths&#x27;: []}, &#x27;head_ref&#x27;: &#x27;head_ref_example&#x27;}, &#x27;trigger_source&#x27;: &#x27;BITBUCKET_CLOUD&#x27;}, &#x27;type&#x27;: &#x27;TRIGGER_BUILD_PIPELINE&#x27;}], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_id&#x27;: &#x27;ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;repository_id&#x27;: &#x27;ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;trigger_source&#x27;: &#x27;GITHUB&#x27;, &#x27;trigger_url&#x27;: &#x27;trigger_url_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-triggers/actions"></div>
                     <b>actions</b>
                     <a class="ansibleOptionLink" href="#return-triggers/actions" title="Permalink to this return value"></a>
@@ -479,7 +479,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-triggers/actions/build_pipeline_id"></div>
                     <b>build_pipeline_id</b>
                     <a class="ansibleOptionLink" href="#return-triggers/actions/build_pipeline_id" title="Permalink to this return value"></a>
@@ -498,7 +498,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-triggers/actions/filter"></div>
                     <b>filter</b>
                     <a class="ansibleOptionLink" href="#return-triggers/actions/filter" title="Permalink to this return value"></a>
@@ -516,7 +516,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-triggers/actions/filter/events"></div>
                     <b>events</b>
                     <a class="ansibleOptionLink" href="#return-triggers/actions/filter/events" title="Permalink to this return value"></a>
@@ -534,7 +534,66 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-triggers/actions/filter/exclude"></div>
+                    <b>exclude</b>
+                    <a class="ansibleOptionLink" href="#return-triggers/actions/filter/exclude" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-triggers/actions/filter/exclude/file_filter"></div>
+                    <b>file_filter</b>
+                    <a class="ansibleOptionLink" href="#return-triggers/actions/filter/exclude/file_filter" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-triggers/actions/filter/exclude/file_filter/file_paths"></div>
+                    <b>file_paths</b>
+                    <a class="ansibleOptionLink" href="#return-triggers/actions/filter/exclude/file_filter/file_paths" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The file paths/glob pattern for files.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                    
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-triggers/actions/filter/include"></div>
                     <b>include</b>
                     <a class="ansibleOptionLink" href="#return-triggers/actions/filter/include" title="Permalink to this return value"></a>
@@ -553,7 +612,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-triggers/actions/filter/include/base_ref"></div>
                     <b>base_ref</b>
                     <a class="ansibleOptionLink" href="#return-triggers/actions/filter/include/base_ref" title="Permalink to this return value"></a>
@@ -574,7 +633,47 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-triggers/actions/filter/include/file_filter"></div>
+                    <b>file_filter</b>
+                    <a class="ansibleOptionLink" href="#return-triggers/actions/filter/include/file_filter" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-triggers/actions/filter/include/file_filter/file_paths"></div>
+                    <b>file_paths</b>
+                    <a class="ansibleOptionLink" href="#return-triggers/actions/filter/include/file_filter/file_paths" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The file paths/glob pattern for files.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-triggers/actions/filter/include/head_ref"></div>
                     <b>head_ref</b>
                     <a class="ansibleOptionLink" href="#return-triggers/actions/filter/include/head_ref" title="Permalink to this return value"></a>
@@ -595,7 +694,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-triggers/actions/filter/trigger_source"></div>
                     <b>trigger_source</b>
                     <a class="ansibleOptionLink" href="#return-triggers/actions/filter/trigger_source" title="Permalink to this return value"></a>
@@ -615,7 +714,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-triggers/actions/type"></div>
                     <b>type</b>
                     <a class="ansibleOptionLink" href="#return-triggers/actions/type" title="Permalink to this return value"></a>
@@ -634,7 +733,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-triggers/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-triggers/compartment_id" title="Permalink to this return value"></a>
@@ -652,7 +751,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-triggers/connection_id"></div>
+                    <b>connection_id</b>
+                    <a class="ansibleOptionLink" href="#return-triggers/connection_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the connection resource used to get details for triggered events.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-triggers/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-triggers/defined_tags" title="Permalink to this return value"></a>
@@ -670,7 +788,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-triggers/description"></div>
                     <b>description</b>
                     <a class="ansibleOptionLink" href="#return-triggers/description" title="Permalink to this return value"></a>
@@ -688,7 +806,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-triggers/display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#return-triggers/display_name" title="Permalink to this return value"></a>
@@ -706,7 +824,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-triggers/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-triggers/freeform_tags" title="Permalink to this return value"></a>
@@ -724,7 +842,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-triggers/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-triggers/id" title="Permalink to this return value"></a>
@@ -742,7 +860,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-triggers/lifecycle_details"></div>
                     <b>lifecycle_details</b>
                     <a class="ansibleOptionLink" href="#return-triggers/lifecycle_details" title="Permalink to this return value"></a>
@@ -760,7 +878,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-triggers/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-triggers/lifecycle_state" title="Permalink to this return value"></a>
@@ -778,7 +896,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-triggers/project_id"></div>
                     <b>project_id</b>
                     <a class="ansibleOptionLink" href="#return-triggers/project_id" title="Permalink to this return value"></a>
@@ -796,7 +914,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-triggers/repository_id"></div>
                     <b>repository_id</b>
                     <a class="ansibleOptionLink" href="#return-triggers/repository_id" title="Permalink to this return value"></a>
@@ -815,7 +933,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-triggers/system_tags"></div>
                     <b>system_tags</b>
                     <a class="ansibleOptionLink" href="#return-triggers/system_tags" title="Permalink to this return value"></a>
@@ -831,7 +949,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-triggers/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-triggers/time_created" title="Permalink to this return value"></a>
@@ -849,7 +967,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-triggers/time_updated"></div>
                     <b>time_updated</b>
                     <a class="ansibleOptionLink" href="#return-triggers/time_updated" title="Permalink to this return value"></a>
@@ -867,7 +985,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-triggers/trigger_source"></div>
                     <b>trigger_source</b>
                     <a class="ansibleOptionLink" href="#return-triggers/trigger_source" title="Permalink to this return value"></a>
@@ -885,7 +1003,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-triggers/trigger_url"></div>
                     <b>trigger_url</b>
                     <a class="ansibleOptionLink" href="#return-triggers/trigger_url" title="Permalink to this return value"></a>

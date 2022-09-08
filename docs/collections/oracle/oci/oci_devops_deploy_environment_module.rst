@@ -30,7 +30,7 @@ oracle.oci.oci_devops_deploy_environment -- Manage a DeployEnvironment resource 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.0.1).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.1.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -546,7 +546,8 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>PRIVATE_ENDPOINT_CHANNEL</li>
+                                                                                                                                                                <li>SERVICE_VNIC_CHANNEL</li>
+                                                                                                                                                                                                <li>PRIVATE_ENDPOINT_CHANNEL</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -582,7 +583,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The OCID of the subnet where VNIC resources will be created for private endpoint.</div>
+                                            <div>The OCID of the subnet where private resources exist.</div>
                                                         </td>
             </tr>
                     
@@ -744,7 +745,7 @@ Examples
         cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
         network_channel:
           # required
-          network_channel_type: PRIVATE_ENDPOINT_CHANNEL
+          network_channel_type: SERVICE_VNIC_CHANNEL
           subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
 
           # optional
@@ -793,7 +794,7 @@ Examples
         cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
         network_channel:
           # required
-          network_channel_type: PRIVATE_ENDPOINT_CHANNEL
+          network_channel_type: SERVICE_VNIC_CHANNEL
           subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
 
           # optional
@@ -841,7 +842,7 @@ Examples
         cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
         network_channel:
           # required
-          network_channel_type: PRIVATE_ENDPOINT_CHANNEL
+          network_channel_type: SERVICE_VNIC_CHANNEL
           subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
 
           # optional

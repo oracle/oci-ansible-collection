@@ -60,6 +60,8 @@ options:
         choices:
             - "GITHUB_ACCESS_TOKEN"
             - "GITLAB_ACCESS_TOKEN"
+            - "GITLAB_SERVER_ACCESS_TOKEN"
+            - "BITBUCKET_SERVER_ACCESS_TOKEN"
             - "BITBUCKET_CLOUD_APP_PASSWORD"
     sort_order:
         description:
@@ -127,6 +129,32 @@ connections:
             returned: on success
             type: str
             sample: access_token_example
+        base_url:
+            description:
+                - The Base URL of the hosted BitbucketServer.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: base_url_example
+        tls_verify_config:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                tls_verify_mode:
+                    description:
+                        - The type of TLS verification.
+                    returned: on success
+                    type: str
+                    sample: CA_CERTIFICATE_VERIFY
+                ca_certificate_bundle_id:
+                    description:
+                        - The OCID of OCI certificate service CA bundle.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.cacertificatebundle.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - Unique identifier that is immutable on creation.
@@ -207,6 +235,11 @@ connections:
         "username": "username_example",
         "app_password": "example-password",
         "access_token": "access_token_example",
+        "base_url": "base_url_example",
+        "tls_verify_config": {
+            "tls_verify_mode": "CA_CERTIFICATE_VERIFY",
+            "ca_certificate_bundle_id": "ocid1.cacertificatebundle.oc1..xxxxxxEXAMPLExxxxxx"
+        },
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "description": "description_example",
@@ -295,6 +328,8 @@ def main():
                 choices=[
                     "GITHUB_ACCESS_TOKEN",
                     "GITLAB_ACCESS_TOKEN",
+                    "GITLAB_SERVER_ACCESS_TOKEN",
+                    "BITBUCKET_SERVER_ACCESS_TOKEN",
                     "BITBUCKET_CLOUD_APP_PASSWORD",
                 ],
             ),

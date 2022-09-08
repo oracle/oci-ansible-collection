@@ -59,13 +59,15 @@ options:
             - "GITHUB"
             - "DEVOPS_CODE_REPOSITORY"
             - "BITBUCKET_CLOUD"
+            - "GITLAB_SERVER"
             - "GITLAB"
+            - "BITBUCKET_SERVER"
     actions:
         description:
             - The list of actions that are to be performed for this trigger.
             - Required for create using I(state=present).
             - This parameter is updatable.
-            - Applicable when trigger_source is one of ['DEVOPS_CODE_REPOSITORY', 'BITBUCKET_CLOUD', 'GITHUB', 'GITLAB']
+            - Applicable when trigger_source is one of ['DEVOPS_CODE_REPOSITORY', 'BITBUCKET_SERVER', 'BITBUCKET_CLOUD', 'GITHUB', 'GITLAB_SERVER', 'GITLAB']
         type: list
         elements: dict
         suboptions:
@@ -88,8 +90,10 @@ options:
                         choices:
                             - "DEVOPS_CODE_REPOSITORY"
                             - "BITBUCKET_CLOUD"
+                            - "BITBUCKET_SERVER"
                             - "GITLAB"
                             - "GITHUB"
+                            - "GITLAB_SERVER"
                         required: true
                     events:
                         description:
@@ -101,6 +105,8 @@ options:
                             - "PULL_REQUEST_CREATED"
                             - "PULL_REQUEST_UPDATED"
                             - "PULL_REQUEST_MERGED"
+                            - "PULL_REQUEST_OPENED"
+                            - "PULL_REQUEST_MODIFIED"
                             - "PULL_REQUEST_REOPENED"
                     include:
                         description:
@@ -114,8 +120,40 @@ options:
                             base_ref:
                                 description:
                                     - The target branch for pull requests; not applicable for push requests.
-                                    - Applicable when trigger_source is one of ['BITBUCKET_CLOUD', 'GITHUB', 'GITLAB']
+                                    - Applicable when trigger_source is one of ['BITBUCKET_SERVER', 'BITBUCKET_CLOUD', 'GITHUB', 'GITLAB_SERVER', 'GITLAB']
                                 type: str
+                            file_filter:
+                                description:
+                                    - ""
+                                    - Applicable when trigger_source is one of ['DEVOPS_CODE_REPOSITORY', 'BITBUCKET_CLOUD', 'GITHUB', 'GITLAB_SERVER',
+                                      'GITLAB']
+                                type: dict
+                                suboptions:
+                                    file_paths:
+                                        description:
+                                            - The file paths/glob pattern for files.
+                                            - Applicable when trigger_source is 'DEVOPS_CODE_REPOSITORY'
+                                        type: list
+                                        elements: str
+                    exclude:
+                        description:
+                            - ""
+                            - Applicable when trigger_source is one of ['DEVOPS_CODE_REPOSITORY', 'BITBUCKET_CLOUD', 'GITHUB', 'GITLAB_SERVER', 'GITLAB']
+                        type: dict
+                        suboptions:
+                            file_filter:
+                                description:
+                                    - ""
+                                    - Applicable when trigger_source is one of ['DEVOPS_CODE_REPOSITORY', 'BITBUCKET_CLOUD', 'GITHUB', 'GITLAB_SERVER',
+                                      'GITLAB']
+                                type: dict
+                                suboptions:
+                                    file_paths:
+                                        description:
+                                            - The file paths/glob pattern for files.
+                                            - Applicable when trigger_source is 'DEVOPS_CODE_REPOSITORY'
+                                        type: list
+                                        elements: str
             build_pipeline_id:
                 description:
                     - The OCID of the build pipeline to be triggered.
@@ -133,6 +171,12 @@ options:
               Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm). Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             - This parameter is updatable.
         type: dict
+    connection_id:
+        description:
+            - The OCID of the connection resource used to get details for triggered events.
+            - This parameter is updatable.
+            - Applicable when trigger_source is one of ['BITBUCKET_CLOUD', 'GITHUB', 'GITLAB']
+        type: str
     trigger_id:
         description:
             - Unique trigger identifier.
@@ -178,8 +222,17 @@ EXAMPLES = """
           # optional
           head_ref: head_ref_example
           base_ref: base_ref_example
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
+        exclude:
+          # optional
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Create trigger with trigger_source = DEVOPS_CODE_REPOSITORY
   oci_devops_trigger:
@@ -207,6 +260,14 @@ EXAMPLES = """
           # optional
           head_ref: head_ref_example
           base_ref: base_ref_example
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
+        exclude:
+          # optional
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -235,6 +296,51 @@ EXAMPLES = """
           # optional
           head_ref: head_ref_example
           base_ref: base_ref_example
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
+        exclude:
+          # optional
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Create trigger with trigger_source = GITLAB_SERVER
+  oci_devops_trigger:
+    # required
+    project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+    trigger_source: GITLAB_SERVER
+
+    # optional
+    display_name: display_name_example
+    description: description_example
+    actions:
+    - # required
+      type: TRIGGER_BUILD_PIPELINE
+      build_pipeline_id: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      filter:
+        # required
+        trigger_source: DEVOPS_CODE_REPOSITORY
+
+        # optional
+        events: [ "PUSH" ]
+        include:
+          # optional
+          head_ref: head_ref_example
+          base_ref: base_ref_example
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
+        exclude:
+          # optional
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -263,6 +369,51 @@ EXAMPLES = """
           # optional
           head_ref: head_ref_example
           base_ref: base_ref_example
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
+        exclude:
+          # optional
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Create trigger with trigger_source = BITBUCKET_SERVER
+  oci_devops_trigger:
+    # required
+    project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+    trigger_source: BITBUCKET_SERVER
+
+    # optional
+    display_name: display_name_example
+    description: description_example
+    actions:
+    - # required
+      type: TRIGGER_BUILD_PIPELINE
+      build_pipeline_id: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      filter:
+        # required
+        trigger_source: DEVOPS_CODE_REPOSITORY
+
+        # optional
+        events: [ "PUSH" ]
+        include:
+          # optional
+          head_ref: head_ref_example
+          base_ref: base_ref_example
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
+        exclude:
+          # optional
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -290,8 +441,17 @@ EXAMPLES = """
           # optional
           head_ref: head_ref_example
           base_ref: base_ref_example
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
+        exclude:
+          # optional
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update trigger with trigger_source = DEVOPS_CODE_REPOSITORY
   oci_devops_trigger:
@@ -318,6 +478,14 @@ EXAMPLES = """
           # optional
           head_ref: head_ref_example
           base_ref: base_ref_example
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
+        exclude:
+          # optional
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -345,6 +513,50 @@ EXAMPLES = """
           # optional
           head_ref: head_ref_example
           base_ref: base_ref_example
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
+        exclude:
+          # optional
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Update trigger with trigger_source = GITLAB_SERVER
+  oci_devops_trigger:
+    # required
+    trigger_source: GITLAB_SERVER
+
+    # optional
+    display_name: display_name_example
+    description: description_example
+    actions:
+    - # required
+      type: TRIGGER_BUILD_PIPELINE
+      build_pipeline_id: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      filter:
+        # required
+        trigger_source: DEVOPS_CODE_REPOSITORY
+
+        # optional
+        events: [ "PUSH" ]
+        include:
+          # optional
+          head_ref: head_ref_example
+          base_ref: base_ref_example
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
+        exclude:
+          # optional
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -372,6 +584,50 @@ EXAMPLES = """
           # optional
           head_ref: head_ref_example
           base_ref: base_ref_example
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
+        exclude:
+          # optional
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Update trigger with trigger_source = BITBUCKET_SERVER
+  oci_devops_trigger:
+    # required
+    trigger_source: BITBUCKET_SERVER
+
+    # optional
+    display_name: display_name_example
+    description: description_example
+    actions:
+    - # required
+      type: TRIGGER_BUILD_PIPELINE
+      build_pipeline_id: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      filter:
+        # required
+        trigger_source: DEVOPS_CODE_REPOSITORY
+
+        # optional
+        events: [ "PUSH" ]
+        include:
+          # optional
+          head_ref: head_ref_example
+          base_ref: base_ref_example
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
+        exclude:
+          # optional
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -399,8 +655,17 @@ EXAMPLES = """
           # optional
           head_ref: head_ref_example
           base_ref: base_ref_example
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
+        exclude:
+          # optional
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update trigger using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with trigger_source = DEVOPS_CODE_REPOSITORY
   oci_devops_trigger:
@@ -427,6 +692,14 @@ EXAMPLES = """
           # optional
           head_ref: head_ref_example
           base_ref: base_ref_example
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
+        exclude:
+          # optional
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -454,6 +727,50 @@ EXAMPLES = """
           # optional
           head_ref: head_ref_example
           base_ref: base_ref_example
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
+        exclude:
+          # optional
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Update trigger using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with trigger_source = GITLAB_SERVER
+  oci_devops_trigger:
+    # required
+    trigger_source: GITLAB_SERVER
+
+    # optional
+    display_name: display_name_example
+    description: description_example
+    actions:
+    - # required
+      type: TRIGGER_BUILD_PIPELINE
+      build_pipeline_id: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      filter:
+        # required
+        trigger_source: DEVOPS_CODE_REPOSITORY
+
+        # optional
+        events: [ "PUSH" ]
+        include:
+          # optional
+          head_ref: head_ref_example
+          base_ref: base_ref_example
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
+        exclude:
+          # optional
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -481,6 +798,50 @@ EXAMPLES = """
           # optional
           head_ref: head_ref_example
           base_ref: base_ref_example
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
+        exclude:
+          # optional
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Update trigger using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with trigger_source = BITBUCKET_SERVER
+  oci_devops_trigger:
+    # required
+    trigger_source: BITBUCKET_SERVER
+
+    # optional
+    display_name: display_name_example
+    description: description_example
+    actions:
+    - # required
+      type: TRIGGER_BUILD_PIPELINE
+      build_pipeline_id: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      filter:
+        # required
+        trigger_source: DEVOPS_CODE_REPOSITORY
+
+        # optional
+        events: [ "PUSH" ]
+        include:
+          # optional
+          head_ref: head_ref_example
+          base_ref: base_ref_example
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
+        exclude:
+          # optional
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -511,6 +872,12 @@ trigger:
             returned: on success
             type: str
             sample: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
+        connection_id:
+            description:
+                - The OCID of the connection resource used to get details for triggered events.
+            returned: on success
+            type: str
+            sample: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - Unique identifier that is immutable on creation.
@@ -620,6 +987,36 @@ trigger:
                                     returned: on success
                                     type: str
                                     sample: base_ref_example
+                                file_filter:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        file_paths:
+                                            description:
+                                                - The file paths/glob pattern for files.
+                                            returned: on success
+                                            type: list
+                                            sample: []
+                        exclude:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                file_filter:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        file_paths:
+                                            description:
+                                                - The file paths/glob pattern for files.
+                                            returned: on success
+                                            type: list
+                                            sample: []
                 build_pipeline_id:
                     description:
                         - The OCID of the build pipeline to be triggered.
@@ -656,6 +1053,7 @@ trigger:
             sample: trigger_url_example
     sample: {
         "repository_id": "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx",
+        "connection_id": "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "description": "description_example",
@@ -673,7 +1071,15 @@ trigger:
                 "events": [],
                 "include": {
                     "head_ref": "head_ref_example",
-                    "base_ref": "base_ref_example"
+                    "base_ref": "base_ref_example",
+                    "file_filter": {
+                        "file_paths": []
+                    }
+                },
+                "exclude": {
+                    "file_filter": {
+                        "file_paths": []
+                    }
                 }
             },
             "build_pipeline_id": "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
@@ -835,7 +1241,9 @@ def main():
                     "GITHUB",
                     "DEVOPS_CODE_REPOSITORY",
                     "BITBUCKET_CLOUD",
+                    "GITLAB_SERVER",
                     "GITLAB",
+                    "BITBUCKET_SERVER",
                 ],
             ),
             actions=dict(
@@ -854,8 +1262,10 @@ def main():
                                 choices=[
                                     "DEVOPS_CODE_REPOSITORY",
                                     "BITBUCKET_CLOUD",
+                                    "BITBUCKET_SERVER",
                                     "GITLAB",
                                     "GITHUB",
+                                    "GITLAB_SERVER",
                                 ],
                             ),
                             events=dict(
@@ -866,13 +1276,33 @@ def main():
                                     "PULL_REQUEST_CREATED",
                                     "PULL_REQUEST_UPDATED",
                                     "PULL_REQUEST_MERGED",
+                                    "PULL_REQUEST_OPENED",
+                                    "PULL_REQUEST_MODIFIED",
                                     "PULL_REQUEST_REOPENED",
                                 ],
                             ),
                             include=dict(
                                 type="dict",
                                 options=dict(
-                                    head_ref=dict(type="str"), base_ref=dict(type="str")
+                                    head_ref=dict(type="str"),
+                                    base_ref=dict(type="str"),
+                                    file_filter=dict(
+                                        type="dict",
+                                        options=dict(
+                                            file_paths=dict(type="list", elements="str")
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            exclude=dict(
+                                type="dict",
+                                options=dict(
+                                    file_filter=dict(
+                                        type="dict",
+                                        options=dict(
+                                            file_paths=dict(type="list", elements="str")
+                                        ),
+                                    )
                                 ),
                             ),
                         ),
@@ -882,6 +1312,7 @@ def main():
             ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
+            connection_id=dict(type="str"),
             trigger_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

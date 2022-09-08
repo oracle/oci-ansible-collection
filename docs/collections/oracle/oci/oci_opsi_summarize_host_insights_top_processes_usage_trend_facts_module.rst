@@ -30,7 +30,7 @@ oracle.oci.oci_opsi_summarize_host_insights_top_processes_usage_trend_facts -- F
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.0.1).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.1.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -262,6 +262,36 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-host_id"></div>
+                    <b>host_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-host_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Optional <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the host (Compute Id)</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-host_type"></div>
+                    <b>host_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-host_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Filter by one or more host types. Possible values are CLOUD-HOST, EXTERNAL-HOST</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#parameter-id" title="Permalink to this option"></a>
@@ -386,6 +416,8 @@ Examples
         analysis_time_interval: analysis_time_interval_example
         time_interval_start: 2013-10-20T19:20:30+01:00
         time_interval_end: 2013-10-20T19:20:30+01:00
+        host_type: [ "host_type_example" ]
+        host_id: "ocid1.host.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 

@@ -262,7 +262,7 @@ resource_forecast_trend:
             sample: CPU
         usage_unit:
             description:
-                - Displays usage unit ( CORES, GB)
+                - Displays usage unit ( CORES, GB , PERCENT, MBPS)
             returned: on success
             type: str
             sample: CORES

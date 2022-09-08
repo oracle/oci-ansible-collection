@@ -533,7 +533,9 @@ options:
         type: str
     deploy_artifact_id:
         description:
-            - Optional binary artifact OCID user may provide to this stage.
+            - Optional artifact OCID. The artifact will be included in the body for the function invocation during the stage's execution.
+              If the DeployArtifact.argumentSubstituitionMode is set to SUBSTITUTE_PLACEHOLDERS, then the pipeline parameter values will be used to replace the
+              placeholders in the artifact content.
             - This parameter is updatable.
             - Applicable when deploy_stage_type is 'INVOKE_FUNCTION'
         type: str
@@ -2101,7 +2103,9 @@ deploy_stage:
             sample: "ocid1.functiondeployenvironment.oc1..xxxxxxEXAMPLExxxxxx"
         deploy_artifact_id:
             description:
-                - Optional binary artifact OCID user may provide to this stage.
+                - Optional artifact OCID. The artifact will be included in the body for the function invocation during the stage's execution.
+                  If the DeployArtifact.argumentSubstituitionMode is set to SUBSTITUTE_PLACEHOLDERS, then the pipeline parameter values will be used to replace
+                  the placeholders in the artifact content.
             returned: on success
             type: str
             sample: "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx"

@@ -108,8 +108,10 @@ options:
                             - The type of source provider.
                         type: str
                         choices:
+                            - "BITBUCKET_SERVER"
                             - "GITHUB"
                             - "BITBUCKET_CLOUD"
+                            - "GITLAB_SERVER"
                             - "DEVOPS_CODE_REPOSITORY"
                             - "GITLAB"
                         required: true
@@ -125,8 +127,8 @@ options:
                         required: true
                     connection_id:
                         description:
-                            - Connection identifier pertinent to GitHub source provider.
-                            - Required when connection_type is one of ['BITBUCKET_CLOUD', 'GITHUB', 'GITLAB']
+                            - Connection identifier pertinent to Bitbucket Server source provider
+                            - Required when connection_type is one of ['BITBUCKET_SERVER', 'BITBUCKET_CLOUD', 'GITHUB', 'GITLAB_SERVER', 'GITLAB']
                         type: str
     primary_build_source:
         description:
@@ -135,6 +137,31 @@ options:
             - This parameter is updatable.
             - Applicable when build_pipeline_stage_type is 'BUILD'
         type: str
+    private_access_config:
+        description:
+            - ""
+            - This parameter is updatable.
+            - Applicable when build_pipeline_stage_type is 'BUILD'
+        type: dict
+        suboptions:
+            network_channel_type:
+                description:
+                    - Network channel type.
+                type: str
+                choices:
+                    - "SERVICE_VNIC_CHANNEL"
+                    - "PRIVATE_ENDPOINT_CHANNEL"
+                required: true
+            subnet_id:
+                description:
+                    - The OCID of the subnet where private resources exist.
+                type: str
+                required: true
+            nsg_ids:
+                description:
+                    - An array of network security group OCIDs.
+                type: list
+                elements: str
     deploy_pipeline_id:
         description:
             - A target deployment pipeline OCID that will run in this stage.
@@ -333,11 +360,18 @@ EXAMPLES = """
       items:
       - # required
         name: name_example
-        connection_type: GITHUB
+        connection_type: BITBUCKET_SERVER
         repository_url: repository_url_example
         branch: branch_example
         connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
     primary_build_source: primary_build_source_example
+    private_access_config:
+      # required
+      network_channel_type: SERVICE_VNIC_CHANNEL
+      subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      nsg_ids: [ "nsg_ids_example" ]
     display_name: display_name_example
     description: description_example
     build_pipeline_stage_predecessor_collection:
@@ -422,11 +456,18 @@ EXAMPLES = """
       items:
       - # required
         name: name_example
-        connection_type: GITHUB
+        connection_type: BITBUCKET_SERVER
         repository_url: repository_url_example
         branch: branch_example
         connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
     primary_build_source: primary_build_source_example
+    private_access_config:
+      # required
+      network_channel_type: SERVICE_VNIC_CHANNEL
+      subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      nsg_ids: [ "nsg_ids_example" ]
     display_name: display_name_example
     description: description_example
     build_pipeline_stage_predecessor_collection:
@@ -513,11 +554,18 @@ EXAMPLES = """
       items:
       - # required
         name: name_example
-        connection_type: GITHUB
+        connection_type: BITBUCKET_SERVER
         repository_url: repository_url_example
         branch: branch_example
         connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
     primary_build_source: primary_build_source_example
+    private_access_config:
+      # required
+      network_channel_type: SERVICE_VNIC_CHANNEL
+      subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      nsg_ids: [ "nsg_ids_example" ]
     display_name: display_name_example
     description: description_example
     build_pipeline_stage_predecessor_collection:
@@ -624,6 +672,30 @@ build_pipeline_stage:
             returned: on success
             type: str
             sample: primary_build_source_example
+        private_access_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                network_channel_type:
+                    description:
+                        - Network channel type.
+                    returned: on success
+                    type: str
+                    sample: PRIVATE_ENDPOINT_CHANNEL
+                subnet_id:
+                    description:
+                        - The OCID of the subnet where VNIC resources will be created for private endpoint.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+                nsg_ids:
+                    description:
+                        - An array of network security group OCIDs.
+                    returned: on success
+                    type: list
+                    sample: []
         deliver_artifact_collection:
             description:
                 - ""
@@ -803,6 +875,11 @@ build_pipeline_stage:
             }]
         },
         "primary_build_source": "primary_build_source_example",
+        "private_access_config": {
+            "network_channel_type": "PRIVATE_ENDPOINT_CHANNEL",
+            "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+            "nsg_ids": []
+        },
         "deliver_artifact_collection": {
             "items": [{
                 "artifact_name": "artifact_name_example",
@@ -1018,8 +1095,10 @@ def main():
                                 type="str",
                                 required=True,
                                 choices=[
+                                    "BITBUCKET_SERVER",
                                     "GITHUB",
                                     "BITBUCKET_CLOUD",
+                                    "GITLAB_SERVER",
                                     "DEVOPS_CODE_REPOSITORY",
                                     "GITLAB",
                                 ],
@@ -1032,6 +1111,18 @@ def main():
                 ),
             ),
             primary_build_source=dict(type="str"),
+            private_access_config=dict(
+                type="dict",
+                options=dict(
+                    network_channel_type=dict(
+                        type="str",
+                        required=True,
+                        choices=["SERVICE_VNIC_CHANNEL", "PRIVATE_ENDPOINT_CHANNEL"],
+                    ),
+                    subnet_id=dict(type="str", required=True),
+                    nsg_ids=dict(type="list", elements="str"),
+                ),
+            ),
             deploy_pipeline_id=dict(type="str"),
             is_pass_all_parameters_enabled=dict(type="bool", no_log=True),
             display_name=dict(aliases=["name"], type="str"),

@@ -230,7 +230,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 )
 
 try:
-    from oci.em_warehouse import EmDataLakeClient
+    from oci.em_warehouse import EmWarehouseClient
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -312,7 +312,7 @@ def main():
     resource_facts_helper = ResourceFactsHelper(
         module=module,
         resource_type="em_warehouse",
-        service_client_class=EmDataLakeClient,
+        service_client_class=EmWarehouseClient,
         namespace="em_warehouse",
     )
 
