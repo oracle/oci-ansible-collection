@@ -90,6 +90,16 @@ options:
         choices:
             - "entityName"
             - "entityType"
+    host_type:
+        description:
+            - Filter by one or more host types.
+              Possible values are CLOUD-HOST, EXTERNAL-HOST
+        type: list
+        elements: str
+    host_id:
+        description:
+            - Optional L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the host (Compute Id)
+        type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -108,6 +118,8 @@ EXAMPLES = """
     exadata_insight_id: "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx"
     sort_order: ASC
     sort_by: entityName
+    host_type: [ "host_type_example" ]
+    host_id: "ocid1.host.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -176,6 +188,8 @@ class HostInsightHostedEntityFactsHelperGen(OCIResourceFactsHelperBase):
             "exadata_insight_id",
             "sort_order",
             "sort_by",
+            "host_type",
+            "host_id",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -218,6 +232,8 @@ def main():
             exadata_insight_id=dict(type="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["entityName", "entityType"]),
+            host_type=dict(type="list", elements="str"),
+            host_id=dict(type="str"),
         )
     )
 

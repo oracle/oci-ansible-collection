@@ -30,7 +30,7 @@ oracle.oci.oci_data_science_job_run_facts -- Fetches details about one or multip
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.0.1).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.1.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -463,12 +463,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="3">Key</th>
+            <th colspan="4">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-job_runs"></div>
                     <b>job_runs</b>
                     <a class="ansibleOptionLink" href="#return-job_runs" title="Permalink to this return value"></a>
@@ -481,12 +481,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of JobRun resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by&#x27;: &#x27;created_by_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;job_configuration_override_details&#x27;: {&#x27;command_line_arguments&#x27;: &#x27;command_line_arguments_example&#x27;, &#x27;environment_variables&#x27;: {}, &#x27;job_type&#x27;: &#x27;DEFAULT&#x27;, &#x27;maximum_runtime_in_minutes&#x27;: 56}, &#x27;job_id&#x27;: &#x27;ocid1.job.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;job_infrastructure_configuration_details&#x27;: {&#x27;block_storage_size_in_gbs&#x27;: 56, &#x27;job_infrastructure_type&#x27;: &#x27;STANDALONE&#x27;, &#x27;shape_name&#x27;: &#x27;shape_name_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;job_log_configuration_override_details&#x27;: {&#x27;enable_auto_log_creation&#x27;: True, &#x27;enable_logging&#x27;: True, &#x27;log_group_id&#x27;: &#x27;ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;log_id&#x27;: &#x27;ocid1.log.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACCEPTED&#x27;, &#x27;log_details&#x27;: {&#x27;log_group_id&#x27;: &#x27;ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;log_id&#x27;: &#x27;ocid1.log.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_accepted&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by&#x27;: &#x27;created_by_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;job_configuration_override_details&#x27;: {&#x27;command_line_arguments&#x27;: &#x27;command_line_arguments_example&#x27;, &#x27;environment_variables&#x27;: {}, &#x27;job_type&#x27;: &#x27;DEFAULT&#x27;, &#x27;maximum_runtime_in_minutes&#x27;: 56}, &#x27;job_id&#x27;: &#x27;ocid1.job.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;job_infrastructure_configuration_details&#x27;: {&#x27;block_storage_size_in_gbs&#x27;: 56, &#x27;job_infrastructure_type&#x27;: &#x27;STANDALONE&#x27;, &#x27;job_shape_config_details&#x27;: {&#x27;memory_in_gbs&#x27;: 3.4, &#x27;ocpus&#x27;: 3.4}, &#x27;shape_name&#x27;: &#x27;shape_name_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;job_log_configuration_override_details&#x27;: {&#x27;enable_auto_log_creation&#x27;: True, &#x27;enable_logging&#x27;: True, &#x27;log_group_id&#x27;: &#x27;ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;log_id&#x27;: &#x27;ocid1.log.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACCEPTED&#x27;, &#x27;log_details&#x27;: {&#x27;log_group_id&#x27;: &#x27;ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;log_id&#x27;: &#x27;ocid1.log.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_accepted&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job_runs/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-job_runs/compartment_id" title="Permalink to this return value"></a>
@@ -504,7 +504,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job_runs/created_by"></div>
                     <b>created_by</b>
                     <a class="ansibleOptionLink" href="#return-job_runs/created_by" title="Permalink to this return value"></a>
@@ -522,7 +522,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job_runs/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-job_runs/defined_tags" title="Permalink to this return value"></a>
@@ -540,7 +540,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job_runs/display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#return-job_runs/display_name" title="Permalink to this return value"></a>
@@ -558,7 +558,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job_runs/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-job_runs/freeform_tags" title="Permalink to this return value"></a>
@@ -576,7 +576,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job_runs/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-job_runs/id" title="Permalink to this return value"></a>
@@ -594,7 +594,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job_runs/job_configuration_override_details"></div>
                     <b>job_configuration_override_details</b>
                     <a class="ansibleOptionLink" href="#return-job_runs/job_configuration_override_details" title="Permalink to this return value"></a>
@@ -612,7 +612,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-job_runs/job_configuration_override_details/command_line_arguments"></div>
                     <b>command_line_arguments</b>
                     <a class="ansibleOptionLink" href="#return-job_runs/job_configuration_override_details/command_line_arguments" title="Permalink to this return value"></a>
@@ -631,7 +631,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-job_runs/job_configuration_override_details/environment_variables"></div>
                     <b>environment_variables</b>
                     <a class="ansibleOptionLink" href="#return-job_runs/job_configuration_override_details/environment_variables" title="Permalink to this return value"></a>
@@ -648,7 +648,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-job_runs/job_configuration_override_details/job_type"></div>
                     <b>job_type</b>
                     <a class="ansibleOptionLink" href="#return-job_runs/job_configuration_override_details/job_type" title="Permalink to this return value"></a>
@@ -667,7 +667,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-job_runs/job_configuration_override_details/maximum_runtime_in_minutes"></div>
                     <b>maximum_runtime_in_minutes</b>
                     <a class="ansibleOptionLink" href="#return-job_runs/job_configuration_override_details/maximum_runtime_in_minutes" title="Permalink to this return value"></a>
@@ -686,7 +686,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job_runs/job_id"></div>
                     <b>job_id</b>
                     <a class="ansibleOptionLink" href="#return-job_runs/job_id" title="Permalink to this return value"></a>
@@ -704,7 +704,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job_runs/job_infrastructure_configuration_details"></div>
                     <b>job_infrastructure_configuration_details</b>
                     <a class="ansibleOptionLink" href="#return-job_runs/job_infrastructure_configuration_details" title="Permalink to this return value"></a>
@@ -722,7 +722,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-job_runs/job_infrastructure_configuration_details/block_storage_size_in_gbs"></div>
                     <b>block_storage_size_in_gbs</b>
                     <a class="ansibleOptionLink" href="#return-job_runs/job_infrastructure_configuration_details/block_storage_size_in_gbs" title="Permalink to this return value"></a>
@@ -741,7 +741,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-job_runs/job_infrastructure_configuration_details/job_infrastructure_type"></div>
                     <b>job_infrastructure_type</b>
                     <a class="ansibleOptionLink" href="#return-job_runs/job_infrastructure_configuration_details/job_infrastructure_type" title="Permalink to this return value"></a>
@@ -760,7 +760,65 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-job_runs/job_infrastructure_configuration_details/job_shape_config_details"></div>
+                    <b>job_shape_config_details</b>
+                    <a class="ansibleOptionLink" href="#return-job_runs/job_infrastructure_configuration_details/job_shape_config_details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-job_runs/job_infrastructure_configuration_details/job_shape_config_details/memory_in_gbs"></div>
+                    <b>memory_in_gbs</b>
+                    <a class="ansibleOptionLink" href="#return-job_runs/job_infrastructure_configuration_details/job_shape_config_details/memory_in_gbs" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A job run instance of type VM.Standard.E3.Flex allows memory to be specified. This specifies the size of the memory in GBs.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-job_runs/job_infrastructure_configuration_details/job_shape_config_details/ocpus"></div>
+                    <b>ocpus</b>
+                    <a class="ansibleOptionLink" href="#return-job_runs/job_infrastructure_configuration_details/job_shape_config_details/ocpus" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A job run instance of type VM.Standard.E3.Flex allows the ocpu count to be specified.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-job_runs/job_infrastructure_configuration_details/shape_name"></div>
                     <b>shape_name</b>
                     <a class="ansibleOptionLink" href="#return-job_runs/job_infrastructure_configuration_details/shape_name" title="Permalink to this return value"></a>
@@ -779,7 +837,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-job_runs/job_infrastructure_configuration_details/subnet_id"></div>
                     <b>subnet_id</b>
                     <a class="ansibleOptionLink" href="#return-job_runs/job_infrastructure_configuration_details/subnet_id" title="Permalink to this return value"></a>
@@ -798,7 +856,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job_runs/job_log_configuration_override_details"></div>
                     <b>job_log_configuration_override_details</b>
                     <a class="ansibleOptionLink" href="#return-job_runs/job_log_configuration_override_details" title="Permalink to this return value"></a>
@@ -816,7 +874,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-job_runs/job_log_configuration_override_details/enable_auto_log_creation"></div>
                     <b>enable_auto_log_creation</b>
                     <a class="ansibleOptionLink" href="#return-job_runs/job_log_configuration_override_details/enable_auto_log_creation" title="Permalink to this return value"></a>
@@ -835,7 +893,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-job_runs/job_log_configuration_override_details/enable_logging"></div>
                     <b>enable_logging</b>
                     <a class="ansibleOptionLink" href="#return-job_runs/job_log_configuration_override_details/enable_logging" title="Permalink to this return value"></a>
@@ -854,7 +912,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-job_runs/job_log_configuration_override_details/log_group_id"></div>
                     <b>log_group_id</b>
                     <a class="ansibleOptionLink" href="#return-job_runs/job_log_configuration_override_details/log_group_id" title="Permalink to this return value"></a>
@@ -873,7 +931,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-job_runs/job_log_configuration_override_details/log_id"></div>
                     <b>log_id</b>
                     <a class="ansibleOptionLink" href="#return-job_runs/job_log_configuration_override_details/log_id" title="Permalink to this return value"></a>
@@ -892,7 +950,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job_runs/lifecycle_details"></div>
                     <b>lifecycle_details</b>
                     <a class="ansibleOptionLink" href="#return-job_runs/lifecycle_details" title="Permalink to this return value"></a>
@@ -910,7 +968,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job_runs/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-job_runs/lifecycle_state" title="Permalink to this return value"></a>
@@ -928,7 +986,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job_runs/log_details"></div>
                     <b>log_details</b>
                     <a class="ansibleOptionLink" href="#return-job_runs/log_details" title="Permalink to this return value"></a>
@@ -946,7 +1004,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-job_runs/log_details/log_group_id"></div>
                     <b>log_group_id</b>
                     <a class="ansibleOptionLink" href="#return-job_runs/log_details/log_group_id" title="Permalink to this return value"></a>
@@ -965,7 +1023,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-job_runs/log_details/log_id"></div>
                     <b>log_id</b>
                     <a class="ansibleOptionLink" href="#return-job_runs/log_details/log_id" title="Permalink to this return value"></a>
@@ -984,7 +1042,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job_runs/project_id"></div>
                     <b>project_id</b>
                     <a class="ansibleOptionLink" href="#return-job_runs/project_id" title="Permalink to this return value"></a>
@@ -1002,7 +1060,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job_runs/time_accepted"></div>
                     <b>time_accepted</b>
                     <a class="ansibleOptionLink" href="#return-job_runs/time_accepted" title="Permalink to this return value"></a>
@@ -1020,7 +1078,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job_runs/time_finished"></div>
                     <b>time_finished</b>
                     <a class="ansibleOptionLink" href="#return-job_runs/time_finished" title="Permalink to this return value"></a>
@@ -1038,7 +1096,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job_runs/time_started"></div>
                     <b>time_started</b>
                     <a class="ansibleOptionLink" href="#return-job_runs/time_started" title="Permalink to this return value"></a>

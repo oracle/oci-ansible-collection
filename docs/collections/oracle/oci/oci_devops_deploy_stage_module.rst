@@ -30,7 +30,7 @@ oracle.oci.oci_devops_deploy_stage -- Manage a DeployStage resource in Oracle Cl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.0.1).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.1.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -583,7 +583,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Optional binary artifact OCID user may provide to this stage.</div>
+                                            <div>Optional artifact OCID. The artifact will be included in the body for the function invocation during the stage&#x27;s execution. If the DeployArtifact.argumentSubstituitionMode is set to SUBSTITUTE_PLACEHOLDERS, then the pipeline parameter values will be used to replace the placeholders in the artifact content.</div>
                                             <div>This parameter is updatable.</div>
                                             <div>Applicable when deploy_stage_type is &#x27;INVOKE_FUNCTION&#x27;</div>
                                                         </td>
@@ -3589,7 +3589,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Optional binary artifact OCID user may provide to this stage.</div>
+                                            <div>Optional artifact OCID. The artifact will be included in the body for the function invocation during the stage&#x27;s execution. If the DeployArtifact.argumentSubstituitionMode is set to SUBSTITUTE_PLACEHOLDERS, then the pipeline parameter values will be used to replace the placeholders in the artifact content.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx</div>

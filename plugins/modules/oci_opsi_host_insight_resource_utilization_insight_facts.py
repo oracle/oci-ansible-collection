@@ -125,6 +125,16 @@ options:
         description:
             - A flag to search all resources within a given compartment and all sub-compartments.
         type: bool
+    host_type:
+        description:
+            - Filter by one or more host types.
+              Possible values are CLOUD-HOST, EXTERNAL-HOST
+        type: list
+        elements: str
+    host_id:
+        description:
+            - Optional L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the host (Compute Id)
+        type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -148,6 +158,8 @@ EXAMPLES = """
     defined_tag_exists: [ "defined_tag_exists_example" ]
     freeform_tag_exists: [ "freeform_tag_exists_example" ]
     compartment_id_in_subtree: true
+    host_type: [ "host_type_example" ]
+    host_id: "ocid1.host.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -295,6 +307,8 @@ class HostInsightResourceUtilizationInsightFactsHelperGen(OCIResourceFactsHelper
             "defined_tag_exists",
             "freeform_tag_exists",
             "compartment_id_in_subtree",
+            "host_type",
+            "host_id",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -343,6 +357,8 @@ def main():
             defined_tag_exists=dict(type="list", elements="str"),
             freeform_tag_exists=dict(type="list", elements="str"),
             compartment_id_in_subtree=dict(type="bool"),
+            host_type=dict(type="list", elements="str"),
+            host_id=dict(type="str"),
         )
     )
 

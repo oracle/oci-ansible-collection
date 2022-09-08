@@ -30,7 +30,7 @@ oracle.oci.oci_data_science_notebook_session_actions -- Perform actions on a Not
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.0.1).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.1.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -409,12 +409,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="4">Key</th>
+            <th colspan="5">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-notebook_session"></div>
                     <b>notebook_session</b>
                     <a class="ansibleOptionLink" href="#return-notebook_session" title="Permalink to this return value"></a>
@@ -427,12 +427,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the NotebookSession resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by&#x27;: &#x27;created_by_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;notebook_session_config_details&#x27;: {&#x27;block_storage_size_in_gbs&#x27;: 56, &#x27;notebook_session_shape_config_details&#x27;: {&#x27;memory_in_gbs&#x27;: 3.4, &#x27;ocpus&#x27;: 3.4}, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;notebook_session_configuration_details&#x27;: {&#x27;block_storage_size_in_gbs&#x27;: 56, &#x27;notebook_session_shape_config_details&#x27;: {&#x27;memory_in_gbs&#x27;: 3.4, &#x27;ocpus&#x27;: 3.4}, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;notebook_session_url&#x27;: &#x27;notebook_session_url_example&#x27;, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by&#x27;: &#x27;created_by_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;notebook_session_config_details&#x27;: {&#x27;block_storage_size_in_gbs&#x27;: 56, &#x27;notebook_session_shape_config_details&#x27;: {&#x27;memory_in_gbs&#x27;: 3.4, &#x27;ocpus&#x27;: 3.4}, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;notebook_session_configuration_details&#x27;: {&#x27;block_storage_size_in_gbs&#x27;: 56, &#x27;notebook_session_shape_config_details&#x27;: {&#x27;memory_in_gbs&#x27;: 3.4, &#x27;ocpus&#x27;: 3.4}, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;notebook_session_runtime_config_details&#x27;: {&#x27;custom_environment_variables&#x27;: {}, &#x27;notebook_session_git_config_details&#x27;: {&#x27;notebook_session_git_repo_config_collection&#x27;: [{&#x27;url&#x27;: &#x27;url_example&#x27;}]}}, &#x27;notebook_session_url&#x27;: &#x27;notebook_session_url_example&#x27;, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-notebook_session/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-notebook_session/compartment_id" title="Permalink to this return value"></a>
@@ -450,7 +450,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-notebook_session/created_by"></div>
                     <b>created_by</b>
                     <a class="ansibleOptionLink" href="#return-notebook_session/created_by" title="Permalink to this return value"></a>
@@ -468,7 +468,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-notebook_session/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-notebook_session/defined_tags" title="Permalink to this return value"></a>
@@ -486,7 +486,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-notebook_session/display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#return-notebook_session/display_name" title="Permalink to this return value"></a>
@@ -504,7 +504,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-notebook_session/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-notebook_session/freeform_tags" title="Permalink to this return value"></a>
@@ -522,7 +522,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-notebook_session/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-notebook_session/id" title="Permalink to this return value"></a>
@@ -540,7 +540,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-notebook_session/lifecycle_details"></div>
                     <b>lifecycle_details</b>
                     <a class="ansibleOptionLink" href="#return-notebook_session/lifecycle_details" title="Permalink to this return value"></a>
@@ -558,7 +558,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-notebook_session/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-notebook_session/lifecycle_state" title="Permalink to this return value"></a>
@@ -576,7 +576,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-notebook_session/notebook_session_config_details"></div>
                     <b>notebook_session_config_details</b>
                     <a class="ansibleOptionLink" href="#return-notebook_session/notebook_session_config_details" title="Permalink to this return value"></a>
@@ -593,7 +593,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-notebook_session/notebook_session_config_details/block_storage_size_in_gbs"></div>
                     <b>block_storage_size_in_gbs</b>
                     <a class="ansibleOptionLink" href="#return-notebook_session/notebook_session_config_details/block_storage_size_in_gbs" title="Permalink to this return value"></a>
@@ -612,7 +612,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-notebook_session/notebook_session_config_details/notebook_session_shape_config_details"></div>
                     <b>notebook_session_shape_config_details</b>
                     <a class="ansibleOptionLink" href="#return-notebook_session/notebook_session_config_details/notebook_session_shape_config_details" title="Permalink to this return value"></a>
@@ -630,7 +630,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-notebook_session/notebook_session_config_details/notebook_session_shape_config_details/memory_in_gbs"></div>
                     <b>memory_in_gbs</b>
                     <a class="ansibleOptionLink" href="#return-notebook_session/notebook_session_config_details/notebook_session_shape_config_details/memory_in_gbs" title="Permalink to this return value"></a>
@@ -650,7 +650,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-notebook_session/notebook_session_config_details/notebook_session_shape_config_details/ocpus"></div>
                     <b>ocpus</b>
                     <a class="ansibleOptionLink" href="#return-notebook_session/notebook_session_config_details/notebook_session_shape_config_details/ocpus" title="Permalink to this return value"></a>
@@ -670,7 +670,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-notebook_session/notebook_session_config_details/shape"></div>
                     <b>shape</b>
                     <a class="ansibleOptionLink" href="#return-notebook_session/notebook_session_config_details/shape" title="Permalink to this return value"></a>
@@ -689,7 +689,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-notebook_session/notebook_session_config_details/subnet_id"></div>
                     <b>subnet_id</b>
                     <a class="ansibleOptionLink" href="#return-notebook_session/notebook_session_config_details/subnet_id" title="Permalink to this return value"></a>
@@ -708,7 +708,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-notebook_session/notebook_session_configuration_details"></div>
                     <b>notebook_session_configuration_details</b>
                     <a class="ansibleOptionLink" href="#return-notebook_session/notebook_session_configuration_details" title="Permalink to this return value"></a>
@@ -725,7 +725,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-notebook_session/notebook_session_configuration_details/block_storage_size_in_gbs"></div>
                     <b>block_storage_size_in_gbs</b>
                     <a class="ansibleOptionLink" href="#return-notebook_session/notebook_session_configuration_details/block_storage_size_in_gbs" title="Permalink to this return value"></a>
@@ -744,7 +744,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-notebook_session/notebook_session_configuration_details/notebook_session_shape_config_details"></div>
                     <b>notebook_session_shape_config_details</b>
                     <a class="ansibleOptionLink" href="#return-notebook_session/notebook_session_configuration_details/notebook_session_shape_config_details" title="Permalink to this return value"></a>
@@ -762,7 +762,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-notebook_session/notebook_session_configuration_details/notebook_session_shape_config_details/memory_in_gbs"></div>
                     <b>memory_in_gbs</b>
                     <a class="ansibleOptionLink" href="#return-notebook_session/notebook_session_configuration_details/notebook_session_shape_config_details/memory_in_gbs" title="Permalink to this return value"></a>
@@ -782,7 +782,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-notebook_session/notebook_session_configuration_details/notebook_session_shape_config_details/ocpus"></div>
                     <b>ocpus</b>
                     <a class="ansibleOptionLink" href="#return-notebook_session/notebook_session_configuration_details/notebook_session_shape_config_details/ocpus" title="Permalink to this return value"></a>
@@ -802,7 +802,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-notebook_session/notebook_session_configuration_details/shape"></div>
                     <b>shape</b>
                     <a class="ansibleOptionLink" href="#return-notebook_session/notebook_session_configuration_details/shape" title="Permalink to this return value"></a>
@@ -821,7 +821,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-notebook_session/notebook_session_configuration_details/subnet_id"></div>
                     <b>subnet_id</b>
                     <a class="ansibleOptionLink" href="#return-notebook_session/notebook_session_configuration_details/subnet_id" title="Permalink to this return value"></a>
@@ -840,7 +840,99 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-notebook_session/notebook_session_runtime_config_details"></div>
+                    <b>notebook_session_runtime_config_details</b>
+                    <a class="ansibleOptionLink" href="#return-notebook_session/notebook_session_runtime_config_details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-notebook_session/notebook_session_runtime_config_details/custom_environment_variables"></div>
+                    <b>custom_environment_variables</b>
+                    <a class="ansibleOptionLink" href="#return-notebook_session/notebook_session_runtime_config_details/custom_environment_variables" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Custom environment variables for Notebook Session. These key-value pairs will be available for customers in Notebook Sessions.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-notebook_session/notebook_session_runtime_config_details/notebook_session_git_config_details"></div>
+                    <b>notebook_session_git_config_details</b>
+                    <a class="ansibleOptionLink" href="#return-notebook_session/notebook_session_runtime_config_details/notebook_session_git_config_details" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-notebook_session/notebook_session_runtime_config_details/notebook_session_git_config_details/notebook_session_git_repo_config_collection"></div>
+                    <b>notebook_session_git_repo_config_collection</b>
+                    <a class="ansibleOptionLink" href="#return-notebook_session/notebook_session_runtime_config_details/notebook_session_git_config_details/notebook_session_git_repo_config_collection" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A collection of Git repository configurations.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-notebook_session/notebook_session_runtime_config_details/notebook_session_git_config_details/notebook_session_git_repo_config_collection/url"></div>
+                    <b>url</b>
+                    <a class="ansibleOptionLink" href="#return-notebook_session/notebook_session_runtime_config_details/notebook_session_git_config_details/notebook_session_git_repo_config_collection/url" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The repository URL</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">url_example</div>
+                                    </td>
+            </tr>
+                    
+                    
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-notebook_session/notebook_session_url"></div>
                     <b>notebook_session_url</b>
                     <a class="ansibleOptionLink" href="#return-notebook_session/notebook_session_url" title="Permalink to this return value"></a>
@@ -858,7 +950,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-notebook_session/project_id"></div>
                     <b>project_id</b>
                     <a class="ansibleOptionLink" href="#return-notebook_session/project_id" title="Permalink to this return value"></a>
@@ -876,7 +968,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-notebook_session/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-notebook_session/time_created" title="Permalink to this return value"></a>

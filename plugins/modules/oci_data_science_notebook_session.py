@@ -136,6 +136,32 @@ options:
               Example: `{\\"Operations\\": {\\"CostCenter\\": \\"42\\"}}`"
             - This parameter is updatable.
         type: dict
+    notebook_session_runtime_config_details:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            custom_environment_variables:
+                description:
+                    - Custom environment variables for Notebook Session. These key-value pairs will be available for customers in Notebook Sessions.
+                type: dict
+            notebook_session_git_config_details:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    notebook_session_git_repo_config_collection:
+                        description:
+                            - A collection of Git repository configurations.
+                        type: list
+                        elements: dict
+                        suboptions:
+                            url:
+                                description:
+                                    - The repository URL
+                                type: str
+                                required: true
     notebook_session_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the notebook session.
@@ -188,6 +214,14 @@ EXAMPLES = """
         memory_in_gbs: 3.4
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    notebook_session_runtime_config_details:
+      # optional
+      custom_environment_variables: null
+      notebook_session_git_config_details:
+        # optional
+        notebook_session_git_repo_config_collection:
+        - # required
+          url: url_example
 
 - name: Update notebook_session
   oci_data_science_notebook_session:
@@ -209,6 +243,14 @@ EXAMPLES = """
         memory_in_gbs: 3.4
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    notebook_session_runtime_config_details:
+      # optional
+      custom_environment_variables: null
+      notebook_session_git_config_details:
+        # optional
+        notebook_session_git_repo_config_collection:
+        - # required
+          url: url_example
 
 - name: Update notebook_session using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_science_notebook_session:
@@ -230,6 +272,14 @@ EXAMPLES = """
         memory_in_gbs: 3.4
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    notebook_session_runtime_config_details:
+      # optional
+      custom_environment_variables: null
+      notebook_session_git_config_details:
+        # optional
+        notebook_session_git_repo_config_collection:
+        - # required
+          url: url_example
 
 - name: Delete notebook_session
   oci_data_science_notebook_session:
@@ -383,6 +433,36 @@ notebook_session:
                             returned: on success
                             type: float
                             sample: 3.4
+        notebook_session_runtime_config_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                custom_environment_variables:
+                    description:
+                        - Custom environment variables for Notebook Session. These key-value pairs will be available for customers in Notebook Sessions.
+                    returned: on success
+                    type: dict
+                    sample: {}
+                notebook_session_git_config_details:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        notebook_session_git_repo_config_collection:
+                            description:
+                                - A collection of Git repository configurations.
+                            returned: on success
+                            type: complex
+                            contains:
+                                url:
+                                    description:
+                                        - The repository URL
+                                    returned: on success
+                                    type: str
+                                    sample: url_example
         notebook_session_url:
             description:
                 - The URL to interact with the notebook session.
@@ -440,6 +520,14 @@ notebook_session:
             "notebook_session_shape_config_details": {
                 "ocpus": 3.4,
                 "memory_in_gbs": 3.4
+            }
+        },
+        "notebook_session_runtime_config_details": {
+            "custom_environment_variables": {},
+            "notebook_session_git_config_details": {
+                "notebook_session_git_repo_config_collection": [{
+                    "url": "url_example"
+                }]
             }
         },
         "notebook_session_url": "notebook_session_url_example",
@@ -642,6 +730,22 @@ def main():
             ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
+            notebook_session_runtime_config_details=dict(
+                type="dict",
+                options=dict(
+                    custom_environment_variables=dict(type="dict"),
+                    notebook_session_git_config_details=dict(
+                        type="dict",
+                        options=dict(
+                            notebook_session_git_repo_config_collection=dict(
+                                type="list",
+                                elements="dict",
+                                options=dict(url=dict(type="str", required=True)),
+                            )
+                        ),
+                    ),
+                ),
+            ),
             notebook_session_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

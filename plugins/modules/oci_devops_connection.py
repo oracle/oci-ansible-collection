@@ -32,12 +32,19 @@ options:
             - The OCID of the DevOps project.
             - Required for create using I(state=present).
         type: str
-    access_token:
+    username:
         description:
-            - The OCID of personal access token saved in secret store.
+            - Public Bitbucket Cloud Username in plain text(not more than 30 characters)
             - This parameter is updatable.
-            - Applicable when connection_type is one of ['GITLAB_ACCESS_TOKEN', 'GITHUB_ACCESS_TOKEN']
-            - Required when connection_type is one of ['GITLAB_ACCESS_TOKEN', 'GITHUB_ACCESS_TOKEN']
+            - Applicable when connection_type is 'BITBUCKET_CLOUD_APP_PASSWORD'
+            - Required when connection_type is 'BITBUCKET_CLOUD_APP_PASSWORD'
+        type: str
+    app_password:
+        description:
+            - OCID of personal Bitbucket Cloud AppPassword saved in secret store
+            - This parameter is updatable.
+            - Applicable when connection_type is 'BITBUCKET_CLOUD_APP_PASSWORD'
+            - Required when connection_type is 'BITBUCKET_CLOUD_APP_PASSWORD'
         type: str
     description:
         description:
@@ -57,6 +64,8 @@ options:
             - Required for create using I(state=present), update using I(state=present) with connection_id present.
         type: str
         choices:
+            - "GITLAB_SERVER_ACCESS_TOKEN"
+            - "BITBUCKET_SERVER_ACCESS_TOKEN"
             - "GITHUB_ACCESS_TOKEN"
             - "BITBUCKET_CLOUD_APP_PASSWORD"
             - "GITLAB_ACCESS_TOKEN"
@@ -72,20 +81,41 @@ options:
               Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm). Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             - This parameter is updatable.
         type: dict
-    username:
+    access_token:
         description:
-            - Public Bitbucket Cloud Username in plain text(not more than 30 characters)
+            - The OCID of personal access token saved in secret store.
             - This parameter is updatable.
-            - Applicable when connection_type is 'BITBUCKET_CLOUD_APP_PASSWORD'
-            - Required when connection_type is 'BITBUCKET_CLOUD_APP_PASSWORD'
+            - Applicable when connection_type is one of ['GITLAB_ACCESS_TOKEN', 'GITHUB_ACCESS_TOKEN', 'BITBUCKET_SERVER_ACCESS_TOKEN',
+              'GITLAB_SERVER_ACCESS_TOKEN']
+            - Required when connection_type is one of ['GITLAB_ACCESS_TOKEN', 'GITHUB_ACCESS_TOKEN', 'BITBUCKET_SERVER_ACCESS_TOKEN',
+              'GITLAB_SERVER_ACCESS_TOKEN']
         type: str
-    app_password:
+    base_url:
         description:
-            - OCID of personal Bitbucket Cloud AppPassword saved in secret store
+            - The baseUrl of the hosted GitLabServer.
             - This parameter is updatable.
-            - Applicable when connection_type is 'BITBUCKET_CLOUD_APP_PASSWORD'
-            - Required when connection_type is 'BITBUCKET_CLOUD_APP_PASSWORD'
+            - Applicable when connection_type is one of ['BITBUCKET_SERVER_ACCESS_TOKEN', 'GITLAB_SERVER_ACCESS_TOKEN']
+            - Required when connection_type is one of ['BITBUCKET_SERVER_ACCESS_TOKEN', 'GITLAB_SERVER_ACCESS_TOKEN']
         type: str
+    tls_verify_config:
+        description:
+            - ""
+            - This parameter is updatable.
+            - Applicable when connection_type is one of ['BITBUCKET_SERVER_ACCESS_TOKEN', 'GITLAB_SERVER_ACCESS_TOKEN']
+        type: dict
+        suboptions:
+            tls_verify_mode:
+                description:
+                    - The type of TLS verification.
+                type: str
+                choices:
+                    - "CA_CERTIFICATE_VERIFY"
+                required: true
+            ca_certificate_bundle_id:
+                description:
+                    - The OCID of OCI certificate service CA bundle.
+                type: str
+                required: true
     connection_id:
         description:
             - Unique connection identifier.
@@ -106,6 +136,42 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 """
 
 EXAMPLES = """
+- name: Create connection with connection_type = GITLAB_SERVER_ACCESS_TOKEN
+  oci_devops_connection:
+    # required
+    project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+    connection_type: GITLAB_SERVER_ACCESS_TOKEN
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    access_token: access_token_example
+    base_url: base_url_example
+    tls_verify_config:
+      # required
+      tls_verify_mode: CA_CERTIFICATE_VERIFY
+      ca_certificate_bundle_id: "ocid1.cacertificatebundle.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Create connection with connection_type = BITBUCKET_SERVER_ACCESS_TOKEN
+  oci_devops_connection:
+    # required
+    project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+    connection_type: BITBUCKET_SERVER_ACCESS_TOKEN
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    access_token: access_token_example
+    base_url: base_url_example
+    tls_verify_config:
+      # required
+      tls_verify_mode: CA_CERTIFICATE_VERIFY
+      ca_certificate_bundle_id: "ocid1.cacertificatebundle.oc1..xxxxxxEXAMPLExxxxxx"
+
 - name: Create connection with connection_type = GITHUB_ACCESS_TOKEN
   oci_devops_connection:
     # required
@@ -113,11 +179,11 @@ EXAMPLES = """
     connection_type: GITHUB_ACCESS_TOKEN
 
     # optional
-    access_token: access_token_example
     description: description_example
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    access_token: access_token_example
 
 - name: Create connection with connection_type = BITBUCKET_CLOUD_APP_PASSWORD
   oci_devops_connection:
@@ -126,12 +192,12 @@ EXAMPLES = """
     connection_type: BITBUCKET_CLOUD_APP_PASSWORD
 
     # optional
+    username: username_example
+    app_password: example-password
     description: description_example
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    username: username_example
-    app_password: example-password
 
 - name: Create connection with connection_type = GITLAB_ACCESS_TOKEN
   oci_devops_connection:
@@ -140,11 +206,45 @@ EXAMPLES = """
     connection_type: GITLAB_ACCESS_TOKEN
 
     # optional
-    access_token: access_token_example
     description: description_example
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    access_token: access_token_example
+
+- name: Update connection with connection_type = GITLAB_SERVER_ACCESS_TOKEN
+  oci_devops_connection:
+    # required
+    connection_type: GITLAB_SERVER_ACCESS_TOKEN
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    access_token: access_token_example
+    base_url: base_url_example
+    tls_verify_config:
+      # required
+      tls_verify_mode: CA_CERTIFICATE_VERIFY
+      ca_certificate_bundle_id: "ocid1.cacertificatebundle.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Update connection with connection_type = BITBUCKET_SERVER_ACCESS_TOKEN
+  oci_devops_connection:
+    # required
+    connection_type: BITBUCKET_SERVER_ACCESS_TOKEN
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    access_token: access_token_example
+    base_url: base_url_example
+    tls_verify_config:
+      # required
+      tls_verify_mode: CA_CERTIFICATE_VERIFY
+      ca_certificate_bundle_id: "ocid1.cacertificatebundle.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update connection with connection_type = GITHUB_ACCESS_TOKEN
   oci_devops_connection:
@@ -152,11 +252,11 @@ EXAMPLES = """
     connection_type: GITHUB_ACCESS_TOKEN
 
     # optional
-    access_token: access_token_example
     description: description_example
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    access_token: access_token_example
 
 - name: Update connection with connection_type = BITBUCKET_CLOUD_APP_PASSWORD
   oci_devops_connection:
@@ -164,12 +264,12 @@ EXAMPLES = """
     connection_type: BITBUCKET_CLOUD_APP_PASSWORD
 
     # optional
+    username: username_example
+    app_password: example-password
     description: description_example
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    username: username_example
-    app_password: example-password
 
 - name: Update connection with connection_type = GITLAB_ACCESS_TOKEN
   oci_devops_connection:
@@ -177,11 +277,45 @@ EXAMPLES = """
     connection_type: GITLAB_ACCESS_TOKEN
 
     # optional
-    access_token: access_token_example
     description: description_example
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    access_token: access_token_example
+
+- name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = GITLAB_SERVER_ACCESS_TOKEN
+  oci_devops_connection:
+    # required
+    connection_type: GITLAB_SERVER_ACCESS_TOKEN
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    access_token: access_token_example
+    base_url: base_url_example
+    tls_verify_config:
+      # required
+      tls_verify_mode: CA_CERTIFICATE_VERIFY
+      ca_certificate_bundle_id: "ocid1.cacertificatebundle.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = BITBUCKET_SERVER_ACCESS_TOKEN
+  oci_devops_connection:
+    # required
+    connection_type: BITBUCKET_SERVER_ACCESS_TOKEN
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    access_token: access_token_example
+    base_url: base_url_example
+    tls_verify_config:
+      # required
+      tls_verify_mode: CA_CERTIFICATE_VERIFY
+      ca_certificate_bundle_id: "ocid1.cacertificatebundle.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = GITHUB_ACCESS_TOKEN
   oci_devops_connection:
@@ -189,11 +323,11 @@ EXAMPLES = """
     connection_type: GITHUB_ACCESS_TOKEN
 
     # optional
-    access_token: access_token_example
     description: description_example
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    access_token: access_token_example
 
 - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = BITBUCKET_CLOUD_APP_PASSWORD
   oci_devops_connection:
@@ -201,12 +335,12 @@ EXAMPLES = """
     connection_type: BITBUCKET_CLOUD_APP_PASSWORD
 
     # optional
+    username: username_example
+    app_password: example-password
     description: description_example
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
-    username: username_example
-    app_password: example-password
 
 - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = GITLAB_ACCESS_TOKEN
   oci_devops_connection:
@@ -214,11 +348,11 @@ EXAMPLES = """
     connection_type: GITLAB_ACCESS_TOKEN
 
     # optional
-    access_token: access_token_example
     description: description_example
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    access_token: access_token_example
 
 - name: Delete connection
   oci_devops_connection:
@@ -335,6 +469,30 @@ connection:
             returned: on success
             type: str
             sample: access_token_example
+        base_url:
+            description:
+                - The Base URL of the hosted BitbucketServer.
+            returned: on success
+            type: str
+            sample: base_url_example
+        tls_verify_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                tls_verify_mode:
+                    description:
+                        - The type of TLS verification.
+                    returned: on success
+                    type: str
+                    sample: CA_CERTIFICATE_VERIFY
+                ca_certificate_bundle_id:
+                    description:
+                        - The OCID of OCI certificate service CA bundle.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.cacertificatebundle.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "username": "username_example",
         "app_password": "example-password",
@@ -350,7 +508,12 @@ connection:
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "system_tags": {},
-        "access_token": "access_token_example"
+        "access_token": "access_token_example",
+        "base_url": "base_url_example",
+        "tls_verify_config": {
+            "tls_verify_mode": "CA_CERTIFICATE_VERIFY",
+            "ca_certificate_bundle_id": "ocid1.cacertificatebundle.oc1..xxxxxxEXAMPLExxxxxx"
+        }
     }
 """
 
@@ -506,12 +669,15 @@ def main():
     module_args.update(
         dict(
             project_id=dict(type="str"),
-            access_token=dict(type="str", no_log=True),
+            username=dict(type="str"),
+            app_password=dict(type="str", no_log=True),
             description=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             connection_type=dict(
                 type="str",
                 choices=[
+                    "GITLAB_SERVER_ACCESS_TOKEN",
+                    "BITBUCKET_SERVER_ACCESS_TOKEN",
                     "GITHUB_ACCESS_TOKEN",
                     "BITBUCKET_CLOUD_APP_PASSWORD",
                     "GITLAB_ACCESS_TOKEN",
@@ -519,8 +685,17 @@ def main():
             ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
-            username=dict(type="str"),
-            app_password=dict(type="str", no_log=True),
+            access_token=dict(type="str", no_log=True),
+            base_url=dict(type="str"),
+            tls_verify_config=dict(
+                type="dict",
+                options=dict(
+                    tls_verify_mode=dict(
+                        type="str", required=True, choices=["CA_CERTIFICATE_VERIFY"]
+                    ),
+                    ca_certificate_bundle_id=dict(type="str", required=True),
+                ),
+            ),
             connection_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

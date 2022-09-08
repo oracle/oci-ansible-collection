@@ -4,41 +4,41 @@ plugin_routing:
   modules:
     oci_monitoring_suppression_actions:
       deprecation:
-        removal_version: '3.0.0'
+        removal_version: '4.0.0'
         warning_text: oci_monitoring_suppression_actions will be removed in a future release of this collection. Use oci_monitoring_alarm_actions instead.
     oci_apigateway_waas_certificate_facts:
       deprecation:
-        removal_version: '3.0.0'
+        removal_version: '4.0.0'
         warning_text: oci_apigateway_waas_certificate_facts will be removed in a future release of this collection. Use oci_apigateway_certificate_facts instead.
     oci_apigateway_waas_certificate:
       deprecation:
-        removal_version: '3.0.0'
+        removal_version: '4.0.0'
         warning_text: oci_apigateway_waas_certificate will be removed in a future release of this collection. Use oci_apigateway_certificate instead.
     oci_mysql_analytics_cluster_actions:
       deprecation:
-        removal_version: '3.0.0'
+        removal_version: '4.0.0'
         warning_text: oci_mysql_analytics_cluster_actions will be removed in a future release of this collection. Use oci_mysql_heat_wave_cluster_actions instead.
     oci_mysql_analytics_cluster_facts:
       deprecation:
-        removal_version: '3.0.0'
+        removal_version: '4.0.0'
         warning_text: oci_mysql_analytics_cluster_facts will be removed in a future release of this collection. Use oci_mysql_heat_wave_cluster_facts instead.
     oci_mysql_analytics_cluster_memory_estimate_actions:
       deprecation:
-        removal_version: '3.0.0'
+        removal_version: '4.0.0'
         warning_text: oci_mysql_analytics_cluster_memory_estimate_actions will be removed in a future release of this collection. Use oci_mysql_heat_wave_cluster_memory_estimate_actions instead.
     oci_mysql_analytics_cluster_memory_estimate_facts:
       deprecation:
-        removal_version: '3.0.0'
+        removal_version: '4.0.0'
         warning_text: oci_mysql_analytics_cluster_memory_estimate_facts will be removed in a future release of this collection. Use oci_mysql_heat_wave_cluster_memory_estimate_facts instead.
     oci_mysql_analytics_cluster:
       deprecation:
-        removal_version: '3.0.0'
+        removal_version: '4.0.0'
         warning_text: oci_mysql_analytics_cluster will be removed in a future release of this collection. Use oci_mysql_heat_wave_cluster instead.
     oci_load_balancer_routing_policy:
       deprecation:
-        removal_version: '3.0.0'
+        removal_version: '4.0.0'
         warning_text: oci_load_balancer_routing_policy will be removed in a future release of this collection. Use oci_loadbalancer_routing_policy instead.
     oci_load_balancer_routing_policy_facts:
       deprecation:
-        removal_version: '3.0.0'
+        removal_version: '4.0.0'
         warning_text: oci_load_balancer_routing_policy_facts will be removed in a future release of this collection. Use oci_loadbalancer_routing_policy_facts instead.

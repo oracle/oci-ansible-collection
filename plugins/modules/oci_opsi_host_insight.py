@@ -29,6 +29,11 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compute_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Compute Instance
+            - Required when entity_source is 'MACS_MANAGED_CLOUD_HOST'
+        type: str
     management_agent_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Management Agent
@@ -65,6 +70,7 @@ options:
             - Required for create using I(state=present), update using I(state=present) with host_insight_id present.
         type: str
         choices:
+            - "MACS_MANAGED_CLOUD_HOST"
             - "MACS_MANAGED_EXTERNAL_HOST"
             - "EM_MANAGED_EXTERNAL_HOST"
     freeform_tags:
@@ -99,6 +105,17 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 """
 
 EXAMPLES = """
+- name: Create host_insight with entity_source = MACS_MANAGED_CLOUD_HOST
+  oci_opsi_host_insight:
+    # required
+    compute_id: "ocid1.compute.oc1..xxxxxxEXAMPLExxxxxx"
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    entity_source: MACS_MANAGED_CLOUD_HOST
+
+    # optional
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
 - name: Create host_insight with entity_source = MACS_MANAGED_EXTERNAL_HOST
   oci_opsi_host_insight:
     # required
@@ -121,6 +138,15 @@ EXAMPLES = """
 
     # optional
     exadata_insight_id: "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx"
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+
+- name: Update host_insight with entity_source = MACS_MANAGED_CLOUD_HOST
+  oci_opsi_host_insight:
+    # required
+    entity_source: MACS_MANAGED_CLOUD_HOST
+
+    # optional
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -199,6 +225,12 @@ host_insight:
             returned: on success
             type: str
             sample: "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx"
+        compute_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Compute Instance
+            returned: on success
+            type: str
+            sample: "ocid1.compute.oc1..xxxxxxEXAMPLExxxxxx"
         entity_source:
             description:
                 - Source of the host entity.
@@ -327,6 +359,7 @@ host_insight:
         "enterprise_manager_entity_display_name": "enterprise_manager_entity_display_name_example",
         "enterprise_manager_bridge_id": "ocid1.enterprisemanagerbridge.oc1..xxxxxxEXAMPLExxxxxx",
         "exadata_insight_id": "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx",
+        "compute_id": "ocid1.compute.oc1..xxxxxxEXAMPLExxxxxx",
         "entity_source": "MACS_MANAGED_EXTERNAL_HOST",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -498,6 +531,7 @@ def main():
     )
     module_args.update(
         dict(
+            compute_id=dict(type="str"),
             management_agent_id=dict(type="str"),
             compartment_id=dict(type="str"),
             enterprise_manager_identifier=dict(type="str"),
@@ -506,7 +540,11 @@ def main():
             exadata_insight_id=dict(type="str"),
             entity_source=dict(
                 type="str",
-                choices=["MACS_MANAGED_EXTERNAL_HOST", "EM_MANAGED_EXTERNAL_HOST"],
+                choices=[
+                    "MACS_MANAGED_CLOUD_HOST",
+                    "MACS_MANAGED_EXTERNAL_HOST",
+                    "EM_MANAGED_EXTERNAL_HOST",
+                ],
             ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),

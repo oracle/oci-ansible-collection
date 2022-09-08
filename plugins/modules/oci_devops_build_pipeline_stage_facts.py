@@ -182,6 +182,31 @@ build_pipeline_stages:
             returned: on success
             type: str
             sample: primary_build_source_example
+        private_access_config:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                network_channel_type:
+                    description:
+                        - Network channel type.
+                    returned: on success
+                    type: str
+                    sample: PRIVATE_ENDPOINT_CHANNEL
+                subnet_id:
+                    description:
+                        - The OCID of the subnet where VNIC resources will be created for private endpoint.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+                nsg_ids:
+                    description:
+                        - An array of network security group OCIDs.
+                    returned: on success
+                    type: list
+                    sample: []
         deliver_artifact_collection:
             description:
                 - ""
@@ -365,6 +390,11 @@ build_pipeline_stages:
             }]
         },
         "primary_build_source": "primary_build_source_example",
+        "private_access_config": {
+            "network_channel_type": "PRIVATE_ENDPOINT_CHANNEL",
+            "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+            "nsg_ids": []
+        },
         "deliver_artifact_collection": {
             "items": [{
                 "artifact_name": "artifact_name_example",

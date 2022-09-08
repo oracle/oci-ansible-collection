@@ -133,11 +133,12 @@ options:
                     - Network channel type.
                 type: str
                 choices:
+                    - "SERVICE_VNIC_CHANNEL"
                     - "PRIVATE_ENDPOINT_CHANNEL"
                 required: true
             subnet_id:
                 description:
-                    - The OCID of the subnet where VNIC resources will be created for private endpoint.
+                    - The OCID of the subnet where private resources exist.
                 type: str
                 required: true
             nsg_ids:
@@ -197,7 +198,7 @@ EXAMPLES = """
     cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
     network_channel:
       # required
-      network_channel_type: PRIVATE_ENDPOINT_CHANNEL
+      network_channel_type: SERVICE_VNIC_CHANNEL
       subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
 
       # optional
@@ -246,7 +247,7 @@ EXAMPLES = """
     cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
     network_channel:
       # required
-      network_channel_type: PRIVATE_ENDPOINT_CHANNEL
+      network_channel_type: SERVICE_VNIC_CHANNEL
       subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
 
       # optional
@@ -294,7 +295,7 @@ EXAMPLES = """
     cluster_id: "ocid1.cluster.oc1..xxxxxxEXAMPLExxxxxx"
     network_channel:
       # required
-      network_channel_type: PRIVATE_ENDPOINT_CHANNEL
+      network_channel_type: SERVICE_VNIC_CHANNEL
       subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
 
       # optional
@@ -706,7 +707,9 @@ def main():
                 type="dict",
                 options=dict(
                     network_channel_type=dict(
-                        type="str", required=True, choices=["PRIVATE_ENDPOINT_CHANNEL"]
+                        type="str",
+                        required=True,
+                        choices=["SERVICE_VNIC_CHANNEL", "PRIVATE_ENDPOINT_CHANNEL"],
                     ),
                     subnet_id=dict(type="str", required=True),
                     nsg_ids=dict(type="list", elements="str"),

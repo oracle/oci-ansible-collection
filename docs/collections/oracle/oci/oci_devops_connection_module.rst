@@ -30,7 +30,7 @@ oracle.oci.oci_devops_connection -- Manage a Connection resource in Oracle Cloud
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.0.1).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.1.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -82,12 +82,12 @@ Parameters
 
     <table  border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="1">Parameter</th>
+            <th colspan="2">Parameter</th>
             <th>Choices/<font color="blue">Defaults</font></th>
                         <th width="100%">Comments</th>
         </tr>
                     <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-access_token"></div>
                     <b>access_token</b>
                     <a class="ansibleOptionLink" href="#parameter-access_token" title="Permalink to this option"></a>
@@ -100,12 +100,12 @@ Parameters
                                                                 <td>
                                             <div>The OCID of personal access token saved in secret store.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when connection_type is one of [&#x27;GITLAB_ACCESS_TOKEN&#x27;, &#x27;GITHUB_ACCESS_TOKEN&#x27;]</div>
-                                            <div>Required when connection_type is one of [&#x27;GITLAB_ACCESS_TOKEN&#x27;, &#x27;GITHUB_ACCESS_TOKEN&#x27;]</div>
+                                            <div>Applicable when connection_type is one of [&#x27;GITLAB_ACCESS_TOKEN&#x27;, &#x27;GITHUB_ACCESS_TOKEN&#x27;, &#x27;BITBUCKET_SERVER_ACCESS_TOKEN&#x27;, &#x27;GITLAB_SERVER_ACCESS_TOKEN&#x27;]</div>
+                                            <div>Required when connection_type is one of [&#x27;GITLAB_ACCESS_TOKEN&#x27;, &#x27;GITHUB_ACCESS_TOKEN&#x27;, &#x27;BITBUCKET_SERVER_ACCESS_TOKEN&#x27;, &#x27;GITLAB_SERVER_ACCESS_TOKEN&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user"></div>
                     <b>api_user</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user" title="Permalink to this option"></a>
@@ -120,7 +120,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_fingerprint"></div>
                     <b>api_user_fingerprint</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_fingerprint" title="Permalink to this option"></a>
@@ -135,7 +135,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_key_file"></div>
                     <b>api_user_key_file</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_key_file" title="Permalink to this option"></a>
@@ -150,7 +150,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_key_pass_phrase"></div>
                     <b>api_user_key_pass_phrase</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_key_pass_phrase" title="Permalink to this option"></a>
@@ -165,7 +165,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-app_password"></div>
                     <b>app_password</b>
                     <a class="ansibleOptionLink" href="#parameter-app_password" title="Permalink to this option"></a>
@@ -183,7 +183,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-auth_purpose"></div>
                     <b>auth_purpose</b>
                     <a class="ansibleOptionLink" href="#parameter-auth_purpose" title="Permalink to this option"></a>
@@ -201,7 +201,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-auth_type"></div>
                     <b>auth_type</b>
                     <a class="ansibleOptionLink" href="#parameter-auth_type" title="Permalink to this option"></a>
@@ -222,7 +222,25 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-base_url"></div>
+                    <b>base_url</b>
+                    <a class="ansibleOptionLink" href="#parameter-base_url" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The baseUrl of the hosted GitLabServer.</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when connection_type is one of [&#x27;BITBUCKET_SERVER_ACCESS_TOKEN&#x27;, &#x27;GITLAB_SERVER_ACCESS_TOKEN&#x27;]</div>
+                                            <div>Required when connection_type is one of [&#x27;BITBUCKET_SERVER_ACCESS_TOKEN&#x27;, &#x27;GITLAB_SERVER_ACCESS_TOKEN&#x27;]</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-cert_bundle"></div>
                     <b>cert_bundle</b>
                     <a class="ansibleOptionLink" href="#parameter-cert_bundle" title="Permalink to this option"></a>
@@ -237,7 +255,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-config_file_location"></div>
                     <b>config_file_location</b>
                     <a class="ansibleOptionLink" href="#parameter-config_file_location" title="Permalink to this option"></a>
@@ -252,7 +270,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-config_profile_name"></div>
                     <b>config_profile_name</b>
                     <a class="ansibleOptionLink" href="#parameter-config_profile_name" title="Permalink to this option"></a>
@@ -267,7 +285,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-connection_id"></div>
                     <b>connection_id</b>
                     <a class="ansibleOptionLink" href="#parameter-connection_id" title="Permalink to this option"></a>
@@ -285,7 +303,7 @@ Parameters
                                     </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-connection_type"></div>
                     <b>connection_type</b>
                     <a class="ansibleOptionLink" href="#parameter-connection_type" title="Permalink to this option"></a>
@@ -295,7 +313,9 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>GITHUB_ACCESS_TOKEN</li>
+                                                                                                                                                                <li>GITLAB_SERVER_ACCESS_TOKEN</li>
+                                                                                                                                                                                                <li>BITBUCKET_SERVER_ACCESS_TOKEN</li>
+                                                                                                                                                                                                <li>GITHUB_ACCESS_TOKEN</li>
                                                                                                                                                                                                 <li>BITBUCKET_CLOUD_APP_PASSWORD</li>
                                                                                                                                                                                                 <li>GITLAB_ACCESS_TOKEN</li>
                                                                                     </ul>
@@ -306,7 +326,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#parameter-defined_tags" title="Permalink to this option"></a>
@@ -322,7 +342,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-description"></div>
                     <b>description</b>
                     <a class="ansibleOptionLink" href="#parameter-description" title="Permalink to this option"></a>
@@ -338,7 +358,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#parameter-display_name" title="Permalink to this option"></a>
@@ -356,7 +376,7 @@ Parameters
                                     </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-force_create"></div>
                     <b>force_create</b>
                     <a class="ansibleOptionLink" href="#parameter-force_create" title="Permalink to this option"></a>
@@ -375,7 +395,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#parameter-freeform_tags" title="Permalink to this option"></a>
@@ -391,7 +411,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-key_by"></div>
                     <b>key_by</b>
                     <a class="ansibleOptionLink" href="#parameter-key_by" title="Permalink to this option"></a>
@@ -406,7 +426,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-project_id"></div>
                     <b>project_id</b>
                     <a class="ansibleOptionLink" href="#parameter-project_id" title="Permalink to this option"></a>
@@ -422,7 +442,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#parameter-region" title="Permalink to this option"></a>
@@ -437,7 +457,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-state"></div>
                     <b>state</b>
                     <a class="ansibleOptionLink" href="#parameter-state" title="Permalink to this option"></a>
@@ -458,7 +478,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-tenancy"></div>
                     <b>tenancy</b>
                     <a class="ansibleOptionLink" href="#parameter-tenancy" title="Permalink to this option"></a>
@@ -473,7 +493,60 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-tls_verify_config"></div>
+                    <b>tls_verify_config</b>
+                    <a class="ansibleOptionLink" href="#parameter-tls_verify_config" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when connection_type is one of [&#x27;BITBUCKET_SERVER_ACCESS_TOKEN&#x27;, &#x27;GITLAB_SERVER_ACCESS_TOKEN&#x27;]</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-tls_verify_config/ca_certificate_bundle_id"></div>
+                    <b>ca_certificate_bundle_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-tls_verify_config/ca_certificate_bundle_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The OCID of OCI certificate service CA bundle.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-tls_verify_config/tls_verify_mode"></div>
+                    <b>tls_verify_mode</b>
+                    <a class="ansibleOptionLink" href="#parameter-tls_verify_config/tls_verify_mode" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>CA_CERTIFICATE_VERIFY</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The type of TLS verification.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-username"></div>
                     <b>username</b>
                     <a class="ansibleOptionLink" href="#parameter-username" title="Permalink to this option"></a>
@@ -491,7 +564,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-wait"></div>
                     <b>wait</b>
                     <a class="ansibleOptionLink" href="#parameter-wait" title="Permalink to this option"></a>
@@ -510,7 +583,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-wait_timeout"></div>
                     <b>wait_timeout</b>
                     <a class="ansibleOptionLink" href="#parameter-wait_timeout" title="Permalink to this option"></a>
@@ -549,6 +622,42 @@ Examples
 .. code-block:: yaml+jinja
 
     
+    - name: Create connection with connection_type = GITLAB_SERVER_ACCESS_TOKEN
+      oci_devops_connection:
+        # required
+        project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+        connection_type: GITLAB_SERVER_ACCESS_TOKEN
+
+        # optional
+        description: description_example
+        display_name: display_name_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        access_token: access_token_example
+        base_url: base_url_example
+        tls_verify_config:
+          # required
+          tls_verify_mode: CA_CERTIFICATE_VERIFY
+          ca_certificate_bundle_id: "ocid1.cacertificatebundle.oc1..xxxxxxEXAMPLExxxxxx"
+
+    - name: Create connection with connection_type = BITBUCKET_SERVER_ACCESS_TOKEN
+      oci_devops_connection:
+        # required
+        project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+        connection_type: BITBUCKET_SERVER_ACCESS_TOKEN
+
+        # optional
+        description: description_example
+        display_name: display_name_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        access_token: access_token_example
+        base_url: base_url_example
+        tls_verify_config:
+          # required
+          tls_verify_mode: CA_CERTIFICATE_VERIFY
+          ca_certificate_bundle_id: "ocid1.cacertificatebundle.oc1..xxxxxxEXAMPLExxxxxx"
+
     - name: Create connection with connection_type = GITHUB_ACCESS_TOKEN
       oci_devops_connection:
         # required
@@ -556,11 +665,11 @@ Examples
         connection_type: GITHUB_ACCESS_TOKEN
 
         # optional
-        access_token: access_token_example
         description: description_example
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
+        access_token: access_token_example
 
     - name: Create connection with connection_type = BITBUCKET_CLOUD_APP_PASSWORD
       oci_devops_connection:
@@ -569,12 +678,12 @@ Examples
         connection_type: BITBUCKET_CLOUD_APP_PASSWORD
 
         # optional
+        username: username_example
+        app_password: example-password
         description: description_example
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        username: username_example
-        app_password: example-password
 
     - name: Create connection with connection_type = GITLAB_ACCESS_TOKEN
       oci_devops_connection:
@@ -583,11 +692,45 @@ Examples
         connection_type: GITLAB_ACCESS_TOKEN
 
         # optional
-        access_token: access_token_example
         description: description_example
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
+        access_token: access_token_example
+
+    - name: Update connection with connection_type = GITLAB_SERVER_ACCESS_TOKEN
+      oci_devops_connection:
+        # required
+        connection_type: GITLAB_SERVER_ACCESS_TOKEN
+
+        # optional
+        description: description_example
+        display_name: display_name_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        access_token: access_token_example
+        base_url: base_url_example
+        tls_verify_config:
+          # required
+          tls_verify_mode: CA_CERTIFICATE_VERIFY
+          ca_certificate_bundle_id: "ocid1.cacertificatebundle.oc1..xxxxxxEXAMPLExxxxxx"
+
+    - name: Update connection with connection_type = BITBUCKET_SERVER_ACCESS_TOKEN
+      oci_devops_connection:
+        # required
+        connection_type: BITBUCKET_SERVER_ACCESS_TOKEN
+
+        # optional
+        description: description_example
+        display_name: display_name_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        access_token: access_token_example
+        base_url: base_url_example
+        tls_verify_config:
+          # required
+          tls_verify_mode: CA_CERTIFICATE_VERIFY
+          ca_certificate_bundle_id: "ocid1.cacertificatebundle.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update connection with connection_type = GITHUB_ACCESS_TOKEN
       oci_devops_connection:
@@ -595,11 +738,11 @@ Examples
         connection_type: GITHUB_ACCESS_TOKEN
 
         # optional
-        access_token: access_token_example
         description: description_example
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
+        access_token: access_token_example
 
     - name: Update connection with connection_type = BITBUCKET_CLOUD_APP_PASSWORD
       oci_devops_connection:
@@ -607,12 +750,12 @@ Examples
         connection_type: BITBUCKET_CLOUD_APP_PASSWORD
 
         # optional
+        username: username_example
+        app_password: example-password
         description: description_example
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        username: username_example
-        app_password: example-password
 
     - name: Update connection with connection_type = GITLAB_ACCESS_TOKEN
       oci_devops_connection:
@@ -620,11 +763,45 @@ Examples
         connection_type: GITLAB_ACCESS_TOKEN
 
         # optional
-        access_token: access_token_example
         description: description_example
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
+        access_token: access_token_example
+
+    - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = GITLAB_SERVER_ACCESS_TOKEN
+      oci_devops_connection:
+        # required
+        connection_type: GITLAB_SERVER_ACCESS_TOKEN
+
+        # optional
+        description: description_example
+        display_name: display_name_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        access_token: access_token_example
+        base_url: base_url_example
+        tls_verify_config:
+          # required
+          tls_verify_mode: CA_CERTIFICATE_VERIFY
+          ca_certificate_bundle_id: "ocid1.cacertificatebundle.oc1..xxxxxxEXAMPLExxxxxx"
+
+    - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = BITBUCKET_SERVER_ACCESS_TOKEN
+      oci_devops_connection:
+        # required
+        connection_type: BITBUCKET_SERVER_ACCESS_TOKEN
+
+        # optional
+        description: description_example
+        display_name: display_name_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        access_token: access_token_example
+        base_url: base_url_example
+        tls_verify_config:
+          # required
+          tls_verify_mode: CA_CERTIFICATE_VERIFY
+          ca_certificate_bundle_id: "ocid1.cacertificatebundle.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = GITHUB_ACCESS_TOKEN
       oci_devops_connection:
@@ -632,11 +809,11 @@ Examples
         connection_type: GITHUB_ACCESS_TOKEN
 
         # optional
-        access_token: access_token_example
         description: description_example
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
+        access_token: access_token_example
 
     - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = BITBUCKET_CLOUD_APP_PASSWORD
       oci_devops_connection:
@@ -644,12 +821,12 @@ Examples
         connection_type: BITBUCKET_CLOUD_APP_PASSWORD
 
         # optional
+        username: username_example
+        app_password: example-password
         description: description_example
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
-        username: username_example
-        app_password: example-password
 
     - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = GITLAB_ACCESS_TOKEN
       oci_devops_connection:
@@ -657,11 +834,11 @@ Examples
         connection_type: GITLAB_ACCESS_TOKEN
 
         # optional
-        access_token: access_token_example
         description: description_example
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
+        access_token: access_token_example
 
     - name: Delete connection
       oci_devops_connection:
@@ -692,12 +869,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="2">Key</th>
+            <th colspan="3">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-connection"></div>
                     <b>connection</b>
                     <a class="ansibleOptionLink" href="#return-connection" title="Permalink to this return value"></a>
@@ -710,12 +887,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Connection resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;access_token&#x27;: &#x27;access_token_example&#x27;, &#x27;app_password&#x27;: &#x27;example-password&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_type&#x27;: &#x27;GITHUB_ACCESS_TOKEN&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;username&#x27;: &#x27;username_example&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;access_token&#x27;: &#x27;access_token_example&#x27;, &#x27;app_password&#x27;: &#x27;example-password&#x27;, &#x27;base_url&#x27;: &#x27;base_url_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_type&#x27;: &#x27;GITHUB_ACCESS_TOKEN&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;tls_verify_config&#x27;: {&#x27;ca_certificate_bundle_id&#x27;: &#x27;ocid1.cacertificatebundle.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;tls_verify_mode&#x27;: &#x27;CA_CERTIFICATE_VERIFY&#x27;}, &#x27;username&#x27;: &#x27;username_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-connection/access_token"></div>
                     <b>access_token</b>
                     <a class="ansibleOptionLink" href="#return-connection/access_token" title="Permalink to this return value"></a>
@@ -733,7 +910,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-connection/app_password"></div>
                     <b>app_password</b>
                     <a class="ansibleOptionLink" href="#return-connection/app_password" title="Permalink to this return value"></a>
@@ -751,7 +928,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-connection/base_url"></div>
+                    <b>base_url</b>
+                    <a class="ansibleOptionLink" href="#return-connection/base_url" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The Base URL of the hosted BitbucketServer.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">base_url_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-connection/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-connection/compartment_id" title="Permalink to this return value"></a>
@@ -769,7 +964,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-connection/connection_type"></div>
                     <b>connection_type</b>
                     <a class="ansibleOptionLink" href="#return-connection/connection_type" title="Permalink to this return value"></a>
@@ -787,7 +982,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-connection/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-connection/defined_tags" title="Permalink to this return value"></a>
@@ -805,7 +1000,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-connection/description"></div>
                     <b>description</b>
                     <a class="ansibleOptionLink" href="#return-connection/description" title="Permalink to this return value"></a>
@@ -823,7 +1018,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-connection/display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#return-connection/display_name" title="Permalink to this return value"></a>
@@ -841,7 +1036,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-connection/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-connection/freeform_tags" title="Permalink to this return value"></a>
@@ -859,7 +1054,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-connection/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-connection/id" title="Permalink to this return value"></a>
@@ -877,7 +1072,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-connection/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-connection/lifecycle_state" title="Permalink to this return value"></a>
@@ -895,7 +1090,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-connection/project_id"></div>
                     <b>project_id</b>
                     <a class="ansibleOptionLink" href="#return-connection/project_id" title="Permalink to this return value"></a>
@@ -913,7 +1108,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-connection/system_tags"></div>
                     <b>system_tags</b>
                     <a class="ansibleOptionLink" href="#return-connection/system_tags" title="Permalink to this return value"></a>
@@ -929,7 +1124,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-connection/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-connection/time_created" title="Permalink to this return value"></a>
@@ -947,7 +1142,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-connection/time_updated"></div>
                     <b>time_updated</b>
                     <a class="ansibleOptionLink" href="#return-connection/time_updated" title="Permalink to this return value"></a>
@@ -965,7 +1160,62 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-connection/tls_verify_config"></div>
+                    <b>tls_verify_config</b>
+                    <a class="ansibleOptionLink" href="#return-connection/tls_verify_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-connection/tls_verify_config/ca_certificate_bundle_id"></div>
+                    <b>ca_certificate_bundle_id</b>
+                    <a class="ansibleOptionLink" href="#return-connection/tls_verify_config/ca_certificate_bundle_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of OCI certificate service CA bundle.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.cacertificatebundle.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-connection/tls_verify_config/tls_verify_mode"></div>
+                    <b>tls_verify_mode</b>
+                    <a class="ansibleOptionLink" href="#return-connection/tls_verify_config/tls_verify_mode" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The type of TLS verification.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CA_CERTIFICATE_VERIFY</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-connection/username"></div>
                     <b>username</b>
                     <a class="ansibleOptionLink" href="#return-connection/username" title="Permalink to this return value"></a>

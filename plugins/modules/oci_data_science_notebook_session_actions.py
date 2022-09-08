@@ -211,6 +211,36 @@ notebook_session:
                             returned: on success
                             type: float
                             sample: 3.4
+        notebook_session_runtime_config_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                custom_environment_variables:
+                    description:
+                        - Custom environment variables for Notebook Session. These key-value pairs will be available for customers in Notebook Sessions.
+                    returned: on success
+                    type: dict
+                    sample: {}
+                notebook_session_git_config_details:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        notebook_session_git_repo_config_collection:
+                            description:
+                                - A collection of Git repository configurations.
+                            returned: on success
+                            type: complex
+                            contains:
+                                url:
+                                    description:
+                                        - The repository URL
+                                    returned: on success
+                                    type: str
+                                    sample: url_example
         notebook_session_url:
             description:
                 - The URL to interact with the notebook session.
@@ -268,6 +298,14 @@ notebook_session:
             "notebook_session_shape_config_details": {
                 "ocpus": 3.4,
                 "memory_in_gbs": 3.4
+            }
+        },
+        "notebook_session_runtime_config_details": {
+            "custom_environment_variables": {},
+            "notebook_session_git_config_details": {
+                "notebook_session_git_repo_config_collection": [{
+                    "url": "url_example"
+                }]
             }
         },
         "notebook_session_url": "notebook_session_url_example",

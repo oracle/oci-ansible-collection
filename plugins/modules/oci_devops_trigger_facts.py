@@ -104,6 +104,13 @@ triggers:
             returned: on success
             type: str
             sample: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
+        connection_id:
+            description:
+                - The OCID of the connection resource used to get details for triggered events.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
         actions:
             description:
                 - The list of actions that are to be performed for this trigger.
@@ -153,6 +160,36 @@ triggers:
                                     returned: on success
                                     type: str
                                     sample: base_ref_example
+                                file_filter:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        file_paths:
+                                            description:
+                                                - The file paths/glob pattern for files.
+                                            returned: on success
+                                            type: list
+                                            sample: []
+                        exclude:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                file_filter:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        file_paths:
+                                            description:
+                                                - The file paths/glob pattern for files.
+                                            returned: on success
+                                            type: list
+                                            sample: []
                 build_pipeline_id:
                     description:
                         - The OCID of the build pipeline to be triggered.
@@ -251,6 +288,7 @@ triggers:
             sample: {}
     sample: [{
         "repository_id": "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx",
+        "connection_id": "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx",
         "actions": [{
             "type": "TRIGGER_BUILD_PIPELINE",
             "filter": {
@@ -258,7 +296,15 @@ triggers:
                 "events": [],
                 "include": {
                     "head_ref": "head_ref_example",
-                    "base_ref": "base_ref_example"
+                    "base_ref": "base_ref_example",
+                    "file_filter": {
+                        "file_paths": []
+                    }
+                },
+                "exclude": {
+                    "file_filter": {
+                        "file_paths": []
+                    }
                 }
             },
             "build_pipeline_id": "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"

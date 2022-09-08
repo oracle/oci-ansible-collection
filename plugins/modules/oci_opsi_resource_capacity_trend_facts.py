@@ -245,7 +245,7 @@ resource_capacity_trend:
             sample: CPU
         usage_unit:
             description:
-                - Identifies the units of the current resource metric (CORES, GB).
+                - Displays usage unit ( CORES, GB , PERCENT, MBPS)
             returned: on success
             type: str
             sample: CORES

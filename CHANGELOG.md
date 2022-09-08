@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [3.1.0]
+
+## Added
+
+- Support for Operator Access Control service
+- Support for Data Labeling Service Dataplane
+- Support for private repositories in the DevOps service
+- Support for file filters in the DevOps service
+- Support for viewing automatic workload repository (AWR) data for databases added to AWRHub in the Operations Insights service
+- Support for OCI Compute instances in the Operations Insights service
+- Support for E3, E4, Standard3, and Optimized3 flexible compute shapes on notebooks, model deployment, and jobs in the Data Science service
+- Support for runtime configurations in notebook sessions in the Data Science service
+- Support for rewards redemption summaries in the Usage service
+
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.81.0
+
 ## [3.0.1]
 
 ## Fixed

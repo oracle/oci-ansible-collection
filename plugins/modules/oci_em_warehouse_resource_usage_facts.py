@@ -99,6 +99,18 @@ resource_usage:
                     returned: on success
                     type: str
                     sample: em_host_example
+                em_discoverer_url:
+                    description:
+                        - emdDiscoverer url
+                    returned: on success
+                    type: str
+                    sample: em_discoverer_url_example
+        schema_name:
+            description:
+                - schema name
+            returned: on success
+            type: str
+            sample: schema_name_example
     sample: {
         "operations_insights_warehouse_id": "ocid1.operationsinsightswarehouse.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
@@ -107,8 +119,10 @@ resource_usage:
         "em_instances": [{
             "em_id": "ocid1.em.oc1..xxxxxxEXAMPLExxxxxx",
             "targets_count": 56,
-            "em_host": "em_host_example"
-        }]
+            "em_host": "em_host_example",
+            "em_discoverer_url": "em_discoverer_url_example"
+        }],
+        "schema_name": "schema_name_example"
     }
 """
 
@@ -120,7 +134,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 )
 
 try:
-    from oci.em_warehouse import EmDataLakeClient
+    from oci.em_warehouse import EmWarehouseClient
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -163,7 +177,7 @@ def main():
     resource_facts_helper = ResourceFactsHelper(
         module=module,
         resource_type="resource_usage",
-        service_client_class=EmDataLakeClient,
+        service_client_class=EmWarehouseClient,
         namespace="em_warehouse",
     )
 

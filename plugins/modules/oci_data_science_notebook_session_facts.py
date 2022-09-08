@@ -114,6 +114,37 @@ notebook_sessions:
     returned: on success
     type: complex
     contains:
+        notebook_session_runtime_config_details:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                custom_environment_variables:
+                    description:
+                        - Custom environment variables for Notebook Session. These key-value pairs will be available for customers in Notebook Sessions.
+                    returned: on success
+                    type: dict
+                    sample: {}
+                notebook_session_git_config_details:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        notebook_session_git_repo_config_collection:
+                            description:
+                                - A collection of Git repository configurations.
+                            returned: on success
+                            type: complex
+                            contains:
+                                url:
+                                    description:
+                                        - The repository URL
+                                    returned: on success
+                                    type: str
+                                    sample: url_example
         lifecycle_details:
             description:
                 - Details about the state of the notebook session.
@@ -280,6 +311,14 @@ notebook_sessions:
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
     sample: [{
+        "notebook_session_runtime_config_details": {
+            "custom_environment_variables": {},
+            "notebook_session_git_config_details": {
+                "notebook_session_git_repo_config_collection": [{
+                    "url": "url_example"
+                }]
+            }
+        },
         "lifecycle_details": "lifecycle_details_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2013-10-20T19:20:30+01:00",

@@ -30,7 +30,7 @@ oracle.oci.oci_em_warehouse_resource_usage_facts -- Fetches details about a Reso
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.0.1).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.1.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -341,7 +341,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>ResourceUsage resource</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;em_instance_count&#x27;: 56, &#x27;em_instances&#x27;: [{&#x27;em_host&#x27;: &#x27;em_host_example&#x27;, &#x27;em_id&#x27;: &#x27;ocid1.em.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;targets_count&#x27;: 56}], &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;operations_insights_warehouse_id&#x27;: &#x27;ocid1.operationsinsightswarehouse.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;targets_count&#x27;: 56}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;em_instance_count&#x27;: 56, &#x27;em_instances&#x27;: [{&#x27;em_discoverer_url&#x27;: &#x27;em_discoverer_url_example&#x27;, &#x27;em_host&#x27;: &#x27;em_host_example&#x27;, &#x27;em_id&#x27;: &#x27;ocid1.em.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;targets_count&#x27;: 56}], &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;operations_insights_warehouse_id&#x27;: &#x27;ocid1.operationsinsightswarehouse.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;schema_name&#x27;: &#x27;schema_name_example&#x27;, &#x27;targets_count&#x27;: 56}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -379,6 +379,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                         </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-resource_usage/em_instances/em_discoverer_url"></div>
+                    <b>em_discoverer_url</b>
+                    <a class="ansibleOptionLink" href="#return-resource_usage/em_instances/em_discoverer_url" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>emdDiscoverer url</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">em_discoverer_url_example</div>
+                                    </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
@@ -470,6 +489,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.operationsinsightswarehouse.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-resource_usage/schema_name"></div>
+                    <b>schema_name</b>
+                    <a class="ansibleOptionLink" href="#return-resource_usage/schema_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>schema name</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">schema_name_example</div>
                                     </td>
             </tr>
                                 <tr>

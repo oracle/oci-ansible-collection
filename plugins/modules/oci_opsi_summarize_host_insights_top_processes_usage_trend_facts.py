@@ -68,6 +68,16 @@ options:
               timeIntervalStart and timeIntervalEnd are used together.
               If timeIntervalEnd is not specified, current time is used as timeIntervalEnd.
         type: str
+    host_type:
+        description:
+            - Filter by one or more host types.
+              Possible values are CLOUD-HOST, EXTERNAL-HOST
+        type: list
+        elements: str
+    host_id:
+        description:
+            - Optional L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the host (Compute Id)
+        type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -83,6 +93,8 @@ EXAMPLES = """
     analysis_time_interval: analysis_time_interval_example
     time_interval_start: 2013-10-20T19:20:30+01:00
     time_interval_end: 2013-10-20T19:20:30+01:00
+    host_type: [ "host_type_example" ]
+    host_id: "ocid1.host.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -193,6 +205,8 @@ class SummarizeHostInsightsTopProcessesUsageTrendFactsHelperGen(
             "analysis_time_interval",
             "time_interval_start",
             "time_interval_end",
+            "host_type",
+            "host_id",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -230,6 +244,8 @@ def main():
             analysis_time_interval=dict(type="str"),
             time_interval_start=dict(type="str"),
             time_interval_end=dict(type="str"),
+            host_type=dict(type="list", elements="str"),
+            host_id=dict(type="str"),
         )
     )
 

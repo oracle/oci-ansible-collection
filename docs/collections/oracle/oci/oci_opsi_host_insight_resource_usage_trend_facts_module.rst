@@ -30,7 +30,7 @@ oracle.oci.oci_opsi_host_insight_resource_usage_trend_facts -- Fetches details a
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.0.1).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.1.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -356,6 +356,36 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-host_id"></div>
+                    <b>host_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-host_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Optional <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the host (Compute Id)</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-host_type"></div>
+                    <b>host_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-host_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Filter by one or more host types. Possible values are CLOUD-HOST, EXTERNAL-HOST</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#parameter-id" title="Permalink to this option"></a>
@@ -549,6 +579,8 @@ Examples
         defined_tag_exists: [ "defined_tag_exists_example" ]
         freeform_tag_exists: [ "freeform_tag_exists_example" ]
         compartment_id_in_subtree: true
+        host_type: [ "host_type_example" ]
+        host_id: "ocid1.host.oc1..xxxxxxEXAMPLExxxxxx"
 
 
 
@@ -746,7 +778,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Displays usage unit (CORES, GB)</div>
+                                            <div>Displays usage unit ( CORES, GB , PERCENT, MBPS)</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CORES</div>
