@@ -228,6 +228,7 @@ instance_configurations:
                                         - " * `10`: Represents Balanced option."
                                         - " * `20`: Represents Higher Performance option."
                                         - " * `30`-`120`: Represents the Ultra High Performance option."
+                                        - For performance autotune enabled volumes, it would be the Default(Minimum) VPUs/GB.
                                     returned: on success
                                     type: int
                                     sample: 56
@@ -255,6 +256,25 @@ instance_configurations:
                                             returned: on success
                                             type: str
                                             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+                                autotune_policies:
+                                    description:
+                                        - The list of autotune policies enabled for this volume.
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        autotune_type:
+                                            description:
+                                                - This specifies the type of autotunes supported by OCI.
+                                            returned: on success
+                                            type: str
+                                            sample: DETACHED_VOLUME
+                                        max_vpus_per_gb:
+                                            description:
+                                                - This will be the maximum VPUs/GB performance level that the volume will be auto-tuned
+                                                  temporarily based on performance monitoring.
+                                            returned: on success
+                                            type: int
+                                            sample: 56
                         volume_id:
                             description:
                                 - The OCID of the volume.
@@ -641,6 +661,7 @@ instance_configurations:
                                         - " * `10`: Represents Balanced option."
                                         - " * `20`: Represents Higher Performance option."
                                         - " * `30`-`120`: Represents the Ultra High Performance option."
+                                        - For performance autotune enabled volumes, it would be the Default(Minimum) VPUs/GB.
                                     returned: on success
                                     type: int
                                     sample: 56
@@ -1077,7 +1098,11 @@ instance_configurations:
                     "source_details": {
                         "type": "volume",
                         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-                    }
+                    },
+                    "autotune_policies": [{
+                        "autotune_type": "DETACHED_VOLUME",
+                        "max_vpus_per_gb": 56
+                    }]
                 },
                 "volume_id": "ocid1.volume.oc1..xxxxxxEXAMPLExxxxxx"
             }],

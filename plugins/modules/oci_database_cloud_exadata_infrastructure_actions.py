@@ -173,6 +173,12 @@ cloud_exadata_infrastructure:
                     returned: on success
                     type: int
                     sample: 56
+                is_monthly_patching_enabled:
+                    description:
+                        - If true, enables the monthly patching option.
+                    returned: on success
+                    type: bool
+                    sample: true
                 months:
                     description:
                         - Months during the year when maintenance should be performed.
@@ -284,6 +290,7 @@ cloud_exadata_infrastructure:
             "patching_mode": "ROLLING",
             "is_custom_action_timeout_enabled": true,
             "custom_action_timeout_in_mins": 56,
+            "is_monthly_patching_enabled": true,
             "months": [{
                 "name": "JANUARY"
             }],

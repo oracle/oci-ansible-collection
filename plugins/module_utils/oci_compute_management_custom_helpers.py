@@ -11,17 +11,6 @@ __metaclass__ = type
 from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
 
 
-logger = oci_common_utils.get_logger("oci_compute_management_custom_helpers")
-
-
-def _debug(s):
-    get_logger().debug(s)
-
-
-def get_logger():
-    return logger
-
-
 try:
     import oci
     from oci.util import to_dict

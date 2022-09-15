@@ -31,9 +31,6 @@ class ProjectHelperCustom:
 
 
 class ModelHelperCustom:
-    def get_default_module_wait_timeout(self):
-        return 3600
-
     def create_resource(self):
         create_details = self.get_create_model()
         return oci_wait_utils.call_and_wait(

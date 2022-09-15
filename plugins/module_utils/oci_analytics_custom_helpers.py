@@ -18,22 +18,6 @@ try:
 except ImportError:
     HAS_OCI_PY_SDK = False
 
-logger = oci_common_utils.get_logger("oci_analytics_custom_helpers")
-
-
-def _debug(s):
-    get_logger().debug(s)
-
-
-def get_logger():
-    return logger
-
-
-class AnalyticsInstanceHelperCustom:
-    # creation of a analytics_instance is a long running process. So, increasing the timeout
-    def get_default_module_wait_timeout(self):
-        return 3600
-
 
 class VanityUrlHelperCustom:
 
@@ -116,10 +100,6 @@ class PrivateAccessChannelHelperCustom:
             private_access_channels = list(private_access_channel_dict.values())
 
         return private_access_channels
-
-    # creation of a private_access_channel is a long running process. So, increasing the timeout
-    def get_default_module_wait_timeout(self):
-        return 7200
 
     # private_access_channel does not exist in the respective analytics_instance when the private_access_channel is dead.
     # So we just check of private_access_channel is None

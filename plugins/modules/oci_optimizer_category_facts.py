@@ -46,6 +46,32 @@ options:
             - Can only be set to true when performing ListCompartments on the tenancy (root compartment).
             - Required to list multiple categories.
         type: bool
+    child_tenancy_ids:
+        description:
+            - A list of child tenancies for which the respective data will be returned. Please note that
+              the parent tenancy id can also be included in this list. For example, if there is a parent P with two
+              children A and B, to return results of only parent P and child A, this list should be populated with
+              tenancy id of parent P and child A.
+            - If this list contains a tenancy id that isn't part of the organization of parent P, the request will
+              fail. That is, let's say there is an organization with parent P with children A and B, and also one
+              other tenant T that isn't part of the organization. If T is included in the list of
+              childTenancyIds, the request will fail.
+            - It is important to note that if you are setting the includeOrganization parameter value as true and
+              also populating the childTenancyIds parameter with a list of child tenancies, the request will fail.
+              The childTenancyIds and includeOrganization should be used exclusively.
+            - When using this parameter, please make sure to set the compartmentId with the parent tenancy ID.
+        type: list
+        elements: str
+    include_organization:
+        description:
+            - When set to true, the data for all child tenancies including the parent is returned. That is, if
+              there is an organization with parent P and children A and B, to return the data for the parent P, child
+              A and child B, this parameter value should be set to true.
+            - Please note that this parameter shouldn't be used along with childTenancyIds parameter. If you would like
+              to get results specifically for parent P and only child A, use the childTenancyIds parameter and populate
+              the list with tenancy id of P and A.
+            - When using this parameter, please make sure to set the compartmentId with the parent tenancy ID.
+        type: bool
     name:
         description:
             - Optional. A filter that returns results that match the name specified.
@@ -95,6 +121,8 @@ EXAMPLES = """
     compartment_id_in_subtree: true
 
     # optional
+    child_tenancy_ids: [ "child_tenancy_ids_example" ]
+    include_organization: true
     name: name_example
     sort_order: ASC
     sort_by: NAME
@@ -121,6 +149,12 @@ categories:
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        compartment_name:
+            description:
+                - The name associated with the compartment.
+            returned: on success
+            type: str
+            sample: compartment_name_example
         name:
             description:
                 - The name assigned to the category.
@@ -204,6 +238,7 @@ categories:
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+        "compartment_name": "compartment_name_example",
         "name": "name_example",
         "description": "description_example",
         "recommendation_counts": [{
@@ -258,6 +293,8 @@ class CategoryFactsHelperGen(OCIResourceFactsHelperBase):
 
     def list_resources(self):
         optional_list_method_params = [
+            "child_tenancy_ids",
+            "include_organization",
             "name",
             "sort_order",
             "sort_by",
@@ -292,6 +329,8 @@ def main():
             category_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
             compartment_id_in_subtree=dict(type="bool"),
+            child_tenancy_ids=dict(type="list", elements="str"),
+            include_organization=dict(type="bool"),
             name=dict(type="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["NAME", "TIMECREATED"]),

@@ -6,11 +6,7 @@
 
 from __future__ import absolute_import, division, print_function
 
-from datetime import datetime
-
 __metaclass__ = type
-
-from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
 
 try:
     import oci
@@ -20,20 +16,6 @@ try:
 
 except ImportError:
     HAS_OCI_PY_SDK = False
-
-logger = oci_common_utils.get_logger("oci_announcements_service_custom_helpers")
-
-
-def _debug(s):
-    get_logger().debug(s)
-
-
-def get_logger():
-    return logger
-
-
-def utc_now():
-    return " " + str(datetime.utcnow()) + ": "
 
 
 class AnnouncementsCollectionFactsHelperCustom:

@@ -175,6 +175,38 @@ options:
               For more information, see L(Resource Tags,https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm).
             - Applicable when creation_type is 'NewDbSystem'
         type: dict
+    data_collection_options:
+        description:
+            - ""
+            - Applicable when creation_type is 'NewDbSystem'
+        type: dict
+        suboptions:
+            is_diagnostics_events_enabled:
+                description:
+                    - Indicates whether diagnostic collection is enabled for the VM cluster/Cloud VM cluster/VMBM DBCS. Enabling diagnostic collection allows
+                      you to receive Events service notifications for guest VM issues. Diagnostic collection also allows Oracle to provide enhanced service and
+                      proactive support for your Exadata system. You can enable diagnostic collection during VM cluster/Cloud VM cluster provisioning. You can
+                      also disable or enable it at any time using the `UpdateVmCluster` or `updateCloudVmCluster` API.
+                    - Applicable when creation_type is 'NewDbSystem'
+                type: bool
+            is_health_monitoring_enabled:
+                description:
+                    - Indicates whether health monitoring is enabled for the VM cluster / Cloud VM cluster / VMBM DBCS. Enabling health monitoring allows Oracle
+                      to collect diagnostic data and share it with its operations and support personnel. You may also receive notifications for some events.
+                      Collecting health diagnostics enables Oracle to provide proactive support and enhanced service for your system.
+                      Optionally enable health monitoring while provisioning a system. You can also disable or enable health monitoring anytime using the
+                      `UpdateVmCluster`, `UpdateCloudVmCluster` or `updateDbsystem` API.
+                    - Applicable when creation_type is 'NewDbSystem'
+                type: bool
+            is_incident_logs_enabled:
+                description:
+                    - Indicates whether incident logs and trace collection are enabled for the VM cluster / Cloud VM cluster / VMBM DBCS. Enabling incident logs
+                      collection allows Oracle to receive Events service notifications for guest VM issues, collect incident logs and traces, and use them to
+                      diagnose issues and resolve them.
+                      Optionally enable incident logs collection while provisioning a system. You can also disable or enable incident logs collection anytime
+                      using the `UpdateVmCluster`, `updateCloudVmCluster` or `updateDbsystem` API.
+                    - Applicable when creation_type is 'NewDbSystem'
+                type: bool
     peer_vm_cluster_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the VM Cluster in which to create the standby database.
@@ -311,6 +343,11 @@ EXAMPLES = """
     db_system_defined_tags: null
     database_freeform_tags: null
     database_defined_tags: null
+    data_collection_options:
+      # optional
+      is_diagnostics_events_enabled: true
+      is_health_monitoring_enabled: true
+      is_incident_logs_enabled: true
     database_software_image_id: "ocid1.databasesoftwareimage.oc1..xxxxxxEXAMPLExxxxxx"
     peer_db_unique_name: peer_db_unique_name_example
     peer_sid_prefix: peer_sid_prefix_example
@@ -601,28 +638,29 @@ class DataGuardAssociationHelperGen(OCIResourceHelperBase):
     def get_exclude_attributes(self):
         return [
             "database_software_image_id",
+            "peer_vm_cluster_id",
+            "fault_domains",
+            "private_ip",
+            "hostname",
+            "data_collection_options",
+            "database_admin_password",
+            "peer_sid_prefix",
+            "database_freeform_tags",
+            "storage_volume_performance_mode",
+            "node_count",
             "db_system_freeform_tags",
             "db_system_defined_tags",
             "shape",
             "availability_domain",
             "license_model",
-            "peer_vm_cluster_id",
             "display_name",
             "time_zone",
-            "fault_domains",
-            "private_ip",
-            "hostname",
-            "database_admin_password",
             "peer_db_unique_name",
-            "peer_sid_prefix",
             "creation_type",
-            "database_freeform_tags",
-            "storage_volume_performance_mode",
             "nsg_ids",
             "subnet_id",
             "backup_network_nsg_ids",
             "database_defined_tags",
-            "node_count",
             "cpu_core_count",
         ]
 
@@ -700,6 +738,14 @@ def main():
             db_system_defined_tags=dict(type="dict"),
             database_freeform_tags=dict(type="dict"),
             database_defined_tags=dict(type="dict"),
+            data_collection_options=dict(
+                type="dict",
+                options=dict(
+                    is_diagnostics_events_enabled=dict(type="bool"),
+                    is_health_monitoring_enabled=dict(type="bool"),
+                    is_incident_logs_enabled=dict(type="bool"),
+                ),
+            ),
             peer_vm_cluster_id=dict(type="str"),
             database_software_image_id=dict(type="str"),
             creation_type=dict(

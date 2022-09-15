@@ -8,22 +8,10 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
-from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
-
 try:
     HAS_OCI_PY_SDK = True
 except ImportError:
     HAS_OCI_PY_SDK = False
-
-logger = oci_common_utils.get_logger("oci_data_flow_custom_helpers")
-
-
-def _debug(s):
-    get_logger().debug(s)
-
-
-def get_logger():
-    return logger
 
 
 class DataFlowRunHelperCustom:

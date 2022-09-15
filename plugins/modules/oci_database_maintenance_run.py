@@ -84,6 +84,16 @@ options:
             - If true, then the patching is resumed and the next component will be patched immediately.
             - This parameter is updatable.
         type: bool
+    target_db_server_version:
+        description:
+            - The target database server system software version for the patching operation.
+            - This parameter is updatable.
+        type: str
+    target_storage_server_version:
+        description:
+            - The target storage cell system software version for the patching operation.
+            - This parameter is updatable.
+        type: str
     state:
         description:
             - The state of the MaintenanceRun.
@@ -111,6 +121,8 @@ EXAMPLES = """
     custom_action_timeout_in_mins: 56
     current_custom_action_timeout_in_mins: 56
     is_resume_patching: true
+    target_db_server_version: target_db_server_version_example
+    target_storage_server_version: target_storage_server_version_example
 
 """
 
@@ -476,6 +488,8 @@ def main():
             custom_action_timeout_in_mins=dict(type="int"),
             current_custom_action_timeout_in_mins=dict(type="int"),
             is_resume_patching=dict(type="bool"),
+            target_db_server_version=dict(type="str"),
+            target_storage_server_version=dict(type="str"),
             state=dict(type="str", default="present", choices=["present"]),
         )
     )

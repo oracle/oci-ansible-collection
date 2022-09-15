@@ -360,6 +360,9 @@ except ImportError:
 class HttpRedirectHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_default_module_wait_timeout(self):
+        return 7200
+
     def get_possible_entity_types(self):
         return super(HttpRedirectHelperGen, self).get_possible_entity_types() + [
             "httpredirect",

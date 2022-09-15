@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 3.1.0
+Collection version 3.2.0
 
 .. toctree::
     :maxdepth: 1
@@ -558,11 +558,13 @@ Modules
 * :ref:`oci_database_external_pluggable_database_facts <ansible_collections.oracle.oci.oci_database_external_pluggable_database_facts_module>` -- Fetches details about one or multiple ExternalPluggableDatabase resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_flex_component_facts <ansible_collections.oracle.oci.oci_database_flex_component_facts_module>` -- Fetches details about one or multiple FlexComponentCollection resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_gi_version_facts <ansible_collections.oracle.oci.oci_database_gi_version_facts_module>` -- Fetches details about one or multiple GiVersion resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_infrastructure_target_version_facts <ansible_collections.oracle.oci.oci_database_infrastructure_target_version_facts_module>` -- Fetches details about a InfrastructureTargetVersion resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_key_store <ansible_collections.oracle.oci.oci_database_key_store_module>` -- Manage a KeyStore resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_key_store_actions <ansible_collections.oracle.oci.oci_database_key_store_actions_module>` -- Perform actions on a KeyStore resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_key_store_facts <ansible_collections.oracle.oci.oci_database_key_store_facts_module>` -- Fetches details about one or multiple KeyStore resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_maintenance_run <ansible_collections.oracle.oci.oci_database_maintenance_run_module>` -- Manage a MaintenanceRun resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_maintenance_run_facts <ansible_collections.oracle.oci.oci_database_maintenance_run_facts_module>` -- Fetches details about one or multiple MaintenanceRun resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_maintenance_run_history_facts <ansible_collections.oracle.oci.oci_database_maintenance_run_history_facts_module>` -- Fetches details about one or multiple MaintenanceRunHistory resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_addm_tasks_facts <ansible_collections.oracle.oci.oci_database_management_addm_tasks_facts_module>` -- Fetches details about one or multiple AddmTasks resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_alert_log_counts_facts <ansible_collections.oracle.oci.oci_database_management_alert_log_counts_facts_module>` -- Fetches details about one or multiple AlertLogCounts resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_alert_log_facts <ansible_collections.oracle.oci.oci_database_management_alert_log_facts_module>` -- Fetches details about one or multiple AlertLog resources in Oracle Cloud Infrastructure
@@ -2212,11 +2214,13 @@ Modules
     oci_database_external_pluggable_database_facts_module
     oci_database_flex_component_facts_module
     oci_database_gi_version_facts_module
+    oci_database_infrastructure_target_version_facts_module
     oci_database_key_store_module
     oci_database_key_store_actions_module
     oci_database_key_store_facts_module
     oci_database_maintenance_run_module
     oci_database_maintenance_run_facts_module
+    oci_database_maintenance_run_history_facts_module
     oci_database_management_addm_tasks_facts_module
     oci_database_management_alert_log_counts_facts_module
     oci_database_management_alert_log_facts_module

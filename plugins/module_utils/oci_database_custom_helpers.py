@@ -64,9 +64,6 @@ class AutonomousDatabaseRegionalWalletHelperCustom:
     def is_update(self):
         return True
 
-    def get_default_module_wait_timeout(self):
-        return int(1 * 2400)
-
 
 class AutonomousDatabaseActionsHelperCustom:
     REGISTER_AUTONOMOUS_DATABASE_DATA_SAFE = "register_autonomous_database_data_safe"

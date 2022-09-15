@@ -30,7 +30,7 @@ oracle.oci.oci_database_db_system -- Manage a DbSystem resource in Oracle Cloud 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.1.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.2.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -335,6 +335,86 @@ Parameters
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
+                                <tr>
+                                                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="parameter-data_collection_options"></div>
+                    <b>data_collection_options</b>
+                    <a class="ansibleOptionLink" href="#parameter-data_collection_options" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-data_collection_options/is_diagnostics_events_enabled"></div>
+                    <b>is_diagnostics_events_enabled</b>
+                    <a class="ansibleOptionLink" href="#parameter-data_collection_options/is_diagnostics_events_enabled" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Indicates whether diagnostic collection is enabled for the VM cluster/Cloud VM cluster/VMBM DBCS. Enabling diagnostic collection allows you to receive Events service notifications for guest VM issues. Diagnostic collection also allows Oracle to provide enhanced service and proactive support for your Exadata system. You can enable diagnostic collection during VM cluster/Cloud VM cluster provisioning. You can also disable or enable it at any time using the `UpdateVmCluster` or `updateCloudVmCluster` API.</div>
+                                            <div>Applicable when source is &#x27;NONE&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-data_collection_options/is_health_monitoring_enabled"></div>
+                    <b>is_health_monitoring_enabled</b>
+                    <a class="ansibleOptionLink" href="#parameter-data_collection_options/is_health_monitoring_enabled" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Indicates whether health monitoring is enabled for the VM cluster / Cloud VM cluster / VMBM DBCS. Enabling health monitoring allows Oracle to collect diagnostic data and share it with its operations and support personnel. You may also receive notifications for some events. Collecting health diagnostics enables Oracle to provide proactive support and enhanced service for your system. Optionally enable health monitoring while provisioning a system. You can also disable or enable health monitoring anytime using the `UpdateVmCluster`, `UpdateCloudVmCluster` or `updateDbsystem` API.</div>
+                                            <div>Applicable when source is &#x27;NONE&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-data_collection_options/is_incident_logs_enabled"></div>
+                    <b>is_incident_logs_enabled</b>
+                    <a class="ansibleOptionLink" href="#parameter-data_collection_options/is_incident_logs_enabled" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Indicates whether incident logs and trace collection are enabled for the VM cluster / Cloud VM cluster / VMBM DBCS. Enabling incident logs collection allows Oracle to receive Events service notifications for guest VM issues, collect incident logs and traces, and use them to diagnose issues and resolve them. Optionally enable incident logs collection while provisioning a system. You can also disable or enable incident logs collection anytime using the `UpdateVmCluster`, `updateCloudVmCluster` or `updateDbsystem` API.</div>
+                                            <div>Applicable when source is &#x27;NONE&#x27;</div>
+                                                        </td>
+            </tr>
+                    
                                 <tr>
                                                                 <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-data_storage_percentage"></div>
@@ -1475,6 +1555,27 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-maintenance_window_details/is_monthly_patching_enabled"></div>
+                    <b>is_monthly_patching_enabled</b>
+                    <a class="ansibleOptionLink" href="#parameter-maintenance_window_details/is_monthly_patching_enabled" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>If true, enables the monthly patching option.</div>
+                                            <div>Applicable when source is &#x27;NONE&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-maintenance_window_details/lead_time_in_weeks"></div>
                     <b>lead_time_in_weeks</b>
                     <a class="ansibleOptionLink" href="#parameter-maintenance_window_details/lead_time_in_weeks" title="Permalink to this option"></a>
@@ -2079,6 +2180,7 @@ Examples
           patching_mode: ROLLING
           is_custom_action_timeout_enabled: true
           custom_action_timeout_in_mins: 56
+          is_monthly_patching_enabled: true
           months:
           - # required
             name: JANUARY
@@ -2088,6 +2190,11 @@ Examples
             name: MONDAY
           hours_of_day: [ "hours_of_day_example" ]
           lead_time_in_weeks: 56
+        data_collection_options:
+          # optional
+          is_diagnostics_events_enabled: true
+          is_health_monitoring_enabled: true
+          is_incident_logs_enabled: true
 
     - name: Create db_system with source = DB_SYSTEM
       oci_database_db_system:
@@ -2172,6 +2279,11 @@ Examples
         nsg_ids: [ "nsg_ids_example" ]
         backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
         license_model: LICENSE_INCLUDED
+        data_collection_options:
+          # optional
+          is_diagnostics_events_enabled: true
+          is_health_monitoring_enabled: true
+          is_incident_logs_enabled: true
 
     - name: Create db_system with source = DATABASE
       oci_database_db_system:
@@ -2257,6 +2369,11 @@ Examples
         nsg_ids: [ "nsg_ids_example" ]
         backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
         license_model: LICENSE_INCLUDED
+        data_collection_options:
+          # optional
+          is_diagnostics_events_enabled: true
+          is_health_monitoring_enabled: true
+          is_incident_logs_enabled: true
 
     - name: Create db_system with source = DB_BACKUP
       oci_database_db_system:
@@ -2342,6 +2459,11 @@ Examples
         nsg_ids: [ "nsg_ids_example" ]
         backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
         license_model: LICENSE_INCLUDED
+        data_collection_options:
+          # optional
+          is_diagnostics_events_enabled: true
+          is_health_monitoring_enabled: true
+          is_incident_logs_enabled: true
 
     - name: Update db_system
       oci_database_db_system:
@@ -2372,6 +2494,7 @@ Examples
           patching_mode: ROLLING
           is_custom_action_timeout_enabled: true
           custom_action_timeout_in_mins: 56
+          is_monthly_patching_enabled: true
           months:
           - # required
             name: JANUARY
@@ -2381,6 +2504,11 @@ Examples
             name: MONDAY
           hours_of_day: [ "hours_of_day_example" ]
           lead_time_in_weeks: 56
+        data_collection_options:
+          # optional
+          is_diagnostics_events_enabled: true
+          is_health_monitoring_enabled: true
+          is_incident_logs_enabled: true
 
     - name: Update db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_database_db_system:
@@ -2412,6 +2540,7 @@ Examples
           patching_mode: ROLLING
           is_custom_action_timeout_enabled: true
           custom_action_timeout_in_mins: 56
+          is_monthly_patching_enabled: true
           months:
           - # required
             name: JANUARY
@@ -2421,6 +2550,11 @@ Examples
             name: MONDAY
           hours_of_day: [ "hours_of_day_example" ]
           lead_time_in_weeks: 56
+        data_collection_options:
+          # optional
+          is_diagnostics_events_enabled: true
+          is_health_monitoring_enabled: true
+          is_incident_logs_enabled: true
 
     - name: Delete db_system
       oci_database_db_system:
@@ -2470,7 +2604,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the DbSystem resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;backup_network_nsg_ids&#x27;: [], &#x27;backup_subnet_id&#x27;: &#x27;ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cluster_name&#x27;: &#x27;cluster_name_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cpu_core_count&#x27;: 56, &#x27;data_storage_percentage&#x27;: 56, &#x27;data_storage_size_in_gbs&#x27;: 56, &#x27;database_edition&#x27;: &#x27;STANDARD_EDITION&#x27;, &#x27;db_system_options&#x27;: {&#x27;storage_management&#x27;: &#x27;ASM&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;disk_redundancy&#x27;: &#x27;HIGH&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;domain&#x27;: &#x27;domain_example&#x27;, &#x27;fault_domains&#x27;: [], &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;iorm_config_cache&#x27;: {&#x27;db_plans&#x27;: [{&#x27;db_name&#x27;: &#x27;db_name_example&#x27;, &#x27;flash_cache_limit&#x27;: &#x27;flash_cache_limit_example&#x27;, &#x27;share&#x27;: 56}], &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;BOOTSTRAPPING&#x27;, &#x27;objective&#x27;: &#x27;LOW_LATENCY&#x27;}, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;last_maintenance_run_id&#x27;: &#x27;ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;last_patch_history_entry_id&#x27;: &#x27;ocid1.lastpatchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;license_model&#x27;: &#x27;LICENSE_INCLUDED&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;listener_port&#x27;: 56, &#x27;maintenance_window&#x27;: {&#x27;custom_action_timeout_in_mins&#x27;: 56, &#x27;days_of_week&#x27;: [{&#x27;name&#x27;: &#x27;MONDAY&#x27;}], &#x27;hours_of_day&#x27;: [], &#x27;is_custom_action_timeout_enabled&#x27;: True, &#x27;lead_time_in_weeks&#x27;: 56, &#x27;months&#x27;: [{&#x27;name&#x27;: &#x27;JANUARY&#x27;}], &#x27;patching_mode&#x27;: &#x27;ROLLING&#x27;, &#x27;preference&#x27;: &#x27;NO_PREFERENCE&#x27;, &#x27;weeks_of_month&#x27;: []}, &#x27;memory_size_in_gbs&#x27;: 56, &#x27;next_maintenance_run_id&#x27;: &#x27;ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;node_count&#x27;: 56, &#x27;nsg_ids&#x27;: [], &#x27;point_in_time_data_disk_clone_timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;reco_storage_size_in_gb&#x27;: 56, &#x27;scan_dns_name&#x27;: &#x27;scan_dns_name_example&#x27;, &#x27;scan_dns_record_id&#x27;: &#x27;ocid1.scandnsrecord.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;scan_ip_ids&#x27;: [], &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;source_db_system_id&#x27;: &#x27;ocid1.sourcedbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;sparse_diskgroup&#x27;: True, &#x27;ssh_public_keys&#x27;: [&#x27;ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...&#x27;], &#x27;storage_volume_performance_mode&#x27;: &#x27;BALANCED&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_zone&#x27;: &#x27;time_zone_example&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;, &#x27;vip_ids&#x27;: [], &#x27;zone_id&#x27;: &#x27;ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;backup_network_nsg_ids&#x27;: [], &#x27;backup_subnet_id&#x27;: &#x27;ocid1.backupsubnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cluster_name&#x27;: &#x27;cluster_name_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cpu_core_count&#x27;: 56, &#x27;data_collection_options&#x27;: {&#x27;is_diagnostics_events_enabled&#x27;: True, &#x27;is_health_monitoring_enabled&#x27;: True, &#x27;is_incident_logs_enabled&#x27;: True}, &#x27;data_storage_percentage&#x27;: 56, &#x27;data_storage_size_in_gbs&#x27;: 56, &#x27;database_edition&#x27;: &#x27;STANDARD_EDITION&#x27;, &#x27;db_system_options&#x27;: {&#x27;storage_management&#x27;: &#x27;ASM&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;disk_redundancy&#x27;: &#x27;HIGH&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;domain&#x27;: &#x27;domain_example&#x27;, &#x27;fault_domains&#x27;: [], &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;iorm_config_cache&#x27;: {&#x27;db_plans&#x27;: [{&#x27;db_name&#x27;: &#x27;db_name_example&#x27;, &#x27;flash_cache_limit&#x27;: &#x27;flash_cache_limit_example&#x27;, &#x27;share&#x27;: 56}], &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;BOOTSTRAPPING&#x27;, &#x27;objective&#x27;: &#x27;LOW_LATENCY&#x27;}, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;last_maintenance_run_id&#x27;: &#x27;ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;last_patch_history_entry_id&#x27;: &#x27;ocid1.lastpatchhistoryentry.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;license_model&#x27;: &#x27;LICENSE_INCLUDED&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;listener_port&#x27;: 56, &#x27;maintenance_window&#x27;: {&#x27;custom_action_timeout_in_mins&#x27;: 56, &#x27;days_of_week&#x27;: [{&#x27;name&#x27;: &#x27;MONDAY&#x27;}], &#x27;hours_of_day&#x27;: [], &#x27;is_custom_action_timeout_enabled&#x27;: True, &#x27;is_monthly_patching_enabled&#x27;: True, &#x27;lead_time_in_weeks&#x27;: 56, &#x27;months&#x27;: [{&#x27;name&#x27;: &#x27;JANUARY&#x27;}], &#x27;patching_mode&#x27;: &#x27;ROLLING&#x27;, &#x27;preference&#x27;: &#x27;NO_PREFERENCE&#x27;, &#x27;weeks_of_month&#x27;: []}, &#x27;memory_size_in_gbs&#x27;: 56, &#x27;next_maintenance_run_id&#x27;: &#x27;ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;node_count&#x27;: 56, &#x27;nsg_ids&#x27;: [], &#x27;point_in_time_data_disk_clone_timestamp&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;reco_storage_size_in_gb&#x27;: 56, &#x27;scan_dns_name&#x27;: &#x27;scan_dns_name_example&#x27;, &#x27;scan_dns_record_id&#x27;: &#x27;ocid1.scandnsrecord.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;scan_ip_ids&#x27;: [], &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;source_db_system_id&#x27;: &#x27;ocid1.sourcedbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;sparse_diskgroup&#x27;: True, &#x27;ssh_public_keys&#x27;: [&#x27;ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz...&#x27;], &#x27;storage_volume_performance_mode&#x27;: &#x27;BALANCED&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_zone&#x27;: &#x27;time_zone_example&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;, &#x27;vip_ids&#x27;: [], &#x27;zone_id&#x27;: &#x27;ocid1.zone.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -2580,6 +2714,80 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-db_system/data_collection_options"></div>
+                    <b>data_collection_options</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/data_collection_options" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-db_system/data_collection_options/is_diagnostics_events_enabled"></div>
+                    <b>is_diagnostics_events_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/data_collection_options/is_diagnostics_events_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Indicates whether diagnostic collection is enabled for the VM cluster/Cloud VM cluster/VMBM DBCS. Enabling diagnostic collection allows you to receive Events service notifications for guest VM issues. Diagnostic collection also allows Oracle to provide enhanced service and proactive support for your Exadata system. You can enable diagnostic collection during VM cluster/Cloud VM cluster provisioning. You can also disable or enable it at any time using the `UpdateVmCluster` or `updateCloudVmCluster` API.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-db_system/data_collection_options/is_health_monitoring_enabled"></div>
+                    <b>is_health_monitoring_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/data_collection_options/is_health_monitoring_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Indicates whether health monitoring is enabled for the VM cluster / Cloud VM cluster / VMBM DBCS. Enabling health monitoring allows Oracle to collect diagnostic data and share it with its operations and support personnel. You may also receive notifications for some events. Collecting health diagnostics enables Oracle to provide proactive support and enhanced service for your system. Optionally enable health monitoring while provisioning a system. You can also disable or enable health monitoring anytime using the `UpdateVmCluster`, `UpdateCloudVmCluster` or `updateDbsystem` API.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-db_system/data_collection_options/is_incident_logs_enabled"></div>
+                    <b>is_incident_logs_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/data_collection_options/is_incident_logs_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Indicates whether incident logs and trace collection are enabled for the VM cluster / Cloud VM cluster / VMBM DBCS. Enabling incident logs collection allows Oracle to receive Events service notifications for guest VM issues, collect incident logs and traces, and use them to diagnose issues and resolve them. Optionally enable incident logs collection while provisioning a system. You can also disable or enable incident logs collection anytime using the `UpdateVmCluster`, `updateCloudVmCluster` or `updateDbsystem` API.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
@@ -3195,6 +3403,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>If true, enables the configuration of a custom action timeout (waiting period) between database server patching operations.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-db_system/maintenance_window/is_monthly_patching_enabled"></div>
+                    <b>is_monthly_patching_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-db_system/maintenance_window/is_monthly_patching_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>If true, enables the monthly patching option.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>

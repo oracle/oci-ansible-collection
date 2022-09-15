@@ -12,7 +12,7 @@ from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
 
 try:
     from oci.log_analytics.models import Namespace
-    from oci.exceptions import ServiceError, MaximumWaitTimeExceeded
+    from oci.exceptions import ServiceError
     from oci.util import to_dict
 
     HAS_OCI_PY_SDK = True
@@ -231,40 +231,3 @@ class UnprocessedDataBucketActionsHelperCustom:
         return super(
             UnprocessedDataBucketActionsHelperCustom, self
         ).is_action_necessary(action, resource)
-
-
-class ResourceCategoriesActionsHelperCustom:
-    def perform_action(self, action):
-        """
-        Overrides the base to invoke the actions for this
-        resource as resource doesn't have get_resource call.
-        """
-        action_fn = self.get_action_fn(action)
-        if not action_fn:
-            self.module.fail_json(msg="{0} not supported by the module.".format(action))
-
-        if self.check_mode:
-            return self.prepare_result(
-                changed=True,
-                resource_type=self.get_response_field_name(action),
-                resource=None,
-            )
-
-        try:
-            action_return = action_fn()
-        except MaximumWaitTimeExceeded as mwtex:
-            self.module.fail_json(msg=str(mwtex))
-        except ServiceError as se:
-            self.module.fail_json(
-                msg="Performing action failed with exception: {0}".format(se.message)
-            )
-        else:
-            resource = None
-            if action == "update" or action == "remove":
-                resource = to_dict(action_return)
-
-            return self.prepare_result(
-                changed=True,
-                resource_type=self.get_response_field_name(action),
-                resource=resource,
-            )

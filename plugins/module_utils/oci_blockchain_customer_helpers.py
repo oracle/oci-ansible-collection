@@ -11,23 +11,9 @@ __metaclass__ = type
 from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
 
 
-logger = oci_common_utils.get_logger("oci_blockchain_custom_helpers")
-
-
-def _debug(s):
-    get_logger().debug(s)
-
-
-def get_logger():
-    return logger
-
-
 class BlockchainPlatformHelperCustom:
     def get_entity_type(self):
         return "instance"
-
-    def get_default_module_wait_timeout(self):
-        return 2400
 
 
 class BlockchainPlatformOsnHelperCustom:

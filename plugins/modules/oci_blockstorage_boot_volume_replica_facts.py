@@ -38,12 +38,14 @@ options:
         description:
             - The name of the availability domain.
             - "Example: `Uocm:PHX-AD-1`"
-            - Required to list multiple boot_volume_replicas.
         type: str
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
-            - Required to list multiple boot_volume_replicas.
+        type: str
+    volume_group_replica_id:
+        description:
+            - The OCID of the volume group replica.
         type: str
     display_name:
         description:
@@ -93,11 +95,11 @@ EXAMPLES = """
 
 - name: List boot_volume_replicas
   oci_blockstorage_boot_volume_replica_facts:
-    # required
-    availability_domain: Uocm:PHX-AD-1
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    availability_domain: Uocm:PHX-AD-1
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    volume_group_replica_id: "ocid1.volumegroupreplica.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     sort_by: TIMECREATED
     sort_order: ASC
@@ -247,10 +249,7 @@ class BootVolumeReplicaFactsHelperGen(OCIResourceFactsHelperBase):
         ]
 
     def get_required_params_for_list(self):
-        return [
-            "availability_domain",
-            "compartment_id",
-        ]
+        return []
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(
@@ -260,6 +259,9 @@ class BootVolumeReplicaFactsHelperGen(OCIResourceFactsHelperBase):
 
     def list_resources(self):
         optional_list_method_params = [
+            "availability_domain",
+            "compartment_id",
+            "volume_group_replica_id",
             "display_name",
             "sort_by",
             "sort_order",
@@ -271,10 +273,7 @@ class BootVolumeReplicaFactsHelperGen(OCIResourceFactsHelperBase):
             if self.module.params.get(param) is not None
         )
         return oci_common_utils.list_all_resources(
-            self.client.list_boot_volume_replicas,
-            availability_domain=self.module.params.get("availability_domain"),
-            compartment_id=self.module.params.get("compartment_id"),
-            **optional_kwargs
+            self.client.list_boot_volume_replicas, **optional_kwargs
         )
 
 
@@ -296,6 +295,7 @@ def main():
             boot_volume_replica_id=dict(aliases=["id"], type="str"),
             availability_domain=dict(type="str"),
             compartment_id=dict(type="str"),
+            volume_group_replica_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),

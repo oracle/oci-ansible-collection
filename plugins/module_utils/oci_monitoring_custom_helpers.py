@@ -14,8 +14,6 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
 )
 
 try:
-    from oci.monitoring.models.metric import Metric
-    from oci.monitoring.models.metric_data import MetricData
     from oci.monitoring.models.suppression import Suppression
     from oci.monitoring import MonitoringClient
 
@@ -23,28 +21,6 @@ try:
 
 except ImportError:
     HAS_OCI_PY_SDK = False
-
-
-class MetricActionsHelperCustom:
-    # this resource does not have get method. The customisation for `get_resource` is only to make the other functions
-    # work and to return some data to the user.
-    def get_resource(self):
-        return oci_common_utils.get_default_response_from_resource(
-            resource=oci_common_utils.convert_input_data_to_model_class(
-                self.module.params, Metric
-            )
-        )
-
-
-class MetricDataActionsHelperCustom:
-    # this resource does not have get method. The customisation for `get_resource` is only to make the other functions
-    # work and to return some data to the user.
-    def get_resource(self):
-        return oci_common_utils.get_default_response_from_resource(
-            resource=oci_common_utils.convert_input_data_to_model_class(
-                self.module.params, MetricData
-            )
-        )
 
 
 class SuppressionActionsHelperCustom:

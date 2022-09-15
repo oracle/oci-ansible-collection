@@ -34,15 +34,14 @@ options:
             - Required to get a specific volume.
         type: str
         aliases: ["id"]
-    compartment_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
-            - Required to list multiple volumes.
-        type: str
     availability_domain:
         description:
             - The name of the availability domain.
             - "Example: `Uocm:PHX-AD-1`"
+        type: str
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
         type: str
     display_name:
         description:
@@ -97,11 +96,10 @@ EXAMPLES = """
 
 - name: List volumes
   oci_blockstorage_volume_facts:
-    # required
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
     availability_domain: Uocm:PHX-AD-1
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     sort_by: TIMECREATED
     sort_order: ASC
@@ -196,6 +194,7 @@ volumes:
                 - " * `10`: Represents Balanced option."
                 - " * `20`: Represents Higher Performance option."
                 - " * `30`-`120`: Represents the Ultra High Performance option."
+                - For performance autotune enabled volumes, It would be the Default(Minimum) VPUs/GB.
             returned: on success
             type: int
             sample: 56
@@ -244,13 +243,14 @@ volumes:
             sample: "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
         is_auto_tune_enabled:
             description:
-                - Specifies whether the auto-tune performance is enabled for this volume.
+                - Specifies whether the auto-tune performance is enabled for this volume. This field is deprecated.
+                  Use the `DetachedVolumeAutotunePolicy` instead to enable the volume for detached autotune.
             returned: on success
             type: bool
             sample: true
         auto_tuned_vpus_per_gb:
             description:
-                - The number of Volume Performance Units per GB that this volume is effectively tuned to when it's idle.
+                - The number of Volume Performance Units per GB that this volume is effectively tuned to.
             returned: on success
             type: int
             sample: 56
@@ -280,6 +280,25 @@ volumes:
                     returned: on success
                     type: str
                     sample: Uocm:PHX-AD-1
+        autotune_policies:
+            description:
+                - The list of autotune policies enabled for this volume.
+            returned: on success
+            type: complex
+            contains:
+                autotune_type:
+                    description:
+                        - This specifies the type of autotunes supported by OCI.
+                    returned: on success
+                    type: str
+                    sample: DETACHED_VOLUME
+                max_vpus_per_gb:
+                    description:
+                        - This will be the maximum VPUs/GB performance level that the volume will be auto-tuned
+                          temporarily based on performance monitoring.
+                    returned: on success
+                    type: int
+                    sample: 56
     sample: [{
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -306,6 +325,10 @@ volumes:
             "display_name": "display_name_example",
             "block_volume_replica_id": "ocid1.blockvolumereplica.oc1..xxxxxxEXAMPLExxxxxx",
             "availability_domain": "Uocm:PHX-AD-1"
+        }],
+        "autotune_policies": [{
+            "autotune_type": "DETACHED_VOLUME",
+            "max_vpus_per_gb": 56
         }]
     }]
 """
@@ -334,9 +357,7 @@ class VolumeFactsHelperGen(OCIResourceFactsHelperBase):
         ]
 
     def get_required_params_for_list(self):
-        return [
-            "compartment_id",
-        ]
+        return []
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(
@@ -346,6 +367,7 @@ class VolumeFactsHelperGen(OCIResourceFactsHelperBase):
     def list_resources(self):
         optional_list_method_params = [
             "availability_domain",
+            "compartment_id",
             "display_name",
             "sort_by",
             "sort_order",
@@ -358,9 +380,7 @@ class VolumeFactsHelperGen(OCIResourceFactsHelperBase):
             if self.module.params.get(param) is not None
         )
         return oci_common_utils.list_all_resources(
-            self.client.list_volumes,
-            compartment_id=self.module.params.get("compartment_id"),
-            **optional_kwargs
+            self.client.list_volumes, **optional_kwargs
         )
 
 
@@ -376,8 +396,8 @@ def main():
     module_args.update(
         dict(
             volume_id=dict(aliases=["id"], type="str"),
-            compartment_id=dict(type="str"),
             availability_domain=dict(type="str"),
+            compartment_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             sort_by=dict(type="str", choices=["TIMECREATED", "DISPLAYNAME"]),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),

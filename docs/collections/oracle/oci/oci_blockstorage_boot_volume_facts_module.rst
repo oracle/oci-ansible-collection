@@ -30,7 +30,7 @@ oracle.oci.oci_blockstorage_boot_volume_facts -- Fetches details about one or mu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.1.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.2.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -200,7 +200,6 @@ Parameters
                                                                 <td>
                                             <div>The name of the availability domain.</div>
                                             <div>Example: `Uocm:PHX-AD-1`</div>
-                                            <div>Required to list multiple boot_volumes.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -248,7 +247,6 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment.</div>
-                                            <div>Required to list multiple boot_volumes.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -373,11 +371,10 @@ Examples
 
     - name: List boot_volumes
       oci_blockstorage_boot_volume_facts:
-        # required
-        availability_domain: Uocm:PHX-AD-1
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
+        availability_domain: Uocm:PHX-AD-1
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         volume_group_id: "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
 
 
@@ -415,7 +412,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of BootVolume resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;auto_tuned_vpus_per_gb&#x27;: 56, &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;boot_volume_replicas&#x27;: [{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;boot_volume_replica_id&#x27;: &#x27;ocid1.bootvolumereplica.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;}], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_auto_tune_enabled&#x27;: True, &#x27;is_hydrated&#x27;: True, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;size_in_gbs&#x27;: 56, &#x27;size_in_mbs&#x27;: 56, &#x27;source_details&#x27;: {&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;type&#x27;: &#x27;bootVolume&#x27;}, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;volume_group_id&#x27;: &#x27;ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vpus_per_gb&#x27;: 56}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;auto_tuned_vpus_per_gb&#x27;: 56, &#x27;autotune_policies&#x27;: [{&#x27;autotune_type&#x27;: &#x27;DETACHED_VOLUME&#x27;, &#x27;max_vpus_per_gb&#x27;: 56}], &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;boot_volume_replicas&#x27;: [{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;boot_volume_replica_id&#x27;: &#x27;ocid1.bootvolumereplica.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;}], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_auto_tune_enabled&#x27;: True, &#x27;is_hydrated&#x27;: True, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;size_in_gbs&#x27;: 56, &#x27;size_in_mbs&#x27;: 56, &#x27;source_details&#x27;: {&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;type&#x27;: &#x27;bootVolume&#x27;}, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;volume_group_id&#x27;: &#x27;ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vpus_per_gb&#x27;: 56}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -430,12 +427,67 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The number of Volume Performance Units per GB that this boot volume is effectively tuned to when it&#x27;s idle.</div>
+                                            <div>The number of Volume Performance Units per GB that this boot volume is effectively tuned to.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-boot_volumes/autotune_policies"></div>
+                    <b>autotune_policies</b>
+                    <a class="ansibleOptionLink" href="#return-boot_volumes/autotune_policies" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The list of autotune policies enabled for this volume.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-boot_volumes/autotune_policies/autotune_type"></div>
+                    <b>autotune_type</b>
+                    <a class="ansibleOptionLink" href="#return-boot_volumes/autotune_policies/autotune_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>This specifies the type of autotunes supported by OCI.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">DETACHED_VOLUME</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-boot_volumes/autotune_policies/max_vpus_per_gb"></div>
+                    <b>max_vpus_per_gb</b>
+                    <a class="ansibleOptionLink" href="#return-boot_volumes/autotune_policies/max_vpus_per_gb" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>This will be the maximum VPUs/GB performance level that the volume will be auto-tuned temporarily based on performance monitoring.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
@@ -652,7 +704,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Specifies whether the auto-tune performance is enabled for this boot volume.</div>
+                                            <div>Specifies whether the auto-tune performance is enabled for this boot volume. This field is deprecated. Use the `DetachedVolumeAutotunePolicy` instead to enable the volume for detached autotune.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -872,6 +924,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>* `10`: Represents Balanced option.</div>
                                             <div>* `20`: Represents Higher Performance option.</div>
                                             <div>* `30`-`120`: Represents the Ultra High Performance option.</div>
+                                            <div>For performance autotune enabled volumes, it would be the Default(Minimum) VPUs/GB.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>

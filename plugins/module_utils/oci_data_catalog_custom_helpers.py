@@ -10,16 +10,6 @@ __metaclass__ = type
 
 from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
 
-logger = oci_common_utils.get_logger("oci_data_catalog_custom_helpers")
-
-
-def _debug(s):
-    get_logger().debug(s)
-
-
-def get_logger():
-    return logger
-
 
 class DataCatalogDataAssetHelperCustom:
     # this resource does not use standard `id` or `resource_id` as identifier, it uses `key` or `data_asset_key`.

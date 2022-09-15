@@ -97,6 +97,18 @@ options:
         description:
             - A filter to return only resources that match the given availability domain exactly.
         type: str
+    maintenance_subtype:
+        description:
+            - The sub-type of the maintenance run.
+        type: str
+        choices:
+            - "QUARTERLY"
+            - "HARDWARE"
+            - "CRITICAL"
+            - "INFRASTRUCTURE"
+            - "DATABASE"
+            - "ONEOFF"
+            - "SECURITY_MONTHLY"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_name_option ]
 """
 
@@ -119,6 +131,7 @@ EXAMPLES = """
     sort_order: ASC
     lifecycle_state: SCHEDULED
     availability_domain: Uocm:PHX-AD-1
+    maintenance_subtype: QUARTERLY
 
 """
 
@@ -408,6 +421,7 @@ class MaintenanceRunFactsHelperGen(OCIResourceFactsHelperBase):
             "sort_order",
             "lifecycle_state",
             "availability_domain",
+            "maintenance_subtype",
             "display_name",
         ]
         optional_kwargs = dict(
@@ -470,6 +484,18 @@ def main():
                 ],
             ),
             availability_domain=dict(type="str"),
+            maintenance_subtype=dict(
+                type="str",
+                choices=[
+                    "QUARTERLY",
+                    "HARDWARE",
+                    "CRITICAL",
+                    "INFRASTRUCTURE",
+                    "DATABASE",
+                    "ONEOFF",
+                    "SECURITY_MONTHLY",
+                ],
+            ),
             display_name=dict(type="str"),
         )
     )

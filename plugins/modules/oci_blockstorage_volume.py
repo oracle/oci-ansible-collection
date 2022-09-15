@@ -54,8 +54,6 @@ options:
         description:
             - The OCID of the compartment that contains the volume.
             - Required for create using I(state=present).
-            - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
-            - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
     kms_key_id:
         description:
@@ -126,6 +124,7 @@ options:
             - " * `10`: Represents Balanced option."
             - " * `20`: Represents Higher Performance option."
             - " * `30`-`120`: Represents the Ultra High Performance option."
+            - For performance autotune enabled volumes, it would be the Default(Minimum) VPUs/GB.
             - This parameter is updatable.
         type: int
     size_in_gbs:
@@ -135,7 +134,8 @@ options:
         type: int
     is_auto_tune_enabled:
         description:
-            - Specifies whether the auto-tune performance is enabled for this volume.
+            - Specifies whether the auto-tune performance is enabled for this volume. This field is deprecated.
+              Use the `DetachedVolumeAutotunePolicy` instead to enable the volume for detached autotune.
             - This parameter is updatable.
         type: bool
     block_volume_replicas:
@@ -158,6 +158,27 @@ options:
                     - "Example: `Uocm:PHX-AD-1`"
                 type: str
                 required: true
+    autotune_policies:
+        description:
+            - The list of autotune policies to be enabled for this volume.
+            - This parameter is updatable.
+        type: list
+        elements: dict
+        suboptions:
+            autotune_type:
+                description:
+                    - This specifies the type of autotunes supported by OCI.
+                type: str
+                choices:
+                    - "DETACHED_VOLUME"
+                    - "PERFORMANCE_BASED"
+                required: true
+            max_vpus_per_gb:
+                description:
+                    - This will be the maximum VPUs/GB performance level that the volume will be auto-tuned
+                      temporarily based on performance monitoring.
+                    - Required when autotune_type is 'PERFORMANCE_BASED'
+                type: int
     volume_id:
         description:
             - The OCID of the volume.
@@ -205,6 +226,9 @@ EXAMPLES = """
 
       # optional
       display_name: display_name_example
+    autotune_policies:
+    - # required
+      autotune_type: DETACHED_VOLUME
 
 - name: Update volume
   oci_blockstorage_volume:
@@ -224,11 +248,13 @@ EXAMPLES = """
 
       # optional
       display_name: display_name_example
+    autotune_policies:
+    - # required
+      autotune_type: DETACHED_VOLUME
 
 - name: Update volume using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_blockstorage_volume:
     # required
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
 
     # optional
@@ -243,6 +269,9 @@ EXAMPLES = """
 
       # optional
       display_name: display_name_example
+    autotune_policies:
+    - # required
+      autotune_type: DETACHED_VOLUME
 
 - name: Delete volume
   oci_blockstorage_volume:
@@ -253,7 +282,6 @@ EXAMPLES = """
 - name: Delete volume using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_blockstorage_volume:
     # required
-    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     state: absent
 
@@ -345,6 +373,7 @@ volume:
                 - " * `10`: Represents Balanced option."
                 - " * `20`: Represents Higher Performance option."
                 - " * `30`-`120`: Represents the Ultra High Performance option."
+                - For performance autotune enabled volumes, It would be the Default(Minimum) VPUs/GB.
             returned: on success
             type: int
             sample: 56
@@ -393,13 +422,14 @@ volume:
             sample: "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx"
         is_auto_tune_enabled:
             description:
-                - Specifies whether the auto-tune performance is enabled for this volume.
+                - Specifies whether the auto-tune performance is enabled for this volume. This field is deprecated.
+                  Use the `DetachedVolumeAutotunePolicy` instead to enable the volume for detached autotune.
             returned: on success
             type: bool
             sample: true
         auto_tuned_vpus_per_gb:
             description:
-                - The number of Volume Performance Units per GB that this volume is effectively tuned to when it's idle.
+                - The number of Volume Performance Units per GB that this volume is effectively tuned to.
             returned: on success
             type: int
             sample: 56
@@ -429,6 +459,25 @@ volume:
                     returned: on success
                     type: str
                     sample: Uocm:PHX-AD-1
+        autotune_policies:
+            description:
+                - The list of autotune policies enabled for this volume.
+            returned: on success
+            type: complex
+            contains:
+                autotune_type:
+                    description:
+                        - This specifies the type of autotunes supported by OCI.
+                    returned: on success
+                    type: str
+                    sample: DETACHED_VOLUME
+                max_vpus_per_gb:
+                    description:
+                        - This will be the maximum VPUs/GB performance level that the volume will be auto-tuned
+                          temporarily based on performance monitoring.
+                    returned: on success
+                    type: int
+                    sample: 56
     sample: {
         "availability_domain": "Uocm:PHX-AD-1",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -455,6 +504,10 @@ volume:
             "display_name": "display_name_example",
             "block_volume_replica_id": "ocid1.blockvolumereplica.oc1..xxxxxxEXAMPLExxxxxx",
             "availability_domain": "Uocm:PHX-AD-1"
+        }],
+        "autotune_policies": [{
+            "autotune_type": "DETACHED_VOLUME",
+            "max_vpus_per_gb": 56
         }]
     }
 """
@@ -508,16 +561,14 @@ class VolumeHelperGen(OCIResourceHelperBase):
         )
 
     def get_required_kwargs_for_list(self):
-        required_list_method_params = [
-            "compartment_id",
-        ]
-
-        return dict(
-            (param, self.module.params[param]) for param in required_list_method_params
-        )
+        return dict()
 
     def get_optional_kwargs_for_list(self):
-        optional_list_method_params = ["availability_domain", "display_name"]
+        optional_list_method_params = [
+            "availability_domain",
+            "compartment_id",
+            "display_name",
+        ]
 
         return dict(
             (param, self.module.params[param])
@@ -638,6 +689,18 @@ def main():
                 options=dict(
                     display_name=dict(aliases=["name"], type="str"),
                     availability_domain=dict(type="str", required=True),
+                ),
+            ),
+            autotune_policies=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    autotune_type=dict(
+                        type="str",
+                        required=True,
+                        choices=["DETACHED_VOLUME", "PERFORMANCE_BASED"],
+                    ),
+                    max_vpus_per_gb=dict(type="int"),
                 ),
             ),
             volume_id=dict(aliases=["id"], type="str"),

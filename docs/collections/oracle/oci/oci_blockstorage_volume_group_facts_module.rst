@@ -30,7 +30,7 @@ oracle.oci.oci_blockstorage_volume_group_facts -- Fetches details about one or m
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.1.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.2.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -295,6 +295,7 @@ Parameters
                                                                                                                                                                                                 <li>TERMINATING</li>
                                                                                                                                                                                                 <li>TERMINATED</li>
                                                                                                                                                                                                 <li>FAULTY</li>
+                                                                                                                                                                                                <li>UPDATE_PENDING</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>

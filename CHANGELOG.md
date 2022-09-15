@@ -4,6 +4,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [3.2.0]
+
+## Added
+
+- Support for listing block and boot volumes, as well as block and boot volume replicas, within a volume group in the Block Volume of Compute service
+- Support for performance-based autotuning of block and boot volumes in the Block Storage of Compute service
+- Support for ports, protocols, roles, and SSL secrets when enabling or modifying database management in the Database service
+- Support for choosing prior versions during infrastructure maintenance on Exadata Cloud at Customer in the Database service
+- Support for monthly security maintenance runs in the Database service
+- Support for maintenance run history for Exadata Cloud at Customer in the Database service
+- Support for opting out of guest VM event collection, health metrics, diagnostics logs, and traces in the Database service
+- Support for monthly infrastructure patching for Exadata Cloud at Customer resources in the Database service
+- Support for Logging Analytics as a streaming source target in the Service Connector Hub service
+- Support for the parent tenancy of an organisation to view child tenancy categories, recommendations, and resource actions in the Optimizer service
+
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.82.0
+
 ## [3.1.0]
 
 ## Added
