@@ -23,7 +23,7 @@ module: oci_optimizer_resource_action_facts
 short_description: Fetches details about one or multiple ResourceAction resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple ResourceAction resources in Oracle Cloud Infrastructure
-    - Lists the Cloud Advisor resource actions that are supported by the specified recommendation.
+    - Lists the Cloud Advisor resource actions that are supported.
     - If I(resource_action_id) is specified, the details of a single ResourceAction will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)
@@ -49,8 +49,37 @@ options:
     recommendation_id:
         description:
             - The unique OCID associated with the recommendation.
-            - Required to list multiple resource_actions.
         type: str
+    recommendation_name:
+        description:
+            - Optional. A filter that returns results that match the recommendation name specified.
+        type: str
+    child_tenancy_ids:
+        description:
+            - A list of child tenancies for which the respective data will be returned. Please note that
+              the parent tenancy id can also be included in this list. For example, if there is a parent P with two
+              children A and B, to return results of only parent P and child A, this list should be populated with
+              tenancy id of parent P and child A.
+            - If this list contains a tenancy id that isn't part of the organization of parent P, the request will
+              fail. That is, let's say there is an organization with parent P with children A and B, and also one
+              other tenant T that isn't part of the organization. If T is included in the list of
+              childTenancyIds, the request will fail.
+            - It is important to note that if you are setting the includeOrganization parameter value as true and
+              also populating the childTenancyIds parameter with a list of child tenancies, the request will fail.
+              The childTenancyIds and includeOrganization should be used exclusively.
+            - When using this parameter, please make sure to set the compartmentId with the parent tenancy ID.
+        type: list
+        elements: str
+    include_organization:
+        description:
+            - When set to true, the data for all child tenancies including the parent is returned. That is, if
+              there is an organization with parent P and children A and B, to return the data for the parent P, child
+              A and child B, this parameter value should be set to true.
+            - Please note that this parameter shouldn't be used along with childTenancyIds parameter. If you would like
+              to get results specifically for parent P and only child A, use the childTenancyIds parameter and populate
+              the list with tenancy id of P and A.
+            - When using this parameter, please make sure to set the compartmentId with the parent tenancy ID.
+        type: bool
     name:
         description:
             - Optional. A filter that returns results that match the name specified.
@@ -111,9 +140,12 @@ EXAMPLES = """
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id_in_subtree: true
-    recommendation_id: "ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    recommendation_id: "ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx"
+    recommendation_name: recommendation_name_example
+    child_tenancy_ids: [ "child_tenancy_ids_example" ]
+    include_organization: true
     name: name_example
     resource_type: resource_type_example
     sort_order: ASC
@@ -326,7 +358,6 @@ class ResourceActionFactsHelperGen(OCIResourceFactsHelperBase):
         return [
             "compartment_id",
             "compartment_id_in_subtree",
-            "recommendation_id",
         ]
 
     def get_resource(self):
@@ -337,6 +368,10 @@ class ResourceActionFactsHelperGen(OCIResourceFactsHelperBase):
 
     def list_resources(self):
         optional_list_method_params = [
+            "recommendation_id",
+            "recommendation_name",
+            "child_tenancy_ids",
+            "include_organization",
             "name",
             "resource_type",
             "sort_order",
@@ -355,7 +390,6 @@ class ResourceActionFactsHelperGen(OCIResourceFactsHelperBase):
             compartment_id_in_subtree=self.module.params.get(
                 "compartment_id_in_subtree"
             ),
-            recommendation_id=self.module.params.get("recommendation_id"),
             **optional_kwargs
         )
 
@@ -377,6 +411,9 @@ def main():
             compartment_id=dict(type="str"),
             compartment_id_in_subtree=dict(type="bool"),
             recommendation_id=dict(type="str"),
+            recommendation_name=dict(type="str"),
+            child_tenancy_ids=dict(type="list", elements="str"),
+            include_organization=dict(type="bool"),
             name=dict(type="str"),
             resource_type=dict(type="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),

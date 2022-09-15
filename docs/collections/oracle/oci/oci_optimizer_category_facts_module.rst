@@ -30,7 +30,7 @@ oracle.oci.oci_optimizer_category_facts -- Fetches details about one or multiple
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.1.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.2.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -220,6 +220,24 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-child_tenancy_ids"></div>
+                    <b>child_tenancy_ids</b>
+                    <a class="ansibleOptionLink" href="#parameter-child_tenancy_ids" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A list of child tenancies for which the respective data will be returned. Please note that the parent tenancy id can also be included in this list. For example, if there is a parent P with two children A and B, to return results of only parent P and child A, this list should be populated with tenancy id of parent P and child A.</div>
+                                            <div>If this list contains a tenancy id that isn&#x27;t part of the organization of parent P, the request will fail. That is, let&#x27;s say there is an organization with parent P with children A and B, and also one other tenant T that isn&#x27;t part of the organization. If T is included in the list of childTenancyIds, the request will fail.</div>
+                                            <div>It is important to note that if you are setting the includeOrganization parameter value as true and also populating the childTenancyIds parameter with a list of child tenancies, the request will fail. The childTenancyIds and includeOrganization should be used exclusively.</div>
+                                            <div>When using this parameter, please make sure to set the compartmentId with the parent tenancy ID.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
@@ -283,6 +301,27 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The profile to load from the config file referenced by <code>config_file_location</code>. If not set, then the value of the OCI_CONFIG_PROFILE environment variable, if any, is used. Otherwise, defaults to the &quot;DEFAULT&quot; profile in <code>config_file_location</code>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-include_organization"></div>
+                    <b>include_organization</b>
+                    <a class="ansibleOptionLink" href="#parameter-include_organization" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>When set to true, the data for all child tenancies including the parent is returned. That is, if there is an organization with parent P and children A and B, to return the data for the parent P, child A and child B, this parameter value should be set to true.</div>
+                                            <div>Please note that this parameter shouldn&#x27;t be used along with childTenancyIds parameter. If you would like to get results specifically for parent P and only child A, use the childTenancyIds parameter and populate the list with tenancy id of P and A.</div>
+                                            <div>When using this parameter, please make sure to set the compartmentId with the parent tenancy ID.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -431,6 +470,8 @@ Examples
         compartment_id_in_subtree: true
 
         # optional
+        child_tenancy_ids: [ "child_tenancy_ids_example" ]
+        include_organization: true
         name: name_example
         sort_order: ASC
         sort_by: NAME
@@ -471,7 +512,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Category resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;estimated_cost_saving&#x27;: 1.2, &#x27;extended_metadata&#x27;: {}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;recommendation_counts&#x27;: [{&#x27;count&#x27;: 56, &#x27;importance&#x27;: &#x27;CRITICAL&#x27;}], &#x27;resource_counts&#x27;: [{&#x27;count&#x27;: 56, &#x27;status&#x27;: &#x27;PENDING&#x27;}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_name&#x27;: &#x27;compartment_name_example&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;estimated_cost_saving&#x27;: 1.2, &#x27;extended_metadata&#x27;: {}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;recommendation_counts&#x27;: [{&#x27;count&#x27;: 56, &#x27;importance&#x27;: &#x27;CRITICAL&#x27;}], &#x27;resource_counts&#x27;: [{&#x27;count&#x27;: 56, &#x27;status&#x27;: &#x27;PENDING&#x27;}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -490,6 +531,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-categories/compartment_name"></div>
+                    <b>compartment_name</b>
+                    <a class="ansibleOptionLink" href="#return-categories/compartment_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The name associated with the compartment.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">compartment_name_example</div>
                                     </td>
             </tr>
                                 <tr>

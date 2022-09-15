@@ -1980,6 +1980,9 @@ class WaasPolicyActionsHelperGen(OCIActionsHelperBase):
         purge_cache
     """
 
+    def get_default_module_wait_timeout(self):
+        return 7200
+
     @staticmethod
     def get_module_resource_id_param():
         return "waas_policy_id"

@@ -30,7 +30,7 @@ oracle.oci.oci_optimizer_resource_action_facts -- Fetches details about one or m
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.1.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.2.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple ResourceAction resources in Oracle Cloud Infrastructure
-- Lists the Cloud Advisor resource actions that are supported by the specified recommendation.
+- Lists the Cloud Advisor resource actions that are supported.
 - If *resource_action_id* is specified, the details of a single ResourceAction will be returned.
 
 
@@ -203,6 +203,24 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-child_tenancy_ids"></div>
+                    <b>child_tenancy_ids</b>
+                    <a class="ansibleOptionLink" href="#parameter-child_tenancy_ids" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A list of child tenancies for which the respective data will be returned. Please note that the parent tenancy id can also be included in this list. For example, if there is a parent P with two children A and B, to return results of only parent P and child A, this list should be populated with tenancy id of parent P and child A.</div>
+                                            <div>If this list contains a tenancy id that isn&#x27;t part of the organization of parent P, the request will fail. That is, let&#x27;s say there is an organization with parent P with children A and B, and also one other tenant T that isn&#x27;t part of the organization. If T is included in the list of childTenancyIds, the request will fail.</div>
+                                            <div>It is important to note that if you are setting the includeOrganization parameter value as true and also populating the childTenancyIds parameter with a list of child tenancies, the request will fail. The childTenancyIds and includeOrganization should be used exclusively.</div>
+                                            <div>When using this parameter, please make sure to set the compartmentId with the parent tenancy ID.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
@@ -270,6 +288,27 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-include_organization"></div>
+                    <b>include_organization</b>
+                    <a class="ansibleOptionLink" href="#parameter-include_organization" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>When set to true, the data for all child tenancies including the parent is returned. That is, if there is an organization with parent P and children A and B, to return the data for the parent P, child A and child B, this parameter value should be set to true.</div>
+                                            <div>Please note that this parameter shouldn&#x27;t be used along with childTenancyIds parameter. If you would like to get results specifically for parent P and only child A, use the childTenancyIds parameter and populate the list with tenancy id of P and A.</div>
+                                            <div>When using this parameter, please make sure to set the compartmentId with the parent tenancy ID.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#parameter-lifecycle_state" title="Permalink to this option"></a>
@@ -322,7 +361,21 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The unique OCID associated with the recommendation.</div>
-                                            <div>Required to list multiple resource_actions.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-recommendation_name"></div>
+                    <b>recommendation_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-recommendation_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Optional. A filter that returns results that match the recommendation name specified.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -481,9 +534,12 @@ Examples
         # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id_in_subtree: true
-        recommendation_id: "ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
+        recommendation_id: "ocid1.recommendation.oc1..xxxxxxEXAMPLExxxxxx"
+        recommendation_name: recommendation_name_example
+        child_tenancy_ids: [ "child_tenancy_ids_example" ]
+        include_organization: true
         name: name_example
         resource_type: resource_type_example
         sort_order: ASC

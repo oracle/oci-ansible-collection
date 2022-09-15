@@ -305,7 +305,6 @@ class ResourceActionHelperGen(OCIResourceHelperBase):
         required_list_method_params = [
             "compartment_id",
             "compartment_id_in_subtree",
-            "recommendation_id",
         ]
 
         return dict(

@@ -465,6 +465,51 @@ sddcs:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        upgrade_licenses:
+            description:
+                - The vSphere licenses to be used when upgrade SDDC.
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                license_type:
+                    description:
+                        - vSphere license type.
+                    returned: on success
+                    type: str
+                    sample: license_type_example
+                license_key:
+                    description:
+                        - vSphere license key value.
+                    returned: on success
+                    type: str
+                    sample: license_key_example
+        vsphere_upgrade_guide:
+            description:
+                - The link of guidance to upgrade vSphere.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: vsphere_upgrade_guide_example
+        vsphere_upgrade_objects:
+            description:
+                - The links of binary objects needed for upgrade vSphere.
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                download_link:
+                    description:
+                        - Binary object download link.
+                    returned: on success
+                    type: str
+                    sample: download_link_example
+                link_description:
+                    description:
+                        - Binary object description.
+                    returned: on success
+                    type: str
+                    sample: link_description_example
         capacity_reservation_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Capacity Reservation.
@@ -591,6 +636,12 @@ sddcs:
             returned: on success
             type: float
             sample: 3.4
+        is_single_host_sddc:
+            description:
+                - Indicates whether this SDDC is designated for only single ESXi host.
+            returned: on success
+            type: bool
+            sample: true
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no
@@ -644,6 +695,15 @@ sddcs:
         }],
         "time_hcx_billing_cycle_end": "2013-10-20T19:20:30+01:00",
         "time_hcx_license_status_updated": "2013-10-20T19:20:30+01:00",
+        "upgrade_licenses": [{
+            "license_type": "license_type_example",
+            "license_key": "license_key_example"
+        }],
+        "vsphere_upgrade_guide": "vsphere_upgrade_guide_example",
+        "vsphere_upgrade_objects": [{
+            "download_link": "download_link_example",
+            "link_description": "link_description_example"
+        }],
         "capacity_reservation_id": "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compute_availability_domain": "Uocm:PHX-AD-1",
@@ -661,6 +721,7 @@ sddcs:
         "is_shielded_instance_enabled": true,
         "initial_host_shape_name": "initial_host_shape_name_example",
         "initial_host_ocpu_count": 3.4,
+        "is_single_host_sddc": true,
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]

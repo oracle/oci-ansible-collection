@@ -193,6 +193,22 @@ options:
                       proactive support for your Exadata system. You can enable diagnostic collection during VM cluster/Cloud VM cluster provisioning. You can
                       also disable or enable it at any time using the `UpdateVmCluster` or `updateCloudVmCluster` API.
                 type: bool
+            is_health_monitoring_enabled:
+                description:
+                    - Indicates whether health monitoring is enabled for the VM cluster / Cloud VM cluster / VMBM DBCS. Enabling health monitoring allows Oracle
+                      to collect diagnostic data and share it with its operations and support personnel. You may also receive notifications for some events.
+                      Collecting health diagnostics enables Oracle to provide proactive support and enhanced service for your system.
+                      Optionally enable health monitoring while provisioning a system. You can also disable or enable health monitoring anytime using the
+                      `UpdateVmCluster`, `UpdateCloudVmCluster` or `updateDbsystem` API.
+                type: bool
+            is_incident_logs_enabled:
+                description:
+                    - Indicates whether incident logs and trace collection are enabled for the VM cluster / Cloud VM cluster / VMBM DBCS. Enabling incident logs
+                      collection allows Oracle to receive Events service notifications for guest VM issues, collect incident logs and traces, and use them to
+                      diagnose issues and resolve them.
+                      Optionally enable incident logs collection while provisioning a system. You can also disable or enable incident logs collection anytime
+                      using the `UpdateVmCluster`, `updateCloudVmCluster` or `updateDbsystem` API.
+                type: bool
     vm_cluster_id:
         description:
             - The VM cluster L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -240,6 +256,8 @@ EXAMPLES = """
     data_collection_options:
       # optional
       is_diagnostics_events_enabled: true
+      is_health_monitoring_enabled: true
+      is_incident_logs_enabled: true
 
 - name: Update vm_cluster
   oci_database_vm_cluster:
@@ -269,6 +287,8 @@ EXAMPLES = """
     data_collection_options:
       # optional
       is_diagnostics_events_enabled: true
+      is_health_monitoring_enabled: true
+      is_incident_logs_enabled: true
 
 - name: Update vm_cluster using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_vm_cluster:
@@ -299,6 +319,8 @@ EXAMPLES = """
     data_collection_options:
       # optional
       is_diagnostics_events_enabled: true
+      is_health_monitoring_enabled: true
+      is_incident_logs_enabled: true
 
 - name: Delete vm_cluster
   oci_database_vm_cluster:
@@ -499,6 +521,26 @@ vm_cluster:
                     returned: on success
                     type: bool
                     sample: true
+                is_health_monitoring_enabled:
+                    description:
+                        - Indicates whether health monitoring is enabled for the VM cluster / Cloud VM cluster / VMBM DBCS. Enabling health monitoring allows
+                          Oracle to collect diagnostic data and share it with its operations and support personnel. You may also receive notifications for some
+                          events. Collecting health diagnostics enables Oracle to provide proactive support and enhanced service for your system.
+                          Optionally enable health monitoring while provisioning a system. You can also disable or enable health monitoring anytime using the
+                          `UpdateVmCluster`, `UpdateCloudVmCluster` or `updateDbsystem` API.
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_incident_logs_enabled:
+                    description:
+                        - Indicates whether incident logs and trace collection are enabled for the VM cluster / Cloud VM cluster / VMBM DBCS. Enabling incident
+                          logs collection allows Oracle to receive Events service notifications for guest VM issues, collect incident logs and traces, and use
+                          them to diagnose issues and resolve them.
+                          Optionally enable incident logs collection while provisioning a system. You can also disable or enable incident logs collection
+                          anytime using the `UpdateVmCluster`, `updateCloudVmCluster` or `updateDbsystem` API.
+                    returned: on success
+                    type: bool
+                    sample: true
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -527,7 +569,9 @@ vm_cluster:
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "data_collection_options": {
-            "is_diagnostics_events_enabled": true
+            "is_diagnostics_events_enabled": true,
+            "is_health_monitoring_enabled": true,
+            "is_incident_logs_enabled": true
         }
     }
 """
@@ -731,7 +775,11 @@ def main():
             defined_tags=dict(type="dict"),
             data_collection_options=dict(
                 type="dict",
-                options=dict(is_diagnostics_events_enabled=dict(type="bool")),
+                options=dict(
+                    is_diagnostics_events_enabled=dict(type="bool"),
+                    is_health_monitoring_enabled=dict(type="bool"),
+                    is_incident_logs_enabled=dict(type="bool"),
+                ),
             ),
             vm_cluster_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),

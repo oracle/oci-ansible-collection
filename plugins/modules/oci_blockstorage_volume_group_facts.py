@@ -82,6 +82,7 @@ options:
             - "TERMINATING"
             - "TERMINATED"
             - "FAULTY"
+            - "UPDATE_PENDING"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -360,6 +361,7 @@ def main():
                     "TERMINATING",
                     "TERMINATED",
                     "FAULTY",
+                    "UPDATE_PENDING",
                 ],
             ),
         )

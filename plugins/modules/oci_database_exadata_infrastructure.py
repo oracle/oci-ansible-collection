@@ -163,6 +163,10 @@ options:
                     - Determines the amount of time the system will wait before the start of each database server patching operation.
                       Custom action timeout is in minutes and valid value is between 15 to 120 (inclusive).
                 type: int
+            is_monthly_patching_enabled:
+                description:
+                    - If true, enables the monthly patching option.
+                type: bool
             months:
                 description:
                     - Months during the year when maintenance should be performed.
@@ -332,6 +336,7 @@ EXAMPLES = """
       patching_mode: ROLLING
       is_custom_action_timeout_enabled: true
       custom_action_timeout_in_mins: 56
+      is_monthly_patching_enabled: true
       months:
       - # required
         name: JANUARY
@@ -375,6 +380,7 @@ EXAMPLES = """
       patching_mode: ROLLING
       is_custom_action_timeout_enabled: true
       custom_action_timeout_in_mins: 56
+      is_monthly_patching_enabled: true
       months:
       - # required
         name: JANUARY
@@ -423,6 +429,7 @@ EXAMPLES = """
       patching_mode: ROLLING
       is_custom_action_timeout_enabled: true
       custom_action_timeout_in_mins: 56
+      is_monthly_patching_enabled: true
       months:
       - # required
         name: JANUARY
@@ -688,7 +695,7 @@ exadata_infrastructure:
                     sample: true
         maintenance_slo_status:
             description:
-                - A field to capture ‘Maintenance SLO Status’ for the Exadata infrastructure with values ‘OK’, ‘DEGRADED’. Default is ‘OK’ when the
+                - A field to capture 'Maintenance SLO Status' for the Exadata infrastructure with values 'OK', 'DEGRADED'. Default is 'OK' when the
                   infrastructure is provisioned.
             returned: on success
             type: str
@@ -726,6 +733,12 @@ exadata_infrastructure:
                     returned: on success
                     type: int
                     sample: 56
+                is_monthly_patching_enabled:
+                    description:
+                        - If true, enables the monthly patching option.
+                    returned: on success
+                    type: bool
+                    sample: true
                 months:
                     description:
                         - Months during the year when maintenance should be performed.
@@ -789,6 +802,12 @@ exadata_infrastructure:
             returned: on success
             type: str
             sample: db_server_version_example
+        monthly_db_server_version:
+            description:
+                - The monthly software version of the database servers (dom0) in the Exadata infrastructure.
+            returned: on success
+            type: str
+            sample: monthly_db_server_version_example
         last_maintenance_run_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the last maintenance run.
@@ -871,6 +890,7 @@ exadata_infrastructure:
             "patching_mode": "ROLLING",
             "is_custom_action_timeout_enabled": true,
             "custom_action_timeout_in_mins": 56,
+            "is_monthly_patching_enabled": true,
             "months": [{
                 "name": "JANUARY"
             }],
@@ -883,6 +903,7 @@ exadata_infrastructure:
         },
         "storage_server_version": "storage_server_version_example",
         "db_server_version": "db_server_version_example",
+        "monthly_db_server_version": "monthly_db_server_version_example",
         "last_maintenance_run_id": "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
         "next_maintenance_run_id": "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
         "is_cps_offline_report_enabled": true,
@@ -1094,6 +1115,7 @@ def main():
                     patching_mode=dict(type="str", choices=["ROLLING", "NONROLLING"]),
                     is_custom_action_timeout_enabled=dict(type="bool"),
                     custom_action_timeout_in_mins=dict(type="int"),
+                    is_monthly_patching_enabled=dict(type="bool"),
                     months=dict(
                         type="list",
                         elements="dict",

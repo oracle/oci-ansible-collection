@@ -30,7 +30,7 @@ oracle.oci.oci_database_database_actions -- Perform actions on a Database resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.1.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.2.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -538,6 +538,22 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-port"></div>
+                    <b>port</b>
+                    <a class="ansibleOptionLink" href="#parameter-port" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The port used to connect to the database.</div>
+                                            <div>Applicable only for <em>action=enable_database_management</em><em>action=modify_database_management</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-private_end_point_id"></div>
                     <b>private_end_point_id</b>
                     <a class="ansibleOptionLink" href="#parameter-private_end_point_id" title="Permalink to this option"></a>
@@ -550,6 +566,26 @@ Parameters
                                                                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the private endpoint.</div>
                                             <div>Required for <em>action=enable_database_management</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-protocol"></div>
+                    <b>protocol</b>
+                    <a class="ansibleOptionLink" href="#parameter-protocol" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>TCP</li>
+                                                                                                                                                                                                <li>TCPS</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Protocol used by the database connection.</div>
+                                            <div>Applicable only for <em>action=enable_database_management</em><em>action=modify_database_management</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -569,6 +605,26 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-role"></div>
+                    <b>role</b>
+                    <a class="ansibleOptionLink" href="#parameter-role" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>SYSDBA</li>
+                                                                                                                                                                                                <li>NORMAL</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The role of the user that will be connecting to the database.</div>
+                                            <div>Applicable only for <em>action=enable_database_management</em><em>action=modify_database_management</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-service_name"></div>
                     <b>service_name</b>
                     <a class="ansibleOptionLink" href="#parameter-service_name" title="Permalink to this option"></a>
@@ -581,6 +637,22 @@ Parameters
                                                                 <td>
                                             <div>The name of the Oracle Database service that will be used to connect to the database.</div>
                                             <div>Required for <em>action=enable_database_management</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-ssl_secret_id"></div>
+                    <b>ssl_secret_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-ssl_secret_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Oracle Cloud Infrastructure <a href='https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts'>secret</a>.</div>
+                                            <div>Applicable only for <em>action=enable_database_management</em><em>action=modify_database_management</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -725,6 +797,10 @@ Examples
 
         # optional
         management_type: BASIC
+        protocol: TCP
+        port: 56
+        ssl_secret_id: "ocid1.sslsecret.oc1..xxxxxxEXAMPLExxxxxx"
+        role: SYSDBA
 
     - name: Perform action migrate_vault_key on database
       oci_database_database_actions:
@@ -753,6 +829,10 @@ Examples
         private_end_point_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
         management_type: BASIC
         service_name: service_name_example
+        protocol: TCP
+        port: 56
+        ssl_secret_id: "ocid1.sslsecret.oc1..xxxxxxEXAMPLExxxxxx"
+        role: SYSDBA
 
     - name: Perform action restore on database
       oci_database_database_actions:

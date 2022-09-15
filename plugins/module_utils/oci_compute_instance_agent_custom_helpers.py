@@ -8,18 +8,6 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
-from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
-
-logger = oci_common_utils.get_logger("oci_compute_instance_agent_custom_helpers")
-
-
-def _debug(s):
-    get_logger().debug(s)
-
-
-def get_logger():
-    return logger
-
 
 class InstanceAgentCommandHelperCustom:
     # The create operation is not idempotent since it is valid to have multiple commands with the given

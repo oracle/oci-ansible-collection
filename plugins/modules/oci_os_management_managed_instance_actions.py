@@ -735,6 +735,9 @@ class ManagedInstanceActionsHelperGen(OCIActionsHelperBase):
         switch_module_stream
     """
 
+    def get_default_module_wait_timeout(self):
+        return 3600
+
     @staticmethod
     def get_module_resource_id_param():
         return "managed_instance_id"

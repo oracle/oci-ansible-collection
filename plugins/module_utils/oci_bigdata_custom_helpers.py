@@ -21,16 +21,6 @@ try:
 except ImportError:
     HAS_OCI_PY_SDK = False
 
-logger = oci_common_utils.get_logger("oci_bigdata_custom_helpers")
-
-
-def _debug(s):
-    get_logger().debug(s)
-
-
-def get_logger():
-    return logger
-
 
 # BDS has a list of nodes. The update operation only updates the tags not the nodes.
 # If the user updates the nodes count and reruns, nothing will happen

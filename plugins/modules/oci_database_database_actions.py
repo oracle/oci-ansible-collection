@@ -97,6 +97,33 @@ options:
             - The name of the Oracle Database service that will be used to connect to the database.
             - Required for I(action=enable_database_management).
         type: str
+    protocol:
+        description:
+            - Protocol used by the database connection.
+            - Applicable only for I(action=enable_database_management)I(action=modify_database_management).
+        type: str
+        choices:
+            - "TCP"
+            - "TCPS"
+    port:
+        description:
+            - The port used to connect to the database.
+            - Applicable only for I(action=enable_database_management)I(action=modify_database_management).
+        type: int
+    ssl_secret_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
+              L(secret,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
+            - Applicable only for I(action=enable_database_management)I(action=modify_database_management).
+        type: str
+    role:
+        description:
+            - The role of the user that will be connecting to the database.
+            - Applicable only for I(action=enable_database_management)I(action=modify_database_management).
+        type: str
+        choices:
+            - "SYSDBA"
+            - "NORMAL"
     database_scn:
         description:
             - Restores using the backup with the System Change Number (SCN) specified.
@@ -199,6 +226,10 @@ EXAMPLES = """
 
     # optional
     management_type: BASIC
+    protocol: TCP
+    port: 56
+    ssl_secret_id: "ocid1.sslsecret.oc1..xxxxxxEXAMPLExxxxxx"
+    role: SYSDBA
 
 - name: Perform action migrate_vault_key on database
   oci_database_database_actions:
@@ -227,6 +258,10 @@ EXAMPLES = """
     private_end_point_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
     management_type: BASIC
     service_name: service_name_example
+    protocol: TCP
+    port: 56
+    ssl_secret_id: "ocid1.sslsecret.oc1..xxxxxxEXAMPLExxxxxx"
+    role: SYSDBA
 
 - name: Perform action restore on database
   oci_database_database_actions:
@@ -833,6 +868,10 @@ def main():
             private_end_point_id=dict(type="str"),
             management_type=dict(type="str", choices=["BASIC", "ADVANCED"]),
             service_name=dict(type="str"),
+            protocol=dict(type="str", choices=["TCP", "TCPS"]),
+            port=dict(type="int"),
+            ssl_secret_id=dict(type="str"),
+            role=dict(type="str", choices=["SYSDBA", "NORMAL"]),
             database_scn=dict(type="str"),
             timestamp=dict(type="str"),
             latest=dict(type="bool"),

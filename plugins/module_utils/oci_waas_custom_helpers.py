@@ -46,18 +46,12 @@ class WaasCertificateHelperCustom:
             create_model_dict.pop(key, None)
         return create_model_dict
 
-    def get_default_module_wait_timeout(self):
-        return 7200
-
 
 class HttpRedirectHelperCustom:
     def get_waiter_client(self):
         # http_redirect resource has a separate client class but still uses WaasClient for work requests. Override
         # waiter client to use WaasClient.
         return oci_config_utils.create_service_client(self.module, oci.waas.WaasClient)
-
-    def get_default_module_wait_timeout(self):
-        return 7200
 
 
 class WaasPolicyHelperCustom:
@@ -125,9 +119,6 @@ class WaasPolicyHelperCustom:
             ]
         return existing_resource_dict
 
-    def get_default_module_wait_timeout(self):
-        return 7200
-
 
 class WaasPolicyActionsHelperCustom:
     def is_action_necessary(self, action, resource=None):
@@ -182,9 +173,6 @@ class WaasPolicyActionsHelperCustom:
             action, resource
         )
 
-    def get_default_module_wait_timeout(self):
-        return 7200
-
 
 class WafConfigHelperCustom:
     def get_existing_resource_dict_for_update(self):
@@ -233,9 +221,6 @@ class WafConfigHelperCustom:
             ]
         return existing_resource_dict
 
-    def get_default_module_wait_timeout(self):
-        return 7200
-
 
 # Base class assume that the update model is a dictionary but most of the sub-resources (access_rules, captchas) operate
 # on a list of items instead. So update necessary methods to handle list of items instead of a single item.
@@ -262,9 +247,6 @@ class AccessRulesHelperCustom:
 
         return update_is_necessary
 
-    def get_default_module_wait_timeout(self):
-        return 7200
-
 
 class CaptchasHelperCustom:
     def get_resource(self):
@@ -288,9 +270,6 @@ class CaptchasHelperCustom:
 
         return update_is_necessary
 
-    def get_default_module_wait_timeout(self):
-        return 7200
-
 
 class CachingRulesHelperCustom:
     def get_resource(self):
@@ -313,9 +292,6 @@ class CachingRulesHelperCustom:
         )
 
         return update_is_necessary
-
-    def get_default_module_wait_timeout(self):
-        return 7200
 
 
 class GoodBotsHelperCustom:
@@ -349,9 +325,6 @@ class GoodBotsHelperCustom:
 
         return update_is_necessary
 
-    def get_default_module_wait_timeout(self):
-        return 7200
-
 
 class ThreatFeedsHelperCustom:
     def get_resource(self):
@@ -384,9 +357,6 @@ class ThreatFeedsHelperCustom:
 
         return update_is_necessary
 
-    def get_default_module_wait_timeout(self):
-        return 7200
-
 
 class ProtectionRulesFactsHelperCustom:
     def get_resource(self):
@@ -395,9 +365,6 @@ class ProtectionRulesFactsHelperCustom:
             waas_policy_id=self.module.params.get("waas_policy_id"),
             protection_rule_key=self.module.params.get("protection_rule_key"),
         )
-
-    def get_default_module_wait_timeout(self):
-        return 7200
 
 
 class ProtectionRulesHelperCustom:
@@ -435,9 +402,6 @@ class ProtectionRulesHelperCustom:
 
         return update_is_necessary
 
-    def get_default_module_wait_timeout(self):
-        return 7200
-
 
 class WaasPolicyCustomProtectionRulesHelperCustom:
     def get_resource(self):
@@ -463,9 +427,6 @@ class WaasPolicyCustomProtectionRulesHelperCustom:
 
         return update_is_necessary
 
-    def get_default_module_wait_timeout(self):
-        return 7200
-
 
 class WhitelistsHelperCustom:
     def get_resource(self):
@@ -488,6 +449,3 @@ class WhitelistsHelperCustom:
         )
 
         return update_is_necessary
-
-    def get_default_module_wait_timeout(self):
-        return 7200

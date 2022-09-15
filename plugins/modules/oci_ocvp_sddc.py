@@ -56,9 +56,10 @@ options:
     esxi_hosts_count:
         description:
             - The number of ESXi hosts to create in the SDDC. You can add more hosts later
-              (see L(CreateEsxiHost,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/EsxiHost/CreateEsxiHost)).
-            - "**Note:** If you later delete EXSi hosts from the SDDC to total less than 3,
-              you are still billed for the 3 minimum recommended ESXi hosts. Also,
+              (see L(CreateEsxiHost,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/vmware/20200501/EsxiHost/CreateEsxiHost)). Creating
+              a SDDC with a ESXi host count of 1 will be considered a single ESXi host SDDC.
+            - "**Note:** If you later delete EXSi hosts from a production SDDC to total less
+              than 3, you are still billed for the 3 minimum recommended ESXi hosts. Also,
               you cannot add more VMware workloads to the SDDC until it again has at least
               3 ESXi hosts."
             - Required for create using I(state=present).
@@ -80,6 +81,10 @@ options:
     is_hcx_enterprise_enabled:
         description:
             - Indicates whether to enable HCX Enterprise for this SDDC.
+        type: bool
+    is_single_host_sddc:
+        description:
+            - Indicates whether this SDDC is designated for only single ESXi host.
         type: bool
     workload_network_cidr:
         description:
@@ -261,6 +266,7 @@ EXAMPLES = """
     initial_sku: HOUR
     is_hcx_enabled: true
     is_hcx_enterprise_enabled: true
+    is_single_host_sddc: true
     workload_network_cidr: workload_network_cidr_example
     initial_host_shape_name: initial_host_shape_name_example
     initial_host_ocpu_count: 3.4
@@ -740,6 +746,12 @@ sddc:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        is_single_host_sddc:
+            description:
+                - Indicates whether this SDDC is designated for only single ESXi host.
+            returned: on success
+            type: bool
+            sample: true
         time_created:
             description:
                 - The date and time the SDDC was created, in the format defined by
@@ -761,6 +773,48 @@ sddc:
             returned: on success
             type: str
             sample: CREATING
+        upgrade_licenses:
+            description:
+                - The vSphere licenses to be used when upgrade SDDC.
+            returned: on success
+            type: complex
+            contains:
+                license_type:
+                    description:
+                        - vSphere license type.
+                    returned: on success
+                    type: str
+                    sample: license_type_example
+                license_key:
+                    description:
+                        - vSphere license key value.
+                    returned: on success
+                    type: str
+                    sample: license_key_example
+        vsphere_upgrade_guide:
+            description:
+                - The link of guidance to upgrade vSphere.
+            returned: on success
+            type: str
+            sample: vsphere_upgrade_guide_example
+        vsphere_upgrade_objects:
+            description:
+                - The links of binary objects needed for upgrade vSphere.
+            returned: on success
+            type: complex
+            contains:
+                download_link:
+                    description:
+                        - Binary object download link.
+                    returned: on success
+                    type: str
+                    sample: download_link_example
+                link_description:
+                    description:
+                        - Binary object description.
+                    returned: on success
+                    type: str
+                    sample: link_description_example
         initial_host_shape_name:
             description:
                 - The initial compute shape of the SDDC's ESXi hosts.
@@ -849,9 +903,19 @@ sddc:
         }],
         "time_hcx_billing_cycle_end": "2013-10-20T19:20:30+01:00",
         "time_hcx_license_status_updated": "2013-10-20T19:20:30+01:00",
+        "is_single_host_sddc": true,
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
+        "upgrade_licenses": [{
+            "license_type": "license_type_example",
+            "license_key": "license_key_example"
+        }],
+        "vsphere_upgrade_guide": "vsphere_upgrade_guide_example",
+        "vsphere_upgrade_objects": [{
+            "download_link": "download_link_example",
+            "link_description": "link_description_example"
+        }],
         "initial_host_shape_name": "initial_host_shape_name_example",
         "initial_host_ocpu_count": 3.4,
         "is_shielded_instance_enabled": true,
@@ -888,6 +952,9 @@ class SddcHelperGen(OCIResourceHelperBase):
 
     def get_waiter_client(self):
         return oci_config_utils.create_service_client(self.module, WorkRequestClient)
+
+    def get_default_module_wait_timeout(self):
+        return 21600
 
     def get_possible_entity_types(self):
         return super(SddcHelperGen, self).get_possible_entity_types() + [
@@ -1029,6 +1096,7 @@ def main():
             ),
             is_hcx_enabled=dict(type="bool"),
             is_hcx_enterprise_enabled=dict(type="bool"),
+            is_single_host_sddc=dict(type="bool"),
             workload_network_cidr=dict(type="str"),
             provisioning_subnet_id=dict(type="str"),
             initial_host_shape_name=dict(type="str"),

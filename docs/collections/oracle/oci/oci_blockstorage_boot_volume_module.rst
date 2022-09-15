@@ -30,7 +30,7 @@ oracle.oci.oci_blockstorage_boot_volume -- Manage a BootVolume resource in Oracl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.1.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.2.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -188,6 +188,60 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-autotune_policies"></div>
+                    <b>autotune_policies</b>
+                    <a class="ansibleOptionLink" href="#parameter-autotune_policies" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The list of autotune policies to be enabled for this volume.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-autotune_policies/autotune_type"></div>
+                    <b>autotune_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-autotune_policies/autotune_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>DETACHED_VOLUME</li>
+                                                                                                                                                                                                <li>PERFORMANCE_BASED</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>This specifies the type of autotunes supported by OCI.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-autotune_policies/max_vpus_per_gb"></div>
+                    <b>max_vpus_per_gb</b>
+                    <a class="ansibleOptionLink" href="#parameter-autotune_policies/max_vpus_per_gb" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>This will be the maximum VPUs/GB performance level that the volume will be auto-tuned temporarily based on performance monitoring.</div>
+                                            <div>Required when autotune_type is &#x27;PERFORMANCE_BASED&#x27;</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-availability_domain"></div>
                     <b>availability_domain</b>
                     <a class="ansibleOptionLink" href="#parameter-availability_domain" title="Permalink to this option"></a>
@@ -200,9 +254,6 @@ Parameters
                                                                 <td>
                                             <div>The availability domain of the volume. Omissible for cloning a volume. The new volume will be created in the availability domain of the source volume.</div>
                                             <div>Example: `Uocm:PHX-AD-1`</div>
-                                            <div>Required for create using <em>state=present</em>.</div>
-                                            <div>Required for update when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
-                                            <div>Required for delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -318,8 +369,6 @@ Parameters
                                                                 <td>
                                             <div>The OCID of the compartment that contains the boot volume.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
-                                            <div>Required for update when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
-                                            <div>Required for delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -439,7 +488,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether the auto-tune performance is enabled for this boot volume.</div>
+                                            <div>Specifies whether the auto-tune performance is enabled for this boot volume. This field is deprecated. Use the `DetachedVolumeAutotunePolicy` instead to enable the volume for detached autotune.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -608,9 +657,10 @@ Parameters
                                                                 <td>
                                             <div>The number of volume performance units (VPUs) that will be applied to this volume per GB, representing the Block Volume service&#x27;s elastic performance options. See <a href='https://docs.cloud.oracle.com/iaas/Content/Block/Concepts/blockvolumeperformance.htm#perf_levels'>Block Volume Performance Levels</a> for more information.</div>
                                             <div>Allowed values:</div>
-                                            <div>* `10`: Represents Balanced option.</div>
-                                            <div>* `20`: Represents Higher Performance option.</div>
+                                            <div>* `10`: Represents the Balanced option.</div>
+                                            <div>* `20`: Represents the Higher Performance option.</div>
                                             <div>* `30`-`120`: Represents the Ultra High Performance option.</div>
+                                            <div>For performance autotune enabled volumes, it would be the Default(Minimum) VPUs/GB.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -676,7 +726,6 @@ Examples
     - name: Create boot_volume
       oci_blockstorage_boot_volume:
         # required
-        availability_domain: Uocm:PHX-AD-1
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         source_details:
           # required
@@ -684,6 +733,7 @@ Examples
           id: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
+        availability_domain: Uocm:PHX-AD-1
         backup_policy_id: "ocid1.backuppolicy.oc1..xxxxxxEXAMPLExxxxxx"
         kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -698,6 +748,9 @@ Examples
 
           # optional
           display_name: display_name_example
+        autotune_policies:
+        - # required
+          autotune_type: DETACHED_VOLUME
 
     - name: Update boot_volume
       oci_blockstorage_boot_volume:
@@ -717,12 +770,13 @@ Examples
 
           # optional
           display_name: display_name_example
+        autotune_policies:
+        - # required
+          autotune_type: DETACHED_VOLUME
 
     - name: Update boot_volume using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_blockstorage_boot_volume:
         # required
-        availability_domain: Uocm:PHX-AD-1
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
 
         # optional
@@ -737,6 +791,9 @@ Examples
 
           # optional
           display_name: display_name_example
+        autotune_policies:
+        - # required
+          autotune_type: DETACHED_VOLUME
 
     - name: Delete boot_volume
       oci_blockstorage_boot_volume:
@@ -747,8 +804,6 @@ Examples
     - name: Delete boot_volume using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
       oci_blockstorage_boot_volume:
         # required
-        availability_domain: Uocm:PHX-AD-1
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         state: absent
 
@@ -787,7 +842,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the BootVolume resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;auto_tuned_vpus_per_gb&#x27;: 56, &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;boot_volume_replicas&#x27;: [{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;boot_volume_replica_id&#x27;: &#x27;ocid1.bootvolumereplica.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;}], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_auto_tune_enabled&#x27;: True, &#x27;is_hydrated&#x27;: True, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;size_in_gbs&#x27;: 56, &#x27;size_in_mbs&#x27;: 56, &#x27;source_details&#x27;: {&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;type&#x27;: &#x27;bootVolume&#x27;}, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;volume_group_id&#x27;: &#x27;ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vpus_per_gb&#x27;: 56}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;auto_tuned_vpus_per_gb&#x27;: 56, &#x27;autotune_policies&#x27;: [{&#x27;autotune_type&#x27;: &#x27;DETACHED_VOLUME&#x27;, &#x27;max_vpus_per_gb&#x27;: 56}], &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;boot_volume_replicas&#x27;: [{&#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;boot_volume_replica_id&#x27;: &#x27;ocid1.bootvolumereplica.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;}], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_auto_tune_enabled&#x27;: True, &#x27;is_hydrated&#x27;: True, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;size_in_gbs&#x27;: 56, &#x27;size_in_mbs&#x27;: 56, &#x27;source_details&#x27;: {&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;type&#x27;: &#x27;bootVolume&#x27;}, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;volume_group_id&#x27;: &#x27;ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vpus_per_gb&#x27;: 56}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -802,12 +857,67 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The number of Volume Performance Units per GB that this boot volume is effectively tuned to when it&#x27;s idle.</div>
+                                            <div>The number of Volume Performance Units per GB that this boot volume is effectively tuned to.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-boot_volume/autotune_policies"></div>
+                    <b>autotune_policies</b>
+                    <a class="ansibleOptionLink" href="#return-boot_volume/autotune_policies" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The list of autotune policies enabled for this volume.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-boot_volume/autotune_policies/autotune_type"></div>
+                    <b>autotune_type</b>
+                    <a class="ansibleOptionLink" href="#return-boot_volume/autotune_policies/autotune_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>This specifies the type of autotunes supported by OCI.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">DETACHED_VOLUME</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-boot_volume/autotune_policies/max_vpus_per_gb"></div>
+                    <b>max_vpus_per_gb</b>
+                    <a class="ansibleOptionLink" href="#return-boot_volume/autotune_policies/max_vpus_per_gb" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>This will be the maximum VPUs/GB performance level that the volume will be auto-tuned temporarily based on performance monitoring.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
@@ -1024,7 +1134,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Specifies whether the auto-tune performance is enabled for this boot volume.</div>
+                                            <div>Specifies whether the auto-tune performance is enabled for this boot volume. This field is deprecated. Use the `DetachedVolumeAutotunePolicy` instead to enable the volume for detached autotune.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -1244,6 +1354,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>* `10`: Represents Balanced option.</div>
                                             <div>* `20`: Represents Higher Performance option.</div>
                                             <div>* `30`-`120`: Represents the Ultra High Performance option.</div>
+                                            <div>For performance autotune enabled volumes, it would be the Default(Minimum) VPUs/GB.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>

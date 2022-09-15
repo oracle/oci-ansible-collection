@@ -58,7 +58,7 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the ESXi host that
               is failed. This is an optional parameter. If this parameter is specified, a new ESXi
               host will be created to replace the failed one, and the `failedEsxiHostId` field
-              will be udpated in the newly created Esxi host.
+              will be updated in the newly created Esxi host.
         type: str
     host_shape_name:
         description:
@@ -72,6 +72,14 @@ options:
     capacity_reservation_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Capacity Reservation.
+        type: str
+    non_upgraded_esxi_host_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the ESXi host that
+              will be upgraded. This is an optional parameter. If this parameter
+              is specified, an ESXi host with new version will be created to replace the
+              original one, and the `nonUpgradedEsxiHostId` field will be updated in the newly
+              created Esxi host.
         type: str
     display_name:
         description:
@@ -146,6 +154,7 @@ EXAMPLES = """
     host_shape_name: host_shape_name_example
     host_ocpu_count: 3.4
     capacity_reservation_id: "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx"
+    non_upgraded_esxi_host_id: "ocid1.nonupgradedesxihost.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     next_sku: HOUR
     freeform_tags: {'Department': 'Finance'}
@@ -293,6 +302,26 @@ esxi_host:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        vmware_software_version:
+            description:
+                - The version of VMware software that the Oracle Cloud VMware Solution installed on the ESXi hosts.
+            returned: on success
+            type: str
+            sample: vmware_software_version_example
+        non_upgraded_esxi_host_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the ESXi host that
+                  will be upgraded.
+            returned: on success
+            type: str
+            sample: "ocid1.nonupgradedesxihost.oc1..xxxxxxEXAMPLExxxxxx"
+        upgraded_replacement_esxi_host_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the ESXi host that
+                  is newly created to upgrade the original host.
+            returned: on success
+            type: str
+            sample: "ocid1.upgradedreplacementesxihost.oc1..xxxxxxEXAMPLExxxxxx"
         compute_availability_domain:
             description:
                 - The availability domain of the ESXi host.
@@ -350,6 +379,9 @@ esxi_host:
         "failed_esxi_host_id": "ocid1.failedesxihost.oc1..xxxxxxEXAMPLExxxxxx",
         "replacement_esxi_host_id": "ocid1.replacementesxihost.oc1..xxxxxxEXAMPLExxxxxx",
         "grace_period_end_date": "2013-10-20T19:20:30+01:00",
+        "vmware_software_version": "vmware_software_version_example",
+        "non_upgraded_esxi_host_id": "ocid1.nonupgradedesxihost.oc1..xxxxxxEXAMPLExxxxxx",
+        "upgraded_replacement_esxi_host_id": "ocid1.upgradedreplacementesxihost.oc1..xxxxxxEXAMPLExxxxxx",
         "compute_availability_domain": "Uocm:PHX-AD-1",
         "host_shape_name": "host_shape_name_example",
         "host_ocpu_count": 3.4,
@@ -386,6 +418,9 @@ class EsxiHostHelperGen(OCIResourceHelperBase):
 
     def get_waiter_client(self):
         return oci_config_utils.create_service_client(self.module, WorkRequestClient)
+
+    def get_default_module_wait_timeout(self):
+        return 3600
 
     def get_possible_entity_types(self):
         return super(EsxiHostHelperGen, self).get_possible_entity_types() + [
@@ -518,6 +553,7 @@ def main():
             host_shape_name=dict(type="str"),
             host_ocpu_count=dict(type="float"),
             capacity_reservation_id=dict(type="str"),
+            non_upgraded_esxi_host_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             next_sku=dict(
                 type="str", choices=["HOUR", "MONTH", "ONE_YEAR", "THREE_YEARS"]

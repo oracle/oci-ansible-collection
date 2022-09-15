@@ -11,60 +11,6 @@ __metaclass__ = type
 from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
 
 
-class ConnectivityValidationActionsHelperCustom:
-    def get_resource(self):
-        """
-        Resource doesn't have get_resource method and perform_action calls get_resource.
-        So, overriding get_resource to return default response.
-        """
-        return oci_common_utils.get_default_response_from_resource(resource=None)
-
-
-class DetachDataAssetInfoActionsHelperCustom:
-    def get_resource(self):
-        """
-        Resource doesn't have get_resource method and perform_action calls get_resource.
-        So, overriding get_resource to return default response.
-        """
-        return oci_common_utils.get_default_response_from_resource(resource=None)
-
-
-class AttachDataAssetInfoActionsHelperCustom:
-    def get_resource(self):
-        """
-        Resource doesn't have get_resource method and perform_action calls get_resource.
-        So, overriding get_resource to return default response.
-        """
-        return oci_common_utils.get_default_response_from_resource(resource=None)
-
-
-class DataPreviewActionsHelperCustom:
-    def get_resource(self):
-        """
-        Resource doesn't have get_resource method and perform_action calls get_resource.
-        So, overriding get_resource to return default response.
-        """
-        return oci_common_utils.get_default_response_from_resource(resource=None)
-
-
-class DataProfileActionsHelperCustom:
-    def get_resource(self):
-        """
-        Resource doesn't have get_resource method and perform_action calls get_resource.
-        So, overriding get_resource to return default response.
-        """
-        return oci_common_utils.get_default_response_from_resource(resource=None)
-
-
-class FullPushDownTaskActionsHelperCustom:
-    def get_resource(self):
-        """
-        Resource doesn't have get_resource method and perform_action calls get_resource.
-        So, overriding get_resource to return default response.
-        """
-        return oci_common_utils.get_default_response_from_resource(resource=None)
-
-
 class ConnectionValidationHelperCustom:
     def get_get_model_from_summary_model(self, summary_model):
         """
@@ -90,21 +36,3 @@ class DataEntityActionsHelperCustom:
             schema_resource_name=self.module.params.get("schema_resource_name"),
             data_entity_key=self.module.params.get("key"),
         )
-
-
-class ReferenceInfoActionsHelperCustom:
-    def get_resource(self):
-        """
-        Resource doesn't have get_resource method and perform_action calls get_resource.
-        So, overriding get_resource to return default response.
-        """
-        return oci_common_utils.get_default_response_from_resource(resource=None)
-
-
-class TestNetworkConnectivityActionsHelperCustom:
-    def get_resource(self):
-        """
-        Resource doesn't have get_resource method and perform_action calls get_resource.
-        So, overriding get_resource to return default response.
-        """
-        return oci_common_utils.get_default_response_from_resource(resource=None)

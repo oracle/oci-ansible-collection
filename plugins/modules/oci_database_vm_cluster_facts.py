@@ -284,6 +284,26 @@ vm_clusters:
                     returned: on success
                     type: bool
                     sample: true
+                is_health_monitoring_enabled:
+                    description:
+                        - Indicates whether health monitoring is enabled for the VM cluster / Cloud VM cluster / VMBM DBCS. Enabling health monitoring allows
+                          Oracle to collect diagnostic data and share it with its operations and support personnel. You may also receive notifications for some
+                          events. Collecting health diagnostics enables Oracle to provide proactive support and enhanced service for your system.
+                          Optionally enable health monitoring while provisioning a system. You can also disable or enable health monitoring anytime using the
+                          `UpdateVmCluster`, `UpdateCloudVmCluster` or `updateDbsystem` API.
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_incident_logs_enabled:
+                    description:
+                        - Indicates whether incident logs and trace collection are enabled for the VM cluster / Cloud VM cluster / VMBM DBCS. Enabling incident
+                          logs collection allows Oracle to receive Events service notifications for guest VM issues, collect incident logs and traces, and use
+                          them to diagnose issues and resolve them.
+                          Optionally enable incident logs collection while provisioning a system. You can also disable or enable incident logs collection
+                          anytime using the `UpdateVmCluster`, `updateCloudVmCluster` or `updateDbsystem` API.
+                    returned: on success
+                    type: bool
+                    sample: true
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -312,7 +332,9 @@ vm_clusters:
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "data_collection_options": {
-            "is_diagnostics_events_enabled": true
+            "is_diagnostics_events_enabled": true,
+            "is_health_monitoring_enabled": true,
+            "is_incident_logs_enabled": true
         }
     }]
 """

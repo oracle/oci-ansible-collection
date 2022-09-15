@@ -15,16 +15,6 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class SddcHelperCustom:
-    # As per console, a SDDC creation could take up to 3 hours but from the tests I see that it takes around 6 hours.
-    # 6 hours is very long for the ansible module to wait but the other option would be to fallback to the default time
-    # which would result in error for a user every time. So they will have to use wait: False option and do the waiting
-    # themselves every time. But this way users who do need to wait until completion need no changes and for someone
-    # not bothered about completion can just use wait: False flag.
-    def get_default_module_wait_timeout(self):
-        return int(6 * 3600)
-
-
 class SddcActionsHelperCustom:
     CANCEL_DOWNGRADE_HCX_ACTION_KEY = "cancel_downgrade_hcx"
     DOWNGRADE_HCX_ACTION_KEY = "downgrade_hcx"
@@ -67,8 +57,3 @@ class SddcActionsHelperCustom:
         return super(SddcActionsHelperCustom, self).is_action_necessary(
             action, resource
         )
-
-
-class EsxiHostHelperCustom:
-    def get_default_module_wait_timeout(self):
-        return int(1 * 3600)

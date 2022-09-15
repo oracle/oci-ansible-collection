@@ -30,7 +30,7 @@ oracle.oci.oci_database_maintenance_run_facts -- Fetches details about one or mu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.1.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.2.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -322,6 +322,30 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-maintenance_subtype"></div>
+                    <b>maintenance_subtype</b>
+                    <a class="ansibleOptionLink" href="#parameter-maintenance_subtype" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>QUARTERLY</li>
+                                                                                                                                                                                                <li>HARDWARE</li>
+                                                                                                                                                                                                <li>CRITICAL</li>
+                                                                                                                                                                                                <li>INFRASTRUCTURE</li>
+                                                                                                                                                                                                <li>DATABASE</li>
+                                                                                                                                                                                                <li>ONEOFF</li>
+                                                                                                                                                                                                <li>SECURITY_MONTHLY</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The sub-type of the maintenance run.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-maintenance_type"></div>
                     <b>maintenance_type</b>
                     <a class="ansibleOptionLink" href="#parameter-maintenance_type" title="Permalink to this option"></a>
@@ -491,6 +515,7 @@ Examples
         sort_order: ASC
         lifecycle_state: SCHEDULED
         availability_domain: Uocm:PHX-AD-1
+        maintenance_subtype: QUARTERLY
 
 
 

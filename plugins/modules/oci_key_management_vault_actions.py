@@ -304,6 +304,9 @@ class VaultActionsHelperGen(OCIActionsHelperBase):
         schedule_vault_deletion
     """
 
+    def get_default_module_wait_timeout(self):
+        return 2400
+
     @staticmethod
     def get_module_resource_id_param():
         return "vault_id"

@@ -807,6 +807,9 @@ except ImportError:
 class ClusterHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
+    def get_default_module_wait_timeout(self):
+        return 1800
+
     def get_possible_entity_types(self):
         return super(ClusterHelperGen, self).get_possible_entity_types() + [
             "cluster",

@@ -112,6 +112,10 @@ options:
                     - Determines the amount of time the system will wait before the start of each database server patching operation.
                       Custom action timeout is in minutes and valid value is between 15 to 120 (inclusive).
                 type: int
+            is_monthly_patching_enabled:
+                description:
+                    - If true, enables the monthly patching option.
+                type: bool
             months:
                 description:
                     - Months during the year when maintenance should be performed.
@@ -240,6 +244,7 @@ EXAMPLES = """
       patching_mode: ROLLING
       is_custom_action_timeout_enabled: true
       custom_action_timeout_in_mins: 56
+      is_monthly_patching_enabled: true
       months:
       - # required
         name: JANUARY
@@ -267,6 +272,7 @@ EXAMPLES = """
       patching_mode: ROLLING
       is_custom_action_timeout_enabled: true
       custom_action_timeout_in_mins: 56
+      is_monthly_patching_enabled: true
       months:
       - # required
         name: JANUARY
@@ -295,6 +301,7 @@ EXAMPLES = """
       patching_mode: ROLLING
       is_custom_action_timeout_enabled: true
       custom_action_timeout_in_mins: 56
+      is_monthly_patching_enabled: true
       months:
       - # required
         name: JANUARY
@@ -467,6 +474,12 @@ autonomous_vm_cluster:
                     returned: on success
                     type: int
                     sample: 56
+                is_monthly_patching_enabled:
+                    description:
+                        - If true, enables the monthly patching option.
+                    returned: on success
+                    type: bool
+                    sample: true
                 months:
                     description:
                         - Months during the year when maintenance should be performed.
@@ -624,6 +637,7 @@ autonomous_vm_cluster:
             "patching_mode": "ROLLING",
             "is_custom_action_timeout_enabled": true,
             "custom_action_timeout_in_mins": 56,
+            "is_monthly_patching_enabled": true,
             "months": [{
                 "name": "JANUARY"
             }],
@@ -837,6 +851,7 @@ def main():
                     patching_mode=dict(type="str", choices=["ROLLING", "NONROLLING"]),
                     is_custom_action_timeout_enabled=dict(type="bool"),
                     custom_action_timeout_in_mins=dict(type="int"),
+                    is_monthly_patching_enabled=dict(type="bool"),
                     months=dict(
                         type="list",
                         elements="dict",

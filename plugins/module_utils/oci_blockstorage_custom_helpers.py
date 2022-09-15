@@ -21,16 +21,6 @@ try:
 except ImportError:
     HAS_OCI_PY_SDK = False
 
-logger = oci_common_utils.get_logger("oci_blockstorage_custom_helpers")
-
-
-def _debug(s):
-    get_logger().debug(s)
-
-
-def get_logger():
-    return logger
-
 
 class BootVolumeBackupActionsHelperCustom:
     def is_action_necessary(self, action, resource, *args, **kwargs):

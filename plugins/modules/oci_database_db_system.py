@@ -611,6 +611,11 @@ options:
                       Custom action timeout is in minutes and valid value is between 15 to 120 (inclusive).
                     - Applicable when source is 'NONE'
                 type: int
+            is_monthly_patching_enabled:
+                description:
+                    - If true, enables the monthly patching option.
+                    - Applicable when source is 'NONE'
+                type: bool
             months:
                 description:
                     - Months during the year when maintenance should be performed.
@@ -682,6 +687,38 @@ options:
                     - Lead time window allows user to set a lead time to prepare for a down time. The lead time is in weeks and valid value is between 1 to 4.
                     - Applicable when source is 'NONE'
                 type: int
+    data_collection_options:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            is_diagnostics_events_enabled:
+                description:
+                    - Indicates whether diagnostic collection is enabled for the VM cluster/Cloud VM cluster/VMBM DBCS. Enabling diagnostic collection allows
+                      you to receive Events service notifications for guest VM issues. Diagnostic collection also allows Oracle to provide enhanced service and
+                      proactive support for your Exadata system. You can enable diagnostic collection during VM cluster/Cloud VM cluster provisioning. You can
+                      also disable or enable it at any time using the `UpdateVmCluster` or `updateCloudVmCluster` API.
+                    - Applicable when source is 'NONE'
+                type: bool
+            is_health_monitoring_enabled:
+                description:
+                    - Indicates whether health monitoring is enabled for the VM cluster / Cloud VM cluster / VMBM DBCS. Enabling health monitoring allows Oracle
+                      to collect diagnostic data and share it with its operations and support personnel. You may also receive notifications for some events.
+                      Collecting health diagnostics enables Oracle to provide proactive support and enhanced service for your system.
+                      Optionally enable health monitoring while provisioning a system. You can also disable or enable health monitoring anytime using the
+                      `UpdateVmCluster`, `UpdateCloudVmCluster` or `updateDbsystem` API.
+                    - Applicable when source is 'NONE'
+                type: bool
+            is_incident_logs_enabled:
+                description:
+                    - Indicates whether incident logs and trace collection are enabled for the VM cluster / Cloud VM cluster / VMBM DBCS. Enabling incident logs
+                      collection allows Oracle to receive Events service notifications for guest VM issues, collect incident logs and traces, and use them to
+                      diagnose issues and resolve them.
+                      Optionally enable incident logs collection while provisioning a system. You can also disable or enable incident logs collection anytime
+                      using the `UpdateVmCluster`, `updateCloudVmCluster` or `updateDbsystem` API.
+                    - Applicable when source is 'NONE'
+                type: bool
     db_system_id:
         description:
             - The DB system L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -794,6 +831,7 @@ EXAMPLES = """
       patching_mode: ROLLING
       is_custom_action_timeout_enabled: true
       custom_action_timeout_in_mins: 56
+      is_monthly_patching_enabled: true
       months:
       - # required
         name: JANUARY
@@ -803,6 +841,11 @@ EXAMPLES = """
         name: MONDAY
       hours_of_day: [ "hours_of_day_example" ]
       lead_time_in_weeks: 56
+    data_collection_options:
+      # optional
+      is_diagnostics_events_enabled: true
+      is_health_monitoring_enabled: true
+      is_incident_logs_enabled: true
 
 - name: Create db_system with source = DB_SYSTEM
   oci_database_db_system:
@@ -887,6 +930,11 @@ EXAMPLES = """
     nsg_ids: [ "nsg_ids_example" ]
     backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
     license_model: LICENSE_INCLUDED
+    data_collection_options:
+      # optional
+      is_diagnostics_events_enabled: true
+      is_health_monitoring_enabled: true
+      is_incident_logs_enabled: true
 
 - name: Create db_system with source = DATABASE
   oci_database_db_system:
@@ -972,6 +1020,11 @@ EXAMPLES = """
     nsg_ids: [ "nsg_ids_example" ]
     backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
     license_model: LICENSE_INCLUDED
+    data_collection_options:
+      # optional
+      is_diagnostics_events_enabled: true
+      is_health_monitoring_enabled: true
+      is_incident_logs_enabled: true
 
 - name: Create db_system with source = DB_BACKUP
   oci_database_db_system:
@@ -1057,6 +1110,11 @@ EXAMPLES = """
     nsg_ids: [ "nsg_ids_example" ]
     backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
     license_model: LICENSE_INCLUDED
+    data_collection_options:
+      # optional
+      is_diagnostics_events_enabled: true
+      is_health_monitoring_enabled: true
+      is_incident_logs_enabled: true
 
 - name: Update db_system
   oci_database_db_system:
@@ -1087,6 +1145,7 @@ EXAMPLES = """
       patching_mode: ROLLING
       is_custom_action_timeout_enabled: true
       custom_action_timeout_in_mins: 56
+      is_monthly_patching_enabled: true
       months:
       - # required
         name: JANUARY
@@ -1096,6 +1155,11 @@ EXAMPLES = """
         name: MONDAY
       hours_of_day: [ "hours_of_day_example" ]
       lead_time_in_weeks: 56
+    data_collection_options:
+      # optional
+      is_diagnostics_events_enabled: true
+      is_health_monitoring_enabled: true
+      is_incident_logs_enabled: true
 
 - name: Update db_system using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_db_system:
@@ -1127,6 +1191,7 @@ EXAMPLES = """
       patching_mode: ROLLING
       is_custom_action_timeout_enabled: true
       custom_action_timeout_in_mins: 56
+      is_monthly_patching_enabled: true
       months:
       - # required
         name: JANUARY
@@ -1136,6 +1201,11 @@ EXAMPLES = """
         name: MONDAY
       hours_of_day: [ "hours_of_day_example" ]
       lead_time_in_weeks: 56
+    data_collection_options:
+      # optional
+      is_diagnostics_events_enabled: true
+      is_health_monitoring_enabled: true
+      is_incident_logs_enabled: true
 
 - name: Delete db_system
   oci_database_db_system:
@@ -1519,6 +1589,12 @@ db_system:
                     returned: on success
                     type: int
                     sample: 56
+                is_monthly_patching_enabled:
+                    description:
+                        - If true, enables the monthly patching option.
+                    returned: on success
+                    type: bool
+                    sample: true
                 months:
                     description:
                         - Months during the year when maintenance should be performed.
@@ -1610,6 +1686,41 @@ db_system:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        data_collection_options:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                is_diagnostics_events_enabled:
+                    description:
+                        - Indicates whether diagnostic collection is enabled for the VM cluster/Cloud VM cluster/VMBM DBCS. Enabling diagnostic collection
+                          allows you to receive Events service notifications for guest VM issues. Diagnostic collection also allows Oracle to provide enhanced
+                          service and proactive support for your Exadata system. You can enable diagnostic collection during VM cluster/Cloud VM cluster
+                          provisioning. You can also disable or enable it at any time using the `UpdateVmCluster` or `updateCloudVmCluster` API.
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_health_monitoring_enabled:
+                    description:
+                        - Indicates whether health monitoring is enabled for the VM cluster / Cloud VM cluster / VMBM DBCS. Enabling health monitoring allows
+                          Oracle to collect diagnostic data and share it with its operations and support personnel. You may also receive notifications for some
+                          events. Collecting health diagnostics enables Oracle to provide proactive support and enhanced service for your system.
+                          Optionally enable health monitoring while provisioning a system. You can also disable or enable health monitoring anytime using the
+                          `UpdateVmCluster`, `UpdateCloudVmCluster` or `updateDbsystem` API.
+                    returned: on success
+                    type: bool
+                    sample: true
+                is_incident_logs_enabled:
+                    description:
+                        - Indicates whether incident logs and trace collection are enabled for the VM cluster / Cloud VM cluster / VMBM DBCS. Enabling incident
+                          logs collection allows Oracle to receive Events service notifications for guest VM issues, collect incident logs and traces, and use
+                          them to diagnose issues and resolve them.
+                          Optionally enable incident logs collection while provisioning a system. You can also disable or enable incident logs collection
+                          anytime using the `UpdateVmCluster`, `updateCloudVmCluster` or `updateDbsystem` API.
+                    returned: on success
+                    type: bool
+                    sample: true
     sample: {
         "iorm_config_cache": {
             "lifecycle_state": "BOOTSTRAPPING",
@@ -1667,6 +1778,7 @@ db_system:
             "patching_mode": "ROLLING",
             "is_custom_action_timeout_enabled": true,
             "custom_action_timeout_in_mins": 56,
+            "is_monthly_patching_enabled": true,
             "months": [{
                 "name": "JANUARY"
             }],
@@ -1682,7 +1794,12 @@ db_system:
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "source_db_system_id": "ocid1.sourcedbsystem.oc1..xxxxxxEXAMPLExxxxxx",
-        "point_in_time_data_disk_clone_timestamp": "2013-10-20T19:20:30+01:00"
+        "point_in_time_data_disk_clone_timestamp": "2013-10-20T19:20:30+01:00",
+        "data_collection_options": {
+            "is_diagnostics_events_enabled": true,
+            "is_health_monitoring_enabled": true,
+            "is_incident_logs_enabled": true
+        }
     }
 """
 
@@ -2006,6 +2123,7 @@ def main():
                     patching_mode=dict(type="str", choices=["ROLLING", "NONROLLING"]),
                     is_custom_action_timeout_enabled=dict(type="bool"),
                     custom_action_timeout_in_mins=dict(type="int"),
+                    is_monthly_patching_enabled=dict(type="bool"),
                     months=dict(
                         type="list",
                         elements="dict",
@@ -2052,6 +2170,14 @@ def main():
                     ),
                     hours_of_day=dict(type="list", elements="int"),
                     lead_time_in_weeks=dict(type="int"),
+                ),
+            ),
+            data_collection_options=dict(
+                type="dict",
+                options=dict(
+                    is_diagnostics_events_enabled=dict(type="bool"),
+                    is_health_monitoring_enabled=dict(type="bool"),
+                    is_incident_logs_enabled=dict(type="bool"),
                 ),
             ),
             db_system_id=dict(aliases=["id"], type="str"),

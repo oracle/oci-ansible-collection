@@ -191,6 +191,12 @@ volume_group_replicas:
                     returned: on success
                     type: str
                     sample: "ocid1.volumereplica.oc1..xxxxxxEXAMPLExxxxxx"
+                membership_state:
+                    description:
+                        - Membership state of the volume replica in relation to the volume group replica.
+                    returned: on success
+                    type: str
+                    sample: ADD_PENDING
         time_last_synced:
             description:
                 - The date and time the volume group replica was last synced from the source volume group.
@@ -210,7 +216,8 @@ volume_group_replicas:
         "volume_group_id": "ocid1.volumegroup.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2013-10-20T19:20:30+01:00",
         "member_replicas": [{
-            "volume_replica_id": "ocid1.volumereplica.oc1..xxxxxxEXAMPLExxxxxx"
+            "volume_replica_id": "ocid1.volumereplica.oc1..xxxxxxEXAMPLExxxxxx",
+            "membership_state": "ADD_PENDING"
         }],
         "time_last_synced": "2013-10-20T19:20:30+01:00"
     }]

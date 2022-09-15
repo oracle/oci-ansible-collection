@@ -74,7 +74,6 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_compute_instance_agent_custom_helpers,
     oci_opsi_custom_helpers,
     oci_optimizer_custom_helpers,
-    oci_management_dashboards_custom_helpers,
     oci_artifacts_custom_helpers,
     oci_network_load_balancer_custom_helpers,
     oci_service_catalog_custom_helpers,
@@ -88,9 +87,7 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_usage_custom_helpers,
     oci_devops_custom_helpers,
     oci_certificates_management_custom_helpers,
-    oci_identity_data_plane_custom_helpers,
     oci_ai_vision_custom_helpers,
-    oci_stack_monitoring_custom_helpers,
     oci_opensearch_custom_helpers,
 )  # noqa
 
@@ -141,7 +138,6 @@ custom_helper_mapping = get_custom_class_mapping(
         oci_compute_instance_agent_custom_helpers,
         oci_opsi_custom_helpers,
         oci_optimizer_custom_helpers,
-        oci_management_dashboards_custom_helpers,
         oci_artifacts_custom_helpers,
         oci_network_load_balancer_custom_helpers,
         oci_service_catalog_custom_helpers,
@@ -154,9 +150,7 @@ custom_helper_mapping = get_custom_class_mapping(
         oci_usage_custom_helpers,
         oci_devops_custom_helpers,
         oci_certificates_management_custom_helpers,
-        oci_identity_data_plane_custom_helpers,
         oci_ai_vision_custom_helpers,
-        oci_stack_monitoring_custom_helpers,
         oci_opensearch_custom_helpers,
     ]
 )

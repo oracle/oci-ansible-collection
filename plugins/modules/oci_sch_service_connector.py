@@ -345,6 +345,13 @@ options:
                     - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Logging Analytics log group.
                     - Required when kind is 'loggingAnalytics'
                 type: str
+            log_source_identifier:
+                description:
+                    - Identifier of the log source that you want to use for processing data received from the service connector source.
+                      Applies to `StreamingSource` only.
+                      Equivalent to `name` at L(LogAnalyticsSource,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/logan-api-spec/latest/LogAnalyticsSource/).
+                    - Applicable when kind is 'loggingAnalytics'
+                type: str
             kind:
                 description:
                     - The type descriminator.
@@ -738,6 +745,15 @@ service_connector:
                     returned: on success
                     type: str
                     sample: "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx"
+                log_source_identifier:
+                    description:
+                        - Identifier of the log source that you want to use for processing data received from the service connector source.
+                          Applies to `StreamingSource` only.
+                          Equivalent to `name` at L(LogAnalyticsSource,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/logan-api-
+                          spec/latest/LogAnalyticsSource/).
+                    returned: on success
+                    type: str
+                    sample: log_source_identifier_example
                 compartment_id:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the metric.
@@ -936,6 +952,7 @@ service_connector:
         "target": {
             "function_id": "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx",
             "log_group_id": "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx",
+            "log_source_identifier": "log_source_identifier_example",
             "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
             "metric_namespace": "metric_namespace_example",
             "metric": "metric_example",
@@ -1230,6 +1247,7 @@ def main():
                     ),
                     function_id=dict(type="str"),
                     log_group_id=dict(type="str"),
+                    log_source_identifier=dict(type="str"),
                     kind=dict(
                         type="str",
                         required=True,

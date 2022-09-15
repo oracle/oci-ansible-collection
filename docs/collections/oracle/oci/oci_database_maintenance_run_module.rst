@@ -30,7 +30,7 @@ oracle.oci.oci_database_maintenance_run -- Manage a MaintenanceRun resource in O
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.1.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.2.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -430,6 +430,38 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-target_db_server_version"></div>
+                    <b>target_db_server_version</b>
+                    <a class="ansibleOptionLink" href="#parameter-target_db_server_version" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The target database server system software version for the patching operation.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-target_storage_server_version"></div>
+                    <b>target_storage_server_version</b>
+                    <a class="ansibleOptionLink" href="#parameter-target_storage_server_version" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The target storage cell system software version for the patching operation.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-tenancy"></div>
                     <b>tenancy</b>
                     <a class="ansibleOptionLink" href="#parameter-tenancy" title="Permalink to this option"></a>
@@ -533,6 +565,8 @@ Examples
         custom_action_timeout_in_mins: 56
         current_custom_action_timeout_in_mins: 56
         is_resume_patching: true
+        target_db_server_version: target_db_server_version_example
+        target_storage_server_version: target_storage_server_version_example
 
 
 

@@ -11,20 +11,6 @@ __metaclass__ = type
 
 from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
 
-logger = oci_common_utils.get_logger("oci_key_management_custom_helpers")
-
-
-def _debug(s):
-    get_logger().debug(s)
-
-
-def _info(s):
-    get_logger().info(s)
-
-
-def get_logger():
-    return logger
-
 
 class KeyVersionHelperCustom:
     def get_module_resource_id_param(self):
@@ -103,10 +89,6 @@ class VaultActionsHelperCustom:
         return super(VaultActionsHelperCustom, self).is_action_necessary(
             action, resource
         )
-
-    # waiting as the change compartment for vault takes time to come back to Active state
-    def get_default_module_wait_timeout(self):
-        return int(1 * 2400)
 
 
 class KeyActionsHelperCustom:

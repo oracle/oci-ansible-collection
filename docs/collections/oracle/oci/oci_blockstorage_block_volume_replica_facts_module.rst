@@ -30,7 +30,7 @@ oracle.oci.oci_blockstorage_block_volume_replica_facts -- Fetches details about 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.1.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.2.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -200,7 +200,6 @@ Parameters
                                                                 <td>
                                             <div>The name of the availability domain.</div>
                                             <div>Example: `Uocm:PHX-AD-1`</div>
-                                            <div>Required to list multiple block_volume_replicas.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -248,7 +247,6 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment.</div>
-                                            <div>Required to list multiple block_volume_replicas.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -389,6 +387,21 @@ Parameters
                                             <div>OCID of your tenancy. If not set, then the value of the OCI_TENANCY variable, if any, is used. This option is required if the tenancy OCID is not specified through a configuration file (See <code>config_file_location</code>). To get the tenancy OCID, please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a></div>
                                                         </td>
             </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-volume_group_replica_id"></div>
+                    <b>volume_group_replica_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-volume_group_replica_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The OCID of the volume group replica.</div>
+                                                        </td>
+            </tr>
                         </table>
     <br/>
 
@@ -421,11 +434,11 @@ Examples
 
     - name: List block_volume_replicas
       oci_blockstorage_block_volume_replica_facts:
-        # required
-        availability_domain: Uocm:PHX-AD-1
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
+        availability_domain: Uocm:PHX-AD-1
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        volume_group_replica_id: "ocid1.volumegroupreplica.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         sort_by: TIMECREATED
         sort_order: ASC

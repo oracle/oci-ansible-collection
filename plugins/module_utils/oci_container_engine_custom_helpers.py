@@ -26,11 +26,6 @@ class KubeconfigHelperCustom:
         return to_text(response_data.content)
 
 
-class ClusterHelperCustom:
-    def get_default_module_wait_timeout(self):
-        return 1800
-
-
 class ClusterActionsHelperCustom:
     UPDATE_CLUSTER_ENDPOINT_CONFIG_KEY = "update_cluster_endpoint_config"
     CLUSTER_MIGRATE_TO_NATIVE_VCN_KEY = "cluster_migrate_to_native_vcn"

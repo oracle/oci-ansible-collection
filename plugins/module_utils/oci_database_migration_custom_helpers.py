@@ -8,10 +8,6 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
-from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
-
-logger = oci_common_utils.get_logger("oci_announcements_service_custom_helpers")
-
 
 class MigrationHelperCustom:
     def get_create_model_dict_for_idempotence_check(self, create_model):

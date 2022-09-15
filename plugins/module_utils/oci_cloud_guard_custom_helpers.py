@@ -8,18 +8,6 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
-from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
-
-logger = oci_common_utils.get_logger("oci_cloud_guard_custom_helpers")
-
-
-def _debug(s):
-    get_logger().debug(s)
-
-
-def get_logger():
-    return logger
-
 
 class DetectorRecipeHelperCustom:
     # excluding the responder_rules param from being used in idempotency as the detector_rules object is
