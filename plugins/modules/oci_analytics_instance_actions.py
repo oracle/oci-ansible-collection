@@ -58,6 +58,12 @@ options:
                     - The subnet OCID for the private endpoint.
                     - Required when network_endpoint_type is 'PRIVATE'
                 type: str
+            network_security_group_ids:
+                description:
+                    - Network Security Group OCIDs for an Analytics instance.
+                    - Applicable when network_endpoint_type is 'PRIVATE'
+                type: list
+                elements: str
             network_endpoint_type:
                 description:
                     - The type of network endpoint.
@@ -68,7 +74,7 @@ options:
                 required: true
             whitelisted_ips:
                 description:
-                    - Source IP addresses or IP address ranges igress rules.
+                    - Source IP addresses or IP address ranges in ingress rules.
                     - Applicable when network_endpoint_type is 'PUBLIC'
                 type: list
                 elements: str
@@ -87,10 +93,18 @@ options:
                         required: true
                     whitelisted_ips:
                         description:
-                            - Source IP addresses or IP address ranges igress rules.
+                            - Source IP addresses or IP address ranges in ingress rules.
                             - Applicable when network_endpoint_type is 'PUBLIC'
                         type: list
                         elements: str
+            whitelisted_services:
+                description:
+                    - Oracle Cloud Services that are allowed to access this Analytics instance.
+                    - Applicable when network_endpoint_type is 'PUBLIC'
+                type: list
+                elements: str
+                choices:
+                    - "ALL"
     capacity:
         description:
             - ""
@@ -154,6 +168,9 @@ EXAMPLES = """
       vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
       subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
       network_endpoint_type: PRIVATE
+
+      # optional
+      network_security_group_ids: [ "network_security_group_ids_example" ]
     analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_analytics_instance_network_endpoint
 
@@ -280,6 +297,12 @@ analytics_instance:
                     returned: on success
                     type: str
                     sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+                network_security_group_ids:
+                    description:
+                        - Network Security Group OCIDs for an Analytics instance.
+                    returned: on success
+                    type: list
+                    sample: []
                 network_endpoint_type:
                     description:
                         - The type of network endpoint.
@@ -288,7 +311,7 @@ analytics_instance:
                     sample: PUBLIC
                 whitelisted_ips:
                     description:
-                        - Source IP addresses or IP address ranges igress rules.
+                        - Source IP addresses or IP address ranges in ingress rules.
                     returned: on success
                     type: list
                     sample: []
@@ -306,10 +329,16 @@ analytics_instance:
                             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                         whitelisted_ips:
                             description:
-                                - Source IP addresses or IP address ranges igress rules.
+                                - Source IP addresses or IP address ranges in ingress rules.
                             returned: on success
                             type: list
                             sample: []
+                whitelisted_services:
+                    description:
+                        - Oracle Cloud Services that are allowed to access this Analytics instance.
+                    returned: on success
+                    type: list
+                    sample: []
         private_access_channels:
             description:
                 - Map of PrivateAccessChannel unique identifier key as KEY and PrivateAccessChannel Object as VALUE.
@@ -373,6 +402,36 @@ analytics_instance:
                             returned: on success
                             type: str
                             sample: description_example
+                private_source_scan_hosts:
+                    description:
+                        - List of Private Source DB SCAN hosts registered with Private Access Channel for access from Analytics Instance.
+                    returned: on success
+                    type: complex
+                    contains:
+                        scan_hostname:
+                            description:
+                                - "Private Source Scan hostname. Ex: db01-scan.corp.example.com, prd-db01-scan.mycompany.com."
+                            returned: on success
+                            type: str
+                            sample: scan_hostname_example
+                        scan_port:
+                            description:
+                                - Private Source Scan host port. This is the source port where SCAN protocol will get connected (e.g. 1521).
+                            returned: on success
+                            type: int
+                            sample: 56
+                        description:
+                            description:
+                                - Description of private source scan host zone.
+                            returned: on success
+                            type: str
+                            sample: description_example
+                network_security_group_ids:
+                    description:
+                        - Network Security Group OCIDs for an Analytics instance.
+                    returned: on success
+                    type: list
+                    sample: []
         vanity_url_details:
             description:
                 - Map of VanityUrl unique identifier key as KEY and VanityUrl Object as VALUE.
@@ -470,12 +529,14 @@ analytics_instance:
         "network_endpoint_details": {
             "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx",
             "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+            "network_security_group_ids": [],
             "network_endpoint_type": "PUBLIC",
             "whitelisted_ips": [],
             "whitelisted_vcns": [{
                 "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
                 "whitelisted_ips": []
-            }]
+            }],
+            "whitelisted_services": []
         },
         "private_access_channels": {
             "key": "key_example",
@@ -487,7 +548,13 @@ analytics_instance:
             "private_source_dns_zones": [{
                 "dns_zone": "dns_zone_example",
                 "description": "description_example"
-            }]
+            }],
+            "private_source_scan_hosts": [{
+                "scan_hostname": "scan_hostname_example",
+                "scan_port": 56,
+                "description": "description_example"
+            }],
+            "network_security_group_ids": []
         },
         "vanity_url_details": {
             "key": "key_example",
@@ -696,6 +763,7 @@ def main():
                 options=dict(
                     vcn_id=dict(type="str"),
                     subnet_id=dict(type="str"),
+                    network_security_group_ids=dict(type="list", elements="str"),
                     network_endpoint_type=dict(
                         type="str", required=True, choices=["PRIVATE", "PUBLIC"]
                     ),
@@ -707,6 +775,9 @@ def main():
                             id=dict(type="str", required=True),
                             whitelisted_ips=dict(type="list", elements="str"),
                         ),
+                    ),
+                    whitelisted_services=dict(
+                        type="list", elements="str", choices=["ALL"]
                     ),
                 ),
             ),

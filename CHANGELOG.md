@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [3.3.0]
+
+## Added
+
+- Support for Logging Search Service
+- Support for Logging Ingestion Service
+- Support for single-client access name protocol as a data source for private access channels in the Analytics service
+- Support for network security groups, egress control on public datasources, and GitHub access in the Analytics service
+
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.83.0
+
 ## [3.2.0]
 
 ## Added

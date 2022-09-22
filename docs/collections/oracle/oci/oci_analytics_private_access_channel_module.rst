@@ -30,7 +30,7 @@ oracle.oci.oci_analytics_private_access_channel -- Manage a PrivateAccessChannel
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.2.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.3.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -300,6 +300,22 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-network_security_group_ids"></div>
+                    <b>network_security_group_ids</b>
+                    <a class="ansibleOptionLink" href="#parameter-network_security_group_ids" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Network Security Group OCIDs for an Analytics instance.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-private_access_channel_key"></div>
                     <b>private_access_channel_key</b>
                     <a class="ansibleOptionLink" href="#parameter-private_access_channel_key" title="Permalink to this option"></a>
@@ -362,6 +378,71 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Private Source DNS Zone. Ex: example-vcn.oraclevcn.com, corp.example.com.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-private_source_scan_hosts"></div>
+                    <b>private_source_scan_hosts</b>
+                    <a class="ansibleOptionLink" href="#parameter-private_source_scan_hosts" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>List of Private Source DB SCAN hosts registered with Private Access Channel for access from Analytics Instance.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-private_source_scan_hosts/description"></div>
+                    <b>description</b>
+                    <a class="ansibleOptionLink" href="#parameter-private_source_scan_hosts/description" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Description of private source scan host zone.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-private_source_scan_hosts/scan_hostname"></div>
+                    <b>scan_hostname</b>
+                    <a class="ansibleOptionLink" href="#parameter-private_source_scan_hosts/scan_hostname" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Private Source Scan hostname. Ex: db01-scan.corp.example.com, prd-db01-scan.mycompany.com.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-private_source_scan_hosts/scan_port"></div>
+                    <b>scan_port</b>
+                    <a class="ansibleOptionLink" href="#parameter-private_source_scan_hosts/scan_port" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Private Source Scan host port. This is the source port where SCAN protocol will get connected (e.g. 1521).</div>
                                                         </td>
             </tr>
                     
@@ -523,6 +604,16 @@ Examples
           description: description_example
         analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
+        # optional
+        private_source_scan_hosts:
+        - # required
+          scan_hostname: scan_hostname_example
+          scan_port: 56
+
+          # optional
+          description: description_example
+        network_security_group_ids: [ "network_security_group_ids_example" ]
+
     - name: Update private_access_channel
       oci_analytics_private_access_channel:
         # required
@@ -539,6 +630,14 @@ Examples
 
           # optional
           description: description_example
+        private_source_scan_hosts:
+        - # required
+          scan_hostname: scan_hostname_example
+          scan_port: 56
+
+          # optional
+          description: description_example
+        network_security_group_ids: [ "network_security_group_ids_example" ]
 
     - name: Delete private_access_channel
       oci_analytics_private_access_channel:
@@ -582,7 +681,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the PrivateAccessChannel resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;egress_source_ip_addresses&#x27;: [], &#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;private_source_dns_zones&#x27;: [{&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;dns_zone&#x27;: &#x27;dns_zone_example&#x27;}], &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vcn_id&#x27;: &#x27;ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;egress_source_ip_addresses&#x27;: [], &#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;network_security_group_ids&#x27;: [], &#x27;private_source_dns_zones&#x27;: [{&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;dns_zone&#x27;: &#x27;dns_zone_example&#x27;}], &#x27;private_source_scan_hosts&#x27;: [{&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;scan_hostname&#x27;: &#x27;scan_hostname_example&#x27;, &#x27;scan_port&#x27;: 56}], &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vcn_id&#x27;: &#x27;ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -658,6 +757,22 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-private_access_channel/network_security_group_ids"></div>
+                    <b>network_security_group_ids</b>
+                    <a class="ansibleOptionLink" href="#return-private_access_channel/network_security_group_ids" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Network Security Group OCIDs for an Analytics instance.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-private_access_channel/private_source_dns_zones"></div>
                     <b>private_source_dns_zones</b>
                     <a class="ansibleOptionLink" href="#return-private_access_channel/private_source_dns_zones" title="Permalink to this return value"></a>
@@ -707,6 +822,80 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">dns_zone_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-private_access_channel/private_source_scan_hosts"></div>
+                    <b>private_source_scan_hosts</b>
+                    <a class="ansibleOptionLink" href="#return-private_access_channel/private_source_scan_hosts" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>List of Private Source DB SCAN hosts registered with Private Access Channel for access from Analytics Instance.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-private_access_channel/private_source_scan_hosts/description"></div>
+                    <b>description</b>
+                    <a class="ansibleOptionLink" href="#return-private_access_channel/private_source_scan_hosts/description" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Description of private source scan host zone.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-private_access_channel/private_source_scan_hosts/scan_hostname"></div>
+                    <b>scan_hostname</b>
+                    <a class="ansibleOptionLink" href="#return-private_access_channel/private_source_scan_hosts/scan_hostname" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Private Source Scan hostname. Ex: db01-scan.corp.example.com, prd-db01-scan.mycompany.com.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">scan_hostname_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-private_access_channel/private_source_scan_hosts/scan_port"></div>
+                    <b>scan_port</b>
+                    <a class="ansibleOptionLink" href="#return-private_access_channel/private_source_scan_hosts/scan_port" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Private Source Scan host port. This is the source port where SCAN protocol will get connected (e.g. 1521).</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                     
