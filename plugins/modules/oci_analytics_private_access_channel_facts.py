@@ -114,6 +114,36 @@ private_access_channel:
                     returned: on success
                     type: str
                     sample: description_example
+        private_source_scan_hosts:
+            description:
+                - List of Private Source DB SCAN hosts registered with Private Access Channel for access from Analytics Instance.
+            returned: on success
+            type: complex
+            contains:
+                scan_hostname:
+                    description:
+                        - "Private Source Scan hostname. Ex: db01-scan.corp.example.com, prd-db01-scan.mycompany.com."
+                    returned: on success
+                    type: str
+                    sample: scan_hostname_example
+                scan_port:
+                    description:
+                        - Private Source Scan host port. This is the source port where SCAN protocol will get connected (e.g. 1521).
+                    returned: on success
+                    type: int
+                    sample: 56
+                description:
+                    description:
+                        - Description of private source scan host zone.
+                    returned: on success
+                    type: str
+                    sample: description_example
+        network_security_group_ids:
+            description:
+                - Network Security Group OCIDs for an Analytics instance.
+            returned: on success
+            type: list
+            sample: []
     sample: {
         "key": "key_example",
         "display_name": "display_name_example",
@@ -124,7 +154,13 @@ private_access_channel:
         "private_source_dns_zones": [{
             "dns_zone": "dns_zone_example",
             "description": "description_example"
-        }]
+        }],
+        "private_source_scan_hosts": [{
+            "scan_hostname": "scan_hostname_example",
+            "scan_port": 56,
+            "description": "description_example"
+        }],
+        "network_security_group_ids": []
     }
 """
 

@@ -66,6 +66,33 @@ options:
                 description:
                     - Description of private source dns zone.
                 type: str
+    private_source_scan_hosts:
+        description:
+            - List of Private Source DB SCAN hosts registered with Private Access Channel for access from Analytics Instance.
+            - This parameter is updatable.
+        type: list
+        elements: dict
+        suboptions:
+            scan_hostname:
+                description:
+                    - "Private Source Scan hostname. Ex: db01-scan.corp.example.com, prd-db01-scan.mycompany.com."
+                type: str
+                required: true
+            scan_port:
+                description:
+                    - Private Source Scan host port. This is the source port where SCAN protocol will get connected (e.g. 1521).
+                type: int
+                required: true
+            description:
+                description:
+                    - Description of private source scan host zone.
+                type: str
+    network_security_group_ids:
+        description:
+            - Network Security Group OCIDs for an Analytics instance.
+            - This parameter is updatable.
+        type: list
+        elements: str
     private_access_channel_key:
         description:
             - The unique identifier key of the Private Access Channel.
@@ -105,6 +132,16 @@ EXAMPLES = """
       description: description_example
     analytics_instance_id: "ocid1.analyticsinstance.oc1..xxxxxxEXAMPLExxxxxx"
 
+    # optional
+    private_source_scan_hosts:
+    - # required
+      scan_hostname: scan_hostname_example
+      scan_port: 56
+
+      # optional
+      description: description_example
+    network_security_group_ids: [ "network_security_group_ids_example" ]
+
 - name: Update private_access_channel
   oci_analytics_private_access_channel:
     # required
@@ -121,6 +158,14 @@ EXAMPLES = """
 
       # optional
       description: description_example
+    private_source_scan_hosts:
+    - # required
+      scan_hostname: scan_hostname_example
+      scan_port: 56
+
+      # optional
+      description: description_example
+    network_security_group_ids: [ "network_security_group_ids_example" ]
 
 - name: Delete private_access_channel
   oci_analytics_private_access_channel:
@@ -195,6 +240,36 @@ private_access_channel:
                     returned: on success
                     type: str
                     sample: description_example
+        private_source_scan_hosts:
+            description:
+                - List of Private Source DB SCAN hosts registered with Private Access Channel for access from Analytics Instance.
+            returned: on success
+            type: complex
+            contains:
+                scan_hostname:
+                    description:
+                        - "Private Source Scan hostname. Ex: db01-scan.corp.example.com, prd-db01-scan.mycompany.com."
+                    returned: on success
+                    type: str
+                    sample: scan_hostname_example
+                scan_port:
+                    description:
+                        - Private Source Scan host port. This is the source port where SCAN protocol will get connected (e.g. 1521).
+                    returned: on success
+                    type: int
+                    sample: 56
+                description:
+                    description:
+                        - Description of private source scan host zone.
+                    returned: on success
+                    type: str
+                    sample: description_example
+        network_security_group_ids:
+            description:
+                - Network Security Group OCIDs for an Analytics instance.
+            returned: on success
+            type: list
+            sample: []
     sample: {
         "key": "key_example",
         "display_name": "display_name_example",
@@ -205,7 +280,13 @@ private_access_channel:
         "private_source_dns_zones": [{
             "dns_zone": "dns_zone_example",
             "description": "description_example"
-        }]
+        }],
+        "private_source_scan_hosts": [{
+            "scan_hostname": "scan_hostname_example",
+            "scan_port": 56,
+            "description": "description_example"
+        }],
+        "network_security_group_ids": []
     }
 """
 
@@ -349,6 +430,16 @@ def main():
                     description=dict(type="str"),
                 ),
             ),
+            private_source_scan_hosts=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    scan_hostname=dict(type="str", required=True),
+                    scan_port=dict(type="int", required=True),
+                    description=dict(type="str"),
+                ),
+            ),
+            network_security_group_ids=dict(type="list", elements="str"),
             private_access_channel_key=dict(type="str", no_log=True),
             analytics_instance_id=dict(aliases=["id"], type="str", required=True),
             state=dict(type="str", default="present", choices=["present", "absent"]),

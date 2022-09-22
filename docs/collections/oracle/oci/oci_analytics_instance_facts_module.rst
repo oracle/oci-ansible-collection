@@ -30,7 +30,7 @@ oracle.oci.oci_analytics_instance_facts -- Fetches details about one or multiple
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.2.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.3.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -491,7 +491,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of AnalyticsInstance resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;capacity&#x27;: {&#x27;capacity_type&#x27;: &#x27;OLPU_COUNT&#x27;, &#x27;capacity_value&#x27;: 56}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;email_notification&#x27;: &#x27;email_notification_example&#x27;, &#x27;feature_set&#x27;: &#x27;SELF_SERVICE_ANALYTICS&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;license_type&#x27;: &#x27;LICENSE_INCLUDED&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;network_endpoint_details&#x27;: {&#x27;network_endpoint_type&#x27;: &#x27;PUBLIC&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vcn_id&#x27;: &#x27;ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;whitelisted_ips&#x27;: [], &#x27;whitelisted_vcns&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;whitelisted_ips&#x27;: []}]}, &#x27;private_access_channels&#x27;: {&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;egress_source_ip_addresses&#x27;: [], &#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;private_source_dns_zones&#x27;: [{&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;dns_zone&#x27;: &#x27;dns_zone_example&#x27;}], &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vcn_id&#x27;: &#x27;ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;service_url&#x27;: &#x27;service_url_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vanity_url_details&#x27;: {&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;hosts&#x27;: [], &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;public_certificate&#x27;: &#x27;-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----&#x27;, &#x27;urls&#x27;: []}}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;capacity&#x27;: {&#x27;capacity_type&#x27;: &#x27;OLPU_COUNT&#x27;, &#x27;capacity_value&#x27;: 56}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;email_notification&#x27;: &#x27;email_notification_example&#x27;, &#x27;feature_set&#x27;: &#x27;SELF_SERVICE_ANALYTICS&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;license_type&#x27;: &#x27;LICENSE_INCLUDED&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;network_endpoint_details&#x27;: {&#x27;network_endpoint_type&#x27;: &#x27;PUBLIC&#x27;, &#x27;network_security_group_ids&#x27;: [], &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vcn_id&#x27;: &#x27;ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;whitelisted_ips&#x27;: [], &#x27;whitelisted_services&#x27;: [], &#x27;whitelisted_vcns&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;whitelisted_ips&#x27;: []}]}, &#x27;private_access_channels&#x27;: {&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;egress_source_ip_addresses&#x27;: [], &#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;network_security_group_ids&#x27;: [], &#x27;private_source_dns_zones&#x27;: [{&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;dns_zone&#x27;: &#x27;dns_zone_example&#x27;}], &#x27;private_source_scan_hosts&#x27;: [{&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;scan_hostname&#x27;: &#x27;scan_hostname_example&#x27;, &#x27;scan_port&#x27;: 56}], &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vcn_id&#x27;: &#x27;ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;service_url&#x27;: &#x27;service_url_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vanity_url_details&#x27;: {&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;hosts&#x27;: [], &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;public_certificate&#x27;: &#x27;-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----&#x27;, &#x27;urls&#x27;: []}}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -791,6 +791,23 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-analytics_instances/network_endpoint_details/network_security_group_ids"></div>
+                    <b>network_security_group_ids</b>
+                    <a class="ansibleOptionLink" href="#return-analytics_instances/network_endpoint_details/network_security_group_ids" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Network Security Group OCIDs for an Analytics instance.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-analytics_instances/network_endpoint_details/subnet_id"></div>
                     <b>subnet_id</b>
                     <a class="ansibleOptionLink" href="#return-analytics_instances/network_endpoint_details/subnet_id" title="Permalink to this return value"></a>
@@ -838,7 +855,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Source IP addresses or IP address ranges igress rules.</div>
+                                            <div>Source IP addresses or IP address ranges in ingress rules.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-analytics_instances/network_endpoint_details/whitelisted_services"></div>
+                    <b>whitelisted_services</b>
+                    <a class="ansibleOptionLink" href="#return-analytics_instances/network_endpoint_details/whitelisted_services" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Oracle Cloud Services that are allowed to access this Analytics instance.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -893,7 +927,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Source IP addresses or IP address ranges igress rules.</div>
+                                            <div>Source IP addresses or IP address ranges in ingress rules.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -994,6 +1028,23 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-analytics_instances/private_access_channels/network_security_group_ids"></div>
+                    <b>network_security_group_ids</b>
+                    <a class="ansibleOptionLink" href="#return-analytics_instances/private_access_channels/network_security_group_ids" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Network Security Group OCIDs for an Analytics instance.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-analytics_instances/private_access_channels/private_source_dns_zones"></div>
                     <b>private_source_dns_zones</b>
                     <a class="ansibleOptionLink" href="#return-analytics_instances/private_access_channels/private_source_dns_zones" title="Permalink to this return value"></a>
@@ -1045,6 +1096,84 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">dns_zone_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-analytics_instances/private_access_channels/private_source_scan_hosts"></div>
+                    <b>private_source_scan_hosts</b>
+                    <a class="ansibleOptionLink" href="#return-analytics_instances/private_access_channels/private_source_scan_hosts" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>List of Private Source DB SCAN hosts registered with Private Access Channel for access from Analytics Instance.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-analytics_instances/private_access_channels/private_source_scan_hosts/description"></div>
+                    <b>description</b>
+                    <a class="ansibleOptionLink" href="#return-analytics_instances/private_access_channels/private_source_scan_hosts/description" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Description of private source scan host zone.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-analytics_instances/private_access_channels/private_source_scan_hosts/scan_hostname"></div>
+                    <b>scan_hostname</b>
+                    <a class="ansibleOptionLink" href="#return-analytics_instances/private_access_channels/private_source_scan_hosts/scan_hostname" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Private Source Scan hostname. Ex: db01-scan.corp.example.com, prd-db01-scan.mycompany.com.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">scan_hostname_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-analytics_instances/private_access_channels/private_source_scan_hosts/scan_port"></div>
+                    <b>scan_port</b>
+                    <a class="ansibleOptionLink" href="#return-analytics_instances/private_access_channels/private_source_scan_hosts/scan_port" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Private Source Scan host port. This is the source port where SCAN protocol will get connected (e.g. 1521).</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                     

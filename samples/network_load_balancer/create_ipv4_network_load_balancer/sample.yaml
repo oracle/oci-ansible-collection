@@ -1,0 +1,99 @@
+- name: Create a public network load balancer instance and print the details
+  hosts: localhost
+  collections:
+    - oracle.oci
+  vars:
+    vcn_name: "ansible-sample-create-nlb-vcn"
+    cidr_block: "10.0.0.0/16"
+    dns_label: "samplenlbvcn"
+    ig_name: "ansible-sample-create-nlb-ig"
+    rt_name: "ansible-sample-create-nlb-rt"
+    sec_list_name: "ansible-sample-create-nlb-sec-list"
+
+    sample_subnet_ad1: 'ansible-sample-create-lb-subnetad1'
+    sample_subnet_ad1_dnslabel: 'subnetad1'
+    subnet_cidr_block_ad1: "10.0.20.0/24"
+    all_cidr_block: '0.0.0.0/0'
+    all_protocol: 'all'
+    tcp_protocol: '6'
+
+    sample_app_server_instance_one_name: 'ansible-sample-create-lb-AS-1'
+    sample_app_server_shape: "{{ lookup('env', 'SAMPLE_INSTANCE_SHAPE') | default('VM.Standard2.1', true) }}"
+
+    lb_name: "ansible-sample-create-lb-lb"
+    sample_shape: "100Mbps"
+    sample_backend_set_name: 'ansible-sample-create-lb-bs'
+    sample_backend_set_policy: 'TWO_TUPLE'
+
+    # Initialize values for listeners
+    http_listener_name: 'ansible-sample-create-lb-http-listener'
+    https_listener_name: 'ansible-sample-create-lb-https-listener'
+    http_port: 80
+    https_port: 443
+
+    compartment_id: "{{ lookup('env', 'SAMPLE_COMPARTMENT_OCID') }}"
+    tenancy_ocid: "{{ lookup('env', 'SAMPLE_TENANCY_OCID') }}"
+
+  tasks:
+    - block:
+      - import_tasks: setup.yaml
+      - name: Create Network Load Balancer
+        oci_network_load_balancer:
+          compartment_id: "{{ compartment_id }}"
+          display_name: "{{ lb_name }}"
+          subnet_id: "{{ sample_subnet_id_ad1 }}"
+          state: 'present'
+          is_private: true
+          is_preserve_source_destination: true
+          nlb_ip_version: IPV4
+        register: result
+      - debug:
+          msg: "Network Load balancer details: {{ result.network_load_balancer}}"
+      - set_fact:
+          public_network_load_balancer_id: "{{ result.network_load_balancer.id }}"
+          public_network_load_balancer_ip_addresses: "{{ result.network_load_balancer.ip_addresses }}"
+
+  #==========================================================================================
+      - name: Create Network Load Balancer Backend Set
+        oci_network_load_balancer_backend_set:
+          network_load_balancer_id: "{{ public_network_load_balancer_id }}"
+          name: '{{ sample_backend_set_name }}'
+          policy: '{{ sample_backend_set_policy }}'
+          health_checker:
+            interval_in_millis: 30000
+            port: '{{ http_port }}'
+            protocol: "HTTP"
+            response_body_regex: ".*"
+            retries: 3
+            timeout_in_millis: 10000
+            return_code: 200
+            url_path: "/"
+          state: 'present'
+  #==========================================================================================
+      - name: Create Network Load Balancer Listener
+        oci_network_load_balancer_listener:
+          network_load_balancer_id: "{{ public_network_load_balancer_id }}"
+          name: '{{ http_listener_name }}'
+          default_backend_set_name: '{{ sample_backend_set_name }}'
+          port: '{{ http_port }}'
+          protocol: "TCP"
+          state: 'present'
+  #==========================================================================================
+      - name: Create  Backend
+        oci_network_load_balancer_backend:
+          network_load_balancer_id: "{{ public_network_load_balancer_id }}"
+          backend_set_name: "{{ sample_backend_set_name }}"
+          name: "sample"
+          ip_address: "{{ sample_app_server_instance_one_private_ip }}"
+          port: '{{ http_port }}'
+          state: 'present'
+  #==========================================================================================
+
+      - import_tasks: teardown.yaml
+
+      rescue:
+        - import_tasks: teardown.yaml
+          ignore_errors: yes
+
+        - fail:
+            msg: "{{ ansible_failed_result }}"
