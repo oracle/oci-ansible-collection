@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 3.3.0
+Collection version 3.4.0
 
 .. toctree::
     :maxdepth: 1
@@ -610,6 +610,9 @@ Modules
 * :ref:`oci_database_management_managed_database_group_facts <ansible_collections.oracle.oci.oci_database_management_managed_database_group_facts_module>` -- Fetches details about one or multiple ManagedDatabaseGroup resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_object_privilege_facts <ansible_collections.oracle.oci.oci_database_management_object_privilege_facts_module>` -- Fetches details about one or multiple ObjectPrivilege resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_pdb_metrics_facts <ansible_collections.oracle.oci.oci_database_management_pdb_metrics_facts_module>` -- Fetches details about a PdbMetrics resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_preferred_credential <ansible_collections.oracle.oci.oci_database_management_preferred_credential_module>` -- Manage a PreferredCredential resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_preferred_credential_actions <ansible_collections.oracle.oci.oci_database_management_preferred_credential_actions_module>` -- Perform actions on a PreferredCredential resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_preferred_credential_facts <ansible_collections.oracle.oci.oci_database_management_preferred_credential_facts_module>` -- Fetches details about one or multiple PreferredCredential resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_proxied_for_user_facts <ansible_collections.oracle.oci.oci_database_management_proxied_for_user_facts_module>` -- Fetches details about one or multiple ProxiedForUser resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_proxy_user_facts <ansible_collections.oracle.oci.oci_database_management_proxy_user_facts_module>` -- Fetches details about one or multiple ProxyUser resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_role_facts <ansible_collections.oracle.oci.oci_database_management_role_facts_module>` -- Fetches details about one or multiple Role resources in Oracle Cloud Infrastructure
@@ -621,6 +624,7 @@ Modules
 * :ref:`oci_database_management_sql_tuning_advisor_task_summary_report_facts <ansible_collections.oracle.oci.oci_database_management_sql_tuning_advisor_task_summary_report_facts_module>` -- Fetches details about a SqlTuningAdvisorTaskSummaryReport resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_sql_tuning_set_facts <ansible_collections.oracle.oci.oci_database_management_sql_tuning_set_facts_module>` -- Fetches details about one or multiple SqlTuningSet resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_system_privilege_facts <ansible_collections.oracle.oci.oci_database_management_system_privilege_facts_module>` -- Fetches details about one or multiple SystemPrivilege resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_table_statistics_facts <ansible_collections.oracle.oci.oci_database_management_table_statistics_facts_module>` -- Fetches details about one or multiple TableStatistics resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_tablespace <ansible_collections.oracle.oci.oci_database_management_tablespace_module>` -- Manage a Tablespace resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_tablespace_actions <ansible_collections.oracle.oci.oci_database_management_tablespace_actions_module>` -- Perform actions on a Tablespace resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_tablespace_facts <ansible_collections.oracle.oci.oci_database_management_tablespace_facts_module>` -- Fetches details about one or multiple Tablespace resources in Oracle Cloud Infrastructure
@@ -1067,6 +1071,7 @@ Modules
 * :ref:`oci_media_services_system_media_workflow_facts <ansible_collections.oracle.oci.oci_media_services_system_media_workflow_facts_module>` -- Fetches details about one or multiple SystemMediaWorkflow resources in Oracle Cloud Infrastructure
 * :ref:`oci_monitoring_alarm <ansible_collections.oracle.oci.oci_monitoring_alarm_module>` -- Manage an Alarm resource in Oracle Cloud Infrastructure
 * :ref:`oci_monitoring_alarm_actions <ansible_collections.oracle.oci.oci_monitoring_alarm_actions_module>` -- Perform actions on an Alarm resource in Oracle Cloud Infrastructure
+* :ref:`oci_monitoring_alarm_dimension_states_actions <ansible_collections.oracle.oci.oci_monitoring_alarm_dimension_states_actions_module>` -- Perform actions on an AlarmDimensionStates resource in Oracle Cloud Infrastructure
 * :ref:`oci_monitoring_alarm_facts <ansible_collections.oracle.oci.oci_monitoring_alarm_facts_module>` -- Fetches details about one or multiple Alarm resources in Oracle Cloud Infrastructure
 * :ref:`oci_monitoring_alarm_history_collection_facts <ansible_collections.oracle.oci.oci_monitoring_alarm_history_collection_facts_module>` -- Fetches details about a AlarmHistoryCollection resource in Oracle Cloud Infrastructure
 * :ref:`oci_monitoring_alarm_status_facts <ansible_collections.oracle.oci.oci_monitoring_alarm_status_facts_module>` -- Fetches details about one or multiple AlarmStatus resources in Oracle Cloud Infrastructure
@@ -2268,6 +2273,9 @@ Modules
     oci_database_management_managed_database_group_facts_module
     oci_database_management_object_privilege_facts_module
     oci_database_management_pdb_metrics_facts_module
+    oci_database_management_preferred_credential_module
+    oci_database_management_preferred_credential_actions_module
+    oci_database_management_preferred_credential_facts_module
     oci_database_management_proxied_for_user_facts_module
     oci_database_management_proxy_user_facts_module
     oci_database_management_role_facts_module
@@ -2279,6 +2287,7 @@ Modules
     oci_database_management_sql_tuning_advisor_task_summary_report_facts_module
     oci_database_management_sql_tuning_set_facts_module
     oci_database_management_system_privilege_facts_module
+    oci_database_management_table_statistics_facts_module
     oci_database_management_tablespace_module
     oci_database_management_tablespace_actions_module
     oci_database_management_tablespace_facts_module
@@ -2725,6 +2734,7 @@ Modules
     oci_media_services_system_media_workflow_facts_module
     oci_monitoring_alarm_module
     oci_monitoring_alarm_actions_module
+    oci_monitoring_alarm_dimension_states_actions_module
     oci_monitoring_alarm_facts_module
     oci_monitoring_alarm_history_collection_facts_module
     oci_monitoring_alarm_status_facts_module

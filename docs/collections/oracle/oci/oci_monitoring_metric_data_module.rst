@@ -30,7 +30,7 @@ oracle.oci.oci_monitoring_metric_data -- Manage a MetricData resource in Oracle 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.3.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.4.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -60,7 +60,7 @@ Synopsis
 - For *state=present*, publishes raw metric data points to the Monitoring service. For more information about publishing metrics, see `Publishing Custom Metrics <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Tasks/publishingcustommetrics.htm>`_. For important limits information, see `Limits on Monitoring <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#Limits>`_.
 - Per-call limits information follows.
 - * Dimensions per metric group*. Maximum: 20. Minimum: 1. * Unique metric streams*. Maximum: 50. * Transactions Per Second (TPS) per-tenancy limit for this operation: 50.
-- *A metric group is the combination of a given metric, metric namespace, and tenancy for the purpose of determining limits. A dimension is a qualifier provided in a metric definition. A metric stream is an individual set of aggregated data for a metric, typically specific to a resource. For more information about metric-related concepts, see `Monitoring Concepts <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#concepts>`_.
+- *A metric group is the combination of a given metric, metric namespace, and tenancy for the purpose of determining limits. A dimension is a qualifier provided in a metric definition. A metric stream is an individual set of aggregated data for a metric with zero or more dimension values. For more information about metric-related concepts, see `Monitoring Concepts <https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#concepts>`_.
 - The endpoints for this operation differ from other Monitoring operations. Replace the string `telemetry` with `telemetry-ingestion` in the endpoint, as in the following example:
 - https://telemetry-ingestion.eu-frankfurt-1.oraclecloud.com
 - This resource has the following action operations in the :ref:`oracle.oci.oci_monitoring_metric_data_actions <ansible_collections.oracle.oci.oci_monitoring_metric_data_actions_module>` module: summarize_metrics_data.
@@ -258,6 +258,21 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-content_encoding"></div>
+                    <b>content_encoding</b>
+                    <a class="ansibleOptionLink" href="#parameter-content_encoding" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The optional Content-Encoding header that defines the content encodings that were applied to the payload.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-force_create"></div>
                     <b>force_create</b>
                     <a class="ansibleOptionLink" href="#parameter-force_create" title="Permalink to this option"></a>
@@ -405,7 +420,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Qualifiers provided in a metric definition. Available dimensions vary by metric namespace. Each dimension takes the form of a key-value pair. A valid dimension key includes only printable ASCII, excluding periods (.) and spaces. The character limit for a dimension key is 256. A valid dimension value includes only Unicode characters. The character limit for a dimension value is 256. Empty strings are not allowed for keys or values. Avoid entering confidential information.</div>
+                                            <div>Qualifiers provided in a metric definition. Available dimensions vary by metric namespace. Each dimension takes the form of a key-value pair. A valid dimension key includes only printable ASCII, excluding spaces. The character limit for a dimension key is 256. A valid dimension value includes only Unicode characters. The character limit for a dimension value is 512. Empty strings are not allowed for keys or values. Avoid entering confidential information.</div>
                                             <div>Example: `&quot;resourceId&quot;: &quot;ocid1.instance.region1.phx.exampleuniqueID&quot;`</div>
                                                         </td>
             </tr>
@@ -577,6 +592,7 @@ Examples
 
         # optional
         batch_atomicity: ATOMIC
+        content_encoding: content_encoding_example
 
 
 
@@ -787,7 +803,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Qualifiers provided in a metric definition. Available dimensions vary by metric namespace. Each dimension takes the form of a key-value pair. A valid dimension key includes only printable ASCII, excluding periods (.) and spaces. The character limit for a dimension key is 256. A valid dimension value includes only Unicode characters. The character limit for a dimension value is 256. Empty strings are not allowed for keys or values. Avoid entering confidential information.</div>
+                                            <div>Qualifiers provided in a metric definition. Available dimensions vary by metric namespace. Each dimension takes the form of a key-value pair. A valid dimension key includes only printable ASCII, excluding spaces. The character limit for a dimension key is 256. A valid dimension value includes only Unicode characters. The character limit for a dimension value is 512. Empty strings are not allowed for keys or values. Avoid entering confidential information.</div>
                                             <div>Example: `&quot;resourceId&quot;: &quot;ocid1.instance.region1.phx.exampleuniqueID&quot;`</div>
                                         <br/>
                                                         </td>

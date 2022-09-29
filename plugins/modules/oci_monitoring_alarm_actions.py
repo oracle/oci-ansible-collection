@@ -197,6 +197,13 @@ alarm:
             returned: on success
             type: str
             sample: body_example
+        is_notifications_per_metric_dimension_enabled:
+            description:
+                - "When set to `true`, splits notifications per metric stream. When set to `false`, groups notifications across metric streams.
+                  Example: `true`"
+            returned: on success
+            type: bool
+            sample: true
         message_format:
             description:
                 - "The format to use for notification messages sent from this alarm. The formats are:
@@ -313,6 +320,7 @@ alarm:
         "pending_duration": "pending_duration_example",
         "severity": "CRITICAL",
         "body": "body_example",
+        "is_notifications_per_metric_dimension_enabled": true,
         "message_format": "RAW",
         "destinations": [],
         "repeat_notification_duration": "repeat_notification_duration_example",

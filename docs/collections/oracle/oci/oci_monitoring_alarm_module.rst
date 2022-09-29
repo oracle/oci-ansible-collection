@@ -30,7 +30,7 @@ oracle.oci.oci_monitoring_alarm -- Manage an Alarm resource in Oracle Cloud Infr
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.3.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.4.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -394,6 +394,26 @@ Parameters
                                             <div>Whether the alarm is enabled.</div>
                                             <div>Example: `true`</div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-is_notifications_per_metric_dimension_enabled"></div>
+                    <b>is_notifications_per_metric_dimension_enabled</b>
+                    <a class="ansibleOptionLink" href="#parameter-is_notifications_per_metric_dimension_enabled" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>When set to `true`, splits notifications per metric stream. When set to `false`, groups notifications across metric streams. Example: `true`</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -800,6 +820,7 @@ Examples
         resolution: resolution_example
         pending_duration: pending_duration_example
         body: body_example
+        is_notifications_per_metric_dimension_enabled: true
         message_format: RAW
         repeat_notification_duration: repeat_notification_duration_example
         suppression:
@@ -829,6 +850,7 @@ Examples
         pending_duration: pending_duration_example
         severity: severity_example
         body: body_example
+        is_notifications_per_metric_dimension_enabled: true
         message_format: RAW
         destinations: [ "destinations_example" ]
         repeat_notification_duration: repeat_notification_duration_example
@@ -859,6 +881,7 @@ Examples
         pending_duration: pending_duration_example
         severity: severity_example
         body: body_example
+        is_notifications_per_metric_dimension_enabled: true
         message_format: RAW
         destinations: [ "destinations_example" ]
         repeat_notification_duration: repeat_notification_duration_example
@@ -921,7 +944,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Alarm resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;body&#x27;: &#x27;body_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;destinations&#x27;: [], &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_enabled&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;message_format&#x27;: &#x27;RAW&#x27;, &#x27;metric_compartment_id&#x27;: &#x27;ocid1.metriccompartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;metric_compartment_id_in_subtree&#x27;: True, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;pending_duration&#x27;: &#x27;pending_duration_example&#x27;, &#x27;query&#x27;: &#x27;query_example&#x27;, &#x27;repeat_notification_duration&#x27;: &#x27;repeat_notification_duration_example&#x27;, &#x27;resolution&#x27;: &#x27;resolution_example&#x27;, &#x27;resource_group&#x27;: &#x27;resource_group_example&#x27;, &#x27;severity&#x27;: &#x27;CRITICAL&#x27;, &#x27;suppression&#x27;: {&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;time_suppress_from&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_suppress_until&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;body&#x27;: &#x27;body_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;destinations&#x27;: [], &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_enabled&#x27;: True, &#x27;is_notifications_per_metric_dimension_enabled&#x27;: True, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;message_format&#x27;: &#x27;RAW&#x27;, &#x27;metric_compartment_id&#x27;: &#x27;ocid1.metriccompartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;metric_compartment_id_in_subtree&#x27;: True, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;pending_duration&#x27;: &#x27;pending_duration_example&#x27;, &#x27;query&#x27;: &#x27;query_example&#x27;, &#x27;repeat_notification_duration&#x27;: &#x27;repeat_notification_duration_example&#x27;, &#x27;resolution&#x27;: &#x27;resolution_example&#x27;, &#x27;resource_group&#x27;: &#x27;resource_group_example&#x27;, &#x27;severity&#x27;: &#x27;CRITICAL&#x27;, &#x27;suppression&#x27;: {&#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;time_suppress_from&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_suppress_until&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1065,6 +1088,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>
                                             <div>Whether the alarm is enabled.</div>
                                             <div>Example: `true`</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-alarm/is_notifications_per_metric_dimension_enabled"></div>
+                    <b>is_notifications_per_metric_dimension_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-alarm/is_notifications_per_metric_dimension_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>When set to `true`, splits notifications per metric stream. When set to `false`, groups notifications across metric streams. Example: `true`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
