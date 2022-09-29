@@ -24,6 +24,10 @@ short_description: Fetches details about one or multiple AlarmStatus resources i
 description:
     - Fetches details about one or multiple AlarmStatus resources in Oracle Cloud Infrastructure
     - List the status of each alarm in the specified compartment.
+      Status is collective, across all metric streams in the alarm.
+      To list alarm status for each metric stream, use L(RetrieveDimensionStates,https://docs.cloud.oracle.com/en-
+      us/iaas/api/#/en/monitoring/latest/AlarmDimensionStatesCollection/RetrieveDimensionStates).
+      The alarm attribute `isNotificationsPerMetricDimensionEnabled` must be set to `true`.
       For important limits information, see L(Limits on
       Monitoring,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#Limits).
     - This call is subject to a Monitoring limit that applies to the total number of requests across all alarm operations.
@@ -125,6 +129,10 @@ alarm_statuses:
         status:
             description:
                 - The status of this alarm.
+                  Status is collective, across all metric streams in the alarm.
+                  To list alarm status for each metric stream, use L(RetrieveDimensionStates,https://docs.cloud.oracle.com/en-
+                  us/iaas/api/#/en/monitoring/latest/AlarmDimensionStatesCollection/RetrieveDimensionStates).
+                  The alarm attribute `isNotificationsPerMetricDimensionEnabled` must be set to `true`.
                 - "Example: `FIRING`"
             returned: on success
             type: str

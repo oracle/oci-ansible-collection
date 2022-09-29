@@ -34,7 +34,7 @@ description:
       * Transactions Per Second (TPS) per-tenancy limit for this operation: 50."
     - "*A metric group is the combination of a given metric, metric namespace, and tenancy for the purpose of determining limits.
       A dimension is a qualifier provided in a metric definition.
-      A metric stream is an individual set of aggregated data for a metric, typically specific to a resource.
+      A metric stream is an individual set of aggregated data for a metric with zero or more dimension values.
       For more information about metric-related concepts, see L(Monitoring
       Concepts,https://docs.cloud.oracle.com/iaas/Content/Monitoring/Concepts/monitoringoverview.htm#concepts)."
     - "The endpoints for this operation differ from other Monitoring operations. Replace the string `telemetry` with `telemetry-ingestion` in the endpoint, as
@@ -87,8 +87,8 @@ options:
                 description:
                     - Qualifiers provided in a metric definition. Available dimensions vary by metric namespace.
                       Each dimension takes the form of a key-value pair.
-                      A valid dimension key includes only printable ASCII, excluding periods (.) and spaces. The character limit for a dimension key is 256.
-                      A valid dimension value includes only Unicode characters. The character limit for a dimension value is 256.
+                      A valid dimension key includes only printable ASCII, excluding spaces. The character limit for a dimension key is 256.
+                      A valid dimension value includes only Unicode characters. The character limit for a dimension value is 512.
                       Empty strings are not allowed for keys or values. Avoid entering confidential information.
                     - "Example: `\\"resourceId\\": \\"ocid1.instance.region1.phx.exampleuniqueID\\"`"
                 type: dict
@@ -137,6 +137,10 @@ options:
         choices:
             - "ATOMIC"
             - "NON_ATOMIC"
+    content_encoding:
+        description:
+            - The optional Content-Encoding header that defines the content encodings that were applied to the payload.
+        type: str
     state:
         description:
             - The state of the MetricData.
@@ -172,6 +176,7 @@ EXAMPLES = """
 
     # optional
     batch_atomicity: ATOMIC
+    content_encoding: content_encoding_example
 
 """
 
@@ -248,9 +253,8 @@ metric_data:
                             description:
                                 - Qualifiers provided in a metric definition. Available dimensions vary by metric namespace.
                                   Each dimension takes the form of a key-value pair.
-                                  A valid dimension key includes only printable ASCII, excluding periods (.) and spaces. The character limit for a dimension key
-                                  is 256.
-                                  A valid dimension value includes only Unicode characters. The character limit for a dimension value is 256.
+                                  A valid dimension key includes only printable ASCII, excluding spaces. The character limit for a dimension key is 256.
+                                  A valid dimension value includes only Unicode characters. The character limit for a dimension value is 512.
                                   Empty strings are not allowed for keys or values. Avoid entering confidential information.
                                 - "Example: `\\"resourceId\\": \\"ocid1.instance.region1.phx.exampleuniqueID\\"`"
                             returned: on success
@@ -364,7 +368,10 @@ class MetricDataHelperGen(OCIResourceHelperBase):
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.post_metric_data,
             call_fn_args=(),
-            call_fn_kwargs=dict(post_metric_data_details=create_details,),
+            call_fn_kwargs=dict(
+                post_metric_data_details=create_details,
+                content_encoding=self.module.params.get("content_encoding"),
+            ),
             waiter_type=oci_wait_utils.NONE_WAITER_KEY,
             operation=oci_common_utils.CREATE_OPERATION_KEY,
             waiter_client=self.get_waiter_client(),
@@ -412,6 +419,7 @@ def main():
                 ),
             ),
             batch_atomicity=dict(type="str", choices=["ATOMIC", "NON_ATOMIC"]),
+            content_encoding=dict(type="str"),
             state=dict(type="str", default="present", choices=["present"]),
         )
     )

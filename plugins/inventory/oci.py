@@ -271,7 +271,6 @@ exclude_compartments:
 """
 import os
 import re
-import json
 
 from ansible.errors import AnsibleError, AnsibleParserError
 from ansible.module_utils._text import to_bytes
@@ -477,18 +476,6 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         # set options from oci config
         for setting in self.config:
             self.params[setting] = self.config[setting]
-
-    def read_settings_config(self, boolean_options, dict_options):
-        if self.settings_config.has_section("oci"):
-            for option in self.settings_config.options("oci"):
-                if option in boolean_options:
-                    self.params[option] = self.settings_config.getboolean("oci", option)
-                elif option in dict_options:
-                    self.params[option] = json.loads(
-                        self.settings_config.get("oci", option)
-                    )
-                else:
-                    self.params[option] = self.settings_config.get("oci", option)
 
     @property
     def region_subscriptions(self):
