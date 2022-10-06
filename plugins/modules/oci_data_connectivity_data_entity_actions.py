@@ -29,7 +29,7 @@ author: Oracle (@oracle)
 options:
     registry_id:
         description:
-            - The registry Ocid.
+            - The registry OCID.
         type: str
         required: true
     connection_key:
@@ -94,6 +94,11 @@ options:
                             - Format for timestamp information.
                             - Applicable when model_type is 'CSV_FORMAT'
                         type: str
+                    compression:
+                        description:
+                            - The compression for the file.
+                            - Applicable when model_type is one of ['PARQUET_FORMAT', 'AVRO_FORMAT']
+                        type: str
                     model_type:
                         description:
                             - The type of the format attribute.
@@ -103,11 +108,22 @@ options:
                             - "JSON_FORMAT"
                             - "CSV_FORMAT"
                             - "PARQUET_FORMAT"
+                            - "EXCEL_FORMAT"
                         required: true
-                    compression:
+                    data_address:
                         description:
-                            - The compression for the file.
-                            - Applicable when model_type is one of ['PARQUET_FORMAT', 'AVRO_FORMAT']
+                            - "Range of the data. For example, \\"'My Sheet'!B3:C35\\""
+                            - Applicable when model_type is 'EXCEL_FORMAT'
+                        type: str
+                    header:
+                        description:
+                            - "Whether the dataAddress contains the header with column names. If false - column names fill be generated."
+                            - Applicable when model_type is 'EXCEL_FORMAT'
+                        type: bool
+                    password:
+                        description:
+                            - Workbook password if it is password protected.
+                            - Applicable when model_type is 'EXCEL_FORMAT'
                         type: str
             type:
                 description:
@@ -157,7 +173,7 @@ options:
         type: str
     model_version:
         description:
-            - The object's model version.
+            - The model version of the object.
         type: str
     parent_ref:
         description:
@@ -171,8 +187,8 @@ options:
                 type: str
     name:
         description:
-            - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and
-              is restricted to 1000 characters.
+            - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable
+              and is restricted to 1000 characters.
         type: str
         required: true
     object_version:
@@ -181,7 +197,7 @@ options:
         type: int
     external_key:
         description:
-            - The external key for the object.
+            - The external key of the object.
         type: str
     shape:
         description:
@@ -274,13 +290,13 @@ options:
                 type: int
             name:
                 description:
-                    - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is
+                    - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is
                       editable and is restricted to 1000 characters.
                     - Applicable when model_type is 'DATA_STORE_ENTITY'
                 type: str
             description:
                 description:
-                    - Detailed description for the object.
+                    - A detailed description of the object.
                     - Applicable when model_type is 'DATA_STORE_ENTITY'
                 type: str
             type:
@@ -297,7 +313,7 @@ options:
                         suboptions:
                             model_type:
                                 description:
-                                    - The property which disciminates the subtypes.
+                                    - The property which differentiates the subtypes.
                                 type: str
                                 choices:
                                     - "STRUCTURED_TYPE"
@@ -320,8 +336,8 @@ options:
                                 type: dict
                             name:
                                 description:
-                                    - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters.
-                                      The value is editable and is restricted to 1000 characters.
+                                    - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
+                                      characters. The value is editable and is restricted to 1000 characters.
                                 type: str
                             object_status:
                                 description:
@@ -329,7 +345,7 @@ options:
                                 type: int
                             description:
                                 description:
-                                    - A user defined description for the object.
+                                    - A user-defined description for the object.
                                 type: str
                     config_values:
                         description:
@@ -400,7 +416,7 @@ options:
                         suboptions:
                             model_type:
                                 description:
-                                    - The property which disciminates the subtypes.
+                                    - The property which differentiates the subtypes.
                                 type: str
                                 choices:
                                     - "STRUCTURED_TYPE"
@@ -423,8 +439,8 @@ options:
                                 type: dict
                             name:
                                 description:
-                                    - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters.
-                                      The value is editable and is restricted to 1000 characters.
+                                    - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
+                                      characters. The value is editable and is restricted to 1000 characters.
                                 type: str
                             object_status:
                                 description:
@@ -432,11 +448,11 @@ options:
                                 type: int
                             description:
                                 description:
-                                    - A user defined description for the object.
+                                    - A user-defined description for the object.
                                 type: str
                     model_type:
                         description:
-                            - The property which disciminates the subtypes.
+                            - The property which differentiates the subtypes.
                         type: str
                         choices:
                             - "CONFIGURED_TYPE"
@@ -465,8 +481,8 @@ options:
                                 type: str
                     name:
                         description:
-                            - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value
-                              is editable and is restricted to 1000 characters.
+                            - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The
+                              value is editable and is restricted to 1000 characters.
                         type: str
                     object_status:
                         description:
@@ -474,7 +490,7 @@ options:
                         type: int
                     description:
                         description:
-                            - A user defined description for the object.
+                            - A user-defined description for the object.
                         type: str
                     parent_type:
                         description:
@@ -484,7 +500,7 @@ options:
                         suboptions:
                             model_type:
                                 description:
-                                    - The property which disciminates the subtypes.
+                                    - The property which differentiates the subtypes.
                                 type: str
                                 choices:
                                     - "STRUCTURED_TYPE"
@@ -507,8 +523,8 @@ options:
                                 type: dict
                             name:
                                 description:
-                                    - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters.
-                                      The value is editable and is restricted to 1000 characters.
+                                    - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
+                                      characters. The value is editable and is restricted to 1000 characters.
                                 type: str
                             object_status:
                                 description:
@@ -516,7 +532,7 @@ options:
                                 type: int
                             description:
                                 description:
-                                    - A user defined description for the object.
+                                    - A user-defined description for the object.
                                 type: str
                             parent_type:
                                 description:
@@ -540,8 +556,8 @@ options:
                         suboptions:
                             labels:
                                 description:
-                                    - Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and use them
-                                      to categorize content.
+                                    - Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own labels and
+                                      use them to categorize content.
                                     - Applicable when model_type is 'SHAPE_FIELD'
                                 type: list
                                 elements: str
@@ -637,13 +653,13 @@ options:
                                         type: int
                                     name:
                                         description:
-                                            - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special
+                                            - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
                                               characters. The value is editable and is restricted to 1000 characters.
                                             - Applicable when model_type is 'SHAPE_FIELD'
                                         type: str
                                     description:
                                         description:
-                                            - Detailed description for the object.
+                                            - A detailed description of the object.
                                             - Applicable when model_type is 'SHAPE_FIELD'
                                         type: str
                                     type:
@@ -669,7 +685,7 @@ options:
                                         type: bool
                             port_type:
                                 description:
-                                    - The port details for the data asset.Type.
+                                    - The port details of the data asset type.
                                     - Applicable when model_type is one of ['INPUT_PORT', 'OUTPUT_PORT']
                                 type: str
                                 choices:
@@ -714,12 +730,12 @@ options:
                                         type: int
                                     name:
                                         description:
-                                            - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special
+                                            - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
                                               characters. The value is editable and is restricted to 1000 characters.
                                         type: str
                                     description:
                                         description:
-                                            - Detailed description for the object.
+                                            - A detailed description of the object.
                                         type: str
                             default_value:
                                 description:
@@ -728,17 +744,17 @@ options:
                                 type: dict
                             root_object_default_value:
                                 description:
-                                    - The default value of the parameter which can be an object in DIS, such as a data entity.
+                                    - The default value of the parameter, which can be an object in DIS, such as a data entity.
                                     - Applicable when model_type is 'PARAMETER'
                                 type: dict
                             is_input:
                                 description:
-                                    - Specifies whether the parameter is input value.
+                                    - Specifies whether the parameter is an input value.
                                     - Applicable when model_type is 'PARAMETER'
                                 type: bool
                             is_output:
                                 description:
-                                    - Specifies whether the parameter is output value.
+                                    - Specifies whether the parameter is an output value.
                                     - Applicable when model_type is 'PARAMETER'
                                 type: bool
                             output_aggregation_type:
@@ -839,12 +855,12 @@ options:
                                 type: int
                             name:
                                 description:
-                                    - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters.
-                                      The value is editable and is restricted to 1000 characters.
+                                    - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
+                                      characters. The value is editable and is restricted to 1000 characters.
                                 type: str
                             description:
                                 description:
-                                    - Detailed description for the object.
+                                    - A detailed description of the object.
                                 type: str
                             type:
                                 description:
@@ -855,7 +871,7 @@ options:
                                 suboptions:
                                     model_type:
                                         description:
-                                            - The property which disciminates the subtypes.
+                                            - The property which differentiates the subtypes.
                                         type: str
                                         choices:
                                             - "STRUCTURED_TYPE"
@@ -877,7 +893,7 @@ options:
                                         type: dict
                                     name:
                                         description:
-                                            - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special
+                                            - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
                                               characters. The value is editable and is restricted to 1000 characters.
                                         type: str
                                     object_status:
@@ -886,7 +902,7 @@ options:
                                         type: int
                                     description:
                                         description:
-                                            - A user defined description for the object.
+                                            - A user-defined description for the object.
                                         type: str
                             position:
                                 description:
@@ -937,13 +953,13 @@ options:
                                         type: str
                             name:
                                 description:
-                                    - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters.
-                                      The value is editable and is restricted to 1000 characters.
+                                    - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
+                                      characters. The value is editable and is restricted to 1000 characters.
                                     - Applicable when model_type is 'CONFIGURED_TYPE'
                                 type: str
                             is_contained:
                                 description:
-                                    - Specifies whether the configuration is contained or not.
+                                    - Specifies whether the configuration is contained.
                                     - Applicable when model_type is 'CONFIGURED_TYPE'
                                 type: bool
                             object_status:
@@ -965,7 +981,7 @@ options:
                                         suboptions:
                                             model_type:
                                                 description:
-                                                    - The property which disciminates the subtypes.
+                                                    - The property which differentiates the subtypes.
                                                 type: str
                                                 choices:
                                                     - "STRUCTURED_TYPE"
@@ -988,7 +1004,7 @@ options:
                                                 type: dict
                                             name:
                                                 description:
-                                                    - Free form text without any restriction on permitted characters. Name can have letters, numbers, and
+                                                    - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and
                                                       special characters. The value is editable and is restricted to 1000 characters.
                                                 type: str
                                             object_status:
@@ -998,7 +1014,7 @@ options:
                                                 type: int
                                             description:
                                                 description:
-                                                    - A user defined description for the object.
+                                                    - A user-defined description for the object.
                                                 type: str
                                     parameter_name:
                                         description:
@@ -1007,7 +1023,7 @@ options:
                                         type: str
                                     description:
                                         description:
-                                            - A user defined description for the object.
+                                            - A user-defined description for the object.
                                             - Applicable when model_type is 'CONFIGURED_TYPE'
                                         type: str
                                     default_value:
@@ -1022,12 +1038,12 @@ options:
                                         type: str
                                     is_static:
                                         description:
-                                            - Specifies whether the parameter is static or not.
+                                            - Specifies whether the parameter is static.
                                             - Applicable when model_type is 'CONFIGURED_TYPE'
                                         type: bool
                                     is_class_field_value:
                                         description:
-                                            - Specifies whether the parameter is a class field or not.
+                                            - Specifies whether the parameter is a class field.
                                             - Applicable when model_type is 'CONFIGURED_TYPE'
                                         type: bool
     shape_id:
@@ -1066,7 +1082,7 @@ options:
                 type: str
             model_version:
                 description:
-                    - The object's model version.
+                    - The model version of the object.
                 type: str
             parent_ref:
                 description:
@@ -1079,7 +1095,7 @@ options:
                         type: str
             name:
                 description:
-                    - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is
+                    - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is
                       editable and is restricted to 1000 characters.
                 type: str
             attribute_refs:
@@ -1168,12 +1184,12 @@ options:
                                 type: int
                             name:
                                 description:
-                                    - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters.
-                                      The value is editable and is restricted to 1000 characters.
+                                    - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
+                                      characters. The value is editable and is restricted to 1000 characters.
                                 type: str
                             description:
                                 description:
-                                    - Detailed description for the object.
+                                    - A detailed description of the object.
                                 type: str
                             type:
                                 description:
@@ -1181,8 +1197,8 @@ options:
                                 type: dict
                             labels:
                                 description:
-                                    - Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and use them
-                                      to categorize content.
+                                    - Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own labels and
+                                      use them to categorize content.
                                 type: list
                                 elements: str
                             native_shape_field:
@@ -1261,12 +1277,12 @@ options:
                                         type: int
                                     name:
                                         description:
-                                            - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special
+                                            - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
                                               characters. The value is editable and is restricted to 1000 characters.
                                         type: str
                                     description:
                                         description:
-                                            - Detailed description for the object.
+                                            - A detailed description of the object.
                                         type: str
                                     type:
                                         description:
@@ -1310,7 +1326,7 @@ options:
                 type: str
             model_version:
                 description:
-                    - The object's model version.
+                    - The model version of the object.
                     - Applicable when model_type is 'DATA_STORE_ENTITY'
                 type: str
             parent_ref:
@@ -1326,7 +1342,7 @@ options:
                         type: str
             name:
                 description:
-                    - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is
+                    - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is
                       editable and is restricted to 1000 characters.
                     - Applicable when model_type is 'DATA_STORE_ENTITY'
                 type: str
@@ -1434,13 +1450,13 @@ options:
                                 type: int
                             name:
                                 description:
-                                    - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters.
-                                      The value is editable and is restricted to 1000 characters.
+                                    - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
+                                      characters. The value is editable and is restricted to 1000 characters.
                                     - Applicable when model_type is 'DATA_STORE_ENTITY'
                                 type: str
                             description:
                                 description:
-                                    - Detailed description for the object.
+                                    - A detailed description of the object.
                                     - Applicable when model_type is 'DATA_STORE_ENTITY'
                                 type: str
                             type:
@@ -1450,8 +1466,8 @@ options:
                                 type: dict
                             labels:
                                 description:
-                                    - Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and use them
-                                      to categorize content.
+                                    - Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own labels and
+                                      use them to categorize content.
                                     - Applicable when model_type is 'DATA_STORE_ENTITY'
                                 type: list
                                 elements: str
@@ -1547,13 +1563,13 @@ options:
                                         type: int
                                     name:
                                         description:
-                                            - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special
+                                            - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
                                               characters. The value is editable and is restricted to 1000 characters.
                                             - Applicable when model_type is 'DATA_STORE_ENTITY'
                                         type: str
                                     description:
                                         description:
-                                            - Detailed description for the object.
+                                            - A detailed description of the object.
                                             - Applicable when model_type is 'DATA_STORE_ENTITY'
                                         type: str
                                     type:
@@ -1606,7 +1622,7 @@ options:
                         type: str
                     model_version:
                         description:
-                            - The object's model version.
+                            - The model version of the object.
                         type: str
                     parent_ref:
                         description:
@@ -1619,8 +1635,8 @@ options:
                                 type: str
                     name:
                         description:
-                            - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value
-                              is editable and is restricted to 1000 characters.
+                            - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The
+                              value is editable and is restricted to 1000 characters.
                         type: str
                     attribute_refs:
                         description:
@@ -1708,12 +1724,12 @@ options:
                                         type: int
                                     name:
                                         description:
-                                            - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special
+                                            - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
                                               characters. The value is editable and is restricted to 1000 characters.
                                         type: str
                                     description:
                                         description:
-                                            - Detailed description for the object.
+                                            - A detailed description of the object.
                                         type: str
                                     type:
                                         description:
@@ -1721,8 +1737,8 @@ options:
                                         type: dict
                                     labels:
                                         description:
-                                            - Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and
-                                              use them to categorize content.
+                                            - Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own
+                                              labels and use them to categorize content.
                                         type: list
                                         elements: str
                                     native_shape_field:
@@ -1802,12 +1818,12 @@ options:
                                                 type: int
                                             name:
                                                 description:
-                                                    - Free form text without any restriction on permitted characters. Name can have letters, numbers, and
+                                                    - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and
                                                       special characters. The value is editable and is restricted to 1000 characters.
                                                 type: str
                                             description:
                                                 description:
-                                                    - Detailed description for the object.
+                                                    - A detailed description of the object.
                                                 type: str
                                             type:
                                                 description:
@@ -1845,7 +1861,7 @@ options:
         type: int
     identifier:
         description:
-            - Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The value can be
+            - Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can be
               modified.
         type: str
     types:
@@ -1881,7 +1897,7 @@ options:
                         type: str
             name:
                 description:
-                    - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is
+                    - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is
                       editable and is restricted to 1000 characters.
                     - Applicable when model_type is 'DATA_STORE_ENTITY'
                 type: str
@@ -1903,7 +1919,7 @@ options:
                 suboptions:
                     model_type:
                         description:
-                            - The property which disciminates the subtypes.
+                            - The property which differentiates the subtypes.
                             - Required when model_type is 'DATA_STORE_ENTITY'
                         type: str
                         choices:
@@ -1936,8 +1952,8 @@ options:
                                 type: str
                     name:
                         description:
-                            - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value
-                              is editable and is restricted to 1000 characters.
+                            - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The
+                              value is editable and is restricted to 1000 characters.
                             - Applicable when model_type is 'DATA_STORE_ENTITY'
                         type: str
                     object_status:
@@ -1947,7 +1963,7 @@ options:
                         type: int
                     description:
                         description:
-                            - A user defined description for the object.
+                            - A user-defined description for the object.
                             - Applicable when model_type is 'DATA_STORE_ENTITY'
                         type: str
             object_status:
@@ -1957,8 +1973,8 @@ options:
                 type: int
             identifier:
                 description:
-                    - Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The value can be
-                      modified.
+                    - Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can
+                      be modified.
                     - Applicable when model_type is 'DATA_STORE_ENTITY'
                 type: str
     entity_properties:
@@ -1977,7 +1993,7 @@ options:
             - "UNDEFINED"
     endpoint_id:
         description:
-            - Endpoint Id used for getDataAssetFullDetails.
+            - Endpoint ID used for getDataAssetFullDetails.
         type: str
     action:
         description:
@@ -3786,31 +3802,31 @@ data_entity:
     contains:
         filters:
             description:
-                - Filters present in the Datastore. It can be Null.
+                - Filters present in the datastore. It can be null.
             returned: on success
             type: str
             sample: filters_example
         is_effective_date_disabled:
             description:
-                - It shows whether or not effective date is disabled
+                - It shows whether the effective date is disabled.
             returned: on success
             type: bool
             sample: true
         is_flex_data_store:
             description:
-                - It shows whether the datastore is of flex type
+                - It shows whether the datastore is of flex type.
             returned: on success
             type: bool
             sample: true
         is_silent_error:
             description:
-                - It shows whether the extraction of this datastore will stop on error
+                - It shows whether the extraction of this datastore will stop when an error occurs.
             returned: on success
             type: bool
             sample: true
         supports_incremental:
             description:
-                - It shows whether the datastore supports Incremental Extract or not.
+                - It shows whether the datastore supports incremental extract.
             returned: on success
             type: bool
             sample: true
@@ -3862,6 +3878,24 @@ data_entity:
                             returned: on success
                             type: str
                             sample: timestamp_format_example
+                        data_address:
+                            description:
+                                - "Range of the data. For example, \\"'My Sheet'!B3:C35\\""
+                            returned: on success
+                            type: str
+                            sample: data_address_example
+                        header:
+                            description:
+                                - "Whether the dataAddress contains the header with column names. If false - column names fill be generated."
+                            returned: on success
+                            type: bool
+                            sample: true
+                        password:
+                            description:
+                                - Workbook password if it is password protected.
+                            returned: on success
+                            type: str
+                            sample: example-password
                         encoding:
                             description:
                                 - The encoding for the file.
@@ -3996,7 +4030,7 @@ data_entity:
                             sample: description_example
                 identifier_path:
                     description:
-                        - The full path to identify this object.
+                        - The full path to identify the object.
                     returned: on success
                     type: str
                     sample: identifier_path_example
@@ -4014,14 +4048,14 @@ data_entity:
                     sample: 56
                 labels:
                     description:
-                        - Labels are keywords or tags that you can add to data assets, dataflows and so on. You can define your own labels and use them to
+                        - Labels are keywords or tags that you can add to data assets, dataflows, and so on. You can define your own labels and use them to
                           categorize content.
                     returned: on success
                     type: list
                     sample: []
                 is_favorite:
                     description:
-                        - Specifies whether this object is a favorite or not.
+                        - Specifies whether this object is a favorite.
                     returned: on success
                     type: bool
                     sample: true
@@ -4033,7 +4067,7 @@ data_entity:
             sample: key_example
         model_version:
             description:
-                - The object's model version.
+                - The model version of the object.
             returned: on success
             type: str
             sample: model_version_example
@@ -4051,14 +4085,14 @@ data_entity:
                     sample: parent_example
         name:
             description:
-                - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable
-                  and is restricted to 1000 characters.
+                - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is
+                  editable and is restricted to 1000 characters.
             returned: on success
             type: str
             sample: name_example
         description:
             description:
-                - Detailed description for the object.
+                - Detailed description of the object.
             returned: on success
             type: str
             sample: description_example
@@ -4070,7 +4104,7 @@ data_entity:
             sample: 56
         external_key:
             description:
-                - The external key for the object
+                - The external key of the object.
             returned: on success
             type: str
             sample: external_key_example
@@ -4172,14 +4206,14 @@ data_entity:
                     sample: 56
                 name:
                     description:
-                        - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is
-                          editable and is restricted to 1000 characters.
+                        - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value
+                          is editable and is restricted to 1000 characters.
                     returned: on success
                     type: str
                     sample: name_example
                 description:
                     description:
-                        - Detailed description for the object.
+                        - A detailed description of the object.
                     returned: on success
                     type: str
                     sample: description_example
@@ -4197,7 +4231,7 @@ data_entity:
                             contains:
                                 model_type:
                                     description:
-                                        - The property which disciminates the subtypes.
+                                        - The property which differentiates the subtypes.
                                     returned: on success
                                     type: str
                                     sample: STRUCTURED_TYPE
@@ -4222,7 +4256,7 @@ data_entity:
 
                                 name:
                                     description:
-                                        - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special
+                                        - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
                                           characters. The value is editable and is restricted to 1000 characters.
                                     returned: on success
                                     type: str
@@ -4235,7 +4269,7 @@ data_entity:
                                     sample: 56
                                 description:
                                     description:
-                                        - A user defined description for the object.
+                                        - A user-defined description for the object.
                                     returned: on success
                                     type: str
                                     sample: description_example
@@ -4285,7 +4319,7 @@ data_entity:
                                     sample: true
                                 port_type:
                                     description:
-                                        - The port details for the data asset.Type.
+                                        - The port details of the data asset type.
                                     returned: on success
                                     type: str
                                     sample: DATA
@@ -4336,14 +4370,14 @@ data_entity:
                                             sample: 56
                                         name:
                                             description:
-                                                - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special
-                                                  characters. The value is editable and is restricted to 1000 characters.
+                                                - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and
+                                                  special characters. The value is editable and is restricted to 1000 characters.
                                             returned: on success
                                             type: str
                                             sample: name_example
                                         description:
                                             description:
-                                                - Detailed description for the object.
+                                                - A detailed description of the object.
                                             returned: on success
                                             type: str
                                             sample: description_example
@@ -4355,19 +4389,19 @@ data_entity:
                                     sample: {}
                                 root_object_default_value:
                                     description:
-                                        - The default value of the parameter which can be an object in DIS, such as a data entity.
+                                        - The default value of the parameter, which can be an object in DIS, such as a data entity.
                                     returned: on success
                                     type: dict
                                     sample: {}
                                 is_input:
                                     description:
-                                        - Specifies whether the parameter is input value.
+                                        - Specifies whether the parameter is an input value.
                                     returned: on success
                                     type: bool
                                     sample: true
                                 is_output:
                                     description:
-                                        - Specifies whether the parameter is output value.
+                                        - Specifies whether the parameter is an output value.
                                     returned: on success
                                     type: bool
                                     sample: true
@@ -4475,14 +4509,14 @@ data_entity:
                                     sample: 56
                                 name:
                                     description:
-                                        - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special
+                                        - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
                                           characters. The value is editable and is restricted to 1000 characters.
                                     returned: on success
                                     type: str
                                     sample: name_example
                                 description:
                                     description:
-                                        - Detailed description for the object.
+                                        - A detailed description of the object.
                                     returned: on success
                                     type: str
                                     sample: description_example
@@ -4494,8 +4528,8 @@ data_entity:
                                     sample: {}
                                 labels:
                                     description:
-                                        - Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and use
-                                          them to categorize content.
+                                        - Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own labels
+                                          and use them to categorize content.
                                     returned: on success
                                     type: list
                                     sample: []
@@ -4598,14 +4632,14 @@ data_entity:
                                             sample: 56
                                         name:
                                             description:
-                                                - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special
-                                                  characters. The value is editable and is restricted to 1000 characters.
+                                                - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and
+                                                  special characters. The value is editable and is restricted to 1000 characters.
                                             returned: on success
                                             type: str
                                             sample: name_example
                                         description:
                                             description:
-                                                - Detailed description for the object.
+                                                - A detailed description of the object.
                                             returned: on success
                                             type: str
                                             sample: description_example
@@ -4641,7 +4675,7 @@ data_entity:
                             contains:
                                 model_type:
                                     description:
-                                        - The property which disciminates the subtypes.
+                                        - The property which differentiates the subtypes.
                                     returned: on success
                                     type: str
                                     sample: STRUCTURED_TYPE
@@ -4666,7 +4700,7 @@ data_entity:
 
                                 name:
                                     description:
-                                        - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special
+                                        - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
                                           characters. The value is editable and is restricted to 1000 characters.
                                     returned: on success
                                     type: str
@@ -4679,7 +4713,7 @@ data_entity:
                                     sample: 56
                                 description:
                                     description:
-                                        - A user defined description for the object.
+                                        - A user-defined description for the object.
                                     returned: on success
                                     type: str
                                     sample: description_example
@@ -4787,14 +4821,14 @@ data_entity:
                                             sample: parent_example
                                 name:
                                     description:
-                                        - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special
+                                        - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
                                           characters. The value is editable and is restricted to 1000 characters.
                                     returned: on success
                                     type: str
                                     sample: name_example
                                 is_contained:
                                     description:
-                                        - Specifies whether the configuration is contained or not.
+                                        - Specifies whether the configuration is contained.
                                     returned: on success
                                     type: bool
                                     sample: true
@@ -4818,7 +4852,7 @@ data_entity:
                                             contains:
                                                 model_type:
                                                     description:
-                                                        - The property which disciminates the subtypes.
+                                                        - The property which differentiates the subtypes.
                                                     returned: on success
                                                     type: str
                                                     sample: STRUCTURED_TYPE
@@ -4843,8 +4877,8 @@ data_entity:
 
                                                 name:
                                                     description:
-                                                        - Free form text without any restriction on permitted characters. Name can have letters, numbers, and
-                                                          special characters. The value is editable and is restricted to 1000 characters.
+                                                        - Free form text without any restriction on the permitted characters. Name can have letters, numbers,
+                                                          and special characters. The value is editable and is restricted to 1000 characters.
                                                     returned: on success
                                                     type: str
                                                     sample: name_example
@@ -4857,7 +4891,7 @@ data_entity:
                                                     sample: 56
                                                 description:
                                                     description:
-                                                        - A user defined description for the object.
+                                                        - A user-defined description for the object.
                                                     returned: on success
                                                     type: str
                                                     sample: description_example
@@ -4869,7 +4903,7 @@ data_entity:
                                             sample: parameter_name_example
                                         description:
                                             description:
-                                                - A user defined description for the object.
+                                                - A user-defined description for the object.
                                             returned: on success
                                             type: str
                                             sample: description_example
@@ -4887,19 +4921,19 @@ data_entity:
                                             sample: class_field_name_example
                                         is_static:
                                             description:
-                                                - Specifies whether the parameter is static or not.
+                                                - Specifies whether the parameter is static.
                                             returned: on success
                                             type: bool
                                             sample: true
                                         is_class_field_value:
                                             description:
-                                                - Specifies whether the parameter is a class field or not.
+                                                - Specifies whether the parameter is a class field.
                                             returned: on success
                                             type: bool
                                             sample: true
                         model_type:
                             description:
-                                - The property which disciminates the subtypes.
+                                - The property which differentiates the subtypes.
                             returned: on success
                             type: str
                             sample: STRUCTURED_TYPE
@@ -4929,8 +4963,8 @@ data_entity:
                                     sample: parent_example
                         name:
                             description:
-                                - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The
-                                  value is editable and is restricted to 1000 characters.
+                                - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters.
+                                  The value is editable and is restricted to 1000 characters.
                             returned: on success
                             type: str
                             sample: name_example
@@ -4942,7 +4976,7 @@ data_entity:
                             sample: 56
                         description:
                             description:
-                                - A user defined description for the object.
+                                - A user-defined description for the object.
                             returned: on success
                             type: str
                             sample: description_example
@@ -4954,7 +4988,7 @@ data_entity:
                             contains:
                                 model_type:
                                     description:
-                                        - The property which disciminates the subtypes.
+                                        - The property which differentiates the subtypes.
                                     returned: on success
                                     type: str
                                     sample: STRUCTURED_TYPE
@@ -4979,7 +5013,7 @@ data_entity:
 
                                 name:
                                     description:
-                                        - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special
+                                        - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
                                           characters. The value is editable and is restricted to 1000 characters.
                                     returned: on success
                                     type: str
@@ -4992,7 +5026,7 @@ data_entity:
                                     sample: 56
                                 description:
                                     description:
-                                        - A user defined description for the object.
+                                        - A user-defined description for the object.
                                     returned: on success
                                     type: str
                                     sample: description_example
@@ -5034,7 +5068,7 @@ data_entity:
                     sample: key_example
                 model_version:
                     description:
-                        - The object's model version.
+                        - The model version of the object.
                     returned: on success
                     type: str
                     sample: model_version_example
@@ -5052,8 +5086,8 @@ data_entity:
                             sample: parent_example
                 name:
                     description:
-                        - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is
-                          editable and is restricted to 1000 characters.
+                        - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value
+                          is editable and is restricted to 1000 characters.
                     returned: on success
                     type: str
                     sample: name_example
@@ -5167,14 +5201,14 @@ data_entity:
                                     sample: 56
                                 name:
                                     description:
-                                        - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special
+                                        - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
                                           characters. The value is editable and is restricted to 1000 characters.
                                     returned: on success
                                     type: str
                                     sample: name_example
                                 description:
                                     description:
-                                        - Detailed description for the object.
+                                        - A detailed description of the object.
                                     returned: on success
                                     type: str
                                     sample: description_example
@@ -5186,8 +5220,8 @@ data_entity:
                                     sample: {}
                                 labels:
                                     description:
-                                        - Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and use
-                                          them to categorize content.
+                                        - Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own labels
+                                          and use them to categorize content.
                                     returned: on success
                                     type: list
                                     sample: []
@@ -5290,14 +5324,14 @@ data_entity:
                                             sample: 56
                                         name:
                                             description:
-                                                - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special
-                                                  characters. The value is editable and is restricted to 1000 characters.
+                                                - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and
+                                                  special characters. The value is editable and is restricted to 1000 characters.
                                             returned: on success
                                             type: str
                                             sample: name_example
                                         description:
                                             description:
-                                                - Detailed description for the object.
+                                                - A detailed description of the object.
                                             returned: on success
                                             type: str
                                             sample: description_example
@@ -5351,7 +5385,7 @@ data_entity:
                     sample: key_example
                 model_version:
                     description:
-                        - The object's model version.
+                        - The model version of the object.
                     returned: on success
                     type: str
                     sample: model_version_example
@@ -5369,8 +5403,8 @@ data_entity:
                             sample: parent_example
                 name:
                     description:
-                        - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is
-                          editable and is restricted to 1000 characters.
+                        - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value
+                          is editable and is restricted to 1000 characters.
                     returned: on success
                     type: str
                     sample: name_example
@@ -5484,14 +5518,14 @@ data_entity:
                                     sample: 56
                                 name:
                                     description:
-                                        - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special
+                                        - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
                                           characters. The value is editable and is restricted to 1000 characters.
                                     returned: on success
                                     type: str
                                     sample: name_example
                                 description:
                                     description:
-                                        - Detailed description for the object.
+                                        - A detailed description of the object.
                                     returned: on success
                                     type: str
                                     sample: description_example
@@ -5503,8 +5537,8 @@ data_entity:
                                     sample: {}
                                 labels:
                                     description:
-                                        - Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and use
-                                          them to categorize content.
+                                        - Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own labels
+                                          and use them to categorize content.
                                     returned: on success
                                     type: list
                                     sample: []
@@ -5607,14 +5641,14 @@ data_entity:
                                             sample: 56
                                         name:
                                             description:
-                                                - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special
-                                                  characters. The value is editable and is restricted to 1000 characters.
+                                                - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and
+                                                  special characters. The value is editable and is restricted to 1000 characters.
                                             returned: on success
                                             type: str
                                             sample: name_example
                                         description:
                                             description:
-                                                - Detailed description for the object.
+                                                - A detailed description of the object.
                                             returned: on success
                                             type: str
                                             sample: description_example
@@ -5674,7 +5708,7 @@ data_entity:
                             sample: key_example
                         model_version:
                             description:
-                                - The object's model version.
+                                - The model version of the object.
                             returned: on success
                             type: str
                             sample: model_version_example
@@ -5692,8 +5726,8 @@ data_entity:
                                     sample: parent_example
                         name:
                             description:
-                                - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The
-                                  value is editable and is restricted to 1000 characters.
+                                - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters.
+                                  The value is editable and is restricted to 1000 characters.
                             returned: on success
                             type: str
                             sample: name_example
@@ -5808,14 +5842,14 @@ data_entity:
                                             sample: 56
                                         name:
                                             description:
-                                                - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special
-                                                  characters. The value is editable and is restricted to 1000 characters.
+                                                - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and
+                                                  special characters. The value is editable and is restricted to 1000 characters.
                                             returned: on success
                                             type: str
                                             sample: name_example
                                         description:
                                             description:
-                                                - Detailed description for the object.
+                                                - A detailed description of the object.
                                             returned: on success
                                             type: str
                                             sample: description_example
@@ -5827,8 +5861,8 @@ data_entity:
                                             sample: {}
                                         labels:
                                             description:
-                                                - Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels
-                                                  and use them to categorize content.
+                                                - Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own
+                                                  labels and use them to categorize content.
                                             returned: on success
                                             type: list
                                             sample: []
@@ -5931,14 +5965,14 @@ data_entity:
                                                     sample: 56
                                                 name:
                                                     description:
-                                                        - Free form text without any restriction on permitted characters. Name can have letters, numbers, and
-                                                          special characters. The value is editable and is restricted to 1000 characters.
+                                                        - Free form text without any restriction on the permitted characters. Name can have letters, numbers,
+                                                          and special characters. The value is editable and is restricted to 1000 characters.
                                                     returned: on success
                                                     type: str
                                                     sample: name_example
                                                 description:
                                                     description:
-                                                        - Detailed description for the object.
+                                                        - A detailed description of the object.
                                                     returned: on success
                                                     type: str
                                                     sample: description_example
@@ -5992,7 +6026,7 @@ data_entity:
             sample: 56
         identifier:
             description:
-                - Value can only contain upper case letters, underscore and numbers. It should begin with upper case letter or underscore. The value can be
+                - Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can be
                   modified.
             returned: on success
             type: str
@@ -6011,6 +6045,9 @@ data_entity:
                 "has_header": true,
                 "is_file_pattern": true,
                 "timestamp_format": "timestamp_format_example",
+                "data_address": "data_address_example",
+                "header": true,
+                "password": "example-password",
                 "encoding": "encoding_example",
                 "model_type": "JSON_FORMAT",
                 "compression": "compression_example"
@@ -6538,6 +6575,7 @@ def main():
                             has_header=dict(type="bool"),
                             is_file_pattern=dict(type="bool"),
                             timestamp_format=dict(type="str"),
+                            compression=dict(type="str"),
                             model_type=dict(
                                 type="str",
                                 required=True,
@@ -6546,9 +6584,12 @@ def main():
                                     "JSON_FORMAT",
                                     "CSV_FORMAT",
                                     "PARQUET_FORMAT",
+                                    "EXCEL_FORMAT",
                                 ],
                             ),
-                            compression=dict(type="str"),
+                            data_address=dict(type="str"),
+                            header=dict(type="bool"),
+                            password=dict(type="str", no_log=True),
                         ),
                     ),
                     type=dict(

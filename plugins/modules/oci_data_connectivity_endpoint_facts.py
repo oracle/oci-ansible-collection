@@ -23,14 +23,14 @@ module: oci_data_connectivity_endpoint_facts
 short_description: Fetches details about one or multiple Endpoint resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple Endpoint resources in Oracle Cloud Infrastructure
-    - Returns a list of Data Connectivity Management Endpoints.
+    - Returns a list of Data Connectivity Management endpoints.
     - If I(endpoint_id) is specified, the details of a single Endpoint will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     endpoint_id:
         description:
-            - DCMS Endpoint id
+            - DCMS endpoint ID.
             - Required to get a specific endpoint.
         type: str
         aliases: ["id"]
@@ -41,7 +41,7 @@ options:
         type: str
     registry_id:
         description:
-            - DCMS registry id
+            - DCMS registry ID
         type: str
     name:
         description:
@@ -59,6 +59,9 @@ options:
             - "DELETING"
             - "DELETED"
             - "FAILED"
+            - "STARTING"
+            - "STOPPING"
+            - "STOPPED"
     sort_order:
         description:
             - Specifies sort order to use, either `ASC` (ascending) or `DESC` (descending).
@@ -68,9 +71,9 @@ options:
             - "DESC"
     sort_by:
         description:
-            - This parameter allows users to specify a sort field.  Default sort order is the descending order of `timeCreated` (most recently created objects
-              at the top).  Sorting related parameters are ignored when parameter `query` is present (search operation and sorting order is by relevance score
-              in descending order).
+            - This parameter allows users to specify a sort field. Default sort order is the descending order of `timeCreated` (most recently created objects at
+              the top). Sorting related parameters are ignored when parameter `query` is present (search operation and sorting order is by relevance score in
+              descending order).
         type: str
         choices:
             - "TIMECREATED"
@@ -118,7 +121,7 @@ endpoints:
             sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         subnet_id:
             description:
-                - Subnet OCID for the customer connected network where databases for example reside.
+                - Subnet OCID of the customer connected network where, for example, the databases reside.
                 - Returned for get operation
             returned: on success
             type: str
@@ -140,14 +143,14 @@ endpoints:
             sample: 56
         nsg_ids:
             description:
-                - List of NSGs to which the Private Endpoint VNIC must be added.
+                - The list of NSGs to which the private endpoint VNIC must be added.
                 - Returned for get operation
             returned: on success
             type: list
             sample: []
         id:
             description:
-                - Unique identifier that is immutable on creation
+                - A unique identifier that is immutable on creation.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -159,7 +162,7 @@ endpoints:
             sample: description_example
         display_name:
             description:
-                - Data Connectivity Management Registry display name, registries can be renamed
+                - The Data Connectivity Management Registry display name; registries can be renamed.
             returned: on success
             type: str
             sample: display_name_example
@@ -171,19 +174,19 @@ endpoints:
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
-                - The time the Data Connectivity Management Registry was created. An RFC3339 formatted datetime string
+                - Time when the Data Connectivity Management registry was created. An RFC3339 formatted datetime string.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - The time the Data Connectivity Management Registry was updated. An RFC3339 formatted datetime string
+                - Time when the Data Connectivity Management registry was updated. An RFC3339 formatted datetime string.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         freeform_tags:
             description:
-                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+                - "Simple key-value pair that is applied without any predefined name, type, or scope. Exists only for cross-compatibility.
                   Example: `{\\"bar-key\\": \\"value\\"}`"
             returned: on success
             type: dict
@@ -197,15 +200,15 @@ endpoints:
             sample: {'Operations': {'CostCenter': 'US'}}
         lifecycle_state:
             description:
-                - "Lifecycle states for registries in Data Connectivity Management Service
-                  CREATING - The resource is being created and may not be usable until the entire metadata is defined
-                  UPDATING - The resource is being updated and may not be usable until all changes are commited
+                - "Lifecycle states for registries in the Data Connectivity Management Service.
+                  CREATING - The resource is being created and may not be usable until the entire metadata is defined.
+                  UPDATING - The resource is being updated and may not be usable until all changes are commited.
                   DELETING - The resource is being deleted and might require deep cleanup of children.
-                  ACTIVE   - The resource is valid and available for access
+                  ACTIVE   - The resource is valid and available for access.
                   INACTIVE - The resource might be incomplete in its definition or might have been made unavailable for
-                           administrative reasons
-                  DELETED  - The resource has been deleted and isn't available
-                  FAILED   - The resource is in a failed state due to validation or other errors"
+                           administrative reasons.
+                  DELETED  - The resource has been deleted and isn't available.
+                  FAILED   - The resource is in a failed state due to validation or other errors."
             returned: on success
             type: str
             sample: CREATING
@@ -324,6 +327,9 @@ def main():
                     "DELETING",
                     "DELETED",
                     "FAILED",
+                    "STARTING",
+                    "STOPPING",
+                    "STOPPED",
                 ],
             ),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),

@@ -30,7 +30,7 @@ oracle.oci.oci_data_science_model -- Manage a Model resource in Oracle Cloud Inf
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.4.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.5.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -58,7 +58,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a Model resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new model.
-- This resource has the following action operations in the :ref:`oracle.oci.oci_data_science_model_actions <ansible_collections.oracle.oci.oci_data_science_model_actions_module>` module: activate, change_compartment, deactivate.
+- This resource has the following action operations in the :ref:`oracle.oci.oci_data_science_model_actions <ansible_collections.oracle.oci.oci_data_science_model_actions_module>` module: activate, change_compartment, deactivate, export_model_artifact, import_model_artifact.
 
 
 .. Aliases

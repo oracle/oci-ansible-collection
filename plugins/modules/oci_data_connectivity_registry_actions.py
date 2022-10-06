@@ -23,13 +23,13 @@ module: oci_data_connectivity_registry_actions
 short_description: Perform actions on a Registry resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a Registry resource in Oracle Cloud Infrastructure
-    - For I(action=change_compartment), the registry will be moved to the desired compartment.
+    - For I(action=change_compartment), the registry will be moved to the specified compartment.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     registry_id:
         description:
-            - The registry Ocid.
+            - The registry OCID.
         type: str
         aliases: ["id"]
         required: true
@@ -67,7 +67,7 @@ registry:
     contains:
         freeform_tags:
             description:
-                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+                - "Simple key-value pair that is applied without any predefined name, type, or scope. Exists only for cross-compatibility.
                   Example: `{\\"bar-key\\": \\"value\\"}`"
             returned: on success
             type: dict
@@ -87,13 +87,13 @@ registry:
             sample: description_example
         display_name:
             description:
-                - Data Connectivity Management Registry display name, registries can be renamed
+                - Data Connectivity Management registry display name; registries can be renamed.
             returned: on success
             type: str
             sample: display_name_example
         updated_by:
             description:
-                - Name of the user who updated the DCMS Registry.
+                - Name of the user who updated the DCMS registry.
             returned: on success
             type: str
             sample: updated_by_example
@@ -105,27 +105,27 @@ registry:
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
-                - The time the Data Connectivity Management Registry was created. An RFC3339 formatted datetime string
+                - Time when the Data Connectivity Management registry was created. An RFC3339 formatted datetime string.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - The time the Data Connectivity Management Registry was updated. An RFC3339 formatted datetime string
+                - Time when the Data Connectivity Management registry was updated. An RFC3339 formatted datetime string.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
-                - "Lifecycle states for registries in Data Connectivity Management Service
-                  CREATING - The resource is being created and may not be usable until the entire metadata is defined
-                  UPDATING - The resource is being updated and may not be usable until all changes are commited
+                - "Lifecycle states for registries in the Data Connectivity Management Service
+                  CREATING - The resource is being created and may not be usable until the entire metadata is defined.
+                  UPDATING - The resource is being updated and may not be usable until all changes are commited.
                   DELETING - The resource is being deleted and might require deep cleanup of children.
-                  ACTIVE   - The resource is valid and available for access
+                  ACTIVE   - The resource is valid and available for access.
                   INACTIVE - The resource might be incomplete in its definition or might have been made unavailable for
-                           administrative reasons
-                  DELETED  - The resource has been deleted and isn't available
-                  FAILED   - The resource is in a failed state due to validation or other errors"
+                           administrative reasons.
+                  DELETED  - The resource has been deleted and isn't available.
+                  FAILED   - The resource is in a failed state due to validation or other errors."
             returned: on success
             type: str
             sample: CREATING
@@ -138,7 +138,7 @@ registry:
             sample: state_message_example
         id:
             description:
-                - Unique identifier that is immutable on creation
+                - A unique identifier that is immutable on creation.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"

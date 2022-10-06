@@ -102,12 +102,14 @@ options:
                                     ocpus:
                                         description:
                                             - A model-deployment instance of type VM.Standard.E3.Flex or VM.Standard.E4.Flex allows the ocpu count to be
-                                              specified.
+                                              specified with in the range of 1 to 64 ocpu. VM.Standard3.Flex OCPU range is between 1 to 32 ocpu and for
+                                              VM.Optimized3.Flex OCPU range is 1 to 18 ocpu.
                                         type: float
                                     memory_in_gbs:
                                         description:
-                                            - A model-deployment instance of type VM.Standard.E3.Flex or VM.Standard.E4.Flex allows memory to be specified. This
-                                              specifies the size of the memory in GBs.
+                                            - A model-deployment instance of type VM.Standard.E3.Flex or VM.Standard.E4.Flex allows the memory to be specified
+                                              with in the range of 6 to 1024 GB. VM.Standard3.Flex memory range is between 6 to 512 GB and VM.Optimized3.Flex
+                                              memory range is between 6 to 256 GB.
                                         type: float
                     scaling_policy:
                         description:
@@ -442,14 +444,16 @@ model_deployment:
                                         ocpus:
                                             description:
                                                 - A model-deployment instance of type VM.Standard.E3.Flex or VM.Standard.E4.Flex allows the ocpu count to be
-                                                  specified.
+                                                  specified with in the range of 1 to 64 ocpu. VM.Standard3.Flex OCPU range is between 1 to 32 ocpu and for
+                                                  VM.Optimized3.Flex OCPU range is 1 to 18 ocpu.
                                             returned: on success
                                             type: float
                                             sample: 3.4
                                         memory_in_gbs:
                                             description:
-                                                - A model-deployment instance of type VM.Standard.E3.Flex or VM.Standard.E4.Flex allows memory to be specified.
-                                                  This specifies the size of the memory in GBs.
+                                                - A model-deployment instance of type VM.Standard.E3.Flex or VM.Standard.E4.Flex allows the memory to be
+                                                  specified with in the range of 6 to 1024 GB. VM.Standard3.Flex memory range is between 6 to 512 GB and
+                                                  VM.Optimized3.Flex memory range is between 6 to 256 GB.
                                             returned: on success
                                             type: float
                                             sample: 3.4

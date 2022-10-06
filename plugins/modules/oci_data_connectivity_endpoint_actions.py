@@ -23,8 +23,8 @@ module: oci_data_connectivity_endpoint_actions
 short_description: Perform actions on an Endpoint resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on an Endpoint resource in Oracle Cloud Infrastructure
-    - For I(action=change_compartment), the Endpoint will be moved to the desired compartment.
-    - For I(action=validate_data_asset_network_reachablity), validates the dataAsset network Reachability.
+    - For I(action=change_compartment), the endpoint will be moved to the specified compartment.
+    - For I(action=validate_data_asset_network_reachablity), validates the dataAsset network reachability.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -35,13 +35,13 @@ options:
         type: str
     endpoint_id:
         description:
-            - DCMS Endpoint id
+            - DCMS endpoint ID.
         type: str
         aliases: ["id"]
         required: true
     registry_id:
         description:
-            - DCMS registry id
+            - DCMS registry ID
         type: str
     action:
         description:
@@ -91,7 +91,7 @@ endpoint:
             sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         subnet_id:
             description:
-                - Subnet OCID for the customer connected network where databases for example reside.
+                - Subnet OCID of the customer connected network where, for example, the databases reside.
             returned: on success
             type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
@@ -104,7 +104,7 @@ endpoint:
             sample: []
         freeform_tags:
             description:
-                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+                - "Simple key-value pair that is applied without any predefined name, type, or scope. Exists only for cross-compatibility.
                   Example: `{\\"bar-key\\": \\"value\\"}`"
             returned: on success
             type: dict
@@ -124,7 +124,7 @@ endpoint:
             sample: description_example
         display_name:
             description:
-                - Data Connectivity Management Registry display name, registries can be renamed
+                - The Data Connectivity Management Registry display name; registries can be renamed.
             returned: on success
             type: str
             sample: display_name_example
@@ -136,27 +136,27 @@ endpoint:
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
-                - The time the Data Connectivity Management Registry was created. An RFC3339 formatted datetime string
+                - Time when the Data Connectivity Management registry was created. An RFC3339 formatted datetime string.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - The time the Data Connectivity Management Registry was updated. An RFC3339 formatted datetime string
+                - Time when the Data Connectivity Management registry was updated. An RFC3339 formatted datetime string.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
-                - "Lifecycle states for registries in Data Connectivity Management Service
-                  CREATING - The resource is being created and may not be usable until the entire metadata is defined
-                  UPDATING - The resource is being updated and may not be usable until all changes are commited
+                - "Lifecycle states for registries in the Data Connectivity Management Service.
+                  CREATING - The resource is being created and may not be usable until the entire metadata is defined.
+                  UPDATING - The resource is being updated and may not be usable until all changes are commited.
                   DELETING - The resource is being deleted and might require deep cleanup of children.
-                  ACTIVE   - The resource is valid and available for access
+                  ACTIVE   - The resource is valid and available for access.
                   INACTIVE - The resource might be incomplete in its definition or might have been made unavailable for
-                           administrative reasons
-                  DELETED  - The resource has been deleted and isn't available
-                  FAILED   - The resource is in a failed state due to validation or other errors"
+                           administrative reasons.
+                  DELETED  - The resource has been deleted and isn't available.
+                  FAILED   - The resource is in a failed state due to validation or other errors."
             returned: on success
             type: str
             sample: CREATING
@@ -169,7 +169,7 @@ endpoint:
             sample: state_message_example
         id:
             description:
-                - Unique identifier that is immutable on creation
+                - A unique identifier that is immutable on creation.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -181,7 +181,7 @@ endpoint:
             sample: 56
         nsg_ids:
             description:
-                - List of NSGs to which the Private Endpoint VNIC must be added.
+                - The list of NSGs to which the private endpoint VNIC must be added.
             returned: on success
             type: list
             sample: []

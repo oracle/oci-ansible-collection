@@ -8,10 +8,12 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
+from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_config_utils,
     oci_common_utils,
     oci_custom_helpers_utils,
+    oci_log_utils,
 )
 
 
@@ -1221,3 +1223,34 @@ def get_custom_class(custom_class_name):
     if not custom_class:
         return DefaultHelperCustom
     return custom_class
+
+
+class OCIAnsibleModule(AnsibleModule):
+    """
+
+    Overrides behavior of fail_json, exit_json methods from the base class
+        by appending the debug logs.
+
+    Responses returned by the ansible tasks will also contain a key
+    'oci_debug_logs' which will contains the log information.
+
+    """
+
+    def __init__(self, *args, **kwargs):
+        log_container = kwargs.pop("log_container", None)
+        if not log_container:
+            log_container = oci_log_utils.LOG_CONTAINER
+        self.log_container = log_container
+        super(OCIAnsibleModule, self).__init__(*args, **kwargs)
+
+    OCI_DEBUG_LOGS_KEY = "oci_debug_logs"
+
+    def exit_json(self, **kwargs):
+        if self.log_container.get_logs():
+            kwargs[self.OCI_DEBUG_LOGS_KEY] = self.log_container.get_logs()
+        return super().exit_json(**kwargs)
+
+    def fail_json(self, msg, **kwargs):
+        if self.log_container.get_logs():
+            kwargs[self.OCI_DEBUG_LOGS_KEY] = self.log_container.get_logs()
+        return super().fail_json(msg, **kwargs)

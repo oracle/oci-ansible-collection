@@ -135,12 +135,12 @@ options:
                 suboptions:
                     ocpus:
                         description:
-                            - A job run instance of type VM.Standard.E3.Flex allows the ocpu count to be specified.
+                            - The total number of OCPUs available to the job run instance.
                             - Applicable when job_infrastructure_type is 'ME_STANDALONE'
                         type: float
                     memory_in_gbs:
                         description:
-                            - A job run instance of type VM.Standard.E3.Flex allows memory to be specified. This specifies the size of the memory in GBs.
+                            - The total amount of memory available to the job run instance, in gigabytes.
                             - Applicable when job_infrastructure_type is 'ME_STANDALONE'
                         type: float
     freeform_tags:
@@ -398,13 +398,13 @@ job:
                     contains:
                         ocpus:
                             description:
-                                - A job run instance of type VM.Standard.E3.Flex allows the ocpu count to be specified.
+                                - The total number of OCPUs available to the job run instance.
                             returned: on success
                             type: float
                             sample: 3.4
                         memory_in_gbs:
                             description:
-                                - A job run instance of type VM.Standard.E3.Flex allows memory to be specified. This specifies the size of the memory in GBs.
+                                - The total amount of memory available to the job run instance, in gigabytes.
                             returned: on success
                             type: float
                             sample: 3.4

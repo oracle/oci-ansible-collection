@@ -30,7 +30,7 @@ oracle.oci.oci_apigateway_deployment -- Manage a Deployment resource in Oracle C
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.4.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.5.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -83,12 +83,12 @@ Parameters
 
     <table  border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="7">Parameter</th>
+            <th colspan="10">Parameter</th>
             <th>Choices/<font color="blue">Defaults</font></th>
                         <th width="100%">Comments</th>
         </tr>
                     <tr>
-                                                                <td colspan="7">
+                                                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="parameter-api_user"></div>
                     <b>api_user</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user" title="Permalink to this option"></a>
@@ -103,7 +103,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="7">
+                                                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_fingerprint"></div>
                     <b>api_user_fingerprint</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_fingerprint" title="Permalink to this option"></a>
@@ -118,7 +118,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="7">
+                                                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_key_file"></div>
                     <b>api_user_key_file</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_key_file" title="Permalink to this option"></a>
@@ -133,7 +133,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="7">
+                                                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_key_pass_phrase"></div>
                     <b>api_user_key_pass_phrase</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_key_pass_phrase" title="Permalink to this option"></a>
@@ -148,7 +148,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="7">
+                                                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="parameter-auth_purpose"></div>
                     <b>auth_purpose</b>
                     <a class="ansibleOptionLink" href="#parameter-auth_purpose" title="Permalink to this option"></a>
@@ -166,7 +166,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="7">
+                                                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="parameter-auth_type"></div>
                     <b>auth_type</b>
                     <a class="ansibleOptionLink" href="#parameter-auth_type" title="Permalink to this option"></a>
@@ -187,7 +187,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="7">
+                                                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="parameter-cert_bundle"></div>
                     <b>cert_bundle</b>
                     <a class="ansibleOptionLink" href="#parameter-cert_bundle" title="Permalink to this option"></a>
@@ -202,7 +202,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="7">
+                                                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
@@ -220,7 +220,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="7">
+                                                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="parameter-config_file_location"></div>
                     <b>config_file_location</b>
                     <a class="ansibleOptionLink" href="#parameter-config_file_location" title="Permalink to this option"></a>
@@ -235,7 +235,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="7">
+                                                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="parameter-config_profile_name"></div>
                     <b>config_profile_name</b>
                     <a class="ansibleOptionLink" href="#parameter-config_profile_name" title="Permalink to this option"></a>
@@ -250,7 +250,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="7">
+                                                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="parameter-defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#parameter-defined_tags" title="Permalink to this option"></a>
@@ -267,7 +267,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="7">
+                                                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="parameter-deployment_id"></div>
                     <b>deployment_id</b>
                     <a class="ansibleOptionLink" href="#parameter-deployment_id" title="Permalink to this option"></a>
@@ -285,7 +285,7 @@ Parameters
                                     </td>
             </tr>
                                 <tr>
-                                                                <td colspan="7">
+                                                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="parameter-display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#parameter-display_name" title="Permalink to this option"></a>
@@ -304,7 +304,7 @@ Parameters
                                     </td>
             </tr>
                                 <tr>
-                                                                <td colspan="7">
+                                                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="parameter-force_create"></div>
                     <b>force_create</b>
                     <a class="ansibleOptionLink" href="#parameter-force_create" title="Permalink to this option"></a>
@@ -323,7 +323,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="7">
+                                                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="parameter-freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#parameter-freeform_tags" title="Permalink to this option"></a>
@@ -340,7 +340,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="7">
+                                                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="parameter-gateway_id"></div>
                     <b>gateway_id</b>
                     <a class="ansibleOptionLink" href="#parameter-gateway_id" title="Permalink to this option"></a>
@@ -356,7 +356,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="7">
+                                                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="parameter-key_by"></div>
                     <b>key_by</b>
                     <a class="ansibleOptionLink" href="#parameter-key_by" title="Permalink to this option"></a>
@@ -371,7 +371,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="7">
+                                                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="parameter-path_prefix"></div>
                     <b>path_prefix</b>
                     <a class="ansibleOptionLink" href="#parameter-path_prefix" title="Permalink to this option"></a>
@@ -387,7 +387,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="7">
+                                                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="parameter-region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#parameter-region" title="Permalink to this option"></a>
@@ -402,7 +402,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="7">
+                                                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="parameter-specification"></div>
                     <b>specification</b>
                     <a class="ansibleOptionLink" href="#parameter-specification" title="Permalink to this option"></a>
@@ -420,7 +420,7 @@ Parameters
             </tr>
                                         <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="6">
+                                                <td colspan="9">
                     <div class="ansibleOptionAnchor" id="parameter-specification/logging_policies"></div>
                     <b>logging_policies</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/logging_policies" title="Permalink to this option"></a>
@@ -437,7 +437,7 @@ Parameters
                                         <tr>
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="5">
+                                                <td colspan="8">
                     <div class="ansibleOptionAnchor" id="parameter-specification/logging_policies/access_log"></div>
                     <b>access_log</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/logging_policies/access_log" title="Permalink to this option"></a>
@@ -455,7 +455,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/logging_policies/access_log/is_enabled"></div>
                     <b>is_enabled</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/logging_policies/access_log/is_enabled" title="Permalink to this option"></a>
@@ -479,7 +479,7 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="5">
+                                                <td colspan="8">
                     <div class="ansibleOptionAnchor" id="parameter-specification/logging_policies/execution_log"></div>
                     <b>execution_log</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/logging_policies/execution_log" title="Permalink to this option"></a>
@@ -497,7 +497,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/logging_policies/execution_log/is_enabled"></div>
                     <b>is_enabled</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/logging_policies/execution_log/is_enabled" title="Permalink to this option"></a>
@@ -521,7 +521,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/logging_policies/execution_log/log_level"></div>
                     <b>log_level</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/logging_policies/execution_log/log_level" title="Permalink to this option"></a>
@@ -544,7 +544,7 @@ Parameters
                     
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="6">
+                                                <td colspan="9">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies"></div>
                     <b>request_policies</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies" title="Permalink to this option"></a>
@@ -561,7 +561,7 @@ Parameters
                                         <tr>
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="5">
+                                                <td colspan="8">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication"></div>
                     <b>authentication</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication" title="Permalink to this option"></a>
@@ -579,7 +579,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/audiences"></div>
                     <b>audiences</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/audiences" title="Permalink to this option"></a>
@@ -598,7 +598,26 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/cache_key"></div>
+                    <b>cache_key</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/cache_key" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A list of keys from &quot;parameters&quot; attribute value whose values will be added to the cache key.</div>
+                                            <div>Applicable when type is &#x27;CUSTOM_AUTHENTICATION&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/function_id"></div>
                     <b>function_id</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/function_id" title="Permalink to this option"></a>
@@ -617,7 +636,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/is_anonymous_access_allowed"></div>
                     <b>is_anonymous_access_allowed</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/is_anonymous_access_allowed" title="Permalink to this option"></a>
@@ -639,7 +658,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/issuers"></div>
                     <b>issuers</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/issuers" title="Permalink to this option"></a>
@@ -658,7 +677,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/max_clock_skew_in_seconds"></div>
                     <b>max_clock_skew_in_seconds</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/max_clock_skew_in_seconds" title="Permalink to this option"></a>
@@ -677,7 +696,26 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/parameters"></div>
+                    <b>parameters</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/parameters" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A map where key is a user defined string and value is a context expressions whose values will be sent to the custom auth function. Values should contain an expression. Example: `{&quot;foo&quot;: &quot;request.header[abc]&quot;}`</div>
+                                            <div>Applicable when type is &#x27;CUSTOM_AUTHENTICATION&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/public_keys"></div>
                     <b>public_keys</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/public_keys" title="Permalink to this option"></a>
@@ -697,7 +735,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/public_keys/is_ssl_verify_disabled"></div>
                     <b>is_ssl_verify_disabled</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/public_keys/is_ssl_verify_disabled" title="Permalink to this option"></a>
@@ -721,7 +759,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/public_keys/keys"></div>
                     <b>keys</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/public_keys/keys" title="Permalink to this option"></a>
@@ -742,7 +780,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/public_keys/keys/alg"></div>
                     <b>alg</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/public_keys/keys/alg" title="Permalink to this option"></a>
@@ -763,7 +801,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/public_keys/keys/e"></div>
                     <b>e</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/public_keys/keys/e" title="Permalink to this option"></a>
@@ -784,7 +822,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/public_keys/keys/format"></div>
                     <b>format</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/public_keys/keys/format" title="Permalink to this option"></a>
@@ -808,7 +846,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/public_keys/keys/key"></div>
                     <b>key</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/public_keys/keys/key" title="Permalink to this option"></a>
@@ -829,7 +867,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/public_keys/keys/key_ops"></div>
                     <b>key_ops</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/public_keys/keys/key_ops" title="Permalink to this option"></a>
@@ -853,7 +891,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/public_keys/keys/kid"></div>
                     <b>kid</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/public_keys/keys/kid" title="Permalink to this option"></a>
@@ -873,7 +911,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/public_keys/keys/kty"></div>
                     <b>kty</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/public_keys/keys/kty" title="Permalink to this option"></a>
@@ -897,7 +935,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/public_keys/keys/n"></div>
                     <b>n</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/public_keys/keys/n" title="Permalink to this option"></a>
@@ -918,7 +956,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/public_keys/keys/use"></div>
                     <b>use</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/public_keys/keys/use" title="Permalink to this option"></a>
@@ -942,7 +980,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/public_keys/max_cache_duration_in_hours"></div>
                     <b>max_cache_duration_in_hours</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/public_keys/max_cache_duration_in_hours" title="Permalink to this option"></a>
@@ -962,7 +1000,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/public_keys/type"></div>
                     <b>type</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/public_keys/type" title="Permalink to this option"></a>
@@ -985,7 +1023,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/public_keys/uri"></div>
                     <b>uri</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/public_keys/uri" title="Permalink to this option"></a>
@@ -1005,7 +1043,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/token_auth_scheme"></div>
                     <b>token_auth_scheme</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/token_auth_scheme" title="Permalink to this option"></a>
@@ -1024,7 +1062,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/token_header"></div>
                     <b>token_header</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/token_header" title="Permalink to this option"></a>
@@ -1042,7 +1080,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/token_query_param"></div>
                     <b>token_query_param</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/token_query_param" title="Permalink to this option"></a>
@@ -1060,7 +1098,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/type"></div>
                     <b>type</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/type" title="Permalink to this option"></a>
@@ -1082,7 +1120,398 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
+                                                <td colspan="7">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/validation_failure_policy"></div>
+                    <b>validation_failure_policy</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/validation_failure_policy" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Applicable when type is &#x27;CUSTOM_AUTHENTICATION&#x27;</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="6">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/validation_failure_policy/response_code"></div>
+                    <b>response_code</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/validation_failure_policy/response_code" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>HTTP response code, can include context variables.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="6">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/validation_failure_policy/response_header_transformations"></div>
+                    <b>response_header_transformations</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/validation_failure_policy/response_header_transformations" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/validation_failure_policy/response_header_transformations/filter_headers"></div>
+                    <b>filter_headers</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/validation_failure_policy/response_header_transformations/filter_headers" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
                                                 <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/validation_failure_policy/response_header_transformations/filter_headers/items"></div>
+                    <b>items</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/validation_failure_policy/response_header_transformations/filter_headers/items" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=dictionary</span>                         / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The list of headers.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/validation_failure_policy/response_header_transformations/filter_headers/items/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/validation_failure_policy/response_header_transformations/filter_headers/items/name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The case-insensitive name of the header.  This name must be unique across transformation policies.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/validation_failure_policy/response_header_transformations/filter_headers/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/validation_failure_policy/response_header_transformations/filter_headers/type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>ALLOW</li>
+                                                                                                                                                                                                <li>BLOCK</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>BLOCK drops any headers that are in the list of items, so it acts as an exclusion list.  ALLOW permits only the headers in the list and removes all others, so it acts as an inclusion list.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/validation_failure_policy/response_header_transformations/rename_headers"></div>
+                    <b>rename_headers</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/validation_failure_policy/response_header_transformations/rename_headers" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/validation_failure_policy/response_header_transformations/rename_headers/items"></div>
+                    <b>items</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/validation_failure_policy/response_header_transformations/rename_headers/items" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=dictionary</span>                         / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The list of headers.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/validation_failure_policy/response_header_transformations/rename_headers/items/_from"></div>
+                    <b>_from</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/validation_failure_policy/response_header_transformations/rename_headers/items/_from" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The original case-insensitive name of the header.  This name must be unique across transformation policies.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/validation_failure_policy/response_header_transformations/rename_headers/items/to"></div>
+                    <b>to</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/validation_failure_policy/response_header_transformations/rename_headers/items/to" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The new name of the header.  This name must be unique across transformation policies.</div>
+                                                        </td>
+            </tr>
+                    
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/validation_failure_policy/response_header_transformations/set_headers"></div>
+                    <b>set_headers</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/validation_failure_policy/response_header_transformations/set_headers" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/validation_failure_policy/response_header_transformations/set_headers/items"></div>
+                    <b>items</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/validation_failure_policy/response_header_transformations/set_headers/items" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=dictionary</span>                         / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The list of headers.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/validation_failure_policy/response_header_transformations/set_headers/items/if_exists"></div>
+                    <b>if_exists</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/validation_failure_policy/response_header_transformations/set_headers/items/if_exists" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>OVERWRITE</li>
+                                                                                                                                                                                                <li>APPEND</li>
+                                                                                                                                                                                                <li>SKIP</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>If a header with the same name already exists in the request, OVERWRITE will overwrite the value, APPEND will append to the existing value, or SKIP will keep the existing value.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/validation_failure_policy/response_header_transformations/set_headers/items/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/validation_failure_policy/response_header_transformations/set_headers/items/name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The case-insensitive name of the header.  This name must be unique across transformation policies.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/validation_failure_policy/response_header_transformations/set_headers/items/values"></div>
+                    <b>values</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/validation_failure_policy/response_header_transformations/set_headers/items/values" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                         / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A list of new values.  Each value can be a constant or may include one or more expressions enclosed within ${} delimiters.</div>
+                                                        </td>
+            </tr>
+                    
+                    
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="6">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/validation_failure_policy/response_message"></div>
+                    <b>response_message</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/validation_failure_policy/response_message" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>HTTP response message.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="6">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/validation_failure_policy/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/validation_failure_policy/type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>MODIFY_RESPONSE</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Type of the Validation failure Policy.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/verify_claims"></div>
                     <b>verify_claims</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/verify_claims" title="Permalink to this option"></a>
@@ -1102,7 +1531,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/verify_claims/is_required"></div>
                     <b>is_required</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/verify_claims/is_required" title="Permalink to this option"></a>
@@ -1126,7 +1555,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/verify_claims/key"></div>
                     <b>key</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/verify_claims/key" title="Permalink to this option"></a>
@@ -1146,7 +1575,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/authentication/verify_claims/values"></div>
                     <b>values</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/authentication/verify_claims/values" title="Permalink to this option"></a>
@@ -1166,7 +1595,7 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="5">
+                                                <td colspan="8">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/cors"></div>
                     <b>cors</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/cors" title="Permalink to this option"></a>
@@ -1184,7 +1613,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/cors/allowed_headers"></div>
                     <b>allowed_headers</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/cors/allowed_headers" title="Permalink to this option"></a>
@@ -1202,7 +1631,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/cors/allowed_methods"></div>
                     <b>allowed_methods</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/cors/allowed_methods" title="Permalink to this option"></a>
@@ -1220,7 +1649,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/cors/allowed_origins"></div>
                     <b>allowed_origins</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/cors/allowed_origins" title="Permalink to this option"></a>
@@ -1238,7 +1667,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/cors/exposed_headers"></div>
                     <b>exposed_headers</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/cors/exposed_headers" title="Permalink to this option"></a>
@@ -1256,7 +1685,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/cors/is_allow_credentials_enabled"></div>
                     <b>is_allow_credentials_enabled</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/cors/is_allow_credentials_enabled" title="Permalink to this option"></a>
@@ -1278,7 +1707,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/cors/max_age_in_seconds"></div>
                     <b>max_age_in_seconds</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/cors/max_age_in_seconds" title="Permalink to this option"></a>
@@ -1296,7 +1725,1366 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
+                                                <td colspan="8">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication"></div>
+                    <b>dynamic_authentication</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="7">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers"></div>
+                    <b>authentication_servers</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=dictionary</span>                         / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>List of authentication servers to choose from during dynamic authentication.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="6">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail"></div>
+                    <b>authentication_server_detail</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
                                                 <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/audiences"></div>
+                    <b>audiences</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/audiences" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The list of intended recipients for the token.</div>
+                                            <div>Required when type is &#x27;JWT_AUTHENTICATION&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/cache_key"></div>
+                    <b>cache_key</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/cache_key" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A list of keys from &quot;parameters&quot; attribute value whose values will be added to the cache key.</div>
+                                            <div>Applicable when type is &#x27;CUSTOM_AUTHENTICATION&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/function_id"></div>
+                    <b>function_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/function_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Oracle Functions function resource.</div>
+                                            <div>Required when type is &#x27;CUSTOM_AUTHENTICATION&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/is_anonymous_access_allowed"></div>
+                    <b>is_anonymous_access_allowed</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/is_anonymous_access_allowed" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Whether an unauthenticated user may access the API. Must be &quot;true&quot; to enable ANONYMOUS route authorization.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/issuers"></div>
+                    <b>issuers</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/issuers" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A list of parties that could have issued the token.</div>
+                                            <div>Required when type is &#x27;JWT_AUTHENTICATION&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/max_clock_skew_in_seconds"></div>
+                    <b>max_clock_skew_in_seconds</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/max_clock_skew_in_seconds" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">float</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The maximum expected time difference between the system clocks of the token issuer and the API Gateway.</div>
+                                            <div>Applicable when type is &#x27;JWT_AUTHENTICATION&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/parameters"></div>
+                    <b>parameters</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/parameters" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A map where key is a user defined string and value is a context expressions whose values will be sent to the custom auth function. Values should contain an expression. Example: `{&quot;foo&quot;: &quot;request.header[abc]&quot;}`</div>
+                                            <div>Applicable when type is &#x27;CUSTOM_AUTHENTICATION&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys"></div>
+                    <b>public_keys</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Required when type is &#x27;JWT_AUTHENTICATION&#x27;</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/is_ssl_verify_disabled"></div>
+                    <b>is_ssl_verify_disabled</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/is_ssl_verify_disabled" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Defines whether or not to uphold SSL verification.</div>
+                                            <div>Applicable when type is &#x27;REMOTE_JWKS&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys"></div>
+                    <b>keys</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The set of static public keys.</div>
+                                            <div>Applicable when type is &#x27;STATIC_KEYS&#x27;</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys/alg"></div>
+                    <b>alg</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys/alg" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The algorithm intended for use with this key.</div>
+                                            <div>Required when format is &#x27;JSON_WEB_KEY&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys/e"></div>
+                    <b>e</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys/e" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The base64 url encoded exponent of the RSA public key represented by this key.</div>
+                                            <div>Required when format is &#x27;JSON_WEB_KEY&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys/format"></div>
+                    <b>format</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys/format" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>JSON_WEB_KEY</li>
+                                                                                                                                                                                                <li>PEM</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The format of the public key.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys/key"></div>
+                    <b>key</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys/key" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The content of the PEM-encoded public key.</div>
+                                            <div>Required when format is &#x27;PEM&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys/key_ops"></div>
+                    <b>key_ops</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys/key_ops" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>verify</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The operations for which this key is to be used.</div>
+                                            <div>Applicable when format is &#x27;JSON_WEB_KEY&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys/kid"></div>
+                    <b>kid</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys/kid" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A unique key ID. This key will be used to verify the signature of a JWT with matching &quot;kid&quot;.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys/kty"></div>
+                    <b>kty</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys/kty" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>RSA</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The key type.</div>
+                                            <div>Required when format is &#x27;JSON_WEB_KEY&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys/n"></div>
+                    <b>n</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys/n" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The base64 url encoded modulus of the RSA public key represented by this key.</div>
+                                            <div>Required when format is &#x27;JSON_WEB_KEY&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys/use"></div>
+                    <b>use</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys/use" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>sig</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The intended use of the public key.</div>
+                                            <div>Applicable when format is &#x27;JSON_WEB_KEY&#x27;</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/max_cache_duration_in_hours"></div>
+                    <b>max_cache_duration_in_hours</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/max_cache_duration_in_hours" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The duration for which the JWKS should be cached before it is fetched again.</div>
+                                            <div>Applicable when type is &#x27;REMOTE_JWKS&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>STATIC_KEYS</li>
+                                                                                                                                                                                                <li>REMOTE_JWKS</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Type of the public key set.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/uri"></div>
+                    <b>uri</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/uri" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The uri from which to retrieve the key. It must be accessible without authentication.</div>
+                                            <div>Required when type is &#x27;REMOTE_JWKS&#x27;</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/token_auth_scheme"></div>
+                    <b>token_auth_scheme</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/token_auth_scheme" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The authentication scheme that is to be used when authenticating the token. This must to be provided if &quot;tokenHeader&quot; is specified.</div>
+                                            <div>Applicable when type is &#x27;JWT_AUTHENTICATION&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/token_header"></div>
+                    <b>token_header</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/token_header" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The name of the header containing the authentication token.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/token_query_param"></div>
+                    <b>token_query_param</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/token_query_param" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The name of the query parameter containing the authentication token.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>JWT_AUTHENTICATION</li>
+                                                                                                                                                                                                <li>CUSTOM_AUTHENTICATION</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Type of the authentication policy to use.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy"></div>
+                    <b>validation_failure_policy</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Applicable when type is &#x27;CUSTOM_AUTHENTICATION&#x27;</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_code"></div>
+                    <b>response_code</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_code" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>HTTP response code, can include context variables.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations"></div>
+                    <b>response_header_transformations</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/filter_headers"></div>
+                    <b>filter_headers</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/filter_headers" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/filter_headers/items"></div>
+                    <b>items</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/filter_headers/items" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=dictionary</span>                         / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The list of headers.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/filter_headers/items/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/filter_headers/items/name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The case-insensitive name of the header.  This name must be unique across transformation policies.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/filter_headers/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/filter_headers/type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>ALLOW</li>
+                                                                                                                                                                                                <li>BLOCK</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>BLOCK drops any headers that are in the list of items, so it acts as an exclusion list.  ALLOW permits only the headers in the list and removes all others, so it acts as an inclusion list.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/rename_headers"></div>
+                    <b>rename_headers</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/rename_headers" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/rename_headers/items"></div>
+                    <b>items</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/rename_headers/items" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=dictionary</span>                         / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The list of headers.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/rename_headers/items/_from"></div>
+                    <b>_from</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/rename_headers/items/_from" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The original case-insensitive name of the header.  This name must be unique across transformation policies.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/rename_headers/items/to"></div>
+                    <b>to</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/rename_headers/items/to" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The new name of the header.  This name must be unique across transformation policies.</div>
+                                                        </td>
+            </tr>
+                    
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/set_headers"></div>
+                    <b>set_headers</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/set_headers" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/set_headers/items"></div>
+                    <b>items</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/set_headers/items" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=dictionary</span>                         / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The list of headers.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/set_headers/items/if_exists"></div>
+                    <b>if_exists</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/set_headers/items/if_exists" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>OVERWRITE</li>
+                                                                                                                                                                                                <li>APPEND</li>
+                                                                                                                                                                                                <li>SKIP</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>If a header with the same name already exists in the request, OVERWRITE will overwrite the value, APPEND will append to the existing value, or SKIP will keep the existing value.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/set_headers/items/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/set_headers/items/name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The case-insensitive name of the header.  This name must be unique across transformation policies.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/set_headers/items/values"></div>
+                    <b>values</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/set_headers/items/values" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                         / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A list of new values.  Each value can be a constant or may include one or more expressions enclosed within ${} delimiters.</div>
+                                                        </td>
+            </tr>
+                    
+                    
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_message"></div>
+                    <b>response_message</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_message" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>HTTP response message.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>MODIFY_RESPONSE</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Type of the Validation failure Policy.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/verify_claims"></div>
+                    <b>verify_claims</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/verify_claims" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>A list of claims which should be validated to consider the token valid.</div>
+                                            <div>Applicable when type is &#x27;JWT_AUTHENTICATION&#x27;</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/verify_claims/is_required"></div>
+                    <b>is_required</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/verify_claims/is_required" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Whether the claim is required to be present in the JWT or not. If set to &quot;false&quot;, the claim values will be matched only if the claim is present in the JWT.</div>
+                                            <div>Applicable when type is &#x27;JWT_AUTHENTICATION&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/verify_claims/key"></div>
+                    <b>key</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/verify_claims/key" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Name of the claim.</div>
+                                            <div>Required when type is &#x27;JWT_AUTHENTICATION&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/verify_claims/values"></div>
+                    <b>values</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/verify_claims/values" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The list of acceptable values for a given claim. If this value is &quot;null&quot; or empty and &quot;isRequired&quot; set to &quot;true&quot;, then the presence of this claim in the JWT is validated.</div>
+                                            <div>Applicable when type is &#x27;JWT_AUTHENTICATION&#x27;</div>
+                                                        </td>
+            </tr>
+                    
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="6">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/key"></div>
+                    <b>key</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/key" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/key/expression"></div>
+                    <b>expression</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/key/expression" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>String describing the expression with wildcards.</div>
+                                            <div>Required when type is &#x27;WILDCARD&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/key/is_default"></div>
+                    <b>is_default</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/key/is_default" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Information regarding whether this is the default branch.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/key/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/key/name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Name assigned to the branch.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/key/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/key/type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>WILDCARD</li>
+                                                                                                                                                                                                <li><div style="color: blue"><b>ANY_OF</b>&nbsp;&larr;</div></li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Information regarding type of the selection key.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/authentication_servers/key/values"></div>
+                    <b>values</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/authentication_servers/key/values" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Information regarding the set of values of selector for which this branch should be selected.</div>
+                                            <div>Applicable when type is &#x27;ANY_OF&#x27;</div>
+                                                        </td>
+            </tr>
+                    
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="7">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/selection_source"></div>
+                    <b>selection_source</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/selection_source" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="6">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/selection_source/selector"></div>
+                    <b>selector</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/selection_source/selector" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>String describing the context variable used as selector.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="6">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/dynamic_authentication/selection_source/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/request_policies/dynamic_authentication/selection_source/type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li><div style="color: blue"><b>SINGLE</b>&nbsp;&larr;</div></li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Type of the Selection source to use.</div>
+                                                        </td>
+            </tr>
+                    
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="8">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/mutual_tls"></div>
                     <b>mutual_tls</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/mutual_tls" title="Permalink to this option"></a>
@@ -1314,7 +3102,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/mutual_tls/allowed_sans"></div>
                     <b>allowed_sans</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/mutual_tls/allowed_sans" title="Permalink to this option"></a>
@@ -1332,7 +3120,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/mutual_tls/is_verified_certificate_required"></div>
                     <b>is_verified_certificate_required</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/mutual_tls/is_verified_certificate_required" title="Permalink to this option"></a>
@@ -1354,7 +3142,7 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="5">
+                                                <td colspan="8">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/rate_limiting"></div>
                     <b>rate_limiting</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/rate_limiting" title="Permalink to this option"></a>
@@ -1372,7 +3160,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/rate_limiting/rate_in_requests_per_second"></div>
                     <b>rate_in_requests_per_second</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/rate_limiting/rate_in_requests_per_second" title="Permalink to this option"></a>
@@ -1390,7 +3178,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/rate_limiting/rate_key"></div>
                     <b>rate_key</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/rate_limiting/rate_key" title="Permalink to this option"></a>
@@ -1412,7 +3200,7 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="5">
+                                                <td colspan="8">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/usage_plans"></div>
                     <b>usage_plans</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/usage_plans" title="Permalink to this option"></a>
@@ -1430,7 +3218,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/request_policies/usage_plans/token_locations"></div>
                     <b>token_locations</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/request_policies/usage_plans/token_locations" title="Permalink to this option"></a>
@@ -1448,7 +3236,7 @@ Parameters
                     
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="6">
+                                                <td colspan="9">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes"></div>
                     <b>routes</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes" title="Permalink to this option"></a>
@@ -1465,7 +3253,7 @@ Parameters
                                         <tr>
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="5">
+                                                <td colspan="8">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/backend"></div>
                     <b>backend</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/backend" title="Permalink to this option"></a>
@@ -1483,7 +3271,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/backend/body"></div>
                     <b>body</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/backend/body" title="Permalink to this option"></a>
@@ -1502,7 +3290,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/backend/connect_timeout_in_seconds"></div>
                     <b>connect_timeout_in_seconds</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/backend/connect_timeout_in_seconds" title="Permalink to this option"></a>
@@ -1521,7 +3309,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/backend/function_id"></div>
                     <b>function_id</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/backend/function_id" title="Permalink to this option"></a>
@@ -1540,7 +3328,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/backend/headers"></div>
                     <b>headers</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/backend/headers" title="Permalink to this option"></a>
@@ -1560,7 +3348,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/backend/headers/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/backend/headers/name" title="Permalink to this option"></a>
@@ -1580,7 +3368,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/backend/headers/value"></div>
                     <b>value</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/backend/headers/value" title="Permalink to this option"></a>
@@ -1600,7 +3388,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/backend/is_ssl_verify_disabled"></div>
                     <b>is_ssl_verify_disabled</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/backend/is_ssl_verify_disabled" title="Permalink to this option"></a>
@@ -1623,7 +3411,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/backend/read_timeout_in_seconds"></div>
                     <b>read_timeout_in_seconds</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/backend/read_timeout_in_seconds" title="Permalink to this option"></a>
@@ -1642,7 +3430,266 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/routes/backend/routing_backends"></div>
+                    <b>routing_backends</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/routes/backend/routing_backends" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>List of backends to chose from for Dynamic Routing.</div>
+                                            <div>Required when type is &#x27;DYNAMIC_ROUTING_BACKEND&#x27;</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="6">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/routes/backend/routing_backends/backend"></div>
+                    <b>backend</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/routes/backend/routing_backends/backend" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Required when type is &#x27;DYNAMIC_ROUTING_BACKEND&#x27;</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/routes/backend/routing_backends/backend/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/routes/backend/routing_backends/backend/type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>ORACLE_FUNCTIONS_BACKEND</li>
+                                                                                                                                                                                                <li>HTTP_BACKEND</li>
+                                                                                                                                                                                                <li>STOCK_RESPONSE_BACKEND</li>
+                                                                                                                                                                                                <li>DYNAMIC_ROUTING_BACKEND</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Type of the API backend.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="6">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/routes/backend/routing_backends/key"></div>
+                    <b>key</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/routes/backend/routing_backends/key" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Required when type is &#x27;DYNAMIC_ROUTING_BACKEND&#x27;</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/routes/backend/routing_backends/key/expression"></div>
+                    <b>expression</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/routes/backend/routing_backends/key/expression" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>String describing the expression with wildcards.</div>
+                                            <div>Required when type is &#x27;WILDCARD&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/routes/backend/routing_backends/key/is_default"></div>
+                    <b>is_default</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/routes/backend/routing_backends/key/is_default" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Information regarding whether this is the default branch.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/routes/backend/routing_backends/key/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/routes/backend/routing_backends/key/name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Name assigned to the branch.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/routes/backend/routing_backends/key/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/routes/backend/routing_backends/key/type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>WILDCARD</li>
+                                                                                                                                                                                                <li><div style="color: blue"><b>ANY_OF</b>&nbsp;&larr;</div></li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Information regarding type of the selection key.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/routes/backend/routing_backends/key/values"></div>
+                    <b>values</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/routes/backend/routing_backends/key/values" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Information regarding the set of values of selector for which this branch should be selected.</div>
+                                            <div>Applicable when type is &#x27;ANY_OF&#x27;</div>
+                                                        </td>
+            </tr>
+                    
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="7">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/routes/backend/selection_source"></div>
+                    <b>selection_source</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/routes/backend/selection_source" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Required when type is &#x27;DYNAMIC_ROUTING_BACKEND&#x27;</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="6">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/routes/backend/selection_source/selector"></div>
+                    <b>selector</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/routes/backend/selection_source/selector" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>String describing the context variable used as selector.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="6">
+                    <div class="ansibleOptionAnchor" id="parameter-specification/routes/backend/selection_source/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#parameter-specification/routes/backend/selection_source/type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li><div style="color: blue"><b>SINGLE</b>&nbsp;&larr;</div></li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Type of the Selection source to use.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/backend/send_timeout_in_seconds"></div>
                     <b>send_timeout_in_seconds</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/backend/send_timeout_in_seconds" title="Permalink to this option"></a>
@@ -1661,7 +3708,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/backend/status"></div>
                     <b>status</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/backend/status" title="Permalink to this option"></a>
@@ -1680,7 +3727,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/backend/type"></div>
                     <b>type</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/backend/type" title="Permalink to this option"></a>
@@ -1693,6 +3740,7 @@ Parameters
                                                                                                                                                                 <li>HTTP_BACKEND</li>
                                                                                                                                                                                                 <li>ORACLE_FUNCTIONS_BACKEND</li>
                                                                                                                                                                                                 <li>STOCK_RESPONSE_BACKEND</li>
+                                                                                                                                                                                                <li>DYNAMIC_ROUTING_BACKEND</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -1703,7 +3751,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/backend/url"></div>
                     <b>url</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/backend/url" title="Permalink to this option"></a>
@@ -1722,7 +3770,7 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="5">
+                                                <td colspan="8">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/logging_policies"></div>
                     <b>logging_policies</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/logging_policies" title="Permalink to this option"></a>
@@ -1740,7 +3788,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/logging_policies/access_log"></div>
                     <b>access_log</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/logging_policies/access_log" title="Permalink to this option"></a>
@@ -1759,7 +3807,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/logging_policies/access_log/is_enabled"></div>
                     <b>is_enabled</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/logging_policies/access_log/is_enabled" title="Permalink to this option"></a>
@@ -1784,7 +3832,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/logging_policies/execution_log"></div>
                     <b>execution_log</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/logging_policies/execution_log" title="Permalink to this option"></a>
@@ -1803,7 +3851,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/logging_policies/execution_log/is_enabled"></div>
                     <b>is_enabled</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/logging_policies/execution_log/is_enabled" title="Permalink to this option"></a>
@@ -1828,7 +3876,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/logging_policies/execution_log/log_level"></div>
                     <b>log_level</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/logging_policies/execution_log/log_level" title="Permalink to this option"></a>
@@ -1852,7 +3900,7 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="5">
+                                                <td colspan="8">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/methods"></div>
                     <b>methods</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/methods" title="Permalink to this option"></a>
@@ -1879,7 +3927,7 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="5">
+                                                <td colspan="8">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/path"></div>
                     <b>path</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/path" title="Permalink to this option"></a>
@@ -1896,7 +3944,7 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="5">
+                                                <td colspan="8">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies"></div>
                     <b>request_policies</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies" title="Permalink to this option"></a>
@@ -1914,7 +3962,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/authorization"></div>
                     <b>authorization</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/authorization" title="Permalink to this option"></a>
@@ -1933,7 +3981,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/authorization/allowed_scope"></div>
                     <b>allowed_scope</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/authorization/allowed_scope" title="Permalink to this option"></a>
@@ -1953,7 +4001,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/authorization/type"></div>
                     <b>type</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/authorization/type" title="Permalink to this option"></a>
@@ -1977,7 +4025,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/body_validation"></div>
                     <b>body_validation</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/body_validation" title="Permalink to this option"></a>
@@ -1996,7 +4044,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/body_validation/content"></div>
                     <b>content</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/body_validation/content" title="Permalink to this option"></a>
@@ -2018,7 +4066,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/body_validation/content/validation_type"></div>
                     <b>validation_type</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/body_validation/content/validation_type" title="Permalink to this option"></a>
@@ -2042,7 +4090,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/body_validation/required"></div>
                     <b>required</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/body_validation/required" title="Permalink to this option"></a>
@@ -2065,7 +4113,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/body_validation/validation_mode"></div>
                     <b>validation_mode</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/body_validation/validation_mode" title="Permalink to this option"></a>
@@ -2092,7 +4140,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/cors"></div>
                     <b>cors</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/cors" title="Permalink to this option"></a>
@@ -2111,7 +4159,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/cors/allowed_headers"></div>
                     <b>allowed_headers</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/cors/allowed_headers" title="Permalink to this option"></a>
@@ -2130,7 +4178,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/cors/allowed_methods"></div>
                     <b>allowed_methods</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/cors/allowed_methods" title="Permalink to this option"></a>
@@ -2149,7 +4197,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/cors/allowed_origins"></div>
                     <b>allowed_origins</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/cors/allowed_origins" title="Permalink to this option"></a>
@@ -2168,7 +4216,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/cors/exposed_headers"></div>
                     <b>exposed_headers</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/cors/exposed_headers" title="Permalink to this option"></a>
@@ -2187,7 +4235,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/cors/is_allow_credentials_enabled"></div>
                     <b>is_allow_credentials_enabled</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/cors/is_allow_credentials_enabled" title="Permalink to this option"></a>
@@ -2210,7 +4258,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/cors/max_age_in_seconds"></div>
                     <b>max_age_in_seconds</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/cors/max_age_in_seconds" title="Permalink to this option"></a>
@@ -2229,7 +4277,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/header_transformations"></div>
                     <b>header_transformations</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/header_transformations" title="Permalink to this option"></a>
@@ -2248,7 +4296,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/header_transformations/filter_headers"></div>
                     <b>filter_headers</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/header_transformations/filter_headers" title="Permalink to this option"></a>
@@ -2268,7 +4316,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/header_transformations/filter_headers/items"></div>
                     <b>items</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/header_transformations/filter_headers/items" title="Permalink to this option"></a>
@@ -2289,7 +4337,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/header_transformations/filter_headers/items/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/header_transformations/filter_headers/items/name" title="Permalink to this option"></a>
@@ -2310,7 +4358,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/header_transformations/filter_headers/type"></div>
                     <b>type</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/header_transformations/filter_headers/type" title="Permalink to this option"></a>
@@ -2334,7 +4382,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/header_transformations/rename_headers"></div>
                     <b>rename_headers</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/header_transformations/rename_headers" title="Permalink to this option"></a>
@@ -2354,7 +4402,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/header_transformations/rename_headers/items"></div>
                     <b>items</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/header_transformations/rename_headers/items" title="Permalink to this option"></a>
@@ -2375,7 +4423,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/header_transformations/rename_headers/items/_from"></div>
                     <b>_from</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/header_transformations/rename_headers/items/_from" title="Permalink to this option"></a>
@@ -2396,7 +4444,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/header_transformations/rename_headers/items/to"></div>
                     <b>to</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/header_transformations/rename_headers/items/to" title="Permalink to this option"></a>
@@ -2417,7 +4465,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/header_transformations/set_headers"></div>
                     <b>set_headers</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/header_transformations/set_headers" title="Permalink to this option"></a>
@@ -2437,7 +4485,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/header_transformations/set_headers/items"></div>
                     <b>items</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/header_transformations/set_headers/items" title="Permalink to this option"></a>
@@ -2458,7 +4506,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/header_transformations/set_headers/items/if_exists"></div>
                     <b>if_exists</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/header_transformations/set_headers/items/if_exists" title="Permalink to this option"></a>
@@ -2484,7 +4532,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/header_transformations/set_headers/items/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/header_transformations/set_headers/items/name" title="Permalink to this option"></a>
@@ -2505,7 +4553,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/header_transformations/set_headers/items/values"></div>
                     <b>values</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/header_transformations/set_headers/items/values" title="Permalink to this option"></a>
@@ -2526,7 +4574,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/header_validations"></div>
                     <b>header_validations</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/header_validations" title="Permalink to this option"></a>
@@ -2545,7 +4593,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/header_validations/headers"></div>
                     <b>headers</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/header_validations/headers" title="Permalink to this option"></a>
@@ -2565,7 +4613,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/header_validations/headers/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/header_validations/headers/name" title="Permalink to this option"></a>
@@ -2585,7 +4633,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/header_validations/headers/required"></div>
                     <b>required</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/header_validations/headers/required" title="Permalink to this option"></a>
@@ -2609,7 +4657,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/header_validations/validation_mode"></div>
                     <b>validation_mode</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/header_validations/validation_mode" title="Permalink to this option"></a>
@@ -2636,7 +4684,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/query_parameter_transformations"></div>
                     <b>query_parameter_transformations</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/query_parameter_transformations" title="Permalink to this option"></a>
@@ -2655,7 +4703,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/query_parameter_transformations/filter_query_parameters"></div>
                     <b>filter_query_parameters</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/query_parameter_transformations/filter_query_parameters" title="Permalink to this option"></a>
@@ -2675,7 +4723,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/query_parameter_transformations/filter_query_parameters/items"></div>
                     <b>items</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/query_parameter_transformations/filter_query_parameters/items" title="Permalink to this option"></a>
@@ -2696,7 +4744,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/query_parameter_transformations/filter_query_parameters/items/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/query_parameter_transformations/filter_query_parameters/items/name" title="Permalink to this option"></a>
@@ -2717,7 +4765,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/query_parameter_transformations/filter_query_parameters/type"></div>
                     <b>type</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/query_parameter_transformations/filter_query_parameters/type" title="Permalink to this option"></a>
@@ -2741,7 +4789,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/query_parameter_transformations/rename_query_parameters"></div>
                     <b>rename_query_parameters</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/query_parameter_transformations/rename_query_parameters" title="Permalink to this option"></a>
@@ -2761,7 +4809,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/query_parameter_transformations/rename_query_parameters/items"></div>
                     <b>items</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/query_parameter_transformations/rename_query_parameters/items" title="Permalink to this option"></a>
@@ -2782,7 +4830,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/query_parameter_transformations/rename_query_parameters/items/_from"></div>
                     <b>_from</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/query_parameter_transformations/rename_query_parameters/items/_from" title="Permalink to this option"></a>
@@ -2803,7 +4851,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/query_parameter_transformations/rename_query_parameters/items/to"></div>
                     <b>to</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/query_parameter_transformations/rename_query_parameters/items/to" title="Permalink to this option"></a>
@@ -2824,7 +4872,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/query_parameter_transformations/set_query_parameters"></div>
                     <b>set_query_parameters</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/query_parameter_transformations/set_query_parameters" title="Permalink to this option"></a>
@@ -2844,7 +4892,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/query_parameter_transformations/set_query_parameters/items"></div>
                     <b>items</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/query_parameter_transformations/set_query_parameters/items" title="Permalink to this option"></a>
@@ -2865,7 +4913,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/query_parameter_transformations/set_query_parameters/items/if_exists"></div>
                     <b>if_exists</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/query_parameter_transformations/set_query_parameters/items/if_exists" title="Permalink to this option"></a>
@@ -2891,7 +4939,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/query_parameter_transformations/set_query_parameters/items/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/query_parameter_transformations/set_query_parameters/items/name" title="Permalink to this option"></a>
@@ -2912,7 +4960,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/query_parameter_transformations/set_query_parameters/items/values"></div>
                     <b>values</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/query_parameter_transformations/set_query_parameters/items/values" title="Permalink to this option"></a>
@@ -2933,7 +4981,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/query_parameter_validations"></div>
                     <b>query_parameter_validations</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/query_parameter_validations" title="Permalink to this option"></a>
@@ -2952,7 +5000,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/query_parameter_validations/parameters"></div>
                     <b>parameters</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/query_parameter_validations/parameters" title="Permalink to this option"></a>
@@ -2972,7 +5020,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/query_parameter_validations/parameters/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/query_parameter_validations/parameters/name" title="Permalink to this option"></a>
@@ -2992,7 +5040,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/query_parameter_validations/parameters/required"></div>
                     <b>required</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/query_parameter_validations/parameters/required" title="Permalink to this option"></a>
@@ -3016,7 +5064,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/query_parameter_validations/validation_mode"></div>
                     <b>validation_mode</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/query_parameter_validations/validation_mode" title="Permalink to this option"></a>
@@ -3043,7 +5091,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/response_cache_lookup"></div>
                     <b>response_cache_lookup</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/response_cache_lookup" title="Permalink to this option"></a>
@@ -3062,7 +5110,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/response_cache_lookup/cache_key_additions"></div>
                     <b>cache_key_additions</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/response_cache_lookup/cache_key_additions" title="Permalink to this option"></a>
@@ -3081,7 +5129,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/response_cache_lookup/is_enabled"></div>
                     <b>is_enabled</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/response_cache_lookup/is_enabled" title="Permalink to this option"></a>
@@ -3104,7 +5152,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/response_cache_lookup/is_private_caching_enabled"></div>
                     <b>is_private_caching_enabled</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/response_cache_lookup/is_private_caching_enabled" title="Permalink to this option"></a>
@@ -3129,7 +5177,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/request_policies/response_cache_lookup/type"></div>
                     <b>type</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/request_policies/response_cache_lookup/type" title="Permalink to this option"></a>
@@ -3151,7 +5199,7 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="5">
+                                                <td colspan="8">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/response_policies"></div>
                     <b>response_policies</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/response_policies" title="Permalink to this option"></a>
@@ -3169,7 +5217,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/response_policies/header_transformations"></div>
                     <b>header_transformations</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/response_policies/header_transformations" title="Permalink to this option"></a>
@@ -3188,7 +5236,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/response_policies/header_transformations/filter_headers"></div>
                     <b>filter_headers</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/response_policies/header_transformations/filter_headers" title="Permalink to this option"></a>
@@ -3208,7 +5256,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/response_policies/header_transformations/filter_headers/items"></div>
                     <b>items</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/response_policies/header_transformations/filter_headers/items" title="Permalink to this option"></a>
@@ -3229,7 +5277,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/response_policies/header_transformations/filter_headers/items/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/response_policies/header_transformations/filter_headers/items/name" title="Permalink to this option"></a>
@@ -3250,7 +5298,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/response_policies/header_transformations/filter_headers/type"></div>
                     <b>type</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/response_policies/header_transformations/filter_headers/type" title="Permalink to this option"></a>
@@ -3274,7 +5322,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/response_policies/header_transformations/rename_headers"></div>
                     <b>rename_headers</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/response_policies/header_transformations/rename_headers" title="Permalink to this option"></a>
@@ -3294,7 +5342,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/response_policies/header_transformations/rename_headers/items"></div>
                     <b>items</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/response_policies/header_transformations/rename_headers/items" title="Permalink to this option"></a>
@@ -3315,7 +5363,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/response_policies/header_transformations/rename_headers/items/_from"></div>
                     <b>_from</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/response_policies/header_transformations/rename_headers/items/_from" title="Permalink to this option"></a>
@@ -3336,7 +5384,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/response_policies/header_transformations/rename_headers/items/to"></div>
                     <b>to</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/response_policies/header_transformations/rename_headers/items/to" title="Permalink to this option"></a>
@@ -3357,7 +5405,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/response_policies/header_transformations/set_headers"></div>
                     <b>set_headers</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/response_policies/header_transformations/set_headers" title="Permalink to this option"></a>
@@ -3377,7 +5425,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="2">
+                                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/response_policies/header_transformations/set_headers/items"></div>
                     <b>items</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/response_policies/header_transformations/set_headers/items" title="Permalink to this option"></a>
@@ -3398,7 +5446,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/response_policies/header_transformations/set_headers/items/if_exists"></div>
                     <b>if_exists</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/response_policies/header_transformations/set_headers/items/if_exists" title="Permalink to this option"></a>
@@ -3424,7 +5472,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/response_policies/header_transformations/set_headers/items/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/response_policies/header_transformations/set_headers/items/name" title="Permalink to this option"></a>
@@ -3445,7 +5493,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="1">
+                                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/response_policies/header_transformations/set_headers/items/values"></div>
                     <b>values</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/response_policies/header_transformations/set_headers/items/values" title="Permalink to this option"></a>
@@ -3466,7 +5514,7 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="4">
+                                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/response_policies/response_cache_store"></div>
                     <b>response_cache_store</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/response_policies/response_cache_store" title="Permalink to this option"></a>
@@ -3485,7 +5533,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/response_policies/response_cache_store/time_to_live_in_seconds"></div>
                     <b>time_to_live_in_seconds</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/response_policies/response_cache_store/time_to_live_in_seconds" title="Permalink to this option"></a>
@@ -3504,7 +5552,7 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
-                                                <td colspan="3">
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-specification/routes/response_policies/response_cache_store/type"></div>
                     <b>type</b>
                     <a class="ansibleOptionLink" href="#parameter-specification/routes/response_policies/response_cache_store/type" title="Permalink to this option"></a>
@@ -3526,7 +5574,7 @@ Parameters
                     
                     
                                 <tr>
-                                                                <td colspan="7">
+                                                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="parameter-state"></div>
                     <b>state</b>
                     <a class="ansibleOptionLink" href="#parameter-state" title="Permalink to this option"></a>
@@ -3547,7 +5595,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="7">
+                                                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="parameter-tenancy"></div>
                     <b>tenancy</b>
                     <a class="ansibleOptionLink" href="#parameter-tenancy" title="Permalink to this option"></a>
@@ -3562,7 +5610,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="7">
+                                                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="parameter-wait"></div>
                     <b>wait</b>
                     <a class="ansibleOptionLink" href="#parameter-wait" title="Permalink to this option"></a>
@@ -3581,7 +5629,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="7">
+                                                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="parameter-wait_timeout"></div>
                     <b>wait_timeout</b>
                     <a class="ansibleOptionLink" href="#parameter-wait_timeout" title="Permalink to this option"></a>
@@ -3687,6 +5735,60 @@ Examples
             usage_plans:
               # required
               token_locations: [ "token_locations_example" ]
+            dynamic_authentication:
+              # required
+              selection_source:
+                # required
+                selector: selector_example
+
+                # optional
+                type: SINGLE
+              authentication_servers:
+              - # required
+                key:
+                  # required
+                  expression: expression_example
+                  type: WILDCARD
+                  name: name_example
+
+                  # optional
+                  is_default: true
+                authentication_server_detail:
+                  # required
+                  issuers: [ "issuers_example" ]
+                  audiences: [ "audiences_example" ]
+                  public_keys:
+                    # required
+                    type: STATIC_KEYS
+
+                    # optional
+                    keys:
+                    - # required
+                      kty: RSA
+                      alg: alg_example
+                      n: n_example
+                      e: e_example
+                      kid: kid_example
+                      format: JSON_WEB_KEY
+
+                      # optional
+                      use: sig
+                      key_ops: [ "verify" ]
+                  type: JWT_AUTHENTICATION
+
+                      # optional
+                  token_auth_scheme: token_auth_scheme_example
+                  verify_claims:
+                  - # required
+                    key: key_example
+
+                    # optional
+                    values: [ "values_example" ]
+                    is_required: true
+                  max_clock_skew_in_seconds: 3.4
+                  is_anonymous_access_allowed: true
+                  token_header: token_header_example
+                  token_query_param: token_query_param_example
           logging_policies:
             # optional
             access_log:
@@ -3920,6 +6022,60 @@ Examples
             usage_plans:
               # required
               token_locations: [ "token_locations_example" ]
+            dynamic_authentication:
+              # required
+              selection_source:
+                # required
+                selector: selector_example
+
+                # optional
+                type: SINGLE
+              authentication_servers:
+              - # required
+                key:
+                  # required
+                  expression: expression_example
+                  type: WILDCARD
+                  name: name_example
+
+                  # optional
+                  is_default: true
+                authentication_server_detail:
+                  # required
+                  issuers: [ "issuers_example" ]
+                  audiences: [ "audiences_example" ]
+                  public_keys:
+                    # required
+                    type: STATIC_KEYS
+
+                    # optional
+                    keys:
+                    - # required
+                      kty: RSA
+                      alg: alg_example
+                      n: n_example
+                      e: e_example
+                      kid: kid_example
+                      format: JSON_WEB_KEY
+
+                      # optional
+                      use: sig
+                      key_ops: [ "verify" ]
+                  type: JWT_AUTHENTICATION
+
+                      # optional
+                  token_auth_scheme: token_auth_scheme_example
+                  verify_claims:
+                  - # required
+                    key: key_example
+
+                    # optional
+                    values: [ "values_example" ]
+                    is_required: true
+                  max_clock_skew_in_seconds: 3.4
+                  is_anonymous_access_allowed: true
+                  token_header: token_header_example
+                  token_query_param: token_query_param_example
           logging_policies:
             # optional
             access_log:
@@ -4150,6 +6306,60 @@ Examples
             usage_plans:
               # required
               token_locations: [ "token_locations_example" ]
+            dynamic_authentication:
+              # required
+              selection_source:
+                # required
+                selector: selector_example
+
+                # optional
+                type: SINGLE
+              authentication_servers:
+              - # required
+                key:
+                  # required
+                  expression: expression_example
+                  type: WILDCARD
+                  name: name_example
+
+                  # optional
+                  is_default: true
+                authentication_server_detail:
+                  # required
+                  issuers: [ "issuers_example" ]
+                  audiences: [ "audiences_example" ]
+                  public_keys:
+                    # required
+                    type: STATIC_KEYS
+
+                    # optional
+                    keys:
+                    - # required
+                      kty: RSA
+                      alg: alg_example
+                      n: n_example
+                      e: e_example
+                      kid: kid_example
+                      format: JSON_WEB_KEY
+
+                      # optional
+                      use: sig
+                      key_ops: [ "verify" ]
+                  type: JWT_AUTHENTICATION
+
+                      # optional
+                  token_auth_scheme: token_auth_scheme_example
+                  verify_claims:
+                  - # required
+                    key: key_example
+
+                    # optional
+                    values: [ "values_example" ]
+                    is_required: true
+                  max_clock_skew_in_seconds: 3.4
+                  is_anonymous_access_allowed: true
+                  token_header: token_header_example
+                  token_query_param: token_query_param_example
           logging_policies:
             # optional
             access_log:
@@ -4342,12 +6552,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="8">Key</th>
+            <th colspan="11">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="8">
+                                <td colspan="11">
                     <div class="ansibleOptionAnchor" id="return-deployment"></div>
                     <b>deployment</b>
                     <a class="ansibleOptionLink" href="#return-deployment" title="Permalink to this return value"></a>
@@ -4360,12 +6570,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Deployment resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;endpoint&#x27;: &#x27;endpoint_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;gateway_id&#x27;: &#x27;ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;path_prefix&#x27;: &#x27;path_prefix_example&#x27;, &#x27;specification&#x27;: {&#x27;logging_policies&#x27;: {&#x27;access_log&#x27;: {&#x27;is_enabled&#x27;: True}, &#x27;execution_log&#x27;: {&#x27;is_enabled&#x27;: True, &#x27;log_level&#x27;: &#x27;INFO&#x27;}}, &#x27;request_policies&#x27;: {&#x27;authentication&#x27;: {&#x27;audiences&#x27;: [], &#x27;function_id&#x27;: &#x27;ocid1.function.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_anonymous_access_allowed&#x27;: True, &#x27;issuers&#x27;: [], &#x27;max_clock_skew_in_seconds&#x27;: 3.4, &#x27;public_keys&#x27;: {&#x27;is_ssl_verify_disabled&#x27;: True, &#x27;keys&#x27;: [{&#x27;alg&#x27;: &#x27;alg_example&#x27;, &#x27;e&#x27;: &#x27;e_example&#x27;, &#x27;format&#x27;: &#x27;JSON_WEB_KEY&#x27;, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;key_ops&#x27;: [], &#x27;kid&#x27;: &#x27;kid_example&#x27;, &#x27;kty&#x27;: &#x27;RSA&#x27;, &#x27;n&#x27;: &#x27;n_example&#x27;, &#x27;use&#x27;: &#x27;sig&#x27;}], &#x27;max_cache_duration_in_hours&#x27;: 56, &#x27;type&#x27;: &#x27;STATIC_KEYS&#x27;, &#x27;uri&#x27;: &#x27;uri_example&#x27;}, &#x27;token_auth_scheme&#x27;: &#x27;token_auth_scheme_example&#x27;, &#x27;token_header&#x27;: &#x27;token_header_example&#x27;, &#x27;token_query_param&#x27;: &#x27;token_query_param_example&#x27;, &#x27;type&#x27;: &#x27;CUSTOM_AUTHENTICATION&#x27;, &#x27;verify_claims&#x27;: [{&#x27;is_required&#x27;: True, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;values&#x27;: []}]}, &#x27;cors&#x27;: {&#x27;allowed_headers&#x27;: [], &#x27;allowed_methods&#x27;: [], &#x27;allowed_origins&#x27;: [], &#x27;exposed_headers&#x27;: [], &#x27;is_allow_credentials_enabled&#x27;: True, &#x27;max_age_in_seconds&#x27;: 56}, &#x27;mutual_tls&#x27;: {&#x27;allowed_sans&#x27;: [], &#x27;is_verified_certificate_required&#x27;: True}, &#x27;rate_limiting&#x27;: {&#x27;rate_in_requests_per_second&#x27;: 56, &#x27;rate_key&#x27;: &#x27;CLIENT_IP&#x27;}, &#x27;usage_plans&#x27;: {&#x27;token_locations&#x27;: []}}, &#x27;routes&#x27;: [{&#x27;backend&#x27;: {&#x27;body&#x27;: &#x27;body_example&#x27;, &#x27;connect_timeout_in_seconds&#x27;: 3.4, &#x27;function_id&#x27;: &#x27;ocid1.function.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;headers&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;is_ssl_verify_disabled&#x27;: True, &#x27;read_timeout_in_seconds&#x27;: 3.4, &#x27;send_timeout_in_seconds&#x27;: 3.4, &#x27;status&#x27;: 56, &#x27;type&#x27;: &#x27;ORACLE_FUNCTIONS_BACKEND&#x27;, &#x27;url&#x27;: &#x27;url_example&#x27;}, &#x27;logging_policies&#x27;: {&#x27;access_log&#x27;: {&#x27;is_enabled&#x27;: True}, &#x27;execution_log&#x27;: {&#x27;is_enabled&#x27;: True, &#x27;log_level&#x27;: &#x27;INFO&#x27;}}, &#x27;methods&#x27;: [], &#x27;path&#x27;: &#x27;path_example&#x27;, &#x27;request_policies&#x27;: {&#x27;authorization&#x27;: {&#x27;allowed_scope&#x27;: [], &#x27;type&#x27;: &#x27;ANONYMOUS&#x27;}, &#x27;body_validation&#x27;: {&#x27;content&#x27;: {&#x27;validation_type&#x27;: &#x27;NONE&#x27;}, &#x27;required&#x27;: True, &#x27;validation_mode&#x27;: &#x27;ENFORCING&#x27;}, &#x27;cors&#x27;: {&#x27;allowed_headers&#x27;: [], &#x27;allowed_methods&#x27;: [], &#x27;allowed_origins&#x27;: [], &#x27;exposed_headers&#x27;: [], &#x27;is_allow_credentials_enabled&#x27;: True, &#x27;max_age_in_seconds&#x27;: 56}, &#x27;header_transformations&#x27;: {&#x27;filter_headers&#x27;: {&#x27;items&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;type&#x27;: &#x27;ALLOW&#x27;}, &#x27;rename_headers&#x27;: {&#x27;items&#x27;: [{&#x27;_from&#x27;: &#x27;_from_example&#x27;, &#x27;to&#x27;: &#x27;to_example&#x27;}]}, &#x27;set_headers&#x27;: {&#x27;items&#x27;: [{&#x27;if_exists&#x27;: &#x27;OVERWRITE&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;values&#x27;: []}]}}, &#x27;header_validations&#x27;: {&#x27;headers&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;required&#x27;: True}], &#x27;validation_mode&#x27;: &#x27;ENFORCING&#x27;}, &#x27;query_parameter_transformations&#x27;: {&#x27;filter_query_parameters&#x27;: {&#x27;items&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;type&#x27;: &#x27;ALLOW&#x27;}, &#x27;rename_query_parameters&#x27;: {&#x27;items&#x27;: [{&#x27;_from&#x27;: &#x27;_from_example&#x27;, &#x27;to&#x27;: &#x27;to_example&#x27;}]}, &#x27;set_query_parameters&#x27;: {&#x27;items&#x27;: [{&#x27;if_exists&#x27;: &#x27;OVERWRITE&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;values&#x27;: []}]}}, &#x27;query_parameter_validations&#x27;: {&#x27;parameters&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;required&#x27;: True}], &#x27;validation_mode&#x27;: &#x27;ENFORCING&#x27;}, &#x27;response_cache_lookup&#x27;: {&#x27;cache_key_additions&#x27;: [], &#x27;is_enabled&#x27;: True, &#x27;is_private_caching_enabled&#x27;: True, &#x27;type&#x27;: &#x27;SIMPLE_LOOKUP_POLICY&#x27;}}, &#x27;response_policies&#x27;: {&#x27;header_transformations&#x27;: {&#x27;filter_headers&#x27;: {&#x27;items&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;type&#x27;: &#x27;ALLOW&#x27;}, &#x27;rename_headers&#x27;: {&#x27;items&#x27;: [{&#x27;_from&#x27;: &#x27;_from_example&#x27;, &#x27;to&#x27;: &#x27;to_example&#x27;}]}, &#x27;set_headers&#x27;: {&#x27;items&#x27;: [{&#x27;if_exists&#x27;: &#x27;OVERWRITE&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;values&#x27;: []}]}}, &#x27;response_cache_store&#x27;: {&#x27;time_to_live_in_seconds&#x27;: 56, &#x27;type&#x27;: &#x27;FIXED_TTL_STORE_POLICY&#x27;}}}]}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;endpoint&#x27;: &#x27;endpoint_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;gateway_id&#x27;: &#x27;ocid1.gateway.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;path_prefix&#x27;: &#x27;path_prefix_example&#x27;, &#x27;specification&#x27;: {&#x27;logging_policies&#x27;: {&#x27;access_log&#x27;: {&#x27;is_enabled&#x27;: True}, &#x27;execution_log&#x27;: {&#x27;is_enabled&#x27;: True, &#x27;log_level&#x27;: &#x27;INFO&#x27;}}, &#x27;request_policies&#x27;: {&#x27;authentication&#x27;: {&#x27;audiences&#x27;: [], &#x27;cache_key&#x27;: [], &#x27;function_id&#x27;: &#x27;ocid1.function.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_anonymous_access_allowed&#x27;: True, &#x27;issuers&#x27;: [], &#x27;max_clock_skew_in_seconds&#x27;: 3.4, &#x27;parameters&#x27;: {}, &#x27;public_keys&#x27;: {&#x27;is_ssl_verify_disabled&#x27;: True, &#x27;keys&#x27;: [{&#x27;alg&#x27;: &#x27;alg_example&#x27;, &#x27;e&#x27;: &#x27;e_example&#x27;, &#x27;format&#x27;: &#x27;JSON_WEB_KEY&#x27;, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;key_ops&#x27;: [], &#x27;kid&#x27;: &#x27;kid_example&#x27;, &#x27;kty&#x27;: &#x27;RSA&#x27;, &#x27;n&#x27;: &#x27;n_example&#x27;, &#x27;use&#x27;: &#x27;sig&#x27;}], &#x27;max_cache_duration_in_hours&#x27;: 56, &#x27;type&#x27;: &#x27;STATIC_KEYS&#x27;, &#x27;uri&#x27;: &#x27;uri_example&#x27;}, &#x27;token_auth_scheme&#x27;: &#x27;token_auth_scheme_example&#x27;, &#x27;token_header&#x27;: &#x27;token_header_example&#x27;, &#x27;token_query_param&#x27;: &#x27;token_query_param_example&#x27;, &#x27;type&#x27;: &#x27;CUSTOM_AUTHENTICATION&#x27;, &#x27;validation_failure_policy&#x27;: {&#x27;response_code&#x27;: &#x27;response_code_example&#x27;, &#x27;response_header_transformations&#x27;: {&#x27;filter_headers&#x27;: {&#x27;items&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;type&#x27;: &#x27;ALLOW&#x27;}, &#x27;rename_headers&#x27;: {&#x27;items&#x27;: [{&#x27;_from&#x27;: &#x27;_from_example&#x27;, &#x27;to&#x27;: &#x27;to_example&#x27;}]}, &#x27;set_headers&#x27;: {&#x27;items&#x27;: [{&#x27;if_exists&#x27;: &#x27;OVERWRITE&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;values&#x27;: []}]}}, &#x27;response_message&#x27;: &#x27;response_message_example&#x27;, &#x27;type&#x27;: &#x27;MODIFY_RESPONSE&#x27;}, &#x27;verify_claims&#x27;: [{&#x27;is_required&#x27;: True, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;values&#x27;: []}]}, &#x27;cors&#x27;: {&#x27;allowed_headers&#x27;: [], &#x27;allowed_methods&#x27;: [], &#x27;allowed_origins&#x27;: [], &#x27;exposed_headers&#x27;: [], &#x27;is_allow_credentials_enabled&#x27;: True, &#x27;max_age_in_seconds&#x27;: 56}, &#x27;dynamic_authentication&#x27;: {&#x27;authentication_servers&#x27;: [{&#x27;authentication_server_detail&#x27;: {&#x27;audiences&#x27;: [], &#x27;cache_key&#x27;: [], &#x27;function_id&#x27;: &#x27;ocid1.function.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_anonymous_access_allowed&#x27;: True, &#x27;issuers&#x27;: [], &#x27;max_clock_skew_in_seconds&#x27;: 3.4, &#x27;parameters&#x27;: {}, &#x27;public_keys&#x27;: {&#x27;is_ssl_verify_disabled&#x27;: True, &#x27;keys&#x27;: [{&#x27;alg&#x27;: &#x27;alg_example&#x27;, &#x27;e&#x27;: &#x27;e_example&#x27;, &#x27;format&#x27;: &#x27;JSON_WEB_KEY&#x27;, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;key_ops&#x27;: [], &#x27;kid&#x27;: &#x27;kid_example&#x27;, &#x27;kty&#x27;: &#x27;RSA&#x27;, &#x27;n&#x27;: &#x27;n_example&#x27;, &#x27;use&#x27;: &#x27;sig&#x27;}], &#x27;max_cache_duration_in_hours&#x27;: 56, &#x27;type&#x27;: &#x27;STATIC_KEYS&#x27;, &#x27;uri&#x27;: &#x27;uri_example&#x27;}, &#x27;token_auth_scheme&#x27;: &#x27;token_auth_scheme_example&#x27;, &#x27;token_header&#x27;: &#x27;token_header_example&#x27;, &#x27;token_query_param&#x27;: &#x27;token_query_param_example&#x27;, &#x27;type&#x27;: &#x27;CUSTOM_AUTHENTICATION&#x27;, &#x27;validation_failure_policy&#x27;: {&#x27;response_code&#x27;: &#x27;response_code_example&#x27;, &#x27;response_header_transformations&#x27;: {&#x27;filter_headers&#x27;: {&#x27;items&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;type&#x27;: &#x27;ALLOW&#x27;}, &#x27;rename_headers&#x27;: {&#x27;items&#x27;: [{&#x27;_from&#x27;: &#x27;_from_example&#x27;, &#x27;to&#x27;: &#x27;to_example&#x27;}]}, &#x27;set_headers&#x27;: {&#x27;items&#x27;: [{&#x27;if_exists&#x27;: &#x27;OVERWRITE&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;values&#x27;: []}]}}, &#x27;response_message&#x27;: &#x27;response_message_example&#x27;, &#x27;type&#x27;: &#x27;MODIFY_RESPONSE&#x27;}, &#x27;verify_claims&#x27;: [{&#x27;is_required&#x27;: True, &#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;values&#x27;: []}]}, &#x27;key&#x27;: {&#x27;expression&#x27;: &#x27;expression_example&#x27;, &#x27;is_default&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;type&#x27;: &#x27;ANY_OF&#x27;, &#x27;values&#x27;: []}}], &#x27;selection_source&#x27;: {&#x27;selector&#x27;: &#x27;selector_example&#x27;, &#x27;type&#x27;: &#x27;SINGLE&#x27;}}, &#x27;mutual_tls&#x27;: {&#x27;allowed_sans&#x27;: [], &#x27;is_verified_certificate_required&#x27;: True}, &#x27;rate_limiting&#x27;: {&#x27;rate_in_requests_per_second&#x27;: 56, &#x27;rate_key&#x27;: &#x27;CLIENT_IP&#x27;}, &#x27;usage_plans&#x27;: {&#x27;token_locations&#x27;: []}}, &#x27;routes&#x27;: [{&#x27;backend&#x27;: {&#x27;body&#x27;: &#x27;body_example&#x27;, &#x27;connect_timeout_in_seconds&#x27;: 3.4, &#x27;function_id&#x27;: &#x27;ocid1.function.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;headers&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;is_ssl_verify_disabled&#x27;: True, &#x27;read_timeout_in_seconds&#x27;: 3.4, &#x27;routing_backends&#x27;: [{&#x27;backend&#x27;: {&#x27;type&#x27;: &#x27;ORACLE_FUNCTIONS_BACKEND&#x27;}, &#x27;key&#x27;: {&#x27;expression&#x27;: &#x27;expression_example&#x27;, &#x27;is_default&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;type&#x27;: &#x27;ANY_OF&#x27;, &#x27;values&#x27;: []}}], &#x27;selection_source&#x27;: {&#x27;selector&#x27;: &#x27;selector_example&#x27;, &#x27;type&#x27;: &#x27;SINGLE&#x27;}, &#x27;send_timeout_in_seconds&#x27;: 3.4, &#x27;status&#x27;: 56, &#x27;type&#x27;: &#x27;ORACLE_FUNCTIONS_BACKEND&#x27;, &#x27;url&#x27;: &#x27;url_example&#x27;}, &#x27;logging_policies&#x27;: {&#x27;access_log&#x27;: {&#x27;is_enabled&#x27;: True}, &#x27;execution_log&#x27;: {&#x27;is_enabled&#x27;: True, &#x27;log_level&#x27;: &#x27;INFO&#x27;}}, &#x27;methods&#x27;: [], &#x27;path&#x27;: &#x27;path_example&#x27;, &#x27;request_policies&#x27;: {&#x27;authorization&#x27;: {&#x27;allowed_scope&#x27;: [], &#x27;type&#x27;: &#x27;ANONYMOUS&#x27;}, &#x27;body_validation&#x27;: {&#x27;content&#x27;: {&#x27;validation_type&#x27;: &#x27;NONE&#x27;}, &#x27;required&#x27;: True, &#x27;validation_mode&#x27;: &#x27;ENFORCING&#x27;}, &#x27;cors&#x27;: {&#x27;allowed_headers&#x27;: [], &#x27;allowed_methods&#x27;: [], &#x27;allowed_origins&#x27;: [], &#x27;exposed_headers&#x27;: [], &#x27;is_allow_credentials_enabled&#x27;: True, &#x27;max_age_in_seconds&#x27;: 56}, &#x27;header_transformations&#x27;: {&#x27;filter_headers&#x27;: {&#x27;items&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;type&#x27;: &#x27;ALLOW&#x27;}, &#x27;rename_headers&#x27;: {&#x27;items&#x27;: [{&#x27;_from&#x27;: &#x27;_from_example&#x27;, &#x27;to&#x27;: &#x27;to_example&#x27;}]}, &#x27;set_headers&#x27;: {&#x27;items&#x27;: [{&#x27;if_exists&#x27;: &#x27;OVERWRITE&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;values&#x27;: []}]}}, &#x27;header_validations&#x27;: {&#x27;headers&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;required&#x27;: True}], &#x27;validation_mode&#x27;: &#x27;ENFORCING&#x27;}, &#x27;query_parameter_transformations&#x27;: {&#x27;filter_query_parameters&#x27;: {&#x27;items&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;type&#x27;: &#x27;ALLOW&#x27;}, &#x27;rename_query_parameters&#x27;: {&#x27;items&#x27;: [{&#x27;_from&#x27;: &#x27;_from_example&#x27;, &#x27;to&#x27;: &#x27;to_example&#x27;}]}, &#x27;set_query_parameters&#x27;: {&#x27;items&#x27;: [{&#x27;if_exists&#x27;: &#x27;OVERWRITE&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;values&#x27;: []}]}}, &#x27;query_parameter_validations&#x27;: {&#x27;parameters&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;required&#x27;: True}], &#x27;validation_mode&#x27;: &#x27;ENFORCING&#x27;}, &#x27;response_cache_lookup&#x27;: {&#x27;cache_key_additions&#x27;: [], &#x27;is_enabled&#x27;: True, &#x27;is_private_caching_enabled&#x27;: True, &#x27;type&#x27;: &#x27;SIMPLE_LOOKUP_POLICY&#x27;}}, &#x27;response_policies&#x27;: {&#x27;header_transformations&#x27;: {&#x27;filter_headers&#x27;: {&#x27;items&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;type&#x27;: &#x27;ALLOW&#x27;}, &#x27;rename_headers&#x27;: {&#x27;items&#x27;: [{&#x27;_from&#x27;: &#x27;_from_example&#x27;, &#x27;to&#x27;: &#x27;to_example&#x27;}]}, &#x27;set_headers&#x27;: {&#x27;items&#x27;: [{&#x27;if_exists&#x27;: &#x27;OVERWRITE&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;values&#x27;: []}]}}, &#x27;response_cache_store&#x27;: {&#x27;time_to_live_in_seconds&#x27;: 56, &#x27;type&#x27;: &#x27;FIXED_TTL_STORE_POLICY&#x27;}}}]}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="7">
+                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="return-deployment/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-deployment/compartment_id" title="Permalink to this return value"></a>
@@ -4383,7 +6593,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="7">
+                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="return-deployment/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-deployment/defined_tags" title="Permalink to this return value"></a>
@@ -4402,7 +6612,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="7">
+                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="return-deployment/display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#return-deployment/display_name" title="Permalink to this return value"></a>
@@ -4421,7 +6631,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="7">
+                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="return-deployment/endpoint"></div>
                     <b>endpoint</b>
                     <a class="ansibleOptionLink" href="#return-deployment/endpoint" title="Permalink to this return value"></a>
@@ -4439,7 +6649,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="7">
+                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="return-deployment/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-deployment/freeform_tags" title="Permalink to this return value"></a>
@@ -4458,7 +6668,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="7">
+                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="return-deployment/gateway_id"></div>
                     <b>gateway_id</b>
                     <a class="ansibleOptionLink" href="#return-deployment/gateway_id" title="Permalink to this return value"></a>
@@ -4476,7 +6686,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="7">
+                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="return-deployment/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-deployment/id" title="Permalink to this return value"></a>
@@ -4494,7 +6704,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="7">
+                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="return-deployment/lifecycle_details"></div>
                     <b>lifecycle_details</b>
                     <a class="ansibleOptionLink" href="#return-deployment/lifecycle_details" title="Permalink to this return value"></a>
@@ -4512,7 +6722,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="7">
+                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="return-deployment/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-deployment/lifecycle_state" title="Permalink to this return value"></a>
@@ -4530,7 +6740,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="7">
+                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="return-deployment/path_prefix"></div>
                     <b>path_prefix</b>
                     <a class="ansibleOptionLink" href="#return-deployment/path_prefix" title="Permalink to this return value"></a>
@@ -4548,7 +6758,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="7">
+                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification"></div>
                     <b>specification</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification" title="Permalink to this return value"></a>
@@ -4565,7 +6775,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="6">
+                                <td colspan="9">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/logging_policies"></div>
                     <b>logging_policies</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/logging_policies" title="Permalink to this return value"></a>
@@ -4583,7 +6793,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="8">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/logging_policies/access_log"></div>
                     <b>access_log</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/logging_policies/access_log" title="Permalink to this return value"></a>
@@ -4602,7 +6812,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/logging_policies/access_log/is_enabled"></div>
                     <b>is_enabled</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/logging_policies/access_log/is_enabled" title="Permalink to this return value"></a>
@@ -4625,7 +6835,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="8">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/logging_policies/execution_log"></div>
                     <b>execution_log</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/logging_policies/execution_log" title="Permalink to this return value"></a>
@@ -4644,7 +6854,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/logging_policies/execution_log/is_enabled"></div>
                     <b>is_enabled</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/logging_policies/execution_log/is_enabled" title="Permalink to this return value"></a>
@@ -4667,7 +6877,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/logging_policies/execution_log/log_level"></div>
                     <b>log_level</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/logging_policies/execution_log/log_level" title="Permalink to this return value"></a>
@@ -4688,7 +6898,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="6">
+                                <td colspan="9">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies"></div>
                     <b>request_policies</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies" title="Permalink to this return value"></a>
@@ -4706,7 +6916,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="8">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication"></div>
                     <b>authentication</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication" title="Permalink to this return value"></a>
@@ -4725,7 +6935,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/audiences"></div>
                     <b>audiences</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/audiences" title="Permalink to this return value"></a>
@@ -4744,7 +6954,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/cache_key"></div>
+                    <b>cache_key</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/cache_key" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A list of keys from &quot;parameters&quot; attribute value whose values will be added to the cache key.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/function_id"></div>
                     <b>function_id</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/function_id" title="Permalink to this return value"></a>
@@ -4765,7 +6994,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/is_anonymous_access_allowed"></div>
                     <b>is_anonymous_access_allowed</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/is_anonymous_access_allowed" title="Permalink to this return value"></a>
@@ -4786,7 +7015,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/issuers"></div>
                     <b>issuers</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/issuers" title="Permalink to this return value"></a>
@@ -4805,7 +7034,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/max_clock_skew_in_seconds"></div>
                     <b>max_clock_skew_in_seconds</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/max_clock_skew_in_seconds" title="Permalink to this return value"></a>
@@ -4826,7 +7055,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/parameters"></div>
+                    <b>parameters</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/parameters" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A map where key is a user defined string and value is a context expressions whose values will be sent to the custom auth function. Values should contain an expression. Example: `{&quot;foo&quot;: &quot;request.header[abc]&quot;}`</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/public_keys"></div>
                     <b>public_keys</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/public_keys" title="Permalink to this return value"></a>
@@ -4846,7 +7094,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/public_keys/is_ssl_verify_disabled"></div>
                     <b>is_ssl_verify_disabled</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/public_keys/is_ssl_verify_disabled" title="Permalink to this return value"></a>
@@ -4868,7 +7116,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/public_keys/keys"></div>
                     <b>keys</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/public_keys/keys" title="Permalink to this return value"></a>
@@ -4889,7 +7137,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/public_keys/keys/alg"></div>
                     <b>alg</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/public_keys/keys/alg" title="Permalink to this return value"></a>
@@ -4912,7 +7160,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/public_keys/keys/e"></div>
                     <b>e</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/public_keys/keys/e" title="Permalink to this return value"></a>
@@ -4935,7 +7183,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/public_keys/keys/format"></div>
                     <b>format</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/public_keys/keys/format" title="Permalink to this return value"></a>
@@ -4958,7 +7206,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/public_keys/keys/key"></div>
                     <b>key</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/public_keys/keys/key" title="Permalink to this return value"></a>
@@ -4981,7 +7229,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/public_keys/keys/key_ops"></div>
                     <b>key_ops</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/public_keys/keys/key_ops" title="Permalink to this return value"></a>
@@ -5002,7 +7250,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/public_keys/keys/kid"></div>
                     <b>kid</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/public_keys/keys/kid" title="Permalink to this return value"></a>
@@ -5025,7 +7273,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/public_keys/keys/kty"></div>
                     <b>kty</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/public_keys/keys/kty" title="Permalink to this return value"></a>
@@ -5048,7 +7296,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/public_keys/keys/n"></div>
                     <b>n</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/public_keys/keys/n" title="Permalink to this return value"></a>
@@ -5071,7 +7319,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/public_keys/keys/use"></div>
                     <b>use</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/public_keys/keys/use" title="Permalink to this return value"></a>
@@ -5094,7 +7342,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/public_keys/max_cache_duration_in_hours"></div>
                     <b>max_cache_duration_in_hours</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/public_keys/max_cache_duration_in_hours" title="Permalink to this return value"></a>
@@ -5116,7 +7364,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/public_keys/type"></div>
                     <b>type</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/public_keys/type" title="Permalink to this return value"></a>
@@ -5138,7 +7386,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/public_keys/uri"></div>
                     <b>uri</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/public_keys/uri" title="Permalink to this return value"></a>
@@ -5160,7 +7408,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/token_auth_scheme"></div>
                     <b>token_auth_scheme</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/token_auth_scheme" title="Permalink to this return value"></a>
@@ -5181,7 +7429,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/token_header"></div>
                     <b>token_header</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/token_header" title="Permalink to this return value"></a>
@@ -5202,7 +7450,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/token_query_param"></div>
                     <b>token_query_param</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/token_query_param" title="Permalink to this return value"></a>
@@ -5223,7 +7471,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/type"></div>
                     <b>type</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/type" title="Permalink to this return value"></a>
@@ -5244,7 +7492,421 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="7">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/validation_failure_policy"></div>
+                    <b>validation_failure_policy</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/validation_failure_policy" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="6">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/validation_failure_policy/response_code"></div>
+                    <b>response_code</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/validation_failure_policy/response_code" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>HTTP response code, can include context variables.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">response_code_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="6">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/validation_failure_policy/response_header_transformations"></div>
+                    <b>response_header_transformations</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/validation_failure_policy/response_header_transformations" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/validation_failure_policy/response_header_transformations/filter_headers"></div>
+                    <b>filter_headers</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/validation_failure_policy/response_header_transformations/filter_headers" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/validation_failure_policy/response_header_transformations/filter_headers/items"></div>
+                    <b>items</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/validation_failure_policy/response_header_transformations/filter_headers/items" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The list of headers.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/validation_failure_policy/response_header_transformations/filter_headers/items/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/validation_failure_policy/response_header_transformations/filter_headers/items/name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The case-insensitive name of the header.  This name must be unique across transformation policies.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/validation_failure_policy/response_header_transformations/filter_headers/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/validation_failure_policy/response_header_transformations/filter_headers/type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>BLOCK drops any headers that are in the list of items, so it acts as an exclusion list.  ALLOW permits only the headers in the list and removes all others, so it acts as an inclusion list.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ALLOW</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/validation_failure_policy/response_header_transformations/rename_headers"></div>
+                    <b>rename_headers</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/validation_failure_policy/response_header_transformations/rename_headers" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/validation_failure_policy/response_header_transformations/rename_headers/items"></div>
+                    <b>items</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/validation_failure_policy/response_header_transformations/rename_headers/items" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The list of headers.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/validation_failure_policy/response_header_transformations/rename_headers/items/_from"></div>
+                    <b>_from</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/validation_failure_policy/response_header_transformations/rename_headers/items/_from" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The original case-insensitive name of the header.  This name must be unique across transformation policies.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">_from_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/validation_failure_policy/response_header_transformations/rename_headers/items/to"></div>
+                    <b>to</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/validation_failure_policy/response_header_transformations/rename_headers/items/to" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The new name of the header.  This name must be unique across transformation policies.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">to_example</div>
+                                    </td>
+            </tr>
+                    
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/validation_failure_policy/response_header_transformations/set_headers"></div>
+                    <b>set_headers</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/validation_failure_policy/response_header_transformations/set_headers" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/validation_failure_policy/response_header_transformations/set_headers/items"></div>
+                    <b>items</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/validation_failure_policy/response_header_transformations/set_headers/items" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The list of headers.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/validation_failure_policy/response_header_transformations/set_headers/items/if_exists"></div>
+                    <b>if_exists</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/validation_failure_policy/response_header_transformations/set_headers/items/if_exists" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>If a header with the same name already exists in the request, OVERWRITE will overwrite the value, APPEND will append to the existing value, or SKIP will keep the existing value.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">OVERWRITE</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/validation_failure_policy/response_header_transformations/set_headers/items/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/validation_failure_policy/response_header_transformations/set_headers/items/name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The case-insensitive name of the header.  This name must be unique across transformation policies.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/validation_failure_policy/response_header_transformations/set_headers/items/values"></div>
+                    <b>values</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/validation_failure_policy/response_header_transformations/set_headers/items/values" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A list of new values.  Each value can be a constant or may include one or more expressions enclosed within ${} delimiters.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                    
+                    
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="6">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/validation_failure_policy/response_message"></div>
+                    <b>response_message</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/validation_failure_policy/response_message" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>HTTP response message.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">response_message_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="6">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/validation_failure_policy/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/validation_failure_policy/type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Type of the Validation failure Policy.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">MODIFY_RESPONSE</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/verify_claims"></div>
                     <b>verify_claims</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/verify_claims" title="Permalink to this return value"></a>
@@ -5264,7 +7926,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/verify_claims/is_required"></div>
                     <b>is_required</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/verify_claims/is_required" title="Permalink to this return value"></a>
@@ -5286,7 +7948,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/verify_claims/key"></div>
                     <b>key</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/verify_claims/key" title="Permalink to this return value"></a>
@@ -5308,7 +7970,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/authentication/verify_claims/values"></div>
                     <b>values</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/authentication/verify_claims/values" title="Permalink to this return value"></a>
@@ -5328,7 +7990,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="8">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/cors"></div>
                     <b>cors</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/cors" title="Permalink to this return value"></a>
@@ -5347,7 +8009,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/cors/allowed_headers"></div>
                     <b>allowed_headers</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/cors/allowed_headers" title="Permalink to this return value"></a>
@@ -5366,7 +8028,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/cors/allowed_methods"></div>
                     <b>allowed_methods</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/cors/allowed_methods" title="Permalink to this return value"></a>
@@ -5385,7 +8047,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/cors/allowed_origins"></div>
                     <b>allowed_origins</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/cors/allowed_origins" title="Permalink to this return value"></a>
@@ -5404,7 +8066,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/cors/exposed_headers"></div>
                     <b>exposed_headers</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/cors/exposed_headers" title="Permalink to this return value"></a>
@@ -5423,7 +8085,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/cors/is_allow_credentials_enabled"></div>
                     <b>is_allow_credentials_enabled</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/cors/is_allow_credentials_enabled" title="Permalink to this return value"></a>
@@ -5444,7 +8106,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/cors/max_age_in_seconds"></div>
                     <b>max_age_in_seconds</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/cors/max_age_in_seconds" title="Permalink to this return value"></a>
@@ -5465,7 +8127,1416 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="8">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication"></div>
+                    <b>dynamic_authentication</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="7">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers"></div>
+                    <b>authentication_servers</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>List of authentication servers to choose from during dynamic authentication.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="6">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail"></div>
+                    <b>authentication_server_detail</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/audiences"></div>
+                    <b>audiences</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/audiences" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The list of intended recipients for the token.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/cache_key"></div>
+                    <b>cache_key</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/cache_key" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A list of keys from &quot;parameters&quot; attribute value whose values will be added to the cache key.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/function_id"></div>
+                    <b>function_id</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/function_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Oracle Functions function resource.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.function.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/is_anonymous_access_allowed"></div>
+                    <b>is_anonymous_access_allowed</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/is_anonymous_access_allowed" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Whether an unauthenticated user may access the API. Must be &quot;true&quot; to enable ANONYMOUS route authorization.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/issuers"></div>
+                    <b>issuers</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/issuers" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A list of parties that could have issued the token.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/max_clock_skew_in_seconds"></div>
+                    <b>max_clock_skew_in_seconds</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/max_clock_skew_in_seconds" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The maximum expected time difference between the system clocks of the token issuer and the API Gateway.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/parameters"></div>
+                    <b>parameters</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/parameters" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">dictionary</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A map where key is a user defined string and value is a context expressions whose values will be sent to the custom auth function. Values should contain an expression. Example: `{&quot;foo&quot;: &quot;request.header[abc]&quot;}`</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys"></div>
+                    <b>public_keys</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/is_ssl_verify_disabled"></div>
+                    <b>is_ssl_verify_disabled</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/is_ssl_verify_disabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Defines whether or not to uphold SSL verification.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys"></div>
+                    <b>keys</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The set of static public keys.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys/alg"></div>
+                    <b>alg</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys/alg" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The algorithm intended for use with this key.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">alg_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys/e"></div>
+                    <b>e</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys/e" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The base64 url encoded exponent of the RSA public key represented by this key.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">e_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys/format"></div>
+                    <b>format</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys/format" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The format of the public key.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">JSON_WEB_KEY</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys/key"></div>
+                    <b>key</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys/key" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The content of the PEM-encoded public key.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">key_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys/key_ops"></div>
+                    <b>key_ops</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys/key_ops" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The operations for which this key is to be used.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys/kid"></div>
+                    <b>kid</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys/kid" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A unique key ID. This key will be used to verify the signature of a JWT with matching &quot;kid&quot;.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">kid_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys/kty"></div>
+                    <b>kty</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys/kty" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The key type.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">RSA</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys/n"></div>
+                    <b>n</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys/n" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The base64 url encoded modulus of the RSA public key represented by this key.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">n_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys/use"></div>
+                    <b>use</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/keys/use" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The intended use of the public key.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">sig</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/max_cache_duration_in_hours"></div>
+                    <b>max_cache_duration_in_hours</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/max_cache_duration_in_hours" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The duration for which the JWKS should be cached before it is fetched again.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Type of the public key set.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">STATIC_KEYS</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/uri"></div>
+                    <b>uri</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/public_keys/uri" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The uri from which to retrieve the key. It must be accessible without authentication.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">uri_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/token_auth_scheme"></div>
+                    <b>token_auth_scheme</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/token_auth_scheme" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The authentication scheme that is to be used when authenticating the token. This must to be provided if &quot;tokenHeader&quot; is specified.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">token_auth_scheme_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/token_header"></div>
+                    <b>token_header</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/token_header" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The name of the header containing the authentication token.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">token_header_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/token_query_param"></div>
+                    <b>token_query_param</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/token_query_param" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The name of the query parameter containing the authentication token.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">token_query_param_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Type of the authentication policy to use.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CUSTOM_AUTHENTICATION</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy"></div>
+                    <b>validation_failure_policy</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_code"></div>
+                    <b>response_code</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_code" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>HTTP response code, can include context variables.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">response_code_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations"></div>
+                    <b>response_header_transformations</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/filter_headers"></div>
+                    <b>filter_headers</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/filter_headers" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/filter_headers/items"></div>
+                    <b>items</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/filter_headers/items" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The list of headers.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/filter_headers/items/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/filter_headers/items/name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The case-insensitive name of the header.  This name must be unique across transformation policies.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/filter_headers/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/filter_headers/type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>BLOCK drops any headers that are in the list of items, so it acts as an exclusion list.  ALLOW permits only the headers in the list and removes all others, so it acts as an inclusion list.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ALLOW</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/rename_headers"></div>
+                    <b>rename_headers</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/rename_headers" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/rename_headers/items"></div>
+                    <b>items</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/rename_headers/items" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The list of headers.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/rename_headers/items/_from"></div>
+                    <b>_from</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/rename_headers/items/_from" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The original case-insensitive name of the header.  This name must be unique across transformation policies.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">_from_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/rename_headers/items/to"></div>
+                    <b>to</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/rename_headers/items/to" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The new name of the header.  This name must be unique across transformation policies.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">to_example</div>
+                                    </td>
+            </tr>
+                    
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/set_headers"></div>
+                    <b>set_headers</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/set_headers" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/set_headers/items"></div>
+                    <b>items</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/set_headers/items" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The list of headers.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/set_headers/items/if_exists"></div>
+                    <b>if_exists</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/set_headers/items/if_exists" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>If a header with the same name already exists in the request, OVERWRITE will overwrite the value, APPEND will append to the existing value, or SKIP will keep the existing value.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">OVERWRITE</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/set_headers/items/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/set_headers/items/name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The case-insensitive name of the header.  This name must be unique across transformation policies.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/set_headers/items/values"></div>
+                    <b>values</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_header_transformations/set_headers/items/values" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A list of new values.  Each value can be a constant or may include one or more expressions enclosed within ${} delimiters.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                    
+                    
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_message"></div>
+                    <b>response_message</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/response_message" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>HTTP response message.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">response_message_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/validation_failure_policy/type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Type of the Validation failure Policy.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">MODIFY_RESPONSE</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/verify_claims"></div>
+                    <b>verify_claims</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/verify_claims" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>A list of claims which should be validated to consider the token valid.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/verify_claims/is_required"></div>
+                    <b>is_required</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/verify_claims/is_required" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Whether the claim is required to be present in the JWT or not. If set to &quot;false&quot;, the claim values will be matched only if the claim is present in the JWT.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/verify_claims/key"></div>
+                    <b>key</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/verify_claims/key" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name of the claim.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">key_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/verify_claims/values"></div>
+                    <b>values</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/authentication_server_detail/verify_claims/values" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The list of acceptable values for a given claim. If this value is &quot;null&quot; or empty and &quot;isRequired&quot; set to &quot;true&quot;, then the presence of this claim in the JWT is validated.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                    
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="6">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/key"></div>
+                    <b>key</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/key" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/key/expression"></div>
+                    <b>expression</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/key/expression" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>String describing the expression with wildcards.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">expression_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/key/is_default"></div>
+                    <b>is_default</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/key/is_default" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Information regarding whether this is the default branch.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/key/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/key/name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name assigned to the branch.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/key/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/key/type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Information regarding type of the selection key.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ANY_OF</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/key/values"></div>
+                    <b>values</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/authentication_servers/key/values" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Information regarding the set of values of selector for which this branch should be selected.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                    
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="7">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/selection_source"></div>
+                    <b>selection_source</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/selection_source" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="6">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/selection_source/selector"></div>
+                    <b>selector</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/selection_source/selector" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>String describing the context variable used as selector.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">selector_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="6">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/dynamic_authentication/selection_source/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/dynamic_authentication/selection_source/type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Type of the Selection source to use.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">SINGLE</div>
+                                    </td>
+            </tr>
+                    
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="8">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/mutual_tls"></div>
                     <b>mutual_tls</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/mutual_tls" title="Permalink to this return value"></a>
@@ -5484,7 +9555,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/mutual_tls/allowed_sans"></div>
                     <b>allowed_sans</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/mutual_tls/allowed_sans" title="Permalink to this return value"></a>
@@ -5503,7 +9574,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/mutual_tls/is_verified_certificate_required"></div>
                     <b>is_verified_certificate_required</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/mutual_tls/is_verified_certificate_required" title="Permalink to this return value"></a>
@@ -5524,7 +9595,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="8">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/rate_limiting"></div>
                     <b>rate_limiting</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/rate_limiting" title="Permalink to this return value"></a>
@@ -5543,7 +9614,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/rate_limiting/rate_in_requests_per_second"></div>
                     <b>rate_in_requests_per_second</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/rate_limiting/rate_in_requests_per_second" title="Permalink to this return value"></a>
@@ -5564,7 +9635,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/rate_limiting/rate_key"></div>
                     <b>rate_key</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/rate_limiting/rate_key" title="Permalink to this return value"></a>
@@ -5585,7 +9656,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="8">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/usage_plans"></div>
                     <b>usage_plans</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/usage_plans" title="Permalink to this return value"></a>
@@ -5604,7 +9675,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/request_policies/usage_plans/token_locations"></div>
                     <b>token_locations</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/request_policies/usage_plans/token_locations" title="Permalink to this return value"></a>
@@ -5623,7 +9694,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="6">
+                                <td colspan="9">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes"></div>
                     <b>routes</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes" title="Permalink to this return value"></a>
@@ -5641,7 +9712,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="8">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/backend"></div>
                     <b>backend</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/backend" title="Permalink to this return value"></a>
@@ -5660,7 +9731,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/backend/body"></div>
                     <b>body</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/backend/body" title="Permalink to this return value"></a>
@@ -5681,7 +9752,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/backend/connect_timeout_in_seconds"></div>
                     <b>connect_timeout_in_seconds</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/backend/connect_timeout_in_seconds" title="Permalink to this return value"></a>
@@ -5702,7 +9773,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/backend/function_id"></div>
                     <b>function_id</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/backend/function_id" title="Permalink to this return value"></a>
@@ -5723,7 +9794,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/backend/headers"></div>
                     <b>headers</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/backend/headers" title="Permalink to this return value"></a>
@@ -5743,7 +9814,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/backend/headers/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/backend/headers/name" title="Permalink to this return value"></a>
@@ -5765,7 +9836,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/backend/headers/value"></div>
                     <b>value</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/backend/headers/value" title="Permalink to this return value"></a>
@@ -5787,7 +9858,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/backend/is_ssl_verify_disabled"></div>
                     <b>is_ssl_verify_disabled</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/backend/is_ssl_verify_disabled" title="Permalink to this return value"></a>
@@ -5808,7 +9879,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/backend/read_timeout_in_seconds"></div>
                     <b>read_timeout_in_seconds</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/backend/read_timeout_in_seconds" title="Permalink to this return value"></a>
@@ -5829,7 +9900,269 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/backend/routing_backends"></div>
+                    <b>routing_backends</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/routes/backend/routing_backends" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>List of backends to chose from for Dynamic Routing.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="6">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/backend/routing_backends/backend"></div>
+                    <b>backend</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/routes/backend/routing_backends/backend" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/backend/routing_backends/backend/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/routes/backend/routing_backends/backend/type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Type of the API backend.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ORACLE_FUNCTIONS_BACKEND</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="6">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/backend/routing_backends/key"></div>
+                    <b>key</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/routes/backend/routing_backends/key" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/backend/routing_backends/key/expression"></div>
+                    <b>expression</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/routes/backend/routing_backends/key/expression" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>String describing the expression with wildcards.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">expression_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/backend/routing_backends/key/is_default"></div>
+                    <b>is_default</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/routes/backend/routing_backends/key/is_default" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Information regarding whether this is the default branch.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/backend/routing_backends/key/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/routes/backend/routing_backends/key/name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name assigned to the branch.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/backend/routing_backends/key/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/routes/backend/routing_backends/key/type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Information regarding type of the selection key.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ANY_OF</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/backend/routing_backends/key/values"></div>
+                    <b>values</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/routes/backend/routing_backends/key/values" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Information regarding the set of values of selector for which this branch should be selected.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                    
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="7">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/backend/selection_source"></div>
+                    <b>selection_source</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/routes/backend/selection_source" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="6">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/backend/selection_source/selector"></div>
+                    <b>selector</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/routes/backend/selection_source/selector" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>String describing the context variable used as selector.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">selector_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="6">
+                    <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/backend/selection_source/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/specification/routes/backend/selection_source/type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Type of the Selection source to use.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">SINGLE</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/backend/send_timeout_in_seconds"></div>
                     <b>send_timeout_in_seconds</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/backend/send_timeout_in_seconds" title="Permalink to this return value"></a>
@@ -5850,7 +10183,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/backend/status"></div>
                     <b>status</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/backend/status" title="Permalink to this return value"></a>
@@ -5871,7 +10204,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/backend/type"></div>
                     <b>type</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/backend/type" title="Permalink to this return value"></a>
@@ -5892,7 +10225,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/backend/url"></div>
                     <b>url</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/backend/url" title="Permalink to this return value"></a>
@@ -5913,7 +10246,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="8">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/logging_policies"></div>
                     <b>logging_policies</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/logging_policies" title="Permalink to this return value"></a>
@@ -5932,7 +10265,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/logging_policies/access_log"></div>
                     <b>access_log</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/logging_policies/access_log" title="Permalink to this return value"></a>
@@ -5952,7 +10285,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/logging_policies/access_log/is_enabled"></div>
                     <b>is_enabled</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/logging_policies/access_log/is_enabled" title="Permalink to this return value"></a>
@@ -5976,7 +10309,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/logging_policies/execution_log"></div>
                     <b>execution_log</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/logging_policies/execution_log" title="Permalink to this return value"></a>
@@ -5996,7 +10329,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/logging_policies/execution_log/is_enabled"></div>
                     <b>is_enabled</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/logging_policies/execution_log/is_enabled" title="Permalink to this return value"></a>
@@ -6020,7 +10353,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/logging_policies/execution_log/log_level"></div>
                     <b>log_level</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/logging_policies/execution_log/log_level" title="Permalink to this return value"></a>
@@ -6042,7 +10375,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="8">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/methods"></div>
                     <b>methods</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/methods" title="Permalink to this return value"></a>
@@ -6060,7 +10393,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="8">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/path"></div>
                     <b>path</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/path" title="Permalink to this return value"></a>
@@ -6080,7 +10413,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="8">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies"></div>
                     <b>request_policies</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies" title="Permalink to this return value"></a>
@@ -6099,7 +10432,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/authorization"></div>
                     <b>authorization</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/authorization" title="Permalink to this return value"></a>
@@ -6119,7 +10452,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/authorization/allowed_scope"></div>
                     <b>allowed_scope</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/authorization/allowed_scope" title="Permalink to this return value"></a>
@@ -6139,7 +10472,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/authorization/type"></div>
                     <b>type</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/authorization/type" title="Permalink to this return value"></a>
@@ -6161,7 +10494,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/body_validation"></div>
                     <b>body_validation</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/body_validation" title="Permalink to this return value"></a>
@@ -6181,7 +10514,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/body_validation/content"></div>
                     <b>content</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/body_validation/content" title="Permalink to this return value"></a>
@@ -6204,7 +10537,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/body_validation/content/validation_type"></div>
                     <b>validation_type</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/body_validation/content/validation_type" title="Permalink to this return value"></a>
@@ -6228,7 +10561,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/body_validation/required"></div>
                     <b>required</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/body_validation/required" title="Permalink to this return value"></a>
@@ -6250,7 +10583,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/body_validation/validation_mode"></div>
                     <b>validation_mode</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/body_validation/validation_mode" title="Permalink to this return value"></a>
@@ -6275,7 +10608,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/cors"></div>
                     <b>cors</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/cors" title="Permalink to this return value"></a>
@@ -6295,7 +10628,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/cors/allowed_headers"></div>
                     <b>allowed_headers</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/cors/allowed_headers" title="Permalink to this return value"></a>
@@ -6315,7 +10648,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/cors/allowed_methods"></div>
                     <b>allowed_methods</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/cors/allowed_methods" title="Permalink to this return value"></a>
@@ -6335,7 +10668,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/cors/allowed_origins"></div>
                     <b>allowed_origins</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/cors/allowed_origins" title="Permalink to this return value"></a>
@@ -6355,7 +10688,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/cors/exposed_headers"></div>
                     <b>exposed_headers</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/cors/exposed_headers" title="Permalink to this return value"></a>
@@ -6375,7 +10708,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/cors/is_allow_credentials_enabled"></div>
                     <b>is_allow_credentials_enabled</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/cors/is_allow_credentials_enabled" title="Permalink to this return value"></a>
@@ -6397,7 +10730,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/cors/max_age_in_seconds"></div>
                     <b>max_age_in_seconds</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/cors/max_age_in_seconds" title="Permalink to this return value"></a>
@@ -6419,7 +10752,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/header_transformations"></div>
                     <b>header_transformations</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/header_transformations" title="Permalink to this return value"></a>
@@ -6439,7 +10772,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/header_transformations/filter_headers"></div>
                     <b>filter_headers</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/header_transformations/filter_headers" title="Permalink to this return value"></a>
@@ -6460,7 +10793,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/header_transformations/filter_headers/items"></div>
                     <b>items</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/header_transformations/filter_headers/items" title="Permalink to this return value"></a>
@@ -6482,7 +10815,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/header_transformations/filter_headers/items/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/header_transformations/filter_headers/items/name" title="Permalink to this return value"></a>
@@ -6506,7 +10839,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/header_transformations/filter_headers/type"></div>
                     <b>type</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/header_transformations/filter_headers/type" title="Permalink to this return value"></a>
@@ -6529,7 +10862,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/header_transformations/rename_headers"></div>
                     <b>rename_headers</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/header_transformations/rename_headers" title="Permalink to this return value"></a>
@@ -6550,7 +10883,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/header_transformations/rename_headers/items"></div>
                     <b>items</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/header_transformations/rename_headers/items" title="Permalink to this return value"></a>
@@ -6572,7 +10905,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/header_transformations/rename_headers/items/_from"></div>
                     <b>_from</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/header_transformations/rename_headers/items/_from" title="Permalink to this return value"></a>
@@ -6596,7 +10929,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/header_transformations/rename_headers/items/to"></div>
                     <b>to</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/header_transformations/rename_headers/items/to" title="Permalink to this return value"></a>
@@ -6620,7 +10953,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/header_transformations/set_headers"></div>
                     <b>set_headers</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/header_transformations/set_headers" title="Permalink to this return value"></a>
@@ -6641,7 +10974,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/header_transformations/set_headers/items"></div>
                     <b>items</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/header_transformations/set_headers/items" title="Permalink to this return value"></a>
@@ -6663,7 +10996,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/header_transformations/set_headers/items/if_exists"></div>
                     <b>if_exists</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/header_transformations/set_headers/items/if_exists" title="Permalink to this return value"></a>
@@ -6687,7 +11020,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/header_transformations/set_headers/items/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/header_transformations/set_headers/items/name" title="Permalink to this return value"></a>
@@ -6711,7 +11044,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/header_transformations/set_headers/items/values"></div>
                     <b>values</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/header_transformations/set_headers/items/values" title="Permalink to this return value"></a>
@@ -6733,7 +11066,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/header_validations"></div>
                     <b>header_validations</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/header_validations" title="Permalink to this return value"></a>
@@ -6753,7 +11086,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/header_validations/headers"></div>
                     <b>headers</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/header_validations/headers" title="Permalink to this return value"></a>
@@ -6774,7 +11107,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/header_validations/headers/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/header_validations/headers/name" title="Permalink to this return value"></a>
@@ -6797,7 +11130,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/header_validations/headers/required"></div>
                     <b>required</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/header_validations/headers/required" title="Permalink to this return value"></a>
@@ -6820,7 +11153,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/header_validations/validation_mode"></div>
                     <b>validation_mode</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/header_validations/validation_mode" title="Permalink to this return value"></a>
@@ -6845,7 +11178,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/query_parameter_transformations"></div>
                     <b>query_parameter_transformations</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/query_parameter_transformations" title="Permalink to this return value"></a>
@@ -6865,7 +11198,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/query_parameter_transformations/filter_query_parameters"></div>
                     <b>filter_query_parameters</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/query_parameter_transformations/filter_query_parameters" title="Permalink to this return value"></a>
@@ -6886,7 +11219,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/query_parameter_transformations/filter_query_parameters/items"></div>
                     <b>items</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/query_parameter_transformations/filter_query_parameters/items" title="Permalink to this return value"></a>
@@ -6908,7 +11241,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/query_parameter_transformations/filter_query_parameters/items/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/query_parameter_transformations/filter_query_parameters/items/name" title="Permalink to this return value"></a>
@@ -6932,7 +11265,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/query_parameter_transformations/filter_query_parameters/type"></div>
                     <b>type</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/query_parameter_transformations/filter_query_parameters/type" title="Permalink to this return value"></a>
@@ -6955,7 +11288,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/query_parameter_transformations/rename_query_parameters"></div>
                     <b>rename_query_parameters</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/query_parameter_transformations/rename_query_parameters" title="Permalink to this return value"></a>
@@ -6976,7 +11309,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/query_parameter_transformations/rename_query_parameters/items"></div>
                     <b>items</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/query_parameter_transformations/rename_query_parameters/items" title="Permalink to this return value"></a>
@@ -6998,7 +11331,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/query_parameter_transformations/rename_query_parameters/items/_from"></div>
                     <b>_from</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/query_parameter_transformations/rename_query_parameters/items/_from" title="Permalink to this return value"></a>
@@ -7022,7 +11355,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/query_parameter_transformations/rename_query_parameters/items/to"></div>
                     <b>to</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/query_parameter_transformations/rename_query_parameters/items/to" title="Permalink to this return value"></a>
@@ -7046,7 +11379,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/query_parameter_transformations/set_query_parameters"></div>
                     <b>set_query_parameters</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/query_parameter_transformations/set_query_parameters" title="Permalink to this return value"></a>
@@ -7067,7 +11400,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/query_parameter_transformations/set_query_parameters/items"></div>
                     <b>items</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/query_parameter_transformations/set_query_parameters/items" title="Permalink to this return value"></a>
@@ -7089,7 +11422,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/query_parameter_transformations/set_query_parameters/items/if_exists"></div>
                     <b>if_exists</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/query_parameter_transformations/set_query_parameters/items/if_exists" title="Permalink to this return value"></a>
@@ -7113,7 +11446,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/query_parameter_transformations/set_query_parameters/items/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/query_parameter_transformations/set_query_parameters/items/name" title="Permalink to this return value"></a>
@@ -7137,7 +11470,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/query_parameter_transformations/set_query_parameters/items/values"></div>
                     <b>values</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/query_parameter_transformations/set_query_parameters/items/values" title="Permalink to this return value"></a>
@@ -7159,7 +11492,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/query_parameter_validations"></div>
                     <b>query_parameter_validations</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/query_parameter_validations" title="Permalink to this return value"></a>
@@ -7179,7 +11512,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/query_parameter_validations/parameters"></div>
                     <b>parameters</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/query_parameter_validations/parameters" title="Permalink to this return value"></a>
@@ -7200,7 +11533,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/query_parameter_validations/parameters/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/query_parameter_validations/parameters/name" title="Permalink to this return value"></a>
@@ -7223,7 +11556,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/query_parameter_validations/parameters/required"></div>
                     <b>required</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/query_parameter_validations/parameters/required" title="Permalink to this return value"></a>
@@ -7246,7 +11579,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/query_parameter_validations/validation_mode"></div>
                     <b>validation_mode</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/query_parameter_validations/validation_mode" title="Permalink to this return value"></a>
@@ -7271,7 +11604,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/response_cache_lookup"></div>
                     <b>response_cache_lookup</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/response_cache_lookup" title="Permalink to this return value"></a>
@@ -7291,7 +11624,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/response_cache_lookup/cache_key_additions"></div>
                     <b>cache_key_additions</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/response_cache_lookup/cache_key_additions" title="Permalink to this return value"></a>
@@ -7311,7 +11644,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/response_cache_lookup/is_enabled"></div>
                     <b>is_enabled</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/response_cache_lookup/is_enabled" title="Permalink to this return value"></a>
@@ -7333,7 +11666,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/response_cache_lookup/is_private_caching_enabled"></div>
                     <b>is_private_caching_enabled</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/response_cache_lookup/is_private_caching_enabled" title="Permalink to this return value"></a>
@@ -7357,7 +11690,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/request_policies/response_cache_lookup/type"></div>
                     <b>type</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/request_policies/response_cache_lookup/type" title="Permalink to this return value"></a>
@@ -7379,7 +11712,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="5">
+                                <td colspan="8">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/response_policies"></div>
                     <b>response_policies</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/response_policies" title="Permalink to this return value"></a>
@@ -7398,7 +11731,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/response_policies/header_transformations"></div>
                     <b>header_transformations</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/response_policies/header_transformations" title="Permalink to this return value"></a>
@@ -7418,7 +11751,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/response_policies/header_transformations/filter_headers"></div>
                     <b>filter_headers</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/response_policies/header_transformations/filter_headers" title="Permalink to this return value"></a>
@@ -7439,7 +11772,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/response_policies/header_transformations/filter_headers/items"></div>
                     <b>items</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/response_policies/header_transformations/filter_headers/items" title="Permalink to this return value"></a>
@@ -7461,7 +11794,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/response_policies/header_transformations/filter_headers/items/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/response_policies/header_transformations/filter_headers/items/name" title="Permalink to this return value"></a>
@@ -7485,7 +11818,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/response_policies/header_transformations/filter_headers/type"></div>
                     <b>type</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/response_policies/header_transformations/filter_headers/type" title="Permalink to this return value"></a>
@@ -7508,7 +11841,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/response_policies/header_transformations/rename_headers"></div>
                     <b>rename_headers</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/response_policies/header_transformations/rename_headers" title="Permalink to this return value"></a>
@@ -7529,7 +11862,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/response_policies/header_transformations/rename_headers/items"></div>
                     <b>items</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/response_policies/header_transformations/rename_headers/items" title="Permalink to this return value"></a>
@@ -7551,7 +11884,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/response_policies/header_transformations/rename_headers/items/_from"></div>
                     <b>_from</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/response_policies/header_transformations/rename_headers/items/_from" title="Permalink to this return value"></a>
@@ -7575,7 +11908,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/response_policies/header_transformations/rename_headers/items/to"></div>
                     <b>to</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/response_policies/header_transformations/rename_headers/items/to" title="Permalink to this return value"></a>
@@ -7599,7 +11932,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/response_policies/header_transformations/set_headers"></div>
                     <b>set_headers</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/response_policies/header_transformations/set_headers" title="Permalink to this return value"></a>
@@ -7620,7 +11953,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/response_policies/header_transformations/set_headers/items"></div>
                     <b>items</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/response_policies/header_transformations/set_headers/items" title="Permalink to this return value"></a>
@@ -7642,7 +11975,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/response_policies/header_transformations/set_headers/items/if_exists"></div>
                     <b>if_exists</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/response_policies/header_transformations/set_headers/items/if_exists" title="Permalink to this return value"></a>
@@ -7666,7 +11999,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/response_policies/header_transformations/set_headers/items/name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/response_policies/header_transformations/set_headers/items/name" title="Permalink to this return value"></a>
@@ -7690,7 +12023,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/response_policies/header_transformations/set_headers/items/values"></div>
                     <b>values</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/response_policies/header_transformations/set_headers/items/values" title="Permalink to this return value"></a>
@@ -7712,7 +12045,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="4">
+                                <td colspan="7">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/response_policies/response_cache_store"></div>
                     <b>response_cache_store</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/response_policies/response_cache_store" title="Permalink to this return value"></a>
@@ -7732,7 +12065,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/response_policies/response_cache_store/time_to_live_in_seconds"></div>
                     <b>time_to_live_in_seconds</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/response_policies/response_cache_store/time_to_live_in_seconds" title="Permalink to this return value"></a>
@@ -7754,7 +12087,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="return-deployment/specification/routes/response_policies/response_cache_store/type"></div>
                     <b>type</b>
                     <a class="ansibleOptionLink" href="#return-deployment/specification/routes/response_policies/response_cache_store/type" title="Permalink to this return value"></a>
@@ -7776,7 +12109,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="7">
+                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="return-deployment/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-deployment/time_created" title="Permalink to this return value"></a>
@@ -7794,7 +12127,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="7">
+                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="return-deployment/time_updated"></div>
                     <b>time_updated</b>
                     <a class="ansibleOptionLink" href="#return-deployment/time_updated" title="Permalink to this return value"></a>

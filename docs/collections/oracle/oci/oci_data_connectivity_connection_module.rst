@@ -30,7 +30,7 @@ oracle.oci.oci_data_connectivity_connection -- Manage a Connection resource in O
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.4.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.5.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -259,7 +259,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The properties for the connection.</div>
+                                            <div>The properties of the connection.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -276,7 +276,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -326,7 +326,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>User-defined description for the connection.</div>
+                                            <div>User-defined description of the connection.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -361,7 +361,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The value can be modified.</div>
+                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can be modified.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -382,7 +382,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The default property for the connection.</div>
+                                            <div>The default property of the connection.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -398,7 +398,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Generated key that can be used in API calls to identify connection. On scenarios where reference to the connection is needed, a value can be passed in create.</div>
+                                            <div>Generated key that can be used in API calls to identify the connection. In scenarios where reference to the connection is required, a value can be passed in create.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -595,7 +595,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The full path to identify this object.</div>
+                                            <div>The full path to identify the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -631,7 +631,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether this object is a favorite or not.</div>
+                                            <div>Specifies whether this object is a favorite.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -647,7 +647,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Labels are keywords or tags that you can add to data assets, dataflows and so on. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or tags that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -775,7 +775,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                             <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
@@ -874,7 +874,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The external key for the object.</div>
+                                            <div>The external key of the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -890,7 +890,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The value can be modified.</div>
+                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can be modified.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1118,7 +1118,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The full path to identify this object.</div>
+                                            <div>The full path to identify the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1156,7 +1156,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether this object is a favorite or not.</div>
+                                            <div>Specifies whether this object is a favorite.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1173,7 +1173,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Labels are keywords or tags that you can add to data assets, dataflows and so on. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or tags that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1275,7 +1275,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The object&#x27;s type.</div>
+                                            <div>The object type.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1291,7 +1291,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The object&#x27;s model version.</div>
+                                            <div>The model version of the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1307,7 +1307,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1405,7 +1405,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>All the properties for the connection in a key-value map format.</div>
+                                            <div>All the properties of the connection in a key-value map format.</div>
                                             <div>Required for create using <em>state=present</em>, update using <em>state=present</em> with connection_key present.</div>
                                                         </td>
             </tr>
@@ -1436,7 +1436,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The registry Ocid.</div>
+                                            <div>The registry OCID.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1484,7 +1484,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The id of the user who created the object.</div>
+                                            <div>The ID of the user who created the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1520,7 +1520,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether this object is a favorite or not.</div>
+                                            <div>Specifies whether the object is a favorite.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1552,7 +1552,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1616,7 +1616,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The id of the user who updated the object.</div>
+                                            <div>The ID of the user who updated the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2066,7 +2066,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The properties for the connection.</div>
+                                            <div>The properties of the connection.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -2083,7 +2083,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
@@ -2139,7 +2139,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The value can be modified.</div>
+                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can be modified.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">identifier_example</div>
@@ -2157,7 +2157,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The default property for the connection.</div>
+                                            <div>The default property of the connection.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -2175,7 +2175,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Generated key that can be used in API calls to identify connection. On scenarios where reference to the connection is needed, a value can be passed in create.</div>
+                                            <div>Generated key that can be used in API calls to identify the connection. In scenarios where reference to the connection is required, a value can be passed in create.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">key_example</div>
@@ -2385,7 +2385,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The full path to identify this object.</div>
+                                            <div>The full path to identify the object.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">identifier_path_example</div>
@@ -2421,7 +2421,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Specifies whether this object is a favorite or not.</div>
+                                            <div>Specifies whether this object is a favorite.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -2440,7 +2440,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Labels are keywords or tags that you can add to data assets, dataflows and so on. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or tags that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -2588,7 +2588,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
@@ -2697,7 +2697,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The external key for the object.</div>
+                                            <div>The external key of the object.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">external_key_example</div>
@@ -2716,7 +2716,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The value can be modified.</div>
+                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can be modified.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">identifier_example</div>
@@ -2975,7 +2975,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The full path to identify this object.</div>
+                                            <div>The full path to identify the object.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">identifier_path_example</div>
@@ -3013,7 +3013,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Specifies whether this object is a favorite or not.</div>
+                                            <div>Specifies whether this object is a favorite.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -3033,7 +3033,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Labels are keywords or tags that you can add to data assets, dataflows and so on. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or tags that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -3151,7 +3151,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The object&#x27;s type.</div>
+                                            <div>The object type.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">model_type_example</div>
@@ -3170,7 +3170,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The object&#x27;s model version.</div>
+                                            <div>The model version of the object.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">model_version_example</div>
@@ -3189,7 +3189,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
@@ -3303,7 +3303,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>All the properties for the connection in a key-value map format.</div>
+                                            <div>All the properties of the connection in a key-value map format.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -3355,7 +3355,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The id of the user who created the object.</div>
+                                            <div>The ID of the user who created the object.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.createdbyuser.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -3393,7 +3393,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Specifies whether this object is a favorite or not.</div>
+                                            <div>Specifies whether the object is a favorite.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -3431,7 +3431,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -3505,7 +3505,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The id of the user who updated the object.</div>
+                                            <div>The ID of the user who updated the object.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.updatedbyuser.oc1..xxxxxxEXAMPLExxxxxx</div>

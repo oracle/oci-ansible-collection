@@ -30,7 +30,7 @@ oracle.oci.oci_data_connectivity_reference_info_actions -- Perform actions on a 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.4.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.5.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Perform actions on a ReferenceInfo resource in Oracle Cloud Infrastructure
-- For *action=create_de_reference_artifact*, deRereferenced a dcms artifact.
+- For *action=create_de_reference_artifact*, dereferenced a dcms artifact.
 - For *action=create_reference_artifact*, reference a data asset.
 
 
@@ -293,7 +293,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The registry Ocid.</div>
+                                            <div>The registry OCID.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -308,7 +308,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>unique id of service which is referencing data asset.</div>
+                                            <div>The unique ID of the service that is referencing a data asset.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -417,7 +417,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>unique id of dcms artifact that is getting referenced.</div>
+                                            <div>The unique ID of the DCMS artifact that is getting referenced.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.dcmsartifact.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -453,7 +453,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The value can be modified.</div>
+                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can be modified.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">identifier_example</div>
@@ -471,7 +471,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Generated key that can be used in API calls to identify referenceinfo.</div>
+                                            <div>Generated key that can be used in API calls to identify the referenceinfo.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">key_example</div>
@@ -681,7 +681,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The full path to identify this object.</div>
+                                            <div>The full path to identify the object.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">identifier_path_example</div>
@@ -717,7 +717,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Specifies whether this object is a favorite or not.</div>
+                                            <div>Specifies whether this object is a favorite.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -736,7 +736,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Labels are keywords or tags that you can add to data assets, dataflows and so on. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or tags that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -884,7 +884,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
@@ -938,7 +938,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>count of how many times a dcms artifact has been registered by a service.</div>
+                                            <div>The number of times a DCMS artifact has been registered by a service.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -992,7 +992,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The id of the user who created the object.</div>
+                                            <div>The ID of the user who created the object.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.createdbyuser.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1030,7 +1030,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Specifies whether this object is a favorite or not.</div>
+                                            <div>Specifies whether the object is a favorite.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -1068,7 +1068,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1142,7 +1142,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The id of the user who updated the object.</div>
+                                            <div>The ID of the user who updated the object.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.updatedbyuser.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1180,7 +1180,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>unique id of service which is referencing dcms artifact.</div>
+                                            <div>The unique ID of the service that is referencing a DCMS artifact.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.serviceartifact.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1216,7 +1216,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>unique id of dcms artifact that is getting registered.</div>
+                                            <div>The unique ID of the DCMS artifact that is getting registered.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.dcmsartifact.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1252,7 +1252,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The value can be modified.</div>
+                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can be modified.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">identifier_example</div>
@@ -1270,7 +1270,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Generated key that can be used in API calls to identify referenceinfo.</div>
+                                            <div>Generated key that can be used in API calls to identify the referenceinfo.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">key_example</div>
@@ -1480,7 +1480,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The full path to identify this object.</div>
+                                            <div>The full path to identify the object.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">identifier_path_example</div>
@@ -1516,7 +1516,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Specifies whether this object is a favorite or not.</div>
+                                            <div>Specifies whether this object is a favorite.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -1535,7 +1535,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Labels are keywords or tags that you can add to data assets, dataflows and so on. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or tags that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1683,7 +1683,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
@@ -1737,7 +1737,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>count of how many times a data asset has been registered by a service.</div>
+                                            <div>The number of times a data asset has been registered by a service.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -1791,7 +1791,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The id of the user who created the object.</div>
+                                            <div>The ID of the user who created the object.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.createdbyuser.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1829,7 +1829,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Specifies whether this object is a favorite or not.</div>
+                                            <div>Specifies whether the object is a favorite.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -1867,7 +1867,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -1941,7 +1941,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The id of the user who updated the object.</div>
+                                            <div>The ID of the user who updated the object.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.updatedbyuser.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1979,7 +1979,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>unique id of service which is referencing data asset.</div>
+                                            <div>The unique ID of the service that is referencing a data asset.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.serviceartifact.oc1..xxxxxxEXAMPLExxxxxx</div>

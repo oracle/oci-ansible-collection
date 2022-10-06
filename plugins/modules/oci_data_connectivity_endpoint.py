@@ -23,7 +23,7 @@ module: oci_data_connectivity_endpoint
 short_description: Manage an Endpoint resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete an Endpoint resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates a new Data Connectivity Management Endpoint ready for performing data Connectivity.
+    - For I(state=present), creates a new Data Connectivity Management endpoint ready to perform data connectivity.
     - "This resource has the following action operations in the M(oracle.oci.oci_data_connectivity_endpoint_actions) module: change_compartment,
       validate_data_asset_network_reachablity."
 version_added: "2.9.0"
@@ -31,15 +31,15 @@ author: Oracle (@oracle)
 options:
     vcn_id:
         description:
-            - VCN Identifier where the subnet resides.
+            - VCN identifier where the subnet resides.
         type: str
     subnet_id:
         description:
-            - Subnet Identifier for customer connected databases
+            - Subnet identifier for the customer-connected databases.
         type: str
     dns_zones:
         description:
-            - "List of DNS zones to be used by the data assets to be harvested.
+            - "The list of DNS zones to be used by the data assets to be harvested.
               Example: custpvtsubnet.oraclevcn.com for data asset: db.custpvtsubnet.oraclevcn.com"
         type: list
         elements: str
@@ -52,7 +52,7 @@ options:
         type: str
     freeform_tags:
         description:
-            - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+            - "Simple key-value pair that is applied without any predefined name, type, or scope. Exists only for cross-compatibility.
               Example: `{\\"bar-key\\": \\"value\\"}`"
             - This parameter is updatable.
         type: dict
@@ -69,7 +69,7 @@ options:
         type: str
     display_name:
         description:
-            - Data Connectivity Management Registry display name, registries can be renamed
+            - The Data Connectivity Management registry display name; registries can be renamed.
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
@@ -82,20 +82,20 @@ options:
         type: int
     nsg_ids:
         description:
-            - List of NSGs to which the Private Endpoint VNIC must be added.
+            - The list of NSGs to which the private endpoint VNIC must be added.
             - This parameter is updatable.
         type: list
         elements: str
     endpoint_id:
         description:
-            - DCMS Endpoint id
+            - DCMS endpoint ID.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
         aliases: ["id"]
     registry_id:
         description:
-            - DCMS registry id
+            - DCMS registry ID
             - This parameter is updatable.
         type: str
     is_force_operation:
@@ -194,7 +194,7 @@ endpoint:
             sample: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         subnet_id:
             description:
-                - Subnet OCID for the customer connected network where databases for example reside.
+                - Subnet OCID of the customer connected network where, for example, the databases reside.
             returned: on success
             type: str
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
@@ -207,7 +207,7 @@ endpoint:
             sample: []
         freeform_tags:
             description:
-                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+                - "Simple key-value pair that is applied without any predefined name, type, or scope. Exists only for cross-compatibility.
                   Example: `{\\"bar-key\\": \\"value\\"}`"
             returned: on success
             type: dict
@@ -227,7 +227,7 @@ endpoint:
             sample: description_example
         display_name:
             description:
-                - Data Connectivity Management Registry display name, registries can be renamed
+                - The Data Connectivity Management Registry display name; registries can be renamed.
             returned: on success
             type: str
             sample: display_name_example
@@ -239,27 +239,27 @@ endpoint:
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
-                - The time the Data Connectivity Management Registry was created. An RFC3339 formatted datetime string
+                - Time when the Data Connectivity Management registry was created. An RFC3339 formatted datetime string.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - The time the Data Connectivity Management Registry was updated. An RFC3339 formatted datetime string
+                - Time when the Data Connectivity Management registry was updated. An RFC3339 formatted datetime string.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
-                - "Lifecycle states for registries in Data Connectivity Management Service
-                  CREATING - The resource is being created and may not be usable until the entire metadata is defined
-                  UPDATING - The resource is being updated and may not be usable until all changes are commited
+                - "Lifecycle states for registries in the Data Connectivity Management Service.
+                  CREATING - The resource is being created and may not be usable until the entire metadata is defined.
+                  UPDATING - The resource is being updated and may not be usable until all changes are commited.
                   DELETING - The resource is being deleted and might require deep cleanup of children.
-                  ACTIVE   - The resource is valid and available for access
+                  ACTIVE   - The resource is valid and available for access.
                   INACTIVE - The resource might be incomplete in its definition or might have been made unavailable for
-                           administrative reasons
-                  DELETED  - The resource has been deleted and isn't available
-                  FAILED   - The resource is in a failed state due to validation or other errors"
+                           administrative reasons.
+                  DELETED  - The resource has been deleted and isn't available.
+                  FAILED   - The resource is in a failed state due to validation or other errors."
             returned: on success
             type: str
             sample: CREATING
@@ -272,7 +272,7 @@ endpoint:
             sample: state_message_example
         id:
             description:
-                - Unique identifier that is immutable on creation
+                - A unique identifier that is immutable on creation.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -284,7 +284,7 @@ endpoint:
             sample: 56
         nsg_ids:
             description:
-                - List of NSGs to which the Private Endpoint VNIC must be added.
+                - The list of NSGs to which the private endpoint VNIC must be added.
             returned: on success
             type: list
             sample: []

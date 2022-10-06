@@ -30,7 +30,7 @@ oracle.oci.oci_data_connectivity_data_asset_facts -- Fetches details about one o
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.4.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.5.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -259,7 +259,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Endpoint Ids used for data-plane APIs to filter or prefer specific endpoint.</div>
+                                            <div>Endpoint IDs used for data-plane APIs to filter or prefer specific endpoint.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -274,7 +274,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Endpoints which will be excluded while listing dataAssets</div>
+                                            <div>Endpoints which will be excluded while listing data assets.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -289,7 +289,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Types which wont be listed while listing dataAsset/Connection</div>
+                                            <div>The types that will be excluded from the list of data assets/connections.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -354,7 +354,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>DataAsset type which needs to be listed while listing dataAssets</div>
+                                            <div>Artifact type which needs to be listed while listing Artifacts.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -399,7 +399,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The registry Ocid.</div>
+                                            <div>The registry OCID.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -419,7 +419,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies the field to sort by. Accepts only one field. By default, when you sort by time fields, results are shown in descending order. All other fields default to ascending order. Sorting related parameters are ignored when parameter `query` is present (search operation and sorting order is by relevance score in descending order).</div>
+                                            <div>Specifies the field to sort by. Accepts only one field. By default, when you sort by time fields, results are shown in descending order. All other fields default to ascending order. Sorting related parameters are ignored when parameter `query` is present (search operation and sorting order are by relevance score in descending order).</div>
                                                         </td>
             </tr>
                                 <tr>

@@ -75,12 +75,15 @@ class LogFormatter(logging.Formatter):
 
 def setup_logging(verbosity=0):
     """Setup logging configuration"""
-    env_log_path = "LOG_PATH"
-    env_log_level = "LOG_LEVEL"
+    env_log_path = "OCI_ANSIBLE_LOG_PATH"
+    env_log_level = "OCI_ANSIBLE_LOG_LEVEL"
 
-    # log_path = os.path.expanduser(os.path.expandvars(os.getenv(env_log_path)))
-    log_path = os.getenv(env_log_path)
-    log_level_str = os.getenv(env_log_level)
+    # As of now we are keeping LOG_PATH & LOG_LEVEL for backward compatibility. We will remove it later on
+    old_env_log_path = "LOG_PATH"
+    old_env_log_level = "LOG_LEVEL"
+
+    log_path = os.getenv(env_log_path) or os.getenv(old_env_log_path)
+    log_level_str = os.getenv(env_log_level) or os.getenv(old_env_log_level)
     if log_level_str is not None:
         # logging using environment variable has the higher priority
         # assumption: default log_level incase environment variable doesn't map to any level will be NONE &

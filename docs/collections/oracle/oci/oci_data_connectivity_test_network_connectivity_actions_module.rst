@@ -30,7 +30,7 @@ oracle.oci.oci_data_connectivity_test_network_connectivity_actions -- Perform ac
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.4.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.5.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Perform actions on a TestNetworkConnectivity resource in Oracle Cloud Infrastructure
-- For *action=create*, execute network validation on selected data assets associated with the provided private endpoint
+- For *action=create*, execute network validation on the selected data assets associated with the provided private endpoint.
 
 
 .. Aliases
@@ -275,7 +275,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Endpoint Id used for getDataAssetFullDetails.</div>
+                                            <div>Endpoint ID used for getDataAssetFullDetails.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -305,7 +305,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The registry Ocid.</div>
+                                            <div>The registry OCID.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
             </tr>
@@ -427,7 +427,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>True if the data asset is has a valid network path.</div>
+                                            <div>True if the data asset has a valid network path.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>

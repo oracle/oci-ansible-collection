@@ -26,6 +26,8 @@ description:
     - For I(action=activate), activates the model.
     - For I(action=change_compartment), moves a model resource into a different compartment.
     - For I(action=deactivate), deactivates the model.
+    - For I(action=export_model_artifact), export model artifact from source to the service bucket
+    - For I(action=import_model_artifact), import model artifact from service bucket
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -34,12 +36,70 @@ options:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment where the resource should be moved.
             - Required for I(action=change_compartment).
         type: str
+    artifact_export_details:
+        description:
+            - ""
+            - Required for I(action=export_model_artifact).
+        type: dict
+        suboptions:
+            artifact_source_type:
+                description:
+                    - Source type where actually artifact is being stored
+                type: str
+                choices:
+                    - "ORACLE_OBJECT_STORAGE"
+                required: true
+            namespace:
+                description:
+                    - The Object Storage namespace used for the request.
+                type: str
+            source_bucket:
+                description:
+                    - The name of the bucket. Avoid entering confidential information.
+                type: str
+            source_object_name:
+                description:
+                    - The name of the object resulting from the copy operation.
+                type: str
+            source_region:
+                description:
+                    - Region in which OSS bucket is present
+                type: str
     model_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the model.
         type: str
         aliases: ["id"]
         required: true
+    artifact_import_details:
+        description:
+            - ""
+            - Required for I(action=import_model_artifact).
+        type: dict
+        suboptions:
+            artifact_source_type:
+                description:
+                    - Source type where actually artifact is being stored
+                type: str
+                choices:
+                    - "ORACLE_OBJECT_STORAGE"
+                required: true
+            namespace:
+                description:
+                    - The Object Storage namespace used for the request.
+                type: str
+            destination_bucket:
+                description:
+                    - The name of the bucket. Avoid entering confidential information.
+                type: str
+            destination_object_name:
+                description:
+                    - The name of the object resulting from the copy operation.
+                type: str
+            destination_region:
+                description:
+                    - Region in which OSS bucket is present
+                type: str
     action:
         description:
             - The action to perform on the Model.
@@ -49,6 +109,8 @@ options:
             - "activate"
             - "change_compartment"
             - "deactivate"
+            - "export_model_artifact"
+            - "import_model_artifact"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
@@ -71,6 +133,36 @@ EXAMPLES = """
     # required
     model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
     action: deactivate
+
+- name: Perform action export_model_artifact on model
+  oci_data_science_model_actions:
+    # required
+    artifact_export_details:
+      # required
+      artifact_source_type: ORACLE_OBJECT_STORAGE
+
+      # optional
+      namespace: namespace_example
+      source_bucket: source_bucket_example
+      source_object_name: source_object_name_example
+      source_region: us-phoenix-1
+    model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
+    action: export_model_artifact
+
+- name: Perform action import_model_artifact on model
+  oci_data_science_model_actions:
+    # required
+    model_id: "ocid1.model.oc1..xxxxxxEXAMPLExxxxxx"
+    artifact_import_details:
+      # required
+      artifact_source_type: ORACLE_OBJECT_STORAGE
+
+      # optional
+      namespace: namespace_example
+      destination_bucket: destination_bucket_example
+      destination_object_name: destination_object_name_example
+      destination_region: us-phoenix-1
+    action: import_model_artifact
 
 """
 
@@ -289,6 +381,8 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 try:
     from oci.data_science import DataScienceClient
     from oci.data_science.models import ChangeModelCompartmentDetails
+    from oci.data_science.models import ExportModelArtifactDetails
+    from oci.data_science.models import ImportModelArtifactDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -301,6 +395,8 @@ class DataScienceModelActionsHelperGen(OCIActionsHelperBase):
         activate
         change_compartment
         deactivate
+        export_model_artifact
+        import_model_artifact
     """
 
     @staticmethod
@@ -375,6 +471,48 @@ class DataScienceModelActionsHelperGen(OCIActionsHelperBase):
             ),
         )
 
+    def export_model_artifact(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ExportModelArtifactDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.export_model_artifact,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                model_id=self.module.params.get("model_id"),
+                export_model_artifact_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def import_model_artifact(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ImportModelArtifactDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.import_model_artifact,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                model_id=self.module.params.get("model_id"),
+                import_model_artifact_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
 
 DataScienceModelActionsHelperCustom = get_custom_class(
     "DataScienceModelActionsHelperCustom"
@@ -394,11 +532,41 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
+            artifact_export_details=dict(
+                type="dict",
+                options=dict(
+                    artifact_source_type=dict(
+                        type="str", required=True, choices=["ORACLE_OBJECT_STORAGE"]
+                    ),
+                    namespace=dict(type="str"),
+                    source_bucket=dict(type="str"),
+                    source_object_name=dict(type="str"),
+                    source_region=dict(type="str"),
+                ),
+            ),
             model_id=dict(aliases=["id"], type="str", required=True),
+            artifact_import_details=dict(
+                type="dict",
+                options=dict(
+                    artifact_source_type=dict(
+                        type="str", required=True, choices=["ORACLE_OBJECT_STORAGE"]
+                    ),
+                    namespace=dict(type="str"),
+                    destination_bucket=dict(type="str"),
+                    destination_object_name=dict(type="str"),
+                    destination_region=dict(type="str"),
+                ),
+            ),
             action=dict(
                 type="str",
                 required=True,
-                choices=["activate", "change_compartment", "deactivate"],
+                choices=[
+                    "activate",
+                    "change_compartment",
+                    "deactivate",
+                    "export_model_artifact",
+                    "import_model_artifact",
+                ],
             ),
         )
     )

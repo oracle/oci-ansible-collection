@@ -250,6 +250,131 @@ options:
                                 description:
                                     - The name of the query parameter containing the authentication token.
                                 type: str
+                            parameters:
+                                description:
+                                    - "A map where key is a user defined string and value is a context expressions whose values will be sent to the custom auth
+                                      function. Values should contain an expression.
+                                      Example: `{\\"foo\\": \\"request.header[abc]\\"}`"
+                                    - Applicable when type is 'CUSTOM_AUTHENTICATION'
+                                type: dict
+                            cache_key:
+                                description:
+                                    - "A list of keys from \\"parameters\\" attribute value whose values will be added to the cache key."
+                                    - Applicable when type is 'CUSTOM_AUTHENTICATION'
+                                type: list
+                                elements: str
+                            validation_failure_policy:
+                                description:
+                                    - ""
+                                    - Applicable when type is 'CUSTOM_AUTHENTICATION'
+                                type: dict
+                                suboptions:
+                                    type:
+                                        description:
+                                            - Type of the Validation failure Policy.
+                                        type: str
+                                        choices:
+                                            - "MODIFY_RESPONSE"
+                                        required: true
+                                    response_code:
+                                        description:
+                                            - HTTP response code, can include context variables.
+                                        type: str
+                                    response_message:
+                                        description:
+                                            - HTTP response message.
+                                        type: str
+                                    response_header_transformations:
+                                        description:
+                                            - ""
+                                        type: dict
+                                        suboptions:
+                                            set_headers:
+                                                description:
+                                                    - ""
+                                                type: dict
+                                                suboptions:
+                                                    items:
+                                                        description:
+                                                            - The list of headers.
+                                                        type: list
+                                                        elements: dict
+                                                        required: true
+                                                        suboptions:
+                                                            name:
+                                                                description:
+                                                                    - The case-insensitive name of the header.  This name must be unique across transformation
+                                                                      policies.
+                                                                type: str
+                                                                required: true
+                                                            values:
+                                                                description:
+                                                                    - A list of new values.  Each value can be a constant or may include one or more expressions
+                                                                      enclosed within
+                                                                      ${} delimiters.
+                                                                type: list
+                                                                elements: str
+                                                                required: true
+                                                            if_exists:
+                                                                description:
+                                                                    - If a header with the same name already exists in the request, OVERWRITE will overwrite the
+                                                                      value,
+                                                                      APPEND will append to the existing value, or SKIP will keep the existing value.
+                                                                type: str
+                                                                choices:
+                                                                    - "OVERWRITE"
+                                                                    - "APPEND"
+                                                                    - "SKIP"
+                                            rename_headers:
+                                                description:
+                                                    - ""
+                                                type: dict
+                                                suboptions:
+                                                    items:
+                                                        description:
+                                                            - The list of headers.
+                                                        type: list
+                                                        elements: dict
+                                                        required: true
+                                                        suboptions:
+                                                            _from:
+                                                                description:
+                                                                    - The original case-insensitive name of the header.  This name must be unique across
+                                                                      transformation policies.
+                                                                type: str
+                                                                required: true
+                                                            to:
+                                                                description:
+                                                                    - The new name of the header.  This name must be unique across transformation policies.
+                                                                type: str
+                                                                required: true
+                                            filter_headers:
+                                                description:
+                                                    - ""
+                                                type: dict
+                                                suboptions:
+                                                    type:
+                                                        description:
+                                                            - BLOCK drops any headers that are in the list of items, so it acts as an exclusion list.  ALLOW
+                                                              permits only the headers in the list and removes all others, so it acts as an inclusion list.
+                                                        type: str
+                                                        choices:
+                                                            - "ALLOW"
+                                                            - "BLOCK"
+                                                        required: true
+                                                    items:
+                                                        description:
+                                                            - The list of headers.
+                                                        type: list
+                                                        elements: dict
+                                                        required: true
+                                                        suboptions:
+                                                            name:
+                                                                description:
+                                                                    - The case-insensitive name of the header.  This name must be unique across transformation
+                                                                      policies.
+                                                                type: str
+                                                                required: true
                     rate_limiting:
                         description:
                             - ""
@@ -339,6 +464,380 @@ options:
                                 type: list
                                 elements: str
                                 required: true
+                    dynamic_authentication:
+                        description:
+                            - ""
+                        type: dict
+                        suboptions:
+                            selection_source:
+                                description:
+                                    - ""
+                                type: dict
+                                required: true
+                                suboptions:
+                                    type:
+                                        description:
+                                            - Type of the Selection source to use.
+                                        type: str
+                                        choices:
+                                            - "SINGLE"
+                                        default: "SINGLE"
+                                    selector:
+                                        description:
+                                            - String describing the context variable used as selector.
+                                        type: str
+                                        required: true
+                            authentication_servers:
+                                description:
+                                    - List of authentication servers to choose from during dynamic authentication.
+                                type: list
+                                elements: dict
+                                required: true
+                                suboptions:
+                                    key:
+                                        description:
+                                            - ""
+                                        type: dict
+                                        required: true
+                                        suboptions:
+                                            expression:
+                                                description:
+                                                    - String describing the expression with wildcards.
+                                                    - Required when type is 'WILDCARD'
+                                                type: str
+                                            type:
+                                                description:
+                                                    - Information regarding type of the selection key.
+                                                type: str
+                                                choices:
+                                                    - "WILDCARD"
+                                                    - "ANY_OF"
+                                                default: "ANY_OF"
+                                            is_default:
+                                                description:
+                                                    - Information regarding whether this is the default branch.
+                                                type: bool
+                                            name:
+                                                description:
+                                                    - Name assigned to the branch.
+                                                type: str
+                                                required: true
+                                            values:
+                                                description:
+                                                    - Information regarding the set of values of selector for which this branch should be selected.
+                                                    - Applicable when type is 'ANY_OF'
+                                                type: list
+                                                elements: str
+                                    authentication_server_detail:
+                                        description:
+                                            - ""
+                                        type: dict
+                                        required: true
+                                        suboptions:
+                                            token_auth_scheme:
+                                                description:
+                                                    - "The authentication scheme that is to be used when authenticating
+                                                      the token. This must to be provided if \\"tokenHeader\\" is specified."
+                                                    - Applicable when type is 'JWT_AUTHENTICATION'
+                                                type: str
+                                            issuers:
+                                                description:
+                                                    - A list of parties that could have issued the token.
+                                                    - Required when type is 'JWT_AUTHENTICATION'
+                                                type: list
+                                                elements: str
+                                            audiences:
+                                                description:
+                                                    - The list of intended recipients for the token.
+                                                    - Required when type is 'JWT_AUTHENTICATION'
+                                                type: list
+                                                elements: str
+                                            verify_claims:
+                                                description:
+                                                    - A list of claims which should be validated to consider the token valid.
+                                                    - Applicable when type is 'JWT_AUTHENTICATION'
+                                                type: list
+                                                elements: dict
+                                                suboptions:
+                                                    key:
+                                                        description:
+                                                            - Name of the claim.
+                                                            - Required when type is 'JWT_AUTHENTICATION'
+                                                        type: str
+                                                        required: true
+                                                    values:
+                                                        description:
+                                                            - "The list of acceptable values for a given claim.
+                                                              If this value is \\"null\\" or empty and \\"isRequired\\" set to \\"true\\", then
+                                                              the presence of this claim in the JWT is validated."
+                                                            - Applicable when type is 'JWT_AUTHENTICATION'
+                                                        type: list
+                                                        elements: str
+                                                    is_required:
+                                                        description:
+                                                            - "Whether the claim is required to be present in the JWT or not. If set
+                                                              to \\"false\\", the claim values will be matched only if the claim is
+                                                              present in the JWT."
+                                                            - Applicable when type is 'JWT_AUTHENTICATION'
+                                                        type: bool
+                                            max_clock_skew_in_seconds:
+                                                description:
+                                                    - The maximum expected time difference between the system clocks
+                                                      of the token issuer and the API Gateway.
+                                                    - Applicable when type is 'JWT_AUTHENTICATION'
+                                                type: float
+                                            public_keys:
+                                                description:
+                                                    - ""
+                                                    - Required when type is 'JWT_AUTHENTICATION'
+                                                type: dict
+                                                suboptions:
+                                                    keys:
+                                                        description:
+                                                            - The set of static public keys.
+                                                            - Applicable when type is 'STATIC_KEYS'
+                                                        type: list
+                                                        elements: dict
+                                                        suboptions:
+                                                            kty:
+                                                                description:
+                                                                    - The key type.
+                                                                    - Required when format is 'JSON_WEB_KEY'
+                                                                type: str
+                                                                choices:
+                                                                    - "RSA"
+                                                            use:
+                                                                description:
+                                                                    - The intended use of the public key.
+                                                                    - Applicable when format is 'JSON_WEB_KEY'
+                                                                type: str
+                                                                choices:
+                                                                    - "sig"
+                                                            key_ops:
+                                                                description:
+                                                                    - The operations for which this key is to be used.
+                                                                    - Applicable when format is 'JSON_WEB_KEY'
+                                                                type: list
+                                                                elements: str
+                                                                choices:
+                                                                    - "verify"
+                                                            alg:
+                                                                description:
+                                                                    - The algorithm intended for use with this key.
+                                                                    - Required when format is 'JSON_WEB_KEY'
+                                                                type: str
+                                                            n:
+                                                                description:
+                                                                    - The base64 url encoded modulus of the RSA public key represented
+                                                                      by this key.
+                                                                    - Required when format is 'JSON_WEB_KEY'
+                                                                type: str
+                                                            e:
+                                                                description:
+                                                                    - The base64 url encoded exponent of the RSA public key represented
+                                                                      by this key.
+                                                                    - Required when format is 'JSON_WEB_KEY'
+                                                                type: str
+                                                            kid:
+                                                                description:
+                                                                    - "A unique key ID. This key will be used to verify the signature of a
+                                                                      JWT with matching \\"kid\\"."
+                                                                type: str
+                                                                required: true
+                                                            format:
+                                                                description:
+                                                                    - The format of the public key.
+                                                                type: str
+                                                                choices:
+                                                                    - "JSON_WEB_KEY"
+                                                                    - "PEM"
+                                                                required: true
+                                                            key:
+                                                                description:
+                                                                    - The content of the PEM-encoded public key.
+                                                                    - Required when format is 'PEM'
+                                                                type: str
+                                                    type:
+                                                        description:
+                                                            - Type of the public key set.
+                                                        type: str
+                                                        choices:
+                                                            - "STATIC_KEYS"
+                                                            - "REMOTE_JWKS"
+                                                        required: true
+                                                    uri:
+                                                        description:
+                                                            - The uri from which to retrieve the key. It must be accessible
+                                                              without authentication.
+                                                            - Required when type is 'REMOTE_JWKS'
+                                                        type: str
+                                                    is_ssl_verify_disabled:
+                                                        description:
+                                                            - Defines whether or not to uphold SSL verification.
+                                                            - Applicable when type is 'REMOTE_JWKS'
+                                                        type: bool
+                                                    max_cache_duration_in_hours:
+                                                        description:
+                                                            - The duration for which the JWKS should be cached before it is
+                                                              fetched again.
+                                                            - Applicable when type is 'REMOTE_JWKS'
+                                                        type: int
+                                            is_anonymous_access_allowed:
+                                                description:
+                                                    - "Whether an unauthenticated user may access the API. Must be \\"true\\" to enable ANONYMOUS
+                                                      route authorization."
+                                                type: bool
+                                            type:
+                                                description:
+                                                    - Type of the authentication policy to use.
+                                                type: str
+                                                choices:
+                                                    - "JWT_AUTHENTICATION"
+                                                    - "CUSTOM_AUTHENTICATION"
+                                                required: true
+                                            function_id:
+                                                description:
+                                                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Functions
+                                                      function resource.
+                                                    - Required when type is 'CUSTOM_AUTHENTICATION'
+                                                type: str
+                                            token_header:
+                                                description:
+                                                    - The name of the header containing the authentication token.
+                                                type: str
+                                            token_query_param:
+                                                description:
+                                                    - The name of the query parameter containing the authentication token.
+                                                type: str
+                                            parameters:
+                                                description:
+                                                    - "A map where key is a user defined string and value is a context expressions whose values will be sent to
+                                                      the custom auth function. Values should contain an expression.
+                                                      Example: `{\\"foo\\": \\"request.header[abc]\\"}`"
+                                                    - Applicable when type is 'CUSTOM_AUTHENTICATION'
+                                                type: dict
+                                            cache_key:
+                                                description:
+                                                    - "A list of keys from \\"parameters\\" attribute value whose values will be added to the cache key."
+                                                    - Applicable when type is 'CUSTOM_AUTHENTICATION'
+                                                type: list
+                                                elements: str
+                                            validation_failure_policy:
+                                                description:
+                                                    - ""
+                                                    - Applicable when type is 'CUSTOM_AUTHENTICATION'
+                                                type: dict
+                                                suboptions:
+                                                    type:
+                                                        description:
+                                                            - Type of the Validation failure Policy.
+                                                        type: str
+                                                        choices:
+                                                            - "MODIFY_RESPONSE"
+                                                        required: true
+                                                    response_code:
+                                                        description:
+                                                            - HTTP response code, can include context variables.
+                                                        type: str
+                                                    response_message:
+                                                        description:
+                                                            - HTTP response message.
+                                                        type: str
+                                                    response_header_transformations:
+                                                        description:
+                                                            - ""
+                                                        type: dict
+                                                        suboptions:
+                                                            set_headers:
+                                                                description:
+                                                                    - ""
+                                                                type: dict
+                                                                suboptions:
+                                                                    items:
+                                                                        description:
+                                                                            - The list of headers.
+                                                                        type: list
+                                                                        elements: dict
+                                                                        required: true
+                                                                        suboptions:
+                                                                            name:
+                                                                                description:
+                                                                                    - The case-insensitive name of the header.  This name must be unique across
+                                                                                      transformation policies.
+                                                                                type: str
+                                                                                required: true
+                                                                            values:
+                                                                                description:
+                                                                                    - A list of new values.  Each value can be a constant or may include one or
+                                                                                      more expressions enclosed within
+                                                                                      ${} delimiters.
+                                                                                type: list
+                                                                                elements: str
+                                                                                required: true
+                                                                            if_exists:
+                                                                                description:
+                                                                                    - If a header with the same name already exists in the request, OVERWRITE
+                                                                                      will overwrite the value,
+                                                                                      APPEND will append to the existing value, or SKIP will keep the existing
+                                                                                      value.
+                                                                                type: str
+                                                                                choices:
+                                                                                    - "OVERWRITE"
+                                                                                    - "APPEND"
+                                                                                    - "SKIP"
+                                                            rename_headers:
+                                                                description:
+                                                                    - ""
+                                                                type: dict
+                                                                suboptions:
+                                                                    items:
+                                                                        description:
+                                                                            - The list of headers.
+                                                                        type: list
+                                                                        elements: dict
+                                                                        required: true
+                                                                        suboptions:
+                                                                            _from:
+                                                                                description:
+                                                                                    - The original case-insensitive name of the header.  This name must be
+                                                                                      unique across transformation policies.
+                                                                                type: str
+                                                                                required: true
+                                                                            to:
+                                                                                description:
+                                                                                    - The new name of the header.  This name must be unique across
+                                                                                      transformation policies.
+                                                                                type: str
+                                                                                required: true
+                                                            filter_headers:
+                                                                description:
+                                                                    - ""
+                                                                type: dict
+                                                                suboptions:
+                                                                    type:
+                                                                        description:
+                                                                            - BLOCK drops any headers that are in the list of items, so it acts as an exclusion
+                                                                              list.  ALLOW
+                                                                              permits only the headers in the list and removes all others, so it acts as an
+                                                                              inclusion list.
+                                                                        type: str
+                                                                        choices:
+                                                                            - "ALLOW"
+                                                                            - "BLOCK"
+                                                                        required: true
+                                                                    items:
+                                                                        description:
+                                                                            - The list of headers.
+                                                                        type: list
+                                                                        elements: dict
+                                                                        required: true
+                                                                        suboptions:
+                                                                            name:
+                                                                                description:
+                                                                                    - The case-insensitive name of the header.  This name must be unique across
+                                                                                      transformation policies.
+                                                                                type: str
+                                                                                required: true
             logging_policies:
                 description:
                     - ""
@@ -989,15 +1488,6 @@ options:
                                       resource.
                                     - Required when type is 'ORACLE_FUNCTIONS_BACKEND'
                                 type: str
-                            type:
-                                description:
-                                    - Type of the API backend.
-                                type: str
-                                choices:
-                                    - "HTTP_BACKEND"
-                                    - "ORACLE_FUNCTIONS_BACKEND"
-                                    - "STOCK_RESPONSE_BACKEND"
-                                required: true
                             body:
                                 description:
                                     - The body of the stock response from the mock backend.
@@ -1025,6 +1515,93 @@ options:
                                             - Value of the header.
                                             - Applicable when type is 'STOCK_RESPONSE_BACKEND'
                                         type: str
+                            type:
+                                description:
+                                    - Type of the API backend.
+                                type: str
+                                choices:
+                                    - "HTTP_BACKEND"
+                                    - "ORACLE_FUNCTIONS_BACKEND"
+                                    - "STOCK_RESPONSE_BACKEND"
+                                    - "DYNAMIC_ROUTING_BACKEND"
+                                required: true
+                            selection_source:
+                                description:
+                                    - ""
+                                    - Required when type is 'DYNAMIC_ROUTING_BACKEND'
+                                type: dict
+                                suboptions:
+                                    type:
+                                        description:
+                                            - Type of the Selection source to use.
+                                        type: str
+                                        choices:
+                                            - "SINGLE"
+                                        default: "SINGLE"
+                                    selector:
+                                        description:
+                                            - String describing the context variable used as selector.
+                                        type: str
+                                        required: true
+                            routing_backends:
+                                description:
+                                    - List of backends to chose from for Dynamic Routing.
+                                    - Required when type is 'DYNAMIC_ROUTING_BACKEND'
+                                type: list
+                                elements: dict
+                                suboptions:
+                                    key:
+                                        description:
+                                            - ""
+                                            - Required when type is 'DYNAMIC_ROUTING_BACKEND'
+                                        type: dict
+                                        required: true
+                                        suboptions:
+                                            expression:
+                                                description:
+                                                    - String describing the expression with wildcards.
+                                                    - Required when type is 'WILDCARD'
+                                                type: str
+                                            type:
+                                                description:
+                                                    - Information regarding type of the selection key.
+                                                type: str
+                                                choices:
+                                                    - "WILDCARD"
+                                                    - "ANY_OF"
+                                                default: "ANY_OF"
+                                            is_default:
+                                                description:
+                                                    - Information regarding whether this is the default branch.
+                                                type: bool
+                                            name:
+                                                description:
+                                                    - Name assigned to the branch.
+                                                type: str
+                                                required: true
+                                            values:
+                                                description:
+                                                    - Information regarding the set of values of selector for which this branch should be selected.
+                                                    - Applicable when type is 'ANY_OF'
+                                                type: list
+                                                elements: str
+                                    backend:
+                                        description:
+                                            - ""
+                                            - Required when type is 'DYNAMIC_ROUTING_BACKEND'
+                                        type: dict
+                                        required: true
+                                        suboptions:
+                                            type:
+                                                description:
+                                                    - Type of the API backend.
+                                                type: str
+                                                choices:
+                                                    - "ORACLE_FUNCTIONS_BACKEND"
+                                                    - "HTTP_BACKEND"
+                                                    - "STOCK_RESPONSE_BACKEND"
+                                                    - "DYNAMIC_ROUTING_BACKEND"
+                                                required: true
     freeform_tags:
         description:
             - Free-form tags for this resource. Each tag is a simple key-value pair
@@ -1128,6 +1705,60 @@ EXAMPLES = """
         usage_plans:
           # required
           token_locations: [ "token_locations_example" ]
+        dynamic_authentication:
+          # required
+          selection_source:
+            # required
+            selector: selector_example
+
+            # optional
+            type: SINGLE
+          authentication_servers:
+          - # required
+            key:
+              # required
+              expression: expression_example
+              type: WILDCARD
+              name: name_example
+
+              # optional
+              is_default: true
+            authentication_server_detail:
+              # required
+              issuers: [ "issuers_example" ]
+              audiences: [ "audiences_example" ]
+              public_keys:
+                # required
+                type: STATIC_KEYS
+
+                # optional
+                keys:
+                - # required
+                  kty: RSA
+                  alg: alg_example
+                  n: n_example
+                  e: e_example
+                  kid: kid_example
+                  format: JSON_WEB_KEY
+
+                  # optional
+                  use: sig
+                  key_ops: [ "verify" ]
+              type: JWT_AUTHENTICATION
+
+                  # optional
+              token_auth_scheme: token_auth_scheme_example
+              verify_claims:
+              - # required
+                key: key_example
+
+                # optional
+                values: [ "values_example" ]
+                is_required: true
+              max_clock_skew_in_seconds: 3.4
+              is_anonymous_access_allowed: true
+              token_header: token_header_example
+              token_query_param: token_query_param_example
       logging_policies:
         # optional
         access_log:
@@ -1361,6 +1992,60 @@ EXAMPLES = """
         usage_plans:
           # required
           token_locations: [ "token_locations_example" ]
+        dynamic_authentication:
+          # required
+          selection_source:
+            # required
+            selector: selector_example
+
+            # optional
+            type: SINGLE
+          authentication_servers:
+          - # required
+            key:
+              # required
+              expression: expression_example
+              type: WILDCARD
+              name: name_example
+
+              # optional
+              is_default: true
+            authentication_server_detail:
+              # required
+              issuers: [ "issuers_example" ]
+              audiences: [ "audiences_example" ]
+              public_keys:
+                # required
+                type: STATIC_KEYS
+
+                # optional
+                keys:
+                - # required
+                  kty: RSA
+                  alg: alg_example
+                  n: n_example
+                  e: e_example
+                  kid: kid_example
+                  format: JSON_WEB_KEY
+
+                  # optional
+                  use: sig
+                  key_ops: [ "verify" ]
+              type: JWT_AUTHENTICATION
+
+                  # optional
+              token_auth_scheme: token_auth_scheme_example
+              verify_claims:
+              - # required
+                key: key_example
+
+                # optional
+                values: [ "values_example" ]
+                is_required: true
+              max_clock_skew_in_seconds: 3.4
+              is_anonymous_access_allowed: true
+              token_header: token_header_example
+              token_query_param: token_query_param_example
       logging_policies:
         # optional
         access_log:
@@ -1591,6 +2276,60 @@ EXAMPLES = """
         usage_plans:
           # required
           token_locations: [ "token_locations_example" ]
+        dynamic_authentication:
+          # required
+          selection_source:
+            # required
+            selector: selector_example
+
+            # optional
+            type: SINGLE
+          authentication_servers:
+          - # required
+            key:
+              # required
+              expression: expression_example
+              type: WILDCARD
+              name: name_example
+
+              # optional
+              is_default: true
+            authentication_server_detail:
+              # required
+              issuers: [ "issuers_example" ]
+              audiences: [ "audiences_example" ]
+              public_keys:
+                # required
+                type: STATIC_KEYS
+
+                # optional
+                keys:
+                - # required
+                  kty: RSA
+                  alg: alg_example
+                  n: n_example
+                  e: e_example
+                  kid: kid_example
+                  format: JSON_WEB_KEY
+
+                  # optional
+                  use: sig
+                  key_ops: [ "verify" ]
+              type: JWT_AUTHENTICATION
+
+                  # optional
+              token_auth_scheme: token_auth_scheme_example
+              verify_claims:
+              - # required
+                key: key_example
+
+                # optional
+                values: [ "values_example" ]
+                is_required: true
+              max_clock_skew_in_seconds: 3.4
+              is_anonymous_access_allowed: true
+              token_header: token_header_example
+              token_query_param: token_query_param_example
       logging_policies:
         # optional
         access_log:
@@ -1842,6 +2581,136 @@ deployment:
                                     returned: on success
                                     type: str
                                     sample: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
+                                parameters:
+                                    description:
+                                        - "A map where key is a user defined string and value is a context expressions whose values will be sent to the custom
+                                          auth function. Values should contain an expression.
+                                          Example: `{\\"foo\\": \\"request.header[abc]\\"}`"
+                                    returned: on success
+                                    type: dict
+                                    sample: {}
+                                cache_key:
+                                    description:
+                                        - "A list of keys from \\"parameters\\" attribute value whose values will be added to the cache key."
+                                    returned: on success
+                                    type: list
+                                    sample: []
+                                validation_failure_policy:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        type:
+                                            description:
+                                                - Type of the Validation failure Policy.
+                                            returned: on success
+                                            type: str
+                                            sample: MODIFY_RESPONSE
+                                        response_code:
+                                            description:
+                                                - HTTP response code, can include context variables.
+                                            returned: on success
+                                            type: str
+                                            sample: response_code_example
+                                        response_message:
+                                            description:
+                                                - HTTP response message.
+                                            returned: on success
+                                            type: str
+                                            sample: response_message_example
+                                        response_header_transformations:
+                                            description:
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                set_headers:
+                                                    description:
+                                                        - ""
+                                                    returned: on success
+                                                    type: complex
+                                                    contains:
+                                                        items:
+                                                            description:
+                                                                - The list of headers.
+                                                            returned: on success
+                                                            type: complex
+                                                            contains:
+                                                                name:
+                                                                    description:
+                                                                        - The case-insensitive name of the header.  This name must be unique across
+                                                                          transformation policies.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: name_example
+                                                                values:
+                                                                    description:
+                                                                        - A list of new values.  Each value can be a constant or may include one or more
+                                                                          expressions enclosed within
+                                                                          ${} delimiters.
+                                                                    returned: on success
+                                                                    type: list
+                                                                    sample: []
+                                                                if_exists:
+                                                                    description:
+                                                                        - If a header with the same name already exists in the request, OVERWRITE will overwrite
+                                                                          the value,
+                                                                          APPEND will append to the existing value, or SKIP will keep the existing value.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: OVERWRITE
+                                                rename_headers:
+                                                    description:
+                                                        - ""
+                                                    returned: on success
+                                                    type: complex
+                                                    contains:
+                                                        items:
+                                                            description:
+                                                                - The list of headers.
+                                                            returned: on success
+                                                            type: complex
+                                                            contains:
+                                                                _from:
+                                                                    description:
+                                                                        - The original case-insensitive name of the header.  This name must be unique across
+                                                                          transformation policies.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: _from_example
+                                                                to:
+                                                                    description:
+                                                                        - The new name of the header.  This name must be unique across transformation policies.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: to_example
+                                                filter_headers:
+                                                    description:
+                                                        - ""
+                                                    returned: on success
+                                                    type: complex
+                                                    contains:
+                                                        type:
+                                                            description:
+                                                                - BLOCK drops any headers that are in the list of items, so it acts as an exclusion list.  ALLOW
+                                                                  permits only the headers in the list and removes all others, so it acts as an inclusion list.
+                                                            returned: on success
+                                                            type: str
+                                                            sample: ALLOW
+                                                        items:
+                                                            description:
+                                                                - The list of headers.
+                                                            returned: on success
+                                                            type: complex
+                                                            contains:
+                                                                name:
+                                                                    description:
+                                                                        - The case-insensitive name of the header.  This name must be unique across
+                                                                          transformation policies.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: name_example
                                 is_anonymous_access_allowed:
                                     description:
                                         - "Whether an unauthenticated user may access the API. Must be \\"true\\" to enable ANONYMOUS
@@ -2118,6 +2987,393 @@ deployment:
                                     returned: on success
                                     type: list
                                     sample: []
+                        dynamic_authentication:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                selection_source:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        type:
+                                            description:
+                                                - Type of the Selection source to use.
+                                            returned: on success
+                                            type: str
+                                            sample: SINGLE
+                                        selector:
+                                            description:
+                                                - String describing the context variable used as selector.
+                                            returned: on success
+                                            type: str
+                                            sample: selector_example
+                                authentication_servers:
+                                    description:
+                                        - List of authentication servers to choose from during dynamic authentication.
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        key:
+                                            description:
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                values:
+                                                    description:
+                                                        - Information regarding the set of values of selector for which this branch should be selected.
+                                                    returned: on success
+                                                    type: list
+                                                    sample: []
+                                                type:
+                                                    description:
+                                                        - Information regarding type of the selection key.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: ANY_OF
+                                                is_default:
+                                                    description:
+                                                        - Information regarding whether this is the default branch.
+                                                    returned: on success
+                                                    type: bool
+                                                    sample: true
+                                                name:
+                                                    description:
+                                                        - Name assigned to the branch.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: name_example
+                                                expression:
+                                                    description:
+                                                        - String describing the expression with wildcards.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: expression_example
+                                        authentication_server_detail:
+                                            description:
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                function_id:
+                                                    description:
+                                                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle
+                                                          Functions function resource.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
+                                                parameters:
+                                                    description:
+                                                        - "A map where key is a user defined string and value is a context expressions whose values will be sent
+                                                          to the custom auth function. Values should contain an expression.
+                                                          Example: `{\\"foo\\": \\"request.header[abc]\\"}`"
+                                                    returned: on success
+                                                    type: dict
+                                                    sample: {}
+                                                cache_key:
+                                                    description:
+                                                        - "A list of keys from \\"parameters\\" attribute value whose values will be added to the cache key."
+                                                    returned: on success
+                                                    type: list
+                                                    sample: []
+                                                validation_failure_policy:
+                                                    description:
+                                                        - ""
+                                                    returned: on success
+                                                    type: complex
+                                                    contains:
+                                                        type:
+                                                            description:
+                                                                - Type of the Validation failure Policy.
+                                                            returned: on success
+                                                            type: str
+                                                            sample: MODIFY_RESPONSE
+                                                        response_code:
+                                                            description:
+                                                                - HTTP response code, can include context variables.
+                                                            returned: on success
+                                                            type: str
+                                                            sample: response_code_example
+                                                        response_message:
+                                                            description:
+                                                                - HTTP response message.
+                                                            returned: on success
+                                                            type: str
+                                                            sample: response_message_example
+                                                        response_header_transformations:
+                                                            description:
+                                                                - ""
+                                                            returned: on success
+                                                            type: complex
+                                                            contains:
+                                                                set_headers:
+                                                                    description:
+                                                                        - ""
+                                                                    returned: on success
+                                                                    type: complex
+                                                                    contains:
+                                                                        items:
+                                                                            description:
+                                                                                - The list of headers.
+                                                                            returned: on success
+                                                                            type: complex
+                                                                            contains:
+                                                                                name:
+                                                                                    description:
+                                                                                        - The case-insensitive name of the header.  This name must be unique
+                                                                                          across transformation policies.
+                                                                                    returned: on success
+                                                                                    type: str
+                                                                                    sample: name_example
+                                                                                values:
+                                                                                    description:
+                                                                                        - A list of new values.  Each value can be a constant or may include one
+                                                                                          or more expressions enclosed within
+                                                                                          ${} delimiters.
+                                                                                    returned: on success
+                                                                                    type: list
+                                                                                    sample: []
+                                                                                if_exists:
+                                                                                    description:
+                                                                                        - If a header with the same name already exists in the request,
+                                                                                          OVERWRITE will overwrite the value,
+                                                                                          APPEND will append to the existing value, or SKIP will keep the
+                                                                                          existing value.
+                                                                                    returned: on success
+                                                                                    type: str
+                                                                                    sample: OVERWRITE
+                                                                rename_headers:
+                                                                    description:
+                                                                        - ""
+                                                                    returned: on success
+                                                                    type: complex
+                                                                    contains:
+                                                                        items:
+                                                                            description:
+                                                                                - The list of headers.
+                                                                            returned: on success
+                                                                            type: complex
+                                                                            contains:
+                                                                                _from:
+                                                                                    description:
+                                                                                        - The original case-insensitive name of the header.  This name must be
+                                                                                          unique across transformation policies.
+                                                                                    returned: on success
+                                                                                    type: str
+                                                                                    sample: _from_example
+                                                                                to:
+                                                                                    description:
+                                                                                        - The new name of the header.  This name must be unique across
+                                                                                          transformation policies.
+                                                                                    returned: on success
+                                                                                    type: str
+                                                                                    sample: to_example
+                                                                filter_headers:
+                                                                    description:
+                                                                        - ""
+                                                                    returned: on success
+                                                                    type: complex
+                                                                    contains:
+                                                                        type:
+                                                                            description:
+                                                                                - BLOCK drops any headers that are in the list of items, so it acts as an
+                                                                                  exclusion list.  ALLOW
+                                                                                  permits only the headers in the list and removes all others, so it acts as an
+                                                                                  inclusion list.
+                                                                            returned: on success
+                                                                            type: str
+                                                                            sample: ALLOW
+                                                                        items:
+                                                                            description:
+                                                                                - The list of headers.
+                                                                            returned: on success
+                                                                            type: complex
+                                                                            contains:
+                                                                                name:
+                                                                                    description:
+                                                                                        - The case-insensitive name of the header.  This name must be unique
+                                                                                          across transformation policies.
+                                                                                    returned: on success
+                                                                                    type: str
+                                                                                    sample: name_example
+                                                is_anonymous_access_allowed:
+                                                    description:
+                                                        - "Whether an unauthenticated user may access the API. Must be \\"true\\" to enable ANONYMOUS
+                                                          route authorization."
+                                                    returned: on success
+                                                    type: bool
+                                                    sample: true
+                                                type:
+                                                    description:
+                                                        - Type of the authentication policy to use.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: CUSTOM_AUTHENTICATION
+                                                token_header:
+                                                    description:
+                                                        - The name of the header containing the authentication token.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: token_header_example
+                                                token_query_param:
+                                                    description:
+                                                        - The name of the query parameter containing the authentication token.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: token_query_param_example
+                                                token_auth_scheme:
+                                                    description:
+                                                        - "The authentication scheme that is to be used when authenticating
+                                                          the token. This must to be provided if \\"tokenHeader\\" is specified."
+                                                    returned: on success
+                                                    type: str
+                                                    sample: token_auth_scheme_example
+                                                issuers:
+                                                    description:
+                                                        - A list of parties that could have issued the token.
+                                                    returned: on success
+                                                    type: list
+                                                    sample: []
+                                                audiences:
+                                                    description:
+                                                        - The list of intended recipients for the token.
+                                                    returned: on success
+                                                    type: list
+                                                    sample: []
+                                                verify_claims:
+                                                    description:
+                                                        - A list of claims which should be validated to consider the token valid.
+                                                    returned: on success
+                                                    type: complex
+                                                    contains:
+                                                        key:
+                                                            description:
+                                                                - Name of the claim.
+                                                            returned: on success
+                                                            type: str
+                                                            sample: key_example
+                                                        values:
+                                                            description:
+                                                                - "The list of acceptable values for a given claim.
+                                                                  If this value is \\"null\\" or empty and \\"isRequired\\" set to \\"true\\", then
+                                                                  the presence of this claim in the JWT is validated."
+                                                            returned: on success
+                                                            type: list
+                                                            sample: []
+                                                        is_required:
+                                                            description:
+                                                                - "Whether the claim is required to be present in the JWT or not. If set
+                                                                  to \\"false\\", the claim values will be matched only if the claim is
+                                                                  present in the JWT."
+                                                            returned: on success
+                                                            type: bool
+                                                            sample: true
+                                                max_clock_skew_in_seconds:
+                                                    description:
+                                                        - The maximum expected time difference between the system clocks
+                                                          of the token issuer and the API Gateway.
+                                                    returned: on success
+                                                    type: float
+                                                    sample: 3.4
+                                                public_keys:
+                                                    description:
+                                                        - ""
+                                                    returned: on success
+                                                    type: complex
+                                                    contains:
+                                                        uri:
+                                                            description:
+                                                                - The uri from which to retrieve the key. It must be accessible
+                                                                  without authentication.
+                                                            returned: on success
+                                                            type: str
+                                                            sample: uri_example
+                                                        is_ssl_verify_disabled:
+                                                            description:
+                                                                - Defines whether or not to uphold SSL verification.
+                                                            returned: on success
+                                                            type: bool
+                                                            sample: true
+                                                        max_cache_duration_in_hours:
+                                                            description:
+                                                                - The duration for which the JWKS should be cached before it is
+                                                                  fetched again.
+                                                            returned: on success
+                                                            type: int
+                                                            sample: 56
+                                                        type:
+                                                            description:
+                                                                - Type of the public key set.
+                                                            returned: on success
+                                                            type: str
+                                                            sample: STATIC_KEYS
+                                                        keys:
+                                                            description:
+                                                                - The set of static public keys.
+                                                            returned: on success
+                                                            type: complex
+                                                            contains:
+                                                                kty:
+                                                                    description:
+                                                                        - The key type.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: RSA
+                                                                use:
+                                                                    description:
+                                                                        - The intended use of the public key.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: sig
+                                                                key_ops:
+                                                                    description:
+                                                                        - The operations for which this key is to be used.
+                                                                    returned: on success
+                                                                    type: list
+                                                                    sample: []
+                                                                alg:
+                                                                    description:
+                                                                        - The algorithm intended for use with this key.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: alg_example
+                                                                n:
+                                                                    description:
+                                                                        - The base64 url encoded modulus of the RSA public key represented
+                                                                          by this key.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: n_example
+                                                                e:
+                                                                    description:
+                                                                        - The base64 url encoded exponent of the RSA public key represented
+                                                                          by this key.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: e_example
+                                                                kid:
+                                                                    description:
+                                                                        - "A unique key ID. This key will be used to verify the signature of a
+                                                                          JWT with matching \\"kid\\"."
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: kid_example
+                                                                format:
+                                                                    description:
+                                                                        - The format of the public key.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: JSON_WEB_KEY
+                                                                key:
+                                                                    description:
+                                                                        - The content of the PEM-encoded public key.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: key_example
                 logging_policies:
                     description:
                         - ""
@@ -2771,6 +4027,78 @@ deployment:
                             returned: on success
                             type: complex
                             contains:
+                                selection_source:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        type:
+                                            description:
+                                                - Type of the Selection source to use.
+                                            returned: on success
+                                            type: str
+                                            sample: SINGLE
+                                        selector:
+                                            description:
+                                                - String describing the context variable used as selector.
+                                            returned: on success
+                                            type: str
+                                            sample: selector_example
+                                routing_backends:
+                                    description:
+                                        - List of backends to chose from for Dynamic Routing.
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        key:
+                                            description:
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                values:
+                                                    description:
+                                                        - Information regarding the set of values of selector for which this branch should be selected.
+                                                    returned: on success
+                                                    type: list
+                                                    sample: []
+                                                type:
+                                                    description:
+                                                        - Information regarding type of the selection key.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: ANY_OF
+                                                is_default:
+                                                    description:
+                                                        - Information regarding whether this is the default branch.
+                                                    returned: on success
+                                                    type: bool
+                                                    sample: true
+                                                name:
+                                                    description:
+                                                        - Name assigned to the branch.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: name_example
+                                                expression:
+                                                    description:
+                                                        - String describing the expression with wildcards.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: expression_example
+                                        backend:
+                                            description:
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                type:
+                                                    description:
+                                                        - Type of the API backend.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: ORACLE_FUNCTIONS_BACKEND
                                 url:
                                     description:
                                         - ""
@@ -2899,6 +4227,34 @@ deployment:
             "request_policies": {
                 "authentication": {
                     "function_id": "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx",
+                    "parameters": {},
+                    "cache_key": [],
+                    "validation_failure_policy": {
+                        "type": "MODIFY_RESPONSE",
+                        "response_code": "response_code_example",
+                        "response_message": "response_message_example",
+                        "response_header_transformations": {
+                            "set_headers": {
+                                "items": [{
+                                    "name": "name_example",
+                                    "values": [],
+                                    "if_exists": "OVERWRITE"
+                                }]
+                            },
+                            "rename_headers": {
+                                "items": [{
+                                    "_from": "_from_example",
+                                    "to": "to_example"
+                                }]
+                            },
+                            "filter_headers": {
+                                "type": "ALLOW",
+                                "items": [{
+                                    "name": "name_example"
+                                }]
+                            }
+                        }
+                    },
                     "is_anonymous_access_allowed": true,
                     "type": "CUSTOM_AUTHENTICATION",
                     "token_header": "token_header_example",
@@ -2948,6 +4304,82 @@ deployment:
                 },
                 "usage_plans": {
                     "token_locations": []
+                },
+                "dynamic_authentication": {
+                    "selection_source": {
+                        "type": "SINGLE",
+                        "selector": "selector_example"
+                    },
+                    "authentication_servers": [{
+                        "key": {
+                            "values": [],
+                            "type": "ANY_OF",
+                            "is_default": true,
+                            "name": "name_example",
+                            "expression": "expression_example"
+                        },
+                        "authentication_server_detail": {
+                            "function_id": "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx",
+                            "parameters": {},
+                            "cache_key": [],
+                            "validation_failure_policy": {
+                                "type": "MODIFY_RESPONSE",
+                                "response_code": "response_code_example",
+                                "response_message": "response_message_example",
+                                "response_header_transformations": {
+                                    "set_headers": {
+                                        "items": [{
+                                            "name": "name_example",
+                                            "values": [],
+                                            "if_exists": "OVERWRITE"
+                                        }]
+                                    },
+                                    "rename_headers": {
+                                        "items": [{
+                                            "_from": "_from_example",
+                                            "to": "to_example"
+                                        }]
+                                    },
+                                    "filter_headers": {
+                                        "type": "ALLOW",
+                                        "items": [{
+                                            "name": "name_example"
+                                        }]
+                                    }
+                                }
+                            },
+                            "is_anonymous_access_allowed": true,
+                            "type": "CUSTOM_AUTHENTICATION",
+                            "token_header": "token_header_example",
+                            "token_query_param": "token_query_param_example",
+                            "token_auth_scheme": "token_auth_scheme_example",
+                            "issuers": [],
+                            "audiences": [],
+                            "verify_claims": [{
+                                "key": "key_example",
+                                "values": [],
+                                "is_required": true
+                            }],
+                            "max_clock_skew_in_seconds": 3.4,
+                            "public_keys": {
+                                "uri": "uri_example",
+                                "is_ssl_verify_disabled": true,
+                                "max_cache_duration_in_hours": 56,
+                                "type": "STATIC_KEYS",
+                                "keys": [{
+                                    "kty": "RSA",
+                                    "use": "sig",
+                                    "key_ops": [],
+                                    "alg": "alg_example",
+                                    "n": "n_example",
+                                    "e": "e_example",
+                                    "kid": "kid_example",
+                                    "format": "JSON_WEB_KEY",
+                                    "key": "key_example"
+                                }]
+                            }
+                        }
+                    }]
                 }
             },
             "logging_policies": {
@@ -3082,6 +4514,22 @@ deployment:
                     }
                 },
                 "backend": {
+                    "selection_source": {
+                        "type": "SINGLE",
+                        "selector": "selector_example"
+                    },
+                    "routing_backends": [{
+                        "key": {
+                            "values": [],
+                            "type": "ANY_OF",
+                            "is_default": true,
+                            "name": "name_example",
+                            "expression": "expression_example"
+                        },
+                        "backend": {
+                            "type": "ORACLE_FUNCTIONS_BACKEND"
+                        }
+                    }],
                     "url": "url_example",
                     "connect_timeout_in_seconds": 3.4,
                     "read_timeout_in_seconds": 3.4,
@@ -3348,6 +4796,100 @@ def main():
                                     function_id=dict(type="str"),
                                     token_header=dict(type="str", no_log=True),
                                     token_query_param=dict(type="str", no_log=True),
+                                    parameters=dict(type="dict"),
+                                    cache_key=dict(
+                                        type="list", elements="str", no_log=True
+                                    ),
+                                    validation_failure_policy=dict(
+                                        type="dict",
+                                        options=dict(
+                                            type=dict(
+                                                type="str",
+                                                required=True,
+                                                choices=["MODIFY_RESPONSE"],
+                                            ),
+                                            response_code=dict(type="str"),
+                                            response_message=dict(type="str"),
+                                            response_header_transformations=dict(
+                                                type="dict",
+                                                options=dict(
+                                                    set_headers=dict(
+                                                        type="dict",
+                                                        options=dict(
+                                                            items=dict(
+                                                                type="list",
+                                                                elements="dict",
+                                                                required=True,
+                                                                options=dict(
+                                                                    name=dict(
+                                                                        type="str",
+                                                                        required=True,
+                                                                    ),
+                                                                    values=dict(
+                                                                        type="list",
+                                                                        elements="str",
+                                                                        required=True,
+                                                                    ),
+                                                                    if_exists=dict(
+                                                                        type="str",
+                                                                        choices=[
+                                                                            "OVERWRITE",
+                                                                            "APPEND",
+                                                                            "SKIP",
+                                                                        ],
+                                                                    ),
+                                                                ),
+                                                            )
+                                                        ),
+                                                    ),
+                                                    rename_headers=dict(
+                                                        type="dict",
+                                                        options=dict(
+                                                            items=dict(
+                                                                type="list",
+                                                                elements="dict",
+                                                                required=True,
+                                                                options=dict(
+                                                                    _from=dict(
+                                                                        type="str",
+                                                                        required=True,
+                                                                    ),
+                                                                    to=dict(
+                                                                        type="str",
+                                                                        required=True,
+                                                                    ),
+                                                                ),
+                                                            )
+                                                        ),
+                                                    ),
+                                                    filter_headers=dict(
+                                                        type="dict",
+                                                        options=dict(
+                                                            type=dict(
+                                                                type="str",
+                                                                required=True,
+                                                                choices=[
+                                                                    "ALLOW",
+                                                                    "BLOCK",
+                                                                ],
+                                                            ),
+                                                            items=dict(
+                                                                type="list",
+                                                                elements="dict",
+                                                                required=True,
+                                                                options=dict(
+                                                                    name=dict(
+                                                                        type="str",
+                                                                        required=True,
+                                                                    )
+                                                                ),
+                                                            ),
+                                                        ),
+                                                    ),
+                                                ),
+                                            ),
+                                        ),
+                                    ),
                                 ),
                             ),
                             rate_limiting=dict(
@@ -3393,6 +4935,271 @@ def main():
                                         required=True,
                                         no_log=True,
                                     )
+                                ),
+                            ),
+                            dynamic_authentication=dict(
+                                type="dict",
+                                options=dict(
+                                    selection_source=dict(
+                                        type="dict",
+                                        required=True,
+                                        options=dict(
+                                            type=dict(
+                                                type="str",
+                                                default="SINGLE",
+                                                choices=["SINGLE"],
+                                            ),
+                                            selector=dict(type="str", required=True),
+                                        ),
+                                    ),
+                                    authentication_servers=dict(
+                                        type="list",
+                                        elements="dict",
+                                        required=True,
+                                        options=dict(
+                                            key=dict(
+                                                type="dict",
+                                                required=True,
+                                                no_log=False,
+                                                options=dict(
+                                                    expression=dict(type="str"),
+                                                    type=dict(
+                                                        type="str",
+                                                        default="ANY_OF",
+                                                        choices=["WILDCARD", "ANY_OF"],
+                                                    ),
+                                                    is_default=dict(type="bool"),
+                                                    name=dict(
+                                                        type="str", required=True
+                                                    ),
+                                                    values=dict(
+                                                        type="list", elements="str"
+                                                    ),
+                                                ),
+                                            ),
+                                            authentication_server_detail=dict(
+                                                type="dict",
+                                                required=True,
+                                                options=dict(
+                                                    token_auth_scheme=dict(
+                                                        type="str", no_log=True
+                                                    ),
+                                                    issuers=dict(
+                                                        type="list", elements="str"
+                                                    ),
+                                                    audiences=dict(
+                                                        type="list", elements="str"
+                                                    ),
+                                                    verify_claims=dict(
+                                                        type="list",
+                                                        elements="dict",
+                                                        options=dict(
+                                                            key=dict(
+                                                                type="str",
+                                                                required=True,
+                                                                no_log=True,
+                                                            ),
+                                                            values=dict(
+                                                                type="list",
+                                                                elements="str",
+                                                            ),
+                                                            is_required=dict(
+                                                                type="bool"
+                                                            ),
+                                                        ),
+                                                    ),
+                                                    max_clock_skew_in_seconds=dict(
+                                                        type="float"
+                                                    ),
+                                                    public_keys=dict(
+                                                        type="dict",
+                                                        no_log=False,
+                                                        options=dict(
+                                                            keys=dict(
+                                                                type="list",
+                                                                elements="dict",
+                                                                no_log=False,
+                                                                options=dict(
+                                                                    kty=dict(
+                                                                        type="str",
+                                                                        choices=["RSA"],
+                                                                    ),
+                                                                    use=dict(
+                                                                        type="str",
+                                                                        choices=["sig"],
+                                                                    ),
+                                                                    key_ops=dict(
+                                                                        type="list",
+                                                                        elements="str",
+                                                                        choices=[
+                                                                            "verify"
+                                                                        ],
+                                                                        no_log=True,
+                                                                    ),
+                                                                    alg=dict(
+                                                                        type="str"
+                                                                    ),
+                                                                    n=dict(type="str"),
+                                                                    e=dict(type="str"),
+                                                                    kid=dict(
+                                                                        type="str",
+                                                                        required=True,
+                                                                    ),
+                                                                    format=dict(
+                                                                        type="str",
+                                                                        required=True,
+                                                                        choices=[
+                                                                            "JSON_WEB_KEY",
+                                                                            "PEM",
+                                                                        ],
+                                                                    ),
+                                                                    key=dict(
+                                                                        type="str",
+                                                                        no_log=True,
+                                                                    ),
+                                                                ),
+                                                            ),
+                                                            type=dict(
+                                                                type="str",
+                                                                required=True,
+                                                                choices=[
+                                                                    "STATIC_KEYS",
+                                                                    "REMOTE_JWKS",
+                                                                ],
+                                                            ),
+                                                            uri=dict(type="str"),
+                                                            is_ssl_verify_disabled=dict(
+                                                                type="bool"
+                                                            ),
+                                                            max_cache_duration_in_hours=dict(
+                                                                type="int"
+                                                            ),
+                                                        ),
+                                                    ),
+                                                    is_anonymous_access_allowed=dict(
+                                                        type="bool"
+                                                    ),
+                                                    type=dict(
+                                                        type="str",
+                                                        required=True,
+                                                        choices=[
+                                                            "JWT_AUTHENTICATION",
+                                                            "CUSTOM_AUTHENTICATION",
+                                                        ],
+                                                    ),
+                                                    function_id=dict(type="str"),
+                                                    token_header=dict(
+                                                        type="str", no_log=True
+                                                    ),
+                                                    token_query_param=dict(
+                                                        type="str", no_log=True
+                                                    ),
+                                                    parameters=dict(type="dict"),
+                                                    cache_key=dict(
+                                                        type="list",
+                                                        elements="str",
+                                                        no_log=True,
+                                                    ),
+                                                    validation_failure_policy=dict(
+                                                        type="dict",
+                                                        options=dict(
+                                                            type=dict(
+                                                                type="str",
+                                                                required=True,
+                                                                choices=[
+                                                                    "MODIFY_RESPONSE"
+                                                                ],
+                                                            ),
+                                                            response_code=dict(
+                                                                type="str"
+                                                            ),
+                                                            response_message=dict(
+                                                                type="str"
+                                                            ),
+                                                            response_header_transformations=dict(
+                                                                type="dict",
+                                                                options=dict(
+                                                                    set_headers=dict(
+                                                                        type="dict",
+                                                                        options=dict(
+                                                                            items=dict(
+                                                                                type="list",
+                                                                                elements="dict",
+                                                                                required=True,
+                                                                                options=dict(
+                                                                                    name=dict(
+                                                                                        type="str",
+                                                                                        required=True,
+                                                                                    ),
+                                                                                    values=dict(
+                                                                                        type="list",
+                                                                                        elements="str",
+                                                                                        required=True,
+                                                                                    ),
+                                                                                    if_exists=dict(
+                                                                                        type="str",
+                                                                                        choices=[
+                                                                                            "OVERWRITE",
+                                                                                            "APPEND",
+                                                                                            "SKIP",
+                                                                                        ],
+                                                                                    ),
+                                                                                ),
+                                                                            )
+                                                                        ),
+                                                                    ),
+                                                                    rename_headers=dict(
+                                                                        type="dict",
+                                                                        options=dict(
+                                                                            items=dict(
+                                                                                type="list",
+                                                                                elements="dict",
+                                                                                required=True,
+                                                                                options=dict(
+                                                                                    _from=dict(
+                                                                                        type="str",
+                                                                                        required=True,
+                                                                                    ),
+                                                                                    to=dict(
+                                                                                        type="str",
+                                                                                        required=True,
+                                                                                    ),
+                                                                                ),
+                                                                            )
+                                                                        ),
+                                                                    ),
+                                                                    filter_headers=dict(
+                                                                        type="dict",
+                                                                        options=dict(
+                                                                            type=dict(
+                                                                                type="str",
+                                                                                required=True,
+                                                                                choices=[
+                                                                                    "ALLOW",
+                                                                                    "BLOCK",
+                                                                                ],
+                                                                            ),
+                                                                            items=dict(
+                                                                                type="list",
+                                                                                elements="dict",
+                                                                                required=True,
+                                                                                options=dict(
+                                                                                    name=dict(
+                                                                                        type="str",
+                                                                                        required=True,
+                                                                                    )
+                                                                                ),
+                                                                            ),
+                                                                        ),
+                                                                    ),
+                                                                ),
+                                                            ),
+                                                        ),
+                                                    ),
+                                                ),
+                                            ),
+                                        ),
+                                    ),
                                 ),
                             ),
                         ),
@@ -3828,15 +5635,6 @@ def main():
                                     send_timeout_in_seconds=dict(type="float"),
                                     is_ssl_verify_disabled=dict(type="bool"),
                                     function_id=dict(type="str"),
-                                    type=dict(
-                                        type="str",
-                                        required=True,
-                                        choices=[
-                                            "HTTP_BACKEND",
-                                            "ORACLE_FUNCTIONS_BACKEND",
-                                            "STOCK_RESPONSE_BACKEND",
-                                        ],
-                                    ),
                                     body=dict(type="str"),
                                     status=dict(type="int"),
                                     headers=dict(
@@ -3845,6 +5643,69 @@ def main():
                                         options=dict(
                                             name=dict(type="str"),
                                             value=dict(type="str"),
+                                        ),
+                                    ),
+                                    type=dict(
+                                        type="str",
+                                        required=True,
+                                        choices=[
+                                            "HTTP_BACKEND",
+                                            "ORACLE_FUNCTIONS_BACKEND",
+                                            "STOCK_RESPONSE_BACKEND",
+                                            "DYNAMIC_ROUTING_BACKEND",
+                                        ],
+                                    ),
+                                    selection_source=dict(
+                                        type="dict",
+                                        options=dict(
+                                            type=dict(
+                                                type="str",
+                                                default="SINGLE",
+                                                choices=["SINGLE"],
+                                            ),
+                                            selector=dict(type="str", required=True),
+                                        ),
+                                    ),
+                                    routing_backends=dict(
+                                        type="list",
+                                        elements="dict",
+                                        options=dict(
+                                            key=dict(
+                                                type="dict",
+                                                required=True,
+                                                no_log=False,
+                                                options=dict(
+                                                    expression=dict(type="str"),
+                                                    type=dict(
+                                                        type="str",
+                                                        default="ANY_OF",
+                                                        choices=["WILDCARD", "ANY_OF"],
+                                                    ),
+                                                    is_default=dict(type="bool"),
+                                                    name=dict(
+                                                        type="str", required=True
+                                                    ),
+                                                    values=dict(
+                                                        type="list", elements="str"
+                                                    ),
+                                                ),
+                                            ),
+                                            backend=dict(
+                                                type="dict",
+                                                required=True,
+                                                options=dict(
+                                                    type=dict(
+                                                        type="str",
+                                                        required=True,
+                                                        choices=[
+                                                            "ORACLE_FUNCTIONS_BACKEND",
+                                                            "HTTP_BACKEND",
+                                                            "STOCK_RESPONSE_BACKEND",
+                                                            "DYNAMIC_ROUTING_BACKEND",
+                                                        ],
+                                                    )
+                                                ),
+                                            ),
                                         ),
                                     ),
                                 ),

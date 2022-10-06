@@ -23,7 +23,7 @@ module: oci_data_connectivity_registry
 short_description: Manage a Registry resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Registry resource in Oracle Cloud Infrastructure
-    - For I(state=present), creates a new Data Connectivity Management Registry ready for performing data Connectivity Management.
+    - For I(state=present), creates a new Data Connectivity Management registry ready to perform data connectivity management.
     - "This resource has the following action operations in the M(oracle.oci.oci_data_connectivity_registry_actions) module: change_compartment."
 version_added: "2.9.0"
 author: Oracle (@oracle)
@@ -37,7 +37,7 @@ options:
         type: str
     freeform_tags:
         description:
-            - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+            - "Simple key-value pair that is applied without any predefined name, type, or scope. Exists only for cross-compatibility.
               Example: `{\\"bar-key\\": \\"value\\"}`"
             - This parameter is updatable.
         type: dict
@@ -54,7 +54,7 @@ options:
         type: str
     display_name:
         description:
-            - Data Connectivity Management Registry display name, registries can be renamed
+            - The Data Connectivity Management Registry display name; registries can be renamed.
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - This parameter is updatable when C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
@@ -62,7 +62,7 @@ options:
         aliases: ["name"]
     registry_id:
         description:
-            - The registry Ocid.
+            - The registry OCID.
             - Required for update using I(state=present) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
             - Required for delete using I(state=absent) when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is not set.
         type: str
@@ -144,7 +144,7 @@ registry:
     contains:
         freeform_tags:
             description:
-                - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
+                - "Simple key-value pair that is applied without any predefined name, type, or scope. Exists only for cross-compatibility.
                   Example: `{\\"bar-key\\": \\"value\\"}`"
             returned: on success
             type: dict
@@ -164,13 +164,13 @@ registry:
             sample: description_example
         display_name:
             description:
-                - Data Connectivity Management Registry display name, registries can be renamed
+                - Data Connectivity Management registry display name; registries can be renamed.
             returned: on success
             type: str
             sample: display_name_example
         updated_by:
             description:
-                - Name of the user who updated the DCMS Registry.
+                - Name of the user who updated the DCMS registry.
             returned: on success
             type: str
             sample: updated_by_example
@@ -182,27 +182,27 @@ registry:
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
-                - The time the Data Connectivity Management Registry was created. An RFC3339 formatted datetime string
+                - Time when the Data Connectivity Management registry was created. An RFC3339 formatted datetime string.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - The time the Data Connectivity Management Registry was updated. An RFC3339 formatted datetime string
+                - Time when the Data Connectivity Management registry was updated. An RFC3339 formatted datetime string.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
-                - "Lifecycle states for registries in Data Connectivity Management Service
-                  CREATING - The resource is being created and may not be usable until the entire metadata is defined
-                  UPDATING - The resource is being updated and may not be usable until all changes are commited
+                - "Lifecycle states for registries in the Data Connectivity Management Service
+                  CREATING - The resource is being created and may not be usable until the entire metadata is defined.
+                  UPDATING - The resource is being updated and may not be usable until all changes are commited.
                   DELETING - The resource is being deleted and might require deep cleanup of children.
-                  ACTIVE   - The resource is valid and available for access
+                  ACTIVE   - The resource is valid and available for access.
                   INACTIVE - The resource might be incomplete in its definition or might have been made unavailable for
-                           administrative reasons
-                  DELETED  - The resource has been deleted and isn't available
-                  FAILED   - The resource is in a failed state due to validation or other errors"
+                           administrative reasons.
+                  DELETED  - The resource has been deleted and isn't available.
+                  FAILED   - The resource is in a failed state due to validation or other errors."
             returned: on success
             type: str
             sample: CREATING
@@ -215,7 +215,7 @@ registry:
             sample: state_message_example
         id:
             description:
-                - Unique identifier that is immutable on creation
+                - A unique identifier that is immutable on creation.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -259,6 +259,12 @@ class RegistryHelperGen(OCIResourceHelperBase):
 
     def get_possible_entity_types(self):
         return super(RegistryHelperGen, self).get_possible_entity_types() + [
+            "dcmsregistry",
+            "dcmsregistries",
+            "dataConnectivitydcmsregistry",
+            "dataConnectivitydcmsregistries",
+            "dcmsregistryresource",
+            "dcmsregistriesresource",
             "registry",
             "registries",
             "dataConnectivityregistry",

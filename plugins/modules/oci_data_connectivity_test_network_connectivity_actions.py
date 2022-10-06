@@ -23,13 +23,13 @@ module: oci_data_connectivity_test_network_connectivity_actions
 short_description: Perform actions on a TestNetworkConnectivity resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a TestNetworkConnectivity resource in Oracle Cloud Infrastructure
-    - For I(action=create), execute network validation on selected data assets associated with the provided private endpoint
+    - For I(action=create), execute network validation on the selected data assets associated with the provided private endpoint.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     registry_id:
         description:
-            - The registry Ocid.
+            - The registry OCID.
         type: str
         aliases: ["id"]
         required: true
@@ -40,7 +40,7 @@ options:
         required: true
     endpoint_id:
         description:
-            - Endpoint Id used for getDataAssetFullDetails.
+            - Endpoint ID used for getDataAssetFullDetails.
         type: str
     action:
         description:
@@ -80,7 +80,7 @@ test_network_connectivity:
             sample: network_validation_output_example
         is_reachable:
             description:
-                - True if the data asset is has a valid network path.
+                - True if the data asset has a valid network path.
             returned: on success
             type: bool
             sample: true

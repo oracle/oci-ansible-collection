@@ -30,7 +30,7 @@ oracle.oci.oci_data_connectivity_endpoint_facts -- Fetches details about one or 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.4.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.5.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple Endpoint resources in Oracle Cloud Infrastructure
-- Returns a list of Data Connectivity Management Endpoints.
+- Returns a list of Data Connectivity Management endpoints.
 - If *endpoint_id* is specified, the details of a single Endpoint will be returned.
 
 
@@ -274,7 +274,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>DCMS Endpoint id</div>
+                                            <div>DCMS endpoint ID.</div>
                                             <div>Required to get a specific endpoint.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
@@ -297,6 +297,9 @@ Parameters
                                                                                                                                                                                                 <li>DELETING</li>
                                                                                                                                                                                                 <li>DELETED</li>
                                                                                                                                                                                                 <li>FAILED</li>
+                                                                                                                                                                                                <li>STARTING</li>
+                                                                                                                                                                                                <li>STOPPING</li>
+                                                                                                                                                                                                <li>STOPPED</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -345,7 +348,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>DCMS registry id</div>
+                                            <div>DCMS registry ID</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -365,7 +368,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>This parameter allows users to specify a sort field.  Default sort order is the descending order of `timeCreated` (most recently created objects at the top).  Sorting related parameters are ignored when parameter `query` is present (search operation and sorting order is by relevance score in descending order).</div>
+                                            <div>This parameter allows users to specify a sort field. Default sort order is the descending order of `timeCreated` (most recently created objects at the top). Sorting related parameters are ignored when parameter `query` is present (search operation and sorting order is by relevance score in descending order).</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -551,7 +554,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Data Connectivity Management Registry display name, registries can be renamed</div>
+                                            <div>The Data Connectivity Management Registry display name; registries can be renamed.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
@@ -605,7 +608,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
+                                            <div>Simple key-value pair that is applied without any predefined name, type, or scope. Exists only for cross-compatibility. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
@@ -623,7 +626,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Unique identifier that is immutable on creation</div>
+                                            <div>A unique identifier that is immutable on creation.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -641,7 +644,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Lifecycle states for registries in Data Connectivity Management Service CREATING - The resource is being created and may not be usable until the entire metadata is defined UPDATING - The resource is being updated and may not be usable until all changes are commited DELETING - The resource is being deleted and might require deep cleanup of children. ACTIVE   - The resource is valid and available for access INACTIVE - The resource might be incomplete in its definition or might have been made unavailable for administrative reasons DELETED  - The resource has been deleted and isn&#x27;t available FAILED   - The resource is in a failed state due to validation or other errors</div>
+                                            <div>Lifecycle states for registries in the Data Connectivity Management Service. CREATING - The resource is being created and may not be usable until the entire metadata is defined. UPDATING - The resource is being updated and may not be usable until all changes are commited. DELETING - The resource is being deleted and might require deep cleanup of children. ACTIVE   - The resource is valid and available for access. INACTIVE - The resource might be incomplete in its definition or might have been made unavailable for administrative reasons. DELETED  - The resource has been deleted and isn&#x27;t available. FAILED   - The resource is in a failed state due to validation or other errors.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
@@ -659,7 +662,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>List of NSGs to which the Private Endpoint VNIC must be added.</div>
+                                            <div>The list of NSGs to which the private endpoint VNIC must be added.</div>
                                             <div>Returned for get operation</div>
                                         <br/>
                                                         </td>
@@ -694,7 +697,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Subnet OCID for the customer connected network where databases for example reside.</div>
+                                            <div>Subnet OCID of the customer connected network where, for example, the databases reside.</div>
                                             <div>Returned for get operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -713,7 +716,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The time the Data Connectivity Management Registry was created. An RFC3339 formatted datetime string</div>
+                                            <div>Time when the Data Connectivity Management registry was created. An RFC3339 formatted datetime string.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -731,7 +734,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The time the Data Connectivity Management Registry was updated. An RFC3339 formatted datetime string</div>
+                                            <div>Time when the Data Connectivity Management registry was updated. An RFC3339 formatted datetime string.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>

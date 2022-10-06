@@ -35,7 +35,7 @@ options:
         type: str
     registry_id:
         description:
-            - The registry Ocid.
+            - The registry OCID.
         type: str
         required: true
     connection_key:
@@ -51,8 +51,8 @@ options:
     sort_by:
         description:
             - Specifies the field to sort by. Accepts only one field. By default, when you sort by time fields, results are shown in descending order. All other
-              fields default to ascending order. Sorting related parameters are ignored when parameter `query` is present (search operation and sorting order is
-              by relevance score in descending order).
+              fields default to ascending order. Sorting related parameters are ignored when parameter `query` is present (search operation and sorting order
+              are by relevance score in descending order).
         type: str
         choices:
             - "id"
@@ -80,7 +80,7 @@ options:
         elements: str
     endpoint_id:
         description:
-            - Endpoint Id used for getDataAssetFullDetails.
+            - Endpoint ID used for getDataAssetFullDetails.
         type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
@@ -128,13 +128,13 @@ schemas:
             sample: key_example
         model_type:
             description:
-                - The object's type.
+                - The object type.
             returned: on success
             type: str
             sample: model_type_example
         model_version:
             description:
-                - The object's model version.
+                - The model version of the object.
             returned: on success
             type: str
             sample: model_version_example
@@ -152,8 +152,8 @@ schemas:
                     sample: parent_example
         name:
             description:
-                - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable
-                  and is restricted to 1000 characters.
+                - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is
+                  editable and is restricted to 1000 characters.
             returned: on success
             type: str
             sample: name_example
@@ -177,7 +177,7 @@ schemas:
             sample: 56
         external_key:
             description:
-                - The external key for the object.
+                - The external key of the object.
             returned: on success
             type: str
             sample: external_key_example
@@ -201,7 +201,7 @@ schemas:
             sample: 56
         identifier:
             description:
-                - Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The value can be
+                - Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can be
                   modified.
             returned: on success
             type: str
@@ -292,7 +292,7 @@ schemas:
                             sample: description_example
                 identifier_path:
                     description:
-                        - The full path to identify this object.
+                        - The full path to identify the object.
                     returned: on success
                     type: str
                     sample: identifier_path_example
@@ -310,14 +310,14 @@ schemas:
                     sample: 56
                 labels:
                     description:
-                        - Labels are keywords or tags that you can add to data assets, dataflows and so on. You can define your own labels and use them to
+                        - Labels are keywords or tags that you can add to data assets, dataflows, and so on. You can define your own labels and use them to
                           categorize content.
                     returned: on success
                     type: list
                     sample: []
                 is_favorite:
                     description:
-                        - Specifies whether this object is a favorite or not.
+                        - Specifies whether this object is a favorite.
                     returned: on success
                     type: bool
                     sample: true

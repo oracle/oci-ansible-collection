@@ -29,7 +29,7 @@ author: Oracle (@oracle)
 options:
     registry_id:
         description:
-            - The registry Ocid.
+            - The registry OCID.
         type: str
         required: true
     dcms_artifact_id:
@@ -49,8 +49,8 @@ options:
     sort_by:
         description:
             - Specifies the field to sort by. Accepts only one field. By default, when you sort by time fields, results are shown in descending order. All other
-              fields default to ascending order. Sorting related parameters are ignored when parameter `query` is present (search operation and sorting order is
-              by relevance score in descending order).
+              fields default to ascending order. Sorting related parameters are ignored when parameter `query` is present (search operation and sorting order
+              are by relevance score in descending order).
         type: str
         choices:
             - "id"
@@ -69,7 +69,7 @@ options:
         type: str
     exclude_types:
         description:
-            - Types which wont be listed while listing dataAsset/Connection
+            - The types that will be excluded from the list of data assets/connections.
         type: list
         elements: str
     favorites_query_param:
@@ -117,13 +117,13 @@ reference_artifacts:
     contains:
         model_type:
             description:
-                - The type of the ReferenceInfo.
+                - The type of ReferenceInfo.
             returned: on success
             type: str
             sample: model_type_example
         key:
             description:
-                - Generated key that can be used in API calls to identify referenceinfo.
+                - Generated key that can be used in API calls to identify the referenceinfo.
             returned: on success
             type: str
             sample: key_example
@@ -135,8 +135,8 @@ reference_artifacts:
             sample: model_version_example
         name:
             description:
-                - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable
-                  and is restricted to 1000 characters.
+                - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is
+                  editable and is restricted to 1000 characters.
             returned: on success
             type: str
             sample: name_example
@@ -160,26 +160,26 @@ reference_artifacts:
             sample: 56
         identifier:
             description:
-                - Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The value can be
+                - Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can be
                   modified.
             returned: on success
             type: str
             sample: identifier_example
         dcms_artifact_id:
             description:
-                - unique id of dcms artifact that is getting registered.
+                - The unique ID of the DCMS artifact that is getting registered.
             returned: on success
             type: str
             sample: "ocid1.dcmsartifact.oc1..xxxxxxEXAMPLExxxxxx"
         service_artifact_id:
             description:
-                - unique id of service which is referencing dcms artifact.
+                - The unique ID of the service that is referencing a DCMS artifact.
             returned: on success
             type: str
             sample: "ocid1.serviceartifact.oc1..xxxxxxEXAMPLExxxxxx"
         reference_count:
             description:
-                - count of how many times a dcms artifact has been registered by a service.
+                - The number of times a DCMS artifact has been registered by a service.
             returned: on success
             type: int
             sample: 56
@@ -197,7 +197,7 @@ reference_artifacts:
                     sample: aggregator_key_example
                 labels:
                     description:
-                        - Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and use them to
+                        - Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own labels and use them to
                           categorize content.
                     returned: on success
                     type: list
@@ -216,13 +216,13 @@ reference_artifacts:
                     sample: key_example
                 is_favorite:
                     description:
-                        - Specifies whether this object is a favorite or not.
+                        - Specifies whether the object is a favorite.
                     returned: on success
                     type: bool
                     sample: true
                 created_by_user_id:
                     description:
-                        - The id of the user who created the object.
+                        - The ID of the user who created the object.
                     returned: on success
                     type: str
                     sample: "ocid1.createdbyuser.oc1..xxxxxxEXAMPLExxxxxx"
@@ -234,7 +234,7 @@ reference_artifacts:
                     sample: created_by_user_name_example
                 updated_by_user_id:
                     description:
-                        - The id of the user who updated the object.
+                        - The ID of the user who updated the object.
                     returned: on success
                     type: str
                     sample: "ocid1.updatedbyuser.oc1..xxxxxxEXAMPLExxxxxx"
@@ -342,7 +342,7 @@ reference_artifacts:
                             sample: description_example
                 identifier_path:
                     description:
-                        - The full path to identify this object.
+                        - The full path to identify the object.
                     returned: on success
                     type: str
                     sample: identifier_path_example
@@ -360,14 +360,14 @@ reference_artifacts:
                     sample: 56
                 labels:
                     description:
-                        - Labels are keywords or tags that you can add to data assets, dataflows and so on. You can define your own labels and use them to
+                        - Labels are keywords or tags that you can add to data assets, dataflows, and so on. You can define your own labels and use them to
                           categorize content.
                     returned: on success
                     type: list
                     sample: []
                 is_favorite:
                     description:
-                        - Specifies whether this object is a favorite or not.
+                        - Specifies whether this object is a favorite.
                     returned: on success
                     type: bool
                     sample: true
