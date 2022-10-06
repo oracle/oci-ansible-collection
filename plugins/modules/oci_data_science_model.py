@@ -24,7 +24,8 @@ short_description: Manage a Model resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Model resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new model.
-    - "This resource has the following action operations in the M(oracle.oci.oci_data_science_model_actions) module: activate, change_compartment, deactivate."
+    - "This resource has the following action operations in the M(oracle.oci.oci_data_science_model_actions) module: activate, change_compartment, deactivate,
+      export_model_artifact, import_model_artifact."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:

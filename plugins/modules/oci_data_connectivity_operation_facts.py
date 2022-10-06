@@ -23,19 +23,19 @@ module: oci_data_connectivity_operation_facts
 short_description: Fetches details about one or multiple Operation resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple Operation resources in Oracle Cloud Infrastructure
-    - Lists the summary of operations present in the schema identified by schema name.
+    - Lists the summary of operations that are present in the schema, identified by the schema name.
     - If I(operation_resource_name) is specified, the details of a single Operation will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     operation_resource_name:
         description:
-            - The opeartion resource name used for retrieving the details of operation.
+            - The operation resource name used for retrieving the details of operation.
             - Required to get a specific operation.
         type: str
     registry_id:
         description:
-            - The registry Ocid.
+            - The registry OCID.
         type: str
         required: true
     connection_key:
@@ -55,8 +55,8 @@ options:
     sort_by:
         description:
             - Specifies the field to sort by. Accepts only one field. By default, when you sort by time fields, results are shown in descending order. All other
-              fields default to ascending order. Sorting related parameters are ignored when parameter `query` is present (search operation and sorting order is
-              by relevance score in descending order).
+              fields default to ascending order. Sorting related parameters are ignored when parameter `query` is present (search operation and sorting order
+              are by relevance score in descending order).
         type: str
         choices:
             - "id"
@@ -71,7 +71,7 @@ options:
             - "DESC"
     endpoint_id:
         description:
-            - Endpoint Id used for getDataAssetFullDetails.
+            - Endpoint ID used for getDataAssetFullDetails.
         type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
@@ -236,14 +236,14 @@ operations:
                     sample: 56
                 name:
                     description:
-                        - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is
-                          editable and is restricted to 1000 characters.
+                        - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value
+                          is editable and is restricted to 1000 characters.
                     returned: on success
                     type: str
                     sample: name_example
                 description:
                     description:
-                        - Detailed description for the object.
+                        - A detailed description of the object.
                     returned: on success
                     type: str
                     sample: description_example
@@ -261,7 +261,7 @@ operations:
                             contains:
                                 model_type:
                                     description:
-                                        - The property which disciminates the subtypes.
+                                        - The property which differentiates the subtypes.
                                     returned: on success
                                     type: str
                                     sample: STRUCTURED_TYPE
@@ -286,7 +286,7 @@ operations:
 
                                 name:
                                     description:
-                                        - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special
+                                        - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
                                           characters. The value is editable and is restricted to 1000 characters.
                                     returned: on success
                                     type: str
@@ -299,7 +299,7 @@ operations:
                                     sample: 56
                                 description:
                                     description:
-                                        - A user defined description for the object.
+                                        - A user-defined description for the object.
                                     returned: on success
                                     type: str
                                     sample: description_example
@@ -349,7 +349,7 @@ operations:
                                     sample: true
                                 port_type:
                                     description:
-                                        - The port details for the data asset.Type.
+                                        - The port details of the data asset type.
                                     returned: on success
                                     type: str
                                     sample: DATA
@@ -400,14 +400,14 @@ operations:
                                             sample: 56
                                         name:
                                             description:
-                                                - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special
-                                                  characters. The value is editable and is restricted to 1000 characters.
+                                                - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and
+                                                  special characters. The value is editable and is restricted to 1000 characters.
                                             returned: on success
                                             type: str
                                             sample: name_example
                                         description:
                                             description:
-                                                - Detailed description for the object.
+                                                - A detailed description of the object.
                                             returned: on success
                                             type: str
                                             sample: description_example
@@ -419,19 +419,19 @@ operations:
                                     sample: {}
                                 root_object_default_value:
                                     description:
-                                        - The default value of the parameter which can be an object in DIS, such as a data entity.
+                                        - The default value of the parameter, which can be an object in DIS, such as a data entity.
                                     returned: on success
                                     type: dict
                                     sample: {}
                                 is_input:
                                     description:
-                                        - Specifies whether the parameter is input value.
+                                        - Specifies whether the parameter is an input value.
                                     returned: on success
                                     type: bool
                                     sample: true
                                 is_output:
                                     description:
-                                        - Specifies whether the parameter is output value.
+                                        - Specifies whether the parameter is an output value.
                                     returned: on success
                                     type: bool
                                     sample: true
@@ -539,14 +539,14 @@ operations:
                                     sample: 56
                                 name:
                                     description:
-                                        - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special
+                                        - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
                                           characters. The value is editable and is restricted to 1000 characters.
                                     returned: on success
                                     type: str
                                     sample: name_example
                                 description:
                                     description:
-                                        - Detailed description for the object.
+                                        - A detailed description of the object.
                                     returned: on success
                                     type: str
                                     sample: description_example
@@ -558,8 +558,8 @@ operations:
                                     sample: {}
                                 labels:
                                     description:
-                                        - Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and use
-                                          them to categorize content.
+                                        - Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own labels
+                                          and use them to categorize content.
                                     returned: on success
                                     type: list
                                     sample: []
@@ -662,14 +662,14 @@ operations:
                                             sample: 56
                                         name:
                                             description:
-                                                - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special
-                                                  characters. The value is editable and is restricted to 1000 characters.
+                                                - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and
+                                                  special characters. The value is editable and is restricted to 1000 characters.
                                             returned: on success
                                             type: str
                                             sample: name_example
                                         description:
                                             description:
-                                                - Detailed description for the object.
+                                                - A detailed description of the object.
                                             returned: on success
                                             type: str
                                             sample: description_example
@@ -705,7 +705,7 @@ operations:
                             contains:
                                 model_type:
                                     description:
-                                        - The property which disciminates the subtypes.
+                                        - The property which differentiates the subtypes.
                                     returned: on success
                                     type: str
                                     sample: STRUCTURED_TYPE
@@ -730,7 +730,7 @@ operations:
 
                                 name:
                                     description:
-                                        - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special
+                                        - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
                                           characters. The value is editable and is restricted to 1000 characters.
                                     returned: on success
                                     type: str
@@ -743,7 +743,7 @@ operations:
                                     sample: 56
                                 description:
                                     description:
-                                        - A user defined description for the object.
+                                        - A user-defined description for the object.
                                     returned: on success
                                     type: str
                                     sample: description_example
@@ -851,14 +851,14 @@ operations:
                                             sample: parent_example
                                 name:
                                     description:
-                                        - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special
+                                        - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
                                           characters. The value is editable and is restricted to 1000 characters.
                                     returned: on success
                                     type: str
                                     sample: name_example
                                 is_contained:
                                     description:
-                                        - Specifies whether the configuration is contained or not.
+                                        - Specifies whether the configuration is contained.
                                     returned: on success
                                     type: bool
                                     sample: true
@@ -882,7 +882,7 @@ operations:
                                             contains:
                                                 model_type:
                                                     description:
-                                                        - The property which disciminates the subtypes.
+                                                        - The property which differentiates the subtypes.
                                                     returned: on success
                                                     type: str
                                                     sample: STRUCTURED_TYPE
@@ -907,8 +907,8 @@ operations:
 
                                                 name:
                                                     description:
-                                                        - Free form text without any restriction on permitted characters. Name can have letters, numbers, and
-                                                          special characters. The value is editable and is restricted to 1000 characters.
+                                                        - Free form text without any restriction on the permitted characters. Name can have letters, numbers,
+                                                          and special characters. The value is editable and is restricted to 1000 characters.
                                                     returned: on success
                                                     type: str
                                                     sample: name_example
@@ -921,7 +921,7 @@ operations:
                                                     sample: 56
                                                 description:
                                                     description:
-                                                        - A user defined description for the object.
+                                                        - A user-defined description for the object.
                                                     returned: on success
                                                     type: str
                                                     sample: description_example
@@ -933,7 +933,7 @@ operations:
                                             sample: parameter_name_example
                                         description:
                                             description:
-                                                - A user defined description for the object.
+                                                - A user-defined description for the object.
                                             returned: on success
                                             type: str
                                             sample: description_example
@@ -951,19 +951,19 @@ operations:
                                             sample: class_field_name_example
                                         is_static:
                                             description:
-                                                - Specifies whether the parameter is static or not.
+                                                - Specifies whether the parameter is static.
                                             returned: on success
                                             type: bool
                                             sample: true
                                         is_class_field_value:
                                             description:
-                                                - Specifies whether the parameter is a class field or not.
+                                                - Specifies whether the parameter is a class field.
                                             returned: on success
                                             type: bool
                                             sample: true
                         model_type:
                             description:
-                                - The property which disciminates the subtypes.
+                                - The property which differentiates the subtypes.
                             returned: on success
                             type: str
                             sample: STRUCTURED_TYPE
@@ -993,8 +993,8 @@ operations:
                                     sample: parent_example
                         name:
                             description:
-                                - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The
-                                  value is editable and is restricted to 1000 characters.
+                                - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters.
+                                  The value is editable and is restricted to 1000 characters.
                             returned: on success
                             type: str
                             sample: name_example
@@ -1006,7 +1006,7 @@ operations:
                             sample: 56
                         description:
                             description:
-                                - A user defined description for the object.
+                                - A user-defined description for the object.
                             returned: on success
                             type: str
                             sample: description_example
@@ -1018,7 +1018,7 @@ operations:
                             contains:
                                 model_type:
                                     description:
-                                        - The property which disciminates the subtypes.
+                                        - The property which differentiates the subtypes.
                                     returned: on success
                                     type: str
                                     sample: STRUCTURED_TYPE
@@ -1043,7 +1043,7 @@ operations:
 
                                 name:
                                     description:
-                                        - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special
+                                        - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
                                           characters. The value is editable and is restricted to 1000 characters.
                                     returned: on success
                                     type: str
@@ -1056,7 +1056,7 @@ operations:
                                     sample: 56
                                 description:
                                     description:
-                                        - A user defined description for the object.
+                                        - A user-defined description for the object.
                                     returned: on success
                                     type: str
                                     sample: description_example
@@ -1076,7 +1076,7 @@ operations:
             sample: 56
         external_key:
             description:
-                - The external key for the object.
+                - The external key of the object.
                 - Returned for get operation
             returned: on success
             type: str
@@ -1187,7 +1187,7 @@ operations:
                             sample: description_example
                 identifier_path:
                     description:
-                        - The full path to identify this object.
+                        - The full path to identify the object.
                     returned: on success
                     type: str
                     sample: identifier_path_example
@@ -1205,14 +1205,14 @@ operations:
                     sample: 56
                 labels:
                     description:
-                        - Labels are keywords or tags that you can add to data assets, dataflows and so on. You can define your own labels and use them to
+                        - Labels are keywords or tags that you can add to data assets, dataflows, and so on. You can define your own labels and use them to
                           categorize content.
                     returned: on success
                     type: list
                     sample: []
                 is_favorite:
                     description:
-                        - Specifies whether this object is a favorite or not.
+                        - Specifies whether this object is a favorite.
                     returned: on success
                     type: bool
                     sample: true

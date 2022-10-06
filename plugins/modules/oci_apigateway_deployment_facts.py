@@ -134,6 +134,136 @@ deployments:
                                     returned: on success
                                     type: str
                                     sample: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
+                                parameters:
+                                    description:
+                                        - "A map where key is a user defined string and value is a context expressions whose values will be sent to the custom
+                                          auth function. Values should contain an expression.
+                                          Example: `{\\"foo\\": \\"request.header[abc]\\"}`"
+                                    returned: on success
+                                    type: dict
+                                    sample: {}
+                                cache_key:
+                                    description:
+                                        - "A list of keys from \\"parameters\\" attribute value whose values will be added to the cache key."
+                                    returned: on success
+                                    type: list
+                                    sample: []
+                                validation_failure_policy:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        type:
+                                            description:
+                                                - Type of the Validation failure Policy.
+                                            returned: on success
+                                            type: str
+                                            sample: MODIFY_RESPONSE
+                                        response_code:
+                                            description:
+                                                - HTTP response code, can include context variables.
+                                            returned: on success
+                                            type: str
+                                            sample: response_code_example
+                                        response_message:
+                                            description:
+                                                - HTTP response message.
+                                            returned: on success
+                                            type: str
+                                            sample: response_message_example
+                                        response_header_transformations:
+                                            description:
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                set_headers:
+                                                    description:
+                                                        - ""
+                                                    returned: on success
+                                                    type: complex
+                                                    contains:
+                                                        items:
+                                                            description:
+                                                                - The list of headers.
+                                                            returned: on success
+                                                            type: complex
+                                                            contains:
+                                                                name:
+                                                                    description:
+                                                                        - The case-insensitive name of the header.  This name must be unique across
+                                                                          transformation policies.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: name_example
+                                                                values:
+                                                                    description:
+                                                                        - A list of new values.  Each value can be a constant or may include one or more
+                                                                          expressions enclosed within
+                                                                          ${} delimiters.
+                                                                    returned: on success
+                                                                    type: list
+                                                                    sample: []
+                                                                if_exists:
+                                                                    description:
+                                                                        - If a header with the same name already exists in the request, OVERWRITE will overwrite
+                                                                          the value,
+                                                                          APPEND will append to the existing value, or SKIP will keep the existing value.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: OVERWRITE
+                                                rename_headers:
+                                                    description:
+                                                        - ""
+                                                    returned: on success
+                                                    type: complex
+                                                    contains:
+                                                        items:
+                                                            description:
+                                                                - The list of headers.
+                                                            returned: on success
+                                                            type: complex
+                                                            contains:
+                                                                _from:
+                                                                    description:
+                                                                        - The original case-insensitive name of the header.  This name must be unique across
+                                                                          transformation policies.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: _from_example
+                                                                to:
+                                                                    description:
+                                                                        - The new name of the header.  This name must be unique across transformation policies.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: to_example
+                                                filter_headers:
+                                                    description:
+                                                        - ""
+                                                    returned: on success
+                                                    type: complex
+                                                    contains:
+                                                        type:
+                                                            description:
+                                                                - BLOCK drops any headers that are in the list of items, so it acts as an exclusion list.  ALLOW
+                                                                  permits only the headers in the list and removes all others, so it acts as an inclusion list.
+                                                            returned: on success
+                                                            type: str
+                                                            sample: ALLOW
+                                                        items:
+                                                            description:
+                                                                - The list of headers.
+                                                            returned: on success
+                                                            type: complex
+                                                            contains:
+                                                                name:
+                                                                    description:
+                                                                        - The case-insensitive name of the header.  This name must be unique across
+                                                                          transformation policies.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: name_example
                                 is_anonymous_access_allowed:
                                     description:
                                         - "Whether an unauthenticated user may access the API. Must be \\"true\\" to enable ANONYMOUS
@@ -410,6 +540,393 @@ deployments:
                                     returned: on success
                                     type: list
                                     sample: []
+                        dynamic_authentication:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                selection_source:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        type:
+                                            description:
+                                                - Type of the Selection source to use.
+                                            returned: on success
+                                            type: str
+                                            sample: SINGLE
+                                        selector:
+                                            description:
+                                                - String describing the context variable used as selector.
+                                            returned: on success
+                                            type: str
+                                            sample: selector_example
+                                authentication_servers:
+                                    description:
+                                        - List of authentication servers to choose from during dynamic authentication.
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        key:
+                                            description:
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                values:
+                                                    description:
+                                                        - Information regarding the set of values of selector for which this branch should be selected.
+                                                    returned: on success
+                                                    type: list
+                                                    sample: []
+                                                type:
+                                                    description:
+                                                        - Information regarding type of the selection key.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: ANY_OF
+                                                is_default:
+                                                    description:
+                                                        - Information regarding whether this is the default branch.
+                                                    returned: on success
+                                                    type: bool
+                                                    sample: true
+                                                name:
+                                                    description:
+                                                        - Name assigned to the branch.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: name_example
+                                                expression:
+                                                    description:
+                                                        - String describing the expression with wildcards.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: expression_example
+                                        authentication_server_detail:
+                                            description:
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                function_id:
+                                                    description:
+                                                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle
+                                                          Functions function resource.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx"
+                                                parameters:
+                                                    description:
+                                                        - "A map where key is a user defined string and value is a context expressions whose values will be sent
+                                                          to the custom auth function. Values should contain an expression.
+                                                          Example: `{\\"foo\\": \\"request.header[abc]\\"}`"
+                                                    returned: on success
+                                                    type: dict
+                                                    sample: {}
+                                                cache_key:
+                                                    description:
+                                                        - "A list of keys from \\"parameters\\" attribute value whose values will be added to the cache key."
+                                                    returned: on success
+                                                    type: list
+                                                    sample: []
+                                                validation_failure_policy:
+                                                    description:
+                                                        - ""
+                                                    returned: on success
+                                                    type: complex
+                                                    contains:
+                                                        type:
+                                                            description:
+                                                                - Type of the Validation failure Policy.
+                                                            returned: on success
+                                                            type: str
+                                                            sample: MODIFY_RESPONSE
+                                                        response_code:
+                                                            description:
+                                                                - HTTP response code, can include context variables.
+                                                            returned: on success
+                                                            type: str
+                                                            sample: response_code_example
+                                                        response_message:
+                                                            description:
+                                                                - HTTP response message.
+                                                            returned: on success
+                                                            type: str
+                                                            sample: response_message_example
+                                                        response_header_transformations:
+                                                            description:
+                                                                - ""
+                                                            returned: on success
+                                                            type: complex
+                                                            contains:
+                                                                set_headers:
+                                                                    description:
+                                                                        - ""
+                                                                    returned: on success
+                                                                    type: complex
+                                                                    contains:
+                                                                        items:
+                                                                            description:
+                                                                                - The list of headers.
+                                                                            returned: on success
+                                                                            type: complex
+                                                                            contains:
+                                                                                name:
+                                                                                    description:
+                                                                                        - The case-insensitive name of the header.  This name must be unique
+                                                                                          across transformation policies.
+                                                                                    returned: on success
+                                                                                    type: str
+                                                                                    sample: name_example
+                                                                                values:
+                                                                                    description:
+                                                                                        - A list of new values.  Each value can be a constant or may include one
+                                                                                          or more expressions enclosed within
+                                                                                          ${} delimiters.
+                                                                                    returned: on success
+                                                                                    type: list
+                                                                                    sample: []
+                                                                                if_exists:
+                                                                                    description:
+                                                                                        - If a header with the same name already exists in the request,
+                                                                                          OVERWRITE will overwrite the value,
+                                                                                          APPEND will append to the existing value, or SKIP will keep the
+                                                                                          existing value.
+                                                                                    returned: on success
+                                                                                    type: str
+                                                                                    sample: OVERWRITE
+                                                                rename_headers:
+                                                                    description:
+                                                                        - ""
+                                                                    returned: on success
+                                                                    type: complex
+                                                                    contains:
+                                                                        items:
+                                                                            description:
+                                                                                - The list of headers.
+                                                                            returned: on success
+                                                                            type: complex
+                                                                            contains:
+                                                                                _from:
+                                                                                    description:
+                                                                                        - The original case-insensitive name of the header.  This name must be
+                                                                                          unique across transformation policies.
+                                                                                    returned: on success
+                                                                                    type: str
+                                                                                    sample: _from_example
+                                                                                to:
+                                                                                    description:
+                                                                                        - The new name of the header.  This name must be unique across
+                                                                                          transformation policies.
+                                                                                    returned: on success
+                                                                                    type: str
+                                                                                    sample: to_example
+                                                                filter_headers:
+                                                                    description:
+                                                                        - ""
+                                                                    returned: on success
+                                                                    type: complex
+                                                                    contains:
+                                                                        type:
+                                                                            description:
+                                                                                - BLOCK drops any headers that are in the list of items, so it acts as an
+                                                                                  exclusion list.  ALLOW
+                                                                                  permits only the headers in the list and removes all others, so it acts as an
+                                                                                  inclusion list.
+                                                                            returned: on success
+                                                                            type: str
+                                                                            sample: ALLOW
+                                                                        items:
+                                                                            description:
+                                                                                - The list of headers.
+                                                                            returned: on success
+                                                                            type: complex
+                                                                            contains:
+                                                                                name:
+                                                                                    description:
+                                                                                        - The case-insensitive name of the header.  This name must be unique
+                                                                                          across transformation policies.
+                                                                                    returned: on success
+                                                                                    type: str
+                                                                                    sample: name_example
+                                                is_anonymous_access_allowed:
+                                                    description:
+                                                        - "Whether an unauthenticated user may access the API. Must be \\"true\\" to enable ANONYMOUS
+                                                          route authorization."
+                                                    returned: on success
+                                                    type: bool
+                                                    sample: true
+                                                type:
+                                                    description:
+                                                        - Type of the authentication policy to use.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: CUSTOM_AUTHENTICATION
+                                                token_header:
+                                                    description:
+                                                        - The name of the header containing the authentication token.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: token_header_example
+                                                token_query_param:
+                                                    description:
+                                                        - The name of the query parameter containing the authentication token.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: token_query_param_example
+                                                token_auth_scheme:
+                                                    description:
+                                                        - "The authentication scheme that is to be used when authenticating
+                                                          the token. This must to be provided if \\"tokenHeader\\" is specified."
+                                                    returned: on success
+                                                    type: str
+                                                    sample: token_auth_scheme_example
+                                                issuers:
+                                                    description:
+                                                        - A list of parties that could have issued the token.
+                                                    returned: on success
+                                                    type: list
+                                                    sample: []
+                                                audiences:
+                                                    description:
+                                                        - The list of intended recipients for the token.
+                                                    returned: on success
+                                                    type: list
+                                                    sample: []
+                                                verify_claims:
+                                                    description:
+                                                        - A list of claims which should be validated to consider the token valid.
+                                                    returned: on success
+                                                    type: complex
+                                                    contains:
+                                                        key:
+                                                            description:
+                                                                - Name of the claim.
+                                                            returned: on success
+                                                            type: str
+                                                            sample: key_example
+                                                        values:
+                                                            description:
+                                                                - "The list of acceptable values for a given claim.
+                                                                  If this value is \\"null\\" or empty and \\"isRequired\\" set to \\"true\\", then
+                                                                  the presence of this claim in the JWT is validated."
+                                                            returned: on success
+                                                            type: list
+                                                            sample: []
+                                                        is_required:
+                                                            description:
+                                                                - "Whether the claim is required to be present in the JWT or not. If set
+                                                                  to \\"false\\", the claim values will be matched only if the claim is
+                                                                  present in the JWT."
+                                                            returned: on success
+                                                            type: bool
+                                                            sample: true
+                                                max_clock_skew_in_seconds:
+                                                    description:
+                                                        - The maximum expected time difference between the system clocks
+                                                          of the token issuer and the API Gateway.
+                                                    returned: on success
+                                                    type: float
+                                                    sample: 3.4
+                                                public_keys:
+                                                    description:
+                                                        - ""
+                                                    returned: on success
+                                                    type: complex
+                                                    contains:
+                                                        uri:
+                                                            description:
+                                                                - The uri from which to retrieve the key. It must be accessible
+                                                                  without authentication.
+                                                            returned: on success
+                                                            type: str
+                                                            sample: uri_example
+                                                        is_ssl_verify_disabled:
+                                                            description:
+                                                                - Defines whether or not to uphold SSL verification.
+                                                            returned: on success
+                                                            type: bool
+                                                            sample: true
+                                                        max_cache_duration_in_hours:
+                                                            description:
+                                                                - The duration for which the JWKS should be cached before it is
+                                                                  fetched again.
+                                                            returned: on success
+                                                            type: int
+                                                            sample: 56
+                                                        type:
+                                                            description:
+                                                                - Type of the public key set.
+                                                            returned: on success
+                                                            type: str
+                                                            sample: STATIC_KEYS
+                                                        keys:
+                                                            description:
+                                                                - The set of static public keys.
+                                                            returned: on success
+                                                            type: complex
+                                                            contains:
+                                                                kty:
+                                                                    description:
+                                                                        - The key type.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: RSA
+                                                                use:
+                                                                    description:
+                                                                        - The intended use of the public key.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: sig
+                                                                key_ops:
+                                                                    description:
+                                                                        - The operations for which this key is to be used.
+                                                                    returned: on success
+                                                                    type: list
+                                                                    sample: []
+                                                                alg:
+                                                                    description:
+                                                                        - The algorithm intended for use with this key.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: alg_example
+                                                                n:
+                                                                    description:
+                                                                        - The base64 url encoded modulus of the RSA public key represented
+                                                                          by this key.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: n_example
+                                                                e:
+                                                                    description:
+                                                                        - The base64 url encoded exponent of the RSA public key represented
+                                                                          by this key.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: e_example
+                                                                kid:
+                                                                    description:
+                                                                        - "A unique key ID. This key will be used to verify the signature of a
+                                                                          JWT with matching \\"kid\\"."
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: kid_example
+                                                                format:
+                                                                    description:
+                                                                        - The format of the public key.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: JSON_WEB_KEY
+                                                                key:
+                                                                    description:
+                                                                        - The content of the PEM-encoded public key.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: key_example
                 logging_policies:
                     description:
                         - ""
@@ -1063,6 +1580,78 @@ deployments:
                             returned: on success
                             type: complex
                             contains:
+                                selection_source:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        type:
+                                            description:
+                                                - Type of the Selection source to use.
+                                            returned: on success
+                                            type: str
+                                            sample: SINGLE
+                                        selector:
+                                            description:
+                                                - String describing the context variable used as selector.
+                                            returned: on success
+                                            type: str
+                                            sample: selector_example
+                                routing_backends:
+                                    description:
+                                        - List of backends to chose from for Dynamic Routing.
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        key:
+                                            description:
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                values:
+                                                    description:
+                                                        - Information regarding the set of values of selector for which this branch should be selected.
+                                                    returned: on success
+                                                    type: list
+                                                    sample: []
+                                                type:
+                                                    description:
+                                                        - Information regarding type of the selection key.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: ANY_OF
+                                                is_default:
+                                                    description:
+                                                        - Information regarding whether this is the default branch.
+                                                    returned: on success
+                                                    type: bool
+                                                    sample: true
+                                                name:
+                                                    description:
+                                                        - Name assigned to the branch.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: name_example
+                                                expression:
+                                                    description:
+                                                        - String describing the expression with wildcards.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: expression_example
+                                        backend:
+                                            description:
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                type:
+                                                    description:
+                                                        - Type of the API backend.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: ORACLE_FUNCTIONS_BACKEND
                                 url:
                                     description:
                                         - ""
@@ -1227,6 +1816,34 @@ deployments:
             "request_policies": {
                 "authentication": {
                     "function_id": "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx",
+                    "parameters": {},
+                    "cache_key": [],
+                    "validation_failure_policy": {
+                        "type": "MODIFY_RESPONSE",
+                        "response_code": "response_code_example",
+                        "response_message": "response_message_example",
+                        "response_header_transformations": {
+                            "set_headers": {
+                                "items": [{
+                                    "name": "name_example",
+                                    "values": [],
+                                    "if_exists": "OVERWRITE"
+                                }]
+                            },
+                            "rename_headers": {
+                                "items": [{
+                                    "_from": "_from_example",
+                                    "to": "to_example"
+                                }]
+                            },
+                            "filter_headers": {
+                                "type": "ALLOW",
+                                "items": [{
+                                    "name": "name_example"
+                                }]
+                            }
+                        }
+                    },
                     "is_anonymous_access_allowed": true,
                     "type": "CUSTOM_AUTHENTICATION",
                     "token_header": "token_header_example",
@@ -1276,6 +1893,82 @@ deployments:
                 },
                 "usage_plans": {
                     "token_locations": []
+                },
+                "dynamic_authentication": {
+                    "selection_source": {
+                        "type": "SINGLE",
+                        "selector": "selector_example"
+                    },
+                    "authentication_servers": [{
+                        "key": {
+                            "values": [],
+                            "type": "ANY_OF",
+                            "is_default": true,
+                            "name": "name_example",
+                            "expression": "expression_example"
+                        },
+                        "authentication_server_detail": {
+                            "function_id": "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx",
+                            "parameters": {},
+                            "cache_key": [],
+                            "validation_failure_policy": {
+                                "type": "MODIFY_RESPONSE",
+                                "response_code": "response_code_example",
+                                "response_message": "response_message_example",
+                                "response_header_transformations": {
+                                    "set_headers": {
+                                        "items": [{
+                                            "name": "name_example",
+                                            "values": [],
+                                            "if_exists": "OVERWRITE"
+                                        }]
+                                    },
+                                    "rename_headers": {
+                                        "items": [{
+                                            "_from": "_from_example",
+                                            "to": "to_example"
+                                        }]
+                                    },
+                                    "filter_headers": {
+                                        "type": "ALLOW",
+                                        "items": [{
+                                            "name": "name_example"
+                                        }]
+                                    }
+                                }
+                            },
+                            "is_anonymous_access_allowed": true,
+                            "type": "CUSTOM_AUTHENTICATION",
+                            "token_header": "token_header_example",
+                            "token_query_param": "token_query_param_example",
+                            "token_auth_scheme": "token_auth_scheme_example",
+                            "issuers": [],
+                            "audiences": [],
+                            "verify_claims": [{
+                                "key": "key_example",
+                                "values": [],
+                                "is_required": true
+                            }],
+                            "max_clock_skew_in_seconds": 3.4,
+                            "public_keys": {
+                                "uri": "uri_example",
+                                "is_ssl_verify_disabled": true,
+                                "max_cache_duration_in_hours": 56,
+                                "type": "STATIC_KEYS",
+                                "keys": [{
+                                    "kty": "RSA",
+                                    "use": "sig",
+                                    "key_ops": [],
+                                    "alg": "alg_example",
+                                    "n": "n_example",
+                                    "e": "e_example",
+                                    "kid": "kid_example",
+                                    "format": "JSON_WEB_KEY",
+                                    "key": "key_example"
+                                }]
+                            }
+                        }
+                    }]
                 }
             },
             "logging_policies": {
@@ -1410,6 +2103,22 @@ deployments:
                     }
                 },
                 "backend": {
+                    "selection_source": {
+                        "type": "SINGLE",
+                        "selector": "selector_example"
+                    },
+                    "routing_backends": [{
+                        "key": {
+                            "values": [],
+                            "type": "ANY_OF",
+                            "is_default": true,
+                            "name": "name_example",
+                            "expression": "expression_example"
+                        },
+                        "backend": {
+                            "type": "ORACLE_FUNCTIONS_BACKEND"
+                        }
+                    }],
                     "url": "url_example",
                     "connect_timeout_in_seconds": 3.4,
                     "read_timeout_in_seconds": 3.4,

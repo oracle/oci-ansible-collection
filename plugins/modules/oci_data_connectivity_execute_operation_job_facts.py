@@ -23,13 +23,13 @@ module: oci_data_connectivity_execute_operation_job_facts
 short_description: Fetches details about a ExecuteOperationJob resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a ExecuteOperationJob resource in Oracle Cloud Infrastructure
-    - Get the operation status or operation execution result
+    - Get the status or the result of the execution.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     registry_id:
         description:
-            - The registry Ocid.
+            - The registry OCID.
         type: str
         required: true
     connection_key:
@@ -44,12 +44,12 @@ options:
         required: true
     execute_operation_job_key:
         description:
-            - Job id returned by execute operation job api
+            - Job ID returned by the execute operation job API.
         type: str
         required: true
     endpoint_id:
         description:
-            - Endpoint Id used for getDataAssetFullDetails.
+            - Endpoint ID used for getDataAssetFullDetails.
         type: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
@@ -83,7 +83,7 @@ execute_operation_job:
             sample: operation_status_example
         error_message:
             description:
-                - Error message, if whole operation is failed.
+                - Error message when the whole operation fails.
             returned: on success
             type: str
             sample: error_message_example
@@ -95,25 +95,25 @@ execute_operation_job:
             sample: operation_name_example
         out_params:
             description:
-                - List of names of OUT/INOUT params.
+                - The list of names of OUT/INOUT parameters.
             returned: on success
             type: list
             sample: []
         operation_result:
             description:
-                - List of operation execution result for each input set.
+                - The list of operation execution result for each input set.
             returned: on success
             type: complex
             contains:
                 execution_status:
                     description:
-                        - Status of the operation job for particular set of input.
+                        - Status of the operation job for a particular set of input.
                     returned: on success
                     type: str
                     sample: FAILED
                 error_message:
                     description:
-                        - Error message if execution of operation is failed.
+                        - Error message when the execution of operation fails.
                     returned: on success
                     type: str
                     sample: error_message_example
@@ -125,13 +125,13 @@ execute_operation_job:
                     sample: {}
                 output_values:
                     description:
-                        - List of emitted rows for each OUT/INOUT param.
+                        - The list of emitted rows for each OUT/INOUT parameter.
                     returned: on success
                     type: list
                     sample: []
                 is_whitelisted_error_message:
                     description:
-                        - True, if error message should be displayed on UI.
+                        - True, if the error message must be displayed in the UI.
                     returned: on success
                     type: bool
                     sample: true

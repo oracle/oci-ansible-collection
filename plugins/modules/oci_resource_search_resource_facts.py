@@ -153,7 +153,7 @@ resources:
             description:
                 - "System tags associated with this resource, if any. System tags are set by Oracle Cloud Infrastructure services. Each key is predefined and
                   scoped to namespaces.
-                  For more information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+                  For more information, see L(Resource Tags,https://docs.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
                   Example: `{orcl-cloud: {free-tier-retain: true}}`"
             returned: on success
             type: dict

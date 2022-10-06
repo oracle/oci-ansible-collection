@@ -30,7 +30,7 @@ oracle.oci.oci_data_science_notebook_session -- Manage a NotebookSession resourc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.4.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.5.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -394,7 +394,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A notebook session instance of type VM.Standard.E3.Flex allows memory to be specified. This specifies the size of the memory in GBs.</div>
+                                            <div>The total amount of memory available to the notebook session instance, in gigabytes.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -411,7 +411,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A notebook session instance of type VM.Standard.E3.Flex allows the ocpu count to be specified.</div>
+                                            <div>The total number of OCPUs available to the notebook session instance.</div>
                                                         </td>
             </tr>
                     
@@ -510,7 +510,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A notebook session instance of type VM.Standard.E3.Flex allows memory to be specified. This specifies the size of the memory in GBs.</div>
+                                            <div>The total amount of memory available to the notebook session instance, in gigabytes.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -527,7 +527,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A notebook session instance of type VM.Standard.E3.Flex allows the ocpu count to be specified.</div>
+                                            <div>The total number of OCPUs available to the notebook session instance.</div>
                                                         </td>
             </tr>
                     
@@ -1154,7 +1154,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A notebook session instance of type VM.Standard.E3.Flex allows memory to be specified. This specifies the size of the memory in GBs.</div>
+                                            <div>The total amount of memory available to the notebook session instance, in gigabytes.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
@@ -1174,7 +1174,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A notebook session instance of type VM.Standard.E3.Flex allows the ocpu count to be specified.</div>
+                                            <div>The total number of OCPUs available to the notebook session instance.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
@@ -1286,7 +1286,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A notebook session instance of type VM.Standard.E3.Flex allows memory to be specified. This specifies the size of the memory in GBs.</div>
+                                            <div>The total amount of memory available to the notebook session instance, in gigabytes.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
@@ -1306,7 +1306,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A notebook session instance of type VM.Standard.E3.Flex allows the ocpu count to be specified.</div>
+                                            <div>The total number of OCPUs available to the notebook session instance.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>

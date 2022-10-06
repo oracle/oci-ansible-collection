@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 3.4.0
+Collection version 3.5.0
 
 .. toctree::
     :maxdepth: 1
@@ -802,6 +802,9 @@ Modules
 * :ref:`oci_golden_gate_deployment_backup_facts <ansible_collections.oracle.oci.oci_golden_gate_deployment_backup_facts_module>` -- Fetches details about one or multiple DeploymentBackup resources in Oracle Cloud Infrastructure
 * :ref:`oci_golden_gate_deployment_facts <ansible_collections.oracle.oci.oci_golden_gate_deployment_facts_module>` -- Fetches details about one or multiple Deployment resources in Oracle Cloud Infrastructure
 * :ref:`oci_golden_gate_deployment_upgrade_facts <ansible_collections.oracle.oci.oci_golden_gate_deployment_upgrade_facts_module>` -- Fetches details about one or multiple DeploymentUpgrade resources in Oracle Cloud Infrastructure
+* :ref:`oci_golden_gate_message_facts <ansible_collections.oracle.oci.oci_golden_gate_message_facts_module>` -- Fetches details about one or multiple Message resources in Oracle Cloud Infrastructure
+* :ref:`oci_golden_gate_trail_file_facts <ansible_collections.oracle.oci.oci_golden_gate_trail_file_facts_module>` -- Fetches details about one or multiple TrailFile resources in Oracle Cloud Infrastructure
+* :ref:`oci_golden_gate_trail_sequence_facts <ansible_collections.oracle.oci.oci_golden_gate_trail_sequence_facts_module>` -- Fetches details about one or multiple TrailSequence resources in Oracle Cloud Infrastructure
 * :ref:`oci_governance_rules_control_plane_enforced_governance_rule_facts <ansible_collections.oracle.oci.oci_governance_rules_control_plane_enforced_governance_rule_facts_module>` -- Fetches details about one or multiple EnforcedGovernanceRule resources in Oracle Cloud Infrastructure
 * :ref:`oci_governance_rules_control_plane_governance_rule <ansible_collections.oracle.oci.oci_governance_rules_control_plane_governance_rule_module>` -- Manage a GovernanceRule resource in Oracle Cloud Infrastructure
 * :ref:`oci_governance_rules_control_plane_governance_rule_actions <ansible_collections.oracle.oci.oci_governance_rules_control_plane_governance_rule_actions_module>` -- Perform actions on a GovernanceRule resource in Oracle Cloud Infrastructure
@@ -1511,6 +1514,21 @@ Modules
 * :ref:`oci_resource_manager_terraform_versions_facts <ansible_collections.oracle.oci.oci_resource_manager_terraform_versions_facts_module>` -- Fetches details about one or multiple TerraformVersions resources in Oracle Cloud Infrastructure
 * :ref:`oci_resource_search_resource_facts <ansible_collections.oracle.oci.oci_resource_search_resource_facts_module>` -- Fetches details about one or multiple Resource resources in Oracle Cloud Infrastructure
 * :ref:`oci_resource_search_resource_type_facts <ansible_collections.oracle.oci.oci_resource_search_resource_type_facts_module>` -- Fetches details about one or multiple ResourceType resources in Oracle Cloud Infrastructure
+* :ref:`oci_rover_cluster <ansible_collections.oracle.oci.oci_rover_cluster_module>` -- Manage a RoverCluster resource in Oracle Cloud Infrastructure
+* :ref:`oci_rover_cluster_actions <ansible_collections.oracle.oci.oci_rover_cluster_actions_module>` -- Perform actions on a RoverCluster resource in Oracle Cloud Infrastructure
+* :ref:`oci_rover_cluster_certificate_facts <ansible_collections.oracle.oci.oci_rover_cluster_certificate_facts_module>` -- Fetches details about a RoverClusterCertificate resource in Oracle Cloud Infrastructure
+* :ref:`oci_rover_cluster_facts <ansible_collections.oracle.oci.oci_rover_cluster_facts_module>` -- Fetches details about one or multiple RoverCluster resources in Oracle Cloud Infrastructure
+* :ref:`oci_rover_entitlement <ansible_collections.oracle.oci.oci_rover_entitlement_module>` -- Manage a RoverEntitlement resource in Oracle Cloud Infrastructure
+* :ref:`oci_rover_entitlement_actions <ansible_collections.oracle.oci.oci_rover_entitlement_actions_module>` -- Perform actions on a RoverEntitlement resource in Oracle Cloud Infrastructure
+* :ref:`oci_rover_entitlement_facts <ansible_collections.oracle.oci.oci_rover_entitlement_facts_module>` -- Fetches details about one or multiple RoverEntitlement resources in Oracle Cloud Infrastructure
+* :ref:`oci_rover_node <ansible_collections.oracle.oci.oci_rover_node_module>` -- Manage a RoverNode resource in Oracle Cloud Infrastructure
+* :ref:`oci_rover_node_actions <ansible_collections.oracle.oci.oci_rover_node_actions_module>` -- Perform actions on a RoverNode resource in Oracle Cloud Infrastructure
+* :ref:`oci_rover_node_certificate_facts <ansible_collections.oracle.oci.oci_rover_node_certificate_facts_module>` -- Fetches details about a RoverNodeCertificate resource in Oracle Cloud Infrastructure
+* :ref:`oci_rover_node_encryption_key_facts <ansible_collections.oracle.oci.oci_rover_node_encryption_key_facts_module>` -- Fetches details about a RoverNodeEncryptionKey resource in Oracle Cloud Infrastructure
+* :ref:`oci_rover_node_facts <ansible_collections.oracle.oci.oci_rover_node_facts_module>` -- Fetches details about one or multiple RoverNode resources in Oracle Cloud Infrastructure
+* :ref:`oci_rover_node_get_rpt_facts <ansible_collections.oracle.oci.oci_rover_node_get_rpt_facts_module>` -- Fetches details about a RoverNodeGetRpt resource in Oracle Cloud Infrastructure
+* :ref:`oci_rover_node_set_key_actions <ansible_collections.oracle.oci.oci_rover_node_set_key_actions_module>` -- Perform actions on a RoverNodeSetKey resource in Oracle Cloud Infrastructure
+* :ref:`oci_rover_shape_facts <ansible_collections.oracle.oci.oci_rover_shape_facts_module>` -- Fetches details about one or multiple Shape resources in Oracle Cloud Infrastructure
 * :ref:`oci_sch_service_connector <ansible_collections.oracle.oci.oci_sch_service_connector_module>` -- Manage a ServiceConnector resource in Oracle Cloud Infrastructure
 * :ref:`oci_sch_service_connector_actions <ansible_collections.oracle.oci.oci_sch_service_connector_actions_module>` -- Perform actions on a ServiceConnector resource in Oracle Cloud Infrastructure
 * :ref:`oci_sch_service_connector_facts <ansible_collections.oracle.oci.oci_sch_service_connector_facts_module>` -- Fetches details about one or multiple ServiceConnector resources in Oracle Cloud Infrastructure
@@ -2465,6 +2483,9 @@ Modules
     oci_golden_gate_deployment_backup_facts_module
     oci_golden_gate_deployment_facts_module
     oci_golden_gate_deployment_upgrade_facts_module
+    oci_golden_gate_message_facts_module
+    oci_golden_gate_trail_file_facts_module
+    oci_golden_gate_trail_sequence_facts_module
     oci_governance_rules_control_plane_enforced_governance_rule_facts_module
     oci_governance_rules_control_plane_governance_rule_module
     oci_governance_rules_control_plane_governance_rule_actions_module
@@ -3174,6 +3195,21 @@ Modules
     oci_resource_manager_terraform_versions_facts_module
     oci_resource_search_resource_facts_module
     oci_resource_search_resource_type_facts_module
+    oci_rover_cluster_module
+    oci_rover_cluster_actions_module
+    oci_rover_cluster_certificate_facts_module
+    oci_rover_cluster_facts_module
+    oci_rover_entitlement_module
+    oci_rover_entitlement_actions_module
+    oci_rover_entitlement_facts_module
+    oci_rover_node_module
+    oci_rover_node_actions_module
+    oci_rover_node_certificate_facts_module
+    oci_rover_node_encryption_key_facts_module
+    oci_rover_node_facts_module
+    oci_rover_node_get_rpt_facts_module
+    oci_rover_node_set_key_actions_module
+    oci_rover_shape_facts_module
     oci_sch_service_connector_module
     oci_sch_service_connector_actions_module
     oci_sch_service_connector_facts_module

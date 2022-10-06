@@ -23,14 +23,14 @@ module: oci_data_connectivity_reference_info_actions
 short_description: Perform actions on a ReferenceInfo resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a ReferenceInfo resource in Oracle Cloud Infrastructure
-    - For I(action=create_de_reference_artifact), deRereferenced a dcms artifact.
+    - For I(action=create_de_reference_artifact), dereferenced a dcms artifact.
     - For I(action=create_reference_artifact), reference a data asset.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     registry_id:
         description:
-            - The registry Ocid.
+            - The registry OCID.
         type: str
         required: true
     dcms_artifact_id:
@@ -41,7 +41,7 @@ options:
         required: true
     service_artifact_id:
         description:
-            - unique id of service which is referencing data asset.
+            - The unique ID of the service that is referencing a data asset.
         type: str
         required: true
     action:
@@ -89,7 +89,7 @@ reference_info:
             sample: model_type_example
         key:
             description:
-                - Generated key that can be used in API calls to identify referenceinfo.
+                - Generated key that can be used in API calls to identify the referenceinfo.
             returned: on success
             type: str
             sample: key_example
@@ -101,8 +101,8 @@ reference_info:
             sample: model_version_example
         name:
             description:
-                - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable
-                  and is restricted to 1000 characters.
+                - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is
+                  editable and is restricted to 1000 characters.
             returned: on success
             type: str
             sample: name_example
@@ -126,26 +126,26 @@ reference_info:
             sample: 56
         identifier:
             description:
-                - Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The value can be
+                - Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can be
                   modified.
             returned: on success
             type: str
             sample: identifier_example
         dcms_artifact_id:
             description:
-                - unique id of dcms artifact that is getting registered.
+                - The unique ID of the DCMS artifact that is getting registered.
             returned: on success
             type: str
             sample: "ocid1.dcmsartifact.oc1..xxxxxxEXAMPLExxxxxx"
         service_artifact_id:
             description:
-                - unique id of service which is referencing data asset.
+                - The unique ID of the service that is referencing a data asset.
             returned: on success
             type: str
             sample: "ocid1.serviceartifact.oc1..xxxxxxEXAMPLExxxxxx"
         reference_count:
             description:
-                - count of how many times a data asset has been registered by a service.
+                - The number of times a data asset has been registered by a service.
             returned: on success
             type: int
             sample: 56
@@ -163,7 +163,7 @@ reference_info:
                     sample: aggregator_key_example
                 labels:
                     description:
-                        - Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and use them to
+                        - Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own labels and use them to
                           categorize content.
                     returned: on success
                     type: list
@@ -182,13 +182,13 @@ reference_info:
                     sample: key_example
                 is_favorite:
                     description:
-                        - Specifies whether this object is a favorite or not.
+                        - Specifies whether the object is a favorite.
                     returned: on success
                     type: bool
                     sample: true
                 created_by_user_id:
                     description:
-                        - The id of the user who created the object.
+                        - The ID of the user who created the object.
                     returned: on success
                     type: str
                     sample: "ocid1.createdbyuser.oc1..xxxxxxEXAMPLExxxxxx"
@@ -200,7 +200,7 @@ reference_info:
                     sample: created_by_user_name_example
                 updated_by_user_id:
                     description:
-                        - The id of the user who updated the object.
+                        - The ID of the user who updated the object.
                     returned: on success
                     type: str
                     sample: "ocid1.updatedbyuser.oc1..xxxxxxEXAMPLExxxxxx"
@@ -308,7 +308,7 @@ reference_info:
                             sample: description_example
                 identifier_path:
                     description:
-                        - The full path to identify this object.
+                        - The full path to identify the object.
                     returned: on success
                     type: str
                     sample: identifier_path_example
@@ -326,14 +326,14 @@ reference_info:
                     sample: 56
                 labels:
                     description:
-                        - Labels are keywords or tags that you can add to data assets, dataflows and so on. You can define your own labels and use them to
+                        - Labels are keywords or tags that you can add to data assets, dataflows, and so on. You can define your own labels and use them to
                           categorize content.
                     returned: on success
                     type: list
                     sample: []
                 is_favorite:
                     description:
-                        - Specifies whether this object is a favorite or not.
+                        - Specifies whether this object is a favorite.
                     returned: on success
                     type: bool
                     sample: true
@@ -399,7 +399,7 @@ de_reference_info:
             sample: model_type_example
         key:
             description:
-                - Generated key that can be used in API calls to identify referenceinfo.
+                - Generated key that can be used in API calls to identify the referenceinfo.
             returned: on success
             type: str
             sample: key_example
@@ -411,8 +411,8 @@ de_reference_info:
             sample: model_version_example
         name:
             description:
-                - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable
-                  and is restricted to 1000 characters.
+                - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is
+                  editable and is restricted to 1000 characters.
             returned: on success
             type: str
             sample: name_example
@@ -436,26 +436,26 @@ de_reference_info:
             sample: 56
         identifier:
             description:
-                - Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The value can be
+                - Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can be
                   modified.
             returned: on success
             type: str
             sample: identifier_example
         dcms_artifact_id:
             description:
-                - unique id of dcms artifact that is getting referenced.
+                - The unique ID of the DCMS artifact that is getting referenced.
             returned: on success
             type: str
             sample: "ocid1.dcmsartifact.oc1..xxxxxxEXAMPLExxxxxx"
         service_artifact_id:
             description:
-                - unique id of service which is referencing dcms artifact.
+                - The unique ID of the service that is referencing a DCMS artifact.
             returned: on success
             type: str
             sample: "ocid1.serviceartifact.oc1..xxxxxxEXAMPLExxxxxx"
         reference_count:
             description:
-                - count of how many times a dcms artifact has been registered by a service.
+                - The number of times a DCMS artifact has been registered by a service.
             returned: on success
             type: int
             sample: 56
@@ -473,7 +473,7 @@ de_reference_info:
                     sample: aggregator_key_example
                 labels:
                     description:
-                        - Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and use them to
+                        - Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own labels and use them to
                           categorize content.
                     returned: on success
                     type: list
@@ -492,13 +492,13 @@ de_reference_info:
                     sample: key_example
                 is_favorite:
                     description:
-                        - Specifies whether this object is a favorite or not.
+                        - Specifies whether the object is a favorite.
                     returned: on success
                     type: bool
                     sample: true
                 created_by_user_id:
                     description:
-                        - The id of the user who created the object.
+                        - The ID of the user who created the object.
                     returned: on success
                     type: str
                     sample: "ocid1.createdbyuser.oc1..xxxxxxEXAMPLExxxxxx"
@@ -510,7 +510,7 @@ de_reference_info:
                     sample: created_by_user_name_example
                 updated_by_user_id:
                     description:
-                        - The id of the user who updated the object.
+                        - The ID of the user who updated the object.
                     returned: on success
                     type: str
                     sample: "ocid1.updatedbyuser.oc1..xxxxxxEXAMPLExxxxxx"
@@ -618,7 +618,7 @@ de_reference_info:
                             sample: description_example
                 identifier_path:
                     description:
-                        - The full path to identify this object.
+                        - The full path to identify the object.
                     returned: on success
                     type: str
                     sample: identifier_path_example
@@ -636,14 +636,14 @@ de_reference_info:
                     sample: 56
                 labels:
                     description:
-                        - Labels are keywords or tags that you can add to data assets, dataflows and so on. You can define your own labels and use them to
+                        - Labels are keywords or tags that you can add to data assets, dataflows, and so on. You can define your own labels and use them to
                           categorize content.
                     returned: on success
                     type: list
                     sample: []
                 is_favorite:
                     description:
-                        - Specifies whether this object is a favorite or not.
+                        - Specifies whether this object is a favorite.
                     returned: on success
                     type: bool
                     sample: true

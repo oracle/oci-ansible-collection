@@ -30,7 +30,7 @@ oracle.oci.oci_data_connectivity_execute_operation_job_facts -- Fetches details 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.4.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.5.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about a ExecuteOperationJob resource in Oracle Cloud Infrastructure
-- Get the operation status or operation execution result
+- Get the status or the result of the execution.
 
 
 .. Aliases
@@ -257,7 +257,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Endpoint Id used for getDataAssetFullDetails.</div>
+                                            <div>Endpoint ID used for getDataAssetFullDetails.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -272,7 +272,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Job id returned by execute operation job api</div>
+                                            <div>Job ID returned by the execute operation job API.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -302,7 +302,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The registry Ocid.</div>
+                                            <div>The registry OCID.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -421,7 +421,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Error message, if whole operation is failed.</div>
+                                            <div>Error message when the whole operation fails.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">error_message_example</div>
@@ -457,7 +457,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>List of operation execution result for each input set.</div>
+                                            <div>The list of operation execution result for each input set.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -474,7 +474,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Error message if execution of operation is failed.</div>
+                                            <div>Error message when the execution of operation fails.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">error_message_example</div>
@@ -493,7 +493,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Status of the operation job for particular set of input.</div>
+                                            <div>Status of the operation job for a particular set of input.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">FAILED</div>
@@ -512,7 +512,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>True, if error message should be displayed on UI.</div>
+                                            <div>True, if the error message must be displayed in the UI.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -548,7 +548,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>List of emitted rows for each OUT/INOUT param.</div>
+                                            <div>The list of emitted rows for each OUT/INOUT parameter.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -583,7 +583,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>List of names of OUT/INOUT params.</div>
+                                            <div>The list of names of OUT/INOUT parameters.</div>
                                         <br/>
                                                         </td>
             </tr>

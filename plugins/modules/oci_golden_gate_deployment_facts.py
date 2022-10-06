@@ -327,7 +327,9 @@ deployments:
             sample: "2013-10-20T19:20:30+01:00"
         deployment_type:
             description:
-                - The deployment type.
+                - "The type of deployment, the value determines the exact 'type' of service executed in the Deployment. NOTE: Use of the value OGG is maintained
+                  for backward compatibility purposes.  Its use is discouraged
+                        in favor of the equivalent DATABASE_ORACLE value."
             returned: on success
             type: str
             sample: OGG
