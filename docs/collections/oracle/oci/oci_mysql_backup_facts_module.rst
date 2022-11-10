@@ -30,7 +30,7 @@ oracle.oci.oci_mysql_backup_facts -- Fetches details about one or multiple Backu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.5.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.0.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -469,12 +469,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="4">Key</th>
+            <th colspan="5">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="4">
+                                <td colspan="5">
                     <div class="ansibleOptionAnchor" id="return-backups"></div>
                     <b>backups</b>
                     <a class="ansibleOptionLink" href="#return-backups" title="Permalink to this return value"></a>
@@ -487,12 +487,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Backup resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;backup_size_in_gbs&#x27;: 56, &#x27;backup_type&#x27;: &#x27;FULL&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;creation_type&#x27;: &#x27;MANUAL&#x27;, &#x27;data_storage_size_in_gbs&#x27;: 56, &#x27;db_system_id&#x27;: &#x27;ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_system_snapshot&#x27;: {&#x27;admin_username&#x27;: &#x27;admin_username_example&#x27;, &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;backup_policy&#x27;: {&#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;is_enabled&#x27;: True, &#x27;retention_in_days&#x27;: 56, &#x27;window_start_time&#x27;: &#x27;window_start_time_example&#x27;}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;configuration_id&#x27;: &#x27;ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;crash_recovery&#x27;: &#x27;ENABLED&#x27;, &#x27;data_storage_size_in_gbs&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deletion_policy&#x27;: {&#x27;automatic_backup_retention&#x27;: &#x27;DELETE&#x27;, &#x27;final_backup&#x27;: &#x27;SKIP_FINAL_BACKUP&#x27;, &#x27;is_delete_protected&#x27;: True}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;endpoints&#x27;: [{&#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;modes&#x27;: [], &#x27;port&#x27;: 56, &#x27;port_x&#x27;: 56, &#x27;status&#x27;: &#x27;ACTIVE&#x27;, &#x27;status_details&#x27;: &#x27;status_details_example&#x27;}], &#x27;fault_domain&#x27;: &#x27;FAULT-DOMAIN-1&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hostname_label&#x27;: &#x27;hostname_label_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;is_highly_available&#x27;: True, &#x27;maintenance&#x27;: {&#x27;window_start_time&#x27;: &#x27;window_start_time_example&#x27;}, &#x27;mysql_version&#x27;: &#x27;mysql_version_example&#x27;, &#x27;port&#x27;: 56, &#x27;port_x&#x27;: 56, &#x27;shape_name&#x27;: &#x27;shape_name_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;mysql_version&#x27;: &#x27;mysql_version_example&#x27;, &#x27;retention_in_days&#x27;: 56, &#x27;shape_name&#x27;: &#x27;shape_name_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;backup_size_in_gbs&#x27;: 56, &#x27;backup_type&#x27;: &#x27;FULL&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;creation_type&#x27;: &#x27;MANUAL&#x27;, &#x27;data_storage_size_in_gbs&#x27;: 56, &#x27;db_system_id&#x27;: &#x27;ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_system_snapshot&#x27;: {&#x27;admin_username&#x27;: &#x27;admin_username_example&#x27;, &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;backup_policy&#x27;: {&#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;is_enabled&#x27;: True, &#x27;pitr_policy&#x27;: {&#x27;is_enabled&#x27;: True}, &#x27;retention_in_days&#x27;: 56, &#x27;window_start_time&#x27;: &#x27;window_start_time_example&#x27;}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;configuration_id&#x27;: &#x27;ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;crash_recovery&#x27;: &#x27;ENABLED&#x27;, &#x27;data_storage_size_in_gbs&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deletion_policy&#x27;: {&#x27;automatic_backup_retention&#x27;: &#x27;DELETE&#x27;, &#x27;final_backup&#x27;: &#x27;SKIP_FINAL_BACKUP&#x27;, &#x27;is_delete_protected&#x27;: True}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;endpoints&#x27;: [{&#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;modes&#x27;: [], &#x27;port&#x27;: 56, &#x27;port_x&#x27;: 56, &#x27;status&#x27;: &#x27;ACTIVE&#x27;, &#x27;status_details&#x27;: &#x27;status_details_example&#x27;}], &#x27;fault_domain&#x27;: &#x27;FAULT-DOMAIN-1&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hostname_label&#x27;: &#x27;hostname_label_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;is_highly_available&#x27;: True, &#x27;maintenance&#x27;: {&#x27;window_start_time&#x27;: &#x27;window_start_time_example&#x27;}, &#x27;mysql_version&#x27;: &#x27;mysql_version_example&#x27;, &#x27;port&#x27;: 56, &#x27;port_x&#x27;: 56, &#x27;shape_name&#x27;: &#x27;shape_name_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;mysql_version&#x27;: &#x27;mysql_version_example&#x27;, &#x27;retention_in_days&#x27;: 56, &#x27;shape_name&#x27;: &#x27;shape_name_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-backups/backup_size_in_gbs"></div>
                     <b>backup_size_in_gbs</b>
                     <a class="ansibleOptionLink" href="#return-backups/backup_size_in_gbs" title="Permalink to this return value"></a>
@@ -510,7 +510,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-backups/backup_type"></div>
                     <b>backup_type</b>
                     <a class="ansibleOptionLink" href="#return-backups/backup_type" title="Permalink to this return value"></a>
@@ -528,7 +528,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-backups/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-backups/compartment_id" title="Permalink to this return value"></a>
@@ -547,7 +547,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-backups/creation_type"></div>
                     <b>creation_type</b>
                     <a class="ansibleOptionLink" href="#return-backups/creation_type" title="Permalink to this return value"></a>
@@ -565,7 +565,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-backups/data_storage_size_in_gbs"></div>
                     <b>data_storage_size_in_gbs</b>
                     <a class="ansibleOptionLink" href="#return-backups/data_storage_size_in_gbs" title="Permalink to this return value"></a>
@@ -583,7 +583,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_id"></div>
                     <b>db_system_id</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_id" title="Permalink to this return value"></a>
@@ -601,7 +601,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot"></div>
                     <b>db_system_snapshot</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot" title="Permalink to this return value"></a>
@@ -619,7 +619,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/admin_username"></div>
                     <b>admin_username</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/admin_username" title="Permalink to this return value"></a>
@@ -638,7 +638,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/availability_domain"></div>
                     <b>availability_domain</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/availability_domain" title="Permalink to this return value"></a>
@@ -657,7 +657,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/backup_policy"></div>
                     <b>backup_policy</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/backup_policy" title="Permalink to this return value"></a>
@@ -675,7 +675,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/backup_policy/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/backup_policy/defined_tags" title="Permalink to this return value"></a>
@@ -697,7 +697,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/backup_policy/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/backup_policy/freeform_tags" title="Permalink to this return value"></a>
@@ -719,7 +719,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/backup_policy/is_enabled"></div>
                     <b>is_enabled</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/backup_policy/is_enabled" title="Permalink to this return value"></a>
@@ -739,7 +739,47 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/backup_policy/pitr_policy"></div>
+                    <b>pitr_policy</b>
+                    <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/backup_policy/pitr_policy" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/backup_policy/pitr_policy/is_enabled"></div>
+                    <b>is_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/backup_policy/pitr_policy/is_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Specifies if PITR is enabled or disabled.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/backup_policy/retention_in_days"></div>
                     <b>retention_in_days</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/backup_policy/retention_in_days" title="Permalink to this return value"></a>
@@ -759,7 +799,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/backup_policy/window_start_time"></div>
                     <b>window_start_time</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/backup_policy/window_start_time" title="Permalink to this return value"></a>
@@ -782,7 +822,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/compartment_id" title="Permalink to this return value"></a>
@@ -801,7 +841,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/configuration_id"></div>
                     <b>configuration_id</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/configuration_id" title="Permalink to this return value"></a>
@@ -820,7 +860,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/crash_recovery"></div>
                     <b>crash_recovery</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/crash_recovery" title="Permalink to this return value"></a>
@@ -839,7 +879,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/data_storage_size_in_gbs"></div>
                     <b>data_storage_size_in_gbs</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/data_storage_size_in_gbs" title="Permalink to this return value"></a>
@@ -858,7 +898,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/defined_tags" title="Permalink to this return value"></a>
@@ -877,7 +917,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/deletion_policy"></div>
                     <b>deletion_policy</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/deletion_policy" title="Permalink to this return value"></a>
@@ -895,7 +935,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/deletion_policy/automatic_backup_retention"></div>
                     <b>automatic_backup_retention</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/deletion_policy/automatic_backup_retention" title="Permalink to this return value"></a>
@@ -915,7 +955,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/deletion_policy/final_backup"></div>
                     <b>final_backup</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/deletion_policy/final_backup" title="Permalink to this return value"></a>
@@ -935,7 +975,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/deletion_policy/is_delete_protected"></div>
                     <b>is_delete_protected</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/deletion_policy/is_delete_protected" title="Permalink to this return value"></a>
@@ -955,7 +995,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/description"></div>
                     <b>description</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/description" title="Permalink to this return value"></a>
@@ -974,7 +1014,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/display_name" title="Permalink to this return value"></a>
@@ -993,7 +1033,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/endpoints"></div>
                     <b>endpoints</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/endpoints" title="Permalink to this return value"></a>
@@ -1011,7 +1051,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/endpoints/hostname"></div>
                     <b>hostname</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/endpoints/hostname" title="Permalink to this return value"></a>
@@ -1031,7 +1071,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/endpoints/ip_address"></div>
                     <b>ip_address</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/endpoints/ip_address" title="Permalink to this return value"></a>
@@ -1051,7 +1091,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/endpoints/modes"></div>
                     <b>modes</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/endpoints/modes" title="Permalink to this return value"></a>
@@ -1069,7 +1109,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/endpoints/port"></div>
                     <b>port</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/endpoints/port" title="Permalink to this return value"></a>
@@ -1089,7 +1129,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/endpoints/port_x"></div>
                     <b>port_x</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/endpoints/port_x" title="Permalink to this return value"></a>
@@ -1109,7 +1149,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/endpoints/status"></div>
                     <b>status</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/endpoints/status" title="Permalink to this return value"></a>
@@ -1129,7 +1169,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/endpoints/status_details"></div>
                     <b>status_details</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/endpoints/status_details" title="Permalink to this return value"></a>
@@ -1149,7 +1189,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/fault_domain"></div>
                     <b>fault_domain</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/fault_domain" title="Permalink to this return value"></a>
@@ -1168,7 +1208,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/freeform_tags" title="Permalink to this return value"></a>
@@ -1187,7 +1227,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/hostname_label"></div>
                     <b>hostname_label</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/hostname_label" title="Permalink to this return value"></a>
@@ -1206,7 +1246,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/id" title="Permalink to this return value"></a>
@@ -1225,7 +1265,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/ip_address"></div>
                     <b>ip_address</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/ip_address" title="Permalink to this return value"></a>
@@ -1244,7 +1284,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/is_highly_available"></div>
                     <b>is_highly_available</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/is_highly_available" title="Permalink to this return value"></a>
@@ -1263,7 +1303,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/maintenance"></div>
                     <b>maintenance</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/maintenance" title="Permalink to this return value"></a>
@@ -1281,7 +1321,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/maintenance/window_start_time"></div>
                     <b>window_start_time</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/maintenance/window_start_time" title="Permalink to this return value"></a>
@@ -1304,7 +1344,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/mysql_version"></div>
                     <b>mysql_version</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/mysql_version" title="Permalink to this return value"></a>
@@ -1323,7 +1363,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/port"></div>
                     <b>port</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/port" title="Permalink to this return value"></a>
@@ -1342,7 +1382,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/port_x"></div>
                     <b>port_x</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/port_x" title="Permalink to this return value"></a>
@@ -1361,7 +1401,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/shape_name"></div>
                     <b>shape_name</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/shape_name" title="Permalink to this return value"></a>
@@ -1380,7 +1420,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-backups/db_system_snapshot/subnet_id"></div>
                     <b>subnet_id</b>
                     <a class="ansibleOptionLink" href="#return-backups/db_system_snapshot/subnet_id" title="Permalink to this return value"></a>
@@ -1399,7 +1439,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-backups/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-backups/defined_tags" title="Permalink to this return value"></a>
@@ -1417,7 +1457,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-backups/description"></div>
                     <b>description</b>
                     <a class="ansibleOptionLink" href="#return-backups/description" title="Permalink to this return value"></a>
@@ -1435,7 +1475,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-backups/display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#return-backups/display_name" title="Permalink to this return value"></a>
@@ -1453,7 +1493,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-backups/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-backups/freeform_tags" title="Permalink to this return value"></a>
@@ -1471,7 +1511,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-backups/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-backups/id" title="Permalink to this return value"></a>
@@ -1489,7 +1529,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-backups/lifecycle_details"></div>
                     <b>lifecycle_details</b>
                     <a class="ansibleOptionLink" href="#return-backups/lifecycle_details" title="Permalink to this return value"></a>
@@ -1508,7 +1548,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-backups/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-backups/lifecycle_state" title="Permalink to this return value"></a>
@@ -1526,7 +1566,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-backups/mysql_version"></div>
                     <b>mysql_version</b>
                     <a class="ansibleOptionLink" href="#return-backups/mysql_version" title="Permalink to this return value"></a>
@@ -1544,7 +1584,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-backups/retention_in_days"></div>
                     <b>retention_in_days</b>
                     <a class="ansibleOptionLink" href="#return-backups/retention_in_days" title="Permalink to this return value"></a>
@@ -1562,7 +1602,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-backups/shape_name"></div>
                     <b>shape_name</b>
                     <a class="ansibleOptionLink" href="#return-backups/shape_name" title="Permalink to this return value"></a>
@@ -1580,7 +1620,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-backups/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-backups/time_created" title="Permalink to this return value"></a>
@@ -1598,7 +1638,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="3">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-backups/time_updated"></div>
                     <b>time_updated</b>
                     <a class="ansibleOptionLink" href="#return-backups/time_updated" title="Permalink to this return value"></a>

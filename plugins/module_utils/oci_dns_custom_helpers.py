@@ -10,22 +10,8 @@ __metaclass__ = type
 
 from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
 
-try:
-    HAS_OCI_PY_SDK = True
-except ImportError:
-    HAS_OCI_PY_SDK = False
-
 
 class ZoneHelperCustom:
-    def get_create_model_dict_for_idempotence_check(self, create_model):
-        create_model_dict = super(
-            ZoneHelperCustom, self
-        ).get_create_model_dict_for_idempotence_check(create_model)
-        # migration_source is a discriminator field and dynect_migration_details is not available in the get model
-        create_model_dict.pop("migration_source", None)
-        create_model_dict.pop("dynect_migration_details", None)
-        return create_model_dict
-
     def get_get_model_from_summary_model(self, summary_model):
         if self.module.params.get("scope") is not None:
             return oci_common_utils.call_with_backoff(

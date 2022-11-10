@@ -18,16 +18,9 @@ try:
 
 except ImportError:
     HAS_OCI_PY_SDK = False
+import logging
 
-logger = oci_common_utils.get_logger("oci_logging_custom_helpers")
-
-
-def _debug(s):
-    get_logger().debug(s)
-
-
-def get_logger():
-    return logger
+logger = logging.getLogger(__name__)
 
 
 class LogHelperCustom:
@@ -62,7 +55,7 @@ class LogActionsHelperCustom:
 
         except ServiceError as se:
             if se.status == 404:
-                _debug(
+                logger.debug(
                     "Fetching Log resource failed with an exception: {0}".format(
                         se.message
                     )
@@ -123,7 +116,7 @@ class LogActionsHelperCustom:
             try:
                 actioned_resource = actioned_resource or self.get_resource().data
             except (ServiceError, NotImplementedError) as ex:
-                _debug(
+                logger.debug(
                     "Action {0} succeeded but did not return the resource. Error fetching the resource using "
                     "the get operation: {1}".format(action, ex)
                 )

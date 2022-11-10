@@ -340,6 +340,18 @@ backup:
                             returned: on success
                             type: dict
                             sample: {'Operations': {'CostCenter': 'US'}}
+                        pitr_policy:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                is_enabled:
+                                    description:
+                                        - Specifies if PITR is enabled or disabled.
+                                    returned: on success
+                                    type: bool
+                                    sample: true
                 configuration_id:
                     description:
                         - The OCID of the Configuration to be used for Instances in this DB System.
@@ -572,7 +584,10 @@ backup:
                 "window_start_time": "window_start_time_example",
                 "retention_in_days": 56,
                 "freeform_tags": {'Department': 'Finance'},
-                "defined_tags": {'Operations': {'CostCenter': 'US'}}
+                "defined_tags": {'Operations': {'CostCenter': 'US'}},
+                "pitr_policy": {
+                    "is_enabled": true
+                }
             },
             "configuration_id": "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx",
             "data_storage_size_in_gbs": 56,
@@ -612,7 +627,6 @@ backup:
     }
 """
 
-from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_common_utils,
     oci_wait_utils,
@@ -621,6 +635,7 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
 from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils import (
     OCIResourceHelperBase,
     get_custom_class,
+    OCIAnsibleModule,
 )
 
 try:
@@ -778,7 +793,7 @@ def main():
         )
     )
 
-    module = AnsibleModule(argument_spec=module_args, supports_check_mode=True)
+    module = OCIAnsibleModule(argument_spec=module_args, supports_check_mode=True)
 
     if not HAS_OCI_PY_SDK:
         module.fail_json(msg="oci python sdk required for this module.")

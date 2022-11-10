@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 3.5.0
+Collection version 4.0.0
 
 .. toctree::
     :maxdepth: 1
@@ -110,8 +110,6 @@ Modules
 * :ref:`oci_apigateway_usage_plan <ansible_collections.oracle.oci.oci_apigateway_usage_plan_module>` -- Manage an UsagePlan resource in Oracle Cloud Infrastructure
 * :ref:`oci_apigateway_usage_plan_actions <ansible_collections.oracle.oci.oci_apigateway_usage_plan_actions_module>` -- Perform actions on an UsagePlan resource in Oracle Cloud Infrastructure
 * :ref:`oci_apigateway_usage_plan_facts <ansible_collections.oracle.oci.oci_apigateway_usage_plan_facts_module>` -- Fetches details about one or multiple UsagePlan resources in Oracle Cloud Infrastructure
-* :ref:`oci_apigateway_waas_certificate <ansible_collections.oracle.oci.oci_apigateway_waas_certificate_module>` -- Manage a WaasCertificate resource in Oracle Cloud Infrastructure
-* :ref:`oci_apigateway_waas_certificate_facts <ansible_collections.oracle.oci.oci_apigateway_waas_certificate_facts_module>` -- Fetches details about one or multiple WaasCertificate resources in Oracle Cloud Infrastructure
 * :ref:`oci_apm_config_config <ansible_collections.oracle.oci.oci_apm_config_config_module>` -- Manage a Config resource in Oracle Cloud Infrastructure
 * :ref:`oci_apm_config_config_facts <ansible_collections.oracle.oci.oci_apm_config_config_facts_module>` -- Fetches details about one or multiple Config resources in Oracle Cloud Infrastructure
 * :ref:`oci_apm_config_metric_group_actions <ansible_collections.oracle.oci.oci_apm_config_metric_group_actions_module>` -- Perform actions on a MetricGroup resource in Oracle Cloud Infrastructure
@@ -136,6 +134,13 @@ Modules
 * :ref:`oci_apm_traces_span_facts <ansible_collections.oracle.oci.oci_apm_traces_span_facts_module>` -- Fetches details about a Span resource in Oracle Cloud Infrastructure
 * :ref:`oci_apm_traces_trace_facts <ansible_collections.oracle.oci.oci_apm_traces_trace_facts_module>` -- Fetches details about a Trace resource in Oracle Cloud Infrastructure
 * :ref:`oci_apm_traces_trace_snapshot_facts <ansible_collections.oracle.oci.oci_apm_traces_trace_snapshot_facts_module>` -- Fetches details about a TraceSnapshot resource in Oracle Cloud Infrastructure
+* :ref:`oci_application_migration_migration <ansible_collections.oracle.oci.oci_application_migration_migration_module>` -- Manage a Migration resource in Oracle Cloud Infrastructure
+* :ref:`oci_application_migration_migration_actions <ansible_collections.oracle.oci.oci_application_migration_migration_actions_module>` -- Perform actions on a Migration resource in Oracle Cloud Infrastructure
+* :ref:`oci_application_migration_migration_facts <ansible_collections.oracle.oci.oci_application_migration_migration_facts_module>` -- Fetches details about one or multiple Migration resources in Oracle Cloud Infrastructure
+* :ref:`oci_application_migration_source <ansible_collections.oracle.oci.oci_application_migration_source_module>` -- Manage a Source resource in Oracle Cloud Infrastructure
+* :ref:`oci_application_migration_source_actions <ansible_collections.oracle.oci.oci_application_migration_source_actions_module>` -- Perform actions on a Source resource in Oracle Cloud Infrastructure
+* :ref:`oci_application_migration_source_application_facts <ansible_collections.oracle.oci.oci_application_migration_source_application_facts_module>` -- Fetches details about one or multiple SourceApplication resources in Oracle Cloud Infrastructure
+* :ref:`oci_application_migration_source_facts <ansible_collections.oracle.oci.oci_application_migration_source_facts_module>` -- Fetches details about one or multiple Source resources in Oracle Cloud Infrastructure
 * :ref:`oci_appmgmt_control_monitored_instance_actions <ansible_collections.oracle.oci.oci_appmgmt_control_monitored_instance_actions_module>` -- Perform actions on a MonitoredInstance resource in Oracle Cloud Infrastructure
 * :ref:`oci_appmgmt_control_monitored_instance_facts <ansible_collections.oracle.oci.oci_appmgmt_control_monitored_instance_facts_module>` -- Fetches details about one or multiple MonitoredInstance resources in Oracle Cloud Infrastructure
 * :ref:`oci_artifacts_container_configuration <ansible_collections.oracle.oci.oci_artifacts_container_configuration_module>` -- Manage a ContainerConfiguration resource in Oracle Cloud Infrastructure
@@ -739,6 +744,25 @@ Modules
 * :ref:`oci_dns_zone_records <ansible_collections.oracle.oci.oci_dns_zone_records_module>` -- Manage a ZoneRecords resource in Oracle Cloud Infrastructure
 * :ref:`oci_dns_zone_records_facts <ansible_collections.oracle.oci.oci_dns_zone_records_facts_module>` -- Fetches details about one or multiple ZoneRecords resources in Oracle Cloud Infrastructure
 * :ref:`oci_dns_zone_transfer_server_facts <ansible_collections.oracle.oci.oci_dns_zone_transfer_server_facts_module>` -- Fetches details about one or multiple ZoneTransferServer resources in Oracle Cloud Infrastructure
+* :ref:`oci_dts_appliance_export_job <ansible_collections.oracle.oci.oci_dts_appliance_export_job_module>` -- Manage an ApplianceExportJob resource in Oracle Cloud Infrastructure
+* :ref:`oci_dts_appliance_export_job_actions <ansible_collections.oracle.oci.oci_dts_appliance_export_job_actions_module>` -- Perform actions on an ApplianceExportJob resource in Oracle Cloud Infrastructure
+* :ref:`oci_dts_appliance_export_job_facts <ansible_collections.oracle.oci.oci_dts_appliance_export_job_facts_module>` -- Fetches details about one or multiple ApplianceExportJob resources in Oracle Cloud Infrastructure
+* :ref:`oci_dts_attach_devices_actions <ansible_collections.oracle.oci.oci_dts_attach_devices_actions_module>` -- Perform actions on an AttachDevices resource in Oracle Cloud Infrastructure
+* :ref:`oci_dts_detach_devices_actions <ansible_collections.oracle.oci.oci_dts_detach_devices_actions_module>` -- Perform actions on a DetachDevices resource in Oracle Cloud Infrastructure
+* :ref:`oci_dts_shipping_vendors_facts <ansible_collections.oracle.oci.oci_dts_shipping_vendors_facts_module>` -- Fetches details about one or multiple ShippingVendors resources in Oracle Cloud Infrastructure
+* :ref:`oci_dts_transfer_appliance <ansible_collections.oracle.oci.oci_dts_transfer_appliance_module>` -- Manage a TransferAppliance resource in Oracle Cloud Infrastructure
+* :ref:`oci_dts_transfer_appliance_certificate <ansible_collections.oracle.oci.oci_dts_transfer_appliance_certificate_module>` -- Manage a TransferApplianceCertificate resource in Oracle Cloud Infrastructure
+* :ref:`oci_dts_transfer_appliance_certificate_facts <ansible_collections.oracle.oci.oci_dts_transfer_appliance_certificate_facts_module>` -- Fetches details about a TransferApplianceCertificate resource in Oracle Cloud Infrastructure
+* :ref:`oci_dts_transfer_appliance_encryption_passphrase_facts <ansible_collections.oracle.oci.oci_dts_transfer_appliance_encryption_passphrase_facts_module>` -- Fetches details about a TransferApplianceEncryptionPassphrase resource in Oracle Cloud Infrastructure
+* :ref:`oci_dts_transfer_appliance_entitlement_facts <ansible_collections.oracle.oci.oci_dts_transfer_appliance_entitlement_facts_module>` -- Fetches details about one or multiple TransferApplianceEntitlement resources in Oracle Cloud Infrastructure
+* :ref:`oci_dts_transfer_appliance_facts <ansible_collections.oracle.oci.oci_dts_transfer_appliance_facts_module>` -- Fetches details about one or multiple TransferAppliance resources in Oracle Cloud Infrastructure
+* :ref:`oci_dts_transfer_device <ansible_collections.oracle.oci.oci_dts_transfer_device_module>` -- Manage a TransferDevice resource in Oracle Cloud Infrastructure
+* :ref:`oci_dts_transfer_device_facts <ansible_collections.oracle.oci.oci_dts_transfer_device_facts_module>` -- Fetches details about one or multiple TransferDevice resources in Oracle Cloud Infrastructure
+* :ref:`oci_dts_transfer_job <ansible_collections.oracle.oci.oci_dts_transfer_job_module>` -- Manage a TransferJob resource in Oracle Cloud Infrastructure
+* :ref:`oci_dts_transfer_job_facts <ansible_collections.oracle.oci.oci_dts_transfer_job_facts_module>` -- Fetches details about one or multiple TransferJob resources in Oracle Cloud Infrastructure
+* :ref:`oci_dts_transfer_package <ansible_collections.oracle.oci.oci_dts_transfer_package_module>` -- Manage a TransferPackage resource in Oracle Cloud Infrastructure
+* :ref:`oci_dts_transfer_package_actions <ansible_collections.oracle.oci.oci_dts_transfer_package_actions_module>` -- Perform actions on a TransferPackage resource in Oracle Cloud Infrastructure
+* :ref:`oci_dts_transfer_package_facts <ansible_collections.oracle.oci.oci_dts_transfer_package_facts_module>` -- Fetches details about one or multiple TransferPackage resources in Oracle Cloud Infrastructure
 * :ref:`oci_em_warehouse <ansible_collections.oracle.oci.oci_em_warehouse_module>` -- Manage an EmWarehouse resource in Oracle Cloud Infrastructure
 * :ref:`oci_em_warehouse_actions <ansible_collections.oracle.oci.oci_em_warehouse_actions_module>` -- Perform actions on an EmWarehouse resource in Oracle Cloud Infrastructure
 * :ref:`oci_em_warehouse_etl_run_facts <ansible_collections.oracle.oci.oci_em_warehouse_etl_run_facts_module>` -- Fetches details about one or multiple EtlRun resources in Oracle Cloud Infrastructure
@@ -931,8 +955,6 @@ Modules
 * :ref:`oci_limits_quota_facts <ansible_collections.oracle.oci.oci_limits_quota_facts_module>` -- Fetches details about one or multiple Quota resources in Oracle Cloud Infrastructure
 * :ref:`oci_limits_resource_availability_facts <ansible_collections.oracle.oci.oci_limits_resource_availability_facts_module>` -- Fetches details about a ResourceAvailability resource in Oracle Cloud Infrastructure
 * :ref:`oci_limits_service_facts <ansible_collections.oracle.oci.oci_limits_service_facts_module>` -- Fetches details about one or multiple Service resources in Oracle Cloud Infrastructure
-* :ref:`oci_load_balancer_routing_policy <ansible_collections.oracle.oci.oci_load_balancer_routing_policy_module>` -- Manage a RoutingPolicy resource in Oracle Cloud Infrastructure
-* :ref:`oci_load_balancer_routing_policy_facts <ansible_collections.oracle.oci.oci_load_balancer_routing_policy_facts_module>` -- Fetches details about one or multiple RoutingPolicy resources in Oracle Cloud Infrastructure
 * :ref:`oci_loadbalancer_backend <ansible_collections.oracle.oci.oci_loadbalancer_backend_module>` -- Manage a Backend resource in Oracle Cloud Infrastructure
 * :ref:`oci_loadbalancer_backend_facts <ansible_collections.oracle.oci.oci_loadbalancer_backend_facts_module>` -- Fetches details about one or multiple Backend resources in Oracle Cloud Infrastructure
 * :ref:`oci_loadbalancer_backend_health_facts <ansible_collections.oracle.oci.oci_loadbalancer_backend_health_facts_module>` -- Fetches details about a BackendHealth resource in Oracle Cloud Infrastructure
@@ -1081,7 +1103,6 @@ Modules
 * :ref:`oci_monitoring_metric_actions <ansible_collections.oracle.oci.oci_monitoring_metric_actions_module>` -- Perform actions on a Metric resource in Oracle Cloud Infrastructure
 * :ref:`oci_monitoring_metric_data <ansible_collections.oracle.oci.oci_monitoring_metric_data_module>` -- Manage a MetricData resource in Oracle Cloud Infrastructure
 * :ref:`oci_monitoring_metric_data_actions <ansible_collections.oracle.oci.oci_monitoring_metric_data_actions_module>` -- Perform actions on a MetricData resource in Oracle Cloud Infrastructure
-* :ref:`oci_monitoring_suppression_actions <ansible_collections.oracle.oci.oci_monitoring_suppression_actions_module>` -- Perform actions on a Suppression resource in Oracle Cloud Infrastructure
 * :ref:`oci_mysql_analytics_cluster <ansible_collections.oracle.oci.oci_mysql_analytics_cluster_module>` -- Manage an AnalyticsCluster resource in Oracle Cloud Infrastructure
 * :ref:`oci_mysql_analytics_cluster_actions <ansible_collections.oracle.oci.oci_mysql_analytics_cluster_actions_module>` -- Perform actions on an AnalyticsCluster resource in Oracle Cloud Infrastructure
 * :ref:`oci_mysql_analytics_cluster_facts <ansible_collections.oracle.oci.oci_mysql_analytics_cluster_facts_module>` -- Fetches details about a AnalyticsCluster resource in Oracle Cloud Infrastructure
@@ -1584,6 +1605,31 @@ Modules
 * :ref:`oci_streaming_stream_pool <ansible_collections.oracle.oci.oci_streaming_stream_pool_module>` -- Manage a StreamPool resource in Oracle Cloud Infrastructure
 * :ref:`oci_streaming_stream_pool_actions <ansible_collections.oracle.oci.oci_streaming_stream_pool_actions_module>` -- Perform actions on a StreamPool resource in Oracle Cloud Infrastructure
 * :ref:`oci_streaming_stream_pool_facts <ansible_collections.oracle.oci.oci_streaming_stream_pool_facts_module>` -- Fetches details about one or multiple StreamPool resources in Oracle Cloud Infrastructure
+* :ref:`oci_tenant_manager_control_plane_assigned_subscription_facts <ansible_collections.oracle.oci.oci_tenant_manager_control_plane_assigned_subscription_facts_module>` -- Fetches details about one or multiple AssignedSubscription resources in Oracle Cloud Infrastructure
+* :ref:`oci_tenant_manager_control_plane_available_region_facts <ansible_collections.oracle.oci.oci_tenant_manager_control_plane_available_region_facts_module>` -- Fetches details about one or multiple AvailableRegion resources in Oracle Cloud Infrastructure
+* :ref:`oci_tenant_manager_control_plane_child_tenancy <ansible_collections.oracle.oci.oci_tenant_manager_control_plane_child_tenancy_module>` -- Manage a ChildTenancy resource in Oracle Cloud Infrastructure
+* :ref:`oci_tenant_manager_control_plane_domain <ansible_collections.oracle.oci.oci_tenant_manager_control_plane_domain_module>` -- Manage a Domain resource in Oracle Cloud Infrastructure
+* :ref:`oci_tenant_manager_control_plane_domain_facts <ansible_collections.oracle.oci.oci_tenant_manager_control_plane_domain_facts_module>` -- Fetches details about one or multiple Domain resources in Oracle Cloud Infrastructure
+* :ref:`oci_tenant_manager_control_plane_domain_governance <ansible_collections.oracle.oci.oci_tenant_manager_control_plane_domain_governance_module>` -- Manage a DomainGovernance resource in Oracle Cloud Infrastructure
+* :ref:`oci_tenant_manager_control_plane_domain_governance_facts <ansible_collections.oracle.oci.oci_tenant_manager_control_plane_domain_governance_facts_module>` -- Fetches details about one or multiple DomainGovernance resources in Oracle Cloud Infrastructure
+* :ref:`oci_tenant_manager_control_plane_link <ansible_collections.oracle.oci.oci_tenant_manager_control_plane_link_module>` -- Manage a Link resource in Oracle Cloud Infrastructure
+* :ref:`oci_tenant_manager_control_plane_link_facts <ansible_collections.oracle.oci.oci_tenant_manager_control_plane_link_facts_module>` -- Fetches details about one or multiple Link resources in Oracle Cloud Infrastructure
+* :ref:`oci_tenant_manager_control_plane_order_actions <ansible_collections.oracle.oci.oci_tenant_manager_control_plane_order_actions_module>` -- Perform actions on an Order resource in Oracle Cloud Infrastructure
+* :ref:`oci_tenant_manager_control_plane_order_facts <ansible_collections.oracle.oci.oci_tenant_manager_control_plane_order_facts_module>` -- Fetches details about a Order resource in Oracle Cloud Infrastructure
+* :ref:`oci_tenant_manager_control_plane_organization <ansible_collections.oracle.oci.oci_tenant_manager_control_plane_organization_module>` -- Manage an Organization resource in Oracle Cloud Infrastructure
+* :ref:`oci_tenant_manager_control_plane_organization_facts <ansible_collections.oracle.oci.oci_tenant_manager_control_plane_organization_facts_module>` -- Fetches details about one or multiple Organization resources in Oracle Cloud Infrastructure
+* :ref:`oci_tenant_manager_control_plane_organization_tenancy <ansible_collections.oracle.oci.oci_tenant_manager_control_plane_organization_tenancy_module>` -- Manage an OrganizationTenancy resource in Oracle Cloud Infrastructure
+* :ref:`oci_tenant_manager_control_plane_organization_tenancy_actions <ansible_collections.oracle.oci.oci_tenant_manager_control_plane_organization_tenancy_actions_module>` -- Perform actions on an OrganizationTenancy resource in Oracle Cloud Infrastructure
+* :ref:`oci_tenant_manager_control_plane_organization_tenancy_facts <ansible_collections.oracle.oci.oci_tenant_manager_control_plane_organization_tenancy_facts_module>` -- Fetches details about one or multiple OrganizationTenancy resources in Oracle Cloud Infrastructure
+* :ref:`oci_tenant_manager_control_plane_recipient_invitation <ansible_collections.oracle.oci.oci_tenant_manager_control_plane_recipient_invitation_module>` -- Manage a RecipientInvitation resource in Oracle Cloud Infrastructure
+* :ref:`oci_tenant_manager_control_plane_recipient_invitation_actions <ansible_collections.oracle.oci.oci_tenant_manager_control_plane_recipient_invitation_actions_module>` -- Perform actions on a RecipientInvitation resource in Oracle Cloud Infrastructure
+* :ref:`oci_tenant_manager_control_plane_recipient_invitation_facts <ansible_collections.oracle.oci.oci_tenant_manager_control_plane_recipient_invitation_facts_module>` -- Fetches details about one or multiple RecipientInvitation resources in Oracle Cloud Infrastructure
+* :ref:`oci_tenant_manager_control_plane_sender_invitation <ansible_collections.oracle.oci.oci_tenant_manager_control_plane_sender_invitation_module>` -- Manage a SenderInvitation resource in Oracle Cloud Infrastructure
+* :ref:`oci_tenant_manager_control_plane_sender_invitation_actions <ansible_collections.oracle.oci.oci_tenant_manager_control_plane_sender_invitation_actions_module>` -- Perform actions on a SenderInvitation resource in Oracle Cloud Infrastructure
+* :ref:`oci_tenant_manager_control_plane_sender_invitation_facts <ansible_collections.oracle.oci.oci_tenant_manager_control_plane_sender_invitation_facts_module>` -- Fetches details about one or multiple SenderInvitation resources in Oracle Cloud Infrastructure
+* :ref:`oci_tenant_manager_control_plane_subscription_facts <ansible_collections.oracle.oci.oci_tenant_manager_control_plane_subscription_facts_module>` -- Fetches details about one or multiple Subscription resources in Oracle Cloud Infrastructure
+* :ref:`oci_tenant_manager_control_plane_subscription_mapping <ansible_collections.oracle.oci.oci_tenant_manager_control_plane_subscription_mapping_module>` -- Manage a SubscriptionMapping resource in Oracle Cloud Infrastructure
+* :ref:`oci_tenant_manager_control_plane_subscription_mapping_facts <ansible_collections.oracle.oci.oci_tenant_manager_control_plane_subscription_mapping_facts_module>` -- Fetches details about one or multiple SubscriptionMapping resources in Oracle Cloud Infrastructure
 * :ref:`oci_threat_intelligence_indicator_count_facts <ansible_collections.oracle.oci.oci_threat_intelligence_indicator_count_facts_module>` -- Fetches details about one or multiple IndicatorCount resources in Oracle Cloud Infrastructure
 * :ref:`oci_threat_intelligence_indicator_facts <ansible_collections.oracle.oci.oci_threat_intelligence_indicator_facts_module>` -- Fetches details about one or multiple Indicator resources in Oracle Cloud Infrastructure
 * :ref:`oci_threat_intelligence_threat_types_facts <ansible_collections.oracle.oci.oci_threat_intelligence_threat_types_facts_module>` -- Fetches details about one or multiple ThreatTypes resources in Oracle Cloud Infrastructure
@@ -1791,8 +1837,6 @@ Modules
     oci_apigateway_usage_plan_module
     oci_apigateway_usage_plan_actions_module
     oci_apigateway_usage_plan_facts_module
-    oci_apigateway_waas_certificate_module
-    oci_apigateway_waas_certificate_facts_module
     oci_apm_config_config_module
     oci_apm_config_config_facts_module
     oci_apm_config_metric_group_actions_module
@@ -1817,6 +1861,13 @@ Modules
     oci_apm_traces_span_facts_module
     oci_apm_traces_trace_facts_module
     oci_apm_traces_trace_snapshot_facts_module
+    oci_application_migration_migration_module
+    oci_application_migration_migration_actions_module
+    oci_application_migration_migration_facts_module
+    oci_application_migration_source_module
+    oci_application_migration_source_actions_module
+    oci_application_migration_source_application_facts_module
+    oci_application_migration_source_facts_module
     oci_appmgmt_control_monitored_instance_actions_module
     oci_appmgmt_control_monitored_instance_facts_module
     oci_artifacts_container_configuration_module
@@ -2420,6 +2471,25 @@ Modules
     oci_dns_zone_records_module
     oci_dns_zone_records_facts_module
     oci_dns_zone_transfer_server_facts_module
+    oci_dts_appliance_export_job_module
+    oci_dts_appliance_export_job_actions_module
+    oci_dts_appliance_export_job_facts_module
+    oci_dts_attach_devices_actions_module
+    oci_dts_detach_devices_actions_module
+    oci_dts_shipping_vendors_facts_module
+    oci_dts_transfer_appliance_module
+    oci_dts_transfer_appliance_certificate_module
+    oci_dts_transfer_appliance_certificate_facts_module
+    oci_dts_transfer_appliance_encryption_passphrase_facts_module
+    oci_dts_transfer_appliance_entitlement_facts_module
+    oci_dts_transfer_appliance_facts_module
+    oci_dts_transfer_device_module
+    oci_dts_transfer_device_facts_module
+    oci_dts_transfer_job_module
+    oci_dts_transfer_job_facts_module
+    oci_dts_transfer_package_module
+    oci_dts_transfer_package_actions_module
+    oci_dts_transfer_package_facts_module
     oci_em_warehouse_module
     oci_em_warehouse_actions_module
     oci_em_warehouse_etl_run_facts_module
@@ -2612,8 +2682,6 @@ Modules
     oci_limits_quota_facts_module
     oci_limits_resource_availability_facts_module
     oci_limits_service_facts_module
-    oci_load_balancer_routing_policy_module
-    oci_load_balancer_routing_policy_facts_module
     oci_loadbalancer_backend_module
     oci_loadbalancer_backend_facts_module
     oci_loadbalancer_backend_health_facts_module
@@ -2762,7 +2830,6 @@ Modules
     oci_monitoring_metric_actions_module
     oci_monitoring_metric_data_module
     oci_monitoring_metric_data_actions_module
-    oci_monitoring_suppression_actions_module
     oci_mysql_analytics_cluster_module
     oci_mysql_analytics_cluster_actions_module
     oci_mysql_analytics_cluster_facts_module
@@ -3265,6 +3332,31 @@ Modules
     oci_streaming_stream_pool_module
     oci_streaming_stream_pool_actions_module
     oci_streaming_stream_pool_facts_module
+    oci_tenant_manager_control_plane_assigned_subscription_facts_module
+    oci_tenant_manager_control_plane_available_region_facts_module
+    oci_tenant_manager_control_plane_child_tenancy_module
+    oci_tenant_manager_control_plane_domain_module
+    oci_tenant_manager_control_plane_domain_facts_module
+    oci_tenant_manager_control_plane_domain_governance_module
+    oci_tenant_manager_control_plane_domain_governance_facts_module
+    oci_tenant_manager_control_plane_link_module
+    oci_tenant_manager_control_plane_link_facts_module
+    oci_tenant_manager_control_plane_order_actions_module
+    oci_tenant_manager_control_plane_order_facts_module
+    oci_tenant_manager_control_plane_organization_module
+    oci_tenant_manager_control_plane_organization_facts_module
+    oci_tenant_manager_control_plane_organization_tenancy_module
+    oci_tenant_manager_control_plane_organization_tenancy_actions_module
+    oci_tenant_manager_control_plane_organization_tenancy_facts_module
+    oci_tenant_manager_control_plane_recipient_invitation_module
+    oci_tenant_manager_control_plane_recipient_invitation_actions_module
+    oci_tenant_manager_control_plane_recipient_invitation_facts_module
+    oci_tenant_manager_control_plane_sender_invitation_module
+    oci_tenant_manager_control_plane_sender_invitation_actions_module
+    oci_tenant_manager_control_plane_sender_invitation_facts_module
+    oci_tenant_manager_control_plane_subscription_facts_module
+    oci_tenant_manager_control_plane_subscription_mapping_module
+    oci_tenant_manager_control_plane_subscription_mapping_facts_module
     oci_threat_intelligence_indicator_count_facts_module
     oci_threat_intelligence_indicator_facts_module
     oci_threat_intelligence_threat_types_facts_module

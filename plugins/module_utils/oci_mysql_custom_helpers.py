@@ -23,16 +23,9 @@ try:
 except ImportError:
     HAS_OCI_PY_SDK = False
 
+import logging
 
-logger = oci_common_utils.get_logger("oci_mysql_custom_helpers")
-
-
-def _debug(s):
-    get_logger().debug(s)
-
-
-def get_logger():
-    return logger
+logger = logging.getLogger(__name__)
 
 
 class MysqlDbSystemHelperCustom:
@@ -74,7 +67,7 @@ class MysqlDbSystemHelperCustom:
                     and oci_common_utils.compare_dicts(input_value, existing_value)
                 )
                 if values_are_equal or dicts_are_equivalent:
-                    _debug(
+                    logger.debug(
                         "skipping updating field {field_name} because it already matches the value on the resource.".format(
                             field_name=key
                         )

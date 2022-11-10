@@ -14,21 +14,14 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
 )
 
 try:
-    import oci
+    from oci.waas import WaasClient
 
     HAS_OCI_PY_SDK = True
 except ImportError:
     HAS_OCI_PY_SDK = False
+import logging
 
-logger = oci_common_utils.get_logger("oci_waas_custom_helpers")
-
-
-def _debug(s):
-    get_logger().debug(s)
-
-
-def get_logger():
-    return logger
+logger = logging.getLogger(__name__)
 
 
 class WaasCertificateHelperCustom:
@@ -51,7 +44,7 @@ class HttpRedirectHelperCustom:
     def get_waiter_client(self):
         # http_redirect resource has a separate client class but still uses WaasClient for work requests. Override
         # waiter client to use WaasClient.
-        return oci_config_utils.create_service_client(self.module, oci.waas.WaasClient)
+        return oci_config_utils.create_service_client(self.module, WaasClient)
 
 
 class WaasPolicyHelperCustom:
@@ -238,7 +231,7 @@ class AccessRulesHelperCustom:
             access_rules, existing_resources
         )
 
-        _debug(
+        logger.debug(
             "is update necessary for {resource_type}: {update_is_necessary}".format(
                 resource_type=self.get_response_field_name(),
                 update_is_necessary=update_is_necessary,
@@ -261,7 +254,7 @@ class CaptchasHelperCustom:
             captchas, existing_resources
         )
 
-        _debug(
+        logger.debug(
             "is update necessary for {resource_type}: {update_is_necessary}".format(
                 resource_type=self.get_response_field_name(),
                 update_is_necessary=update_is_necessary,
@@ -284,7 +277,7 @@ class CachingRulesHelperCustom:
             caching_rules, existing_resources
         )
 
-        _debug(
+        logger.debug(
             "is update necessary for {resource_type}: {update_is_necessary}".format(
                 resource_type=self.resource_type,
                 update_is_necessary=update_is_necessary,
@@ -316,7 +309,7 @@ class GoodBotsHelperCustom:
             good_bots, existing_resources
         )
 
-        _debug(
+        logger.debug(
             "is update necessary for {resource_type}: {update_is_necessary}".format(
                 resource_type=self.resource_type,
                 update_is_necessary=update_is_necessary,
@@ -348,7 +341,7 @@ class ThreatFeedsHelperCustom:
             threat_feeds, existing_resources
         )
 
-        _debug(
+        logger.debug(
             "is update necessary for {resource_type}: {update_is_necessary}".format(
                 resource_type=self.resource_type,
                 update_is_necessary=update_is_necessary,
@@ -393,7 +386,7 @@ class ProtectionRulesHelperCustom:
             protection_rules, existing_resources
         )
 
-        _debug(
+        logger.debug(
             "is update necessary for {resource_type}: {update_is_necessary}".format(
                 resource_type=self.resource_type,
                 update_is_necessary=update_is_necessary,
@@ -418,7 +411,7 @@ class WaasPolicyCustomProtectionRulesHelperCustom:
             custom_protection_rules, existing_resources
         )
 
-        _debug(
+        logger.debug(
             "is update necessary for {resource_type}: {update_is_necessary}".format(
                 resource_type=self.resource_type,
                 update_is_necessary=update_is_necessary,
@@ -441,7 +434,7 @@ class WhitelistsHelperCustom:
             whitelists, existing_resources
         )
 
-        _debug(
+        logger.debug(
             "is update necessary for {resource_type}: {update_is_necessary}".format(
                 resource_type=self.resource_type,
                 update_is_necessary=update_is_necessary,

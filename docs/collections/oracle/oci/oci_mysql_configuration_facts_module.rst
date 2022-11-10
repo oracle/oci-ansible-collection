@@ -30,7 +30,7 @@ oracle.oci.oci_mysql_configuration_facts -- Fetches details about one or multipl
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.5.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.0.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -484,7 +484,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Configuration resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;parent_configuration_id&#x27;: &#x27;ocid1.parentconfiguration.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;shape_name&#x27;: &#x27;shape_name_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;DEFAULT&#x27;, &#x27;variables&#x27;: {&#x27;autocommit&#x27;: True, &#x27;binlog_expire_logs_seconds&#x27;: 56, &#x27;binlog_row_metadata&#x27;: &#x27;FULL&#x27;, &#x27;binlog_row_value_options&#x27;: &#x27;binlog_row_value_options_example&#x27;, &#x27;binlog_transaction_compression&#x27;: True, &#x27;completion_type&#x27;: &#x27;NO_CHAIN&#x27;, &#x27;connect_timeout&#x27;: 56, &#x27;cte_max_recursion_depth&#x27;: 56, &#x27;default_authentication_plugin&#x27;: &#x27;mysql_native_password&#x27;, &#x27;foreign_key_checks&#x27;: True, &#x27;generated_random_password_length&#x27;: 56, &#x27;group_replication_consistency&#x27;: &#x27;EVENTUAL&#x27;, &#x27;information_schema_stats_expiry&#x27;: 56, &#x27;innodb_buffer_pool_instances&#x27;: 56, &#x27;innodb_buffer_pool_size&#x27;: 56, &#x27;innodb_ft_enable_stopword&#x27;: True, &#x27;innodb_ft_max_token_size&#x27;: 56, &#x27;innodb_ft_min_token_size&#x27;: 56, &#x27;innodb_ft_num_word_optimize&#x27;: 56, &#x27;innodb_ft_result_cache_limit&#x27;: 56, &#x27;innodb_ft_server_stopword_table&#x27;: &#x27;innodb_ft_server_stopword_table_example&#x27;, &#x27;innodb_lock_wait_timeout&#x27;: 56, &#x27;innodb_max_purge_lag&#x27;: 56, &#x27;innodb_max_purge_lag_delay&#x27;: 56, &#x27;local_infile&#x27;: True, &#x27;mandatory_roles&#x27;: &#x27;mandatory_roles_example&#x27;, &#x27;max_connections&#x27;: 56, &#x27;max_execution_time&#x27;: 56, &#x27;max_prepared_stmt_count&#x27;: 56, &#x27;mysql_firewall_mode&#x27;: True, &#x27;mysql_zstd_default_compression_level&#x27;: 56, &#x27;mysqlx_connect_timeout&#x27;: 56, &#x27;mysqlx_deflate_default_compression_level&#x27;: 56, &#x27;mysqlx_deflate_max_client_compression_level&#x27;: 56, &#x27;mysqlx_document_id_unique_prefix&#x27;: 56, &#x27;mysqlx_enable_hello_notice&#x27;: True, &#x27;mysqlx_idle_worker_thread_timeout&#x27;: 56, &#x27;mysqlx_interactive_timeout&#x27;: 56, &#x27;mysqlx_lz4_default_compression_level&#x27;: 56, &#x27;mysqlx_lz4_max_client_compression_level&#x27;: 56, &#x27;mysqlx_max_allowed_packet&#x27;: 56, &#x27;mysqlx_min_worker_threads&#x27;: 56, &#x27;mysqlx_read_timeout&#x27;: 56, &#x27;mysqlx_wait_timeout&#x27;: 56, &#x27;mysqlx_write_timeout&#x27;: 56, &#x27;mysqlx_zstd_default_compression_level&#x27;: 56, &#x27;mysqlx_zstd_max_client_compression_level&#x27;: 56, &#x27;parser_max_mem_size&#x27;: 56, &#x27;query_alloc_block_size&#x27;: 56, &#x27;query_prealloc_size&#x27;: 56, &#x27;sql_mode&#x27;: &#x27;sql_mode_example&#x27;, &#x27;sql_require_primary_key&#x27;: True, &#x27;sql_warnings&#x27;: True, &#x27;transaction_isolation&#x27;: &#x27;READ-UNCOMMITTED&#x27;}}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;init_variables&#x27;: {&#x27;lower_case_table_names&#x27;: &#x27;CASE_SENSITIVE&#x27;}, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;parent_configuration_id&#x27;: &#x27;ocid1.parentconfiguration.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;shape_name&#x27;: &#x27;shape_name_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;DEFAULT&#x27;, &#x27;variables&#x27;: {&#x27;autocommit&#x27;: True, &#x27;big_tables&#x27;: True, &#x27;binlog_expire_logs_seconds&#x27;: 56, &#x27;binlog_row_metadata&#x27;: &#x27;FULL&#x27;, &#x27;binlog_row_value_options&#x27;: &#x27;binlog_row_value_options_example&#x27;, &#x27;binlog_transaction_compression&#x27;: True, &#x27;completion_type&#x27;: &#x27;NO_CHAIN&#x27;, &#x27;connect_timeout&#x27;: 56, &#x27;connection_memory_chunk_size&#x27;: 56, &#x27;connection_memory_limit&#x27;: 56, &#x27;cte_max_recursion_depth&#x27;: 56, &#x27;default_authentication_plugin&#x27;: &#x27;mysql_native_password&#x27;, &#x27;foreign_key_checks&#x27;: True, &#x27;generated_random_password_length&#x27;: 56, &#x27;global_connection_memory_limit&#x27;: 56, &#x27;global_connection_memory_tracking&#x27;: True, &#x27;group_replication_consistency&#x27;: &#x27;EVENTUAL&#x27;, &#x27;information_schema_stats_expiry&#x27;: 56, &#x27;innodb_buffer_pool_dump_pct&#x27;: 56, &#x27;innodb_buffer_pool_instances&#x27;: 56, &#x27;innodb_buffer_pool_size&#x27;: 56, &#x27;innodb_ddl_buffer_size&#x27;: 56, &#x27;innodb_ddl_threads&#x27;: 56, &#x27;innodb_ft_enable_stopword&#x27;: True, &#x27;innodb_ft_max_token_size&#x27;: 56, &#x27;innodb_ft_min_token_size&#x27;: 56, &#x27;innodb_ft_num_word_optimize&#x27;: 56, &#x27;innodb_ft_result_cache_limit&#x27;: 56, &#x27;innodb_ft_server_stopword_table&#x27;: &#x27;innodb_ft_server_stopword_table_example&#x27;, &#x27;innodb_lock_wait_timeout&#x27;: 56, &#x27;innodb_log_writer_threads&#x27;: True, &#x27;innodb_max_purge_lag&#x27;: 56, &#x27;innodb_max_purge_lag_delay&#x27;: 56, &#x27;innodb_stats_persistent_sample_pages&#x27;: 56, &#x27;innodb_stats_transient_sample_pages&#x27;: 56, &#x27;interactive_timeout&#x27;: 56, &#x27;local_infile&#x27;: True, &#x27;mandatory_roles&#x27;: &#x27;mandatory_roles_example&#x27;, &#x27;max_allowed_packet&#x27;: 56, &#x27;max_binlog_cache_size&#x27;: 56, &#x27;max_connect_errors&#x27;: 56, &#x27;max_connections&#x27;: 56, &#x27;max_execution_time&#x27;: 56, &#x27;max_heap_table_size&#x27;: 56, &#x27;max_prepared_stmt_count&#x27;: 56, &#x27;mysql_firewall_mode&#x27;: True, &#x27;mysql_zstd_default_compression_level&#x27;: 56, &#x27;mysqlx_connect_timeout&#x27;: 56, &#x27;mysqlx_deflate_default_compression_level&#x27;: 56, &#x27;mysqlx_deflate_max_client_compression_level&#x27;: 56, &#x27;mysqlx_document_id_unique_prefix&#x27;: 56, &#x27;mysqlx_enable_hello_notice&#x27;: True, &#x27;mysqlx_idle_worker_thread_timeout&#x27;: 56, &#x27;mysqlx_interactive_timeout&#x27;: 56, &#x27;mysqlx_lz4_default_compression_level&#x27;: 56, &#x27;mysqlx_lz4_max_client_compression_level&#x27;: 56, &#x27;mysqlx_max_allowed_packet&#x27;: 56, &#x27;mysqlx_min_worker_threads&#x27;: 56, &#x27;mysqlx_read_timeout&#x27;: 56, &#x27;mysqlx_wait_timeout&#x27;: 56, &#x27;mysqlx_write_timeout&#x27;: 56, &#x27;mysqlx_zstd_default_compression_level&#x27;: 56, &#x27;mysqlx_zstd_max_client_compression_level&#x27;: 56, &#x27;net_read_timeout&#x27;: 56, &#x27;net_write_timeout&#x27;: 56, &#x27;parser_max_mem_size&#x27;: 56, &#x27;query_alloc_block_size&#x27;: 56, &#x27;query_prealloc_size&#x27;: 56, &#x27;regexp_time_limit&#x27;: 56, &#x27;sort_buffer_size&#x27;: 56, &#x27;sql_mode&#x27;: &#x27;sql_mode_example&#x27;, &#x27;sql_require_primary_key&#x27;: True, &#x27;sql_warnings&#x27;: True, &#x27;thread_pool_dedicated_listeners&#x27;: True, &#x27;thread_pool_max_transactions_limit&#x27;: 56, &#x27;time_zone&#x27;: &#x27;time_zone_example&#x27;, &#x27;tmp_table_size&#x27;: 56, &#x27;transaction_isolation&#x27;: &#x27;READ-UNCOMMITTED&#x27;, &#x27;wait_timeout&#x27;: 56}}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -595,6 +595,45 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-configurations/init_variables"></div>
+                    <b>init_variables</b>
+                    <a class="ansibleOptionLink" href="#return-configurations/init_variables" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-configurations/init_variables/lower_case_table_names"></div>
+                    <b>lower_case_table_names</b>
+                    <a class="ansibleOptionLink" href="#return-configurations/init_variables/lower_case_table_names" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Represents the MySQL server system variable lower_case_table_names (https://dev.mysql.com/doc/refman/8.0/en/server-system- variables.html#sysvar_lower_case_table_names).</div>
+                                            <div>lowerCaseTableNames controls case-sensitivity of tables and schema names and how they are stored in the DB System.</div>
+                                            <div>Valid values are: - CASE_SENSITIVE - (default) Table and schema name comparisons are case-sensitive and stored as specified. (lower_case_table_names=0) - CASE_INSENSITIVE_LOWERCASE - Table and schema name comparisons are not case-sensitive and stored in lowercase. (lower_case_table_names=1)</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CASE_SENSITIVE</div>
+                                    </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
@@ -744,6 +783,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-configurations/variables/big_tables"></div>
+                    <b>big_tables</b>
+                    <a class="ansibleOptionLink" href="#return-configurations/variables/big_tables" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>If enabled, the server stores all temporary tables on disk rather than in memory.</div>
+                                            <div>bigTables corresponds to the MySQL server variable <a href='https://dev.mysql.com/doc/refman/en/server-system- variables.html#sysvar_big_tables'>big_tables</a>.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-configurations/variables/binlog_expire_logs_seconds"></div>
                     <b>binlog_expire_logs_seconds</b>
                     <a class="ansibleOptionLink" href="#return-configurations/variables/binlog_expire_logs_seconds" title="Permalink to this return value"></a>
@@ -848,7 +907,49 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>(&quot;connect_timeout&quot;)</div>
+                                            <div>The number of seconds that the mysqld server waits for a connect packet before responding with Bad handshake.</div>
+                                            <div>connectTimeout corresponds to the MySQL system variable <a href='https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_connect_timeout'>connect_timeout</a></div>
+                                            <div>Increasing the connect_timeout value might help if clients frequently encounter errors of the form &quot;Lost connection to MySQL server at &#x27;XXX&#x27;, system error: errno&quot;.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-configurations/variables/connection_memory_chunk_size"></div>
+                    <b>connection_memory_chunk_size</b>
+                    <a class="ansibleOptionLink" href="#return-configurations/variables/connection_memory_chunk_size" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Set the chunking size for updates to the global memory usage counter Global_connection_memory.</div>
+                                            <div>connectionMemoryChunkSize corresponds to the MySQL system variable <a href='https://dev.mysql.com/doc/refman/en/server-system-variables.html#sysvar_connection_memory_chunk_size'>connection_memory_chunk_size</a>.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-configurations/variables/connection_memory_limit"></div>
+                    <b>connection_memory_limit</b>
+                    <a class="ansibleOptionLink" href="#return-configurations/variables/connection_memory_limit" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Set the maximum amount of memory that can be used by a single user connection.</div>
+                                            <div>connectionMemoryLimit corresponds to the MySQL system variable <a href='https://dev.mysql.com/doc/refman/en/server- system-variables.html#sysvar_connection_memory_limit'>connection_memory_limit</a>.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -934,6 +1035,46 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-configurations/variables/global_connection_memory_limit"></div>
+                    <b>global_connection_memory_limit</b>
+                    <a class="ansibleOptionLink" href="#return-configurations/variables/global_connection_memory_limit" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Set the total amount of memory that can be used by all user connections.</div>
+                                            <div>globalConnectionMemoryLimit corresponds to the MySQL system variable <a href='https://dev.mysql.com/doc/refman/en/server-system- variables.html#sysvar_global_connection_memory_limit'>global_connection_memory_limit</a>.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-configurations/variables/global_connection_memory_tracking"></div>
+                    <b>global_connection_memory_tracking</b>
+                    <a class="ansibleOptionLink" href="#return-configurations/variables/global_connection_memory_tracking" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Determines whether the MySQL server calculates Global_connection_memory.</div>
+                                            <div>globalConnectionMemoryTracking corresponds to the MySQL system variable <a href='https://dev.mysql.com/doc/refman/en/server-system- variables.html#sysvar_global_connection_memory_tracking'>global_connection_memory_tracking</a>.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-configurations/variables/group_replication_consistency"></div>
                     <b>group_replication_consistency</b>
                     <a class="ansibleOptionLink" href="#return-configurations/variables/group_replication_consistency" title="Permalink to this return value"></a>
@@ -972,6 +1113,28 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-configurations/variables/innodb_buffer_pool_dump_pct"></div>
+                    <b>innodb_buffer_pool_dump_pct</b>
+                    <a class="ansibleOptionLink" href="#return-configurations/variables/innodb_buffer_pool_dump_pct" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Specifies the percentage of the most recently used pages for each buffer pool to read out and dump.</div>
+                                            <div>innodbBufferPoolDumpPct corresponds to the MySQL InnoDB system variable <a href='https://dev.mysql.com/doc/refman/8.0/en/innodb-parameters.html#sysvar_innodb_buffer_pool_dump_pct'>innodb_buffer_pool_dump_pct</a>.</div>
+                                            <div>The range is 1 to 100. The default value is 25.</div>
+                                            <div>For example, if there are 4 buffer pools with 100 pages each, and innodb_buffer_pool_dump_pct is set to 25, the 25 most recently used pages from each buffer pool are dumped.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-configurations/variables/innodb_buffer_pool_instances"></div>
                     <b>innodb_buffer_pool_instances</b>
                     <a class="ansibleOptionLink" href="#return-configurations/variables/innodb_buffer_pool_instances" title="Permalink to this return value"></a>
@@ -1000,7 +1163,47 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>(&quot;innodb_buffer_pool_size&quot;)</div>
+                                            <div>The size (in bytes) of the buffer pool, that is, the memory area where InnoDB caches table and index data.</div>
+                                            <div>innodbBufferPoolSize corresponds to the MySQL server system variable <a href='https://dev.mysql.com/doc/refman/en/innodb-parameters.html#sysvar_innodb_buffer_pool_size'>innodb_buffer_pool_size</a>.</div>
+                                            <div>The default and maximum values depend on the amount of RAM provisioned by the shape. See <a href='https://docs.cloud.oracle.com/mysql-database/doc/configuring-db- system.html#GUID-B5504C19-F6F4-4DAB-8506-189A4E8F4A6A'>Default User Variables</a>.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-configurations/variables/innodb_ddl_buffer_size"></div>
+                    <b>innodb_ddl_buffer_size</b>
+                    <a class="ansibleOptionLink" href="#return-configurations/variables/innodb_ddl_buffer_size" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>innodbDdlBufferSize corresponds to the MySQL system variable <a href='https://dev.mysql.com/doc/refman/8.0/en/innodb- parameters.html#sysvar_innodb_ddl_buffer_size'>innodb_ddl_buffer_size]</a></div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-configurations/variables/innodb_ddl_threads"></div>
+                    <b>innodb_ddl_threads</b>
+                    <a class="ansibleOptionLink" href="#return-configurations/variables/innodb_ddl_threads" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>innodbDdlThreads corresponds to the MySQL system variable <a href='https://dev.mysql.com/doc/refman/8.0/en/innodb- parameters.html#sysvar_innodb_ddl_threads'>innodb_ddl_threads]</a></div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -1143,6 +1346,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-configurations/variables/innodb_log_writer_threads"></div>
+                    <b>innodb_log_writer_threads</b>
+                    <a class="ansibleOptionLink" href="#return-configurations/variables/innodb_log_writer_threads" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Enables dedicated log writer threads for writing redo log records from the log buffer to the system buffers and flushing the system buffers to the redo log files.</div>
+                                            <div>This is the MySQL variable &quot;innodb_log_writer_threads&quot;. For more information, please see the <a href='https://dev.mysql.com/doc/refman/8.0/en/innodb-parameters.html#sysvar_innodb_log_writer_threads'>MySQL documentation</a></div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-configurations/variables/innodb_max_purge_lag"></div>
                     <b>innodb_max_purge_lag</b>
                     <a class="ansibleOptionLink" href="#return-configurations/variables/innodb_max_purge_lag" title="Permalink to this return value"></a>
@@ -1152,7 +1375,11 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>(&quot;innodb_max_purge_lag&quot;)</div>
+                                            <div>The desired maximum purge lag in terms of transactions.</div>
+                                            <div>InnoDB maintains a list of transactions that have index records delete-marked by UPDATE or DELETE operations. The length of the list is the purge lag.</div>
+                                            <div>If this value is exceeded, a delay is imposed on INSERT, UPDATE, and DELETE operations to allow time for purge to catch up.</div>
+                                            <div>The default value is 0, which means there is no maximum purge lag and no delay.</div>
+                                            <div>innodbMaxPurgeLag corresponds to the MySQL server system variable <a href='https://dev.mysql.com/doc/refman/en/innodb-parameters.html#sysvar_innodb_max_purge_lag'>innodb_max_purge_lag</a>.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -1171,7 +1398,72 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>(&quot;innodb_max_purge_lag_delay&quot;)</div>
+                                            <div>The maximum delay in microseconds for the delay imposed when the innodb_max_purge_lag threshold is exceeded.</div>
+                                            <div>The specified innodb_max_purge_lag_delay value is an upper limit on the delay period.</div>
+                                            <div>innodbMaxPurgeLagDelay corresponds to the MySQL server system variable <a href='https://dev.mysql.com/doc/refman/en/innodb-parameters.html#sysvar_innodb_max_purge_lag_delay'>innodb_max_purge_lag_delay</a>.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-configurations/variables/innodb_stats_persistent_sample_pages"></div>
+                    <b>innodb_stats_persistent_sample_pages</b>
+                    <a class="ansibleOptionLink" href="#return-configurations/variables/innodb_stats_persistent_sample_pages" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The number of index pages to sample when estimating cardinality and other statistics for an indexed column, such as those calculated by ANALYZE TABLE.</div>
+                                            <div>innodbStatsPersistentSamplePages corresponds to the MySQL InnoDB system variable <a href='https://dev.mysql.com/doc/refman/8.0/en/innodb- parameters.html#sysvar_innodb_stats_persistent_sample_pages'>innodb_stats_persistent_sample_pages</a></div>
+                                            <div>innodb_stats_persistent_sample_pages only applies when innodb_stats_persistent is enabled for a table; when innodb_stats_persistent is disabled, innodb_stats_transient_sample_pages applies instead.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-configurations/variables/innodb_stats_transient_sample_pages"></div>
+                    <b>innodb_stats_transient_sample_pages</b>
+                    <a class="ansibleOptionLink" href="#return-configurations/variables/innodb_stats_transient_sample_pages" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The number of index pages to sample when estimating cardinality and other statistics for an indexed column, such as those calculated by <a href='https://dev.mysql.com/doc/refman/8.0/en/analyze-table.html'>ANALYZE TABLE</a>.</div>
+                                            <div>innodbStatsTransientSamplePages corresponds to the MySQL InnoDB system variable <a href='https://dev.mysql.com/doc/refman/8.0/en/innodb- parameters.html#sysvar_innodb_stats_transient_sample_pages'>innodb_stats_transient_sample_pages</a></div>
+                                            <div>innodb_stats_transient_sample_pages only applies when innodb_stats_persistent is disabled for a table; when innodb_stats_persistent is enabled, innodb_stats_persistent_sample_pages applies instead.</div>
+                                            <div>innodb_stats_persistent is ON by default and cannot be changed. It is possible to override it using the STATS_PERSISTENT clause of the <a href='https://dev.mysql.com/doc/refman/8.0/en/create-table.html'>CREATE TABLE</a> and <a href='https://dev.mysql.com/doc/refman/8.0/en/alter-table.html'>ALTER TABLE</a> statements.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-configurations/variables/interactive_timeout"></div>
+                    <b>interactive_timeout</b>
+                    <a class="ansibleOptionLink" href="#return-configurations/variables/interactive_timeout" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The number of seconds the server waits for activity on an interactive connection before closing it.</div>
+                                            <div>interactiveTimeout corresponds to the MySQL system variable. <a href='https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_interactive_timeout'>interactive_timeout</a></div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -1219,6 +1511,65 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-configurations/variables/max_allowed_packet"></div>
+                    <b>max_allowed_packet</b>
+                    <a class="ansibleOptionLink" href="#return-configurations/variables/max_allowed_packet" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The maximum size of one packet or any generated/intermediate string.</div>
+                                            <div>This is the mysql variable &quot;max_allowed_packet&quot;.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-configurations/variables/max_binlog_cache_size"></div>
+                    <b>max_binlog_cache_size</b>
+                    <a class="ansibleOptionLink" href="#return-configurations/variables/max_binlog_cache_size" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Sets the size of the transaction cache.</div>
+                                            <div>maxBinlogCacheSize corresponds to the MySQL server system variable <a href='https://dev.mysql.com/doc/refman/8.0/en/replication-options-binary-log.html#sysvar_max_binlog_cache_size'>max_binlog_cache_size</a>.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-configurations/variables/max_connect_errors"></div>
+                    <b>max_connect_errors</b>
+                    <a class="ansibleOptionLink" href="#return-configurations/variables/max_connect_errors" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>(&quot;max_connect_errors&quot;)</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-configurations/variables/max_connections"></div>
                     <b>max_connections</b>
                     <a class="ansibleOptionLink" href="#return-configurations/variables/max_connections" title="Permalink to this return value"></a>
@@ -1248,6 +1599,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>(&quot;max_execution_time&quot;)</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-configurations/variables/max_heap_table_size"></div>
+                    <b>max_heap_table_size</b>
+                    <a class="ansibleOptionLink" href="#return-configurations/variables/max_heap_table_size" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>This variable sets the maximum size to which user-created MEMORY tables are permitted to grow.</div>
+                                            <div>maxHeapTableSize corresponds to the MySQL system variable <a href='https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_max_heap_table_size'>max_heap_table_size</a></div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -1323,7 +1694,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>(&quot;mysqlx_connect_timeout&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
+                                            <div>The number of seconds X Plugin waits for the first packet to be received from newly connected clients.</div>
+                                            <div>mysqlxConnectTimeout corresponds to the MySQL X Plugin system variable <a href='https://dev.mysql.com/doc/refman/8.0/en/x-plugin-options-system-variables.html#sysvar_mysqlx_connect_timeout'>mysqlx_connect_timeout</a></div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -1437,7 +1809,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>(&quot;mysqlx_interactive_timeout&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
+                                            <div>The number of seconds to wait for interactive clients to timeout.</div>
+                                            <div>mysqlxInteractiveTimeout corresponds to the MySQL X Plugin system variable. <a href='https://dev.mysql.com/doc/refman/8.0/en/x-plugin-options-system- variables.html#sysvar_mysqlx_interactive_timeout'>mysqlx_interactive_timeout</a></div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -1494,7 +1867,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>(&quot;mysqlx_max_allowed_packet&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
+                                            <div>The maximum size of network packets that can be received by X Plugin.</div>
+                                            <div>This is the mysql variable &quot;mysqlx_max_allowed_packet&quot;.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -1532,7 +1906,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>(&quot;mysqlx_read_timeout&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
+                                            <div>The number of seconds that X Plugin waits for blocking read operations to complete. After this time, if the read operation is not successful, X Plugin closes the connection and returns a warning notice with the error code ER_IO_READ_ERROR to the client application.</div>
+                                            <div>mysqlxReadTimeout corresponds to the MySQL X Plugin system variable <a href='https://dev.mysql.com/doc/refman/8.0/en/x-plugin-options-system-variables.html#sysvar_mysqlx_read_timeout'>mysqlx_read_timeout</a></div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -1551,7 +1926,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>(&quot;mysqlx_wait_timeout&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
+                                            <div>The number of seconds that X Plugin waits for activity on a connection.</div>
+                                            <div>mysqlxWaitTimeout corresponds to the MySQL X Plugin system variable. <a href='https://dev.mysql.com/doc/refman/8.0/en/x-plugin-options-system-variables.html#sysvar_mysqlx_wait_timeout'>mysqlx_wait_timeout</a></div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -1570,7 +1946,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>(&quot;mysqlx_write_timeout&quot;) DEPRECATED -- variable should not be settable and will be ignored</div>
+                                            <div>The number of seconds that X Plugin waits for blocking write operations to complete. After this time, if the write operation is not successful, X Plugin closes the connection.</div>
+                                            <div>mysqlxReadmysqlxWriteTimeoutTimeout corresponds to the MySQL X Plugin system variable <a href='https://dev.mysql.com/doc/refman/8.0/en/x-plugin-options-system-variables.html#sysvar_mysqlx_write_timeout'>mysqlx_write_timeout</a></div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -1609,6 +1986,46 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                 <td>on success</td>
                 <td>
                                             <div>Limit the upper bound of accepted compression levels for the zstd algorithm. (&quot;mysqlx_zstd_max_client_compression_level&quot;)</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-configurations/variables/net_read_timeout"></div>
+                    <b>net_read_timeout</b>
+                    <a class="ansibleOptionLink" href="#return-configurations/variables/net_read_timeout" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The number of seconds to wait for more data from a connection before aborting the read.</div>
+                                            <div>netReadTimeout corresponds to the MySQL system variable <a href='https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_net_read_timeout'>net_read_timeout</a></div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-configurations/variables/net_write_timeout"></div>
+                    <b>net_write_timeout</b>
+                    <a class="ansibleOptionLink" href="#return-configurations/variables/net_write_timeout" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The number of seconds to wait for a block to be written to a connection before aborting the write.</div>
+                                            <div>netWriteTimeout corresponds to the MySQL system variable <a href='https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_net_write_timeout'>net_write_timeout</a></div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -1675,6 +2092,45 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-configurations/variables/regexp_time_limit"></div>
+                    <b>regexp_time_limit</b>
+                    <a class="ansibleOptionLink" href="#return-configurations/variables/regexp_time_limit" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>regexpTimeLimit corresponds to the MySQL system variable <a href='https://dev.mysql.com/doc/refman/8.0/en/server-system- variables.html#sysvar_regexp_time_limit'>regexp_time_limit]</a></div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-configurations/variables/sort_buffer_size"></div>
+                    <b>sort_buffer_size</b>
+                    <a class="ansibleOptionLink" href="#return-configurations/variables/sort_buffer_size" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Each session that must perform a sort allocates a buffer of this size.</div>
+                                            <div>sortBufferSize corresponds to the MySQL system variable <a href='https://dev.mysql.com/doc/refman/en/server-system- variables.html#sysvar_sort_buffer_size'>sort_buffer_size</a></div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-configurations/variables/sql_mode"></div>
                     <b>sql_mode</b>
                     <a class="ansibleOptionLink" href="#return-configurations/variables/sql_mode" title="Permalink to this return value"></a>
@@ -1732,6 +2188,86 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-configurations/variables/thread_pool_dedicated_listeners"></div>
+                    <b>thread_pool_dedicated_listeners</b>
+                    <a class="ansibleOptionLink" href="#return-configurations/variables/thread_pool_dedicated_listeners" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Controls whether the thread pool uses dedicated listener threads. If enabled, a listener thread in each thread group is dedicated to the task of listening for network events from clients, ensuring that the maximum number of query worker threads is no more than the value specified by threadPoolMaxTransactionsLimit. threadPoolDedicatedListeners corresponds to the MySQL Database Service-specific system variable thread_pool_dedicated_listeners.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-configurations/variables/thread_pool_max_transactions_limit"></div>
+                    <b>thread_pool_max_transactions_limit</b>
+                    <a class="ansibleOptionLink" href="#return-configurations/variables/thread_pool_max_transactions_limit" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Limits the maximum number of open transactions to the defined value. The default value is 0, which enforces no limit. threadPoolMaxTransactionsLimit corresponds to the MySQL Database Service-specific system variable thread_pool_max_transactions_limit.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-configurations/variables/time_zone"></div>
+                    <b>time_zone</b>
+                    <a class="ansibleOptionLink" href="#return-configurations/variables/time_zone" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Initializes the time zone for each client that connects.</div>
+                                            <div>This corresponds to the MySQL System Variable &quot;time_zone&quot;.</div>
+                                            <div>The values can be given in one of the following formats, none of which are case-sensitive:</div>
+                                            <div>- As a string indicating an offset from UTC of the form [H]H:MM, prefixed with a + or -, such as &#x27;+10:00&#x27;, &#x27;-6:00&#x27;, or &#x27;+05:30&#x27;. The permitted range is &#x27;-13:59&#x27; to &#x27;+14:00&#x27;, inclusive. - As a named time zone, as defined by the &quot;IANA Time Zone database&quot;, such as &#x27;Europe/Helsinki&#x27;, &#x27;US/Eastern&#x27;, &#x27;MET&#x27;, or &#x27;UTC&#x27;.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">time_zone_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-configurations/variables/tmp_table_size"></div>
+                    <b>tmp_table_size</b>
+                    <a class="ansibleOptionLink" href="#return-configurations/variables/tmp_table_size" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The maximum size of internal in-memory temporary tables. This variable does not apply to user-created MEMORY tables.</div>
+                                            <div>tmp_table_size corresponds to the MySQL system variable <a href='https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_tmp_table_size'>tmp_table_size</a></div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-configurations/variables/transaction_isolation"></div>
                     <b>transaction_isolation</b>
                     <a class="ansibleOptionLink" href="#return-configurations/variables/transaction_isolation" title="Permalink to this return value"></a>
@@ -1745,6 +2281,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">READ-UNCOMMITTED</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-configurations/variables/wait_timeout"></div>
+                    <b>wait_timeout</b>
+                    <a class="ansibleOptionLink" href="#return-configurations/variables/wait_timeout" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The number of seconds the server waits for activity on a noninteractive connection before closing it.</div>
+                                            <div>waitTimeout corresponds to the MySQL system variable. <a href='https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_wait_timeout'>wait_timeout</a></div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                     

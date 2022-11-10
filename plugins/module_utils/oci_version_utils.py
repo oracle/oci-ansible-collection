@@ -13,6 +13,7 @@ import ansible
 from ansible.module_utils import urls
 import json
 from ansible_collections.oracle.oci.plugins.module_utils import oci_version
+import logging
 
 try:
     import oci
@@ -21,13 +22,15 @@ try:
 except ImportError:
     HAS_OCI_PY_SDK = False
 
+logger = logging.getLogger(__name__)
+
 
 def get_oci_python_sdk_version():
     try:
         python_sdk_version = oci.__version__
     except AttributeError:
         python_sdk_version = None
-    print("OCI_Python_Sdk version: {}".format(python_sdk_version,))
+    logger.debug("OCI-Python-Sdk version: {}".format(python_sdk_version))
     return python_sdk_version
 
 
@@ -37,7 +40,7 @@ def get_python_version():
     except Exception:
         # didn't try any specific exception so that all kind of exceptions get caught here
         python_version = None
-    print("Python Version: {}".format(python_version))
+    logger.debug("Python Version: {}".format(python_version))
     return python_version
 
 
@@ -46,7 +49,7 @@ def get_ansible_version():
         ansible_version = ansible.__version__
     except AttributeError:
         ansible_version = None
-    print("Ansible Version: {}".format(ansible_version))
+    logger.debug("Ansible Version: {}".format(ansible_version))
     return ansible_version
 
 
@@ -55,7 +58,11 @@ def get_oci_ansible_collection_installed_version():
         oci_ansible_collection_version = oci_version.__version__
     except AttributeError:
         oci_ansible_collection_version = None
-    print("OCI-Ansible-Collection: {}".format(oci_ansible_collection_version,))
+    logger.debug(
+        "OCI-Ansible-Collections installed Version: {}".format(
+            oci_ansible_collection_version
+        )
+    )
     return oci_ansible_collection_version
 
 
@@ -72,5 +79,27 @@ def get_oci_ansible_collection_latest_version():
     except Exception:
         latest_version = None
 
-    print("OCI-Ansible Collection latest version: {}".format(latest_version))
+    logger.debug(
+        "OCI-Ansible-Collections latest version available: {}".format(latest_version)
+    )
     return latest_version
+
+
+def get_oci_python_sdk_path():
+    try:
+        oci_python_sdk_path = oci.__path__
+    except AttributeError:
+        oci_python_sdk_path = None
+
+    logger.debug("OCI-Python-Sdk path: {}".format(oci_python_sdk_path))
+    return oci_python_sdk_path
+
+
+def get_ansible_module_python_path():
+    try:
+        ansible_module_python_path = ansible.__path__
+    except AttributeError:
+        ansible_module_python_path = None
+
+    logger.debug("Ansible module python path: {}".format(ansible_module_python_path))
+    return ansible_module_python_path

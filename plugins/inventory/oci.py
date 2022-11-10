@@ -219,11 +219,12 @@ compartments:
   - compartment_name: "test_compartment"
     parent_compartment_ocid: ocid1.tenancy.oc1..xxxxxx
 
-# Sets the inventory_hostname to either "display_name+'.oci.com'" or id
+# Sets the inventory_hostname to either "display_name+'.oci.com'" or id or hostname_label
 # "'display_name+'.oci.com'" has more preference than id
 hostname_format_preferences:
   - "display_name+'.oci.com'"
   - "id"
+  - "hostname_label"
 
 # Excludes host that is not in the region 'iad' from the inventory
 exclude_host_filters:
@@ -1211,13 +1212,22 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                         continue
 
                     if instance_vars.get("id") == vnic_attachment.instance_id:
+
+                        if getattr(vnic, "hostname_label", None):
+                            instance_vars.update(
+                                {"hostname_label": vnic.hostname_label}
+                            )
+
                         instance_vars.update({"vnic_id": vnic.id})
+                        instance_vars.update({"vnic": to_dict(vnic)})
                         if getattr(vnic, "subnet_id", None):
                             instance_vars.update({"subnet_id": vnic.subnet_id})
                             instance_vars.update({"vcn_id": subnet.vcn_id})
+                            instance_vars.update({"subnet": to_dict(subnet)})
                         elif getattr(vnic, "vlan_id", None):
                             instance_vars.update({"vlan_id": vnic.vlan_id})
                             instance_vars.update({"vcn_id": vlan.vcn_id})
+                            instance_vars.update({"vlan": to_dict(vlan)})
                         instance_vars.update({"public_ip": vnic.public_ip})
                         instance_vars.update({"private_ip": vnic.private_ip})
 
@@ -1300,8 +1310,13 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                 virtual_nw_client.get_subnet, subnet_id=vnic.subnet_id
             ).data
 
+            if getattr(vnic, "hostname_label", None):
+                db_host_vars.update({"hostname_label": vnic.hostname_label})
+
             db_host_vars.update({"vcn_id": subnet.vcn_id})
+            db_host_vars.update({"vnic": to_dict(vnic)})
             db_host_vars.update({"vnic_id": vnic.id})
+            db_host_vars.update({"subnet": to_dict(subnet)})
             db_host_vars.update({"subnet_id": vnic.subnet_id})
             db_host_vars.update({"public_ip": vnic.public_ip})
             db_host_vars.update({"private_ip": vnic.private_ip})
@@ -1524,6 +1539,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                         target_fn=database_client.list_db_systems,
                         compartment_id=compartment_ocid,
                     )
+                    if "Exadata" not in db_system.shape
                     for db_node in oci_common_utils.list_all_resources(
                         database_client.list_db_nodes,
                         compartment_id=compartment_ocid,
@@ -1625,7 +1641,6 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             )
             self.debug("FQDN for VNIC: {0} is {1}.".format(vnic.id, fqdn))
             return fqdn
-
         elif hostname_format == "private_ip":
             self.debug(
                 "Private IP for VNIC: {0} is {1}.".format(vnic.id, vnic.private_ip)

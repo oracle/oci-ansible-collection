@@ -24,16 +24,9 @@ try:
     HAS_OCI_PY_SDK = True
 except ImportError:
     HAS_OCI_PY_SDK = False
+import logging
 
-logger = oci_common_utils.get_logger("oci_compute_custom_helpers")
-
-
-def _debug(s):
-    get_logger().debug(s)
-
-
-def get_logger():
-    return logger
+logger = logging.getLogger(__name__)
 
 
 class AppCatalogSubscriptionHelperCustom:
@@ -102,7 +95,7 @@ def get_primary_ips(compute_client, network_client, instance):
                             primary_private_ip = vnic.private_ip
                 except ServiceError as ex:
                     if ex.status == 404:
-                        _debug(
+                        logger.debug(
                             "Either VNIC with ID {0} does not exist or you are not authorized to access it.".format(
                                 vnic_attachment.vnic_id
                             )
@@ -531,9 +524,10 @@ class InstanceActionsHelperCustom:
                 self.module.params, InstancePowerActionDetails
             )
         else:
-            # if action_type param is not passed with module params, null value is sent to SDK.
-            # And, SDK is sending empty body in request. API is giving error as "Invalid typeId provided".
-            # So, setting action_details to None in case action_type is null.
+            # We always generate and set the body params in request and instance_power_action_details
+            # is a body param. In this case, body param is optional and is only be set if action_type
+            # is not None. API throws "Invalid typeId provided" error if action_type is sent None.
+            # This is special case so, setting action_details to None.
             action_details = None
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.instance_action,

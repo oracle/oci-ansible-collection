@@ -10,8 +10,10 @@ __metaclass__ = type
 from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_common_utils,
     oci_version,
+    oci_log_utils,
 )
 import os
+import logging
 
 try:
 
@@ -35,15 +37,7 @@ except ImportError:
 agent_name = "Oracle-Ansible/"
 inventory_agent_name = "Oracle-Ansible-Inv/"
 
-logger = oci_common_utils.get_logger("oci_config_utils")
-
-
-def _debug(s):
-    get_logger().debug(s)
-
-
-def get_logger():
-    return logger
+logger = logging.getLogger(__name__)
 
 
 def get_oci_config(module, service_client_class=None):
@@ -133,6 +127,10 @@ def get_oci_config(module, service_client_class=None):
         env_var_name="OCI_REGION",
         config_attr_name="region",
     )
+    log_level = oci_log_utils.get_log_level(module._verbosity)
+    if log_level == logging.DEBUG:
+        # enabling request logging in oci-python-sdk
+        config["log_requests"] = True
 
     return config
 
@@ -144,7 +142,7 @@ def set_db_test_flag(service_client):
         and os.environ.get("OCI_DB_MOCK") is not None
         and os.environ.get("OCI_DB_MOCK").lower() in ["true", "1"]
     ):
-        _debug("Adding mock db flag")
+        logger.debug("Adding mock db flag")
         service_client.base_client.session.headers.update(
             {"opc-host-serial": "FAKEHOSTSERIAL"}
         )

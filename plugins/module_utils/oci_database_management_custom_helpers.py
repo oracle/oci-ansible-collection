@@ -23,16 +23,9 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_wait_utils,
     oci_config_utils,
 )
+import logging
 
-logger = oci_common_utils.get_logger("oci_database_management_custom_helpers")
-
-
-def _debug(s):
-    get_logger().debug(s)
-
-
-def get_logger():
-    return logger
+logger = logging.getLogger(__name__)
 
 
 # this method is added for comparing the parameters keys which are generated during `change parameter
@@ -254,7 +247,7 @@ class DatabaseParameterActionsHelperCustom:
                 try:
                     actioned_resource = actioned_resource or self.get_resource().data
                 except (ServiceError, NotImplementedError) as ex:
-                    _debug(
+                    logger.debug(
                         "Action {0} succeeded but did not return the resource. Error fetching the resource using "
                         "the get operation: {1}".format(action, ex)
                     )

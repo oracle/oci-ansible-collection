@@ -552,7 +552,6 @@ exadata_infrastructure:
     }
 """
 
-from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils._text import to_bytes
 from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_common_utils,
@@ -560,6 +559,7 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
 )
 from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils import (
     OCIActionsHelperBase,
+    OCIAnsibleModule,
     get_custom_class,
 )
 
@@ -734,7 +734,7 @@ def main():
         )
     )
 
-    module = AnsibleModule(argument_spec=module_args, supports_check_mode=True)
+    module = OCIAnsibleModule(argument_spec=module_args, supports_check_mode=True)
 
     if not HAS_OCI_PY_SDK:
         module.fail_json(msg="oci python sdk required for this module.")

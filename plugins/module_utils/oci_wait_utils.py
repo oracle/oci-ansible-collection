@@ -6,6 +6,7 @@
 
 from __future__ import absolute_import, division, print_function
 import time
+import logging
 
 __metaclass__ = type
 
@@ -45,15 +46,7 @@ SERVICES_WHERE_WORK_REQUEST_WAITING_SHOULD_FALLBACK_TO_LIFECYCLE_WAITING = [
     "core",
 ]
 
-logger = oci_common_utils.get_logger("oci_wait_utils")
-
-
-def _debug(s):
-    get_logger().debug(s)
-
-
-def get_logger():
-    return logger
+logger = logging.getLogger(__name__)
 
 
 class Waiter:
@@ -1278,7 +1271,7 @@ def get_waiter(
         # this is a work request operation but no opc-work-request-id was returned
         # some services (e.g. dbaas) have this known implementation issue so we allow
         # falling back to lifecycle based waiting
-        _debug(
+        logger.debug(
             "Operation {resource_type} {operation} did not return work request id. Falling back to lifecycle state based waiting".format(
                 operation=operation, resource_type=resource_helper.resource_type
             )
@@ -1398,8 +1391,6 @@ def get_identifier_of_wait_response_resource(resource):
         identifier = resource.id
     elif hasattr(resource, "entity_id"):
         identifier = resource.entity_id
-    elif hasattr(resource, "identifier"):
-        identifier = resource.identifier
     # identifier that was assigned when ODA instance was created.
     elif hasattr(resource, "resource_id"):
         identifier = resource.resource_id

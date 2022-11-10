@@ -45,15 +45,6 @@ options:
                     - The OCID of the backup to be used as the source for the new DB System.
                     - Required when source_type is 'BACKUP'
                 type: str
-            source_type:
-                description:
-                    - The specific source identifier.
-                type: str
-                choices:
-                    - "BACKUP"
-                    - "NONE"
-                    - "IMPORTURL"
-                default: "NONE"
             source_url:
                 description:
                     - "The Pre-Authenticated Request (PAR) of a bucket/prefix or PAR of a @.manifest.json object from the Object Storage.
@@ -62,6 +53,32 @@ options:
                       Please create PAR with \\"Permit object reads\\" access type and \\"Enable Object Listing\\" permission when using a bucket/prefix PAR.
                       Please create PAR with \\"Permit object reads\\" access type when using a @.manifest.json object PAR."
                     - Required when source_type is 'IMPORTURL'
+                type: str
+            source_type:
+                description:
+                    - The specific source identifier.
+                type: str
+                choices:
+                    - "BACKUP"
+                    - "NONE"
+                    - "IMPORTURL"
+                    - "PITR"
+                default: "NONE"
+            db_system_id:
+                description:
+                    - The OCID of the DB System from which a backup shall be selected to be
+                      restored when creating the new DB System. Use this together with
+                      recovery point to perform a point in time recovery operation.
+                    - Required when source_type is 'PITR'
+                type: str
+            recovery_point:
+                description:
+                    - The date and time, as per RFC 3339, of the change up to which the
+                      new DB System shall be restored to, using a backup and logs from the
+                      original DB System. In case no point in time is specified, then this
+                      new DB System shall be restored up to the latest change recorded for
+                      the original DB System.
+                    - Applicable when source_type is 'PITR'
                 type: str
     display_name:
         description:
@@ -213,6 +230,16 @@ options:
                     - "Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
                     - This parameter is updatable.
                 type: dict
+            pitr_policy:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    is_enabled:
+                        description:
+                            - Specifies if PITR is enabled or disabled.
+                        type: bool
+                        required: true
     maintenance:
         description:
             - ""
@@ -331,6 +358,9 @@ EXAMPLES = """
       retention_in_days: 56
       freeform_tags: {'Department': 'Finance'}
       defined_tags: {'Operations': {'CostCenter': 'US'}}
+      pitr_policy:
+        # required
+        is_enabled: true
     maintenance:
       # optional
       window_start_time: window_start_time_example
@@ -372,6 +402,9 @@ EXAMPLES = """
       retention_in_days: 56
       freeform_tags: {'Department': 'Finance'}
       defined_tags: {'Operations': {'CostCenter': 'US'}}
+      pitr_policy:
+        # required
+        is_enabled: true
     maintenance:
       # optional
       window_start_time: window_start_time_example
@@ -413,6 +446,9 @@ EXAMPLES = """
       retention_in_days: 56
       freeform_tags: {'Department': 'Finance'}
       defined_tags: {'Operations': {'CostCenter': 'US'}}
+      pitr_policy:
+        # required
+        is_enabled: true
     maintenance:
       # optional
       window_start_time: window_start_time_example
@@ -677,6 +713,18 @@ db_system:
                     returned: on success
                     type: dict
                     sample: {'Operations': {'CostCenter': 'US'}}
+                pitr_policy:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        is_enabled:
+                            description:
+                                - Specifies if PITR is enabled or disabled.
+                            returned: on success
+                            type: bool
+                            sample: true
         source:
             description:
                 - ""
@@ -695,6 +743,24 @@ db_system:
                     returned: on success
                     type: str
                     sample: NONE
+                db_system_id:
+                    description:
+                        - The OCID of the DB System from which a backup shall be selected to be
+                          restored when creating the new DB System. Use this together with
+                          recovery point to perform a point in time recovery operation.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+                recovery_point:
+                    description:
+                        - The date and time, as per RFC 3339, of the change up to which the
+                          new DB System shall be restored to, using a backup and logs from the
+                          original DB System. In case no point in time is specified, then this
+                          new DB System shall be restored up to the latest change recorded for
+                          the original DB System.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
         configuration_id:
             description:
                 - The OCID of the Configuration to be used for Instances in this DB System.
@@ -1029,6 +1095,24 @@ db_system:
             returned: on success
             type: str
             sample: ENABLED
+        point_in_time_recovery_details:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                time_earliest_recovery_point:
+                    description:
+                        - Earliest recovery time point for the DB System, as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
+                time_latest_recovery_point:
+                    description:
+                        - Latest recovery time point for the DB System, as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -1065,11 +1149,16 @@ db_system:
             "window_start_time": "window_start_time_example",
             "retention_in_days": 56,
             "freeform_tags": {'Department': 'Finance'},
-            "defined_tags": {'Operations': {'CostCenter': 'US'}}
+            "defined_tags": {'Operations': {'CostCenter': 'US'}},
+            "pitr_policy": {
+                "is_enabled": true
+            }
         },
         "source": {
             "backup_id": "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx",
-            "source_type": "NONE"
+            "source_type": "NONE",
+            "db_system_id": "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx",
+            "recovery_point": "2013-10-20T19:20:30+01:00"
         },
         "configuration_id": "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx",
         "data_storage_size_in_gbs": 56,
@@ -1129,11 +1218,14 @@ db_system:
         "time_updated": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "crash_recovery": "ENABLED"
+        "crash_recovery": "ENABLED",
+        "point_in_time_recovery_details": {
+            "time_earliest_recovery_point": "2013-10-20T19:20:30+01:00",
+            "time_latest_recovery_point": "2013-10-20T19:20:30+01:00"
+        }
     }
 """
 
-from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_common_utils,
     oci_wait_utils,
@@ -1142,6 +1234,7 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
 from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils import (
     OCIResourceHelperBase,
     get_custom_class,
+    OCIAnsibleModule,
 )
 
 try:
@@ -1299,12 +1392,14 @@ def main():
                 type="dict",
                 options=dict(
                     backup_id=dict(type="str"),
+                    source_url=dict(type="str"),
                     source_type=dict(
                         type="str",
                         default="NONE",
-                        choices=["BACKUP", "NONE", "IMPORTURL"],
+                        choices=["BACKUP", "NONE", "IMPORTURL", "PITR"],
                     ),
-                    source_url=dict(type="str"),
+                    db_system_id=dict(type="str"),
+                    recovery_point=dict(type="str"),
                 ),
             ),
             display_name=dict(aliases=["name"], type="str"),
@@ -1331,6 +1426,10 @@ def main():
                     retention_in_days=dict(type="int"),
                     freeform_tags=dict(type="dict"),
                     defined_tags=dict(type="dict"),
+                    pitr_policy=dict(
+                        type="dict",
+                        options=dict(is_enabled=dict(type="bool", required=True)),
+                    ),
                 ),
             ),
             maintenance=dict(
@@ -1357,7 +1456,7 @@ def main():
         )
     )
 
-    module = AnsibleModule(argument_spec=module_args, supports_check_mode=True)
+    module = OCIAnsibleModule(argument_spec=module_args, supports_check_mode=True)
 
     if not HAS_OCI_PY_SDK:
         module.fail_json(msg="oci python sdk required for this module.")
