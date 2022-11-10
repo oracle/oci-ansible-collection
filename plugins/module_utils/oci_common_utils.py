@@ -10,9 +10,7 @@ from multiprocessing.pool import ThreadPool
 
 __metaclass__ = type
 from ansible.module_utils import six
-from ansible.module_utils.six.moves import http_client
 from datetime import datetime
-import tempfile
 import logging
 import os
 import re
@@ -148,6 +146,8 @@ ANY_OPERATION_KEY = "ANY"
 
 MEBIBYTE = 1024 * 1024
 
+logger = logging.getLogger(__name__)
+
 
 def call_with_backoff(fn, *args, **kwargs):
     if "retry_strategy" not in kwargs:
@@ -247,24 +247,26 @@ def compare_dicts(
     if stack is None:
         stack = []
     if source_dict is None:
-        _debug("dict is not subset because source dict is None")
+        logger.debug("dict is not subset because source dict is None")
         return False
 
     if target_dict is None:
-        _debug("dict is not subset because target dict is None")
+        logger.debug("dict is not subset because target dict is None")
         return False
 
     if not isinstance(source_dict, dict):
-        _debug("dict is not subset because source_dict is not a dict")
+        logger.debug("dict is not subset because source_dict is not a dict")
         return False
 
     if not isinstance(target_dict, dict):
-        _debug("dict is not subset because target_dict is not a dict")
+        logger.debug("dict is not subset because target_dict is not a dict")
         return False
 
     # handle the case when source dict is empty but target dict has values
     if not source_dict and target_dict:
-        _debug("dicts are not equal because source dict is empty and target is not")
+        logger.debug(
+            "dicts are not equal because source dict is empty and target is not"
+        )
         return False
     if not attrs:
         attrs = list(source_dict)
@@ -284,7 +286,7 @@ def compare_dicts(
                 # are not exposed in the get model
                 stack.pop()
                 continue
-            _debug(
+            logger.debug(
                 "dict is not subset because attribute '{attr}' is not in target dict".format(
                     attr=attr
                 )
@@ -295,7 +297,7 @@ def compare_dicts(
         target_val = target_dict.get(attr)
         if isinstance(source_val, dict):
             if not isinstance(target_val, dict):
-                _debug(
+                logger.debug(
                     "dict is not subset because attribute '{attr}' source value is a dict and target value is not".format(
                         attr=attr
                     )
@@ -313,7 +315,7 @@ def compare_dicts(
                 return False
         elif isinstance(source_val, list):
             if not isinstance(target_val, list):
-                _debug(
+                logger.debug(
                     "dict is not subset because attribute '{attr}' source value is list and target value is not".format(
                         attr=attr
                     )
@@ -333,7 +335,7 @@ def compare_dicts(
                 if deserialize_datetime(source_val) == deserialize_datetime(target_val):
                     stack.pop()
                     return True
-            _debug(
+            logger.debug(
                 "dict is not subset because attribute '{attr}' value in source does not match target".format(
                     attr=attr
                 )
@@ -352,23 +354,23 @@ def compare_lists(
     stack=None,
 ):
     if source_list is None:
-        _debug("list is not subset because source list is None")
+        logger.debug("list is not subset because source list is None")
         return False
 
     if target_list is None:
-        _debug("list is not subset because target list is None")
+        logger.debug("list is not subset because target list is None")
         return False
 
     if not isinstance(source_list, list):
-        _debug("list is not subset because source list is not a list")
+        logger.debug("list is not subset because source list is not a list")
         return False
 
     if not isinstance(target_list, list):
-        _debug("list is not subset because target list is not a list")
+        logger.debug("list is not subset because target list is not a list")
         return False
 
     if len(source_list) != len(target_list):
-        _debug(
+        logger.debug(
             "lists are not equal because source length: {source_length} does not match target length: {target_length}".format(
                 source_length=len(source_list), target_length=len(target_list)
             )
@@ -383,7 +385,7 @@ def compare_lists(
             exclude_attributes=exclude_attributes,
             stack=stack,
         ):
-            _debug(
+            logger.debug(
                 "list is not subset because element at index {} in source list, is not present in target list".format(
                     index
                 )
@@ -632,77 +634,6 @@ def camelize(to_camelize, uppercase_first_letter=False):
         )
 
 
-def _debug(s):
-    logger.debug(s)
-
-
-def get_logger(module_name):
-    oci_logging = setup_logging()
-    return oci_logging.getLogger(module_name)
-
-
-def _httpclient_debug_logging_patch():
-    """Enable HTTPConnection debug logging to the logging framework"""
-
-    # we can't patch `http_client.print` the way we need to in python 2 so just skip
-    if six.PY2:
-        return
-
-    try:
-        level = logging.DEBUG
-        httpclient_logger = logging.getLogger("http.client")
-
-        def httpclient_log(*args):
-            httpclient_logger.log(level, " ".join(args))
-
-        # mask the print() built-in in the http.client module to use
-        # logging instead
-        # patching the print method is not valid Python 2 syntax so
-        # we have to use exec to avoid a SyntaxError when running with
-        # python 2
-        # (Note: you can only try / except a SyntaxError if it is inside
-        # an exec or eval block)
-        exec("http_client.print = httpclient_log") in {}
-
-        # enable debugging
-        # log_requests MUST be turned on in the config other while the oci python SDK
-        # will override the following setting to 0, eliminating http debug logs
-        http_client.HTTPConnection.debuglevel = 1
-    except Exception:
-        # this is best effort to output additional logging, we never want to
-        # fail the module if anything in here fails
-        pass
-
-
-def setup_logging(
-    default_level="INFO", default_log_path=tempfile.gettempdir(),
-):
-    """Setup logging configuration"""
-    env_log_path = "LOG_PATH"
-    env_log_level = "LOG_LEVEL"
-
-    log_path = os.getenv(env_log_path, default_log_path)
-    log_level_str = os.getenv(env_log_level, default_level)
-    log_format = "[%(filename)s:%(lineno)s - %(funcName)20s() ] %(message)s"
-    if log_level_str.lower() == "debug":
-        _httpclient_debug_logging_patch()
-
-    log_level = logging.getLevelName(log_level_str)
-    # check write access
-    log_file_path = os.path.join(log_path, "oci_ansible_module.log")
-    if not os.path.exists(log_file_path) or os.access(log_file_path, os.W_OK):
-        logging.basicConfig(
-            filename=log_file_path, filemode="a", level=log_level, format=log_format
-        )
-    else:
-        # the log file exists but the user does not have write permissions to the file.
-        # Disable the logging in this case to avoid failures for now.
-        handlers = [logging.NullHandler()]
-        logging.basicConfig(level=log_level, format=log_format, handlers=handlers)
-
-    return logging
-
-
 def pretty_print_json(data):
     return json.dumps(data, indent=2)
 
@@ -759,9 +690,6 @@ def threaded_worker_pool(*args, **kwargs):
         pool.join()
         # terminate the pool
         pool.terminate()
-
-
-logger = get_logger("oci_common_utils")
 
 
 def replace_values_in_object_with_stubs(input_object):

@@ -18,16 +18,9 @@ try:
     HAS_OCI_PY_SDK = True
 except ImportError:
     HAS_OCI_PY_SDK = False
+import logging
 
-logger = oci_common_utils.get_logger("oci_identity_custom_helpers")
-
-
-def _debug(s):
-    get_logger().debug(s)
-
-
-def get_logger():
-    return logger
+logger = logging.getLogger(__name__)
 
 
 class ApiKeyHelperCustom:
@@ -276,7 +269,7 @@ class UserCapabilitiesHelperCustom:
             update_model_dict, existing_resource_dict["capabilities"]
         )
 
-        _debug(
+        logger.debug(
             "is update necessary for {resource_type}: {update_is_necessary}".format(
                 resource_type=self.get_response_field_name(),
                 update_is_necessary=update_is_necessary,

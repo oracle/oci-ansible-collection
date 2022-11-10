@@ -27,17 +27,9 @@ try:
     HAS_OCI_PY_SDK = True
 except ImportError:
     HAS_OCI_PY_SDK = False
+import logging
 
-
-logger = oci_common_utils.get_logger("oci_database_custom_helpers")
-
-
-def _debug(s):
-    get_logger().debug(s)
-
-
-def get_logger():
-    return logger
+logger = logging.getLogger(__name__)
 
 
 def get_db_management_status(resource):
@@ -144,7 +136,7 @@ class ExternalContainerDatabaseActionsHelperCustom:
     def is_action_necessary(self, action, resource=None):
         resource = resource or self.get_resource().data
         db_mgt_status = get_db_management_status(resource)
-        _debug("EC Resource details {0} {1}".format(db_mgt_status, action))
+        logger.debug("EC Resource details {0} {1}".format(db_mgt_status, action))
         if action == "enable_external_container_database_database_management":
             if db_mgt_status == "ENABLED":
                 return False
@@ -170,11 +162,13 @@ class ExternalPluggableDatabaseActionsHelperCustom:
     def is_action_necessary(self, action, resource=None):
         resource = resource or self.get_resource().data
         db_mgt_status = get_db_management_status(resource)
-        _debug(
+        logger.debug(
             "EPC Resource details for db_mgt flag {0} {1}".format(db_mgt_status, action)
         )
         opsi_status = get_opsi_status(resource)
-        _debug("EPC Resource details for opsi flag {0} {1}".format(opsi_status, action))
+        logger.debug(
+            "EPC Resource details for opsi flag {0} {1}".format(opsi_status, action)
+        )
         if action == "enable_external_pluggable_database_database_management":
             if db_mgt_status == "ENABLED":
                 return False
@@ -214,9 +208,13 @@ class ExternalNonContainerDatabaseActionsHelperCustom:
     def is_action_necessary(self, action, resource=None):
         resource = resource or self.get_resource().data
         db_mgt_status = get_db_management_status(resource)
-        _debug("ENC Resource details for db_mgt {0} {1}".format(db_mgt_status, action))
+        logger.debug(
+            "ENC Resource details for db_mgt {0} {1}".format(db_mgt_status, action)
+        )
         opsi_status = get_opsi_status(resource)
-        _debug("ENC Resource details for opsi {0} {1}".format(opsi_status, action))
+        logger.debug(
+            "ENC Resource details for opsi {0} {1}".format(opsi_status, action)
+        )
         if action == "enable_external_non_container_database_database_management":
             if db_mgt_status == "ENABLED":
                 return False
@@ -375,7 +373,7 @@ class DbHomeHelperCustom:
                 getattr(database_software_image, "database_version", None)
                 != current_version
             ):
-                _debug(
+                logger.debug(
                     "DB system version {current_version} does not match database software image version: {patch_version}. "
                     "Applying patch.".format(
                         current_version=current_version,
@@ -393,7 +391,7 @@ class DbHomeHelperCustom:
                 patch_id=getattr(patch_details, "patch_id"),
             ).data
             if patch.version != current_version:
-                _debug(
+                logger.debug(
                     "DB system version {current_version} does not match patch version: {patch_version}. "
                     "Applying patch.".format(
                         current_version=current_version, patch_version=patch.version,
@@ -454,7 +452,7 @@ def is_patch_necessary(
             patch_getter_method, **get_patch_kwargs
         ).data
         if existing_patch.version != current_version:
-            _debug(
+            logger.debug(
                 "DB system version {current_version} does not match patch version: {patch_version}. Applying patch.".format(
                     current_version=current_version,
                     patch_version=existing_patch.version,

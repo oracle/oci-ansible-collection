@@ -29,7 +29,7 @@ class BootVolumeBackupActionsHelperCustom:
             # parameter. Use it to find if the copy already exists in the destination region.
             if not self.module.params.get("destination_region"):
                 self.module.fail_json(
-                    msg="destination_required parameter required for copying the backup."
+                    msg="destination_region parameter required for copying the backup."
                 )
             this_backup = resource
             destination_region_client = BlockstorageClient(
@@ -73,7 +73,7 @@ class VolumeBackupActionsHelperCustom:
             # Use it to find if the copy already exists in the destination region.
             if not self.module.params.get("destination_region"):
                 self.module.fail_json(
-                    msg="destination_required parameter required for copying the backup."
+                    msg="destination_region parameter required for copying the backup."
                 )
             this_backup = resource
             destination_region_client = BlockstorageClient(
@@ -105,12 +105,6 @@ class VolumeBackupActionsHelperCustom:
         return super(VolumeBackupActionsHelperCustom, self).is_action_necessary(
             action, resource, *args, **kwargs
         )
-
-    # as we are waiting for copy by default.
-    # increasing the default wait timeout to 2 hours
-    # as this operation can be lengthy depending on the volume size
-    def get_wait_timeout(self):
-        return 7200
 
 
 class BootVolumeKmsKeyHelperCustom:
@@ -300,7 +294,7 @@ class VolumeGroupBackupActionsHelperCustom:
             # Use it to find if the copy already exists in the destination region.
             if not self.module.params.get("destination_region"):
                 self.module.fail_json(
-                    msg="destination_required parameter required for copying the backup."
+                    msg="destination_region parameter required for copying the backup."
                 )
             this_backup = resource
             destination_region_client = BlockstorageClient(
@@ -358,9 +352,3 @@ class VolumeGroupBackupActionsHelperCustom:
             in oci_common_utils.DEFAULT_READY_STATES,
             max_wait_seconds=self.get_wait_timeout(),
         ).data
-
-    # as we are waiting for copy by default.
-    # increasing the default wait timeout to 2 hours
-    # as this operation can be lengthy depending on the volume group size
-    def get_wait_timeout(self):
-        return 7200

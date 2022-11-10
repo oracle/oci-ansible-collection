@@ -8,12 +8,15 @@ from __future__ import absolute_import, division, print_function
 
 __metaclass__ = type
 
+import logging
+
 from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_config_utils,
     oci_common_utils,
     oci_custom_helpers_utils,
     oci_log_utils,
+    oci_version_utils,
 )
 
 
@@ -28,15 +31,7 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-logger = oci_common_utils.get_logger("oci_resource_utils")
-
-
-def _debug(s):
-    get_logger().debug(s)
-
-
-def get_logger():
-    return logger
+logger = logging.getLogger(__name__)
 
 
 class OCIResourceCommonBase:
@@ -47,10 +42,29 @@ class OCIResourceCommonBase:
         self.resource_type = resource_type
         self.service_client_class = service_client_class
 
+        # setting up logging
+        log_level = oci_log_utils.get_log_level(self.module._verbosity)
+        log_dir = oci_log_utils.get_log_dir()
+        oci_log_utils.setup_logging(log_level, log_dir)
         self.client = oci_config_utils.create_service_client(
             self.module, self.service_client_class
         )
         self.namespace = namespace
+        # fetching various version details
+        self.python_version = oci_version_utils.get_python_version()
+        self.oci_python_sdk_version = oci_version_utils.get_oci_python_sdk_version()
+        self.ansible_version = oci_version_utils.get_ansible_version()
+        self.oci_ansible_collection_installed_version = (
+            oci_version_utils.get_oci_ansible_collection_installed_version()
+        )
+        # will enable this in error message improvement
+        # self.oci_ansible_collection_latest_version = (
+        #     oci_version_utils.get_oci_ansible_collection_latest_version()
+        # )
+        self.oci_python_sdk_path = oci_version_utils.get_oci_python_sdk_path()
+        self.ansible_module_python_path = (
+            oci_version_utils.get_ansible_module_python_path()
+        )
 
     def prepare_result(self, changed, resource_type, resource=None, msg=None):
         result = dict(changed=changed)
@@ -185,10 +199,12 @@ class OCIResourceFactsHelperBase(OCIResourceCommonBase):
         )
 
     def get(self):
+        logger.info("Getting resource")
         resource = self.get_resource().data
         return to_dict(resource)
 
     def list(self):
+        logger.info("Listing resource")
         resources = self.list_resources()
         return to_dict(resources)
 
@@ -255,7 +271,7 @@ class OCIActionsHelperBase(OCIResourceCommonBase):
             else:
                 raise
         except NotImplementedError as ex:
-            _debug("no get_resource implemented exception : {0}".format(str(ex)))
+            logger.debug("no get_resource implemented exception : {0}".format(str(ex)))
             return True
         if action.upper() == "CHANGE_COMPARTMENT":
             return self.is_change_compartment_necessary(resource)
@@ -297,7 +313,7 @@ class OCIActionsHelperBase(OCIResourceCommonBase):
                     msg="Getting resource failed with exception: {0}".format(se.message)
                 )
         except NotImplementedError as ex:
-            _debug("no get_resource impelemented exception : {0}".format(str(ex)))
+            logger.debug("no get_resource impelemented exception : {0}".format(str(ex)))
             resource = {}
             is_action_necessary = True
         else:
@@ -340,7 +356,7 @@ class OCIActionsHelperBase(OCIResourceCommonBase):
             try:
                 actioned_resource = actioned_resource or self.get_resource().data
             except (ServiceError, NotImplementedError) as ex:
-                _debug(
+                logger.debug(
                     "Action {0} succeeded but did not return the resource. Error fetching the resource using "
                     "the get operation: {1}".format(action, ex)
                 )
@@ -591,7 +607,7 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
                 if attribute not in self.module.params:
                     not_supported_params_list.append(attribute)
             if not_supported_params_list:
-                _debug(
+                logger.debug(
                     "{0} attributes are not supported by module for key_by keyword".format(
                         not_supported_params_list
                     )
@@ -770,11 +786,11 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
                 attrs=attributes_to_consider,
                 exclude_attributes=self.get_exclude_attributes(),
             ):
-                _debug("Resource with same attributes found.")
+                logger.debug("Resource with same attributes found.")
 
                 return resource
 
-        _debug("No matching resource found. Attempting to create a new resource.")
+        logger.debug("No matching resource found. Attempting to create a new resource.")
         return None
 
     def create(self):
@@ -790,19 +806,19 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
             try:
                 resource_matched = self.get_matching_resource()
             except NotImplementedError as ex:
-                _debug(
+                logger.debug(
                     "create() >> NotImplementedError raised while getting matching resource. skipping create "
                     "idempotence. exception : {0}".format(str(ex))
                 )
                 resource_matched = None
             if resource_matched:
-                _debug(
+                logger.debug(
                     "found matching {resource_type}".format(
                         resource_type=self.get_response_field_name(),
                     )
                 )
             else:
-                _debug(
+                logger.debug(
                     "no matching {resource_type} resource found".format(
                         resource_type=self.get_response_field_name()
                     )
@@ -853,7 +869,7 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
             update_model_dict, existing_resource_dict
         )
 
-        _debug(
+        logger.debug(
             "is update necessary for {resource_type}: {update_is_necessary}".format(
                 resource_type=self.get_response_field_name(),
                 update_is_necessary=update_is_necessary,
@@ -870,7 +886,7 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
             patch_model_dict, existing_resource_dict
         )
 
-        _debug(
+        logger.debug(
             "is patch necessary for {resource_type}: {patch_is_necessary}".format(
                 resource_type=self.get_response_field_name(),
                 patch_is_necessary=patch_is_necessary,
@@ -891,7 +907,7 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
                     msg="Getting resource failed with exception: {0}".format(se.message)
                 )
         except NotImplementedError as ex:
-            _debug(
+            logger.debug(
                 "update() >> NotImplementedError raised while getting existing resource. skipping update idempotence. "
                 "exception : {0}".format(str(ex))
             )
@@ -926,7 +942,7 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
             try:
                 updated_resource = updated_resource or self.get_resource().data
             except (ServiceError, NotImplementedError) as ex:
-                _debug(
+                logger.debug(
                     "Update operation succeeded but did not return the resource. Error fetching the resource using "
                     "the get operation: {0}".format(ex)
                 )
@@ -948,7 +964,7 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
                     msg="Getting resource failed with exception: {0}".format(se.message)
                 )
         except NotImplementedError as ex:
-            _debug(
+            logger.debug(
                 "patch() >> NotImplementedError raised while getting resource. skipping patch idempotence. "
                 "exception : {}".format(str(ex))
             )
@@ -956,8 +972,8 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
         else:
             resource = to_dict(get_response.data)
 
-        is_update_necessary = self.is_patch_necessary(resource)
-        if not is_update_necessary:
+        is_patch_necessary = self.is_patch_necessary(resource)
+        if not is_patch_necessary:
             return self.prepare_result(
                 changed=False,
                 resource_type=self.get_response_field_name(),
@@ -1016,7 +1032,7 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
                 msg="Getting resource failed with exception: {0}".format(se.message)
             )
         except NotImplementedError as ex:
-            _debug(
+            logger.debug(
                 "delete() >> NotImplementedError raised while getting resource. skipping delete idempotence. "
                 "exception : {0}".format(str(ex))
             )
@@ -1243,7 +1259,7 @@ class OCIAnsibleModule(AnsibleModule):
         self.log_container = log_container
         super(OCIAnsibleModule, self).__init__(*args, **kwargs)
 
-    OCI_DEBUG_LOGS_KEY = "oci_debug_logs"
+    OCI_DEBUG_LOGS_KEY = "oci_ansible_logs"
 
     def exit_json(self, **kwargs):
         if self.log_container.get_logs():

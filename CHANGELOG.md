@@ -4,6 +4,32 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [4.0.0]
+
+## Added
+- Support for the Application Migration service
+- Support for the Tenant Manager Control Plane service
+- Support for the Data Transfer service
+- Support for hostname_label, vnic and subnet details as host variables in Inventory plugin.
+- Support for additional configuration variables in the MySQL Database service
+- Support for point-in-time recovery for non-highly-available database systems in the MySQL Database service
+- Improvements in logging which makes it easier to gather the debug logs
+
+## Fixed
+- Issue with `fetch_db_hosts` in inventory plugin by excluding Exadata db_systems.
+
+## Changed
+- Deprecated the use of environment variable `LOG_LEVEL`. Use `OCI_ANSIBLE_LOG_LEVEL` instead. 
+- Deprecated the use of environment variable `LOG_PATH`. Use `OCI_ANSIBLE_LOG_DIR` instead.
+
+## Breaking
+- Removed `oci_monitoring_suppression_actions` module. Use `oci_monitoring_alarm_actions` module instead.
+- Removed `oci_apigateway_waas_certificate_facts` module. Use `oci_apigateway_certificate_facts` module instead.
+- Removed `oci_apigateway_waas_certificate` module. Use `oci_apigateway_certificate` module instead.
+- Removed `oci_load_balancer_routing_policy` module. Use `oci_loadbalancer_routing_policy` module instead.
+- Removed `oci_load_balancer_routing_policy_facts` module. Use `oci_loadbalancer_routing_policy_facts` module instead.
+
+
 ## [3.5.0]
 
 ## Added

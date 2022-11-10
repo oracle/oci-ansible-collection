@@ -57,7 +57,7 @@ version.
 
 .. code:: bash
 
-   python -c "import oci;print(oci.__version__)"
+   python3 -c "import oci;print(oci.__version__)"
 
 Enabling the Verbose Logging for OCI Ansible Collections
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -120,12 +120,33 @@ user is not on the latest version of python sdk.
 Solution:
 ^^^^^^^^^
 
--  Verify that the ``OCI Python SDK`` is installed. If not, please refer
-   to the `SDK Installation
-   Guide <https://oracle-cloud-infrastructure-python-sdk.readthedocs.io/en/latest/installation.html#downloading-and-installing-the-sdk>`__
--  If it is already installed, it could be because you are using an
-   older version. Please upgrade to the latest version. You can upgrade
-   using the command: ``pip install -U oci``
+-  Verify whether ``OCI Python SDK`` is installed using the following commands:
+
+    .. code:: bash
+
+       python3 -c "import oci;print(oci.__version__)"
+    -  If installed using yum please try the below command
+    .. code:: bash
+
+        yum info oci
+
+    -  If ``OCI Python SDK`` is not installed, please refer
+       to the `SDK Installation
+       Guide <https://docs.oracle.com/en-us/iaas/tools/python/latest/installation.html#>`__
+    -  If ``OCI Python SDK`` is already installed,
+
+        -  First of all, it should be installed in the same execution environment where oci-ansible-collections is installed.
+        -  It could be because you are using an older version. Please upgrade to the latest version. You can upgrade
+           using the command: ``pip install -U oci``
+        -  It can be because there can be multiple oci-python-sdk installed and it is not able
+           to pick correct path. So you can set python interpreter as follows:
+            -  To set python interpreter for individual hosts and groups, use the ``ansible_python_interpreter`` inventory variable
+               and set the correct python-sdk path
+            -  To set python interpreter globally, use the ``interpreter_python`` key in the ``[defaults]`` section of ``ansible.cfg``
+            -  For a complete list of possible values for the two options above, please refer:
+               https://docs.ansible.com/ansible/latest/reference_appendices/interpreter_discovery.html.
+            -  To see the example of usage of ``ansible_python_interpreter`` variable please refer:
+               https://docs.ansible.com/ansible/latest/reference_appendices/python_3_support.html
 
 Configuration file or profile errors
 ------------------------------------

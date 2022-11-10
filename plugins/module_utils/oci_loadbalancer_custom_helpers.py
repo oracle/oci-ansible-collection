@@ -102,7 +102,7 @@ class ListenerHelperCustom:
         except ServiceError as ex:
             if ex.status != 404:
                 self.module.fail_json(msg=ex.message)
-
+            return list()
         return [
             listener for listener_name, listener in six.iteritems(existing_lb.listeners)
         ]

@@ -534,7 +534,6 @@ notebook_session:
     }
 """
 
-from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_common_utils,
     oci_wait_utils,
@@ -542,6 +541,7 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
 from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils import (
     OCIResourceHelperBase,
     get_custom_class,
+    OCIAnsibleModule,
 )
 
 try:
@@ -747,7 +747,7 @@ def main():
         )
     )
 
-    module = AnsibleModule(argument_spec=module_args, supports_check_mode=True)
+    module = OCIAnsibleModule(argument_spec=module_args, supports_check_mode=True)
 
     if not HAS_OCI_PY_SDK:
         module.fail_json(msg="oci python sdk required for this module.")

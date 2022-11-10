@@ -29,6 +29,51 @@ class InstancePoolActionsHelperCustom:
     LIFECYCLE_STATE_ATTACHED = "ATTACHED"
     LIFECYCLE_STATE_DETACHED = "DETACHED"
 
+    def evaluate_response_for_load_balancer_attachment(self, response):
+        if not response.data.load_balancers:
+            return False
+        user_load_balancer_attachment_details = to_dict(
+            oci_common_utils.convert_input_data_to_model_class(
+                self.module.params, AttachLoadBalancerDetails
+            )
+        )
+        for existing_load_balancer_attachment in response.data.load_balancers:
+            if (
+                existing_load_balancer_attachment.lifecycle_state
+                in oci_common_utils.DEAD_STATES
+            ):
+                continue
+            if (
+                oci_common_utils.compare_dicts(
+                    user_load_balancer_attachment_details,
+                    to_dict(existing_load_balancer_attachment),
+                )
+                and existing_load_balancer_attachment.lifecycle_state
+                == self.LIFECYCLE_STATE_ATTACHED
+            ):
+                return True
+        return False
+
+    def evaluate_response_for_load_balancer_detachment(self, response):
+        if not response.data.load_balancers:
+            return True
+        user_load_balancer_detachment_details = to_dict(
+            oci_common_utils.convert_input_data_to_model_class(
+                self.module.params, DetachLoadBalancerDetails
+            )
+        )
+        for existing_load_balancer_attachment in response.data.load_balancers:
+            if (
+                oci_common_utils.compare_dicts(
+                    user_load_balancer_detachment_details,
+                    to_dict(existing_load_balancer_attachment),
+                )
+                and existing_load_balancer_attachment.lifecycle_state
+                == self.LIFECYCLE_STATE_DETACHED
+            ):
+                return True
+        return False
+
     def is_attach_load_balancer_necessary(self, instance_pool):
         if not instance_pool.load_balancers:
             return True
@@ -87,35 +132,10 @@ class InstancePoolActionsHelperCustom:
         ).attach_load_balancer()
         # wait until the load balancer attachment comes to a proper state
 
-        def evaluate_response_for_load_balancer_attachment(response):
-            if not response.data.load_balancers:
-                return False
-            user_load_balancer_attachment_details = to_dict(
-                oci_common_utils.convert_input_data_to_model_class(
-                    self.module.params, AttachLoadBalancerDetails
-                )
-            )
-            for existing_load_balancer_attachment in response.data.load_balancers:
-                if (
-                    existing_load_balancer_attachment.lifecycle_state
-                    in oci_common_utils.DEAD_STATES
-                ):
-                    continue
-                if (
-                    oci_common_utils.compare_dicts(
-                        user_load_balancer_attachment_details,
-                        to_dict(existing_load_balancer_attachment),
-                    )
-                    and existing_load_balancer_attachment.lifecycle_state
-                    == self.LIFECYCLE_STATE_ATTACHED
-                ):
-                    return True
-            return False
-
         wait_response = oci.wait_until(
             self.client,
             self.client.get_instance_pool(instance_pool.id),
-            evaluate_response=evaluate_response_for_load_balancer_attachment,
+            evaluate_response=self.evaluate_response_for_load_balancer_attachment,
             max_wait_seconds=self.get_wait_timeout(),
             fetch_func=lambda **kwargs: self.get_resource(),
         )
@@ -127,30 +147,10 @@ class InstancePoolActionsHelperCustom:
         ).detach_load_balancer()
         # wait until the load balancer is detached
 
-        def evaluate_response_for_load_balancer_detachment(response):
-            if not response.data.load_balancers:
-                return True
-            user_load_balancer_detachment_details = to_dict(
-                oci_common_utils.convert_input_data_to_model_class(
-                    self.module.params, DetachLoadBalancerDetails
-                )
-            )
-            for existing_load_balancer_attachment in response.data.load_balancers:
-                if (
-                    oci_common_utils.compare_dicts(
-                        user_load_balancer_detachment_details,
-                        to_dict(existing_load_balancer_attachment),
-                    )
-                    and existing_load_balancer_attachment.lifecycle_state
-                    == self.LIFECYCLE_STATE_DETACHED
-                ):
-                    return True
-            return False
-
         wait_response = oci.wait_until(
             self.client,
             self.client.get_instance_pool(instance_pool.id),
-            evaluate_response=evaluate_response_for_load_balancer_detachment,
+            evaluate_response=self.evaluate_response_for_load_balancer_detachment,
             max_wait_seconds=self.get_wait_timeout(),
             fetch_func=lambda **kwargs: self.get_resource(),
         )

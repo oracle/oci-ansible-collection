@@ -30,7 +30,7 @@ oracle.oci.oci -- Oracle Cloud Infrastructure (OCI) inventory plugin
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 3.5.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.0.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -1229,11 +1229,12 @@ Examples
       - compartment_name: "test_compartment"
         parent_compartment_ocid: ocid1.tenancy.oc1..xxxxxx
 
-    # Sets the inventory_hostname to either "display_name+'.oci.com'" or id
+    # Sets the inventory_hostname to either "display_name+'.oci.com'" or id or hostname_label
     # "'display_name+'.oci.com'" has more preference than id
     hostname_format_preferences:
       - "display_name+'.oci.com'"
       - "id"
+      - "hostname_label"
 
     # Excludes host that is not in the region 'iad' from the inventory
     exclude_host_filters:

@@ -154,6 +154,24 @@ db_systems:
                     returned: on success
                     type: str
                     sample: NONE
+                db_system_id:
+                    description:
+                        - The OCID of the DB System from which a backup shall be selected to be
+                          restored when creating the new DB System. Use this together with
+                          recovery point to perform a point in time recovery operation.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
+                recovery_point:
+                    description:
+                        - The date and time, as per RFC 3339, of the change up to which the
+                          new DB System shall be restored to, using a backup and logs from the
+                          original DB System. In case no point in time is specified, then this
+                          new DB System shall be restored up to the latest change recorded for
+                          the original DB System.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
         configuration_id:
             description:
                 - The OCID of the Configuration to be used for Instances in this DB System.
@@ -383,6 +401,25 @@ db_systems:
                     returned: on success
                     type: str
                     sample: window_start_time_example
+        point_in_time_recovery_details:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                time_earliest_recovery_point:
+                    description:
+                        - Earliest recovery time point for the DB System, as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
+                time_latest_recovery_point:
+                    description:
+                        - Latest recovery time point for the DB System, as described by L(RFC 3339,https://tools.ietf.org/rfc/rfc3339).
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
         id:
             description:
                 - The OCID of the DB System.
@@ -704,6 +741,18 @@ db_systems:
                     returned: on success
                     type: dict
                     sample: {'Operations': {'CostCenter': 'US'}}
+                pitr_policy:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        is_enabled:
+                            description:
+                                - Specifies if PITR is enabled or disabled.
+                            returned: on success
+                            type: bool
+                            sample: true
         shape_name:
             description:
                 - "The shape of the primary instances of the DB System. The shape
@@ -725,7 +774,9 @@ db_systems:
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
         "source": {
             "backup_id": "ocid1.backup.oc1..xxxxxxEXAMPLExxxxxx",
-            "source_type": "NONE"
+            "source_type": "NONE",
+            "db_system_id": "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx",
+            "recovery_point": "2013-10-20T19:20:30+01:00"
         },
         "configuration_id": "ocid1.configuration.oc1..xxxxxxEXAMPLExxxxxx",
         "data_storage_size_in_gbs": 56,
@@ -765,6 +816,10 @@ db_systems:
         "lifecycle_details": "lifecycle_details_example",
         "maintenance": {
             "window_start_time": "window_start_time_example"
+        },
+        "point_in_time_recovery_details": {
+            "time_earliest_recovery_point": "2013-10-20T19:20:30+01:00",
+            "time_latest_recovery_point": "2013-10-20T19:20:30+01:00"
         },
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -818,18 +873,21 @@ db_systems:
             "window_start_time": "window_start_time_example",
             "retention_in_days": 56,
             "freeform_tags": {'Department': 'Finance'},
-            "defined_tags": {'Operations': {'CostCenter': 'US'}}
+            "defined_tags": {'Operations': {'CostCenter': 'US'}},
+            "pitr_policy": {
+                "is_enabled": true
+            }
         },
         "shape_name": "shape_name_example",
         "crash_recovery": "ENABLED"
     }]
 """
 
-from ansible.module_utils.basic import AnsibleModule
 from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
 from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils import (
     OCIResourceFactsHelperBase,
     get_custom_class,
+    OCIAnsibleModule,
 )
 
 try:
@@ -918,7 +976,7 @@ def main():
         )
     )
 
-    module = AnsibleModule(argument_spec=module_args)
+    module = OCIAnsibleModule(argument_spec=module_args)
 
     if not HAS_OCI_PY_SDK:
         module.fail_json(msg="oci python sdk required for this module.")
