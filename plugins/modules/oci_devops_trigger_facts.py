@@ -104,13 +104,6 @@ triggers:
             returned: on success
             type: str
             sample: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
-        connection_id:
-            description:
-                - The OCID of the connection resource used to get details for triggered events.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
         actions:
             description:
                 - The list of actions that are to be performed for this trigger.
@@ -172,6 +165,12 @@ triggers:
                                             returned: on success
                                             type: list
                                             sample: []
+                                repository_name:
+                                    description:
+                                        - The repository name for trigger events.
+                                    returned: on success
+                                    type: str
+                                    sample: repository_name_example
                         exclude:
                             description:
                                 - ""
@@ -203,6 +202,13 @@ triggers:
             returned: on success
             type: str
             sample: trigger_url_example
+        connection_id:
+            description:
+                - The OCID of the connection resource used to get details for triggered events.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - Unique identifier that is immutable on creation.
@@ -288,7 +294,6 @@ triggers:
             sample: {}
     sample: [{
         "repository_id": "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx",
-        "connection_id": "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx",
         "actions": [{
             "type": "TRIGGER_BUILD_PIPELINE",
             "filter": {
@@ -299,7 +304,8 @@ triggers:
                     "base_ref": "base_ref_example",
                     "file_filter": {
                         "file_paths": []
-                    }
+                    },
+                    "repository_name": "repository_name_example"
                 },
                 "exclude": {
                     "file_filter": {
@@ -310,6 +316,7 @@ triggers:
             "build_pipeline_id": "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
         }],
         "trigger_url": "trigger_url_example",
+        "connection_id": "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "description": "description_example",

@@ -57,6 +57,7 @@ options:
         type: str
         choices:
             - "GITHUB"
+            - "VBS"
             - "DEVOPS_CODE_REPOSITORY"
             - "BITBUCKET_CLOUD"
             - "GITLAB_SERVER"
@@ -67,7 +68,8 @@ options:
             - The list of actions that are to be performed for this trigger.
             - Required for create using I(state=present).
             - This parameter is updatable.
-            - Applicable when trigger_source is one of ['DEVOPS_CODE_REPOSITORY', 'BITBUCKET_SERVER', 'BITBUCKET_CLOUD', 'GITHUB', 'GITLAB_SERVER', 'GITLAB']
+            - Applicable when trigger_source is one of ['DEVOPS_CODE_REPOSITORY', 'BITBUCKET_SERVER', 'VBS', 'BITBUCKET_CLOUD', 'GITHUB', 'GITLAB_SERVER',
+              'GITLAB']
         type: list
         elements: dict
         suboptions:
@@ -88,6 +90,7 @@ options:
                             - Source of the trigger. Allowed values are, GITHUB and GITLAB.
                         type: str
                         choices:
+                            - "VBS"
                             - "DEVOPS_CODE_REPOSITORY"
                             - "BITBUCKET_CLOUD"
                             - "BITBUCKET_SERVER"
@@ -97,11 +100,14 @@ options:
                         required: true
                     events:
                         description:
-                            - The events only support PUSH.
+                            - The events, for example, PUSH, PULL_REQUEST_MERGE.
                         type: list
                         elements: str
                         choices:
                             - "PUSH"
+                            - "MERGE_REQUEST_CREATED"
+                            - "MERGE_REQUEST_UPDATED"
+                            - "MERGE_REQUEST_MERGED"
                             - "PULL_REQUEST_CREATED"
                             - "PULL_REQUEST_UPDATED"
                             - "PULL_REQUEST_MERGED"
@@ -113,45 +119,51 @@ options:
                             - ""
                         type: dict
                         suboptions:
+                            repository_name:
+                                description:
+                                    - The repository name for trigger events.
+                                    - Applicable when trigger_source is 'VBS'
+                                type: str
                             head_ref:
                                 description:
-                                    - Branch for push event.
+                                    - Branch for push event; source branch for pull requests.
                                 type: str
                             base_ref:
                                 description:
                                     - The target branch for pull requests; not applicable for push requests.
-                                    - Applicable when trigger_source is one of ['BITBUCKET_SERVER', 'BITBUCKET_CLOUD', 'GITHUB', 'GITLAB_SERVER', 'GITLAB']
+                                    - Applicable when trigger_source is one of ['BITBUCKET_SERVER', 'VBS', 'BITBUCKET_CLOUD', 'GITHUB', 'GITLAB_SERVER',
+                                      'GITLAB']
                                 type: str
                             file_filter:
                                 description:
                                     - ""
-                                    - Applicable when trigger_source is one of ['DEVOPS_CODE_REPOSITORY', 'BITBUCKET_CLOUD', 'GITHUB', 'GITLAB_SERVER',
+                                    - Applicable when trigger_source is one of ['DEVOPS_CODE_REPOSITORY', 'VBS', 'BITBUCKET_CLOUD', 'GITHUB', 'GITLAB_SERVER',
                                       'GITLAB']
                                 type: dict
                                 suboptions:
                                     file_paths:
                                         description:
                                             - The file paths/glob pattern for files.
-                                            - Applicable when trigger_source is 'DEVOPS_CODE_REPOSITORY'
+                                            - Applicable when trigger_source is 'VBS'
                                         type: list
                                         elements: str
                     exclude:
                         description:
                             - ""
-                            - Applicable when trigger_source is one of ['DEVOPS_CODE_REPOSITORY', 'BITBUCKET_CLOUD', 'GITHUB', 'GITLAB_SERVER', 'GITLAB']
+                            - Applicable when trigger_source is one of ['DEVOPS_CODE_REPOSITORY', 'VBS', 'BITBUCKET_CLOUD', 'GITHUB', 'GITLAB_SERVER', 'GITLAB']
                         type: dict
                         suboptions:
                             file_filter:
                                 description:
                                     - ""
-                                    - Applicable when trigger_source is one of ['DEVOPS_CODE_REPOSITORY', 'BITBUCKET_CLOUD', 'GITHUB', 'GITLAB_SERVER',
+                                    - Applicable when trigger_source is one of ['DEVOPS_CODE_REPOSITORY', 'VBS', 'BITBUCKET_CLOUD', 'GITHUB', 'GITLAB_SERVER',
                                       'GITLAB']
                                 type: dict
                                 suboptions:
                                     file_paths:
                                         description:
                                             - The file paths/glob pattern for files.
-                                            - Applicable when trigger_source is 'DEVOPS_CODE_REPOSITORY'
+                                            - Applicable when trigger_source is 'VBS'
                                         type: list
                                         elements: str
             build_pipeline_id:
@@ -175,7 +187,7 @@ options:
         description:
             - The OCID of the connection resource used to get details for triggered events.
             - This parameter is updatable.
-            - Applicable when trigger_source is one of ['BITBUCKET_CLOUD', 'GITHUB', 'GITLAB']
+            - Applicable when trigger_source is one of ['VBS', 'BITBUCKET_CLOUD', 'GITHUB', 'GITLAB']
         type: str
     trigger_id:
         description:
@@ -214,12 +226,51 @@ EXAMPLES = """
       # optional
       filter:
         # required
-        trigger_source: DEVOPS_CODE_REPOSITORY
+        trigger_source: VBS
 
         # optional
         events: [ "PUSH" ]
         include:
           # optional
+          repository_name: repository_name_example
+          head_ref: head_ref_example
+          base_ref: base_ref_example
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
+        exclude:
+          # optional
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Create trigger with trigger_source = VBS
+  oci_devops_trigger:
+    # required
+    project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+    trigger_source: VBS
+
+    # optional
+    display_name: display_name_example
+    description: description_example
+    actions:
+    - # required
+      type: TRIGGER_BUILD_PIPELINE
+      build_pipeline_id: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      filter:
+        # required
+        trigger_source: VBS
+
+        # optional
+        events: [ "PUSH" ]
+        include:
+          # optional
+          repository_name: repository_name_example
           head_ref: head_ref_example
           base_ref: base_ref_example
           file_filter:
@@ -252,12 +303,13 @@ EXAMPLES = """
       # optional
       filter:
         # required
-        trigger_source: DEVOPS_CODE_REPOSITORY
+        trigger_source: VBS
 
         # optional
         events: [ "PUSH" ]
         include:
           # optional
+          repository_name: repository_name_example
           head_ref: head_ref_example
           base_ref: base_ref_example
           file_filter:
@@ -288,12 +340,13 @@ EXAMPLES = """
       # optional
       filter:
         # required
-        trigger_source: DEVOPS_CODE_REPOSITORY
+        trigger_source: VBS
 
         # optional
         events: [ "PUSH" ]
         include:
           # optional
+          repository_name: repository_name_example
           head_ref: head_ref_example
           base_ref: base_ref_example
           file_filter:
@@ -325,12 +378,13 @@ EXAMPLES = """
       # optional
       filter:
         # required
-        trigger_source: DEVOPS_CODE_REPOSITORY
+        trigger_source: VBS
 
         # optional
         events: [ "PUSH" ]
         include:
           # optional
+          repository_name: repository_name_example
           head_ref: head_ref_example
           base_ref: base_ref_example
           file_filter:
@@ -361,12 +415,13 @@ EXAMPLES = """
       # optional
       filter:
         # required
-        trigger_source: DEVOPS_CODE_REPOSITORY
+        trigger_source: VBS
 
         # optional
         events: [ "PUSH" ]
         include:
           # optional
+          repository_name: repository_name_example
           head_ref: head_ref_example
           base_ref: base_ref_example
           file_filter:
@@ -398,12 +453,13 @@ EXAMPLES = """
       # optional
       filter:
         # required
-        trigger_source: DEVOPS_CODE_REPOSITORY
+        trigger_source: VBS
 
         # optional
         events: [ "PUSH" ]
         include:
           # optional
+          repository_name: repository_name_example
           head_ref: head_ref_example
           base_ref: base_ref_example
           file_filter:
@@ -433,12 +489,50 @@ EXAMPLES = """
       # optional
       filter:
         # required
-        trigger_source: DEVOPS_CODE_REPOSITORY
+        trigger_source: VBS
 
         # optional
         events: [ "PUSH" ]
         include:
           # optional
+          repository_name: repository_name_example
+          head_ref: head_ref_example
+          base_ref: base_ref_example
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
+        exclude:
+          # optional
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Update trigger with trigger_source = VBS
+  oci_devops_trigger:
+    # required
+    trigger_source: VBS
+
+    # optional
+    display_name: display_name_example
+    description: description_example
+    actions:
+    - # required
+      type: TRIGGER_BUILD_PIPELINE
+      build_pipeline_id: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      filter:
+        # required
+        trigger_source: VBS
+
+        # optional
+        events: [ "PUSH" ]
+        include:
+          # optional
+          repository_name: repository_name_example
           head_ref: head_ref_example
           base_ref: base_ref_example
           file_filter:
@@ -470,12 +564,13 @@ EXAMPLES = """
       # optional
       filter:
         # required
-        trigger_source: DEVOPS_CODE_REPOSITORY
+        trigger_source: VBS
 
         # optional
         events: [ "PUSH" ]
         include:
           # optional
+          repository_name: repository_name_example
           head_ref: head_ref_example
           base_ref: base_ref_example
           file_filter:
@@ -505,12 +600,13 @@ EXAMPLES = """
       # optional
       filter:
         # required
-        trigger_source: DEVOPS_CODE_REPOSITORY
+        trigger_source: VBS
 
         # optional
         events: [ "PUSH" ]
         include:
           # optional
+          repository_name: repository_name_example
           head_ref: head_ref_example
           base_ref: base_ref_example
           file_filter:
@@ -541,12 +637,13 @@ EXAMPLES = """
       # optional
       filter:
         # required
-        trigger_source: DEVOPS_CODE_REPOSITORY
+        trigger_source: VBS
 
         # optional
         events: [ "PUSH" ]
         include:
           # optional
+          repository_name: repository_name_example
           head_ref: head_ref_example
           base_ref: base_ref_example
           file_filter:
@@ -576,12 +673,13 @@ EXAMPLES = """
       # optional
       filter:
         # required
-        trigger_source: DEVOPS_CODE_REPOSITORY
+        trigger_source: VBS
 
         # optional
         events: [ "PUSH" ]
         include:
           # optional
+          repository_name: repository_name_example
           head_ref: head_ref_example
           base_ref: base_ref_example
           file_filter:
@@ -612,12 +710,13 @@ EXAMPLES = """
       # optional
       filter:
         # required
-        trigger_source: DEVOPS_CODE_REPOSITORY
+        trigger_source: VBS
 
         # optional
         events: [ "PUSH" ]
         include:
           # optional
+          repository_name: repository_name_example
           head_ref: head_ref_example
           base_ref: base_ref_example
           file_filter:
@@ -647,12 +746,50 @@ EXAMPLES = """
       # optional
       filter:
         # required
-        trigger_source: DEVOPS_CODE_REPOSITORY
+        trigger_source: VBS
 
         # optional
         events: [ "PUSH" ]
         include:
           # optional
+          repository_name: repository_name_example
+          head_ref: head_ref_example
+          base_ref: base_ref_example
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
+        exclude:
+          # optional
+          file_filter:
+            # optional
+            file_paths: [ "file_paths_example" ]
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
+
+- name: Update trigger using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with trigger_source = VBS
+  oci_devops_trigger:
+    # required
+    trigger_source: VBS
+
+    # optional
+    display_name: display_name_example
+    description: description_example
+    actions:
+    - # required
+      type: TRIGGER_BUILD_PIPELINE
+      build_pipeline_id: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      filter:
+        # required
+        trigger_source: VBS
+
+        # optional
+        events: [ "PUSH" ]
+        include:
+          # optional
+          repository_name: repository_name_example
           head_ref: head_ref_example
           base_ref: base_ref_example
           file_filter:
@@ -684,12 +821,13 @@ EXAMPLES = """
       # optional
       filter:
         # required
-        trigger_source: DEVOPS_CODE_REPOSITORY
+        trigger_source: VBS
 
         # optional
         events: [ "PUSH" ]
         include:
           # optional
+          repository_name: repository_name_example
           head_ref: head_ref_example
           base_ref: base_ref_example
           file_filter:
@@ -719,12 +857,13 @@ EXAMPLES = """
       # optional
       filter:
         # required
-        trigger_source: DEVOPS_CODE_REPOSITORY
+        trigger_source: VBS
 
         # optional
         events: [ "PUSH" ]
         include:
           # optional
+          repository_name: repository_name_example
           head_ref: head_ref_example
           base_ref: base_ref_example
           file_filter:
@@ -755,12 +894,13 @@ EXAMPLES = """
       # optional
       filter:
         # required
-        trigger_source: DEVOPS_CODE_REPOSITORY
+        trigger_source: VBS
 
         # optional
         events: [ "PUSH" ]
         include:
           # optional
+          repository_name: repository_name_example
           head_ref: head_ref_example
           base_ref: base_ref_example
           file_filter:
@@ -790,12 +930,13 @@ EXAMPLES = """
       # optional
       filter:
         # required
-        trigger_source: DEVOPS_CODE_REPOSITORY
+        trigger_source: VBS
 
         # optional
         events: [ "PUSH" ]
         include:
           # optional
+          repository_name: repository_name_example
           head_ref: head_ref_example
           base_ref: base_ref_example
           file_filter:
@@ -826,12 +967,13 @@ EXAMPLES = """
       # optional
       filter:
         # required
-        trigger_source: DEVOPS_CODE_REPOSITORY
+        trigger_source: VBS
 
         # optional
         events: [ "PUSH" ]
         include:
           # optional
+          repository_name: repository_name_example
           head_ref: head_ref_example
           base_ref: base_ref_example
           file_filter:
@@ -872,12 +1014,6 @@ trigger:
             returned: on success
             type: str
             sample: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
-        connection_id:
-            description:
-                - The OCID of the connection resource used to get details for triggered events.
-            returned: on success
-            type: str
-            sample: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - Unique identifier that is immutable on creation.
@@ -999,6 +1135,12 @@ trigger:
                                             returned: on success
                                             type: list
                                             sample: []
+                                repository_name:
+                                    description:
+                                        - The repository name for trigger events.
+                                    returned: on success
+                                    type: str
+                                    sample: repository_name_example
                         exclude:
                             description:
                                 - ""
@@ -1051,9 +1193,14 @@ trigger:
             returned: on success
             type: str
             sample: trigger_url_example
+        connection_id:
+            description:
+                - The OCID of the connection resource used to get details for triggered events.
+            returned: on success
+            type: str
+            sample: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "repository_id": "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx",
-        "connection_id": "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "description": "description_example",
@@ -1074,7 +1221,8 @@ trigger:
                     "base_ref": "base_ref_example",
                     "file_filter": {
                         "file_paths": []
-                    }
+                    },
+                    "repository_name": "repository_name_example"
                 },
                 "exclude": {
                     "file_filter": {
@@ -1087,7 +1235,8 @@ trigger:
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "system_tags": {},
-        "trigger_url": "trigger_url_example"
+        "trigger_url": "trigger_url_example",
+        "connection_id": "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """
 
@@ -1239,6 +1388,7 @@ def main():
                 type="str",
                 choices=[
                     "GITHUB",
+                    "VBS",
                     "DEVOPS_CODE_REPOSITORY",
                     "BITBUCKET_CLOUD",
                     "GITLAB_SERVER",
@@ -1260,6 +1410,7 @@ def main():
                                 type="str",
                                 required=True,
                                 choices=[
+                                    "VBS",
                                     "DEVOPS_CODE_REPOSITORY",
                                     "BITBUCKET_CLOUD",
                                     "BITBUCKET_SERVER",
@@ -1273,6 +1424,9 @@ def main():
                                 elements="str",
                                 choices=[
                                     "PUSH",
+                                    "MERGE_REQUEST_CREATED",
+                                    "MERGE_REQUEST_UPDATED",
+                                    "MERGE_REQUEST_MERGED",
                                     "PULL_REQUEST_CREATED",
                                     "PULL_REQUEST_UPDATED",
                                     "PULL_REQUEST_MERGED",
@@ -1284,6 +1438,7 @@ def main():
                             include=dict(
                                 type="dict",
                                 options=dict(
+                                    repository_name=dict(type="str"),
                                     head_ref=dict(type="str"),
                                     base_ref=dict(type="str"),
                                     file_filter=dict(

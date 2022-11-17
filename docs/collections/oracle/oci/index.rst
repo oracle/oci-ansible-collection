@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 4.0.0
+Collection version 4.1.0
 
 .. toctree::
     :maxdepth: 1
@@ -1590,6 +1590,7 @@ Modules
 * :ref:`oci_service_mesh_virtual_service_route_table <ansible_collections.oracle.oci.oci_service_mesh_virtual_service_route_table_module>` -- Manage a VirtualServiceRouteTable resource in Oracle Cloud Infrastructure
 * :ref:`oci_service_mesh_virtual_service_route_table_actions <ansible_collections.oracle.oci.oci_service_mesh_virtual_service_route_table_actions_module>` -- Perform actions on a VirtualServiceRouteTable resource in Oracle Cloud Infrastructure
 * :ref:`oci_service_mesh_virtual_service_route_table_facts <ansible_collections.oracle.oci.oci_service_mesh_virtual_service_route_table_facts_module>` -- Fetches details about one or multiple VirtualServiceRouteTable resources in Oracle Cloud Infrastructure
+* :ref:`oci_stack_monitoring_associated_resources_facts <ansible_collections.oracle.oci.oci_stack_monitoring_associated_resources_facts_module>` -- Fetches details about one or multiple AssociatedResources resources in Oracle Cloud Infrastructure
 * :ref:`oci_stack_monitoring_discovery_job <ansible_collections.oracle.oci.oci_stack_monitoring_discovery_job_module>` -- Manage a DiscoveryJob resource in Oracle Cloud Infrastructure
 * :ref:`oci_stack_monitoring_discovery_job_facts <ansible_collections.oracle.oci.oci_stack_monitoring_discovery_job_facts_module>` -- Fetches details about one or multiple DiscoveryJob resources in Oracle Cloud Infrastructure
 * :ref:`oci_stack_monitoring_discovery_job_log_facts <ansible_collections.oracle.oci.oci_stack_monitoring_discovery_job_log_facts_module>` -- Fetches details about one or multiple DiscoveryJobLog resources in Oracle Cloud Infrastructure
@@ -3317,6 +3318,7 @@ Modules
     oci_service_mesh_virtual_service_route_table_module
     oci_service_mesh_virtual_service_route_table_actions_module
     oci_service_mesh_virtual_service_route_table_facts_module
+    oci_stack_monitoring_associated_resources_facts_module
     oci_stack_monitoring_discovery_job_module
     oci_stack_monitoring_discovery_job_facts_module
     oci_stack_monitoring_discovery_job_log_facts_module

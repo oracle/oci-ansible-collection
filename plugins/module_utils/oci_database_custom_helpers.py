@@ -410,14 +410,14 @@ class DataGuardAssociationHelperCustom:
     def get_module_resource_id_param(self):
         return None
 
-    def get_get_fn(self):
-        def get_fn(data_guard_association_id):
-            return self.client.get_data_guard_association(
-                data_guard_association_id=data_guard_association_id,
-                database_id=self.module.params["database_id"],
-            )
+    def get_fn(self, data_guard_association_id):
+        return self.client.get_data_guard_association(
+            data_guard_association_id=data_guard_association_id,
+            database_id=self.module.params["database_id"],
+        )
 
-        return get_fn
+    def get_get_fn(self):
+        return self.get_fn
         # return self.client.get_data_guard_association
 
 
@@ -628,16 +628,16 @@ class AutonomousContainerDatabaseHelperCustom:
 
 
 class VmClusterNetworkHelperCustom:
-    def get_get_fn(self):
-        def get_fn(vm_cluster_network_id):
-            return self.client.get_vm_cluster_network(
-                vm_cluster_network_id=vm_cluster_network_id,
-                exadata_infrastructure_id=self.module.params.get(
-                    "exadata_infrastructure_id"
-                ),
-            )
+    def get_fn(self, vm_cluster_network_id):
+        return self.client.get_vm_cluster_network(
+            vm_cluster_network_id=vm_cluster_network_id,
+            exadata_infrastructure_id=self.module.params.get(
+                "exadata_infrastructure_id"
+            ),
+        )
 
-        return get_fn
+    def get_get_fn(self):
+        return self.get_fn
 
     def list_resources(self):
         result = [
@@ -699,7 +699,7 @@ class VmClusterHelperCustom:
             VmClusterHelperCustom, self
         ).get_create_model_dict_for_idempotence_check(create_model)
 
-        if model_dict["cpu_core_count"]:
+        if model_dict.get("cpu_core_count"):
             model_dict["cpus_enabled"] = model_dict["cpu_core_count"]
             del model_dict["cpu_core_count"]
 

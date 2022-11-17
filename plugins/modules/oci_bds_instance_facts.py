@@ -53,6 +53,7 @@ options:
             - "DELETING"
             - "DELETED"
             - "FAILED"
+            - "INACTIVE"
     sort_by:
         description:
             - The field to sort by. Only one sort order may be provided. Default order for timeCreated is descending. Default order for displayName is
@@ -339,6 +340,18 @@ bds_instances:
                     returned: on success
                     type: int
                     sample: 56
+                nvmes:
+                    description:
+                        - The number of NVMe drives to be used for storage. A single drive has 6.8 TB available.
+                    returned: on success
+                    type: int
+                    sample: 56
+                local_disks_total_size_in_gbs:
+                    description:
+                        - The aggregate size of all local disks, in gigabytes. If the instance does not have any local disks, this field is null.
+                    returned: on success
+                    type: float
+                    sample: 1.2
         cloud_sql_details:
             description:
                 - ""
@@ -534,7 +547,9 @@ bds_instances:
             "time_created": "2013-10-20T19:20:30+01:00",
             "time_updated": "2013-10-20T19:20:30+01:00",
             "ocpus": 56,
-            "memory_in_gbs": 56
+            "memory_in_gbs": 56,
+            "nvmes": 56,
+            "local_disks_total_size_in_gbs": 1.2
         }],
         "cloud_sql_details": {
             "shape": "shape_example",
@@ -643,6 +658,7 @@ def main():
                     "DELETING",
                     "DELETED",
                     "FAILED",
+                    "INACTIVE",
                 ],
             ),
             sort_by=dict(type="str", choices=["timeCreated", "displayName"]),

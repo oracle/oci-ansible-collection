@@ -38,6 +38,8 @@ description:
     - For I(action=remove_cloud_sql), removes Cloud SQL from the cluster.
     - For I(action=remove_node), remove a single node of a Big Data Service cluster
     - For I(action=restart_node), restarts a single node of a Big Data Service cluster
+    - For I(action=start), starts the BDS cluster that was stopped earlier.
+    - For I(action=stop), stops the BDS cluster that can be started at later point of time.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -77,7 +79,11 @@ options:
                 type: int
             memory_in_gbs:
                 description:
-                    - The total amount of memory available to the node, in gigabytes
+                    - The total amount of memory available to the node, in gigabytes.
+                type: int
+            nvmes:
+                description:
+                    - The number of NVMe drives to be used for storage. A single drive has 6.8 TB available.
                 type: int
     compartment_id:
         description:
@@ -105,7 +111,11 @@ options:
                         type: int
                     memory_in_gbs:
                         description:
-                            - The total amount of memory available to the node, in gigabytes
+                            - The total amount of memory available to the node, in gigabytes.
+                        type: int
+                    nvmes:
+                        description:
+                            - The number of NVMe drives to be used for storage. A single drive has 6.8 TB available.
                         type: int
             compute_only_worker:
                 description:
@@ -122,7 +132,11 @@ options:
                         type: int
                     memory_in_gbs:
                         description:
-                            - The total amount of memory available to the node, in gigabytes
+                            - The total amount of memory available to the node, in gigabytes.
+                        type: int
+                    nvmes:
+                        description:
+                            - The number of NVMe drives to be used for storage. A single drive has 6.8 TB available.
                         type: int
             master:
                 description:
@@ -139,7 +153,11 @@ options:
                         type: int
                     memory_in_gbs:
                         description:
-                            - The total amount of memory available to the node, in gigabytes
+                            - The total amount of memory available to the node, in gigabytes.
+                        type: int
+                    nvmes:
+                        description:
+                            - The number of NVMe drives to be used for storage. A single drive has 6.8 TB available.
                         type: int
             utility:
                 description:
@@ -156,22 +174,37 @@ options:
                         type: int
                     memory_in_gbs:
                         description:
-                            - The total amount of memory available to the node, in gigabytes
+                            - The total amount of memory available to the node, in gigabytes.
+                        type: int
+                    nvmes:
+                        description:
+                            - The number of NVMe drives to be used for storage. A single drive has 6.8 TB available.
                         type: int
             cloudsql:
                 description:
-                    - Change shape of the Cloud SQL node to the desired target shape. Only VM_STANDARD shapes are allowed here.
+                    - Change shape of the Cloud SQL node to the desired target shape. Both VM_STANDARD and E4 Flex shapes are allowed here.
                 type: str
+            cloudsql_shape_config:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    ocpus:
+                        description:
+                            - The total number of OCPUs available to the node.
+                        type: int
+                    memory_in_gbs:
+                        description:
+                            - The total amount of memory available to the node, in gigabytes.
+                        type: int
+                    nvmes:
+                        description:
+                            - The number of NVMe drives to be used for storage. A single drive has 6.8 TB available.
+                        type: int
     version:
         description:
             - The version of the patch to be installed.
             - Required for I(action=install_patch).
-        type: str
-    cluster_admin_password:
-        description:
-            - Base-64 encoded password for the cluster (and Cloudera Manager) admin user.
-            - Required for I(action=add_block_storage), I(action=add_cloud_sql), I(action=add_worker_nodes), I(action=change_shape), I(action=install_patch),
-              I(action=remove_cloud_sql), I(action=remove_node).
         type: str
     is_force_remove_enabled:
         description:
@@ -179,16 +212,27 @@ options:
               removal fails.
             - Applicable only for I(action=remove_node).
         type: bool
+    node_id:
+        description:
+            - OCID of the node to be removed.
+            - Required for I(action=remove_node), I(action=restart_node).
+        type: str
     bds_instance_id:
         description:
             - The OCID of the cluster.
         type: str
         aliases: ["id"]
         required: true
-    node_id:
+    is_force_stop_jobs:
         description:
-            - OCID of the node to be removed.
-            - Required for I(action=remove_node), I(action=restart_node).
+            - Boolean indicating whether to force stop jobs while stopping cluster. Defaults to false.
+            - Applicable only for I(action=stop).
+        type: bool
+    cluster_admin_password:
+        description:
+            - Base-64 encoded password for the cluster (and Cloudera Manager) admin user.
+            - Required for I(action=add_block_storage), I(action=add_cloud_sql), I(action=add_worker_nodes), I(action=change_shape), I(action=install_patch),
+              I(action=remove_cloud_sql), I(action=remove_node), I(action=start), I(action=stop).
         type: str
     action:
         description:
@@ -205,6 +249,8 @@ options:
             - "remove_cloud_sql"
             - "remove_node"
             - "restart_node"
+            - "start"
+            - "stop"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
@@ -214,16 +260,16 @@ EXAMPLES = """
     # required
     node_type: WORKER
     block_volume_size_in_gbs: 56
-    cluster_admin_password: example-password
     bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    cluster_admin_password: example-password
     action: add_block_storage
 
 - name: Perform action add_cloud_sql on bds_instance
   oci_bds_instance_actions:
     # required
     shape: shape_example
-    cluster_admin_password: example-password
     bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    cluster_admin_password: example-password
     action: add_cloud_sql
 
     # optional
@@ -232,14 +278,15 @@ EXAMPLES = """
       # optional
       ocpus: 56
       memory_in_gbs: 56
+      nvmes: 56
 
 - name: Perform action add_worker_nodes on bds_instance
   oci_bds_instance_actions:
     # required
     number_of_worker_nodes: 56
     node_type: WORKER
-    cluster_admin_password: example-password
     bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    cluster_admin_password: example-password
     action: add_worker_nodes
 
     # optional
@@ -249,6 +296,7 @@ EXAMPLES = """
       # optional
       ocpus: 56
       memory_in_gbs: 56
+      nvmes: 56
 
 - name: Perform action change_compartment on bds_instance
   oci_bds_instance_actions:
@@ -267,47 +315,56 @@ EXAMPLES = """
         # optional
         ocpus: 56
         memory_in_gbs: 56
+        nvmes: 56
       compute_only_worker: compute_only_worker_example
       compute_only_worker_shape_config:
         # optional
         ocpus: 56
         memory_in_gbs: 56
+        nvmes: 56
       master: master_example
       master_shape_config:
         # optional
         ocpus: 56
         memory_in_gbs: 56
+        nvmes: 56
       utility: utility_example
       utility_shape_config:
         # optional
         ocpus: 56
         memory_in_gbs: 56
+        nvmes: 56
       cloudsql: cloudsql_example
-    cluster_admin_password: example-password
+      cloudsql_shape_config:
+        # optional
+        ocpus: 56
+        memory_in_gbs: 56
+        nvmes: 56
     bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    cluster_admin_password: example-password
     action: change_shape
 
 - name: Perform action install_patch on bds_instance
   oci_bds_instance_actions:
     # required
     version: version_example
-    cluster_admin_password: example-password
     bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    cluster_admin_password: example-password
     action: install_patch
 
 - name: Perform action remove_cloud_sql on bds_instance
   oci_bds_instance_actions:
     # required
-    cluster_admin_password: example-password
     bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    cluster_admin_password: example-password
     action: remove_cloud_sql
 
 - name: Perform action remove_node on bds_instance
   oci_bds_instance_actions:
     # required
-    cluster_admin_password: example-password
-    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     node_id: "ocid1.node.oc1..xxxxxxEXAMPLExxxxxx"
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    cluster_admin_password: example-password
     action: remove_node
 
     # optional
@@ -316,9 +373,26 @@ EXAMPLES = """
 - name: Perform action restart_node on bds_instance
   oci_bds_instance_actions:
     # required
-    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     node_id: "ocid1.node.oc1..xxxxxxEXAMPLExxxxxx"
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
     action: restart_node
+
+- name: Perform action start on bds_instance
+  oci_bds_instance_actions:
+    # required
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    cluster_admin_password: example-password
+    action: start
+
+- name: Perform action stop on bds_instance
+  oci_bds_instance_actions:
+    # required
+    bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+    cluster_admin_password: example-password
+    action: stop
+
+    # optional
+    is_force_stop_jobs: true
 
 """
 
@@ -611,6 +685,18 @@ bds_instance:
                     returned: on success
                     type: int
                     sample: 56
+                nvmes:
+                    description:
+                        - The number of NVMe drives to be used for storage. A single drive has 6.8 TB available.
+                    returned: on success
+                    type: int
+                    sample: 56
+                local_disks_total_size_in_gbs:
+                    description:
+                        - The aggregate size of all local disks, in gigabytes. If the instance does not have any local disks, this field is null.
+                    returned: on success
+                    type: float
+                    sample: 1.2
         cloud_sql_details:
             description:
                 - ""
@@ -761,7 +847,9 @@ bds_instance:
             "time_created": "2013-10-20T19:20:30+01:00",
             "time_updated": "2013-10-20T19:20:30+01:00",
             "ocpus": 56,
-            "memory_in_gbs": 56
+            "memory_in_gbs": 56,
+            "nvmes": 56,
+            "local_disks_total_size_in_gbs": 1.2
         }],
         "cloud_sql_details": {
             "shape": "shape_example",
@@ -805,6 +893,8 @@ try:
     from oci.bds.models import RemoveCloudSqlDetails
     from oci.bds.models import RemoveNodeDetails
     from oci.bds.models import RestartNodeDetails
+    from oci.bds.models import StartBdsInstanceDetails
+    from oci.bds.models import StopBdsInstanceDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -823,6 +913,8 @@ class BdsInstanceActionsHelperGen(OCIActionsHelperBase):
         remove_cloud_sql
         remove_node
         restart_node
+        start
+        stop
     """
 
     @staticmethod
@@ -1030,6 +1122,48 @@ class BdsInstanceActionsHelperGen(OCIActionsHelperBase):
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
+    def start(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, StartBdsInstanceDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.start_bds_instance,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                bds_instance_id=self.module.params.get("bds_instance_id"),
+                start_bds_instance_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def stop(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, StopBdsInstanceDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.stop_bds_instance,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                bds_instance_id=self.module.params.get("bds_instance_id"),
+                stop_bds_instance_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
 
 BdsInstanceActionsHelperCustom = get_custom_class("BdsInstanceActionsHelperCustom")
 
@@ -1050,7 +1184,11 @@ def main():
             block_volume_size_in_gbs=dict(type="int"),
             shape_config=dict(
                 type="dict",
-                options=dict(ocpus=dict(type="int"), memory_in_gbs=dict(type="int")),
+                options=dict(
+                    ocpus=dict(type="int"),
+                    memory_in_gbs=dict(type="int"),
+                    nvmes=dict(type="int"),
+                ),
             ),
             compartment_id=dict(type="str"),
             nodes=dict(
@@ -1060,38 +1198,55 @@ def main():
                     worker_shape_config=dict(
                         type="dict",
                         options=dict(
-                            ocpus=dict(type="int"), memory_in_gbs=dict(type="int")
+                            ocpus=dict(type="int"),
+                            memory_in_gbs=dict(type="int"),
+                            nvmes=dict(type="int"),
                         ),
                     ),
                     compute_only_worker=dict(type="str"),
                     compute_only_worker_shape_config=dict(
                         type="dict",
                         options=dict(
-                            ocpus=dict(type="int"), memory_in_gbs=dict(type="int")
+                            ocpus=dict(type="int"),
+                            memory_in_gbs=dict(type="int"),
+                            nvmes=dict(type="int"),
                         ),
                     ),
                     master=dict(type="str"),
                     master_shape_config=dict(
                         type="dict",
                         options=dict(
-                            ocpus=dict(type="int"), memory_in_gbs=dict(type="int")
+                            ocpus=dict(type="int"),
+                            memory_in_gbs=dict(type="int"),
+                            nvmes=dict(type="int"),
                         ),
                     ),
                     utility=dict(type="str"),
                     utility_shape_config=dict(
                         type="dict",
                         options=dict(
-                            ocpus=dict(type="int"), memory_in_gbs=dict(type="int")
+                            ocpus=dict(type="int"),
+                            memory_in_gbs=dict(type="int"),
+                            nvmes=dict(type="int"),
                         ),
                     ),
                     cloudsql=dict(type="str"),
+                    cloudsql_shape_config=dict(
+                        type="dict",
+                        options=dict(
+                            ocpus=dict(type="int"),
+                            memory_in_gbs=dict(type="int"),
+                            nvmes=dict(type="int"),
+                        ),
+                    ),
                 ),
             ),
             version=dict(type="str"),
-            cluster_admin_password=dict(type="str", no_log=True),
             is_force_remove_enabled=dict(type="bool"),
-            bds_instance_id=dict(aliases=["id"], type="str", required=True),
             node_id=dict(type="str"),
+            bds_instance_id=dict(aliases=["id"], type="str", required=True),
+            is_force_stop_jobs=dict(type="bool"),
+            cluster_admin_password=dict(type="str", no_log=True),
             action=dict(
                 type="str",
                 required=True,
@@ -1105,6 +1260,8 @@ def main():
                     "remove_cloud_sql",
                     "remove_node",
                     "restart_node",
+                    "start",
+                    "stop",
                 ],
             ),
         )

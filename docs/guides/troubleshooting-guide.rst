@@ -62,26 +62,7 @@ version.
 Enabling the Verbose Logging for OCI Ansible Collections
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
--  Set the log_requests variable in your ``~/.oci/config`` to True to
-   `enable Request logging in the OCI python
-   SDK <https://github.com/oracle/oci-python-sdk/blob/master/docs/logging.rst>`__.
--  Export an environment variable named ``LOG_LEVEL`` with the value
-   ``DEBUG`` to enable DEBUG mode for the OCI Ansible modules
-
-.. code:: bash
-
-   export LOG_LEVEL="DEBUG"
-
-All subsequent debug messages from an Ansible playbook execution using
-the OCI Ansible Cloud Modules would go to
-``/tmp/oci_ansible_module.log``\ (the default logging location for the
-OCI Ansible modules).
-
-OCI Ansible Cloud Modules uses standard Python
-logging facilities for logging. Use the environment variable
-``LOG_PATH`` to change the directory where the log file should be placed
-and ``LOG_LEVEL`` to change the log level. The default log level is
-``INFO``.
+Please refer to `Logging In OCI Ansible Module <https://docs.oracle.com/en-us/iaas/tools/oci-ansible-collection/latest/guides/logging-guide.html>`__
 
 Installation and Configuration Errors
 -------------------------------------

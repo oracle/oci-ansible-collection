@@ -44,6 +44,12 @@ options:
             - Compartment Identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
             - Required for create using I(state=present).
         type: str
+    external_id:
+        description:
+            - External resource is any OCI resource identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+              which is not a Stack Monitoring service resource.
+              Currently supports only OCI compute instance.
+        type: str
     management_agent_id:
         description:
             - Management Agent Identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -120,6 +126,10 @@ options:
             db_id:
                 description:
                     - dbId of the database
+                type: str
+            ssl_secret_id:
+                description:
+                    - SSL Secret Identifier for TCPS connector in OCI VaultL(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
                 type: str
     credentials:
         description:
@@ -230,6 +240,10 @@ options:
             - Required for delete using I(state=absent).
         type: str
         aliases: ["id"]
+    is_delete_members:
+        description:
+            - A filter to delete the associated children or not for given resource.
+        type: bool
     state:
         description:
             - The state of the MonitoredResource.
@@ -251,6 +265,7 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    external_id: "ocid1.external.oc1..xxxxxxEXAMPLExxxxxx"
     management_agent_id: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
     external_resource_id: "ocid1.externalresource.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
@@ -270,6 +285,7 @@ EXAMPLES = """
       connector_id: "ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx"
       db_unique_name: db_unique_name_example
       db_id: "ocid1.db.oc1..xxxxxxEXAMPLExxxxxx"
+      ssl_secret_id: "ocid1.sslsecret.oc1..xxxxxxEXAMPLExxxxxx"
     credentials:
       # required
       credential_type: EXISTING
@@ -312,6 +328,7 @@ EXAMPLES = """
       connector_id: "ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx"
       db_unique_name: db_unique_name_example
       db_id: "ocid1.db.oc1..xxxxxxEXAMPLExxxxxx"
+      ssl_secret_id: "ocid1.sslsecret.oc1..xxxxxxEXAMPLExxxxxx"
     credentials:
       # required
       credential_type: EXISTING
@@ -336,6 +353,9 @@ EXAMPLES = """
     # required
     monitored_resource_id: "ocid1.monitoredresource.oc1..xxxxxxEXAMPLExxxxxx"
     state: absent
+
+    # optional
+    is_delete_members: true
 
 """
 
@@ -388,6 +408,15 @@ monitored_resource:
             returned: on success
             type: str
             sample: host_name_example
+        external_id:
+            description:
+                - "External resource is any OCI resource identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+                  which is not a Stack Monitoring service resource.
+                  Currently supports only following resource type identifiers - externalcontainerdatabase,
+                  externalnoncontainerdatabase, externalpluggabledatabase and OCI compute instance."
+            returned: on success
+            type: str
+            sample: "ocid1.external.oc1..xxxxxxEXAMPLExxxxxx"
         management_agent_id:
             description:
                 - Management Agent Identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -478,6 +507,12 @@ monitored_resource:
                     returned: on success
                     type: str
                     sample: "ocid1.db.oc1..xxxxxxEXAMPLExxxxxx"
+                ssl_secret_id:
+                    description:
+                        - SSL Secret Identifier for TCPS connector in OCI VaultL(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+                    returned: on success
+                    type: str
+                    sample: "ocid1.sslsecret.oc1..xxxxxxEXAMPLExxxxxx"
         credentials:
             description:
                 - ""
@@ -620,6 +655,7 @@ monitored_resource:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "tenant_id": "ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx",
         "host_name": "host_name_example",
+        "external_id": "ocid1.external.oc1..xxxxxxEXAMPLExxxxxx",
         "management_agent_id": "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx",
         "resource_time_zone": "resource_time_zone_example",
         "time_created": "2013-10-20T19:20:30+01:00",
@@ -635,7 +671,8 @@ monitored_resource:
             "connector_id": "ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx",
             "service_name": "service_name_example",
             "db_unique_name": "db_unique_name_example",
-            "db_id": "ocid1.db.oc1..xxxxxxEXAMPLExxxxxx"
+            "db_id": "ocid1.db.oc1..xxxxxxEXAMPLExxxxxx",
+            "ssl_secret_id": "ocid1.sslsecret.oc1..xxxxxxEXAMPLExxxxxx"
         },
         "credentials": {
             "key_id": "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx",
@@ -763,6 +800,7 @@ class MonitoredResourceHelperGen(OCIResourceHelperBase):
             call_fn_args=(),
             call_fn_kwargs=dict(
                 monitored_resource_id=self.module.params.get("monitored_resource_id"),
+                is_delete_members=self.module.params.get("is_delete_members"),
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation=oci_common_utils.DELETE_OPERATION_KEY,
@@ -788,6 +826,7 @@ def main():
             name=dict(type="str"),
             type=dict(type="str"),
             compartment_id=dict(type="str"),
+            external_id=dict(type="str"),
             management_agent_id=dict(type="str"),
             external_resource_id=dict(type="str"),
             display_name=dict(type="str"),
@@ -807,6 +846,7 @@ def main():
                     service_name=dict(type="str", required=True),
                     db_unique_name=dict(type="str"),
                     db_id=dict(type="str"),
+                    ssl_secret_id=dict(type="str"),
                 ),
             ),
             credentials=dict(
@@ -849,6 +889,7 @@ def main():
                 ),
             ),
             monitored_resource_id=dict(aliases=["id"], type="str"),
+            is_delete_members=dict(type="bool"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )
     )

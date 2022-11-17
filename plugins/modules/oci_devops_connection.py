@@ -64,6 +64,7 @@ options:
             - Required for create using I(state=present), update using I(state=present) with connection_id present.
         type: str
         choices:
+            - "VBS_ACCESS_TOKEN"
             - "GITLAB_SERVER_ACCESS_TOKEN"
             - "BITBUCKET_SERVER_ACCESS_TOKEN"
             - "GITHUB_ACCESS_TOKEN"
@@ -85,17 +86,16 @@ options:
         description:
             - The OCID of personal access token saved in secret store.
             - This parameter is updatable.
-            - Applicable when connection_type is one of ['GITLAB_ACCESS_TOKEN', 'GITHUB_ACCESS_TOKEN', 'BITBUCKET_SERVER_ACCESS_TOKEN',
+            - Applicable when connection_type is one of ['GITLAB_ACCESS_TOKEN', 'GITHUB_ACCESS_TOKEN', 'VBS_ACCESS_TOKEN', 'BITBUCKET_SERVER_ACCESS_TOKEN',
               'GITLAB_SERVER_ACCESS_TOKEN']
-            - Required when connection_type is one of ['GITLAB_ACCESS_TOKEN', 'GITHUB_ACCESS_TOKEN', 'BITBUCKET_SERVER_ACCESS_TOKEN',
+            - Required when connection_type is one of ['GITLAB_ACCESS_TOKEN', 'VBS_ACCESS_TOKEN', 'GITHUB_ACCESS_TOKEN', 'BITBUCKET_SERVER_ACCESS_TOKEN',
               'GITLAB_SERVER_ACCESS_TOKEN']
         type: str
     base_url:
         description:
-            - The baseUrl of the hosted GitLabServer.
+            - The Base URL of the hosted VBS server.
             - This parameter is updatable.
-            - Applicable when connection_type is one of ['BITBUCKET_SERVER_ACCESS_TOKEN', 'GITLAB_SERVER_ACCESS_TOKEN']
-            - Required when connection_type is one of ['BITBUCKET_SERVER_ACCESS_TOKEN', 'GITLAB_SERVER_ACCESS_TOKEN']
+            - Required when connection_type is one of ['VBS_ACCESS_TOKEN', 'BITBUCKET_SERVER_ACCESS_TOKEN', 'GITLAB_SERVER_ACCESS_TOKEN']
         type: str
     tls_verify_config:
         description:
@@ -136,6 +136,20 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_creatable
 """
 
 EXAMPLES = """
+- name: Create connection with connection_type = VBS_ACCESS_TOKEN
+  oci_devops_connection:
+    # required
+    project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+    connection_type: VBS_ACCESS_TOKEN
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    access_token: access_token_example
+    base_url: base_url_example
+
 - name: Create connection with connection_type = GITLAB_SERVER_ACCESS_TOKEN
   oci_devops_connection:
     # required
@@ -212,6 +226,19 @@ EXAMPLES = """
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     access_token: access_token_example
 
+- name: Update connection with connection_type = VBS_ACCESS_TOKEN
+  oci_devops_connection:
+    # required
+    connection_type: VBS_ACCESS_TOKEN
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    access_token: access_token_example
+    base_url: base_url_example
+
 - name: Update connection with connection_type = GITLAB_SERVER_ACCESS_TOKEN
   oci_devops_connection:
     # required
@@ -282,6 +309,19 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     access_token: access_token_example
+
+- name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = VBS_ACCESS_TOKEN
+  oci_devops_connection:
+    # required
+    connection_type: VBS_ACCESS_TOKEN
+
+    # optional
+    description: description_example
+    display_name: display_name_example
+    freeform_tags: {'Department': 'Finance'}
+    defined_tags: {'Operations': {'CostCenter': 'US'}}
+    access_token: access_token_example
+    base_url: base_url_example
 
 - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = GITLAB_SERVER_ACCESS_TOKEN
   oci_devops_connection:
@@ -387,6 +427,24 @@ connection:
             returned: on success
             type: str
             sample: example-password
+        tls_verify_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                tls_verify_mode:
+                    description:
+                        - The type of TLS verification.
+                    returned: on success
+                    type: str
+                    sample: CA_CERTIFICATE_VERIFY
+                ca_certificate_bundle_id:
+                    description:
+                        - The OCID of OCI certificate service CA bundle.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.cacertificatebundle.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
                 - Unique identifier that is immutable on creation.
@@ -475,27 +533,13 @@ connection:
             returned: on success
             type: str
             sample: base_url_example
-        tls_verify_config:
-            description:
-                - ""
-            returned: on success
-            type: complex
-            contains:
-                tls_verify_mode:
-                    description:
-                        - The type of TLS verification.
-                    returned: on success
-                    type: str
-                    sample: CA_CERTIFICATE_VERIFY
-                ca_certificate_bundle_id:
-                    description:
-                        - The OCID of OCI certificate service CA bundle.
-                    returned: on success
-                    type: str
-                    sample: "ocid1.cacertificatebundle.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "username": "username_example",
         "app_password": "example-password",
+        "tls_verify_config": {
+            "tls_verify_mode": "CA_CERTIFICATE_VERIFY",
+            "ca_certificate_bundle_id": "ocid1.cacertificatebundle.oc1..xxxxxxEXAMPLExxxxxx"
+        },
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "description": "description_example",
         "display_name": "display_name_example",
@@ -509,11 +553,7 @@ connection:
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "system_tags": {},
         "access_token": "access_token_example",
-        "base_url": "base_url_example",
-        "tls_verify_config": {
-            "tls_verify_mode": "CA_CERTIFICATE_VERIFY",
-            "ca_certificate_bundle_id": "ocid1.cacertificatebundle.oc1..xxxxxxEXAMPLExxxxxx"
-        }
+        "base_url": "base_url_example"
     }
 """
 
@@ -676,6 +716,7 @@ def main():
             connection_type=dict(
                 type="str",
                 choices=[
+                    "VBS_ACCESS_TOKEN",
                     "GITLAB_SERVER_ACCESS_TOKEN",
                     "BITBUCKET_SERVER_ACCESS_TOKEN",
                     "GITHUB_ACCESS_TOKEN",

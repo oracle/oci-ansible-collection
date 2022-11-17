@@ -30,7 +30,7 @@ oracle.oci.oci_devops_trigger -- Manage a Trigger resource in Oracle Cloud Infra
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.0.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.1.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -101,7 +101,7 @@ Parameters
                                             <div>The list of actions that are to be performed for this trigger.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when trigger_source is one of [&#x27;DEVOPS_CODE_REPOSITORY&#x27;, &#x27;BITBUCKET_SERVER&#x27;, &#x27;BITBUCKET_CLOUD&#x27;, &#x27;GITHUB&#x27;, &#x27;GITLAB_SERVER&#x27;, &#x27;GITLAB&#x27;]</div>
+                                            <div>Applicable when trigger_source is one of [&#x27;DEVOPS_CODE_REPOSITORY&#x27;, &#x27;BITBUCKET_SERVER&#x27;, &#x27;VBS&#x27;, &#x27;BITBUCKET_CLOUD&#x27;, &#x27;GITHUB&#x27;, &#x27;GITLAB_SERVER&#x27;, &#x27;GITLAB&#x27;]</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -150,6 +150,9 @@ Parameters
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>PUSH</li>
+                                                                                                                                                                                                <li>MERGE_REQUEST_CREATED</li>
+                                                                                                                                                                                                <li>MERGE_REQUEST_UPDATED</li>
+                                                                                                                                                                                                <li>MERGE_REQUEST_MERGED</li>
                                                                                                                                                                                                 <li>PULL_REQUEST_CREATED</li>
                                                                                                                                                                                                 <li>PULL_REQUEST_UPDATED</li>
                                                                                                                                                                                                 <li>PULL_REQUEST_MERGED</li>
@@ -159,7 +162,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The events only support PUSH.</div>
+                                            <div>The events, for example, PUSH, PULL_REQUEST_MERGE.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -177,7 +180,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div></div>
-                                            <div>Applicable when trigger_source is one of [&#x27;DEVOPS_CODE_REPOSITORY&#x27;, &#x27;BITBUCKET_CLOUD&#x27;, &#x27;GITHUB&#x27;, &#x27;GITLAB_SERVER&#x27;, &#x27;GITLAB&#x27;]</div>
+                                            <div>Applicable when trigger_source is one of [&#x27;DEVOPS_CODE_REPOSITORY&#x27;, &#x27;VBS&#x27;, &#x27;BITBUCKET_CLOUD&#x27;, &#x27;GITHUB&#x27;, &#x27;GITLAB_SERVER&#x27;, &#x27;GITLAB&#x27;]</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -196,7 +199,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div></div>
-                                            <div>Applicable when trigger_source is one of [&#x27;DEVOPS_CODE_REPOSITORY&#x27;, &#x27;BITBUCKET_CLOUD&#x27;, &#x27;GITHUB&#x27;, &#x27;GITLAB_SERVER&#x27;, &#x27;GITLAB&#x27;]</div>
+                                            <div>Applicable when trigger_source is one of [&#x27;DEVOPS_CODE_REPOSITORY&#x27;, &#x27;VBS&#x27;, &#x27;BITBUCKET_CLOUD&#x27;, &#x27;GITHUB&#x27;, &#x27;GITLAB_SERVER&#x27;, &#x27;GITLAB&#x27;]</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -216,7 +219,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The file paths/glob pattern for files.</div>
-                                            <div>Applicable when trigger_source is &#x27;DEVOPS_CODE_REPOSITORY&#x27;</div>
+                                            <div>Applicable when trigger_source is &#x27;VBS&#x27;</div>
                                                         </td>
             </tr>
                     
@@ -254,7 +257,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The target branch for pull requests; not applicable for push requests.</div>
-                                            <div>Applicable when trigger_source is one of [&#x27;BITBUCKET_SERVER&#x27;, &#x27;BITBUCKET_CLOUD&#x27;, &#x27;GITHUB&#x27;, &#x27;GITLAB_SERVER&#x27;, &#x27;GITLAB&#x27;]</div>
+                                            <div>Applicable when trigger_source is one of [&#x27;BITBUCKET_SERVER&#x27;, &#x27;VBS&#x27;, &#x27;BITBUCKET_CLOUD&#x27;, &#x27;GITHUB&#x27;, &#x27;GITLAB_SERVER&#x27;, &#x27;GITLAB&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -273,7 +276,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div></div>
-                                            <div>Applicable when trigger_source is one of [&#x27;DEVOPS_CODE_REPOSITORY&#x27;, &#x27;BITBUCKET_CLOUD&#x27;, &#x27;GITHUB&#x27;, &#x27;GITLAB_SERVER&#x27;, &#x27;GITLAB&#x27;]</div>
+                                            <div>Applicable when trigger_source is one of [&#x27;DEVOPS_CODE_REPOSITORY&#x27;, &#x27;VBS&#x27;, &#x27;BITBUCKET_CLOUD&#x27;, &#x27;GITHUB&#x27;, &#x27;GITLAB_SERVER&#x27;, &#x27;GITLAB&#x27;]</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -293,7 +296,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The file paths/glob pattern for files.</div>
-                                            <div>Applicable when trigger_source is &#x27;DEVOPS_CODE_REPOSITORY&#x27;</div>
+                                            <div>Applicable when trigger_source is &#x27;VBS&#x27;</div>
                                                         </td>
             </tr>
                     
@@ -312,7 +315,26 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Branch for push event.</div>
+                                            <div>Branch for push event; source branch for pull requests.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-actions/filter/include/repository_name"></div>
+                    <b>repository_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-actions/filter/include/repository_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The repository name for trigger events.</div>
+                                            <div>Applicable when trigger_source is &#x27;VBS&#x27;</div>
                                                         </td>
             </tr>
                     
@@ -329,7 +351,8 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>DEVOPS_CODE_REPOSITORY</li>
+                                                                                                                                                                <li>VBS</li>
+                                                                                                                                                                                                <li>DEVOPS_CODE_REPOSITORY</li>
                                                                                                                                                                                                 <li>BITBUCKET_CLOUD</li>
                                                                                                                                                                                                 <li>BITBUCKET_SERVER</li>
                                                                                                                                                                                                 <li>GITLAB</li>
@@ -520,7 +543,7 @@ Parameters
                                                                 <td>
                                             <div>The OCID of the connection resource used to get details for triggered events.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when trigger_source is one of [&#x27;BITBUCKET_CLOUD&#x27;, &#x27;GITHUB&#x27;, &#x27;GITLAB&#x27;]</div>
+                                            <div>Applicable when trigger_source is one of [&#x27;VBS&#x27;, &#x27;BITBUCKET_CLOUD&#x27;, &#x27;GITHUB&#x27;, &#x27;GITLAB&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -737,6 +760,7 @@ Parameters
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>GITHUB</li>
+                                                                                                                                                                                                <li>VBS</li>
                                                                                                                                                                                                 <li>DEVOPS_CODE_REPOSITORY</li>
                                                                                                                                                                                                 <li>BITBUCKET_CLOUD</li>
                                                                                                                                                                                                 <li>GITLAB_SERVER</li>
@@ -825,12 +849,51 @@ Examples
           # optional
           filter:
             # required
-            trigger_source: DEVOPS_CODE_REPOSITORY
+            trigger_source: VBS
 
             # optional
             events: [ "PUSH" ]
             include:
               # optional
+              repository_name: repository_name_example
+              head_ref: head_ref_example
+              base_ref: base_ref_example
+              file_filter:
+                # optional
+                file_paths: [ "file_paths_example" ]
+            exclude:
+              # optional
+              file_filter:
+                # optional
+                file_paths: [ "file_paths_example" ]
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
+
+    - name: Create trigger with trigger_source = VBS
+      oci_devops_trigger:
+        # required
+        project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+        trigger_source: VBS
+
+        # optional
+        display_name: display_name_example
+        description: description_example
+        actions:
+        - # required
+          type: TRIGGER_BUILD_PIPELINE
+          build_pipeline_id: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
+
+          # optional
+          filter:
+            # required
+            trigger_source: VBS
+
+            # optional
+            events: [ "PUSH" ]
+            include:
+              # optional
+              repository_name: repository_name_example
               head_ref: head_ref_example
               base_ref: base_ref_example
               file_filter:
@@ -863,12 +926,13 @@ Examples
           # optional
           filter:
             # required
-            trigger_source: DEVOPS_CODE_REPOSITORY
+            trigger_source: VBS
 
             # optional
             events: [ "PUSH" ]
             include:
               # optional
+              repository_name: repository_name_example
               head_ref: head_ref_example
               base_ref: base_ref_example
               file_filter:
@@ -899,12 +963,13 @@ Examples
           # optional
           filter:
             # required
-            trigger_source: DEVOPS_CODE_REPOSITORY
+            trigger_source: VBS
 
             # optional
             events: [ "PUSH" ]
             include:
               # optional
+              repository_name: repository_name_example
               head_ref: head_ref_example
               base_ref: base_ref_example
               file_filter:
@@ -936,12 +1001,13 @@ Examples
           # optional
           filter:
             # required
-            trigger_source: DEVOPS_CODE_REPOSITORY
+            trigger_source: VBS
 
             # optional
             events: [ "PUSH" ]
             include:
               # optional
+              repository_name: repository_name_example
               head_ref: head_ref_example
               base_ref: base_ref_example
               file_filter:
@@ -972,12 +1038,13 @@ Examples
           # optional
           filter:
             # required
-            trigger_source: DEVOPS_CODE_REPOSITORY
+            trigger_source: VBS
 
             # optional
             events: [ "PUSH" ]
             include:
               # optional
+              repository_name: repository_name_example
               head_ref: head_ref_example
               base_ref: base_ref_example
               file_filter:
@@ -1009,12 +1076,13 @@ Examples
           # optional
           filter:
             # required
-            trigger_source: DEVOPS_CODE_REPOSITORY
+            trigger_source: VBS
 
             # optional
             events: [ "PUSH" ]
             include:
               # optional
+              repository_name: repository_name_example
               head_ref: head_ref_example
               base_ref: base_ref_example
               file_filter:
@@ -1044,12 +1112,50 @@ Examples
           # optional
           filter:
             # required
-            trigger_source: DEVOPS_CODE_REPOSITORY
+            trigger_source: VBS
 
             # optional
             events: [ "PUSH" ]
             include:
               # optional
+              repository_name: repository_name_example
+              head_ref: head_ref_example
+              base_ref: base_ref_example
+              file_filter:
+                # optional
+                file_paths: [ "file_paths_example" ]
+            exclude:
+              # optional
+              file_filter:
+                # optional
+                file_paths: [ "file_paths_example" ]
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
+
+    - name: Update trigger with trigger_source = VBS
+      oci_devops_trigger:
+        # required
+        trigger_source: VBS
+
+        # optional
+        display_name: display_name_example
+        description: description_example
+        actions:
+        - # required
+          type: TRIGGER_BUILD_PIPELINE
+          build_pipeline_id: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
+
+          # optional
+          filter:
+            # required
+            trigger_source: VBS
+
+            # optional
+            events: [ "PUSH" ]
+            include:
+              # optional
+              repository_name: repository_name_example
               head_ref: head_ref_example
               base_ref: base_ref_example
               file_filter:
@@ -1081,12 +1187,13 @@ Examples
           # optional
           filter:
             # required
-            trigger_source: DEVOPS_CODE_REPOSITORY
+            trigger_source: VBS
 
             # optional
             events: [ "PUSH" ]
             include:
               # optional
+              repository_name: repository_name_example
               head_ref: head_ref_example
               base_ref: base_ref_example
               file_filter:
@@ -1116,12 +1223,13 @@ Examples
           # optional
           filter:
             # required
-            trigger_source: DEVOPS_CODE_REPOSITORY
+            trigger_source: VBS
 
             # optional
             events: [ "PUSH" ]
             include:
               # optional
+              repository_name: repository_name_example
               head_ref: head_ref_example
               base_ref: base_ref_example
               file_filter:
@@ -1152,12 +1260,13 @@ Examples
           # optional
           filter:
             # required
-            trigger_source: DEVOPS_CODE_REPOSITORY
+            trigger_source: VBS
 
             # optional
             events: [ "PUSH" ]
             include:
               # optional
+              repository_name: repository_name_example
               head_ref: head_ref_example
               base_ref: base_ref_example
               file_filter:
@@ -1187,12 +1296,13 @@ Examples
           # optional
           filter:
             # required
-            trigger_source: DEVOPS_CODE_REPOSITORY
+            trigger_source: VBS
 
             # optional
             events: [ "PUSH" ]
             include:
               # optional
+              repository_name: repository_name_example
               head_ref: head_ref_example
               base_ref: base_ref_example
               file_filter:
@@ -1223,12 +1333,13 @@ Examples
           # optional
           filter:
             # required
-            trigger_source: DEVOPS_CODE_REPOSITORY
+            trigger_source: VBS
 
             # optional
             events: [ "PUSH" ]
             include:
               # optional
+              repository_name: repository_name_example
               head_ref: head_ref_example
               base_ref: base_ref_example
               file_filter:
@@ -1258,12 +1369,50 @@ Examples
           # optional
           filter:
             # required
-            trigger_source: DEVOPS_CODE_REPOSITORY
+            trigger_source: VBS
 
             # optional
             events: [ "PUSH" ]
             include:
               # optional
+              repository_name: repository_name_example
+              head_ref: head_ref_example
+              base_ref: base_ref_example
+              file_filter:
+                # optional
+                file_paths: [ "file_paths_example" ]
+            exclude:
+              # optional
+              file_filter:
+                # optional
+                file_paths: [ "file_paths_example" ]
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
+
+    - name: Update trigger using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with trigger_source = VBS
+      oci_devops_trigger:
+        # required
+        trigger_source: VBS
+
+        # optional
+        display_name: display_name_example
+        description: description_example
+        actions:
+        - # required
+          type: TRIGGER_BUILD_PIPELINE
+          build_pipeline_id: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
+
+          # optional
+          filter:
+            # required
+            trigger_source: VBS
+
+            # optional
+            events: [ "PUSH" ]
+            include:
+              # optional
+              repository_name: repository_name_example
               head_ref: head_ref_example
               base_ref: base_ref_example
               file_filter:
@@ -1295,12 +1444,13 @@ Examples
           # optional
           filter:
             # required
-            trigger_source: DEVOPS_CODE_REPOSITORY
+            trigger_source: VBS
 
             # optional
             events: [ "PUSH" ]
             include:
               # optional
+              repository_name: repository_name_example
               head_ref: head_ref_example
               base_ref: base_ref_example
               file_filter:
@@ -1330,12 +1480,13 @@ Examples
           # optional
           filter:
             # required
-            trigger_source: DEVOPS_CODE_REPOSITORY
+            trigger_source: VBS
 
             # optional
             events: [ "PUSH" ]
             include:
               # optional
+              repository_name: repository_name_example
               head_ref: head_ref_example
               base_ref: base_ref_example
               file_filter:
@@ -1366,12 +1517,13 @@ Examples
           # optional
           filter:
             # required
-            trigger_source: DEVOPS_CODE_REPOSITORY
+            trigger_source: VBS
 
             # optional
             events: [ "PUSH" ]
             include:
               # optional
+              repository_name: repository_name_example
               head_ref: head_ref_example
               base_ref: base_ref_example
               file_filter:
@@ -1401,12 +1553,13 @@ Examples
           # optional
           filter:
             # required
-            trigger_source: DEVOPS_CODE_REPOSITORY
+            trigger_source: VBS
 
             # optional
             events: [ "PUSH" ]
             include:
               # optional
+              repository_name: repository_name_example
               head_ref: head_ref_example
               base_ref: base_ref_example
               file_filter:
@@ -1437,12 +1590,13 @@ Examples
           # optional
           filter:
             # required
-            trigger_source: DEVOPS_CODE_REPOSITORY
+            trigger_source: VBS
 
             # optional
             events: [ "PUSH" ]
             include:
               # optional
+              repository_name: repository_name_example
               head_ref: head_ref_example
               base_ref: base_ref_example
               file_filter:
@@ -1503,7 +1657,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Trigger resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;actions&#x27;: [{&#x27;build_pipeline_id&#x27;: &#x27;ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;filter&#x27;: {&#x27;events&#x27;: [], &#x27;exclude&#x27;: {&#x27;file_filter&#x27;: {&#x27;file_paths&#x27;: []}}, &#x27;include&#x27;: {&#x27;base_ref&#x27;: &#x27;base_ref_example&#x27;, &#x27;file_filter&#x27;: {&#x27;file_paths&#x27;: []}, &#x27;head_ref&#x27;: &#x27;head_ref_example&#x27;}, &#x27;trigger_source&#x27;: &#x27;BITBUCKET_CLOUD&#x27;}, &#x27;type&#x27;: &#x27;TRIGGER_BUILD_PIPELINE&#x27;}], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_id&#x27;: &#x27;ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;repository_id&#x27;: &#x27;ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;trigger_source&#x27;: &#x27;GITHUB&#x27;, &#x27;trigger_url&#x27;: &#x27;trigger_url_example&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;actions&#x27;: [{&#x27;build_pipeline_id&#x27;: &#x27;ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;filter&#x27;: {&#x27;events&#x27;: [], &#x27;exclude&#x27;: {&#x27;file_filter&#x27;: {&#x27;file_paths&#x27;: []}}, &#x27;include&#x27;: {&#x27;base_ref&#x27;: &#x27;base_ref_example&#x27;, &#x27;file_filter&#x27;: {&#x27;file_paths&#x27;: []}, &#x27;head_ref&#x27;: &#x27;head_ref_example&#x27;, &#x27;repository_name&#x27;: &#x27;repository_name_example&#x27;}, &#x27;trigger_source&#x27;: &#x27;BITBUCKET_CLOUD&#x27;}, &#x27;type&#x27;: &#x27;TRIGGER_BUILD_PIPELINE&#x27;}], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_id&#x27;: &#x27;ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;repository_id&#x27;: &#x27;ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;trigger_source&#x27;: &#x27;GITHUB&#x27;, &#x27;trigger_url&#x27;: &#x27;trigger_url_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1733,6 +1887,27 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">head_ref_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-trigger/actions/filter/include/repository_name"></div>
+                    <b>repository_name</b>
+                    <a class="ansibleOptionLink" href="#return-trigger/actions/filter/include/repository_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The repository name for trigger events.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">repository_name_example</div>
                                     </td>
             </tr>
                     

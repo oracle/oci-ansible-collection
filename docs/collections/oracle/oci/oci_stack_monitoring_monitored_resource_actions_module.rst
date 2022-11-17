@@ -30,7 +30,7 @@ oracle.oci.oci_stack_monitoring_monitored_resource_actions -- Perform actions on
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.0.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.1.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -338,6 +338,54 @@ Parameters
                                                                 <td>
                                             <div>Source Monitored Resource Type</div>
                                             <div>Applicable only for <em>action=search_monitored_resource_associations</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-exclude_fields"></div>
+                    <b>exclude_fields</b>
+                    <a class="ansibleOptionLink" href="#parameter-exclude_fields" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Partial response refers to an optimization technique offered by the RESTful web APIs, to return all the information except the fields requested to be excluded (excludeFields) by the client. In this mechanism, the client sends the exclude field names as the query parameters for an API to the server, and the server trims down the default response content by removing the fields that are not required by the client. The parameter controls which fields to exlude and to return and should be a query string parameter called &quot;excludeFields&quot; of an array type, provide the values as enums, and use collectionFormat.</div>
+                                            <div>Applicable only for <em>action=search</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-external_id"></div>
+                    <b>external_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-external_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>External resource is any OCI resource identifier <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> which is not a Stack Monitoring service resource. Currently supports only following resource type identifiers - externalcontainerdatabase, externalnoncontainerdatabase, externalpluggabledatabase and OCI compute instance.</div>
+                                            <div>Applicable only for <em>action=search</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-fields"></div>
+                    <b>fields</b>
+                    <a class="ansibleOptionLink" href="#parameter-fields" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Partial response refers to an optimization technique offered by the RESTful web APIs, to return only the information (fields) required by the client. In this mechanism, the client sends the required field names as the query parameters for an API to the server, and the server trims down the default response content by removing the fields that are not required by the client. The parameter controls which fields to return and should be a query string parameter called &quot;fields&quot; of an array type, provide the values as enums, and use collectionFormat.</div>
+                                            <div>Applicable only for <em>action=search</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -846,6 +894,7 @@ Examples
         name_contains: name_contains_example
         type: type_example
         host_name: host_name_example
+        external_id: "ocid1.external.oc1..xxxxxxEXAMPLExxxxxx"
         host_name_contains: host_name_contains_example
         management_agent_id: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state: CREATING
@@ -857,6 +906,8 @@ Examples
         sort_order: ASC
         sort_by: TIME_CREATED
         property_equals: null
+        fields: [ "fields_example" ]
+        exclude_fields: [ "exclude_fields_example" ]
 
 
 
@@ -893,7 +944,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the MonitoredResource resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;aliases&#x27;: {&#x27;credential&#x27;: {&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;service&#x27;: &#x27;service_example&#x27;, &#x27;source&#x27;: &#x27;source_example&#x27;}, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;source&#x27;: &#x27;source_example&#x27;}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;credentials&#x27;: {&#x27;credential_type&#x27;: &#x27;EXISTING&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;key_id&#x27;: &#x27;ocid1.key.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;properties&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;source&#x27;: &#x27;source_example&#x27;, &#x27;type&#x27;: &#x27;type_example&#x27;}, &#x27;database_connection_details&#x27;: {&#x27;connector_id&#x27;: &#x27;ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_id&#x27;: &#x27;ocid1.db.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_unique_name&#x27;: &#x27;db_unique_name_example&#x27;, &#x27;port&#x27;: 56, &#x27;protocol&#x27;: &#x27;TCP&#x27;, &#x27;service_name&#x27;: &#x27;service_name_example&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;host_name&#x27;: &#x27;host_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;management_agent_id&#x27;: &#x27;ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;properties&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;resource_time_zone&#x27;: &#x27;resource_time_zone_example&#x27;, &#x27;system_tags&#x27;: {}, &#x27;tenant_id&#x27;: &#x27;ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;type_example&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;aliases&#x27;: {&#x27;credential&#x27;: {&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;service&#x27;: &#x27;service_example&#x27;, &#x27;source&#x27;: &#x27;source_example&#x27;}, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;source&#x27;: &#x27;source_example&#x27;}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;credentials&#x27;: {&#x27;credential_type&#x27;: &#x27;EXISTING&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;key_id&#x27;: &#x27;ocid1.key.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;properties&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;source&#x27;: &#x27;source_example&#x27;, &#x27;type&#x27;: &#x27;type_example&#x27;}, &#x27;database_connection_details&#x27;: {&#x27;connector_id&#x27;: &#x27;ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_id&#x27;: &#x27;ocid1.db.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_unique_name&#x27;: &#x27;db_unique_name_example&#x27;, &#x27;port&#x27;: 56, &#x27;protocol&#x27;: &#x27;TCP&#x27;, &#x27;service_name&#x27;: &#x27;service_name_example&#x27;, &#x27;ssl_secret_id&#x27;: &#x27;ocid1.sslsecret.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;external_id&#x27;: &#x27;ocid1.external.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;host_name&#x27;: &#x27;host_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;management_agent_id&#x27;: &#x27;ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;properties&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;resource_time_zone&#x27;: &#x27;resource_time_zone_example&#x27;, &#x27;system_tags&#x27;: {}, &#x27;tenant_id&#x27;: &#x27;ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;type_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1366,6 +1417,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">service_name_example</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-monitored_resource/database_connection_details/ssl_secret_id"></div>
+                    <b>ssl_secret_id</b>
+                    <a class="ansibleOptionLink" href="#return-monitored_resource/database_connection_details/ssl_secret_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>SSL Secret Identifier for TCPS connector in OCI VaultL(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.sslsecret.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1401,6 +1471,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-monitored_resource/external_id"></div>
+                    <b>external_id</b>
+                    <a class="ansibleOptionLink" href="#return-monitored_resource/external_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>External resource is any OCI resource identifier <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> which is not a Stack Monitoring service resource. Currently supports only following resource type identifiers - externalcontainerdatabase, externalnoncontainerdatabase, externalpluggabledatabase and OCI compute instance.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.external.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                                 <tr>

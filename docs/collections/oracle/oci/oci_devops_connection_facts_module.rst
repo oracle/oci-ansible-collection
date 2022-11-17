@@ -30,7 +30,7 @@ oracle.oci.oci_devops_connection_facts -- Fetches details about one or multiple 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.0.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.1.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -279,6 +279,7 @@ Parameters
                                                                                                                                                                                                 <li>GITLAB_SERVER_ACCESS_TOKEN</li>
                                                                                                                                                                                                 <li>BITBUCKET_SERVER_ACCESS_TOKEN</li>
                                                                                                                                                                                                 <li>BITBUCKET_CLOUD_APP_PASSWORD</li>
+                                                                                                                                                                                                <li>VBS_ACCESS_TOKEN</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>

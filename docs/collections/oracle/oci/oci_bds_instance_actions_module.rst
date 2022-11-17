@@ -30,7 +30,7 @@ oracle.oci.oci_bds_instance_actions -- Perform actions on a BdsInstance resource
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.0.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.1.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -66,6 +66,8 @@ Synopsis
 - For *action=remove_cloud_sql*, removes Cloud SQL from the cluster.
 - For *action=remove_node*, remove a single node of a Big Data Service cluster
 - For *action=restart_node*, restarts a single node of a Big Data Service cluster
+- For *action=start*, starts the BDS cluster that was stopped earlier.
+- For *action=stop*, stops the BDS cluster that can be started at later point of time.
 
 
 .. Aliases
@@ -114,6 +116,8 @@ Parameters
                                                                                                                                                                                                 <li>remove_cloud_sql</li>
                                                                                                                                                                                                 <li>remove_node</li>
                                                                                                                                                                                                 <li>restart_node</li>
+                                                                                                                                                                                                <li>start</li>
+                                                                                                                                                                                                <li>stop</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -279,7 +283,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Base-64 encoded password for the cluster (and Cloudera Manager) admin user.</div>
-                                            <div>Required for <em>action=add_block_storage</em>, <em>action=add_cloud_sql</em>, <em>action=add_worker_nodes</em>, <em>action=change_shape</em>, <em>action=install_patch</em>, <em>action=remove_cloud_sql</em>, <em>action=remove_node</em>.</div>
+                                            <div>Required for <em>action=add_block_storage</em>, <em>action=add_cloud_sql</em>, <em>action=add_worker_nodes</em>, <em>action=change_shape</em>, <em>action=install_patch</em>, <em>action=remove_cloud_sql</em>, <em>action=remove_node</em>, <em>action=start</em>, <em>action=stop</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -350,6 +354,26 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-is_force_stop_jobs"></div>
+                    <b>is_force_stop_jobs</b>
+                    <a class="ansibleOptionLink" href="#parameter-is_force_stop_jobs" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Boolean indicating whether to force stop jobs while stopping cluster. Defaults to false.</div>
+                                            <div>Applicable only for <em>action=stop</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-node_id"></div>
                     <b>node_id</b>
                     <a class="ansibleOptionLink" href="#parameter-node_id" title="Permalink to this option"></a>
@@ -413,9 +437,77 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Change shape of the Cloud SQL node to the desired target shape. Only VM_STANDARD shapes are allowed here.</div>
+                                            <div>Change shape of the Cloud SQL node to the desired target shape. Both VM_STANDARD and E4 Flex shapes are allowed here.</div>
                                                         </td>
             </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-nodes/cloudsql_shape_config"></div>
+                    <b>cloudsql_shape_config</b>
+                    <a class="ansibleOptionLink" href="#parameter-nodes/cloudsql_shape_config" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-nodes/cloudsql_shape_config/memory_in_gbs"></div>
+                    <b>memory_in_gbs</b>
+                    <a class="ansibleOptionLink" href="#parameter-nodes/cloudsql_shape_config/memory_in_gbs" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The total amount of memory available to the node, in gigabytes.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-nodes/cloudsql_shape_config/nvmes"></div>
+                    <b>nvmes</b>
+                    <a class="ansibleOptionLink" href="#parameter-nodes/cloudsql_shape_config/nvmes" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The number of NVMe drives to be used for storage. A single drive has 6.8 TB available.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-nodes/cloudsql_shape_config/ocpus"></div>
+                    <b>ocpus</b>
+                    <a class="ansibleOptionLink" href="#parameter-nodes/cloudsql_shape_config/ocpus" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The total number of OCPUs available to the node.</div>
+                                                        </td>
+            </tr>
+                    
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="2">
@@ -462,7 +554,24 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The total amount of memory available to the node, in gigabytes</div>
+                                            <div>The total amount of memory available to the node, in gigabytes.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-nodes/compute_only_worker_shape_config/nvmes"></div>
+                    <b>nvmes</b>
+                    <a class="ansibleOptionLink" href="#parameter-nodes/compute_only_worker_shape_config/nvmes" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The number of NVMe drives to be used for storage. A single drive has 6.8 TB available.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -529,7 +638,24 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The total amount of memory available to the node, in gigabytes</div>
+                                            <div>The total amount of memory available to the node, in gigabytes.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-nodes/master_shape_config/nvmes"></div>
+                    <b>nvmes</b>
+                    <a class="ansibleOptionLink" href="#parameter-nodes/master_shape_config/nvmes" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The number of NVMe drives to be used for storage. A single drive has 6.8 TB available.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -596,7 +722,24 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The total amount of memory available to the node, in gigabytes</div>
+                                            <div>The total amount of memory available to the node, in gigabytes.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-nodes/utility_shape_config/nvmes"></div>
+                    <b>nvmes</b>
+                    <a class="ansibleOptionLink" href="#parameter-nodes/utility_shape_config/nvmes" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The number of NVMe drives to be used for storage. A single drive has 6.8 TB available.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -663,7 +806,24 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The total amount of memory available to the node, in gigabytes</div>
+                                            <div>The total amount of memory available to the node, in gigabytes.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-nodes/worker_shape_config/nvmes"></div>
+                    <b>nvmes</b>
+                    <a class="ansibleOptionLink" href="#parameter-nodes/worker_shape_config/nvmes" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The number of NVMe drives to be used for storage. A single drive has 6.8 TB available.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -761,7 +921,23 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The total amount of memory available to the node, in gigabytes</div>
+                                            <div>The total amount of memory available to the node, in gigabytes.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-shape_config/nvmes"></div>
+                    <b>nvmes</b>
+                    <a class="ansibleOptionLink" href="#parameter-shape_config/nvmes" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The number of NVMe drives to be used for storage. A single drive has 6.8 TB available.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -876,16 +1052,16 @@ Examples
         # required
         node_type: WORKER
         block_volume_size_in_gbs: 56
-        cluster_admin_password: example-password
         bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+        cluster_admin_password: example-password
         action: add_block_storage
 
     - name: Perform action add_cloud_sql on bds_instance
       oci_bds_instance_actions:
         # required
         shape: shape_example
-        cluster_admin_password: example-password
         bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+        cluster_admin_password: example-password
         action: add_cloud_sql
 
         # optional
@@ -894,14 +1070,15 @@ Examples
           # optional
           ocpus: 56
           memory_in_gbs: 56
+          nvmes: 56
 
     - name: Perform action add_worker_nodes on bds_instance
       oci_bds_instance_actions:
         # required
         number_of_worker_nodes: 56
         node_type: WORKER
-        cluster_admin_password: example-password
         bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+        cluster_admin_password: example-password
         action: add_worker_nodes
 
         # optional
@@ -911,6 +1088,7 @@ Examples
           # optional
           ocpus: 56
           memory_in_gbs: 56
+          nvmes: 56
 
     - name: Perform action change_compartment on bds_instance
       oci_bds_instance_actions:
@@ -929,47 +1107,56 @@ Examples
             # optional
             ocpus: 56
             memory_in_gbs: 56
+            nvmes: 56
           compute_only_worker: compute_only_worker_example
           compute_only_worker_shape_config:
             # optional
             ocpus: 56
             memory_in_gbs: 56
+            nvmes: 56
           master: master_example
           master_shape_config:
             # optional
             ocpus: 56
             memory_in_gbs: 56
+            nvmes: 56
           utility: utility_example
           utility_shape_config:
             # optional
             ocpus: 56
             memory_in_gbs: 56
+            nvmes: 56
           cloudsql: cloudsql_example
-        cluster_admin_password: example-password
+          cloudsql_shape_config:
+            # optional
+            ocpus: 56
+            memory_in_gbs: 56
+            nvmes: 56
         bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+        cluster_admin_password: example-password
         action: change_shape
 
     - name: Perform action install_patch on bds_instance
       oci_bds_instance_actions:
         # required
         version: version_example
-        cluster_admin_password: example-password
         bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+        cluster_admin_password: example-password
         action: install_patch
 
     - name: Perform action remove_cloud_sql on bds_instance
       oci_bds_instance_actions:
         # required
-        cluster_admin_password: example-password
         bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+        cluster_admin_password: example-password
         action: remove_cloud_sql
 
     - name: Perform action remove_node on bds_instance
       oci_bds_instance_actions:
         # required
-        cluster_admin_password: example-password
-        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         node_id: "ocid1.node.oc1..xxxxxxEXAMPLExxxxxx"
+        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+        cluster_admin_password: example-password
         action: remove_node
 
         # optional
@@ -978,9 +1165,26 @@ Examples
     - name: Perform action restart_node on bds_instance
       oci_bds_instance_actions:
         # required
-        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         node_id: "ocid1.node.oc1..xxxxxxEXAMPLExxxxxx"
+        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
         action: restart_node
+
+    - name: Perform action start on bds_instance
+      oci_bds_instance_actions:
+        # required
+        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+        cluster_admin_password: example-password
+        action: start
+
+    - name: Perform action stop on bds_instance
+      oci_bds_instance_actions:
+        # required
+        bds_instance_id: "ocid1.bdsinstance.oc1..xxxxxxEXAMPLExxxxxx"
+        cluster_admin_password: example-password
+        action: stop
+
+        # optional
+        is_force_stop_jobs: true
 
 
 
@@ -1017,7 +1221,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the BdsInstance resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;bootstrap_script_url&#x27;: &#x27;bootstrap_script_url_example&#x27;, &#x27;cloud_sql_details&#x27;: {&#x27;block_volume_size_in_gbs&#x27;: 56, &#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;is_kerberos_mapped_to_database_users&#x27;: True, &#x27;kerberos_details&#x27;: [{&#x27;keytab_file&#x27;: &#x27;keytab_file_example&#x27;, &#x27;principal_name&#x27;: &#x27;principal_name_example&#x27;}], &#x27;shape&#x27;: &#x27;shape_example&#x27;}, &#x27;cluster_details&#x27;: {&#x27;ambari_url&#x27;: &#x27;ambari_url_example&#x27;, &#x27;bd_cell_version&#x27;: &#x27;bd_cell_version_example&#x27;, &#x27;bda_version&#x27;: &#x27;bda_version_example&#x27;, &#x27;bdm_version&#x27;: &#x27;bdm_version_example&#x27;, &#x27;bds_version&#x27;: &#x27;bds_version_example&#x27;, &#x27;big_data_manager_url&#x27;: &#x27;big_data_manager_url_example&#x27;, &#x27;cloudera_manager_url&#x27;: &#x27;cloudera_manager_url_example&#x27;, &#x27;csql_cell_version&#x27;: &#x27;csql_cell_version_example&#x27;, &#x27;db_version&#x27;: &#x27;db_version_example&#x27;, &#x27;hue_server_url&#x27;: &#x27;hue_server_url_example&#x27;, &#x27;jupyter_hub_url&#x27;: &#x27;jupyter_hub_url_example&#x27;, &#x27;odh_version&#x27;: &#x27;odh_version_example&#x27;, &#x27;os_version&#x27;: &#x27;os_version_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_refreshed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;cluster_version&#x27;: &#x27;CDH5&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by&#x27;: &#x27;created_by_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_cloud_sql_configured&#x27;: True, &#x27;is_high_availability&#x27;: True, &#x27;is_secure&#x27;: True, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;network_config&#x27;: {&#x27;cidr_block&#x27;: &#x27;cidr_block_example&#x27;, &#x27;is_nat_gateway_required&#x27;: True}, &#x27;nodes&#x27;: [{&#x27;attached_block_volumes&#x27;: [{&#x27;volume_attachment_id&#x27;: &#x27;ocid1.volumeattachment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;volume_size_in_gbs&#x27;: 56}], &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;fault_domain&#x27;: &#x27;FAULT-DOMAIN-1&#x27;, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_id&#x27;: &#x27;ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;memory_in_gbs&#x27;: 56, &#x27;node_type&#x27;: &#x27;MASTER&#x27;, &#x27;ocpus&#x27;: 56, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;ssh_fingerprint&#x27;: &#x27;ssh_fingerprint_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;number_of_nodes&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;bootstrap_script_url&#x27;: &#x27;bootstrap_script_url_example&#x27;, &#x27;cloud_sql_details&#x27;: {&#x27;block_volume_size_in_gbs&#x27;: 56, &#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;is_kerberos_mapped_to_database_users&#x27;: True, &#x27;kerberos_details&#x27;: [{&#x27;keytab_file&#x27;: &#x27;keytab_file_example&#x27;, &#x27;principal_name&#x27;: &#x27;principal_name_example&#x27;}], &#x27;shape&#x27;: &#x27;shape_example&#x27;}, &#x27;cluster_details&#x27;: {&#x27;ambari_url&#x27;: &#x27;ambari_url_example&#x27;, &#x27;bd_cell_version&#x27;: &#x27;bd_cell_version_example&#x27;, &#x27;bda_version&#x27;: &#x27;bda_version_example&#x27;, &#x27;bdm_version&#x27;: &#x27;bdm_version_example&#x27;, &#x27;bds_version&#x27;: &#x27;bds_version_example&#x27;, &#x27;big_data_manager_url&#x27;: &#x27;big_data_manager_url_example&#x27;, &#x27;cloudera_manager_url&#x27;: &#x27;cloudera_manager_url_example&#x27;, &#x27;csql_cell_version&#x27;: &#x27;csql_cell_version_example&#x27;, &#x27;db_version&#x27;: &#x27;db_version_example&#x27;, &#x27;hue_server_url&#x27;: &#x27;hue_server_url_example&#x27;, &#x27;jupyter_hub_url&#x27;: &#x27;jupyter_hub_url_example&#x27;, &#x27;odh_version&#x27;: &#x27;odh_version_example&#x27;, &#x27;os_version&#x27;: &#x27;os_version_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_refreshed&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;cluster_version&#x27;: &#x27;CDH5&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by&#x27;: &#x27;created_by_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_cloud_sql_configured&#x27;: True, &#x27;is_high_availability&#x27;: True, &#x27;is_secure&#x27;: True, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;network_config&#x27;: {&#x27;cidr_block&#x27;: &#x27;cidr_block_example&#x27;, &#x27;is_nat_gateway_required&#x27;: True}, &#x27;nodes&#x27;: [{&#x27;attached_block_volumes&#x27;: [{&#x27;volume_attachment_id&#x27;: &#x27;ocid1.volumeattachment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;volume_size_in_gbs&#x27;: 56}], &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;fault_domain&#x27;: &#x27;FAULT-DOMAIN-1&#x27;, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;image_id&#x27;: &#x27;ocid1.image.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;instance_id&#x27;: &#x27;ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ip_address&#x27;: &#x27;ip_address_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;local_disks_total_size_in_gbs&#x27;: 1.2, &#x27;memory_in_gbs&#x27;: 56, &#x27;node_type&#x27;: &#x27;MASTER&#x27;, &#x27;nvmes&#x27;: 56, &#x27;ocpus&#x27;: 56, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;ssh_fingerprint&#x27;: &#x27;ssh_fingerprint_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;number_of_nodes&#x27;: 56, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1992,6 +2196,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-bds_instance/nodes/local_disks_total_size_in_gbs"></div>
+                    <b>local_disks_total_size_in_gbs</b>
+                    <a class="ansibleOptionLink" href="#return-bds_instance/nodes/local_disks_total_size_in_gbs" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The aggregate size of all local disks, in gigabytes. If the instance does not have any local disks, this field is null.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-bds_instance/nodes/memory_in_gbs"></div>
                     <b>memory_in_gbs</b>
                     <a class="ansibleOptionLink" href="#return-bds_instance/nodes/memory_in_gbs" title="Permalink to this return value"></a>
@@ -2024,6 +2247,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">MASTER</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-bds_instance/nodes/nvmes"></div>
+                    <b>nvmes</b>
+                    <a class="ansibleOptionLink" href="#return-bds_instance/nodes/nvmes" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The number of NVMe drives to be used for storage. A single drive has 6.8 TB available.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                                 <tr>

@@ -30,7 +30,7 @@ oracle.oci.oci_devops_build_pipeline_stage -- Manage a BuildPipelineStage resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.0.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.1.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -362,8 +362,8 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Connection identifier pertinent to Bitbucket Server source provider</div>
-                                            <div>Required when connection_type is one of [&#x27;BITBUCKET_SERVER&#x27;, &#x27;BITBUCKET_CLOUD&#x27;, &#x27;GITHUB&#x27;, &#x27;GITLAB_SERVER&#x27;, &#x27;GITLAB&#x27;]</div>
+                                            <div>Connection identifier pertinent to VBS Server source provider</div>
+                                            <div>Required when connection_type is one of [&#x27;BITBUCKET_SERVER&#x27;, &#x27;VBS&#x27;, &#x27;BITBUCKET_CLOUD&#x27;, &#x27;GITHUB&#x27;, &#x27;GITLAB_SERVER&#x27;, &#x27;GITLAB&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -379,7 +379,8 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>BITBUCKET_SERVER</li>
+                                                                                                                                                                <li>VBS</li>
+                                                                                                                                                                                                <li>BITBUCKET_SERVER</li>
                                                                                                                                                                                                 <li>GITHUB</li>
                                                                                                                                                                                                 <li>BITBUCKET_CLOUD</li>
                                                                                                                                                                                                 <li>GITLAB_SERVER</li>
@@ -1087,7 +1088,7 @@ Examples
           items:
           - # required
             name: name_example
-            connection_type: BITBUCKET_SERVER
+            connection_type: VBS
             repository_url: repository_url_example
             branch: branch_example
             connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1183,7 +1184,7 @@ Examples
           items:
           - # required
             name: name_example
-            connection_type: BITBUCKET_SERVER
+            connection_type: VBS
             repository_url: repository_url_example
             branch: branch_example
             connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1281,7 +1282,7 @@ Examples
           items:
           - # required
             name: name_example
-            connection_type: BITBUCKET_SERVER
+            connection_type: VBS
             repository_url: repository_url_example
             branch: branch_example
             connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"

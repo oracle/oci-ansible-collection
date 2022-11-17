@@ -13,13 +13,6 @@ from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
 from base64 import b64encode
 
 
-try:
-
-    HAS_OCI_PY_SDK = True
-except ImportError:
-    HAS_OCI_PY_SDK = False
-
-
 class PrivateApplicationHelperCustom:
     """
     Custom helper for PrivateApplicationHelper resource.
