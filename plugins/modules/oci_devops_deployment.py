@@ -93,12 +93,13 @@ options:
     previous_deployment_id:
         description:
             - Specifies the OCID of the previous deployment to be redeployed.
-            - Applicable when deployment_type is one of ['SINGLE_STAGE_REDEPLOYMENT', 'PIPELINE_REDEPLOYMENT']
+            - Applicable when deployment_type is 'SINGLE_STAGE_REDEPLOYMENT'
+            - Required when deployment_type is 'PIPELINE_REDEPLOYMENT'
         type: str
     deploy_stage_id:
         description:
             - Specifies the OCID of the stage to be redeployed.
-            - Applicable when deployment_type is one of ['SINGLE_STAGE_REDEPLOYMENT', 'SINGLE_STAGE_DEPLOYMENT']
+            - Required when deployment_type is one of ['SINGLE_STAGE_REDEPLOYMENT', 'SINGLE_STAGE_DEPLOYMENT']
         type: str
     deployment_id:
         description:
@@ -151,10 +152,10 @@ EXAMPLES = """
   oci_devops_deployment:
     # required
     deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+    previous_deployment_id: "ocid1.previousdeployment.oc1..xxxxxxEXAMPLExxxxxx"
     deployment_type: PIPELINE_REDEPLOYMENT
 
     # optional
-    previous_deployment_id: "ocid1.previousdeployment.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -187,6 +188,7 @@ EXAMPLES = """
   oci_devops_deployment:
     # required
     deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_stage_id: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
     deployment_type: SINGLE_STAGE_DEPLOYMENT
 
     # optional
@@ -203,7 +205,6 @@ EXAMPLES = """
         deploy_artifact_id: "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
         value: value_example
-    deploy_stage_id: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -212,11 +213,11 @@ EXAMPLES = """
   oci_devops_deployment:
     # required
     deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+    deploy_stage_id: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
     deployment_type: SINGLE_STAGE_REDEPLOYMENT
 
     # optional
     previous_deployment_id: "ocid1.previousdeployment.oc1..xxxxxxEXAMPLExxxxxx"
-    deploy_stage_id: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}

@@ -105,6 +105,14 @@ options:
             - A filter to return resources with host name match
             - Applicable only for I(action=search).
         type: str
+    external_id:
+        description:
+            - "External resource is any OCI resource identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+              which is not a Stack Monitoring service resource.
+              Currently supports only following resource type identifiers - externalcontainerdatabase,
+              externalnoncontainerdatabase, externalpluggabledatabase and OCI compute instance."
+            - Applicable only for I(action=search).
+        type: str
     host_name_contains:
         description:
             - A filter to return resources with host name pattern
@@ -202,6 +210,36 @@ options:
             - Criteria based on resource property.
             - Applicable only for I(action=search).
         type: dict
+    fields:
+        description:
+            - "Partial response refers to an optimization technique offered
+              by the RESTful web APIs, to return only the information
+              (fields) required by the client. In this mechanism, the client
+              sends the required field names as the query parameters for
+              an API to the server, and the server trims down the default
+              response content by removing the fields that are not required
+              by the client. The parameter controls which fields to
+              return and should be a query string parameter called \\"fields\\" of
+              an array type, provide the values as enums, and use collectionFormat."
+            - Applicable only for I(action=search).
+        type: list
+        elements: str
+    exclude_fields:
+        description:
+            - "Partial response refers to an optimization technique offered
+              by the RESTful web APIs, to return all the information except
+              the fields requested to be excluded (excludeFields) by the client.
+              In this mechanism, the client
+              sends the exclude field names as the query parameters for
+              an API to the server, and the server trims down the default
+              response content by removing the fields that are not required
+              by the client. The parameter controls which fields to
+              exlude and to return and should be a query string parameter
+              called \\"excludeFields\\" of an array type, provide the values
+              as enums, and use collectionFormat."
+            - Applicable only for I(action=search).
+        type: list
+        elements: str
     action:
         description:
             - The action to perform on the MonitoredResource.
@@ -292,6 +330,7 @@ EXAMPLES = """
     name_contains: name_contains_example
     type: type_example
     host_name: host_name_example
+    external_id: "ocid1.external.oc1..xxxxxxEXAMPLExxxxxx"
     host_name_contains: host_name_contains_example
     management_agent_id: "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx"
     lifecycle_state: CREATING
@@ -303,6 +342,8 @@ EXAMPLES = """
     sort_order: ASC
     sort_by: TIME_CREATED
     property_equals: null
+    fields: [ "fields_example" ]
+    exclude_fields: [ "exclude_fields_example" ]
 
 """
 
@@ -355,6 +396,15 @@ monitored_resource:
             returned: on success
             type: str
             sample: host_name_example
+        external_id:
+            description:
+                - "External resource is any OCI resource identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+                  which is not a Stack Monitoring service resource.
+                  Currently supports only following resource type identifiers - externalcontainerdatabase,
+                  externalnoncontainerdatabase, externalpluggabledatabase and OCI compute instance."
+            returned: on success
+            type: str
+            sample: "ocid1.external.oc1..xxxxxxEXAMPLExxxxxx"
         management_agent_id:
             description:
                 - Management Agent Identifier L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -445,6 +495,12 @@ monitored_resource:
                     returned: on success
                     type: str
                     sample: "ocid1.db.oc1..xxxxxxEXAMPLExxxxxx"
+                ssl_secret_id:
+                    description:
+                        - SSL Secret Identifier for TCPS connector in OCI VaultL(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)
+                    returned: on success
+                    type: str
+                    sample: "ocid1.sslsecret.oc1..xxxxxxEXAMPLExxxxxx"
         credentials:
             description:
                 - ""
@@ -587,6 +643,7 @@ monitored_resource:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "tenant_id": "ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx",
         "host_name": "host_name_example",
+        "external_id": "ocid1.external.oc1..xxxxxxEXAMPLExxxxxx",
         "management_agent_id": "ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx",
         "resource_time_zone": "resource_time_zone_example",
         "time_created": "2013-10-20T19:20:30+01:00",
@@ -602,7 +659,8 @@ monitored_resource:
             "connector_id": "ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx",
             "service_name": "service_name_example",
             "db_unique_name": "db_unique_name_example",
-            "db_id": "ocid1.db.oc1..xxxxxxEXAMPLExxxxxx"
+            "db_id": "ocid1.db.oc1..xxxxxxEXAMPLExxxxxx",
+            "ssl_secret_id": "ocid1.sslsecret.oc1..xxxxxxEXAMPLExxxxxx"
         },
         "credentials": {
             "key_id": "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx",
@@ -810,7 +868,11 @@ class MonitoredResourceActionsHelperGen(OCIActionsHelperBase):
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.search_monitored_resources,
             call_fn_args=(),
-            call_fn_kwargs=dict(search_monitored_resources_details=action_details,),
+            call_fn_kwargs=dict(
+                search_monitored_resources_details=action_details,
+                fields=self.module.params.get("fields"),
+                exclude_fields=self.module.params.get("exclude_fields"),
+            ),
             waiter_type=oci_wait_utils.NONE_WAITER_KEY,
             operation="{0}_{1}".format(
                 self.module.params.get("action").upper(),
@@ -855,6 +917,7 @@ def main():
             name_contains=dict(type="str"),
             type=dict(type="str"),
             host_name=dict(type="str"),
+            external_id=dict(type="str"),
             host_name_contains=dict(type="str"),
             management_agent_id=dict(type="str"),
             lifecycle_state=dict(
@@ -886,6 +949,8 @@ def main():
                 ],
             ),
             property_equals=dict(type="dict"),
+            fields=dict(type="list", elements="str"),
+            exclude_fields=dict(type="list", elements="str"),
             action=dict(
                 type="str",
                 required=True,

@@ -665,6 +665,12 @@ build_runs:
                     returned: on success
                     type: str
                     sample: "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx"
+                source_type:
+                    description:
+                        - The source from which the build run is triggered.
+                    returned: on success
+                    type: str
+                    sample: MANUAL
                 trigger_id:
                     description:
                         - The trigger that invoked the build run.
@@ -743,6 +749,12 @@ build_runs:
                                                             returned: on success
                                                             type: list
                                                             sample: []
+                                                repository_name:
+                                                    description:
+                                                        - The repository name for trigger events.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: repository_name_example
                                         exclude:
                                             description:
                                                 - ""
@@ -767,12 +779,6 @@ build_runs:
                                     returned: on success
                                     type: str
                                     sample: "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
-                source_type:
-                    description:
-                        - The source from which the build run is triggered.
-                    returned: on success
-                    type: str
-                    sample: MANUAL
         build_run_arguments:
             description:
                 - ""
@@ -1005,6 +1011,7 @@ build_runs:
         "build_pipeline_id": "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx",
         "build_run_source": {
             "repository_id": "ocid1.repository.oc1..xxxxxxEXAMPLExxxxxx",
+            "source_type": "MANUAL",
             "trigger_id": "ocid1.trigger.oc1..xxxxxxEXAMPLExxxxxx",
             "trigger_info": {
                 "display_name": "display_name_example",
@@ -1018,7 +1025,8 @@ build_runs:
                             "base_ref": "base_ref_example",
                             "file_filter": {
                                 "file_paths": []
-                            }
+                            },
+                            "repository_name": "repository_name_example"
                         },
                         "exclude": {
                             "file_filter": {
@@ -1028,8 +1036,7 @@ build_runs:
                     },
                     "build_pipeline_id": "ocid1.buildpipeline.oc1..xxxxxxEXAMPLExxxxxx"
                 }]
-            },
-            "source_type": "MANUAL"
+            }
         },
         "build_run_arguments": {
             "items": [{

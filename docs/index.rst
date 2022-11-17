@@ -17,6 +17,7 @@ Oracle Cloud Infrastructure Ansible Collection - |version|
    Modules Index <collections/oracle/oci/index>
    Inventory Plugin <inventory_plugin/index>
    AWX <guides/awx/index.rst>
+   Logging <guides/logging-guide.rst>
 
 
 

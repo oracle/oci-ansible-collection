@@ -67,6 +67,7 @@ options:
                     - "OCI_ORACLE_DB"
                     - "OCI_ORACLE_CDB"
                     - "OCI_ORACLE_PDB"
+                    - "HOST"
                 required: true
             resource_name:
                 description:
@@ -544,6 +545,7 @@ def main():
                             "OCI_ORACLE_DB",
                             "OCI_ORACLE_CDB",
                             "OCI_ORACLE_PDB",
+                            "HOST",
                         ],
                     ),
                     resource_name=dict(type="str", required=True),

@@ -57,6 +57,7 @@ class ContainerImageSignatureHelperCustom:
         exclude_attrs = super(
             ContainerImageSignatureHelperCustom, self
         ).get_exclude_attributes()
-        exclude_attrs.pop("msg", None)
+        remove_exclude_attributes = ["msg"]
+        exclude_attrs = [x for x in exclude_attrs if x not in remove_exclude_attributes]
         exclude_attrs.append("message")
         return exclude_attrs

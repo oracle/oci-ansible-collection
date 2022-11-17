@@ -30,7 +30,7 @@ oracle.oci.oci_stack_monitoring_monitored_resource_facts -- Fetches details abou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.0.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.1.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -371,7 +371,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>MonitoredResource resource</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;aliases&#x27;: {&#x27;credential&#x27;: {&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;service&#x27;: &#x27;service_example&#x27;, &#x27;source&#x27;: &#x27;source_example&#x27;}, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;source&#x27;: &#x27;source_example&#x27;}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;credentials&#x27;: {&#x27;credential_type&#x27;: &#x27;EXISTING&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;key_id&#x27;: &#x27;ocid1.key.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;properties&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;source&#x27;: &#x27;source_example&#x27;, &#x27;type&#x27;: &#x27;type_example&#x27;}, &#x27;database_connection_details&#x27;: {&#x27;connector_id&#x27;: &#x27;ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_id&#x27;: &#x27;ocid1.db.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_unique_name&#x27;: &#x27;db_unique_name_example&#x27;, &#x27;port&#x27;: 56, &#x27;protocol&#x27;: &#x27;TCP&#x27;, &#x27;service_name&#x27;: &#x27;service_name_example&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;host_name&#x27;: &#x27;host_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;management_agent_id&#x27;: &#x27;ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;properties&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;resource_time_zone&#x27;: &#x27;resource_time_zone_example&#x27;, &#x27;system_tags&#x27;: {}, &#x27;tenant_id&#x27;: &#x27;ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;type_example&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;aliases&#x27;: {&#x27;credential&#x27;: {&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;service&#x27;: &#x27;service_example&#x27;, &#x27;source&#x27;: &#x27;source_example&#x27;}, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;source&#x27;: &#x27;source_example&#x27;}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;credentials&#x27;: {&#x27;credential_type&#x27;: &#x27;EXISTING&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;key_id&#x27;: &#x27;ocid1.key.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;properties&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;source&#x27;: &#x27;source_example&#x27;, &#x27;type&#x27;: &#x27;type_example&#x27;}, &#x27;database_connection_details&#x27;: {&#x27;connector_id&#x27;: &#x27;ocid1.connector.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_id&#x27;: &#x27;ocid1.db.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;db_unique_name&#x27;: &#x27;db_unique_name_example&#x27;, &#x27;port&#x27;: 56, &#x27;protocol&#x27;: &#x27;TCP&#x27;, &#x27;service_name&#x27;: &#x27;service_name_example&#x27;, &#x27;ssl_secret_id&#x27;: &#x27;ocid1.sslsecret.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;external_id&#x27;: &#x27;ocid1.external.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;host_name&#x27;: &#x27;host_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;management_agent_id&#x27;: &#x27;ocid1.managementagent.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;properties&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;resource_time_zone&#x27;: &#x27;resource_time_zone_example&#x27;, &#x27;system_tags&#x27;: {}, &#x27;tenant_id&#x27;: &#x27;ocid1.tenant.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;type_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -844,6 +844,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">service_name_example</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-monitored_resource/database_connection_details/ssl_secret_id"></div>
+                    <b>ssl_secret_id</b>
+                    <a class="ansibleOptionLink" href="#return-monitored_resource/database_connection_details/ssl_secret_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>SSL Secret Identifier for TCPS connector in OCI VaultL(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm)</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.sslsecret.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
                     
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -879,6 +898,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-monitored_resource/external_id"></div>
+                    <b>external_id</b>
+                    <a class="ansibleOptionLink" href="#return-monitored_resource/external_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>External resource is any OCI resource identifier <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> which is not a Stack Monitoring service resource. Currently supports only following resource type identifiers - externalcontainerdatabase, externalnoncontainerdatabase, externalpluggabledatabase and OCI compute instance.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.external.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                                 <tr>

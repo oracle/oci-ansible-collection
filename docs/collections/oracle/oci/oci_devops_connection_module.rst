@@ -30,7 +30,7 @@ oracle.oci.oci_devops_connection -- Manage a Connection resource in Oracle Cloud
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.0.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.1.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -100,8 +100,8 @@ Parameters
                                                                 <td>
                                             <div>The OCID of personal access token saved in secret store.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when connection_type is one of [&#x27;GITLAB_ACCESS_TOKEN&#x27;, &#x27;GITHUB_ACCESS_TOKEN&#x27;, &#x27;BITBUCKET_SERVER_ACCESS_TOKEN&#x27;, &#x27;GITLAB_SERVER_ACCESS_TOKEN&#x27;]</div>
-                                            <div>Required when connection_type is one of [&#x27;GITLAB_ACCESS_TOKEN&#x27;, &#x27;GITHUB_ACCESS_TOKEN&#x27;, &#x27;BITBUCKET_SERVER_ACCESS_TOKEN&#x27;, &#x27;GITLAB_SERVER_ACCESS_TOKEN&#x27;]</div>
+                                            <div>Applicable when connection_type is one of [&#x27;GITLAB_ACCESS_TOKEN&#x27;, &#x27;GITHUB_ACCESS_TOKEN&#x27;, &#x27;VBS_ACCESS_TOKEN&#x27;, &#x27;BITBUCKET_SERVER_ACCESS_TOKEN&#x27;, &#x27;GITLAB_SERVER_ACCESS_TOKEN&#x27;]</div>
+                                            <div>Required when connection_type is one of [&#x27;GITLAB_ACCESS_TOKEN&#x27;, &#x27;VBS_ACCESS_TOKEN&#x27;, &#x27;GITHUB_ACCESS_TOKEN&#x27;, &#x27;BITBUCKET_SERVER_ACCESS_TOKEN&#x27;, &#x27;GITLAB_SERVER_ACCESS_TOKEN&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -233,10 +233,9 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The baseUrl of the hosted GitLabServer.</div>
+                                            <div>The Base URL of the hosted VBS server.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when connection_type is one of [&#x27;BITBUCKET_SERVER_ACCESS_TOKEN&#x27;, &#x27;GITLAB_SERVER_ACCESS_TOKEN&#x27;]</div>
-                                            <div>Required when connection_type is one of [&#x27;BITBUCKET_SERVER_ACCESS_TOKEN&#x27;, &#x27;GITLAB_SERVER_ACCESS_TOKEN&#x27;]</div>
+                                            <div>Required when connection_type is one of [&#x27;VBS_ACCESS_TOKEN&#x27;, &#x27;BITBUCKET_SERVER_ACCESS_TOKEN&#x27;, &#x27;GITLAB_SERVER_ACCESS_TOKEN&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -313,7 +312,8 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>GITLAB_SERVER_ACCESS_TOKEN</li>
+                                                                                                                                                                <li>VBS_ACCESS_TOKEN</li>
+                                                                                                                                                                                                <li>GITLAB_SERVER_ACCESS_TOKEN</li>
                                                                                                                                                                                                 <li>BITBUCKET_SERVER_ACCESS_TOKEN</li>
                                                                                                                                                                                                 <li>GITHUB_ACCESS_TOKEN</li>
                                                                                                                                                                                                 <li>BITBUCKET_CLOUD_APP_PASSWORD</li>
@@ -622,6 +622,20 @@ Examples
 .. code-block:: yaml+jinja
 
     
+    - name: Create connection with connection_type = VBS_ACCESS_TOKEN
+      oci_devops_connection:
+        # required
+        project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+        connection_type: VBS_ACCESS_TOKEN
+
+        # optional
+        description: description_example
+        display_name: display_name_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        access_token: access_token_example
+        base_url: base_url_example
+
     - name: Create connection with connection_type = GITLAB_SERVER_ACCESS_TOKEN
       oci_devops_connection:
         # required
@@ -698,6 +712,19 @@ Examples
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         access_token: access_token_example
 
+    - name: Update connection with connection_type = VBS_ACCESS_TOKEN
+      oci_devops_connection:
+        # required
+        connection_type: VBS_ACCESS_TOKEN
+
+        # optional
+        description: description_example
+        display_name: display_name_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        access_token: access_token_example
+        base_url: base_url_example
+
     - name: Update connection with connection_type = GITLAB_SERVER_ACCESS_TOKEN
       oci_devops_connection:
         # required
@@ -768,6 +795,19 @@ Examples
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         access_token: access_token_example
+
+    - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = VBS_ACCESS_TOKEN
+      oci_devops_connection:
+        # required
+        connection_type: VBS_ACCESS_TOKEN
+
+        # optional
+        description: description_example
+        display_name: display_name_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        access_token: access_token_example
+        base_url: base_url_example
 
     - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = GITLAB_SERVER_ACCESS_TOKEN
       oci_devops_connection:

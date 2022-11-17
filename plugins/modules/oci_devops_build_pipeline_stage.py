@@ -108,6 +108,7 @@ options:
                             - The type of source provider.
                         type: str
                         choices:
+                            - "VBS"
                             - "BITBUCKET_SERVER"
                             - "GITHUB"
                             - "BITBUCKET_CLOUD"
@@ -127,8 +128,8 @@ options:
                         required: true
                     connection_id:
                         description:
-                            - Connection identifier pertinent to Bitbucket Server source provider
-                            - Required when connection_type is one of ['BITBUCKET_SERVER', 'BITBUCKET_CLOUD', 'GITHUB', 'GITLAB_SERVER', 'GITLAB']
+                            - Connection identifier pertinent to VBS Server source provider
+                            - Required when connection_type is one of ['BITBUCKET_SERVER', 'VBS', 'BITBUCKET_CLOUD', 'GITHUB', 'GITLAB_SERVER', 'GITLAB']
                         type: str
     primary_build_source:
         description:
@@ -360,7 +361,7 @@ EXAMPLES = """
       items:
       - # required
         name: name_example
-        connection_type: BITBUCKET_SERVER
+        connection_type: VBS
         repository_url: repository_url_example
         branch: branch_example
         connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
@@ -456,7 +457,7 @@ EXAMPLES = """
       items:
       - # required
         name: name_example
-        connection_type: BITBUCKET_SERVER
+        connection_type: VBS
         repository_url: repository_url_example
         branch: branch_example
         connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
@@ -554,7 +555,7 @@ EXAMPLES = """
       items:
       - # required
         name: name_example
-        connection_type: BITBUCKET_SERVER
+        connection_type: VBS
         repository_url: repository_url_example
         branch: branch_example
         connection_id: "ocid1.connection.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1095,6 +1096,7 @@ def main():
                                 type="str",
                                 required=True,
                                 choices=[
+                                    "VBS",
                                     "BITBUCKET_SERVER",
                                     "GITHUB",
                                     "BITBUCKET_CLOUD",

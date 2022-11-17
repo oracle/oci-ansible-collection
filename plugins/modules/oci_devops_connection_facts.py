@@ -63,6 +63,7 @@ options:
             - "GITLAB_SERVER_ACCESS_TOKEN"
             - "BITBUCKET_SERVER_ACCESS_TOKEN"
             - "BITBUCKET_CLOUD_APP_PASSWORD"
+            - "VBS_ACCESS_TOKEN"
     sort_order:
         description:
             - The sort order to use. Use either ascending or descending.
@@ -122,20 +123,6 @@ connections:
             returned: on success
             type: str
             sample: example-password
-        access_token:
-            description:
-                - The OCID of personal access token saved in secret store.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: access_token_example
-        base_url:
-            description:
-                - The Base URL of the hosted BitbucketServer.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: base_url_example
         tls_verify_config:
             description:
                 - ""
@@ -155,6 +142,20 @@ connections:
                     returned: on success
                     type: str
                     sample: "ocid1.cacertificatebundle.oc1..xxxxxxEXAMPLExxxxxx"
+        access_token:
+            description:
+                - The OCID of personal access token saved in secret store.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: access_token_example
+        base_url:
+            description:
+                - The Base URL of the hosted BitbucketServer.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: base_url_example
         id:
             description:
                 - Unique identifier that is immutable on creation.
@@ -234,12 +235,12 @@ connections:
     sample: [{
         "username": "username_example",
         "app_password": "example-password",
-        "access_token": "access_token_example",
-        "base_url": "base_url_example",
         "tls_verify_config": {
             "tls_verify_mode": "CA_CERTIFICATE_VERIFY",
             "ca_certificate_bundle_id": "ocid1.cacertificatebundle.oc1..xxxxxxEXAMPLExxxxxx"
         },
+        "access_token": "access_token_example",
+        "base_url": "base_url_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "description": "description_example",
@@ -331,6 +332,7 @@ def main():
                     "GITLAB_SERVER_ACCESS_TOKEN",
                     "BITBUCKET_SERVER_ACCESS_TOKEN",
                     "BITBUCKET_CLOUD_APP_PASSWORD",
+                    "VBS_ACCESS_TOKEN",
                 ],
             ),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),

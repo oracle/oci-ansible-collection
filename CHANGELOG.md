@@ -4,6 +4,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [4.1.0]
+
+## Added
+- Support for starting and stopping clusters in the Big Data service
+- Support for additional compute shapes in the Big Data service
+- Support for search capabilities for monitored resources in the Stack Monitoring service
+- Support for deleting monitored resources with their members in the Stack Monitoring service
+- Support for creating host-type monitored resources in the Stack Monitoring service
+- Support for associating external resources during creation of monitored resources in the Stack Monitoring service
+- Support for repository mirroring from Visual Builder Studio in the DevOps service
+- Support for running a managed build stage with the source code hosted in a Visual Builder Studio repository in the DevOps service
+- Support for triggering a build run based on an event in a Visual Builder Studio repository in the DevOps service
+
+## Breaking
+- `deploy_stage_id` was made a required parameter when deployment_type is `SINGLE_STAGE_REDEPLOYMENT` and `SINGLE_STAGE_DEPLOYMENT` in the DevOps service
+- `previous_deployment_id` was made a required parameter when deployment_type is `PIPELINE_REDEPLOYMENT` in the DevOps service
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.88.1
+
 ## [4.0.0]
 
 ## Added

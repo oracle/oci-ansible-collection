@@ -25,7 +25,7 @@ description:
     - This module allows the user to create, update and delete a BdsInstance resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a Big Data Service cluster.
     - "This resource has the following action operations in the M(oracle.oci.oci_bds_instance_actions) module: add_block_storage, add_cloud_sql,
-      add_worker_nodes, change_compartment, change_shape, install_patch, remove_cloud_sql, remove_node, restart_node."
+      add_worker_nodes, change_compartment, change_shape, install_patch, remove_cloud_sql, remove_node, restart_node, start, stop."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -113,7 +113,11 @@ options:
                         type: int
                     memory_in_gbs:
                         description:
-                            - The total amount of memory available to the node, in gigabytes
+                            - The total amount of memory available to the node, in gigabytes.
+                        type: int
+                    nvmes:
+                        description:
+                            - The number of NVMe drives to be used for storage. A single drive has 6.8 TB available.
                         type: int
     kerberos_realm_name:
         description:
@@ -190,6 +194,7 @@ EXAMPLES = """
         # optional
         ocpus: 56
         memory_in_gbs: 56
+        nvmes: 56
     display_name: display_name_example
 
     # optional
@@ -531,6 +536,18 @@ bds_instance:
                     returned: on success
                     type: int
                     sample: 56
+                nvmes:
+                    description:
+                        - The number of NVMe drives to be used for storage. A single drive has 6.8 TB available.
+                    returned: on success
+                    type: int
+                    sample: 56
+                local_disks_total_size_in_gbs:
+                    description:
+                        - The aggregate size of all local disks, in gigabytes. If the instance does not have any local disks, this field is null.
+                    returned: on success
+                    type: float
+                    sample: 1.2
         cloud_sql_details:
             description:
                 - ""
@@ -681,7 +698,9 @@ bds_instance:
             "time_created": "2013-10-20T19:20:30+01:00",
             "time_updated": "2013-10-20T19:20:30+01:00",
             "ocpus": 56,
-            "memory_in_gbs": 56
+            "memory_in_gbs": 56,
+            "nvmes": 56,
+            "local_disks_total_size_in_gbs": 1.2
         }],
         "cloud_sql_details": {
             "shape": "shape_example",
@@ -888,7 +907,9 @@ def main():
                     shape_config=dict(
                         type="dict",
                         options=dict(
-                            ocpus=dict(type="int"), memory_in_gbs=dict(type="int")
+                            ocpus=dict(type="int"),
+                            memory_in_gbs=dict(type="int"),
+                            nvmes=dict(type="int"),
                         ),
                     ),
                 ),

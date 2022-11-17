@@ -30,7 +30,7 @@ oracle.oci.oci_devops_deployment -- Manage a Deployment resource in Oracle Cloud
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.0.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.1.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -364,7 +364,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Specifies the OCID of the stage to be redeployed.</div>
-                                            <div>Applicable when deployment_type is one of [&#x27;SINGLE_STAGE_REDEPLOYMENT&#x27;, &#x27;SINGLE_STAGE_DEPLOYMENT&#x27;]</div>
+                                            <div>Required when deployment_type is one of [&#x27;SINGLE_STAGE_REDEPLOYMENT&#x27;, &#x27;SINGLE_STAGE_DEPLOYMENT&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -557,7 +557,8 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Specifies the OCID of the previous deployment to be redeployed.</div>
-                                            <div>Applicable when deployment_type is one of [&#x27;SINGLE_STAGE_REDEPLOYMENT&#x27;, &#x27;PIPELINE_REDEPLOYMENT&#x27;]</div>
+                                            <div>Applicable when deployment_type is &#x27;SINGLE_STAGE_REDEPLOYMENT&#x27;</div>
+                                            <div>Required when deployment_type is &#x27;PIPELINE_REDEPLOYMENT&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -672,10 +673,10 @@ Examples
       oci_devops_deployment:
         # required
         deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+        previous_deployment_id: "ocid1.previousdeployment.oc1..xxxxxxEXAMPLExxxxxx"
         deployment_type: PIPELINE_REDEPLOYMENT
 
         # optional
-        previous_deployment_id: "ocid1.previousdeployment.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -708,6 +709,7 @@ Examples
       oci_devops_deployment:
         # required
         deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+        deploy_stage_id: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
         deployment_type: SINGLE_STAGE_DEPLOYMENT
 
         # optional
@@ -724,7 +726,6 @@ Examples
             deploy_artifact_id: "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx"
             name: name_example
             value: value_example
-        deploy_stage_id: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -733,11 +734,11 @@ Examples
       oci_devops_deployment:
         # required
         deploy_pipeline_id: "ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx"
+        deploy_stage_id: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
         deployment_type: SINGLE_STAGE_REDEPLOYMENT
 
         # optional
         previous_deployment_id: "ocid1.previousdeployment.oc1..xxxxxxEXAMPLExxxxxx"
-        deploy_stage_id: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
         display_name: display_name_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
