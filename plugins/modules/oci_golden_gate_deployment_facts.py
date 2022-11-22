@@ -36,8 +36,26 @@ options:
         aliases: ["id"]
     compartment_id:
         description:
-            - The ID of the compartment in which to list resources.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which to list resources.
             - Required to list multiple deployments.
+        type: str
+    supported_connection_type:
+        description:
+            - The connection type which the deployment must support.
+        type: str
+        choices:
+            - "GOLDENGATE"
+            - "KAFKA"
+            - "MYSQL"
+            - "OCI_OBJECT_STORAGE"
+            - "ORACLE"
+    assigned_connection_id:
+        description:
+            - The OCID of the connection which for the deployment must be assigned.
+        type: str
+    assignable_connection_id:
+        description:
+            - Filters for compatible deployments which can be, but currently not assigned to the connection specified by its id.
         type: str
     lifecycle_state:
         description:
@@ -86,8 +104,9 @@ options:
             - "DESC"
     sort_by:
         description:
-            - The field to sort by. Only one sort order can be provided. Default order for 'timeCreated' is descending.  Default order for 'displayName' is
-              ascending. If no value is specified timeCreated is the default.
+            - The field to sort by. Only one sort order can be provided. Default order for 'timeCreated' is
+              descending.  Default order for 'displayName' is ascending. If no value is specified
+              timeCreated is the default.
         type: str
         choices:
             - "timeCreated"
@@ -107,6 +126,9 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    supported_connection_type: GOLDENGATE
+    assigned_connection_id: "ocid1.assignedconnection.oc1..xxxxxxEXAMPLExxxxxx"
+    assignable_connection_id: "ocid1.assignableconnection.oc1..xxxxxxEXAMPLExxxxxx"
     lifecycle_state: CREATING
     lifecycle_sub_state: RECOVERING
     display_name: display_name_example
@@ -139,8 +161,7 @@ deployments:
             sample: true
         nsg_ids:
             description:
-                - An array of L(Network Security Group,https://docs.cloud.oracle.com/Content/Network/Concepts/networksecuritygroups.htm) OCIDs used to define
-                  network access for a deployment.
+                - An array of Network Security Group OCIDs used to define network access for either Deployments or Connections.
                 - Returned for get operation
             returned: on success
             type: list
@@ -154,8 +175,8 @@ deployments:
             contains:
                 deployment_name:
                     description:
-                        - The name given to the GoldenGate service deployment. The name must be 1 to 32 characters long, must contain only alphanumeric
-                          characters and must start with a letter.
+                        - The name given to the GoldenGate service deployment.
+                          The name must be 1 to 32 characters long, must contain only alphanumeric characters and must start with a letter.
                     returned: on success
                     type: str
                     sample: deployment_name_example
@@ -203,15 +224,15 @@ deployments:
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
-                - The time the resource was created. The format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339), such as
-                  `2016-08-25T21:10:29.600Z`.
+                - The time the resource was created. The format is defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - The time the resource was last updated. The format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339), such as
-                  `2016-08-25T21:10:29.600Z`.
+                - The time the resource was last updated. The format is defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
@@ -229,22 +250,23 @@ deployments:
             sample: RECOVERING
         lifecycle_details:
             description:
-                - Describes the object's current state in detail. For example, it can be used to provide actionable information for a resource in a Failed
-                  state.
+                - Describes the object's current state in detail. For example, it can be used to provide
+                  actionable information for a resource in a Failed state.
             returned: on success
             type: str
             sample: lifecycle_details_example
         freeform_tags:
             description:
-                - "A simple key-value pair that is applied without any predefined name, type, or scope. Exists for cross-compatibility only.
-                  Example: `{\\"bar-key\\": \\"value\\"}`"
+                - A simple key-value pair that is applied without any predefined name, type, or scope. Exists
+                  for cross-compatibility only.
+                - "Example: `{\\"bar-key\\": \\"value\\"}`"
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
         defined_tags:
             description:
-                - "Tags defined for this resource. Each key is predefined and scoped to a namespace.
-                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+                - Tags defined for this resource. Each key is predefined and scoped to a namespace.
+                - "Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
@@ -292,7 +314,8 @@ deployments:
             sample: public_ip_address_example
         private_ip_address:
             description:
-                - The private IP address in the customer's VCN representing the access point for the associated endpoint service in the GoldenGate service VCN.
+                - The private IP address in the customer's VCN representing the access point for the
+                  associated endpoint service in the GoldenGate service VCN.
             returned: on success
             type: str
             sample: private_ip_address_example
@@ -304,10 +327,10 @@ deployments:
             sample: deployment_url_example
         system_tags:
             description:
-                - "The system tags associated with this resource, if any. The system tags are set by Oracle Cloud Infrastructure services. Each key is
-                  predefined and scoped to namespaces.  For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-                  Example: `{orcl-cloud: {free-tier-retain: true}}`"
+                - The system tags associated with this resource, if any. The system tags are set by Oracle
+                  Cloud Infrastructure services. Each key is predefined and scoped to namespaces.  For more
+                  information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+                - "Example: `{orcl-cloud: {free-tier-retain: true}}`"
             returned: on success
             type: dict
             sample: {}
@@ -319,17 +342,18 @@ deployments:
             sample: true
         time_upgrade_required:
             description:
-                - The date the existing version in use will no longer be considered as usable and an upgrade will be required.  This date is typically 6 months
-                  after the version was released for use by GGS.  The format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339), such as
-                  `2016-08-25T21:10:29.600Z`.
+                - The date the existing version in use will no longer be considered as usable
+                  and an upgrade will be required.  This date is typically 6 months after the
+                  version was released for use by GGS.  The format is defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         deployment_type:
             description:
-                - "The type of deployment, the value determines the exact 'type' of service executed in the Deployment. NOTE: Use of the value OGG is maintained
-                  for backward compatibility purposes.  Its use is discouraged
-                        in favor of the equivalent DATABASE_ORACLE value."
+                - "The type of deployment, the value determines the exact 'type' of service executed in the Deployment.
+                  NOTE: Use of the value 'OGG' is maintained for backward compatibility purposes.  Its use is discouraged
+                        in favor of the equivalent 'DATABASE_ORACLE' value."
             returned: on success
             type: str
             sample: OGG
@@ -421,6 +445,9 @@ class DeploymentFactsHelperGen(OCIResourceFactsHelperBase):
 
     def list_resources(self):
         optional_list_method_params = [
+            "supported_connection_type",
+            "assigned_connection_id",
+            "assignable_connection_id",
             "lifecycle_state",
             "lifecycle_sub_state",
             "display_name",
@@ -453,6 +480,18 @@ def main():
         dict(
             deployment_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
+            supported_connection_type=dict(
+                type="str",
+                choices=[
+                    "GOLDENGATE",
+                    "KAFKA",
+                    "MYSQL",
+                    "OCI_OBJECT_STORAGE",
+                    "ORACLE",
+                ],
+            ),
+            assigned_connection_id=dict(type="str"),
+            assignable_connection_id=dict(type="str"),
             lifecycle_state=dict(
                 type="str",
                 choices=[

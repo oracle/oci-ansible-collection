@@ -116,6 +116,12 @@ table_usages:
             returned: on success
             type: int
             sample: 56
+        max_shard_size_usage_in_percent:
+            description:
+                - The percentage of allowed per-shard usage for the table shard with the highest usage.
+            returned: on success
+            type: int
+            sample: 56
     sample: [{
         "seconds_in_period": 56,
         "read_units": 56,
@@ -123,7 +129,8 @@ table_usages:
         "storage_in_g_bs": 56,
         "read_throttle_count": 56,
         "write_throttle_count": 56,
-        "storage_throttle_count": 56
+        "storage_throttle_count": 56,
+        "max_shard_size_usage_in_percent": 56
     }]
 """
 

@@ -42,13 +42,16 @@ options:
         type: str
     deployment_type:
         description:
-            - "The type of deployment, the value determines the exact 'type' of service executed in the Deployment. NOTE: Use of the value OGG is maintained for
-              backward compatibility purposes.  Its use is discouraged
-                    in favor of the equivalent DATABASE_ORACLE value."
+            - "The type of deployment, the value determines the exact 'type' of service executed in the Deployment.
+              NOTE: Use of the value 'OGG' is maintained for backward compatibility purposes.  Its use is discouraged
+                    in favor of the equivalent 'DATABASE_ORACLE' value."
             - Required for create using I(state=present).
         type: str
         choices:
             - "OGG"
+            - "DATABASE_ORACLE"
+            - "BIGDATA"
+            - "DATABASE_MYSQL"
     display_name:
         description:
             - An object's Display Name.
@@ -73,20 +76,20 @@ options:
         type: str
     freeform_tags:
         description:
-            - "A simple key-value pair that is applied without any predefined name, type, or scope. Exists for cross-compatibility only.
-              Example: `{\\"bar-key\\": \\"value\\"}`"
+            - A simple key-value pair that is applied without any predefined name, type, or scope. Exists
+              for cross-compatibility only.
+            - "Example: `{\\"bar-key\\": \\"value\\"}`"
             - This parameter is updatable.
         type: dict
     defined_tags:
         description:
-            - "Tags defined for this resource. Each key is predefined and scoped to a namespace.
-              Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+            - Tags defined for this resource. Each key is predefined and scoped to a namespace.
+            - "Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             - This parameter is updatable.
         type: dict
     nsg_ids:
         description:
-            - An array of L(Network Security Group,https://docs.cloud.oracle.com/Content/Network/Concepts/networksecuritygroups.htm) OCIDs used to define
-              network access for a deployment.
+            - An array of Network Security Group OCIDs used to define network access for either Deployments or Connections.
             - This parameter is updatable.
         type: list
         elements: str
@@ -126,8 +129,8 @@ options:
         suboptions:
             deployment_name:
                 description:
-                    - The name given to the GoldenGate service deployment. The name must be 1 to 32 characters long, must contain only alphanumeric characters
-                      and must start with a letter.
+                    - The name given to the GoldenGate service deployment.
+                      The name must be 1 to 32 characters long, must contain only alphanumeric characters and must start with a letter.
                 type: str
             admin_username:
                 description:
@@ -136,8 +139,9 @@ options:
                 type: str
             admin_password:
                 description:
-                    - The password associated with the GoldenGate deployment console username. The password must be 8 to 30 characters long and must contain at
-                      least 1 uppercase, 1 lowercase, 1 numeric, and 1 special character. Special characters such as '$', '^', or '?' are not allowed.
+                    - The password associated with the GoldenGate deployment console username.
+                      The password must be 8 to 30 characters long and must contain at least 1 uppercase, 1 lowercase, 1 numeric,
+                      and 1 special character. Special characters such as '$', '^', or '?' are not allowed.
                     - This parameter is updatable.
                 type: str
             certificate:
@@ -301,15 +305,15 @@ deployment:
             sample: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
-                - The time the resource was created. The format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339), such as
-                  `2016-08-25T21:10:29.600Z`.
+                - The time the resource was created. The format is defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - The time the resource was last updated. The format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339), such as
-                  `2016-08-25T21:10:29.600Z`.
+                - The time the resource was last updated. The format is defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
@@ -327,22 +331,23 @@ deployment:
             sample: RECOVERING
         lifecycle_details:
             description:
-                - Describes the object's current state in detail. For example, it can be used to provide actionable information for a resource in a Failed
-                  state.
+                - Describes the object's current state in detail. For example, it can be used to provide
+                  actionable information for a resource in a Failed state.
             returned: on success
             type: str
             sample: lifecycle_details_example
         freeform_tags:
             description:
-                - "A simple key-value pair that is applied without any predefined name, type, or scope. Exists for cross-compatibility only.
-                  Example: `{\\"bar-key\\": \\"value\\"}`"
+                - A simple key-value pair that is applied without any predefined name, type, or scope. Exists
+                  for cross-compatibility only.
+                - "Example: `{\\"bar-key\\": \\"value\\"}`"
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
         defined_tags:
             description:
-                - "Tags defined for this resource. Each key is predefined and scoped to a namespace.
-                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+                - Tags defined for this resource. Each key is predefined and scoped to a namespace.
+                - "Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
@@ -384,8 +389,7 @@ deployment:
             sample: true
         nsg_ids:
             description:
-                - An array of L(Network Security Group,https://docs.cloud.oracle.com/Content/Network/Concepts/networksecuritygroups.htm) OCIDs used to define
-                  network access for a deployment.
+                - An array of Network Security Group OCIDs used to define network access for either Deployments or Connections.
             returned: on success
             type: list
             sample: []
@@ -403,7 +407,8 @@ deployment:
             sample: public_ip_address_example
         private_ip_address:
             description:
-                - The private IP address in the customer's VCN representing the access point for the associated endpoint service in the GoldenGate service VCN.
+                - The private IP address in the customer's VCN representing the access point for the
+                  associated endpoint service in the GoldenGate service VCN.
             returned: on success
             type: str
             sample: private_ip_address_example
@@ -415,10 +420,10 @@ deployment:
             sample: deployment_url_example
         system_tags:
             description:
-                - "The system tags associated with this resource, if any. The system tags are set by Oracle Cloud Infrastructure services. Each key is
-                  predefined and scoped to namespaces.  For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-                  Example: `{orcl-cloud: {free-tier-retain: true}}`"
+                - The system tags associated with this resource, if any. The system tags are set by Oracle
+                  Cloud Infrastructure services. Each key is predefined and scoped to namespaces.  For more
+                  information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+                - "Example: `{orcl-cloud: {free-tier-retain: true}}`"
             returned: on success
             type: dict
             sample: {}
@@ -430,9 +435,10 @@ deployment:
             sample: true
         time_upgrade_required:
             description:
-                - The date the existing version in use will no longer be considered as usable and an upgrade will be required.  This date is typically 6 months
-                  after the version was released for use by GGS.  The format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339), such as
-                  `2016-08-25T21:10:29.600Z`.
+                - The date the existing version in use will no longer be considered as usable
+                  and an upgrade will be required.  This date is typically 6 months after the
+                  version was released for use by GGS.  The format is defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
@@ -451,9 +457,9 @@ deployment:
             sample: true
         deployment_type:
             description:
-                - "The type of deployment, the value determines the exact 'type' of service executed in the Deployment. NOTE: Use of the value OGG is maintained
-                  for backward compatibility purposes.  Its use is discouraged
-                        in favor of the equivalent DATABASE_ORACLE value."
+                - "The type of deployment, the value determines the exact 'type' of service executed in the Deployment.
+                  NOTE: Use of the value 'OGG' is maintained for backward compatibility purposes.  Its use is discouraged
+                        in favor of the equivalent 'DATABASE_ORACLE' value."
             returned: on success
             type: str
             sample: OGG
@@ -465,8 +471,8 @@ deployment:
             contains:
                 deployment_name:
                     description:
-                        - The name given to the GoldenGate service deployment. The name must be 1 to 32 characters long, must contain only alphanumeric
-                          characters and must start with a letter.
+                        - The name given to the GoldenGate service deployment.
+                          The name must be 1 to 32 characters long, must contain only alphanumeric characters and must start with a letter.
                     returned: on success
                     type: str
                     sample: deployment_name_example
@@ -555,12 +561,6 @@ class DeploymentHelperGen(OCIResourceHelperBase):
 
     def get_possible_entity_types(self):
         return super(DeploymentHelperGen, self).get_possible_entity_types() + [
-            "goldengatedeployment",
-            "goldengatedeployments",
-            "goldenGategoldengatedeployment",
-            "goldenGategoldengatedeployments",
-            "goldengatedeploymentresource",
-            "goldengatedeploymentsresource",
             "deployment",
             "deployments",
             "goldenGatedeployment",
@@ -694,7 +694,10 @@ def main():
         dict(
             compartment_id=dict(type="str"),
             deployment_backup_id=dict(type="str"),
-            deployment_type=dict(type="str", choices=["OGG"]),
+            deployment_type=dict(
+                type="str",
+                choices=["OGG", "DATABASE_ORACLE", "BIGDATA", "DATABASE_MYSQL"],
+            ),
             display_name=dict(aliases=["name"], type="str"),
             license_model=dict(
                 type="str", choices=["LICENSE_INCLUDED", "BRING_YOUR_OWN_LICENSE"]

@@ -23,7 +23,8 @@ module: oci_golden_gate_database_registration_facts
 short_description: Fetches details about one or multiple DatabaseRegistration resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple DatabaseRegistration resources in Oracle Cloud Infrastructure
-    - Lists the DatabaseRegistrations in the compartment.
+    - "Note: Deprecated. Use the new resource model APIs instead.
+      Lists the DatabaseRegistrations in the compartment."
     - If I(database_registration_id) is specified, the details of a single DatabaseRegistration will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)
@@ -36,7 +37,7 @@ options:
         aliases: ["id"]
     compartment_id:
         description:
-            - The ID of the compartment in which to list resources.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment in which to list resources.
             - Required to list multiple database_registrations.
         type: str
     lifecycle_state:
@@ -70,8 +71,9 @@ options:
             - "DESC"
     sort_by:
         description:
-            - The field to sort by. Only one sort order can be provided. Default order for 'timeCreated' is descending.  Default order for 'displayName' is
-              ascending. If no value is specified timeCreated is the default.
+            - The field to sort by. Only one sort order can be provided. Default order for 'timeCreated' is
+              descending.  Default order for 'displayName' is ascending. If no value is specified
+              timeCreated is the default.
         type: str
         choices:
             - "timeCreated"
@@ -107,50 +109,59 @@ database_registrations:
     contains:
         ip_address:
             description:
-                - The private IP address in the customer's VCN of the customer's endpoint, typically a database.
+                - The private IP address in the customer's VCN of the customer's endpoint, typically a
+                  database.
                 - Returned for get operation
             returned: on success
             type: str
             sample: ip_address_example
         rce_private_ip:
             description:
-                - A Private Endpoint IP Address created in the customer's subnet.  A customer database can expect network traffic initiated by GGS from this IP
-                  address and send network traffic to this IP address, typically in response to requests from GGS (OGG).  The customer may utilize this IP
-                  address in Security Lists or Network Security Groups (NSG) as needed.
+                - A Private Endpoint IP Address created in the customer's subnet.  A customer
+                  database can expect network traffic initiated by GGS from this IP address and send network traffic
+                  to this IP address, typically in response to requests from GGS (OGG).  The customer may utilize
+                  this IP address in Security Lists or Network Security Groups (NSG) as needed.
                 - Returned for get operation
             returned: on success
             type: str
             sample: rce_private_ip_example
         vault_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer vault being referenced. If provided, this
-                  will reference a vault which the customer will be required to ensure the policies are established to permit the GoldenGate Service to manage
-                  secrets contained within this vault.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer vault being
+                  referenced.
+                  If provided, this will reference a vault which the customer will be required to ensure
+                  the policies are established to permit the GoldenGate Service to manage secrets contained
+                  within this vault.
                 - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id:
             description:
-                - "The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer \\"Master\\" key being referenced. If
-                  provided, this will reference a key which the customer will be required to ensure the policies are established to permit the GoldenGate
-                  Service to utilize this key to manage secrets."
+                - "The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer \\"Master\\" key being
+                  referenced.
+                  If provided, this will reference a key which the customer will be required to ensure
+                  the policies are established to permit the GoldenGate Service to utilize this key to
+                  manage secrets."
                 - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         secret_compartment_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment where the the GGS Secret will be
-                  created. If provided, this will reference a key which the customer will be required to ensure the policies are established to permit the
-                  GoldenGate Service to utilize this Compartment in which to create a Secret.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment where the
+                  the GGS Secret will be created.
+                  If provided, this will reference a key which the customer will be required to ensure
+                  the policies are established to permit the GoldenGate Service to utilize this Compartment
+                  in which to create a Secret.
                 - Returned for get operation
             returned: on success
             type: str
             sample: "ocid1.secretcompartment.oc1..xxxxxxEXAMPLExxxxxx"
         id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the databaseRegistration being referenced.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the databaseRegistration being
+                  referenced.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
@@ -174,15 +185,15 @@ database_registrations:
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
-                - The time the resource was created. The format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339), such as
-                  `2016-08-25T21:10:29.600Z`.
+                - The time the resource was created. The format is defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - The time the resource was last updated. The format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339), such as
-                  `2016-08-25T21:10:29.600Z`.
+                - The time the resource was last updated. The format is defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
@@ -194,22 +205,23 @@ database_registrations:
             sample: CREATING
         lifecycle_details:
             description:
-                - Describes the object's current state in detail. For example, it can be used to provide actionable information for a resource in a Failed
-                  state.
+                - Describes the object's current state in detail. For example, it can be used to provide
+                  actionable information for a resource in a Failed state.
             returned: on success
             type: str
             sample: lifecycle_details_example
         freeform_tags:
             description:
-                - "A simple key-value pair that is applied without any predefined name, type, or scope. Exists for cross-compatibility only.
-                  Example: `{\\"bar-key\\": \\"value\\"}`"
+                - A simple key-value pair that is applied without any predefined name, type, or scope. Exists
+                  for cross-compatibility only.
+                - "Example: `{\\"bar-key\\": \\"value\\"}`"
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
         defined_tags:
             description:
-                - "Tags defined for this resource. Each key is predefined and scoped to a namespace.
-                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+                - Tags defined for this resource. Each key is predefined and scoped to a namespace.
+                - "Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
@@ -227,10 +239,10 @@ database_registrations:
             sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
         system_tags:
             description:
-                - "The system tags associated with this resource, if any. The system tags are set by Oracle Cloud Infrastructure services. Each key is
-                  predefined and scoped to namespaces.  For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-                  Example: `{orcl-cloud: {free-tier-retain: true}}`"
+                - The system tags associated with this resource, if any. The system tags are set by Oracle
+                  Cloud Infrastructure services. Each key is predefined and scoped to namespaces.  For more
+                  information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+                - "Example: `{orcl-cloud: {free-tier-retain: true}}`"
             returned: on success
             type: dict
             sample: {}
@@ -242,22 +254,25 @@ database_registrations:
             sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         username:
             description:
-                - The username Oracle GoldenGate uses to connect the associated RDBMS.  This username must already exist and be available for use by the
-                  database.  It must conform to the security requirements implemented by the database including length, case sensitivity, and so on.
+                - The username Oracle GoldenGate uses to connect the associated RDBMS.  This username must
+                  already exist and be available for use by the database.  It must conform to the security
+                  requirements implemented by the database including length, case sensitivity, and so on.
             returned: on success
             type: str
             sample: username_example
         connection_string:
             description:
-                - Connect descriptor or Easy Connect Naming method that Oracle GoldenGate uses to connect to a database.
+                - Connect descriptor or Easy Connect Naming method that Oracle GoldenGate uses to connect to a
+                  database.
             returned: on success
             type: str
             sample: connection_string_example
         session_mode:
             description:
-                - "The mode of the database connection session to be established by the data client. REDIRECT - for a RAC database, DIRECT - for a non-RAC
-                  database. Connection to a RAC database involves a redirection received from the SCAN listeners to the database node to connect to. By default
-                  the mode would be DIRECT."
+                - "The mode of the database connection session to be established by the data client.
+                  'REDIRECT' - for a RAC database, 'DIRECT' - for a non-RAC database.
+                  Connection to a RAC database involves a redirection received from the SCAN listeners
+                  to the database node to connect to. By default the mode would be DIRECT."
             returned: on success
             type: str
             sample: DIRECT
@@ -269,9 +284,10 @@ database_registrations:
             sample: alias_name_example
         secret_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer GGS Secret being referenced. If provided,
-                  this will reference a key which the customer will be required to ensure the policies are established to permit the GoldenGate Service to
-                  utilize this Secret
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the customer GGS Secret being
+                  referenced.
+                  If provided, this will reference a key which the customer will be required to ensure
+                  the policies are established to permit the GoldenGate Service to utilize this Secret
             returned: on success
             type: str
             sample: "ocid1.secret.oc1..xxxxxxEXAMPLExxxxxx"

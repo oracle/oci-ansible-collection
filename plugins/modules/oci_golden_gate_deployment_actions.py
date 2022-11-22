@@ -23,8 +23,9 @@ module: oci_golden_gate_deployment_actions
 short_description: Perform actions on a Deployment resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a Deployment resource in Oracle Cloud Infrastructure
-    - For I(action=change_compartment), moves the Deployment into a different compartment within the same tenancy.  When provided, If-Match is checked against
-      ETag values of the resource.  For information about moving resources between compartments, see L(Moving Resources Between
+    - For I(action=change_compartment), moves the Deployment into a different compartment within the same tenancy.  When provided,
+      If-Match is checked against ETag values of the resource.  For information about moving
+      resources between compartments, see L(Moving Resources Between
       Compartments,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
     - For I(action=start), starts a Deployment. When provided, If-Match is checked against ETag values of the resource.
     - For I(action=stop), stops a Deployment. When provided, If-Match is checked against ETag values of the resource.
@@ -143,15 +144,15 @@ deployment:
             sample: "ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx"
         time_created:
             description:
-                - The time the resource was created. The format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339), such as
-                  `2016-08-25T21:10:29.600Z`.
+                - The time the resource was created. The format is defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - The time the resource was last updated. The format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339), such as
-                  `2016-08-25T21:10:29.600Z`.
+                - The time the resource was last updated. The format is defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
@@ -169,22 +170,23 @@ deployment:
             sample: RECOVERING
         lifecycle_details:
             description:
-                - Describes the object's current state in detail. For example, it can be used to provide actionable information for a resource in a Failed
-                  state.
+                - Describes the object's current state in detail. For example, it can be used to provide
+                  actionable information for a resource in a Failed state.
             returned: on success
             type: str
             sample: lifecycle_details_example
         freeform_tags:
             description:
-                - "A simple key-value pair that is applied without any predefined name, type, or scope. Exists for cross-compatibility only.
-                  Example: `{\\"bar-key\\": \\"value\\"}`"
+                - A simple key-value pair that is applied without any predefined name, type, or scope. Exists
+                  for cross-compatibility only.
+                - "Example: `{\\"bar-key\\": \\"value\\"}`"
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
         defined_tags:
             description:
-                - "Tags defined for this resource. Each key is predefined and scoped to a namespace.
-                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+                - Tags defined for this resource. Each key is predefined and scoped to a namespace.
+                - "Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
@@ -226,8 +228,7 @@ deployment:
             sample: true
         nsg_ids:
             description:
-                - An array of L(Network Security Group,https://docs.cloud.oracle.com/Content/Network/Concepts/networksecuritygroups.htm) OCIDs used to define
-                  network access for a deployment.
+                - An array of Network Security Group OCIDs used to define network access for either Deployments or Connections.
             returned: on success
             type: list
             sample: []
@@ -245,7 +246,8 @@ deployment:
             sample: public_ip_address_example
         private_ip_address:
             description:
-                - The private IP address in the customer's VCN representing the access point for the associated endpoint service in the GoldenGate service VCN.
+                - The private IP address in the customer's VCN representing the access point for the
+                  associated endpoint service in the GoldenGate service VCN.
             returned: on success
             type: str
             sample: private_ip_address_example
@@ -257,10 +259,10 @@ deployment:
             sample: deployment_url_example
         system_tags:
             description:
-                - "The system tags associated with this resource, if any. The system tags are set by Oracle Cloud Infrastructure services. Each key is
-                  predefined and scoped to namespaces.  For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-                  Example: `{orcl-cloud: {free-tier-retain: true}}`"
+                - The system tags associated with this resource, if any. The system tags are set by Oracle
+                  Cloud Infrastructure services. Each key is predefined and scoped to namespaces.  For more
+                  information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+                - "Example: `{orcl-cloud: {free-tier-retain: true}}`"
             returned: on success
             type: dict
             sample: {}
@@ -272,9 +274,10 @@ deployment:
             sample: true
         time_upgrade_required:
             description:
-                - The date the existing version in use will no longer be considered as usable and an upgrade will be required.  This date is typically 6 months
-                  after the version was released for use by GGS.  The format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339), such as
-                  `2016-08-25T21:10:29.600Z`.
+                - The date the existing version in use will no longer be considered as usable
+                  and an upgrade will be required.  This date is typically 6 months after the
+                  version was released for use by GGS.  The format is defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
@@ -293,9 +296,9 @@ deployment:
             sample: true
         deployment_type:
             description:
-                - "The type of deployment, the value determines the exact 'type' of service executed in the Deployment. NOTE: Use of the value OGG is maintained
-                  for backward compatibility purposes.  Its use is discouraged
-                        in favor of the equivalent DATABASE_ORACLE value."
+                - "The type of deployment, the value determines the exact 'type' of service executed in the Deployment.
+                  NOTE: Use of the value 'OGG' is maintained for backward compatibility purposes.  Its use is discouraged
+                        in favor of the equivalent 'DATABASE_ORACLE' value."
             returned: on success
             type: str
             sample: OGG
@@ -307,8 +310,8 @@ deployment:
             contains:
                 deployment_name:
                     description:
-                        - The name given to the GoldenGate service deployment. The name must be 1 to 32 characters long, must contain only alphanumeric
-                          characters and must start with a letter.
+                        - The name given to the GoldenGate service deployment.
+                          The name must be 1 to 32 characters long, must contain only alphanumeric characters and must start with a letter.
                     returned: on success
                     type: str
                     sample: deployment_name_example

@@ -30,7 +30,7 @@ oracle.oci.oci_log_analytics_object_collection_rule_facts -- Fetches details abo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.1.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.2.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -460,7 +460,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of LogAnalyticsObjectCollectionRule resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;char_encoding&#x27;: &#x27;char_encoding_example&#x27;, &#x27;collection_type&#x27;: &#x27;LIVE&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;entity_id&#x27;: &#x27;ocid1.entity.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_enabled&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;log_group_id&#x27;: &#x27;ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;log_source_name&#x27;: &#x27;log_source_name_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;object_name_filters&#x27;: [], &#x27;os_bucket_name&#x27;: &#x27;os_bucket_name_example&#x27;, &#x27;os_namespace&#x27;: &#x27;os_namespace_example&#x27;, &#x27;overrides&#x27;: {}, &#x27;poll_since&#x27;: &#x27;poll_since_example&#x27;, &#x27;poll_till&#x27;: &#x27;poll_till_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;char_encoding&#x27;: &#x27;char_encoding_example&#x27;, &#x27;collection_type&#x27;: &#x27;LIVE&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;entity_id&#x27;: &#x27;ocid1.entity.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_enabled&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;log_group_id&#x27;: &#x27;ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;log_set&#x27;: &#x27;log_set_example&#x27;, &#x27;log_set_ext_regex&#x27;: &#x27;log_set_ext_regex_example&#x27;, &#x27;log_set_key&#x27;: &#x27;OBJECT_PATH&#x27;, &#x27;log_source_name&#x27;: &#x27;log_source_name_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;object_name_filters&#x27;: [], &#x27;os_bucket_name&#x27;: &#x27;os_bucket_name_example&#x27;, &#x27;os_namespace&#x27;: &#x27;os_namespace_example&#x27;, &#x27;overrides&#x27;: {}, &#x27;poll_since&#x27;: &#x27;poll_since_example&#x27;, &#x27;poll_till&#x27;: &#x27;poll_till_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;timezone&#x27;: &#x27;timezone_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -685,6 +685,63 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-log_analytics_object_collection_rules/log_set"></div>
+                    <b>log_set</b>
+                    <a class="ansibleOptionLink" href="#return-log_analytics_object_collection_rules/log_set" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The logSet to be associated with the processed logs. The logSet feature can be used by customers with high volume of data and this feature has to be enabled for a given tenancy prior to its usage. When logSetExtRegex value is provided, it will take precedence over this logSet value and logSet will be computed dynamically using logSetKey and logSetExtRegex.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">log_set_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-log_analytics_object_collection_rules/log_set_ext_regex"></div>
+                    <b>log_set_ext_regex</b>
+                    <a class="ansibleOptionLink" href="#return-log_analytics_object_collection_rules/log_set_ext_regex" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The regex to be applied against given logSetKey. Regex has to be in string escaped format.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">log_set_ext_regex_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-log_analytics_object_collection_rules/log_set_key"></div>
+                    <b>log_set_key</b>
+                    <a class="ansibleOptionLink" href="#return-log_analytics_object_collection_rules/log_set_key" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>An optional parameter to indicate from where the logSet to be extracted using logSetExtRegex. Default value is OBJECT_PATH (e.g. /n/&lt;namespace&gt;/b/&lt;bucketname&gt;/o/&lt;objectname&gt;).</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">OBJECT_PATH</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-log_analytics_object_collection_rules/log_source_name"></div>
                     <b>log_source_name</b>
                     <a class="ansibleOptionLink" href="#return-log_analytics_object_collection_rules/log_source_name" title="Permalink to this return value"></a>
@@ -860,6 +917,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-log_analytics_object_collection_rules/timezone"></div>
+                    <b>timezone</b>
+                    <a class="ansibleOptionLink" href="#return-log_analytics_object_collection_rules/timezone" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Timezone to be used when processing log entries whose timestamps do not include an explicit timezone. When this property is not specified, the timezone of the entity specified is used. If the entity is also not specified or do not have a valid timezone then UTC is used.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">timezone_example</div>
                                     </td>
             </tr>
                     

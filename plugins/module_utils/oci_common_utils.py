@@ -20,12 +20,21 @@ import json
 try:
     os.environ["OCI_PYTHON_SDK_NO_SERVICE_IMPORTS"] = "1"
     import oci
+    from oci.util import NONE_SENTINEL
     from oci.retry import DEFAULT_RETRY_STRATEGY
     from oci.exceptions import ServiceError
 
     HAS_OCI_PY_SDK = True
 except ImportError:
+
     HAS_OCI_PY_SDK = False
+
+try:
+    from ansible.module_utils.basic import _load_params
+except ImportError:
+    # _load_params is an internal method and it is possible for ansible to remove this method. So use it
+    # only if it is available.
+    pass
 
 MAX_WAIT_TIMEOUT_IN_SECONDS = 1200
 # some services like waas have longer wait times. This map allows to specify wait times at a service level so that
@@ -241,6 +250,7 @@ def compare_dicts(
     ignore_attr_if_not_in_target=False,
     exclude_attributes=None,
     stack=None,
+    source_model=None,
 ):
     if exclude_attributes is None:
         exclude_attributes = []
@@ -277,8 +287,14 @@ def compare_dicts(
             continue
         # compare attributes if it is only in source dict
         if attr not in source_dict or source_dict.get(attr) is None:
-            stack.pop()
-            continue
+            # since source_dict.get(attr) is None, need to identify if the param value is passed as None or the param
+            # is not passed in the dict.
+            # Hence, compare attribute only if source_model is not None & value is equal to NONE_SENTINEL
+            if source_model is None or (
+                getattr(source_model, attr, None) != NONE_SENTINEL
+            ):
+                stack.pop()
+                continue
         if attr not in target_dict:
             if ignore_attr_if_not_in_target:
                 # if the ignore parameter is set, ignore this attribute.
@@ -574,8 +590,34 @@ def convert_input_data_to_model_class(data, model_class):
         model_class = getattr(module, subtype_name)
         model_instance = model_class()
 
+    # In Ansible, if one doesn't pass parameter while calling a module, the parameter by default takes None value.
+    # Now, if the null value is passed to parameter while calling a module, the parameter takes None value.
+    # So in order to differentiate if None is actually passed as a param value or param was not passed at all, we need
+    # the actual parameters passed while calling a module.
+    # Ansible provides an internal method _load_params() which gives all the params that are passed to the module.
+    # The best way to put this method is in module or base class & then pass these params as input to
+    # convert_input_data_to_model_class but we don't want to regenerate every module hence calling load_params() here
+    try:
+        user_provided_params = _load_params()
+    except SystemExit as se:
+        logger.debug("Checking load_params failed with exception: {}".format(se))
+        user_provided_params = None
+    except Exception as e:
+        logger.debug("Checking load_params failed with exception: {}".format(e))
+        user_provided_params = None
+
     for attr in model_instance.attribute_map:
         if data.get(attr) is None:
+            if user_provided_params is None:
+                continue
+            if attr is None or (attr not in user_provided_params):
+                continue
+            setattr(model_instance, attr, NONE_SENTINEL)
+            logger.debug(
+                "This param is passed as null. Value for attribute {} is {}".format(
+                    attr, getattr(model_instance, attr, None)
+                )
+            )
             continue
 
         value = data[attr]

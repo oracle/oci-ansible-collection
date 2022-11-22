@@ -30,7 +30,7 @@ oracle.oci.oci_nosql_table_usage_facts -- Fetches details about one or multiple 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.1.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.2.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -390,10 +390,28 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of TableUsage resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;read_throttle_count&#x27;: 56, &#x27;read_units&#x27;: 56, &#x27;seconds_in_period&#x27;: 56, &#x27;storage_in_g_bs&#x27;: 56, &#x27;storage_throttle_count&#x27;: 56, &#x27;write_throttle_count&#x27;: 56, &#x27;write_units&#x27;: 56}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;max_shard_size_usage_in_percent&#x27;: 56, &#x27;read_throttle_count&#x27;: 56, &#x27;read_units&#x27;: 56, &#x27;seconds_in_period&#x27;: 56, &#x27;storage_in_g_bs&#x27;: 56, &#x27;storage_throttle_count&#x27;: 56, &#x27;write_throttle_count&#x27;: 56, &#x27;write_units&#x27;: 56}]</div>
                                     </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-table_usages/max_shard_size_usage_in_percent"></div>
+                    <b>max_shard_size_usage_in_percent</b>
+                    <a class="ansibleOptionLink" href="#return-table_usages/max_shard_size_usage_in_percent" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The percentage of allowed per-shard usage for the table shard with the highest usage.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-table_usages/read_throttle_count"></div>

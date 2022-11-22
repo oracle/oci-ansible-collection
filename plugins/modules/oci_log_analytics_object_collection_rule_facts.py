@@ -152,6 +152,40 @@ log_analytics_object_collection_rules:
             returned: on success
             type: str
             sample: char_encoding_example
+        timezone:
+            description:
+                - Timezone to be used when processing log entries whose timestamps do not include an explicit timezone.
+                  When this property is not specified, the timezone of the entity specified is used.
+                  If the entity is also not specified or do not have a valid timezone then UTC is used.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: timezone_example
+        log_set:
+            description:
+                - The logSet to be associated with the processed logs. The logSet feature can be used by customers with high volume of data
+                  and this feature has to be enabled for a given tenancy prior to its usage.
+                  When logSetExtRegex value is provided, it will take precedence over this logSet value and logSet will be computed dynamically
+                  using logSetKey and logSetExtRegex.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: log_set_example
+        log_set_key:
+            description:
+                - An optional parameter to indicate from where the logSet to be extracted using logSetExtRegex. Default value is OBJECT_PATH (e.g.
+                  /n/<namespace>/b/<bucketname>/o/<objectname>).
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: OBJECT_PATH
+        log_set_ext_regex:
+            description:
+                - The regex to be applied against given logSetKey. Regex has to be in string escaped format.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: log_set_ext_regex_example
         overrides:
             description:
                 - "Use this to override some property values which are defined at bucket level to the scope of object.
@@ -263,6 +297,10 @@ log_analytics_object_collection_rules:
         "log_source_name": "log_source_name_example",
         "entity_id": "ocid1.entity.oc1..xxxxxxEXAMPLExxxxxx",
         "char_encoding": "char_encoding_example",
+        "timezone": "timezone_example",
+        "log_set": "log_set_example",
+        "log_set_key": "OBJECT_PATH",
+        "log_set_ext_regex": "log_set_ext_regex_example",
         "overrides": {},
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",

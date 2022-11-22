@@ -736,11 +736,7 @@ class DatabaseToolsConnectionHelperGen(OCIResourceHelperBase):
         )
 
     def get_optional_kwargs_for_list(self):
-        optional_list_method_params = (
-            ["display_name"]
-            if self._use_name_as_identifier()
-            else ["display_name", "type"]
-        )
+        optional_list_method_params = ["display_name"]
 
         return dict(
             (param, self.module.params[param])

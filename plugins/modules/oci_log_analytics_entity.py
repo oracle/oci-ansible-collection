@@ -431,15 +431,9 @@ class LogAnalyticsEntityHelperGen(OCIResourceHelperBase):
 
     def get_optional_kwargs_for_list(self):
         optional_list_method_params = (
-            ["name", "entity_type_name", "cloud_resource_id", "source_id"]
+            ["name", "cloud_resource_id", "source_id"]
             if self._use_name_as_identifier()
-            else [
-                "name",
-                "entity_type_name",
-                "cloud_resource_id",
-                "hostname",
-                "source_id",
-            ]
+            else ["name", "cloud_resource_id", "hostname", "source_id"]
         )
 
         return dict(
