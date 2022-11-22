@@ -30,7 +30,7 @@ oracle.oci.oci_golden_gate_database_registration -- Manage a DatabaseRegistratio
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.1.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.2.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - This module allows the user to create, update and delete a DatabaseRegistration resource in Oracle Cloud Infrastructure
-- For *state=present*, creates a new DatabaseRegistration.
+- For *state=present*, note: Deprecated. Use the new resource model APIs instead. Creates a new DatabaseRegistration.
 - This resource has the following action operations in the :ref:`oracle.oci.oci_golden_gate_database_registration_actions <ansible_collections.oracle.oci.oci_golden_gate_database_registration_actions_module>` module: change_compartment.
 
 
@@ -327,7 +327,8 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Tags defined for this resource. Each key is predefined and scoped to a namespace. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
+                                            <div>Tags defined for this resource. Each key is predefined and scoped to a namespace.</div>
+                                            <div>Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -414,7 +415,8 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A simple key-value pair that is applied without any predefined name, type, or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
+                                            <div>A simple key-value pair that is applied without any predefined name, type, or scope. Exists for cross-compatibility only.</div>
+                                            <div>Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -526,7 +528,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The mode of the database connection session to be established by the data client. REDIRECT - for a RAC database, DIRECT - for a non-RAC database. Connection to a RAC database involves a redirection received from the SCAN listeners to the database node to connect to. By default the mode would be DIRECT.</div>
+                                            <div>The mode of the database connection session to be established by the data client. &#x27;REDIRECT&#x27; - for a RAC database, &#x27;DIRECT&#x27; - for a non-RAC database. Connection to a RAC database involves a redirection received from the SCAN listeners to the database node to connect to. By default the mode would be DIRECT.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -593,7 +595,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The username Oracle GoldenGate uses to connect the associated RDBMS.  This username must already exist and be available for use by the database. It must conform to the security requirements implemented by the database including length, case sensitivity, and so on.</div>
+                                            <div>The username Oracle GoldenGate uses to connect the associated RDBMS.  This username must already exist and be available for use by the database.  It must conform to the security requirements implemented by the database including length, case sensitivity, and so on.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
@@ -883,7 +885,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Tags defined for this resource. Each key is predefined and scoped to a namespace. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
+                                            <div>Tags defined for this resource. Each key is predefined and scoped to a namespace.</div>
+                                            <div>Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
@@ -955,7 +958,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A simple key-value pair that is applied without any predefined name, type, or scope. Exists for cross-compatibility only. Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
+                                            <div>A simple key-value pair that is applied without any predefined name, type, or scope. Exists for cross-compatibility only.</div>
+                                            <div>Example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Department&#x27;: &#x27;Finance&#x27;}</div>
@@ -1117,7 +1121,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The mode of the database connection session to be established by the data client. REDIRECT - for a RAC database, DIRECT - for a non-RAC database. Connection to a RAC database involves a redirection received from the SCAN listeners to the database node to connect to. By default the mode would be DIRECT.</div>
+                                            <div>The mode of the database connection session to be established by the data client. &#x27;REDIRECT&#x27; - for a RAC database, &#x27;DIRECT&#x27; - for a non-RAC database. Connection to a RAC database involves a redirection received from the SCAN listeners to the database node to connect to. By default the mode would be DIRECT.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">DIRECT</div>
@@ -1153,7 +1157,8 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The system tags associated with this resource, if any. The system tags are set by Oracle Cloud Infrastructure services. Each key is predefined and scoped to namespaces.  For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{orcl-cloud: {free-tier-retain: true}}`</div>
+                                            <div>The system tags associated with this resource, if any. The system tags are set by Oracle Cloud Infrastructure services. Each key is predefined and scoped to namespaces.  For more information, see <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>.</div>
+                                            <div>Example: `{orcl-cloud: {free-tier-retain: true}}`</div>
                                         <br/>
                                                         </td>
             </tr>

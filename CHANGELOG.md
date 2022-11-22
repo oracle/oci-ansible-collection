@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [4.2.0]
+
+## Added
+- Support for passing `NULL` value to Ansible module params
+- Support for connections for database resources in the GoldenGate service
+- Support for uploading bulk data in the NoSQL Database Cloud service
+- Support for child tables in the NoSQL Database Cloud service
+- Support for ingest-time rules and specifying logsets and query strings during recalls in the Logging Analytics service
+- Support for specifying logset details and timezone in object collection rule in the Logging Analytics service
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.88.1
+
 ## [4.1.0]
 
 ## Added

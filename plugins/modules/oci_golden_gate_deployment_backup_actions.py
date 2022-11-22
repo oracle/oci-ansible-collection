@@ -24,8 +24,9 @@ short_description: Perform actions on a DeploymentBackup resource in Oracle Clou
 description:
     - Perform actions on a DeploymentBackup resource in Oracle Cloud Infrastructure
     - For I(action=cancel), cancels a Deployment Backup creation process.
-    - For I(action=change_compartment), moves a DeploymentBackup into a different compartment within the same tenancy.  When provided, If-Match is checked
-      against ETag values of the resource.  For information about moving resources between compartments, see L(Moving Resources Between
+    - For I(action=change_compartment), moves a DeploymentBackup into a different compartment within the same tenancy.  When provided,
+      If-Match is checked against ETag values of the resource.  For information about moving
+      resources between compartments, see L(Moving Resources Between
       Compartments,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
     - For I(action=restore_deployment), restores a Deployment from a Deployment Backup created from the same Deployment.
 version_added: "2.9.0"
@@ -126,21 +127,22 @@ deployment_backup:
             sample: CREATING
         lifecycle_details:
             description:
-                - Describes the object's current state in detail. For example, it can be used to provide actionable information for a resource in a Failed
-                  state.
+                - Describes the object's current state in detail. For example, it can be used to provide
+                  actionable information for a resource in a Failed state.
             returned: on success
             type: str
             sample: lifecycle_details_example
         time_of_backup:
             description:
-                - The time of the resource backup. The format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`.
+                - The time of the resource backup. The format is defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_backup_finished:
             description:
-                - The time of the resource backup finish. The format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339), such as
-                  `2016-08-25T21:10:29.600Z`.
+                - The time of the resource backup finish. The format is defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
@@ -182,38 +184,39 @@ deployment_backup:
             sample: object_name_example
         time_created:
             description:
-                - The time the resource was created. The format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339), such as
-                  `2016-08-25T21:10:29.600Z`.
+                - The time the resource was created. The format is defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - The time the resource was last updated. The format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339), such as
-                  `2016-08-25T21:10:29.600Z`.
+                - The time the resource was last updated. The format is defined by
+                  L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         freeform_tags:
             description:
-                - "A simple key-value pair that is applied without any predefined name, type, or scope. Exists for cross-compatibility only.
-                  Example: `{\\"bar-key\\": \\"value\\"}`"
+                - A simple key-value pair that is applied without any predefined name, type, or scope. Exists
+                  for cross-compatibility only.
+                - "Example: `{\\"bar-key\\": \\"value\\"}`"
             returned: on success
             type: dict
             sample: {'Department': 'Finance'}
         defined_tags:
             description:
-                - "Tags defined for this resource. Each key is predefined and scoped to a namespace.
-                  Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
+                - Tags defined for this resource. Each key is predefined and scoped to a namespace.
+                - "Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
         system_tags:
             description:
-                - "The system tags associated with this resource, if any. The system tags are set by Oracle Cloud Infrastructure services. Each key is
-                  predefined and scoped to namespaces.  For more information, see L(Resource
-                  Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
-                  Example: `{orcl-cloud: {free-tier-retain: true}}`"
+                - The system tags associated with this resource, if any. The system tags are set by Oracle
+                  Cloud Infrastructure services. Each key is predefined and scoped to namespaces.  For more
+                  information, see L(Resource Tags,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).
+                - "Example: `{orcl-cloud: {free-tier-retain: true}}`"
             returned: on success
             type: dict
             sample: {}

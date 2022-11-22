@@ -30,7 +30,7 @@ oracle.oci.oci_nosql_table -- Manage a Table resource in Oracle Cloud Infrastruc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.1.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.2.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -437,7 +437,6 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div></div>
-                                            <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -607,6 +606,10 @@ Examples
         # required
         name: name_example
         ddl_statement: ddl_statement_example
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        is_auto_reclaimable: true
         table_limits:
           # required
           max_read_units: 56
@@ -615,10 +618,6 @@ Examples
 
           # optional
           capacity_mode: PROVISIONED
-        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
-        # optional
-        is_auto_reclaimable: true
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -712,7 +711,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Table resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ddl_statement&#x27;: &#x27;ddl_statement_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_auto_reclaimable&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;schema&#x27;: {&#x27;columns&#x27;: [{&#x27;default_value&#x27;: &#x27;default_value_example&#x27;, &#x27;is_nullable&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;type&#x27;: &#x27;type_example&#x27;}], &#x27;primary_key&#x27;: [], &#x27;shard_key&#x27;: [], &#x27;ttl&#x27;: 56}, &#x27;system_tags&#x27;: {}, &#x27;table_limits&#x27;: {&#x27;capacity_mode&#x27;: &#x27;PROVISIONED&#x27;, &#x27;max_read_units&#x27;: 56, &#x27;max_storage_in_g_bs&#x27;: 56, &#x27;max_write_units&#x27;: 56}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_expiration&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ddl_statement&#x27;: &#x27;ddl_statement_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_auto_reclaimable&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;schema&#x27;: {&#x27;columns&#x27;: [{&#x27;default_value&#x27;: &#x27;default_value_example&#x27;, &#x27;is_as_uuid&#x27;: True, &#x27;is_generated&#x27;: True, &#x27;is_nullable&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;type&#x27;: &#x27;type_example&#x27;}], &#x27;identity&#x27;: {&#x27;column_name&#x27;: &#x27;column_name_example&#x27;, &#x27;is_always&#x27;: True, &#x27;is_null&#x27;: True}, &#x27;primary_key&#x27;: [], &#x27;shard_key&#x27;: [], &#x27;ttl&#x27;: 56}, &#x27;system_tags&#x27;: {}, &#x27;table_limits&#x27;: {&#x27;capacity_mode&#x27;: &#x27;PROVISIONED&#x27;, &#x27;max_read_units&#x27;: 56, &#x27;max_storage_in_g_bs&#x27;: 56, &#x27;max_write_units&#x27;: 56}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_expiration&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -935,6 +934,46 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-table/schema/columns/is_as_uuid"></div>
+                    <b>is_as_uuid</b>
+                    <a class="ansibleOptionLink" href="#return-table/schema/columns/is_as_uuid" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>True if the STRING column was declared AS UUID.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-table/schema/columns/is_generated"></div>
+                    <b>is_generated</b>
+                    <a class="ansibleOptionLink" href="#return-table/schema/columns/is_generated" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>True if the STRING AS UUID column is also GENERATED BY DEFAULT.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-table/schema/columns/is_nullable"></div>
                     <b>is_nullable</b>
                     <a class="ansibleOptionLink" href="#return-table/schema/columns/is_nullable" title="Permalink to this return value"></a>
@@ -988,6 +1027,84 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">type_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-table/schema/identity"></div>
+                    <b>identity</b>
+                    <a class="ansibleOptionLink" href="#return-table/schema/identity" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-table/schema/identity/column_name"></div>
+                    <b>column_name</b>
+                    <a class="ansibleOptionLink" href="#return-table/schema/identity/column_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The name of the identity column.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">column_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-table/schema/identity/is_always"></div>
+                    <b>is_always</b>
+                    <a class="ansibleOptionLink" href="#return-table/schema/identity/is_always" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>True if the identity value is GENERATED ALWAYS.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-table/schema/identity/is_null"></div>
+                    <b>is_null</b>
+                    <a class="ansibleOptionLink" href="#return-table/schema/identity/is_null" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>True if the identity value is GENERATED BY DEFAULT ON NULL.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
                                     </td>
             </tr>
                     

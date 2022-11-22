@@ -765,6 +765,7 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
                 attrs=attributes_to_consider,
                 ignore_attr_if_not_in_target=True,
                 exclude_attributes=self.get_exclude_attributes(),
+                source_model=create_model,
             ):
                 prospective_matches.append(resource)
 
@@ -785,6 +786,7 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
                 target_dict=resource_dict,
                 attrs=attributes_to_consider,
                 exclude_attributes=self.get_exclude_attributes(),
+                source_model=create_model,
             ):
                 logger.debug("Resource with same attributes found.")
 
@@ -866,7 +868,7 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
             update_model
         )
         update_is_necessary = not oci_common_utils.compare_dicts(
-            update_model_dict, existing_resource_dict
+            update_model_dict, existing_resource_dict, source_model=update_model
         )
 
         logger.debug(
@@ -883,7 +885,7 @@ class OCIResourceHelperBase(OCIResourceCommonBase):
         patch_model = self.get_patch_model()
         patch_model_dict = self.get_patch_model_dict_for_idempotence_check(patch_model)
         patch_is_necessary = not oci_common_utils.compare_dicts(
-            patch_model_dict, existing_resource_dict
+            patch_model_dict, existing_resource_dict, source_model=patch_model
         )
 
         logger.debug(

@@ -515,7 +515,7 @@ class PublicationHelperGen(OCIResourceHelperBase):
         )
 
     def get_optional_kwargs_for_list(self):
-        optional_list_method_params = ["name", "publication_id"]
+        optional_list_method_params = ["publication_id"]
 
         return dict(
             (param, self.module.params[param])

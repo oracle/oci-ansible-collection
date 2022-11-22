@@ -704,7 +704,6 @@ class DatabaseInsightsHelperGen(OCIResourceHelperBase):
         optional_list_method_params = [
             "compartment_id",
             "enterprise_manager_bridge_id",
-            "database_id",
             "exadata_insight_id",
             "opsi_private_endpoint_id",
         ]

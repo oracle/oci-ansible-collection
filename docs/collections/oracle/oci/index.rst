@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 4.1.0
+Collection version 4.2.0
 
 .. toctree::
     :maxdepth: 1
@@ -816,6 +816,11 @@ Modules
 * :ref:`oci_generic_artifacts_content_generic_artifact_content <ansible_collections.oracle.oci.oci_generic_artifacts_content_generic_artifact_content_module>` -- Manage a GenericArtifactContent resource in Oracle Cloud Infrastructure
 * :ref:`oci_generic_artifacts_content_generic_artifact_content_facts <ansible_collections.oracle.oci.oci_generic_artifacts_content_generic_artifact_content_facts_module>` -- Fetches details about a GenericArtifactContent resource in Oracle Cloud Infrastructure
 * :ref:`oci_generic_artifacts_content_generic_artifact_facts <ansible_collections.oracle.oci.oci_generic_artifacts_content_generic_artifact_facts_module>` -- Fetches details about a GenericArtifact resource in Oracle Cloud Infrastructure
+* :ref:`oci_golden_gate_connection <ansible_collections.oracle.oci.oci_golden_gate_connection_module>` -- Manage a Connection resource in Oracle Cloud Infrastructure
+* :ref:`oci_golden_gate_connection_actions <ansible_collections.oracle.oci.oci_golden_gate_connection_actions_module>` -- Perform actions on a Connection resource in Oracle Cloud Infrastructure
+* :ref:`oci_golden_gate_connection_assignment <ansible_collections.oracle.oci.oci_golden_gate_connection_assignment_module>` -- Manage a ConnectionAssignment resource in Oracle Cloud Infrastructure
+* :ref:`oci_golden_gate_connection_assignment_facts <ansible_collections.oracle.oci.oci_golden_gate_connection_assignment_facts_module>` -- Fetches details about one or multiple ConnectionAssignment resources in Oracle Cloud Infrastructure
+* :ref:`oci_golden_gate_connection_facts <ansible_collections.oracle.oci.oci_golden_gate_connection_facts_module>` -- Fetches details about one or multiple Connection resources in Oracle Cloud Infrastructure
 * :ref:`oci_golden_gate_database_registration <ansible_collections.oracle.oci.oci_golden_gate_database_registration_module>` -- Manage a DatabaseRegistration resource in Oracle Cloud Infrastructure
 * :ref:`oci_golden_gate_database_registration_actions <ansible_collections.oracle.oci.oci_golden_gate_database_registration_actions_module>` -- Perform actions on a DatabaseRegistration resource in Oracle Cloud Infrastructure
 * :ref:`oci_golden_gate_database_registration_facts <ansible_collections.oracle.oci.oci_golden_gate_database_registration_facts_module>` -- Fetches details about one or multiple DatabaseRegistration resources in Oracle Cloud Infrastructure
@@ -825,6 +830,7 @@ Modules
 * :ref:`oci_golden_gate_deployment_backup_actions <ansible_collections.oracle.oci.oci_golden_gate_deployment_backup_actions_module>` -- Perform actions on a DeploymentBackup resource in Oracle Cloud Infrastructure
 * :ref:`oci_golden_gate_deployment_backup_facts <ansible_collections.oracle.oci.oci_golden_gate_deployment_backup_facts_module>` -- Fetches details about one or multiple DeploymentBackup resources in Oracle Cloud Infrastructure
 * :ref:`oci_golden_gate_deployment_facts <ansible_collections.oracle.oci.oci_golden_gate_deployment_facts_module>` -- Fetches details about one or multiple Deployment resources in Oracle Cloud Infrastructure
+* :ref:`oci_golden_gate_deployment_type_facts <ansible_collections.oracle.oci.oci_golden_gate_deployment_type_facts_module>` -- Fetches details about one or multiple DeploymentType resources in Oracle Cloud Infrastructure
 * :ref:`oci_golden_gate_deployment_upgrade_facts <ansible_collections.oracle.oci.oci_golden_gate_deployment_upgrade_facts_module>` -- Fetches details about one or multiple DeploymentUpgrade resources in Oracle Cloud Infrastructure
 * :ref:`oci_golden_gate_message_facts <ansible_collections.oracle.oci.oci_golden_gate_message_facts_module>` -- Fetches details about one or multiple Message resources in Oracle Cloud Infrastructure
 * :ref:`oci_golden_gate_trail_file_facts <ansible_collections.oracle.oci.oci_golden_gate_trail_file_facts_module>` -- Fetches details about one or multiple TrailFile resources in Oracle Cloud Infrastructure
@@ -2544,6 +2550,11 @@ Modules
     oci_generic_artifacts_content_generic_artifact_content_module
     oci_generic_artifacts_content_generic_artifact_content_facts_module
     oci_generic_artifacts_content_generic_artifact_facts_module
+    oci_golden_gate_connection_module
+    oci_golden_gate_connection_actions_module
+    oci_golden_gate_connection_assignment_module
+    oci_golden_gate_connection_assignment_facts_module
+    oci_golden_gate_connection_facts_module
     oci_golden_gate_database_registration_module
     oci_golden_gate_database_registration_actions_module
     oci_golden_gate_database_registration_facts_module
@@ -2553,6 +2564,7 @@ Modules
     oci_golden_gate_deployment_backup_actions_module
     oci_golden_gate_deployment_backup_facts_module
     oci_golden_gate_deployment_facts_module
+    oci_golden_gate_deployment_type_facts_module
     oci_golden_gate_deployment_upgrade_facts_module
     oci_golden_gate_message_facts_module
     oci_golden_gate_trail_file_facts_module

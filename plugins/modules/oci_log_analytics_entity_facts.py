@@ -104,6 +104,7 @@ options:
         choices:
             - "EM_BRIDGE"
             - "SERVICE_CONNECTOR_HUB"
+            - "DISCOVERY"
             - "NONE"
     creation_source_details:
         description:
@@ -442,7 +443,7 @@ def main():
             creation_source_type=dict(
                 type="list",
                 elements="str",
-                choices=["EM_BRIDGE", "SERVICE_CONNECTOR_HUB", "NONE"],
+                choices=["EM_BRIDGE", "SERVICE_CONNECTOR_HUB", "DISCOVERY", "NONE"],
             ),
             creation_source_details=dict(type="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),

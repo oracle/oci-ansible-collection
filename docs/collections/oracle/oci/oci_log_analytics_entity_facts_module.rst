@@ -30,7 +30,7 @@ oracle.oci.oci_log_analytics_entity_facts -- Fetches details about one or multip
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.1.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.2.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -290,6 +290,7 @@ Parameters
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>EM_BRIDGE</li>
                                                                                                                                                                                                 <li>SERVICE_CONNECTOR_HUB</li>
+                                                                                                                                                                                                <li>DISCOVERY</li>
                                                                                                                                                                                                 <li>NONE</li>
                                                                                     </ul>
                                                                             </td>
