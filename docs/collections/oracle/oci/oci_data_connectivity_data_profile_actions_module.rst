@@ -30,7 +30,7 @@ oracle.oci.oci_data_connectivity_data_profile_actions -- Perform actions on a Da
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.2.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.3.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Perform actions on a DataProfile resource in Oracle Cloud Infrastructure
-- For *action=create*, execute data profiling on live schema
+- For *action=create*, execute data profiling on live schema.
 
 
 .. Aliases
@@ -276,7 +276,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The properties for the connection.</div>
+                                            <div>The properties of the connection.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -293,7 +293,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -343,7 +343,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The value can be modified.</div>
+                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can be modified.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -363,7 +363,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The default property for the connection.</div>
+                                            <div>The default property of the connection.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -379,7 +379,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Generated key that can be used in API calls to identify connection. On scenarios where reference to the connection is needed, a value can be passed in create.</div>
+                                            <div>Generated key that can be used in API calls to identify the connection. In scenarios where reference to the connection is required, a value can be passed in create.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -571,7 +571,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The full path to identify this object.</div>
+                                            <div>The full path to identify the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -609,7 +609,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether this object is a favorite or not.</div>
+                                            <div>Specifies whether this object is a favorite.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -626,7 +626,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Labels are keywords or tags that you can add to data assets, dataflows and so on. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or tags that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -760,7 +760,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -859,7 +859,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The external key for the object.</div>
+                                            <div>The external key of the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -876,7 +876,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The value can be modified.</div>
+                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can be modified.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1117,7 +1117,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The full path to identify this object.</div>
+                                            <div>The full path to identify the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1157,7 +1157,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether this object is a favorite or not.</div>
+                                            <div>Specifies whether this object is a favorite.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1175,7 +1175,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Labels are keywords or tags that you can add to data assets, dataflows and so on. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or tags that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1283,7 +1283,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The object&#x27;s type.</div>
+                                            <div>The object type.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1300,7 +1300,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The object&#x27;s model version.</div>
+                                            <div>The model version of the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1317,7 +1317,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1421,7 +1421,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>All the properties for the connection in a key-value map format.</div>
+                                            <div>All the properties of the connection in a key-value map format.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1471,7 +1471,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The id of the user who created the object.</div>
+                                            <div>The ID of the user who created the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1509,7 +1509,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether this object is a favorite or not.</div>
+                                            <div>Specifies whether the object is a favorite.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1543,7 +1543,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1611,7 +1611,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The id of the user who updated the object.</div>
+                                            <div>The ID of the user who updated the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1710,7 +1710,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The properties for the connection.</div>
+                                            <div>The properties of the connection.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -1728,7 +1728,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1781,7 +1781,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The value can be modified.</div>
+                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can be modified.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1802,7 +1802,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The default property for the connection.</div>
+                                            <div>The default property of the connection.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1819,7 +1819,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Generated key that can be used in API calls to identify connection. On scenarios where reference to the connection is needed, a value can be passed in create.</div>
+                                            <div>Generated key that can be used in API calls to identify the connection. In scenarios where reference to the connection is required, a value can be passed in create.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2022,7 +2022,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The full path to identify this object.</div>
+                                            <div>The full path to identify the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2062,7 +2062,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether this object is a favorite or not.</div>
+                                            <div>Specifies whether this object is a favorite.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2080,7 +2080,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Labels are keywords or tags that you can add to data assets, dataflows and so on. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or tags that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2222,7 +2222,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2327,7 +2327,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The external key for the object.</div>
+                                            <div>The external key of the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2345,7 +2345,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The value can be modified.</div>
+                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can be modified.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2599,7 +2599,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The full path to identify this object.</div>
+                                            <div>The full path to identify the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2641,7 +2641,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether this object is a favorite or not.</div>
+                                            <div>Specifies whether this object is a favorite.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2660,7 +2660,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Labels are keywords or tags that you can add to data assets, dataflows and so on. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or tags that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2774,7 +2774,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The object&#x27;s type.</div>
+                                            <div>The object type.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2792,7 +2792,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The object&#x27;s model version.</div>
+                                            <div>The model version of the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2810,7 +2810,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2920,7 +2920,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>All the properties for the connection in a key-value map format.</div>
+                                            <div>All the properties of the connection in a key-value map format.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2973,7 +2973,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The id of the user who created the object.</div>
+                                            <div>The ID of the user who created the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -3013,7 +3013,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether this object is a favorite or not.</div>
+                                            <div>Specifies whether the object is a favorite.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -3049,7 +3049,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -3121,7 +3121,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The id of the user who updated the object.</div>
+                                            <div>The ID of the user who updated the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -3207,7 +3207,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The compartmentId of private endpoint resource.</div>
+                                            <div>The compartmentId of the private endpoint resource.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -3225,7 +3225,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>List of data assets which belongs to this endpoint</div>
+                                            <div>The list of data assets that belong to the endpoint.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -3315,7 +3315,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The external key for the object.</div>
+                                            <div>The external key of the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -3333,7 +3333,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The value can be modified.</div>
+                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can be modified.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -3351,7 +3351,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Currently not used on data asset creation. Reserved for future.</div>
+                                            <div>Currently not used while creating a data asset. Reserved for future.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -3423,7 +3423,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -3567,7 +3567,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>User-defined description for the endpoint.</div>
+                                            <div>User-defined description of the endpoint.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -3584,7 +3584,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The IP address of dns proxy.</div>
+                                            <div>The IP address of the DNS proxy.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -3602,7 +3602,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Array of dns zones to be use during private endpoint resolution.</div>
+                                            <div>Array of DNS zones to be used during the private endpoint resolution.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -3620,7 +3620,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The value can be modified.</div>
+                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can be modified.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -3637,7 +3637,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Generated key that can be used in API calls to identify endpoint. On scenarios where reference to the endpoint is needed, a value can be passed in create.</div>
+                                            <div>Generated key that can be used in API calls to identify the endpoint. In scenarios where reference to the endpoint is required, a value can be passed in create.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -3692,7 +3692,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -3780,7 +3780,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The ocid of private endpoint resource.</div>
+                                            <div>The OCID of the private endpoint resource.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -3798,7 +3798,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The ocid of private endpoint resource.</div>
+                                            <div>The OCID of the private endpoint resource.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -3838,7 +3838,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The external key for the object.</div>
+                                            <div>The external key of the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -3854,7 +3854,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The value can be modified.</div>
+                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can be modified.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -3870,7 +3870,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Currently not used on data asset creation. Reserved for future.</div>
+                                            <div>Currently not used while creating a data asset. Reserved for future.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -4062,7 +4062,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The full path to identify this object.</div>
+                                            <div>The full path to identify the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -4100,7 +4100,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether this object is a favorite or not.</div>
+                                            <div>Specifies whether this object is a favorite.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -4117,7 +4117,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Labels are keywords or tags that you can add to data assets, dataflows and so on. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or tags that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -4251,7 +4251,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -4284,7 +4284,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A user defined description for the object.</div>
+                                            <div>A user-defined description for the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -4301,7 +4301,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The value can be modified.</div>
+                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can be modified.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -4369,7 +4369,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -4587,7 +4587,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A user defined description for the object.</div>
+                                            <div>A user-defined description for the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -4611,7 +4611,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether the parameter is a class field or not.</div>
+                                            <div>Specifies whether the parameter is a class field.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -4635,7 +4635,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether the parameter is static or not.</div>
+                                            <div>Specifies whether the parameter is static.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -4745,7 +4745,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether the configuration is contained or not.</div>
+                                            <div>Specifies whether the configuration is contained.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -4833,7 +4833,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -5114,7 +5114,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A user defined description for the object.</div>
+                                            <div>A user-defined description for the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -5453,7 +5453,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Detailed description for the object.</div>
+                                            <div>A detailed description of the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -5522,7 +5522,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Detailed description for the object.</div>
+                                            <div>A detailed description of the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -5619,7 +5619,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -5692,7 +5692,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether the parameter is input value.</div>
+                                            <div>Specifies whether the parameter is an input value.</div>
                                             <div>Applicable when model_type is &#x27;PARAMETER&#x27;</div>
                                                         </td>
             </tr>
@@ -5746,7 +5746,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether the parameter is output value.</div>
+                                            <div>Specifies whether the parameter is an output value.</div>
                                             <div>Applicable when model_type is &#x27;PARAMETER&#x27;</div>
                                                         </td>
             </tr>
@@ -5791,7 +5791,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                             <div>Applicable when model_type is &#x27;SHAPE_FIELD&#x27;</div>
                                                         </td>
             </tr>
@@ -5866,7 +5866,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -6169,7 +6169,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Detailed description for the object.</div>
+                                            <div>A detailed description of the object.</div>
                                             <div>Applicable when model_type is &#x27;SHAPE_FIELD&#x27;</div>
                                                         </td>
             </tr>
@@ -6298,7 +6298,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                             <div>Applicable when model_type is &#x27;SHAPE_FIELD&#x27;</div>
                                                         </td>
             </tr>
@@ -6547,7 +6547,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The port details for the data asset.Type.</div>
+                                            <div>The port details of the data asset type.</div>
                                             <div>Applicable when model_type is one of [&#x27;INPUT_PORT&#x27;, &#x27;OUTPUT_PORT&#x27;]</div>
                                                         </td>
             </tr>
@@ -6593,7 +6593,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The default value of the parameter which can be an object in DIS, such as a data entity.</div>
+                                            <div>The default value of the parameter, which can be an object in DIS, such as a data entity.</div>
                                             <div>Applicable when model_type is &#x27;PARAMETER&#x27;</div>
                                                         </td>
             </tr>
@@ -6641,7 +6641,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A user defined description for the object.</div>
+                                            <div>A user-defined description for the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -6694,7 +6694,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The property which disciminates the subtypes.</div>
+                                            <div>The property which differentiates the subtypes.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -6740,7 +6740,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -6860,7 +6860,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The property which disciminates the subtypes.</div>
+                                            <div>The property which differentiates the subtypes.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -6902,7 +6902,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -7034,7 +7034,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A user defined description for the object.</div>
+                                            <div>A user-defined description for the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -7107,7 +7107,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The property which disciminates the subtypes.</div>
+                                            <div>The property which differentiates the subtypes.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -7151,7 +7151,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -7262,7 +7262,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A user defined description for the object.</div>
+                                            <div>A user-defined description for the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -7313,7 +7313,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The property which disciminates the subtypes.</div>
+                                            <div>The property which differentiates the subtypes.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -7357,7 +7357,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -7468,7 +7468,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A user defined description for the object.</div>
+                                            <div>A user-defined description for the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -7519,7 +7519,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The property which disciminates the subtypes.</div>
+                                            <div>The property which differentiates the subtypes.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -7563,7 +7563,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -7633,7 +7633,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether the configuration is contained or not.</div>
+                                            <div>Specifies whether the configuration is contained.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -7709,7 +7709,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -7787,7 +7787,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A user defined description for the object.</div>
+                                            <div>A user-defined description for the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -7852,7 +7852,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The property which disciminates the subtypes.</div>
+                                            <div>The property which differentiates the subtypes.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -7888,7 +7888,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -8062,7 +8062,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The id of the user who created the object.</div>
+                                            <div>The ID of the user who created the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -8100,7 +8100,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether this object is a favorite or not.</div>
+                                            <div>Specifies whether the object is a favorite.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -8134,7 +8134,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -8202,7 +8202,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The id of the user who updated the object.</div>
+                                            <div>The ID of the user who updated the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -8361,6 +8361,25 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="8">
+                    <div class="ansibleOptionAnchor" id="parameter-data_entity/data_format/format_attribute/data_address"></div>
+                    <b>data_address</b>
+                    <a class="ansibleOptionLink" href="#parameter-data_entity/data_format/format_attribute/data_address" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Range of the data. For example, &quot;&#x27;My Sheet&#x27;!B3:C35&quot;</div>
+                                            <div>Applicable when model_type is &#x27;EXCEL_FORMAT&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="8">
                     <div class="ansibleOptionAnchor" id="parameter-data_entity/data_format/format_attribute/delimiter"></div>
                     <b>delimiter</b>
                     <a class="ansibleOptionLink" href="#parameter-data_entity/data_format/format_attribute/delimiter" title="Permalink to this option"></a>
@@ -8441,6 +8460,29 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="8">
+                    <div class="ansibleOptionAnchor" id="parameter-data_entity/data_format/format_attribute/header"></div>
+                    <b>header</b>
+                    <a class="ansibleOptionLink" href="#parameter-data_entity/data_format/format_attribute/header" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Whether the dataAddress contains the header with column names. If false - column names fill be generated.</div>
+                                            <div>Applicable when model_type is &#x27;EXCEL_FORMAT&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="8">
                     <div class="ansibleOptionAnchor" id="parameter-data_entity/data_format/format_attribute/is_file_pattern"></div>
                     <b>is_file_pattern</b>
                     <a class="ansibleOptionLink" href="#parameter-data_entity/data_format/format_attribute/is_file_pattern" title="Permalink to this option"></a>
@@ -8464,6 +8506,75 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="8">
+                    <div class="ansibleOptionAnchor" id="parameter-data_entity/data_format/format_attribute/is_multiline"></div>
+                    <b>is_multiline</b>
+                    <a class="ansibleOptionLink" href="#parameter-data_entity/data_format/format_attribute/is_multiline" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Defines whether the file has a multiline content</div>
+                                            <div>Applicable when model_type is &#x27;CSV_FORMAT&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="8">
+                    <div class="ansibleOptionAnchor" id="parameter-data_entity/data_format/format_attribute/is_quote_all"></div>
+                    <b>is_quote_all</b>
+                    <a class="ansibleOptionLink" href="#parameter-data_entity/data_format/format_attribute/is_quote_all" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Defines whether the quote entire content while performing read/write.</div>
+                                            <div>Applicable when model_type is &#x27;CSV_FORMAT&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="8">
+                    <div class="ansibleOptionAnchor" id="parameter-data_entity/data_format/format_attribute/is_trailing_delimiter"></div>
+                    <b>is_trailing_delimiter</b>
+                    <a class="ansibleOptionLink" href="#parameter-data_entity/data_format/format_attribute/is_trailing_delimiter" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Defines whether the file has a trailing delimiter</div>
+                                            <div>Applicable when model_type is &#x27;CSV_FORMAT&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="8">
                     <div class="ansibleOptionAnchor" id="parameter-data_entity/data_format/format_attribute/model_type"></div>
                     <b>model_type</b>
                     <a class="ansibleOptionLink" href="#parameter-data_entity/data_format/format_attribute/model_type" title="Permalink to this option"></a>
@@ -8477,10 +8588,30 @@ Parameters
                                                                                                                                                                                                 <li>JSON_FORMAT</li>
                                                                                                                                                                                                 <li>CSV_FORMAT</li>
                                                                                                                                                                                                 <li>PARQUET_FORMAT</li>
+                                                                                                                                                                                                <li>EXCEL_FORMAT</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
                                             <div>The type of the format attribute.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="8">
+                    <div class="ansibleOptionAnchor" id="parameter-data_entity/data_format/format_attribute/password"></div>
+                    <b>password</b>
+                    <a class="ansibleOptionLink" href="#parameter-data_entity/data_format/format_attribute/password" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Workbook password if it is password protected.</div>
+                                            <div>Applicable when model_type is &#x27;EXCEL_FORMAT&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -8550,6 +8681,23 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="10">
+                    <div class="ansibleOptionAnchor" id="parameter-data_entity/derived_properties"></div>
+                    <b>derived_properties</b>
+                    <a class="ansibleOptionLink" href="#parameter-data_entity/derived_properties" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Property-bag (key-value pairs where key is Shape Field resource name and value is object)</div>
+                                            <div>Applicable when model_type is &#x27;DERIVED_ENTITY&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="parameter-data_entity/description"></div>
                     <b>description</b>
                     <a class="ansibleOptionLink" href="#parameter-data_entity/description" title="Permalink to this option"></a>
@@ -8560,7 +8708,24 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Detailed description for the object.</div>
+                                            <div>Detailed description of the object.</div>
+                                            <div>Applicable when model_type is one of [&#x27;VIEW_ENTITY&#x27;, &#x27;SQL_ENTITY&#x27;, &#x27;DATA_STORE_ENTITY&#x27;, &#x27;TABLE_ENTITY&#x27;, &#x27;FILE_ENTITY&#x27;]</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="10">
+                    <div class="ansibleOptionAnchor" id="parameter-data_entity/entity_properties"></div>
+                    <b>entity_properties</b>
+                    <a class="ansibleOptionLink" href="#parameter-data_entity/entity_properties" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Map&lt;String, String&gt; for entity properties</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -8580,10 +8745,12 @@ Parameters
                                                                                                                                                                                                 <li>FILE</li>
                                                                                                                                                                                                 <li>SQL</li>
                                                                                                                                                                                                 <li>DATA_STORE</li>
+                                                                                                                                                                                                <li>MESSAGE</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
                                             <div>The entity type.</div>
+                                            <div>Applicable when model_type is one of [&#x27;VIEW_ENTITY&#x27;, &#x27;SQL_ENTITY&#x27;, &#x27;DATA_STORE_ENTITY&#x27;, &#x27;TABLE_ENTITY&#x27;, &#x27;FILE_ENTITY&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -8599,7 +8766,8 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The external key for the object.</div>
+                                            <div>The external key of the object.</div>
+                                            <div>Applicable when model_type is one of [&#x27;VIEW_ENTITY&#x27;, &#x27;SQL_ENTITY&#x27;, &#x27;DATA_STORE_ENTITY&#x27;, &#x27;TABLE_ENTITY&#x27;, &#x27;FILE_ENTITY&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -8615,7 +8783,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Filters present in the Datastore. It can be Null.</div>
+                                            <div>Filters present in the datastore. It can be null.</div>
                                             <div>Applicable when model_type is &#x27;DATA_STORE_ENTITY&#x27;</div>
                                                         </td>
             </tr>
@@ -8633,6 +8801,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>An array of foreign keys.</div>
+                                            <div>Applicable when model_type is one of [&#x27;VIEW_ENTITY&#x27;, &#x27;SQL_ENTITY&#x27;, &#x27;DATA_STORE_ENTITY&#x27;, &#x27;TABLE_ENTITY&#x27;, &#x27;FILE_ENTITY&#x27;]</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -8885,7 +9054,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Detailed description for the object.</div>
+                                            <div>A detailed description of the object.</div>
                                             <div>Applicable when model_type is &#x27;TABLE_ENTITY&#x27;</div>
                                                         </td>
             </tr>
@@ -8925,7 +9094,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                             <div>Applicable when model_type is &#x27;TABLE_ENTITY&#x27;</div>
                                                         </td>
             </tr>
@@ -8990,7 +9159,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                             <div>Applicable when model_type is &#x27;TABLE_ENTITY&#x27;</div>
                                                         </td>
             </tr>
@@ -9258,7 +9427,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Detailed description for the object.</div>
+                                            <div>A detailed description of the object.</div>
                                             <div>Applicable when model_type is &#x27;TABLE_ENTITY&#x27;</div>
                                                         </td>
             </tr>
@@ -9372,7 +9541,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                             <div>Applicable when model_type is &#x27;TABLE_ENTITY&#x27;</div>
                                                         </td>
             </tr>
@@ -9658,7 +9827,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The object&#x27;s model version.</div>
+                                            <div>The model version of the object.</div>
                                             <div>Applicable when model_type is &#x27;TABLE_ENTITY&#x27;</div>
                                                         </td>
             </tr>
@@ -9676,7 +9845,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                             <div>Applicable when model_type is &#x27;TABLE_ENTITY&#x27;</div>
                                                         </td>
             </tr>
@@ -10005,7 +10174,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Detailed description for the object.</div>
+                                            <div>A detailed description of the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -10045,7 +10214,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -10110,7 +10279,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -10378,7 +10547,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Detailed description for the object.</div>
+                                            <div>A detailed description of the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -10492,7 +10661,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -10760,7 +10929,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The object&#x27;s model version.</div>
+                                            <div>The model version of the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -10778,7 +10947,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -10870,7 +11039,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Value can only contain upper case letters, underscore and numbers. It should begin with upper case letter or underscore. The value can be modified.</div>
+                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can be modified.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -10890,7 +11059,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>It shows whether or not effective date is disabled</div>
+                                            <div>It shows whether the effective date is disabled.</div>
                                             <div>Applicable when model_type is &#x27;DATA_STORE_ENTITY&#x27;</div>
                                                         </td>
             </tr>
@@ -10911,7 +11080,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>It shows whether the datastore is of flex type</div>
+                                            <div>It shows whether the datastore is of flex type.</div>
                                             <div>Applicable when model_type is &#x27;DATA_STORE_ENTITY&#x27;</div>
                                                         </td>
             </tr>
@@ -10932,7 +11101,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>It shows whether the extraction of this datastore will stop on error</div>
+                                            <div>It shows whether the extraction of this datastore will stop when an error occurs.</div>
                                             <div>Applicable when model_type is &#x27;DATA_STORE_ENTITY&#x27;</div>
                                                         </td>
             </tr>
@@ -11150,7 +11319,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The full path to identify this object.</div>
+                                            <div>The full path to identify the object.</div>
                                             <div>Applicable when model_type is &#x27;TABLE_ENTITY&#x27;</div>
                                                         </td>
             </tr>
@@ -11190,7 +11359,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether this object is a favorite or not.</div>
+                                            <div>Specifies whether this object is a favorite.</div>
                                             <div>Applicable when model_type is &#x27;TABLE_ENTITY&#x27;</div>
                                                         </td>
             </tr>
@@ -11208,7 +11377,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Labels are keywords or tags that you can add to data assets, dataflows and so on. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or tags that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                             <div>Applicable when model_type is &#x27;TABLE_ENTITY&#x27;</div>
                                                         </td>
             </tr>
@@ -11306,6 +11475,27 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="10">
+                    <div class="ansibleOptionAnchor" id="parameter-data_entity/mode"></div>
+                    <b>mode</b>
+                    <a class="ansibleOptionLink" href="#parameter-data_entity/mode" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>IN</li>
+                                                                                                                                                                                                <li>OUT</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Determines whether entity is treated as source or target</div>
+                                            <div>Applicable when model_type is &#x27;DERIVED_ENTITY&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="parameter-data_entity/model_type"></div>
                     <b>model_type</b>
                     <a class="ansibleOptionLink" href="#parameter-data_entity/model_type" title="Permalink to this option"></a>
@@ -11320,6 +11510,7 @@ Parameters
                                                                                                                                                                                                 <li>VIEW_ENTITY</li>
                                                                                                                                                                                                 <li>SQL_ENTITY</li>
                                                                                                                                                                                                 <li>FILE_ENTITY</li>
+                                                                                                                                                                                                <li>DERIVED_ENTITY</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -11339,7 +11530,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The object&#x27;s model version.</div>
+                                            <div>The model version of the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -11355,7 +11546,8 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Required when model_type is &#x27;DERIVED_ENTITY&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -11404,6 +11596,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Specifies other type label.</div>
+                                            <div>Applicable when model_type is one of [&#x27;VIEW_ENTITY&#x27;, &#x27;SQL_ENTITY&#x27;, &#x27;DATA_STORE_ENTITY&#x27;, &#x27;TABLE_ENTITY&#x27;, &#x27;FILE_ENTITY&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -11444,6 +11637,201 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="10">
+                    <div class="ansibleOptionAnchor" id="parameter-data_entity/ref_data_object"></div>
+                    <b>ref_data_object</b>
+                    <a class="ansibleOptionLink" href="#parameter-data_entity/ref_data_object" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Applicable when model_type is &#x27;DERIVED_ENTITY&#x27;</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="9">
+                    <div class="ansibleOptionAnchor" id="parameter-data_entity/ref_data_object/external_key"></div>
+                    <b>external_key</b>
+                    <a class="ansibleOptionLink" href="#parameter-data_entity/ref_data_object/external_key" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The external key for the object.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="9">
+                    <div class="ansibleOptionAnchor" id="parameter-data_entity/ref_data_object/key"></div>
+                    <b>key</b>
+                    <a class="ansibleOptionLink" href="#parameter-data_entity/ref_data_object/key" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The object key.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="9">
+                    <div class="ansibleOptionAnchor" id="parameter-data_entity/ref_data_object/model_type"></div>
+                    <b>model_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-data_entity/ref_data_object/model_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>API</li>
+                                                                                                                                                                                                <li>PROCEDURE</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The input Operation type.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="9">
+                    <div class="ansibleOptionAnchor" id="parameter-data_entity/ref_data_object/model_version"></div>
+                    <b>model_version</b>
+                    <a class="ansibleOptionLink" href="#parameter-data_entity/ref_data_object/model_version" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The object&#x27;s model version.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="9">
+                    <div class="ansibleOptionAnchor" id="parameter-data_entity/ref_data_object/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#parameter-data_entity/ref_data_object/name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is unique, editable and is restricted to 1000 characters.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="9">
+                    <div class="ansibleOptionAnchor" id="parameter-data_entity/ref_data_object/object_status"></div>
+                    <b>object_status</b>
+                    <a class="ansibleOptionLink" href="#parameter-data_entity/ref_data_object/object_status" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The status of an object that can be set to value 1 for shallow reference across objects, other values reserved.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="9">
+                    <div class="ansibleOptionAnchor" id="parameter-data_entity/ref_data_object/object_version"></div>
+                    <b>object_version</b>
+                    <a class="ansibleOptionLink" href="#parameter-data_entity/ref_data_object/object_version" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The version of the object that is used to track changes in the object instance.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="9">
+                    <div class="ansibleOptionAnchor" id="parameter-data_entity/ref_data_object/parent_ref"></div>
+                    <b>parent_ref</b>
+                    <a class="ansibleOptionLink" href="#parameter-data_entity/ref_data_object/parent_ref" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="8">
+                    <div class="ansibleOptionAnchor" id="parameter-data_entity/ref_data_object/parent_ref/parent"></div>
+                    <b>parent</b>
+                    <a class="ansibleOptionLink" href="#parameter-data_entity/ref_data_object/parent_ref/parent" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Key of the parent object.</div>
+                                            <div>Applicable when model_type is &#x27;API&#x27;</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="9">
+                    <div class="ansibleOptionAnchor" id="parameter-data_entity/ref_data_object/resource_name"></div>
+                    <b>resource_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-data_entity/ref_data_object/resource_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The resource name.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="parameter-data_entity/resource_name"></div>
                     <b>resource_name</b>
                     <a class="ansibleOptionLink" href="#parameter-data_entity/resource_name" title="Permalink to this option"></a>
@@ -11455,6 +11843,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The resource name.</div>
+                                            <div>Required when model_type is &#x27;DERIVED_ENTITY&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -11666,7 +12055,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Detailed description for the object.</div>
+                                            <div>A detailed description of the object.</div>
                                             <div>Applicable when model_type is &#x27;TABLE_ENTITY&#x27;</div>
                                                         </td>
             </tr>
@@ -11743,7 +12132,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                             <div>Applicable when model_type is &#x27;TABLE_ENTITY&#x27;</div>
                                                         </td>
             </tr>
@@ -11919,7 +12308,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A user defined description for the object.</div>
+                                            <div>A user-defined description for the object.</div>
                                             <div>Applicable when model_type is &#x27;CONFIGURED_TYPE&#x27;</div>
                                                         </td>
             </tr>
@@ -11944,7 +12333,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether the parameter is a class field or not.</div>
+                                            <div>Specifies whether the parameter is a class field.</div>
                                             <div>Applicable when model_type is &#x27;CONFIGURED_TYPE&#x27;</div>
                                                         </td>
             </tr>
@@ -11969,7 +12358,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether the parameter is static or not.</div>
+                                            <div>Specifies whether the parameter is static.</div>
                                             <div>Applicable when model_type is &#x27;CONFIGURED_TYPE&#x27;</div>
                                                         </td>
             </tr>
@@ -12033,7 +12422,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A user defined description for the object.</div>
+                                            <div>A user-defined description for the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -12082,7 +12471,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The property which disciminates the subtypes.</div>
+                                            <div>The property which differentiates the subtypes.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -12124,7 +12513,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -12191,7 +12580,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether the configuration is contained or not.</div>
+                                            <div>Specifies whether the configuration is contained.</div>
                                             <div>Applicable when model_type is &#x27;CONFIGURED_TYPE&#x27;</div>
                                                         </td>
             </tr>
@@ -12271,7 +12660,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                             <div>Applicable when model_type is &#x27;CONFIGURED_TYPE&#x27;</div>
                                                         </td>
             </tr>
@@ -12541,7 +12930,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A user defined description for the object.</div>
+                                            <div>A user-defined description for the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -12838,7 +13227,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Detailed description for the object.</div>
+                                            <div>A detailed description of the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -12898,7 +13287,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Detailed description for the object.</div>
+                                            <div>A detailed description of the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -12983,7 +13372,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -13047,7 +13436,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether the parameter is input value.</div>
+                                            <div>Specifies whether the parameter is an input value.</div>
                                             <div>Applicable when model_type is &#x27;PARAMETER&#x27;</div>
                                                         </td>
             </tr>
@@ -13095,7 +13484,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether the parameter is output value.</div>
+                                            <div>Specifies whether the parameter is an output value.</div>
                                             <div>Applicable when model_type is &#x27;PARAMETER&#x27;</div>
                                                         </td>
             </tr>
@@ -13134,7 +13523,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                             <div>Applicable when model_type is &#x27;SHAPE_FIELD&#x27;</div>
                                                         </td>
             </tr>
@@ -13200,7 +13589,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -13467,7 +13856,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Detailed description for the object.</div>
+                                            <div>A detailed description of the object.</div>
                                             <div>Applicable when model_type is &#x27;SHAPE_FIELD&#x27;</div>
                                                         </td>
             </tr>
@@ -13581,7 +13970,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                             <div>Applicable when model_type is &#x27;SHAPE_FIELD&#x27;</div>
                                                         </td>
             </tr>
@@ -13800,7 +14189,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The port details for the data asset.Type.</div>
+                                            <div>The port details of the data asset type.</div>
                                             <div>Applicable when model_type is one of [&#x27;INPUT_PORT&#x27;, &#x27;OUTPUT_PORT&#x27;]</div>
                                                         </td>
             </tr>
@@ -13840,7 +14229,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The default value of the parameter which can be an object in DIS, such as a data entity.</div>
+                                            <div>The default value of the parameter, which can be an object in DIS, such as a data entity.</div>
                                             <div>Applicable when model_type is &#x27;PARAMETER&#x27;</div>
                                                         </td>
             </tr>
@@ -13882,7 +14271,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A user defined description for the object.</div>
+                                            <div>A user-defined description for the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -13929,7 +14318,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The property which disciminates the subtypes.</div>
+                                            <div>The property which differentiates the subtypes.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -13969,7 +14358,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -14074,7 +14463,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The property which disciminates the subtypes.</div>
+                                            <div>The property which differentiates the subtypes.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -14110,7 +14499,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -14224,7 +14613,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A user defined description for the object.</div>
+                                            <div>A user-defined description for the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -14288,7 +14677,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The property which disciminates the subtypes.</div>
+                                            <div>The property which differentiates the subtypes.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -14326,7 +14715,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -14422,7 +14811,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A user defined description for the object.</div>
+                                            <div>A user-defined description for the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -14467,7 +14856,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The property which disciminates the subtypes.</div>
+                                            <div>The property which differentiates the subtypes.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -14505,7 +14894,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -14601,7 +14990,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A user defined description for the object.</div>
+                                            <div>A user-defined description for the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -14646,7 +15035,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The property which disciminates the subtypes.</div>
+                                            <div>The property which differentiates the subtypes.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -14684,7 +15073,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -14778,7 +15167,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>It shows whether the datastore supports Incremental Extract or not.</div>
+                                            <div>It shows whether the datastore supports incremental extract.</div>
                                             <div>Applicable when model_type is &#x27;DATA_STORE_ENTITY&#x27;</div>
                                                         </td>
             </tr>
@@ -14796,6 +15185,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>An array of unique keys.</div>
+                                            <div>Applicable when model_type is one of [&#x27;VIEW_ENTITY&#x27;, &#x27;SQL_ENTITY&#x27;, &#x27;DATA_STORE_ENTITY&#x27;, &#x27;TABLE_ENTITY&#x27;, &#x27;FILE_ENTITY&#x27;]</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -15037,7 +15427,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Detailed description for the object.</div>
+                                            <div>A detailed description of the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -15075,7 +15465,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -15137,7 +15527,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -15393,7 +15783,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Detailed description for the object.</div>
+                                            <div>A detailed description of the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -15502,7 +15892,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -15757,7 +16147,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The object&#x27;s model version.</div>
+                                            <div>The model version of the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -15774,7 +16164,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -15844,7 +16234,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Endpoint Id used for getDataAssetFullDetails.</div>
+                                            <div>Endpoint ID used for getDataAssetFullDetails.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -15875,7 +16265,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Array of column names to profile. If empty all columns in the entity are profiled.</div>
+                                            <div>Array of column names to profile. If empty, all the columns in the entity are profiled.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -15891,7 +16281,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A data type has to qualify minimum this percentage threshold to be considered an infrred data type for a column.</div>
+                                            <div>A data type has to qualify at least this percentage threshold to be considered an inferred data type for a column.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -15929,7 +16319,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Array of enum Strings basically what all profile functions to run. If empty, all supported functions are run.</div>
+                                            <div>Array of enum strings to decide which profile functions to run. If empty, all the supported functions are run.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -15945,7 +16335,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A pattern has to qualify minumum this percentage threshold to be considered a legitimate pattern on its own. All patterns which does not qualify this will be clubbed together into a single &#x27;Others&#x27; pattern.</div>
+                                            <div>A pattern has to qualify at least this percentage threshold to be considered a pattern on its own. Patterns that do not qualify are clubbed together into &#x27;Others&#x27; pattern.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -15961,7 +16351,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The maximum number of value frequencies to return per column. The VFs are sorted descending on frequency and ascending on value and then topN are returned and rest discarded.</div>
+                                            <div>The maximum number of value frequencies to return per column. The VFs are sorted descending on frequency, and ascending on value, and then topN are returned and rest discarded.</div>
                                                         </td>
             </tr>
                     
@@ -16082,6 +16472,25 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="8">
+                    <div class="ansibleOptionAnchor" id="parameter-read_operation_config/data_format/format_attribute/data_address"></div>
+                    <b>data_address</b>
+                    <a class="ansibleOptionLink" href="#parameter-read_operation_config/data_format/format_attribute/data_address" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Range of the data. For example, &quot;&#x27;My Sheet&#x27;!B3:C35&quot;</div>
+                                            <div>Applicable when model_type is &#x27;EXCEL_FORMAT&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="8">
                     <div class="ansibleOptionAnchor" id="parameter-read_operation_config/data_format/format_attribute/delimiter"></div>
                     <b>delimiter</b>
                     <a class="ansibleOptionLink" href="#parameter-read_operation_config/data_format/format_attribute/delimiter" title="Permalink to this option"></a>
@@ -16162,6 +16571,29 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="8">
+                    <div class="ansibleOptionAnchor" id="parameter-read_operation_config/data_format/format_attribute/header"></div>
+                    <b>header</b>
+                    <a class="ansibleOptionLink" href="#parameter-read_operation_config/data_format/format_attribute/header" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Whether the dataAddress contains the header with column names. If false - column names fill be generated.</div>
+                                            <div>Applicable when model_type is &#x27;EXCEL_FORMAT&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="8">
                     <div class="ansibleOptionAnchor" id="parameter-read_operation_config/data_format/format_attribute/is_file_pattern"></div>
                     <b>is_file_pattern</b>
                     <a class="ansibleOptionLink" href="#parameter-read_operation_config/data_format/format_attribute/is_file_pattern" title="Permalink to this option"></a>
@@ -16185,6 +16617,75 @@ Parameters
                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="8">
+                    <div class="ansibleOptionAnchor" id="parameter-read_operation_config/data_format/format_attribute/is_multiline"></div>
+                    <b>is_multiline</b>
+                    <a class="ansibleOptionLink" href="#parameter-read_operation_config/data_format/format_attribute/is_multiline" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Defines whether the file has a multiline content</div>
+                                            <div>Applicable when model_type is &#x27;CSV_FORMAT&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="8">
+                    <div class="ansibleOptionAnchor" id="parameter-read_operation_config/data_format/format_attribute/is_quote_all"></div>
+                    <b>is_quote_all</b>
+                    <a class="ansibleOptionLink" href="#parameter-read_operation_config/data_format/format_attribute/is_quote_all" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Defines whether the quote entire content while performing read/write.</div>
+                                            <div>Applicable when model_type is &#x27;CSV_FORMAT&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="8">
+                    <div class="ansibleOptionAnchor" id="parameter-read_operation_config/data_format/format_attribute/is_trailing_delimiter"></div>
+                    <b>is_trailing_delimiter</b>
+                    <a class="ansibleOptionLink" href="#parameter-read_operation_config/data_format/format_attribute/is_trailing_delimiter" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Defines whether the file has a trailing delimiter</div>
+                                            <div>Applicable when model_type is &#x27;CSV_FORMAT&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="8">
                     <div class="ansibleOptionAnchor" id="parameter-read_operation_config/data_format/format_attribute/model_type"></div>
                     <b>model_type</b>
                     <a class="ansibleOptionLink" href="#parameter-read_operation_config/data_format/format_attribute/model_type" title="Permalink to this option"></a>
@@ -16198,10 +16699,30 @@ Parameters
                                                                                                                                                                                                 <li>JSON_FORMAT</li>
                                                                                                                                                                                                 <li>CSV_FORMAT</li>
                                                                                                                                                                                                 <li>PARQUET_FORMAT</li>
+                                                                                                                                                                                                <li>EXCEL_FORMAT</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
                                             <div>The type of the format attribute.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="8">
+                    <div class="ansibleOptionAnchor" id="parameter-read_operation_config/data_format/format_attribute/password"></div>
+                    <b>password</b>
+                    <a class="ansibleOptionLink" href="#parameter-read_operation_config/data_format/format_attribute/password" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Workbook password if it is password protected.</div>
+                                            <div>Applicable when model_type is &#x27;EXCEL_FORMAT&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -16270,6 +16791,22 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="10">
+                    <div class="ansibleOptionAnchor" id="parameter-read_operation_config/derived_attributes"></div>
+                    <b>derived_attributes</b>
+                    <a class="ansibleOptionLink" href="#parameter-read_operation_config/derived_attributes" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>this map is used for passing BIP report/REST parameter values.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="10">
                     <div class="ansibleOptionAnchor" id="parameter-read_operation_config/key"></div>
                     <b>key</b>
                     <a class="ansibleOptionLink" href="#parameter-read_operation_config/key" title="Permalink to this option"></a>
@@ -16316,7 +16853,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The object&#x27;s model version.</div>
+                                            <div>The model version of the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -16696,7 +17233,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Detailed description for the object.</div>
+                                            <div>A detailed description of the object.</div>
                                             <div>Applicable when model_type is &#x27;SELECT&#x27;</div>
                                                         </td>
             </tr>
@@ -16734,7 +17271,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                             <div>Applicable when model_type is &#x27;SELECT&#x27;</div>
                                                         </td>
             </tr>
@@ -16796,7 +17333,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                             <div>Applicable when model_type is &#x27;SELECT&#x27;</div>
                                                         </td>
             </tr>
@@ -17052,7 +17589,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Detailed description for the object.</div>
+                                            <div>A detailed description of the object.</div>
                                             <div>Applicable when model_type is &#x27;SELECT&#x27;</div>
                                                         </td>
             </tr>
@@ -17161,7 +17698,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                             <div>Applicable when model_type is &#x27;SELECT&#x27;</div>
                                                         </td>
             </tr>
@@ -17597,7 +18134,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Detailed description for the object.</div>
+                                            <div>A detailed description of the object.</div>
                                             <div>Applicable when model_type is &#x27;SORT&#x27;</div>
                                                         </td>
             </tr>
@@ -17637,7 +18174,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                             <div>Applicable when model_type is &#x27;SORT&#x27;</div>
                                                         </td>
             </tr>
@@ -17702,7 +18239,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                             <div>Applicable when model_type is &#x27;SORT&#x27;</div>
                                                         </td>
             </tr>
@@ -17970,7 +18507,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Detailed description for the object.</div>
+                                            <div>A detailed description of the object.</div>
                                             <div>Applicable when model_type is &#x27;SORT&#x27;</div>
                                                         </td>
             </tr>
@@ -18084,7 +18621,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                             <div>Applicable when model_type is &#x27;SORT&#x27;</div>
                                                         </td>
             </tr>
@@ -18593,7 +19130,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Detailed description for the object.</div>
+                                            <div>A detailed description of the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -18631,7 +19168,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -18693,7 +19230,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -18949,7 +19486,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Detailed description for the object.</div>
+                                            <div>A detailed description of the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -19058,7 +19595,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -19349,7 +19886,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Bucket Name where BICC extracts stores the files</div>
+                                            <div>Bucket name where BICC extracts and stores the files.</div>
                                             <div>Applicable when model_type is &#x27;BICC_READ_ATTRIBUTE&#x27;</div>
                                                         </td>
             </tr>
@@ -19368,7 +19905,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Object Storage host Url. DO not give http/https.</div>
+                                            <div>Object Storage host URL. DO not give http/https.</div>
                                             <div>Applicable when model_type is &#x27;BICC_READ_ATTRIBUTE&#x27;</div>
                                                         </td>
             </tr>
@@ -19409,7 +19946,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Namespace for the OOS bucket</div>
+                                            <div>Namespace of the OOS bucket.</div>
                                             <div>Applicable when model_type is &#x27;BICC_READ_ATTRIBUTE&#x27;</div>
                                                         </td>
             </tr>
@@ -19428,7 +19965,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Id of the external stoarge configured in BICC console. Usually its numeric.</div>
+                                            <div>ID of the external stoarge configured in the BICC console. Usually it&#x27;s numeric.</div>
                                             <div>Applicable when model_type is &#x27;BICC_READ_ATTRIBUTE&#x27;</div>
                                                         </td>
             </tr>
@@ -19447,7 +19984,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Name of the external storage configured in BICC console</div>
+                                            <div>Name of the external storage configured in the BICC console.</div>
                                             <div>Applicable when model_type is &#x27;BICC_READ_ATTRIBUTE&#x27;</div>
                                                         </td>
             </tr>
@@ -19466,7 +20003,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Tenancy OCID for the OOS bucket</div>
+                                            <div>Tenancy OCID of the OOS bucket.</div>
                                             <div>Applicable when model_type is &#x27;BICC_READ_ATTRIBUTE&#x27;</div>
                                                         </td>
             </tr>
@@ -19524,7 +20061,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Date from where extract should start</div>
+                                            <div>Date from where extract should start.</div>
                                             <div>Applicable when model_type is &#x27;BICC_READ_ATTRIBUTE&#x27;</div>
                                                         </td>
             </tr>
@@ -19586,7 +20123,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies if this readOperationConfig operation should trigger raw data preview flow.</div>
+                                            <div>Specifies if the readOperationConfig operation should trigger a raw data preview flow.</div>
                                                         </td>
             </tr>
                     
@@ -19617,7 +20154,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The registry Ocid.</div>
+                                            <div>The registry OCID.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
             </tr>
@@ -19681,7 +20218,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The external key for the object.</div>
+                                            <div>The external key of the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -19697,7 +20234,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The value can be modified.</div>
+                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can be modified.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -19925,7 +20462,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The full path to identify this object.</div>
+                                            <div>The full path to identify the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -19963,7 +20500,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether this object is a favorite or not.</div>
+                                            <div>Specifies whether this object is a favorite.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -19980,7 +20517,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Labels are keywords or tags that you can add to data assets, dataflows and so on. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or tags that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -20082,7 +20619,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The object&#x27;s type.</div>
+                                            <div>The object type.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -20098,7 +20635,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The object&#x27;s model version.</div>
+                                            <div>The model version of the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -20114,7 +20651,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -20252,6 +20789,7 @@ Examples
           model_type: READ_OPERATION_CONFIG
 
           # optional
+          derived_attributes: null
           key: key_example
           model_version: model_version_example
           parent_ref:
@@ -20767,128 +21305,8 @@ Examples
           model_type: TABLE_ENTITY
 
           # optional
-          metadata:
-            # optional
-            created_by: created_by_example
-            created_by_name: created_by_name_example
-            updated_by: updated_by_example
-            updated_by_name: updated_by_name_example
-            time_created: time_created_example
-            time_updated: time_updated_example
-            aggregator_key: aggregator_key_example
-            aggregator:
-              # optional
-              type: type_example
-              key: key_example
-              name: name_example
-              identifier: identifier_example
-              description: description_example
-            identifier_path: identifier_path_example
-            info_fields: null
-            registry_version: 56
-            labels: [ "labels_example" ]
-            is_favorite: true
-          key: key_example
-          model_version: model_version_example
-          parent_ref:
-            # optional
-            parent: parent_example
-          name: name_example
           description: description_example
-          object_version: 56
           external_key: external_key_example
-          shape:
-            # required
-            model_type: SHAPE
-
-            # optional
-            key: key_example
-            model_version: model_version_example
-            parent_ref:
-              # optional
-              parent: parent_example
-            config_values:
-              # optional
-              config_param_values:
-                # optional
-                string_value: string_value_example
-                int_value: 56
-                object_value: null
-                ref_value: null
-                parameter_value: parameter_value_example
-              parent_ref:
-                # optional
-                parent: parent_example
-            object_status: 56
-            name: name_example
-            description: description_example
-            type:
-              # required
-              model_type: CONFIGURED_TYPE
-
-              # optional
-              wrapped_type:
-                # required
-                model_type: STRUCTURED_TYPE
-
-                # optional
-                key: key_example
-                model_version: model_version_example
-                parent_ref: null
-                name: name_example
-                object_status: 56
-                description: description_example
-              config_values:
-                # optional
-                config_param_values:
-                  # optional
-                  string_value: string_value_example
-                  int_value: 56
-                  object_value: null
-                  ref_value: null
-                  parameter_value: parameter_value_example
-                parent_ref:
-                  # optional
-                  parent: parent_example
-              key: key_example
-              model_version: model_version_example
-              parent_ref:
-                # optional
-                parent: parent_example
-              name: name_example
-              object_status: 56
-              description: description_example
-              config_definition:
-                # optional
-                key: key_example
-                model_type: model_type_example
-                model_version: model_version_example
-                parent_ref:
-                  # optional
-                  parent: parent_example
-                name: name_example
-                is_contained: true
-                object_status: 56
-                config_parameter_definitions:
-                  # optional
-                  parameter_type:
-                    # required
-                    model_type: STRUCTURED_TYPE
-
-                    # optional
-                    key: key_example
-                    model_version: model_version_example
-                    parent_ref: null
-                    name: name_example
-                    object_status: 56
-                    description: description_example
-                  parameter_name: parameter_name_example
-                  description: description_example
-                  default_value: null
-                  class_field_name: class_field_name_example
-                  is_static: true
-                  is_class_field_value: true
-          shape_id: "ocid1.shape.oc1..xxxxxxEXAMPLExxxxxx"
           entity_type: TABLE
           other_type_label: other_type_label_example
           unique_keys:
@@ -21106,6 +21524,127 @@ Examples
                     is_mandatory: true
               object_status: 56
             object_status: 56
+          entity_properties: null
+          metadata:
+            # optional
+            created_by: created_by_example
+            created_by_name: created_by_name_example
+            updated_by: updated_by_example
+            updated_by_name: updated_by_name_example
+            time_created: time_created_example
+            time_updated: time_updated_example
+            aggregator_key: aggregator_key_example
+            aggregator:
+              # optional
+              type: type_example
+              key: key_example
+              name: name_example
+              identifier: identifier_example
+              description: description_example
+            identifier_path: identifier_path_example
+            info_fields: null
+            registry_version: 56
+            labels: [ "labels_example" ]
+            is_favorite: true
+          key: key_example
+          model_version: model_version_example
+          parent_ref:
+            # optional
+            parent: parent_example
+          name: name_example
+          object_version: 56
+          shape:
+            # required
+            model_type: SHAPE
+
+            # optional
+            key: key_example
+            model_version: model_version_example
+            parent_ref:
+              # optional
+              parent: parent_example
+            config_values:
+              # optional
+              config_param_values:
+                # optional
+                string_value: string_value_example
+                int_value: 56
+                object_value: null
+                ref_value: null
+                parameter_value: parameter_value_example
+              parent_ref:
+                # optional
+                parent: parent_example
+            object_status: 56
+            name: name_example
+            description: description_example
+            type:
+              # required
+              model_type: CONFIGURED_TYPE
+
+              # optional
+              wrapped_type:
+                # required
+                model_type: STRUCTURED_TYPE
+
+                # optional
+                key: key_example
+                model_version: model_version_example
+                parent_ref: null
+                name: name_example
+                object_status: 56
+                description: description_example
+              config_values:
+                # optional
+                config_param_values:
+                  # optional
+                  string_value: string_value_example
+                  int_value: 56
+                  object_value: null
+                  ref_value: null
+                  parameter_value: parameter_value_example
+                parent_ref:
+                  # optional
+                  parent: parent_example
+              key: key_example
+              model_version: model_version_example
+              parent_ref:
+                # optional
+                parent: parent_example
+              name: name_example
+              object_status: 56
+              description: description_example
+              config_definition:
+                # optional
+                key: key_example
+                model_type: model_type_example
+                model_version: model_version_example
+                parent_ref:
+                  # optional
+                  parent: parent_example
+                name: name_example
+                is_contained: true
+                object_status: 56
+                config_parameter_definitions:
+                  # optional
+                  parameter_type:
+                    # required
+                    model_type: STRUCTURED_TYPE
+
+                    # optional
+                    key: key_example
+                    model_version: model_version_example
+                    parent_ref: null
+                    name: name_example
+                    object_status: 56
+                    description: description_example
+                  parameter_name: parameter_name_example
+                  description: description_example
+                  default_value: null
+                  class_field_name: class_field_name_example
+                  is_static: true
+                  is_class_field_value: true
+          shape_id: "ocid1.shape.oc1..xxxxxxEXAMPLExxxxxx"
           resource_name: resource_name_example
           object_status: 56
           identifier: identifier_example
@@ -21168,7 +21707,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Array of profiling results</div>
+                                            <div>Array of profiling results.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -21223,7 +21762,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Value of the confidence of the profile result</div>
+                                            <div>Value of the confidence of the profile result.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
@@ -21281,7 +21820,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Value of the confidence of the profile result</div>
+                                            <div>Value of the confidence of the profile result.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
@@ -21393,7 +21932,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>How many times that value occurred.</div>
+                                            <div>The number of times the value appeared.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -21433,7 +21972,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Value of the confidence of the profile result</div>
+                                            <div>Value of the confidence of the profile result.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
@@ -21491,7 +22030,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Value of the confidence of the profile result</div>
+                                            <div>Value of the confidence of the profile result.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
@@ -21549,7 +22088,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Value of the confidence of the profile result</div>
+                                            <div>Value of the confidence of the profile result.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
@@ -21607,7 +22146,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Value of the confidence of the profile result</div>
+                                            <div>Value of the confidence of the profile result.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
@@ -21665,7 +22204,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Value of the confidence of the profile result</div>
+                                            <div>Value of the confidence of the profile result.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
@@ -21723,7 +22262,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Value of the confidence of the profile result</div>
+                                            <div>Value of the confidence of the profile result.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
@@ -21781,7 +22320,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Value of the confidence of the profile result</div>
+                                            <div>Value of the confidence of the profile result.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
@@ -21839,7 +22378,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Value of the confidence of the profile result</div>
+                                            <div>Value of the confidence of the profile result.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
@@ -21859,7 +22398,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Name of attribute</div>
+                                            <div>Name of the attribute</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
@@ -21916,7 +22455,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Value of the confidence of the profile result</div>
+                                            <div>Value of the confidence of the profile result.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
@@ -22072,7 +22611,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>How many times that value occurred.</div>
+                                            <div>The number of times the value appeared.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -22112,7 +22651,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Value of the confidence of the profile result</div>
+                                            <div>Value of the confidence of the profile result.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
@@ -22170,7 +22709,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Value of the confidence of the profile result</div>
+                                            <div>Value of the confidence of the profile result.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
@@ -22245,7 +22784,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Value of the confidence of the profile result</div>
+                                            <div>Value of the confidence of the profile result.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
@@ -22265,7 +22804,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Top N value frequencies for the column as described already in profile config topNValueFrequency property.</div>
+                                            <div>Top N value frequencies for the column as described already in the topNValueFrequency profile config property.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -22303,7 +22842,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>How many times that value occurred.</div>
+                                            <div>The number of times the value appeared.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -22343,7 +22882,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Value of the confidence of the profile result</div>
+                                            <div>Value of the confidence of the profile result.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
@@ -22401,7 +22940,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Value of the confidence of the profile result</div>
+                                            <div>Value of the confidence of the profile result.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
@@ -22421,7 +22960,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Entity name for which prodilig is requested.</div>
+                                            <div>Entity name for which profiling is requested.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">entity_name_example</div>
@@ -22456,7 +22995,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Number of columns in the DataFrame (arrow buffer) sent from Java layer. This value is not impacted by the List of attributes to profile as being passed via configuration.</div>
+                                            <div>Number of columns in the DataFrame (arrow buffer) sent from Java layer. This value is not impacted by the list of attributes to profile as being passed via configuration.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -22494,7 +23033,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Number of rows were that were sampled</div>
+                                            <div>Number of rows that are sampled.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>

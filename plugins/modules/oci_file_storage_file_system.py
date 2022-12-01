@@ -47,7 +47,8 @@ description:
       When you create a resource, you can find its OCID in the response.
       You can also retrieve a resource's OCID by using a List API operation on that resource
       type or by viewing the resource in the Console.
-    - "This resource has the following action operations in the M(oracle.oci.oci_file_storage_file_system_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_file_storage_file_system_actions) module: change_compartment,
+      estimate_replication."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -69,7 +70,7 @@ options:
     source_snapshot_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the snapshot used to create a cloned file system.
-              See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm).
+              See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningFS.htm).
         type: str
     display_name:
         description:
@@ -266,7 +267,7 @@ file_system:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the file system that contains the source
                           snapshot of a cloned file system.
-                          See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm).
+                          See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningFS.htm).
                     returned: on success
                     type: str
                     sample: "ocid1.parentfilesystem.oc1..xxxxxxEXAMPLExxxxxx"
@@ -274,14 +275,14 @@ file_system:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the source snapshot used to create a cloned file
                           system.
-                          See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm).
+                          See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningFS.htm).
                     returned: on success
                     type: str
                     sample: "ocid1.sourcesnapshot.oc1..xxxxxxEXAMPLExxxxxx"
         is_clone_parent:
             description:
                 - Specifies whether the file system has been cloned.
-                  See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm).
+                  See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningFS.htm).
             returned: on success
             type: bool
             sample: true
@@ -290,7 +291,7 @@ file_system:
                 - Specifies whether the data has finished copying from the source to the clone.
                   Hydration can take up to several hours to complete depending on the size of the source.
                   The source and clone remain available during hydration, but there may be some performance impact.
-                  See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm#hydration).
+                  See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningFS.htm#hydration).
             returned: on success
             type: bool
             sample: true
@@ -300,6 +301,20 @@ file_system:
             returned: on success
             type: str
             sample: lifecycle_details_example
+        is_targetable:
+            description:
+                - Specifies whether the file system can be used as a target file system for replication.
+                  For more information, see L(Using Replication,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/using-replication.htm).
+            returned: on success
+            type: bool
+            sample: true
+        replication_target_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the replication target associated with the file system.
+                  Empty if the file system is not being used as target in a replication.
+            returned: on success
+            type: str
+            sample: "ocid1.replicationtarget.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "availability_domain": "Uocm:PHX-AD-1",
         "metered_bytes": 56,
@@ -317,7 +332,9 @@ file_system:
         },
         "is_clone_parent": true,
         "is_hydrated": true,
-        "lifecycle_details": "lifecycle_details_example"
+        "lifecycle_details": "lifecycle_details_example",
+        "is_targetable": true,
+        "replication_target_id": "ocid1.replicationtarget.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """
 

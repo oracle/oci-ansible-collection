@@ -23,25 +23,25 @@ module: oci_threat_intelligence_indicator_facts
 short_description: Fetches details about one or multiple Indicator resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple Indicator resources in Oracle Cloud Infrastructure
-    - Returns a list of IndicatorSummary objects.
+    - Get a list of threat indicator summaries based on the search criteria.
     - If I(indicator_id) is specified, the details of a single Indicator will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     indicator_id:
         description:
-            - unique indicator identifier
+            - The unique identifier (OCID) of the threat indicator.
             - Required to get a specific indicator.
         type: str
         aliases: ["id"]
     compartment_id:
         description:
-            - The ID of the tenancy to use to filter results.
+            - The OCID of the tenancy (root compartment) that is used to filter results.
         type: str
         required: true
     threat_type_name:
         description:
-            - The result set will include indicators that have any of the provided threat types. To filter for multiple threat types repeat the query parameter.
+            - The threat type of entites to be returned. To filter for multiple threat types, repeat this parameter.
         type: list
         elements: str
     type:
@@ -68,6 +68,26 @@ options:
         description:
             - The oldest update time of entities to be returned.
         type: str
+    time_updated_less_than:
+        description:
+            - Return indicators updated before the provided time.
+        type: str
+    time_last_seen_greater_than_or_equal_to:
+        description:
+            - The oldest last seen time of entities to be returned.
+        type: str
+    time_last_seen_less_than:
+        description:
+            - Return indicators last seen before the provided time.
+        type: str
+    time_created_greater_than_or_equal_to:
+        description:
+            - The oldest created/first seen time of entities to be returned.
+        type: str
+    time_created_less_than:
+        description:
+            - Return indicators created/first seen before the provided time.
+        type: str
     sort_order:
         description:
             - The sort order to use, either 'ASC' or 'DESC'.
@@ -81,7 +101,9 @@ options:
         type: str
         choices:
             - "confidence"
+            - "timeCreated"
             - "timeUpdated"
+            - "timeLastSeen"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -103,6 +125,11 @@ EXAMPLES = """
     value: value_example
     confidence_greater_than_or_equal_to: 0
     time_updated_greater_than_or_equal_to: 2013-10-20T19:20:30+01:00
+    time_updated_less_than: 2013-10-20T19:20:30+01:00
+    time_last_seen_greater_than_or_equal_to: 2013-10-20T19:20:30+01:00
+    time_last_seen_less_than: 2013-10-20T19:20:30+01:00
+    time_created_greater_than_or_equal_to: 2013-10-20T19:20:30+01:00
+    time_created_less_than: 2013-10-20T19:20:30+01:00
     sort_order: ASC
     sort_by: confidence
 
@@ -115,17 +142,216 @@ indicators:
     returned: on success
     type: complex
     contains:
-        attributes:
+        relationships:
             description:
-                - A map of attribute name (string) to IndicatorAttribute (values and supporting data).
-                  This provides generic storage for additional data about an indicator.
+                - A map of relationships between the indicator and other entities.
+                  Each relationship has a name (string), related entity, and attribution (supporting data).
                 - Returned for get operation
             returned: on success
             type: complex
             contains:
                 name:
                     description:
-                        - The name of the attribute
+                        - The name of the attribute.
+                    returned: on success
+                    type: str
+                    sample: name_example
+                related_entity:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        type:
+                            description:
+                                - The type of the referenced entity.
+                            returned: on success
+                            type: str
+                            sample: INDICATOR
+                        indicator_id:
+                            description:
+                                - The unique OCID of the referenced threat indicator.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.indicator.oc1..xxxxxxEXAMPLExxxxxx"
+                attribution:
+                    description:
+                        - The array of attribution data that support this relationship.
+                    returned: on success
+                    type: complex
+                    contains:
+                        confidence:
+                            description:
+                                - An integer from 0 to 100 that provides a measure of our certainty in the maliciousness of data attributed to an indicator. For
+                                  example, if the source of the data being attributed is the Tor Project, our confidence that the associated indicator is a tor
+                                  exit node would be 100.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        source:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                name:
+                                    description:
+                                        - The name of the source.
+                                    returned: on success
+                                    type: str
+                                    sample: name_example
+                        visibility:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                name:
+                                    description:
+                                        - The name of the visibility level.
+                                    returned: on success
+                                    type: str
+                                    sample: name_example
+                                tlp_name:
+                                    description:
+                                        - The Traffic Light Protocol (TLP) color of the visibility level.
+                                    returned: on success
+                                    type: str
+                                    sample: TLP_INTERNAL_AUDIT
+                        time_first_seen:
+                            description:
+                                - The date and time the attribution data was first seen for this entity. If the data source does not provide this information,
+                                  it is set to the last time it was seen. An RFC3339 formatted string.
+                            returned: on success
+                            type: str
+                            sample: "2013-10-20T19:20:30+01:00"
+                        time_last_seen:
+                            description:
+                                - The last date and time the attribution data was seen for this entity. An RFC3339 formatted string.
+                            returned: on success
+                            type: str
+                            sample: "2013-10-20T19:20:30+01:00"
+        id:
+            description:
+                - The OCID of the indicator.
+            returned: on success
+            type: str
+            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        type:
+            description:
+                - The type of indicator.
+            returned: on success
+            type: str
+            sample: DOMAIN_NAME
+        value:
+            description:
+                - "The value for this indicator.
+                  The value's format is dependent upon its `type`. Examples:"
+                - "DOMAIN_NAME \\"evil.example.com\\""
+                - "MD5_HASH \\"44d88612fea8a8f36de82e1278abb02f\\""
+                - "IP_ADDRESS \\"2001:db8::1\\""
+            returned: on success
+            type: str
+            sample: value_example
+        confidence:
+            description:
+                - An integer from 0 to 100 that represents how certain we are that the indicator is malicious and a potential threat if it is detected
+                  communicating with your cloud resources. This confidence value is aggregated from the confidence in the threat types, attributes, and
+                  relationships to create an overall value for the indicator.
+            returned: on success
+            type: int
+            sample: 56
+        compartment_id:
+            description:
+                - The OCID of the compartment that contains this indicator.
+            returned: on success
+            type: str
+            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        threat_types:
+            description:
+                - Characteristics of the threat indicator based on previous observations or behavior. May include related tactics, techniques, and procedures.
+            returned: on success
+            type: complex
+            contains:
+                id:
+                    description:
+                        - The OCID of the threat type.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+                name:
+                    description:
+                        - The name of the threat type.
+                    returned: on success
+                    type: str
+                    sample: name_example
+                attribution:
+                    description:
+                        - The list of supporting attribution information.
+                    returned: on success
+                    type: complex
+                    contains:
+                        confidence:
+                            description:
+                                - An integer from 0 to 100 that provides a measure of our certainty in the maliciousness of data attributed to an indicator. For
+                                  example, if the source of the data being attributed is the Tor Project, our confidence that the associated indicator is a tor
+                                  exit node would be 100.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        source:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                name:
+                                    description:
+                                        - The name of the source.
+                                    returned: on success
+                                    type: str
+                                    sample: name_example
+                        visibility:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                name:
+                                    description:
+                                        - The name of the visibility level.
+                                    returned: on success
+                                    type: str
+                                    sample: name_example
+                                tlp_name:
+                                    description:
+                                        - The Traffic Light Protocol (TLP) color of the visibility level.
+                                    returned: on success
+                                    type: str
+                                    sample: TLP_INTERNAL_AUDIT
+                        time_first_seen:
+                            description:
+                                - The date and time the attribution data was first seen for this entity. If the data source does not provide this information,
+                                  it is set to the last time it was seen. An RFC3339 formatted string.
+                            returned: on success
+                            type: str
+                            sample: "2013-10-20T19:20:30+01:00"
+                        time_last_seen:
+                            description:
+                                - The last date and time the attribution data was seen for this entity. An RFC3339 formatted string.
+                            returned: on success
+                            type: str
+                            sample: "2013-10-20T19:20:30+01:00"
+        attributes:
+            description:
+                - A map of attributes with additional information about the indicator.
+                  Each attribute has a name (string), value (string), and attribution (supporting data).
+            returned: on success
+            type: complex
+            contains:
+                name:
+                    description:
+                        - The name of the attribute.
                     returned: on success
                     type: str
                     sample: name_example
@@ -143,9 +369,9 @@ indicators:
                     contains:
                         confidence:
                             description:
-                                - Confidence is an integer from 0 to 100 that provides a measure of our certainty in the maliciousness of data attributed to an
-                                  indicator.  For example, if the source of the data being attributed is the Tor Project, our confidence that the associated
-                                  indicator is a tor exit node would be 100.
+                                - An integer from 0 to 100 that provides a measure of our certainty in the maliciousness of data attributed to an indicator. For
+                                  example, if the source of the data being attributed is the Tor Project, our confidence that the associated indicator is a tor
+                                  exit node would be 100.
                             returned: on success
                             type: int
                             sample: 56
@@ -157,7 +383,7 @@ indicators:
                             contains:
                                 name:
                                     description:
-                                        - The name of the source
+                                        - The name of the source.
                                     returned: on success
                                     type: str
                                     sample: name_example
@@ -175,256 +401,109 @@ indicators:
                                     sample: name_example
                                 tlp_name:
                                     description:
-                                        - The Traffic Light Protocol (TLP) name of the visibility level.
+                                        - The Traffic Light Protocol (TLP) color of the visibility level.
                                     returned: on success
                                     type: str
                                     sample: TLP_INTERNAL_AUDIT
                         time_first_seen:
                             description:
-                                - The time the data was first seen for this entity. Defaults to time last seen if no time first seen is provided from the data
-                                  source. An RFC3339 formatted datetime string
+                                - The date and time the attribution data was first seen for this entity. If the data source does not provide this information,
+                                  it is set to the last time it was seen. An RFC3339 formatted string.
                             returned: on success
                             type: str
                             sample: "2013-10-20T19:20:30+01:00"
                         time_last_seen:
                             description:
-                                - The last time this data was seen for this entity. An RFC3339 formatted datetime string
-                            returned: on success
-                            type: str
-                            sample: "2013-10-20T19:20:30+01:00"
-        relationships:
-            description:
-                - A map of relationship name (string) to IndicatorRelationship (related entities and supporting data).
-                  This provides generic storage for relationships between indicators or other entities.
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                name:
-                    description:
-                        - The name of the attribute
-                    returned: on success
-                    type: str
-                    sample: name_example
-                related_entity:
-                    description:
-                        - ""
-                    returned: on success
-                    type: complex
-                    contains:
-                        type:
-                            description:
-                                - the type of the referenced entity
-                            returned: on success
-                            type: str
-                            sample: INDICATOR
-                        indicator_id:
-                            description:
-                                - the OCID of the referenced Indicator
-                            returned: on success
-                            type: str
-                            sample: "ocid1.indicator.oc1..xxxxxxEXAMPLExxxxxx"
-                attribution:
-                    description:
-                        - The array of attribution data that support this SourcedRelationship
-                    returned: on success
-                    type: complex
-                    contains:
-                        confidence:
-                            description:
-                                - Confidence is an integer from 0 to 100 that provides a measure of our certainty in the maliciousness of data attributed to an
-                                  indicator.  For example, if the source of the data being attributed is the Tor Project, our confidence that the associated
-                                  indicator is a tor exit node would be 100.
-                            returned: on success
-                            type: int
-                            sample: 56
-                        source:
-                            description:
-                                - ""
-                            returned: on success
-                            type: complex
-                            contains:
-                                name:
-                                    description:
-                                        - The name of the source
-                                    returned: on success
-                                    type: str
-                                    sample: name_example
-                        visibility:
-                            description:
-                                - ""
-                            returned: on success
-                            type: complex
-                            contains:
-                                name:
-                                    description:
-                                        - The name of the visibility level.
-                                    returned: on success
-                                    type: str
-                                    sample: name_example
-                                tlp_name:
-                                    description:
-                                        - The Traffic Light Protocol (TLP) name of the visibility level.
-                                    returned: on success
-                                    type: str
-                                    sample: TLP_INTERNAL_AUDIT
-                        time_first_seen:
-                            description:
-                                - The time the data was first seen for this entity. Defaults to time last seen if no time first seen is provided from the data
-                                  source. An RFC3339 formatted datetime string
-                            returned: on success
-                            type: str
-                            sample: "2013-10-20T19:20:30+01:00"
-                        time_last_seen:
-                            description:
-                                - The last time this data was seen for this entity. An RFC3339 formatted datetime string
-                            returned: on success
-                            type: str
-                            sample: "2013-10-20T19:20:30+01:00"
-        id:
-            description:
-                - The OCID of the indicator.
-            returned: on success
-            type: str
-            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-        type:
-            description:
-                - Type of indicator
-            returned: on success
-            type: str
-            sample: DOMAIN_NAME
-        value:
-            description:
-                - "The value for this indicator.
-                  Format is dependent upon `type`, e.g. DOMAIN_NAME \\"evil.example.com\\", MD5_HASH \\"44d88612fea8a8f36de82e1278abb02f\\", IP_ADDRESS
-                  \\"2001:db8::1\\"."
-            returned: on success
-            type: str
-            sample: value_example
-        confidence:
-            description:
-                - Confidence is an integer from 0 to 100 that provides a measure of our certainty in the maliciousness of the indicator.  This confidence value
-                  is aggregated from the confidence in the threat types, attributes, and relationships to create an overall value for the indicator.
-            returned: on success
-            type: int
-            sample: 56
-        compartment_id:
-            description:
-                - Compartment Identifier
-            returned: on success
-            type: str
-            sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-        threat_types:
-            description:
-                - Characteristics of the threat indicator based on previous observations or behavior. May include related tactics, techniques, and procedures.
-            returned: on success
-            type: complex
-            contains:
-                id:
-                    description:
-                        - The OCID of the threat type
-                    returned: on success
-                    type: str
-                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
-                name:
-                    description:
-                        - The name of the threat type
-                    returned: on success
-                    type: str
-                    sample: name_example
-                attribution:
-                    description:
-                        - The list of supporting attribution information.
-                    returned: on success
-                    type: complex
-                    contains:
-                        confidence:
-                            description:
-                                - Confidence is an integer from 0 to 100 that provides a measure of our certainty in the maliciousness of data attributed to an
-                                  indicator.  For example, if the source of the data being attributed is the Tor Project, our confidence that the associated
-                                  indicator is a tor exit node would be 100.
-                            returned: on success
-                            type: int
-                            sample: 56
-                        source:
-                            description:
-                                - ""
-                            returned: on success
-                            type: complex
-                            contains:
-                                name:
-                                    description:
-                                        - The name of the source
-                                    returned: on success
-                                    type: str
-                                    sample: name_example
-                        visibility:
-                            description:
-                                - ""
-                            returned: on success
-                            type: complex
-                            contains:
-                                name:
-                                    description:
-                                        - The name of the visibility level.
-                                    returned: on success
-                                    type: str
-                                    sample: name_example
-                                tlp_name:
-                                    description:
-                                        - The Traffic Light Protocol (TLP) name of the visibility level.
-                                    returned: on success
-                                    type: str
-                                    sample: TLP_INTERNAL_AUDIT
-                        time_first_seen:
-                            description:
-                                - The time the data was first seen for this entity. Defaults to time last seen if no time first seen is provided from the data
-                                  source. An RFC3339 formatted datetime string
-                            returned: on success
-                            type: str
-                            sample: "2013-10-20T19:20:30+01:00"
-                        time_last_seen:
-                            description:
-                                - The last time this data was seen for this entity. An RFC3339 formatted datetime string
+                                - The last date and time the attribution data was seen for this entity. An RFC3339 formatted string.
                             returned: on success
                             type: str
                             sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
-                - The state of the indicator.  It will always be ACTIVE.  This field is added for consistency.
+                - The state of the indicator. It will always be `ACTIVE`.
             returned: on success
             type: str
             sample: ACTIVE
         time_created:
             description:
-                - The time the data was first seen for this indicator. An RFC3339 formatted datetime string
+                - The date and time that the indicator was first detected. An RFC3339 formatted string.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         time_updated:
             description:
-                - The last time this indicator was updated. It starts with the same value as timeCreated and is never empty. An RFC3339 formatted datetime
-                  string
+                - The date and time that this indicator was last updated. The value is the same as `timeCreated` for a new indicator. An RFC3339 formatted
+                  string.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        time_last_seen:
+            description:
+                - The date and time that this indicator was last seen. The value is the same as `timeCreated` for a new indicator. An RFC3339 formatted string.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        geodata:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                routed_prefix:
+                    description:
+                        - Encompassing assigned prefix for the IP
+                    returned: on success
+                    type: str
+                    sample: routed_prefix_example
+                origin:
+                    description:
+                        - ASN entry
+                    returned: on success
+                    type: str
+                    sample: origin_example
+                geo_id:
+                    description:
+                        - Unique Identifier (optional)
+                    returned: on success
+                    type: str
+                    sample: "ocid1.geo.oc1..xxxxxxEXAMPLExxxxxx"
+                country_code:
+                    description:
+                        - Two-letter abbreviation for country of origin
+                    returned: on success
+                    type: str
+                    sample: country_code_example
+                admin_div:
+                    description:
+                        - State/Province/subdivision within the country
+                    returned: on success
+                    type: str
+                    sample: admin_div_example
+                city:
+                    description:
+                        - City of origin
+                    returned: on success
+                    type: str
+                    sample: city_example
+                latitude:
+                    description:
+                        - Latitude
+                    returned: on success
+                    type: str
+                    sample: latitude_example
+                longitude:
+                    description:
+                        - Longitude
+                    returned: on success
+                    type: str
+                    sample: longitude_example
+                label:
+                    description:
+                        - Information on source providing the information
+                    returned: on success
+                    type: str
+                    sample: label_example
     sample: [{
-        "attributes": [{
-            "name": "name_example",
-            "value": "value_example",
-            "attribution": [{
-                "confidence": 56,
-                "source": {
-                    "name": "name_example"
-                },
-                "visibility": {
-                    "name": "name_example",
-                    "tlp_name": "TLP_INTERNAL_AUDIT"
-                },
-                "time_first_seen": "2013-10-20T19:20:30+01:00",
-                "time_last_seen": "2013-10-20T19:20:30+01:00"
-            }]
-        }],
         "relationships": [{
             "name": "name_example",
             "related_entity": {
@@ -465,9 +544,37 @@ indicators:
                 "time_last_seen": "2013-10-20T19:20:30+01:00"
             }]
         }],
+        "attributes": [{
+            "name": "name_example",
+            "value": "value_example",
+            "attribution": [{
+                "confidence": 56,
+                "source": {
+                    "name": "name_example"
+                },
+                "visibility": {
+                    "name": "name_example",
+                    "tlp_name": "TLP_INTERNAL_AUDIT"
+                },
+                "time_first_seen": "2013-10-20T19:20:30+01:00",
+                "time_last_seen": "2013-10-20T19:20:30+01:00"
+            }]
+        }],
         "lifecycle_state": "ACTIVE",
         "time_created": "2013-10-20T19:20:30+01:00",
-        "time_updated": "2013-10-20T19:20:30+01:00"
+        "time_updated": "2013-10-20T19:20:30+01:00",
+        "time_last_seen": "2013-10-20T19:20:30+01:00",
+        "geodata": {
+            "routed_prefix": "routed_prefix_example",
+            "origin": "origin_example",
+            "geo_id": "ocid1.geo.oc1..xxxxxxEXAMPLExxxxxx",
+            "country_code": "country_code_example",
+            "admin_div": "admin_div_example",
+            "city": "city_example",
+            "latitude": "latitude_example",
+            "longitude": "longitude_example",
+            "label": "label_example"
+        }
     }]
 """
 
@@ -514,6 +621,11 @@ class IndicatorFactsHelperGen(OCIResourceFactsHelperBase):
             "value",
             "confidence_greater_than_or_equal_to",
             "time_updated_greater_than_or_equal_to",
+            "time_updated_less_than",
+            "time_last_seen_greater_than_or_equal_to",
+            "time_last_seen_less_than",
+            "time_created_greater_than_or_equal_to",
+            "time_created_less_than",
             "sort_order",
             "sort_by",
         ]
@@ -558,8 +670,16 @@ def main():
             value=dict(type="str"),
             confidence_greater_than_or_equal_to=dict(type="int"),
             time_updated_greater_than_or_equal_to=dict(type="str"),
+            time_updated_less_than=dict(type="str"),
+            time_last_seen_greater_than_or_equal_to=dict(type="str"),
+            time_last_seen_less_than=dict(type="str"),
+            time_created_greater_than_or_equal_to=dict(type="str"),
+            time_created_less_than=dict(type="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
-            sort_by=dict(type="str", choices=["confidence", "timeUpdated"]),
+            sort_by=dict(
+                type="str",
+                choices=["confidence", "timeCreated", "timeUpdated", "timeLastSeen"],
+            ),
         )
     )
 

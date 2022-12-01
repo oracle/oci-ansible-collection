@@ -30,7 +30,7 @@ oracle.oci.oci_data_connectivity_endpoint -- Manage an Endpoint resource in Orac
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.2.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.3.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -313,6 +313,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The list of DNS zones to be used by the data assets to be harvested. Example: custpvtsubnet.oraclevcn.com for data asset: db.custpvtsubnet.oraclevcn.com</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -599,12 +600,12 @@ Examples
         # optional
         vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-        dns_zones: [ "dns_zones_example" ]
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
         description: description_example
         endpoint_size: 56
         nsg_ids: [ "nsg_ids_example" ]
+        dns_zones: [ "dns_zones_example" ]
         registry_id: "ocid1.registry.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update endpoint
@@ -619,6 +620,7 @@ Examples
         display_name: display_name_example
         endpoint_size: 56
         nsg_ids: [ "nsg_ids_example" ]
+        dns_zones: [ "dns_zones_example" ]
         registry_id: "ocid1.registry.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Update endpoint using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -633,6 +635,7 @@ Examples
         description: description_example
         endpoint_size: 56
         nsg_ids: [ "nsg_ids_example" ]
+        dns_zones: [ "dns_zones_example" ]
         registry_id: "ocid1.registry.oc1..xxxxxxEXAMPLExxxxxx"
 
     - name: Delete endpoint

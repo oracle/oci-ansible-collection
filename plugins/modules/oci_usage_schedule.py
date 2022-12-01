@@ -29,60 +29,36 @@ author: Oracle (@oracle)
 options:
     name:
         description:
-            - The unique name of the schedule created by the user
+            - The unique name of the user-created schedule.
             - Required for create using I(state=present).
             - Required for update, delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
     compartment_id:
         description:
-            - The tenancy of the customer
+            - The customer tenancy.
             - Required for create using I(state=present).
             - Required for update when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
             - Required for delete when environment variable C(OCI_USE_NAME_AS_IDENTIFIER) is set.
         type: str
-    result_location:
+    saved_report_id:
         description:
-            - ""
-            - Required for create using I(state=present).
-        type: dict
-        suboptions:
-            location_type:
-                description:
-                    - Defines the type of location where the usage/cost CSVs will be stored
-                type: str
-                choices:
-                    - "OBJECT_STORAGE"
-                required: true
-            region:
-                description:
-                    - The destination Object Store Region specified by customer
-                type: str
-                required: true
-            namespace:
-                description:
-                    - The namespace needed to determine object storage bucket.
-                type: str
-                required: true
-            bucket_name:
-                description:
-                    - The bucket name where usage/cost CSVs will be uploaded
-                type: str
-                required: true
+            - The saved report id which can also be used to generate query.
+        type: str
     schedule_recurrences:
         description:
-            - "In x-obmcs-recurring-time format shown here: https://datatracker.ietf.org/doc/html/rfc5545#section-3.3.10
-              Describes the frequency of when the schedule will be run"
+            - "Specifies the frequency according to when the schedule will be run,
+              in the x-obmcs-recurring-time format described in L(RFC 5545 section 3.3.10,https://datatracker.ietf.org/doc/html/rfc5545#section-3.3.10).
+              Supported values are : ONE_TIME, DAILY, WEEKLY and MONTHLY."
             - Required for create using I(state=present).
         type: str
     time_scheduled:
         description:
-            - The date and time of the first time job execution
+            - The date and time of the first time job execution.
             - Required for create using I(state=present).
         type: str
     query_properties:
         description:
             - ""
-            - Required for create using I(state=present).
         type: dict
         suboptions:
             group_by:
@@ -216,7 +192,7 @@ options:
                     - "USAGE_AND_COST"
             is_aggregate_by_time:
                 description:
-                    - Specifies whether aggregated by time. If isAggregateByTime is true, all usage/cost over the query time period will be added up.
+                    - Specifies whether aggregated by time. If isAggregateByTime is true, all usage or cost over the query time period will be added up.
                 type: bool
             date_range:
                 description:
@@ -236,7 +212,7 @@ options:
                         type: str
                     date_range_type:
                         description:
-                            - Defines whether the schedule date range is STATIC or DYNAMIC
+                            - Defines whether the schedule date range is STATIC or DYNAMIC.
                         type: str
                         choices:
                             - "STATIC"
@@ -249,12 +225,59 @@ options:
                         type: str
                         choices:
                             - "LAST_7_DAYS"
+                            - "LAST_10_DAYS"
                             - "LAST_CALENDAR_WEEK"
                             - "LAST_CALENDAR_MONTH"
+                            - "LAST_2_CALENDAR_MONTHS"
+                            - "LAST_3_CALENDAR_MONTHS"
+                            - "LAST_6_CALENDAR_MONTHS"
                             - "LAST_30_DAYS"
                             - "MONTH_TO_DATE"
                             - "LAST_YEAR"
                             - "YEAR_TODATE"
+                            - "ALL"
+    description:
+        description:
+            - The description of the schedule.
+            - This parameter is updatable.
+        type: str
+    output_file_format:
+        description:
+            - Specifies supported output file format.
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "CSV"
+            - "PDF"
+    result_location:
+        description:
+            - ""
+            - Required for create using I(state=present).
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            location_type:
+                description:
+                    - Defines the type of location where the usage or cost CSVs will be stored.
+                type: str
+                choices:
+                    - "OBJECT_STORAGE"
+                required: true
+            region:
+                description:
+                    - The destination Object Store Region specified by the customer.
+                type: str
+                required: true
+            namespace:
+                description:
+                    - The namespace needed to determine the object storage bucket.
+                type: str
+                required: true
+            bucket_name:
+                description:
+                    - The bucket name where usage or cost CSVs will be uploaded.
+                type: str
+                required: true
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -292,14 +315,17 @@ EXAMPLES = """
     # required
     name: name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    schedule_recurrences: schedule_recurrences_example
+    time_scheduled: time_scheduled_example
     result_location:
       # required
       location_type: OBJECT_STORAGE
       region: us-phoenix-1
       namespace: namespace_example
       bucket_name: bucket_name_example
-    schedule_recurrences: schedule_recurrences_example
-    time_scheduled: time_scheduled_example
+
+    # optional
+    saved_report_id: "ocid1.savedreport.oc1..xxxxxxEXAMPLExxxxxx"
     query_properties:
       # required
       granularity: DAILY
@@ -337,8 +363,8 @@ EXAMPLES = """
       compartment_depth: 3.4
       query_type: USAGE
       is_aggregate_by_time: true
-
-    # optional
+    description: description_example
+    output_file_format: CSV
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -348,6 +374,14 @@ EXAMPLES = """
     schedule_id: "ocid1.schedule.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    description: description_example
+    output_file_format: CSV
+    result_location:
+      # required
+      location_type: OBJECT_STORAGE
+      region: us-phoenix-1
+      namespace: namespace_example
+      bucket_name: bucket_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -358,6 +392,14 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    description: description_example
+    output_file_format: CSV
+    result_location:
+      # required
+      location_type: OBJECT_STORAGE
+      region: us-phoenix-1
+      namespace: namespace_example
+      bucket_name: bucket_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -385,19 +427,19 @@ schedule:
     contains:
         id:
             description:
-                - The OCID representing unique shedule
+                - The OCID representing a unique shedule.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
-                - The unique name of the schedule created by the user
+                - The unique name of the schedule created by the user.
             returned: on success
             type: str
             sample: name_example
         compartment_id:
             description:
-                - The tenancy of the customer
+                - The customer tenancy.
             returned: on success
             type: str
             sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -409,38 +451,63 @@ schedule:
             contains:
                 location_type:
                     description:
-                        - Defines the type of location where the usage/cost CSVs will be stored
+                        - Defines the type of location where the usage or cost CSVs will be stored.
                     returned: on success
                     type: str
                     sample: OBJECT_STORAGE
                 region:
                     description:
-                        - The destination Object Store Region specified by customer
+                        - The destination Object Store Region specified by the customer.
                     returned: on success
                     type: str
                     sample: us-phoenix-1
                 namespace:
                     description:
-                        - The namespace needed to determine object storage bucket.
+                        - The namespace needed to determine the object storage bucket.
                     returned: on success
                     type: str
                     sample: namespace_example
                 bucket_name:
                     description:
-                        - The bucket name where usage/cost CSVs will be uploaded
+                        - The bucket name where usage or cost CSVs will be uploaded.
                     returned: on success
                     type: str
                     sample: bucket_name_example
+        description:
+            description:
+                - The description of the schedule.
+            returned: on success
+            type: str
+            sample: description_example
+        time_next_run:
+            description:
+                - The date and time of the next job execution.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
+        output_file_format:
+            description:
+                - Specifies supported output file format.
+            returned: on success
+            type: str
+            sample: CSV
+        saved_report_id:
+            description:
+                - The saved report id which can also be used to generate query.
+            returned: on success
+            type: str
+            sample: "ocid1.savedreport.oc1..xxxxxxEXAMPLExxxxxx"
         schedule_recurrences:
             description:
-                - "In x-obmcs-recurring-time format shown here: https://datatracker.ietf.org/doc/html/rfc5545#section-3.3.10
-                  Describes the frequency of when the schedule will be run"
+                - "Specifies the frequency according to when the schedule will be run,
+                  in the x-obmcs-recurring-time format described in L(RFC 5545 section 3.3.10,https://datatracker.ietf.org/doc/html/rfc5545#section-3.3.10).
+                  Supported values are : ONE_TIME, DAILY, WEEKLY and MONTHLY."
             returned: on success
             type: str
             sample: schedule_recurrences_example
         time_scheduled:
             description:
-                - The date and time of the first time job execution
+                - The date and time of the first time job execution.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
@@ -594,7 +661,7 @@ schedule:
                     sample: USAGE
                 is_aggregate_by_time:
                     description:
-                        - Specifies whether aggregated by time. If isAggregateByTime is true, all usage/cost over the query time period will be added up.
+                        - Specifies whether aggregated by time. If isAggregateByTime is true, all usage or cost over the query time period will be added up.
                     returned: on success
                     type: bool
                     sample: true
@@ -612,7 +679,7 @@ schedule:
                             sample: LAST_7_DAYS
                         date_range_type:
                             description:
-                                - Defines whether the schedule date range is STATIC or DYNAMIC
+                                - Defines whether the schedule date range is STATIC or DYNAMIC.
                             returned: on success
                             type: str
                             sample: STATIC
@@ -630,13 +697,13 @@ schedule:
                             sample: "2013-10-20T19:20:30+01:00"
         time_created:
             description:
-                - The date and time of when the schedule was created
+                - The date and time the schedule was created.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         lifecycle_state:
             description:
-                - The lifecycle state of the schedule
+                - The schedule lifecycle state.
             returned: on success
             type: str
             sample: ACTIVE
@@ -672,6 +739,10 @@ schedule:
             "namespace": "namespace_example",
             "bucket_name": "bucket_name_example"
         },
+        "description": "description_example",
+        "time_next_run": "2013-10-20T19:20:30+01:00",
+        "output_file_format": "CSV",
+        "saved_report_id": "ocid1.savedreport.oc1..xxxxxxEXAMPLExxxxxx",
         "schedule_recurrences": "schedule_recurrences_example",
         "time_scheduled": "2013-10-20T19:20:30+01:00",
         "query_properties": {
@@ -872,17 +943,7 @@ def main():
         dict(
             name=dict(type="str"),
             compartment_id=dict(type="str"),
-            result_location=dict(
-                type="dict",
-                options=dict(
-                    location_type=dict(
-                        type="str", required=True, choices=["OBJECT_STORAGE"]
-                    ),
-                    region=dict(type="str", required=True),
-                    namespace=dict(type="str", required=True),
-                    bucket_name=dict(type="str", required=True),
-                ),
-            ),
+            saved_report_id=dict(type="str"),
             schedule_recurrences=dict(type="str"),
             time_scheduled=dict(type="str"),
             query_properties=dict(
@@ -954,16 +1015,34 @@ def main():
                                 type="str",
                                 choices=[
                                     "LAST_7_DAYS",
+                                    "LAST_10_DAYS",
                                     "LAST_CALENDAR_WEEK",
                                     "LAST_CALENDAR_MONTH",
+                                    "LAST_2_CALENDAR_MONTHS",
+                                    "LAST_3_CALENDAR_MONTHS",
+                                    "LAST_6_CALENDAR_MONTHS",
                                     "LAST_30_DAYS",
                                     "MONTH_TO_DATE",
                                     "LAST_YEAR",
                                     "YEAR_TODATE",
+                                    "ALL",
                                 ],
                             ),
                         ),
                     ),
+                ),
+            ),
+            description=dict(type="str"),
+            output_file_format=dict(type="str", choices=["CSV", "PDF"]),
+            result_location=dict(
+                type="dict",
+                options=dict(
+                    location_type=dict(
+                        type="str", required=True, choices=["OBJECT_STORAGE"]
+                    ),
+                    region=dict(type="str", required=True),
+                    namespace=dict(type="str", required=True),
+                    bucket_name=dict(type="str", required=True),
                 ),
             ),
             freeform_tags=dict(type="dict"),

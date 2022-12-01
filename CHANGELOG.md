@@ -4,6 +4,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [4.3.0]
+
+## Added
+- Support for the Cloud Migrations service
+- Support for the Cloud Bridge service
+- Support for cross-region replication in the File Storage service
+- Support for additional parameters during cost management scheduling in the Usage service
+- Support for data asset registry, private endpoint for workspace in the Data Integration service
+- Support for expanded search functionality in the Threat Intelligence service
+- Support for generic REST, OCI Streaming service, and Lake House connectors in the Data Connectivity Management service
+- Support for connecting to the Data Catalog service in the Data Connectivity Management service
+- Support for Kerberos and SSL for HDFS operations in the Data Connectivity Management service
+- Support for excel-formatted data and default columns in the Data Connectivity Management service
+- Support for reporting connector usage in the Data Connectivity Management service
+- Support for ipv6 ip_address details as host variables in Inventory plugin (#177)
+
+## Breaking
+- Operations `delete_connection_validation`, `get_connection_validation` and `list_connection_validations` removed from the Data Connectivity Management service
+
+## Fixed
+- Issue with deletion of resources in state ['FAILED', 'FAULTY'] (#185)
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.88.2
+
 ## [4.2.0]
 
 ## Added

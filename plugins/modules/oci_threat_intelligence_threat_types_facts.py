@@ -24,13 +24,13 @@ short_description: Fetches details about one or multiple ThreatTypes resources i
 description:
     - Fetches details about one or multiple ThreatTypes resources in Oracle Cloud Infrastructure
     - Gets a list of threat types that are available to use as parameters when querying indicators.
-      This is sorted by threat type name according to the sort order query param.
+      The list is sorted by threat type name according to the sort order query param.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
         description:
-            - The ID of the tenancy to use to filter results.
+            - The OCID of the tenancy (root compartment) that is used to filter results.
         type: str
         required: true
     sort_order:

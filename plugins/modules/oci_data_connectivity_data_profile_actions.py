@@ -23,13 +23,13 @@ module: oci_data_connectivity_data_profile_actions
 short_description: Perform actions on a DataProfile resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a DataProfile resource in Oracle Cloud Infrastructure
-    - For I(action=create), execute data profiling on live schema
+    - For I(action=create), execute data profiling on live schema.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     registry_id:
         description:
-            - The registry Ocid.
+            - The registry OCID.
         type: str
         aliases: ["id"]
         required: true
@@ -46,13 +46,17 @@ options:
                     - "READ_OPERATION_CONFIG"
                     - "WRITE_OPERATION_CONFIG"
                 required: true
+            derived_attributes:
+                description:
+                    - this map is used for passing BIP report/REST parameter values.
+                type: dict
             key:
                 description:
                     - The object key.
                 type: str
             model_version:
                 description:
-                    - The object's model version.
+                    - The model version of the object.
                 type: str
             parent_ref:
                 description:
@@ -172,13 +176,13 @@ options:
                                 type: int
                             name:
                                 description:
-                                    - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters.
-                                      The value is editable and is restricted to 1000 characters.
+                                    - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
+                                      characters. The value is editable and is restricted to 1000 characters.
                                     - Applicable when model_type is 'SELECT'
                                 type: str
                             description:
                                 description:
-                                    - Detailed description for the object.
+                                    - A detailed description of the object.
                                     - Applicable when model_type is 'SELECT'
                                 type: str
                             type:
@@ -188,8 +192,8 @@ options:
                                 type: dict
                             labels:
                                 description:
-                                    - Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and use them
-                                      to categorize content.
+                                    - Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own labels and
+                                      use them to categorize content.
                                     - Applicable when model_type is 'SELECT'
                                 type: list
                                 elements: str
@@ -285,13 +289,13 @@ options:
                                         type: int
                                     name:
                                         description:
-                                            - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special
+                                            - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
                                               characters. The value is editable and is restricted to 1000 characters.
                                             - Applicable when model_type is 'SELECT'
                                         type: str
                                     description:
                                         description:
-                                            - Detailed description for the object.
+                                            - A detailed description of the object.
                                             - Applicable when model_type is 'SELECT'
                                         type: str
                                     type:
@@ -429,13 +433,13 @@ options:
                                         type: int
                                     name:
                                         description:
-                                            - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special
+                                            - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
                                               characters. The value is editable and is restricted to 1000 characters.
                                             - Applicable when model_type is 'SORT'
                                         type: str
                                     description:
                                         description:
-                                            - Detailed description for the object.
+                                            - A detailed description of the object.
                                             - Applicable when model_type is 'SORT'
                                         type: str
                                     type:
@@ -445,8 +449,8 @@ options:
                                         type: dict
                                     labels:
                                         description:
-                                            - Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and
-                                              use them to categorize content.
+                                            - Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own
+                                              labels and use them to categorize content.
                                             - Applicable when model_type is 'SORT'
                                         type: list
                                         elements: str
@@ -543,13 +547,13 @@ options:
                                                 type: int
                                             name:
                                                 description:
-                                                    - Free form text without any restriction on permitted characters. Name can have letters, numbers, and
+                                                    - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and
                                                       special characters. The value is editable and is restricted to 1000 characters.
                                                     - Applicable when model_type is 'SORT'
                                                 type: str
                                             description:
                                                 description:
-                                                    - Detailed description for the object.
+                                                    - A detailed description of the object.
                                                     - Applicable when model_type is 'SORT'
                                                 type: str
                                             type:
@@ -642,6 +646,26 @@ options:
                                     - Format for timestamp information.
                                     - Applicable when model_type is 'CSV_FORMAT'
                                 type: str
+                            is_quote_all:
+                                description:
+                                    - Defines whether the quote entire content while performing read/write.
+                                    - Applicable when model_type is 'CSV_FORMAT'
+                                type: bool
+                            is_multiline:
+                                description:
+                                    - Defines whether the file has a multiline content
+                                    - Applicable when model_type is 'CSV_FORMAT'
+                                type: bool
+                            is_trailing_delimiter:
+                                description:
+                                    - Defines whether the file has a trailing delimiter
+                                    - Applicable when model_type is 'CSV_FORMAT'
+                                type: bool
+                            compression:
+                                description:
+                                    - The compression for the file.
+                                    - Applicable when model_type is one of ['PARQUET_FORMAT', 'AVRO_FORMAT']
+                                type: str
                             model_type:
                                 description:
                                     - The type of the format attribute.
@@ -651,11 +675,22 @@ options:
                                     - "JSON_FORMAT"
                                     - "CSV_FORMAT"
                                     - "PARQUET_FORMAT"
+                                    - "EXCEL_FORMAT"
                                 required: true
-                            compression:
+                            data_address:
                                 description:
-                                    - The compression for the file.
-                                    - Applicable when model_type is one of ['PARQUET_FORMAT', 'AVRO_FORMAT']
+                                    - "Range of the data. For example, \\"'My Sheet'!B3:C35\\""
+                                    - Applicable when model_type is 'EXCEL_FORMAT'
+                                type: str
+                            header:
+                                description:
+                                    - "Whether the dataAddress contains the header with column names. If false - column names fill be generated."
+                                    - Applicable when model_type is 'EXCEL_FORMAT'
+                                type: bool
+                            password:
+                                description:
+                                    - Workbook password if it is password protected.
+                                    - Applicable when model_type is 'EXCEL_FORMAT'
                                 type: str
                     type:
                         description:
@@ -782,12 +817,12 @@ options:
                                         type: int
                                     name:
                                         description:
-                                            - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special
+                                            - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
                                               characters. The value is editable and is restricted to 1000 characters.
                                         type: str
                                     description:
                                         description:
-                                            - Detailed description for the object.
+                                            - A detailed description of the object.
                                         type: str
                                     type:
                                         description:
@@ -795,8 +830,8 @@ options:
                                         type: dict
                                     labels:
                                         description:
-                                            - Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and
-                                              use them to categorize content.
+                                            - Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own
+                                              labels and use them to categorize content.
                                         type: list
                                         elements: str
                                     native_shape_field:
@@ -876,12 +911,12 @@ options:
                                                 type: int
                                             name:
                                                 description:
-                                                    - Free form text without any restriction on permitted characters. Name can have letters, numbers, and
+                                                    - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and
                                                       special characters. The value is editable and is restricted to 1000 characters.
                                                 type: str
                                             description:
                                                 description:
-                                                    - Detailed description for the object.
+                                                    - A detailed description of the object.
                                                 type: str
                                             type:
                                                 description:
@@ -934,37 +969,37 @@ options:
                                 required: true
                             storage_id:
                                 description:
-                                    - Id of the external stoarge configured in BICC console. Usually its numeric.
+                                    - ID of the external stoarge configured in the BICC console. Usually it's numeric.
                                     - Applicable when model_type is 'BICC_READ_ATTRIBUTE'
                                 type: str
                             storage_name:
                                 description:
-                                    - Name of the external storage configured in BICC console
+                                    - Name of the external storage configured in the BICC console.
                                     - Applicable when model_type is 'BICC_READ_ATTRIBUTE'
                                 type: str
                             host:
                                 description:
-                                    - Object Storage host Url. DO not give http/https.
+                                    - Object Storage host URL. DO not give http/https.
                                     - Applicable when model_type is 'BICC_READ_ATTRIBUTE'
                                 type: str
                             tenancy_id:
                                 description:
-                                    - Tenancy OCID for the OOS bucket
+                                    - Tenancy OCID of the OOS bucket.
                                     - Applicable when model_type is 'BICC_READ_ATTRIBUTE'
                                 type: str
                             namespace:
                                 description:
-                                    - Namespace for the OOS bucket
+                                    - Namespace of the OOS bucket.
                                     - Applicable when model_type is 'BICC_READ_ATTRIBUTE'
                                 type: str
                             bucket:
                                 description:
-                                    - Bucket Name where BICC extracts stores the files
+                                    - Bucket name where BICC extracts and stores the files.
                                     - Applicable when model_type is 'BICC_READ_ATTRIBUTE'
                                 type: str
                     initial_extract_date:
                         description:
-                            - Date from where extract should start
+                            - Date from where extract should start.
                             - Applicable when model_type is 'BICC_READ_ATTRIBUTE'
                         type: str
                     last_extract_date:
@@ -991,7 +1026,7 @@ options:
                 type: int
             read_raw_data:
                 description:
-                    - Specifies if this readOperationConfig operation should trigger raw data preview flow.
+                    - Specifies if the readOperationConfig operation should trigger a raw data preview flow.
                 type: bool
     data_asset:
         description:
@@ -1000,7 +1035,7 @@ options:
         suboptions:
             key:
                 description:
-                    - Currently not used on data asset creation. Reserved for future.
+                    - Currently not used while creating a data asset. Reserved for future.
                 type: str
                 required: true
             model_version:
@@ -1013,7 +1048,7 @@ options:
                 type: str
             name:
                 description:
-                    - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is
+                    - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is
                       editable and is restricted to 1000 characters.
                 type: str
                 required: true
@@ -1031,13 +1066,13 @@ options:
                 type: int
             identifier:
                 description:
-                    - Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The value can be
-                      modified.
+                    - Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can
+                      be modified.
                 type: str
                 required: true
             external_key:
                 description:
-                    - The external key for the object.
+                    - The external key of the object.
                 type: str
             asset_properties:
                 description:
@@ -1079,12 +1114,12 @@ options:
                                 type: str
                     name:
                         description:
-                            - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value
-                              is editable and is restricted to 1000 characters.
+                            - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The
+                              value is editable and is restricted to 1000 characters.
                         type: str
                     description:
                         description:
-                            - A user defined description for the object.
+                            - A user-defined description for the object.
                         type: str
                     object_version:
                         description:
@@ -1104,7 +1139,7 @@ options:
                         type: int
                     identifier:
                         description:
-                            - Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The
+                            - Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The
                               value can be modified.
                         type: str
                     types:
@@ -1115,7 +1150,7 @@ options:
                         suboptions:
                             model_type:
                                 description:
-                                    - The property which disciminates the subtypes.
+                                    - The property which differentiates the subtypes.
                                 type: str
                                 choices:
                                     - "STRUCTURED_TYPE"
@@ -1143,8 +1178,8 @@ options:
                                         type: str
                             name:
                                 description:
-                                    - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters.
-                                      The value is editable and is restricted to 1000 characters.
+                                    - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
+                                      characters. The value is editable and is restricted to 1000 characters.
                                 type: str
                             object_status:
                                 description:
@@ -1152,7 +1187,7 @@ options:
                                 type: int
                             description:
                                 description:
-                                    - A user defined description for the object.
+                                    - A user-defined description for the object.
                                 type: str
                             dt_type:
                                 description:
@@ -1193,12 +1228,12 @@ options:
                                                 type: str
                                     name:
                                         description:
-                                            - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special
+                                            - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
                                               characters. The value is editable and is restricted to 1000 characters.
                                         type: str
                                     is_contained:
                                         description:
-                                            - Specifies whether the configuration is contained or not.
+                                            - Specifies whether the configuration is contained.
                                         type: bool
                                     object_status:
                                         description:
@@ -1222,7 +1257,7 @@ options:
                                                         suboptions:
                                                             model_type:
                                                                 description:
-                                                                    - The property which disciminates the subtypes.
+                                                                    - The property which differentiates the subtypes.
                                                                 type: str
                                                                 choices:
                                                                     - "STRUCTURED_TYPE"
@@ -1245,7 +1280,7 @@ options:
                                                                 type: dict
                                                             name:
                                                                 description:
-                                                                    - Free form text without any restriction on permitted characters. Name can have letters,
+                                                                    - Free form text without any restriction on the permitted characters. Name can have letters,
                                                                       numbers, and special characters. The value is editable and is restricted to 1000
                                                                       characters.
                                                                 type: str
@@ -1256,7 +1291,7 @@ options:
                                                                 type: int
                                                             description:
                                                                 description:
-                                                                    - A user defined description for the object.
+                                                                    - A user-defined description for the object.
                                                                 type: str
                                                     config_values:
                                                         description:
@@ -1327,7 +1362,7 @@ options:
                                                         suboptions:
                                                             model_type:
                                                                 description:
-                                                                    - The property which disciminates the subtypes.
+                                                                    - The property which differentiates the subtypes.
                                                                 type: str
                                                                 choices:
                                                                     - "STRUCTURED_TYPE"
@@ -1350,7 +1385,7 @@ options:
                                                                 type: dict
                                                             name:
                                                                 description:
-                                                                    - Free form text without any restriction on permitted characters. Name can have letters,
+                                                                    - Free form text without any restriction on the permitted characters. Name can have letters,
                                                                       numbers, and special characters. The value is editable and is restricted to 1000
                                                                       characters.
                                                                 type: str
@@ -1361,11 +1396,11 @@ options:
                                                                 type: int
                                                             description:
                                                                 description:
-                                                                    - A user defined description for the object.
+                                                                    - A user-defined description for the object.
                                                                 type: str
                                                     model_type:
                                                         description:
-                                                            - The property which disciminates the subtypes.
+                                                            - The property which differentiates the subtypes.
                                                         type: str
                                                         choices:
                                                             - "CONFIGURED_TYPE"
@@ -1394,8 +1429,8 @@ options:
                                                                 type: str
                                                     name:
                                                         description:
-                                                            - Free form text without any restriction on permitted characters. Name can have letters, numbers,
-                                                              and special characters. The value is editable and is restricted to 1000 characters.
+                                                            - Free form text without any restriction on the permitted characters. Name can have letters,
+                                                              numbers, and special characters. The value is editable and is restricted to 1000 characters.
                                                         type: str
                                                     object_status:
                                                         description:
@@ -1404,7 +1439,7 @@ options:
                                                         type: int
                                                     description:
                                                         description:
-                                                            - A user defined description for the object.
+                                                            - A user-defined description for the object.
                                                         type: str
                                                     parent_type:
                                                         description:
@@ -1414,7 +1449,7 @@ options:
                                                         suboptions:
                                                             model_type:
                                                                 description:
-                                                                    - The property which disciminates the subtypes.
+                                                                    - The property which differentiates the subtypes.
                                                                 type: str
                                                                 choices:
                                                                     - "STRUCTURED_TYPE"
@@ -1437,7 +1472,7 @@ options:
                                                                 type: dict
                                                             name:
                                                                 description:
-                                                                    - Free form text without any restriction on permitted characters. Name can have letters,
+                                                                    - Free form text without any restriction on the permitted characters. Name can have letters,
                                                                       numbers, and special characters. The value is editable and is restricted to 1000
                                                                       characters.
                                                                 type: str
@@ -1448,7 +1483,7 @@ options:
                                                                 type: int
                                                             description:
                                                                 description:
-                                                                    - A user defined description for the object.
+                                                                    - A user-defined description for the object.
                                                                 type: str
                                                             parent_type:
                                                                 description:
@@ -1472,8 +1507,8 @@ options:
                                                         suboptions:
                                                             labels:
                                                                 description:
-                                                                    - Labels are keywords or labels that you can add to data assets, dataflows etc. You can
-                                                                      define your own labels and use them to categorize content.
+                                                                    - Labels are keywords or labels that you can add to data assets, dataflows, and so on. You
+                                                                      can define your own labels and use them to categorize content.
                                                                     - Applicable when model_type is 'SHAPE_FIELD'
                                                                 type: list
                                                                 elements: str
@@ -1570,14 +1605,14 @@ options:
                                                                         type: int
                                                                     name:
                                                                         description:
-                                                                            - Free form text without any restriction on permitted characters. Name can have
+                                                                            - Free form text without any restriction on the permitted characters. Name can have
                                                                               letters, numbers, and special characters. The value is editable and is restricted
                                                                               to 1000 characters.
                                                                             - Applicable when model_type is 'SHAPE_FIELD'
                                                                         type: str
                                                                     description:
                                                                         description:
-                                                                            - Detailed description for the object.
+                                                                            - A detailed description of the object.
                                                                             - Applicable when model_type is 'SHAPE_FIELD'
                                                                         type: str
                                                                     type:
@@ -1603,7 +1638,7 @@ options:
                                                                         type: bool
                                                             port_type:
                                                                 description:
-                                                                    - The port details for the data asset.Type.
+                                                                    - The port details of the data asset type.
                                                                     - Applicable when model_type is one of ['INPUT_PORT', 'OUTPUT_PORT']
                                                                 type: str
                                                                 choices:
@@ -1649,13 +1684,13 @@ options:
                                                                         type: int
                                                                     name:
                                                                         description:
-                                                                            - Free form text without any restriction on permitted characters. Name can have
+                                                                            - Free form text without any restriction on the permitted characters. Name can have
                                                                               letters, numbers, and special characters. The value is editable and is restricted
                                                                               to 1000 characters.
                                                                         type: str
                                                                     description:
                                                                         description:
-                                                                            - Detailed description for the object.
+                                                                            - A detailed description of the object.
                                                                         type: str
                                                             default_value:
                                                                 description:
@@ -1664,17 +1699,17 @@ options:
                                                                 type: dict
                                                             root_object_default_value:
                                                                 description:
-                                                                    - The default value of the parameter which can be an object in DIS, such as a data entity.
+                                                                    - The default value of the parameter, which can be an object in DIS, such as a data entity.
                                                                     - Applicable when model_type is 'PARAMETER'
                                                                 type: dict
                                                             is_input:
                                                                 description:
-                                                                    - Specifies whether the parameter is input value.
+                                                                    - Specifies whether the parameter is an input value.
                                                                     - Applicable when model_type is 'PARAMETER'
                                                                 type: bool
                                                             is_output:
                                                                 description:
-                                                                    - Specifies whether the parameter is output value.
+                                                                    - Specifies whether the parameter is an output value.
                                                                     - Applicable when model_type is 'PARAMETER'
                                                                 type: bool
                                                             output_aggregation_type:
@@ -1776,13 +1811,13 @@ options:
                                                                 type: int
                                                             name:
                                                                 description:
-                                                                    - Free form text without any restriction on permitted characters. Name can have letters,
+                                                                    - Free form text without any restriction on the permitted characters. Name can have letters,
                                                                       numbers, and special characters. The value is editable and is restricted to 1000
                                                                       characters.
                                                                 type: str
                                                             description:
                                                                 description:
-                                                                    - Detailed description for the object.
+                                                                    - A detailed description of the object.
                                                                 type: str
                                                             type:
                                                                 description:
@@ -1793,7 +1828,7 @@ options:
                                                                 suboptions:
                                                                     model_type:
                                                                         description:
-                                                                            - The property which disciminates the subtypes.
+                                                                            - The property which differentiates the subtypes.
                                                                         type: str
                                                                         choices:
                                                                             - "STRUCTURED_TYPE"
@@ -1815,7 +1850,7 @@ options:
                                                                         type: dict
                                                                     name:
                                                                         description:
-                                                                            - Free form text without any restriction on permitted characters. Name can have
+                                                                            - Free form text without any restriction on the permitted characters. Name can have
                                                                               letters, numbers, and special characters. The value is editable and is restricted
                                                                               to 1000 characters.
                                                                         type: str
@@ -1826,7 +1861,7 @@ options:
                                                                         type: int
                                                                     description:
                                                                         description:
-                                                                            - A user defined description for the object.
+                                                                            - A user-defined description for the object.
                                                                         type: str
                                                             position:
                                                                 description:
@@ -1867,13 +1902,13 @@ options:
                                                                 type: dict
                                                             name:
                                                                 description:
-                                                                    - Free form text without any restriction on permitted characters. Name can have letters,
+                                                                    - Free form text without any restriction on the permitted characters. Name can have letters,
                                                                       numbers, and special characters. The value is editable and is restricted to 1000
                                                                       characters.
                                                                 type: str
                                                             is_contained:
                                                                 description:
-                                                                    - Specifies whether the configuration is contained or not.
+                                                                    - Specifies whether the configuration is contained.
                                                                 type: bool
                                                             object_status:
                                                                 description:
@@ -1890,7 +1925,7 @@ options:
                                                 type: str
                                             description:
                                                 description:
-                                                    - A user defined description for the object.
+                                                    - A user-defined description for the object.
                                                 type: str
                                             default_value:
                                                 description:
@@ -1902,11 +1937,11 @@ options:
                                                 type: str
                                             is_static:
                                                 description:
-                                                    - Specifies whether the parameter is static or not.
+                                                    - Specifies whether the parameter is static.
                                                 type: bool
                                             is_class_field_value:
                                                 description:
-                                                    - Specifies whether the parameter is a class field or not.
+                                                    - Specifies whether the parameter is a class field.
                                                 type: bool
             registry_metadata:
                 description:
@@ -1919,8 +1954,8 @@ options:
                         type: str
                     labels:
                         description:
-                            - Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and use them to
-                              categorize content.
+                            - Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own labels and use them
+                              to categorize content.
                         type: list
                         elements: str
                     registry_version:
@@ -1933,11 +1968,11 @@ options:
                         type: str
                     is_favorite:
                         description:
-                            - Specifies whether this object is a favorite or not.
+                            - Specifies whether the object is a favorite.
                         type: bool
                     created_by_user_id:
                         description:
-                            - The id of the user who created the object.
+                            - The ID of the user who created the object.
                         type: str
                     created_by_user_name:
                         description:
@@ -1945,7 +1980,7 @@ options:
                         type: str
                     updated_by_user_id:
                         description:
-                            - The id of the user who updated the object.
+                            - The ID of the user who updated the object.
                         type: str
                     updated_by_user_name:
                         description:
@@ -2019,7 +2054,7 @@ options:
                                 type: str
                     identifier_path:
                         description:
-                            - The full path to identify this object.
+                            - The full path to identify the object.
                         type: str
                     info_fields:
                         description:
@@ -2031,13 +2066,13 @@ options:
                         type: int
                     labels:
                         description:
-                            - Labels are keywords or tags that you can add to data assets, dataflows and so on. You can define your own labels and use them to
+                            - Labels are keywords or tags that you can add to data assets, dataflows, and so on. You can define your own labels and use them to
                               categorize content.
                         type: list
                         elements: str
                     is_favorite:
                         description:
-                            - Specifies whether this object is a favorite or not.
+                            - Specifies whether this object is a favorite.
                         type: bool
             default_connection:
                 description:
@@ -2046,8 +2081,8 @@ options:
                 suboptions:
                     key:
                         description:
-                            - Generated key that can be used in API calls to identify connection. On scenarios where reference to the connection is needed, a
-                              value can be passed in create.
+                            - Generated key that can be used in API calls to identify the connection. In scenarios where reference to the connection is
+                              required, a value can be passed in create.
                         type: str
                         required: true
                     model_version:
@@ -2060,8 +2095,8 @@ options:
                         type: str
                     name:
                         description:
-                            - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value
-                              is editable and is restricted to 1000 characters.
+                            - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The
+                              value is editable and is restricted to 1000 characters.
                         type: str
                         required: true
                     description:
@@ -2078,7 +2113,7 @@ options:
                         type: int
                     identifier:
                         description:
-                            - Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The
+                            - Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The
                               value can be modified.
                         type: str
                         required: true
@@ -2094,12 +2129,12 @@ options:
                                 required: true
                             model_type:
                                 description:
-                                    - The object's type.
+                                    - The object type.
                                 type: str
                                 required: true
                             model_version:
                                 description:
-                                    - The object's model version.
+                                    - The model version of the object.
                                 type: str
                             parent_ref:
                                 description:
@@ -2112,8 +2147,8 @@ options:
                                         type: str
                             name:
                                 description:
-                                    - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters.
-                                      The value is editable and is restricted to 1000 characters.
+                                    - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
+                                      characters. The value is editable and is restricted to 1000 characters.
                                 type: str
                                 required: true
                             resource_name:
@@ -2131,7 +2166,7 @@ options:
                                 type: int
                             external_key:
                                 description:
-                                    - The external key for the object.
+                                    - The external key of the object.
                                 type: str
                             is_has_containers:
                                 description:
@@ -2147,8 +2182,8 @@ options:
                                 type: int
                             identifier:
                                 description:
-                                    - Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore.
-                                      The value can be modified.
+                                    - Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or
+                                      underscore. The value can be modified.
                                 type: str
                                 required: true
                             metadata:
@@ -2211,7 +2246,7 @@ options:
                                                 type: str
                                     identifier_path:
                                         description:
-                                            - The full path to identify this object.
+                                            - The full path to identify the object.
                                         type: str
                                     info_fields:
                                         description:
@@ -2223,24 +2258,24 @@ options:
                                         type: int
                                     labels:
                                         description:
-                                            - Labels are keywords or tags that you can add to data assets, dataflows and so on. You can define your own labels
+                                            - Labels are keywords or tags that you can add to data assets, dataflows, and so on. You can define your own labels
                                               and use them to categorize content.
                                         type: list
                                         elements: str
                                     is_favorite:
                                         description:
-                                            - Specifies whether this object is a favorite or not.
+                                            - Specifies whether this object is a favorite.
                                         type: bool
                     connection_properties:
                         description:
-                            - The properties for the connection.
+                            - The properties of the connection.
                         type: list
                         elements: dict
                         suboptions:
                             name:
                                 description:
-                                    - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters.
-                                      The value is editable and is restricted to 1000 characters.
+                                    - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
+                                      characters. The value is editable and is restricted to 1000 characters.
                                 type: str
                             value:
                                 description:
@@ -2248,7 +2283,7 @@ options:
                                 type: str
                     properties:
                         description:
-                            - All the properties for the connection in a key-value map format.
+                            - All the properties of the connection in a key-value map format.
                         type: dict
                     type:
                         description:
@@ -2256,7 +2291,7 @@ options:
                         type: str
                     is_default:
                         description:
-                            - The default property for the connection.
+                            - The default property of the connection.
                         type: bool
                     metadata:
                         description:
@@ -2318,7 +2353,7 @@ options:
                                         type: str
                             identifier_path:
                                 description:
-                                    - The full path to identify this object.
+                                    - The full path to identify the object.
                                 type: str
                             info_fields:
                                 description:
@@ -2330,13 +2365,13 @@ options:
                                 type: int
                             labels:
                                 description:
-                                    - Labels are keywords or tags that you can add to data assets, dataflows and so on. You can define your own labels and use
+                                    - Labels are keywords or tags that you can add to data assets, dataflows, and so on. You can define your own labels and use
                                       them to categorize content.
                                 type: list
                                 elements: str
                             is_favorite:
                                 description:
-                                    - Specifies whether this object is a favorite or not.
+                                    - Specifies whether this object is a favorite.
                                 type: bool
                     registry_metadata:
                         description:
@@ -2349,8 +2384,8 @@ options:
                                 type: str
                             labels:
                                 description:
-                                    - Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and use them
-                                      to categorize content.
+                                    - Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own labels and
+                                      use them to categorize content.
                                 type: list
                                 elements: str
                             registry_version:
@@ -2363,11 +2398,11 @@ options:
                                 type: str
                             is_favorite:
                                 description:
-                                    - Specifies whether this object is a favorite or not.
+                                    - Specifies whether the object is a favorite.
                                 type: bool
                             created_by_user_id:
                                 description:
-                                    - The id of the user who created the object.
+                                    - The ID of the user who created the object.
                                 type: str
                             created_by_user_name:
                                 description:
@@ -2375,7 +2410,7 @@ options:
                                 type: str
                             updated_by_user_id:
                                 description:
-                                    - The id of the user who updated the object.
+                                    - The ID of the user who updated the object.
                                 type: str
                             updated_by_user_name:
                                 description:
@@ -2402,27 +2437,27 @@ options:
                         type: str
                     pe_id:
                         description:
-                            - The ocid of private endpoint resource.
+                            - The OCID of the private endpoint resource.
                             - Applicable when model_type is 'PRIVATE_END_POINT'
                         type: str
                     compartment_id:
                         description:
-                            - The compartmentId of private endpoint resource.
+                            - The compartmentId of the private endpoint resource.
                             - Applicable when model_type is 'PRIVATE_END_POINT'
                         type: str
                     dns_proxy_ip:
                         description:
-                            - The IP address of dns proxy.
+                            - The IP address of the DNS proxy.
                             - Applicable when model_type is 'PRIVATE_END_POINT'
                         type: str
                     private_endpoint_ip:
                         description:
-                            - The ocid of private endpoint resource.
+                            - The OCID of the private endpoint resource.
                             - Applicable when model_type is 'PRIVATE_END_POINT'
                         type: str
                     dns_zones:
                         description:
-                            - Array of dns zones to be use during private endpoint resolution.
+                            - Array of DNS zones to be used during the private endpoint resolution.
                             - Applicable when model_type is 'PRIVATE_END_POINT'
                         type: list
                         elements: str
@@ -2444,8 +2479,8 @@ options:
                         required: true
                     key:
                         description:
-                            - Generated key that can be used in API calls to identify endpoint. On scenarios where reference to the endpoint is needed, a value
-                              can be passed in create.
+                            - Generated key that can be used in API calls to identify the endpoint. In scenarios where reference to the endpoint is required, a
+                              value can be passed in create.
                         type: str
                     model_version:
                         description:
@@ -2463,12 +2498,12 @@ options:
                                 type: str
                     name:
                         description:
-                            - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value
-                              is editable and is restricted to 1000 characters.
+                            - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The
+                              value is editable and is restricted to 1000 characters.
                         type: str
                     description:
                         description:
-                            - User-defined description for the endpoint.
+                            - User-defined description of the endpoint.
                         type: str
                     object_version:
                         description:
@@ -2480,18 +2515,18 @@ options:
                         type: int
                     identifier:
                         description:
-                            - Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The
+                            - Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The
                               value can be modified.
                         type: str
                     data_assets:
                         description:
-                            - List of data assets which belongs to this endpoint
+                            - The list of data assets that belong to the endpoint.
                         type: list
                         elements: dict
                         suboptions:
                             key:
                                 description:
-                                    - Currently not used on data asset creation. Reserved for future.
+                                    - Currently not used while creating a data asset. Reserved for future.
                                 type: str
                                 required: true
                             model_version:
@@ -2504,8 +2539,8 @@ options:
                                 type: str
                             name:
                                 description:
-                                    - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters.
-                                      The value is editable and is restricted to 1000 characters.
+                                    - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
+                                      characters. The value is editable and is restricted to 1000 characters.
                                 type: str
                                 required: true
                             description:
@@ -2522,13 +2557,13 @@ options:
                                 type: int
                             identifier:
                                 description:
-                                    - Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore.
-                                      The value can be modified.
+                                    - Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or
+                                      underscore. The value can be modified.
                                 type: str
                                 required: true
                             external_key:
                                 description:
-                                    - The external key for the object.
+                                    - The external key of the object.
                                 type: str
                             asset_properties:
                                 description:
@@ -2570,8 +2605,8 @@ options:
         suboptions:
             key:
                 description:
-                    - Generated key that can be used in API calls to identify connection. On scenarios where reference to the connection is needed, a value can
-                      be passed in create.
+                    - Generated key that can be used in API calls to identify the connection. In scenarios where reference to the connection is required, a
+                      value can be passed in create.
                 type: str
                 required: true
             model_version:
@@ -2584,7 +2619,7 @@ options:
                 type: str
             name:
                 description:
-                    - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is
+                    - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is
                       editable and is restricted to 1000 characters.
                 type: str
                 required: true
@@ -2602,8 +2637,8 @@ options:
                 type: int
             identifier:
                 description:
-                    - Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The value can be
-                      modified.
+                    - Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can
+                      be modified.
                 type: str
                 required: true
             primary_schema:
@@ -2618,12 +2653,12 @@ options:
                         required: true
                     model_type:
                         description:
-                            - The object's type.
+                            - The object type.
                         type: str
                         required: true
                     model_version:
                         description:
-                            - The object's model version.
+                            - The model version of the object.
                         type: str
                     parent_ref:
                         description:
@@ -2636,8 +2671,8 @@ options:
                                 type: str
                     name:
                         description:
-                            - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value
-                              is editable and is restricted to 1000 characters.
+                            - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The
+                              value is editable and is restricted to 1000 characters.
                         type: str
                         required: true
                     resource_name:
@@ -2654,7 +2689,7 @@ options:
                         type: int
                     external_key:
                         description:
-                            - The external key for the object.
+                            - The external key of the object.
                         type: str
                     is_has_containers:
                         description:
@@ -2670,7 +2705,7 @@ options:
                         type: int
                     identifier:
                         description:
-                            - Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The
+                            - Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The
                               value can be modified.
                         type: str
                         required: true
@@ -2734,7 +2769,7 @@ options:
                                         type: str
                             identifier_path:
                                 description:
-                                    - The full path to identify this object.
+                                    - The full path to identify the object.
                                 type: str
                             info_fields:
                                 description:
@@ -2746,24 +2781,24 @@ options:
                                 type: int
                             labels:
                                 description:
-                                    - Labels are keywords or tags that you can add to data assets, dataflows and so on. You can define your own labels and use
+                                    - Labels are keywords or tags that you can add to data assets, dataflows, and so on. You can define your own labels and use
                                       them to categorize content.
                                 type: list
                                 elements: str
                             is_favorite:
                                 description:
-                                    - Specifies whether this object is a favorite or not.
+                                    - Specifies whether this object is a favorite.
                                 type: bool
             connection_properties:
                 description:
-                    - The properties for the connection.
+                    - The properties of the connection.
                 type: list
                 elements: dict
                 suboptions:
                     name:
                         description:
-                            - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value
-                              is editable and is restricted to 1000 characters.
+                            - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The
+                              value is editable and is restricted to 1000 characters.
                         type: str
                     value:
                         description:
@@ -2771,7 +2806,7 @@ options:
                         type: str
             properties:
                 description:
-                    - All the properties for the connection in a key-value map format.
+                    - All the properties of the connection in a key-value map format.
                 type: dict
             type:
                 description:
@@ -2779,7 +2814,7 @@ options:
                 type: str
             is_default:
                 description:
-                    - The default property for the connection.
+                    - The default property of the connection.
                 type: bool
             metadata:
                 description:
@@ -2841,7 +2876,7 @@ options:
                                 type: str
                     identifier_path:
                         description:
-                            - The full path to identify this object.
+                            - The full path to identify the object.
                         type: str
                     info_fields:
                         description:
@@ -2853,13 +2888,13 @@ options:
                         type: int
                     labels:
                         description:
-                            - Labels are keywords or tags that you can add to data assets, dataflows and so on. You can define your own labels and use them to
+                            - Labels are keywords or tags that you can add to data assets, dataflows, and so on. You can define your own labels and use them to
                               categorize content.
                         type: list
                         elements: str
                     is_favorite:
                         description:
-                            - Specifies whether this object is a favorite or not.
+                            - Specifies whether this object is a favorite.
                         type: bool
             registry_metadata:
                 description:
@@ -2872,8 +2907,8 @@ options:
                         type: str
                     labels:
                         description:
-                            - Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and use them to
-                              categorize content.
+                            - Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own labels and use them
+                              to categorize content.
                         type: list
                         elements: str
                     registry_version:
@@ -2886,11 +2921,11 @@ options:
                         type: str
                     is_favorite:
                         description:
-                            - Specifies whether this object is a favorite or not.
+                            - Specifies whether the object is a favorite.
                         type: bool
                     created_by_user_id:
                         description:
-                            - The id of the user who created the object.
+                            - The ID of the user who created the object.
                         type: str
                     created_by_user_name:
                         description:
@@ -2898,7 +2933,7 @@ options:
                         type: str
                     updated_by_user_id:
                         description:
-                            - The id of the user who updated the object.
+                            - The ID of the user who updated the object.
                         type: str
                     updated_by_user_name:
                         description:
@@ -2924,12 +2959,12 @@ options:
                 required: true
             model_type:
                 description:
-                    - The object's type.
+                    - The object type.
                 type: str
                 required: true
             model_version:
                 description:
-                    - The object's model version.
+                    - The model version of the object.
                 type: str
             parent_ref:
                 description:
@@ -2942,7 +2977,7 @@ options:
                         type: str
             name:
                 description:
-                    - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is
+                    - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is
                       editable and is restricted to 1000 characters.
                 type: str
                 required: true
@@ -2960,7 +2995,7 @@ options:
                 type: int
             external_key:
                 description:
-                    - The external key for the object.
+                    - The external key of the object.
                 type: str
             is_has_containers:
                 description:
@@ -2976,8 +3011,8 @@ options:
                 type: int
             identifier:
                 description:
-                    - Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The value can be
-                      modified.
+                    - Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can
+                      be modified.
                 type: str
                 required: true
             metadata:
@@ -3040,7 +3075,7 @@ options:
                                 type: str
                     identifier_path:
                         description:
-                            - The full path to identify this object.
+                            - The full path to identify the object.
                         type: str
                     info_fields:
                         description:
@@ -3052,13 +3087,13 @@ options:
                         type: int
                     labels:
                         description:
-                            - Labels are keywords or tags that you can add to data assets, dataflows and so on. You can define your own labels and use them to
+                            - Labels are keywords or tags that you can add to data assets, dataflows, and so on. You can define your own labels and use them to
                               categorize content.
                         type: list
                         elements: str
                     is_favorite:
                         description:
-                            - Specifies whether this object is a favorite or not.
+                            - Specifies whether this object is a favorite.
                         type: bool
     data_entity:
         description:
@@ -3067,27 +3102,27 @@ options:
         suboptions:
             filters:
                 description:
-                    - Filters present in the Datastore. It can be Null.
+                    - Filters present in the datastore. It can be null.
                     - Applicable when model_type is 'DATA_STORE_ENTITY'
                 type: str
             is_effective_date_disabled:
                 description:
-                    - It shows whether or not effective date is disabled
+                    - It shows whether the effective date is disabled.
                     - Applicable when model_type is 'DATA_STORE_ENTITY'
                 type: bool
             is_flex_data_store:
                 description:
-                    - It shows whether the datastore is of flex type
+                    - It shows whether the datastore is of flex type.
                     - Applicable when model_type is 'DATA_STORE_ENTITY'
                 type: bool
             is_silent_error:
                 description:
-                    - It shows whether the extraction of this datastore will stop on error
+                    - It shows whether the extraction of this datastore will stop when an error occurs.
                     - Applicable when model_type is 'DATA_STORE_ENTITY'
                 type: bool
             supports_incremental:
                 description:
-                    - It shows whether the datastore supports Incremental Extract or not.
+                    - It shows whether the datastore supports incremental extract.
                     - Applicable when model_type is 'DATA_STORE_ENTITY'
                 type: bool
             sql_query:
@@ -3095,1007 +3130,20 @@ options:
                     - sqlQuery
                     - Applicable when model_type is 'SQL_ENTITY'
                 type: str
-            model_type:
-                description:
-                    - The data entity type.
-                type: str
-                choices:
-                    - "TABLE_ENTITY"
-                    - "DATA_STORE_ENTITY"
-                    - "VIEW_ENTITY"
-                    - "SQL_ENTITY"
-                    - "FILE_ENTITY"
-                required: true
-            metadata:
-                description:
-                    - ""
-                type: dict
-                suboptions:
-                    created_by:
-                        description:
-                            - The user that created the object.
-                            - Applicable when model_type is 'TABLE_ENTITY'
-                        type: str
-                    created_by_name:
-                        description:
-                            - The user that created the object.
-                            - Applicable when model_type is 'TABLE_ENTITY'
-                        type: str
-                    updated_by:
-                        description:
-                            - The user that updated the object.
-                            - Applicable when model_type is 'TABLE_ENTITY'
-                        type: str
-                    updated_by_name:
-                        description:
-                            - The user that updated the object.
-                            - Applicable when model_type is 'TABLE_ENTITY'
-                        type: str
-                    time_created:
-                        description:
-                            - The date and time that the object was created.
-                            - Applicable when model_type is 'TABLE_ENTITY'
-                        type: str
-                    time_updated:
-                        description:
-                            - The date and time that the object was updated.
-                            - Applicable when model_type is 'TABLE_ENTITY'
-                        type: str
-                    aggregator_key:
-                        description:
-                            - The owning object key for this object.
-                            - Applicable when model_type is 'TABLE_ENTITY'
-                        type: str
-                    aggregator:
-                        description:
-                            - ""
-                            - Applicable when model_type is 'TABLE_ENTITY'
-                        type: dict
-                        suboptions:
-                            type:
-                                description:
-                                    - The type of the aggregator.
-                                    - Applicable when model_type is 'TABLE_ENTITY'
-                                type: str
-                            key:
-                                description:
-                                    - The key of the aggregator object.
-                                    - Applicable when model_type is 'TABLE_ENTITY'
-                                type: str
-                            name:
-                                description:
-                                    - The name of the aggregator.
-                                    - Applicable when model_type is 'TABLE_ENTITY'
-                                type: str
-                            identifier:
-                                description:
-                                    - The identifier of the aggregator.
-                                    - Applicable when model_type is 'TABLE_ENTITY'
-                                type: str
-                            description:
-                                description:
-                                    - The description of the aggregator.
-                                    - Applicable when model_type is 'TABLE_ENTITY'
-                                type: str
-                    identifier_path:
-                        description:
-                            - The full path to identify this object.
-                            - Applicable when model_type is 'TABLE_ENTITY'
-                        type: str
-                    info_fields:
-                        description:
-                            - Information property fields.
-                            - Applicable when model_type is 'TABLE_ENTITY'
-                        type: dict
-                    registry_version:
-                        description:
-                            - The registry version of the object.
-                            - Applicable when model_type is 'TABLE_ENTITY'
-                        type: int
-                    labels:
-                        description:
-                            - Labels are keywords or tags that you can add to data assets, dataflows and so on. You can define your own labels and use them to
-                              categorize content.
-                            - Applicable when model_type is 'TABLE_ENTITY'
-                        type: list
-                        elements: str
-                    is_favorite:
-                        description:
-                            - Specifies whether this object is a favorite or not.
-                            - Applicable when model_type is 'TABLE_ENTITY'
-                        type: bool
-            key:
-                description:
-                    - The object key.
-                type: str
-            model_version:
-                description:
-                    - The object's model version.
-                type: str
-            parent_ref:
-                description:
-                    - ""
-                type: dict
-                suboptions:
-                    parent:
-                        description:
-                            - Key of the parent object.
-                            - Applicable when model_type is 'TABLE_ENTITY'
-                        type: str
-            name:
-                description:
-                    - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is
-                      editable and is restricted to 1000 characters.
-                type: str
             description:
                 description:
-                    - Detailed description for the object.
+                    - Detailed description of the object.
+                    - Applicable when model_type is one of ['VIEW_ENTITY', 'SQL_ENTITY', 'DATA_STORE_ENTITY', 'TABLE_ENTITY', 'FILE_ENTITY']
                 type: str
-            object_version:
-                description:
-                    - The version of the object that is used to track changes in the object instance.
-                type: int
             external_key:
                 description:
-                    - The external key for the object.
-                type: str
-            shape:
-                description:
-                    - ""
-                type: dict
-                suboptions:
-                    model_type:
-                        description:
-                            - The type of the types object.
-                            - Required when model_type is 'TABLE_ENTITY'
-                        type: str
-                        choices:
-                            - "SHAPE"
-                            - "SHAPE_FIELD"
-                            - "NATIVE_SHAPE_FIELD"
-                        required: true
-                    key:
-                        description:
-                            - The key of the object.
-                            - Applicable when model_type is 'TABLE_ENTITY'
-                        type: str
-                    model_version:
-                        description:
-                            - The model version of an object.
-                            - Applicable when model_type is 'TABLE_ENTITY'
-                        type: str
-                    parent_ref:
-                        description:
-                            - ""
-                            - Applicable when model_type is 'TABLE_ENTITY'
-                        type: dict
-                        suboptions:
-                            parent:
-                                description:
-                                    - Key of the parent object.
-                                    - Applicable when model_type is 'TABLE_ENTITY'
-                                type: str
-                    config_values:
-                        description:
-                            - ""
-                            - Applicable when model_type is 'TABLE_ENTITY'
-                        type: dict
-                        suboptions:
-                            config_param_values:
-                                description:
-                                    - The configuration parameter values.
-                                    - Applicable when model_type is 'TABLE_ENTITY'
-                                type: dict
-                                suboptions:
-                                    string_value:
-                                        description:
-                                            - A string value of the parameter.
-                                            - Applicable when model_type is 'TABLE_ENTITY'
-                                        type: str
-                                    int_value:
-                                        description:
-                                            - An integer value of the parameter.
-                                            - Applicable when model_type is 'TABLE_ENTITY'
-                                        type: int
-                                    object_value:
-                                        description:
-                                            - An object value of the parameter.
-                                            - Applicable when model_type is 'TABLE_ENTITY'
-                                        type: dict
-                                    ref_value:
-                                        description:
-                                            - The root object reference value.
-                                            - Applicable when model_type is 'TABLE_ENTITY'
-                                        type: dict
-                                    parameter_value:
-                                        description:
-                                            - Reference to the parameter by its key.
-                                            - Applicable when model_type is 'TABLE_ENTITY'
-                                        type: str
-                            parent_ref:
-                                description:
-                                    - ""
-                                    - Applicable when model_type is 'TABLE_ENTITY'
-                                type: dict
-                                suboptions:
-                                    parent:
-                                        description:
-                                            - Key of the parent object.
-                                            - Applicable when model_type is 'TABLE_ENTITY'
-                                        type: str
-                    object_status:
-                        description:
-                            - The status of an object that can be set to value 1 for shallow references across objects, other values reserved.
-                            - Applicable when model_type is 'TABLE_ENTITY'
-                        type: int
-                    name:
-                        description:
-                            - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value
-                              is editable and is restricted to 1000 characters.
-                            - Applicable when model_type is 'TABLE_ENTITY'
-                        type: str
-                    description:
-                        description:
-                            - Detailed description for the object.
-                            - Applicable when model_type is 'TABLE_ENTITY'
-                        type: str
-                    type:
-                        description:
-                            - ""
-                            - Applicable when model_type is 'TABLE_ENTITY'
-                        type: dict
-                        suboptions:
-                            wrapped_type:
-                                description:
-                                    - ""
-                                    - Applicable when model_type is 'CONFIGURED_TYPE'
-                                type: dict
-                                suboptions:
-                                    model_type:
-                                        description:
-                                            - The property which disciminates the subtypes.
-                                        type: str
-                                        choices:
-                                            - "STRUCTURED_TYPE"
-                                            - "DATA_TYPE"
-                                            - "CONFIGURED_TYPE"
-                                            - "COMPOSITE_TYPE"
-                                            - "DERIVED_TYPE"
-                                        required: true
-                                    key:
-                                        description:
-                                            - The key of the object.
-                                        type: str
-                                    model_version:
-                                        description:
-                                            - The model version of an object.
-                                        type: str
-                                    parent_ref:
-                                        description:
-                                            - ""
-                                        type: dict
-                                    name:
-                                        description:
-                                            - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special
-                                              characters. The value is editable and is restricted to 1000 characters.
-                                        type: str
-                                    object_status:
-                                        description:
-                                            - The status of an object that can be set to value 1 for shallow references across objects, other values reserved.
-                                        type: int
-                                    description:
-                                        description:
-                                            - A user defined description for the object.
-                                        type: str
-                            config_values:
-                                description:
-                                    - ""
-                                    - Applicable when model_type is 'CONFIGURED_TYPE'
-                                type: dict
-                                suboptions:
-                                    config_param_values:
-                                        description:
-                                            - The configuration parameter values.
-                                            - Applicable when model_type is 'CONFIGURED_TYPE'
-                                        type: dict
-                                        suboptions:
-                                            string_value:
-                                                description:
-                                                    - A string value of the parameter.
-                                                    - Applicable when model_type is 'CONFIGURED_TYPE'
-                                                type: str
-                                            int_value:
-                                                description:
-                                                    - An integer value of the parameter.
-                                                    - Applicable when model_type is 'CONFIGURED_TYPE'
-                                                type: int
-                                            object_value:
-                                                description:
-                                                    - An object value of the parameter.
-                                                    - Applicable when model_type is 'CONFIGURED_TYPE'
-                                                type: dict
-                                            ref_value:
-                                                description:
-                                                    - The root object reference value.
-                                                    - Applicable when model_type is 'CONFIGURED_TYPE'
-                                                type: dict
-                                            parameter_value:
-                                                description:
-                                                    - Reference to the parameter by its key.
-                                                    - Applicable when model_type is 'CONFIGURED_TYPE'
-                                                type: str
-                                    parent_ref:
-                                        description:
-                                            - ""
-                                            - Applicable when model_type is 'CONFIGURED_TYPE'
-                                        type: dict
-                                        suboptions:
-                                            parent:
-                                                description:
-                                                    - Key of the parent object.
-                                                    - Applicable when model_type is 'CONFIGURED_TYPE'
-                                                type: str
-                            dt_type:
-                                description:
-                                    - The data type.
-                                    - Applicable when model_type is 'DATA_TYPE'
-                                type: str
-                                choices:
-                                    - "PRIMITIVE"
-                                    - "STRUCTURED"
-                            type_system_name:
-                                description:
-                                    - The data type system name.
-                                    - Applicable when model_type is 'DATA_TYPE'
-                                type: str
-                            schema:
-                                description:
-                                    - ""
-                                    - Applicable when model_type is 'STRUCTURED_TYPE'
-                                type: dict
-                                suboptions:
-                                    model_type:
-                                        description:
-                                            - The property which disciminates the subtypes.
-                                        type: str
-                                        choices:
-                                            - "STRUCTURED_TYPE"
-                                            - "DATA_TYPE"
-                                            - "CONFIGURED_TYPE"
-                                            - "COMPOSITE_TYPE"
-                                            - "DERIVED_TYPE"
-                                        required: true
-                                    key:
-                                        description:
-                                            - The key of the object.
-                                        type: str
-                                    model_version:
-                                        description:
-                                            - The model version of an object.
-                                        type: str
-                                    parent_ref:
-                                        description:
-                                            - ""
-                                        type: dict
-                                    name:
-                                        description:
-                                            - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special
-                                              characters. The value is editable and is restricted to 1000 characters.
-                                        type: str
-                                    object_status:
-                                        description:
-                                            - The status of an object that can be set to value 1 for shallow references across objects, other values reserved.
-                                        type: int
-                                    description:
-                                        description:
-                                            - A user defined description for the object.
-                                        type: str
-                            model_type:
-                                description:
-                                    - The property which disciminates the subtypes.
-                                type: str
-                                choices:
-                                    - "CONFIGURED_TYPE"
-                                    - "DERIVED_TYPE"
-                                    - "DATA_TYPE"
-                                    - "STRUCTURED_TYPE"
-                                    - "COMPOSITE_TYPE"
-                                required: true
-                            key:
-                                description:
-                                    - The key of the object.
-                                type: str
-                            model_version:
-                                description:
-                                    - The model version of an object.
-                                type: str
-                            parent_ref:
-                                description:
-                                    - ""
-                                type: dict
-                                suboptions:
-                                    parent:
-                                        description:
-                                            - Key of the parent object.
-                                            - Applicable when model_type is 'CONFIGURED_TYPE'
-                                        type: str
-                            name:
-                                description:
-                                    - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters.
-                                      The value is editable and is restricted to 1000 characters.
-                                type: str
-                            object_status:
-                                description:
-                                    - The status of an object that can be set to value 1 for shallow references across objects, other values reserved.
-                                type: int
-                            description:
-                                description:
-                                    - A user defined description for the object.
-                                type: str
-                            parent_type:
-                                description:
-                                    - ""
-                                    - Applicable when model_type is 'COMPOSITE_TYPE'
-                                type: dict
-                                suboptions:
-                                    model_type:
-                                        description:
-                                            - The property which disciminates the subtypes.
-                                        type: str
-                                        choices:
-                                            - "STRUCTURED_TYPE"
-                                            - "DATA_TYPE"
-                                            - "CONFIGURED_TYPE"
-                                            - "COMPOSITE_TYPE"
-                                            - "DERIVED_TYPE"
-                                        required: true
-                                    key:
-                                        description:
-                                            - The key of the object.
-                                        type: str
-                                    model_version:
-                                        description:
-                                            - The model version of an object.
-                                        type: str
-                                    parent_ref:
-                                        description:
-                                            - ""
-                                        type: dict
-                                    name:
-                                        description:
-                                            - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special
-                                              characters. The value is editable and is restricted to 1000 characters.
-                                        type: str
-                                    object_status:
-                                        description:
-                                            - The status of an object that can be set to value 1 for shallow references across objects, other values reserved.
-                                        type: int
-                                    description:
-                                        description:
-                                            - A user defined description for the object.
-                                        type: str
-                                    parent_type:
-                                        description:
-                                            - ""
-                                        type: dict
-                                    elements:
-                                        description:
-                                            - An array of elements.
-                                        type: list
-                                        elements: dict
-                                    config_definition:
-                                        description:
-                                            - ""
-                                        type: dict
-                            elements:
-                                description:
-                                    - An array of elements.
-                                    - Applicable when model_type is 'COMPOSITE_TYPE'
-                                type: list
-                                elements: dict
-                                suboptions:
-                                    labels:
-                                        description:
-                                            - Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and
-                                              use them to categorize content.
-                                            - Applicable when model_type is 'SHAPE_FIELD'
-                                        type: list
-                                        elements: str
-                                    native_shape_field:
-                                        description:
-                                            - ""
-                                            - Applicable when model_type is 'SHAPE_FIELD'
-                                        type: dict
-                                        suboptions:
-                                            model_type:
-                                                description:
-                                                    - The type of the types object.
-                                                    - Required when model_type is 'SHAPE_FIELD'
-                                                type: str
-                                                choices:
-                                                    - "SHAPE"
-                                                    - "SHAPE_FIELD"
-                                                    - "NATIVE_SHAPE_FIELD"
-                                                required: true
-                                            key:
-                                                description:
-                                                    - The key of the object.
-                                                    - Applicable when model_type is 'SHAPE_FIELD'
-                                                type: str
-                                            model_version:
-                                                description:
-                                                    - The model version of an object.
-                                                    - Applicable when model_type is 'SHAPE_FIELD'
-                                                type: str
-                                            parent_ref:
-                                                description:
-                                                    - ""
-                                                    - Applicable when model_type is 'SHAPE_FIELD'
-                                                type: dict
-                                                suboptions:
-                                                    parent:
-                                                        description:
-                                                            - Key of the parent object.
-                                                            - Applicable when model_type is 'SHAPE_FIELD'
-                                                        type: str
-                                            config_values:
-                                                description:
-                                                    - ""
-                                                    - Applicable when model_type is 'SHAPE_FIELD'
-                                                type: dict
-                                                suboptions:
-                                                    config_param_values:
-                                                        description:
-                                                            - The configuration parameter values.
-                                                            - Applicable when model_type is 'SHAPE_FIELD'
-                                                        type: dict
-                                                        suboptions:
-                                                            string_value:
-                                                                description:
-                                                                    - A string value of the parameter.
-                                                                    - Applicable when model_type is 'SHAPE_FIELD'
-                                                                type: str
-                                                            int_value:
-                                                                description:
-                                                                    - An integer value of the parameter.
-                                                                    - Applicable when model_type is 'SHAPE_FIELD'
-                                                                type: int
-                                                            object_value:
-                                                                description:
-                                                                    - An object value of the parameter.
-                                                                    - Applicable when model_type is 'SHAPE_FIELD'
-                                                                type: dict
-                                                            ref_value:
-                                                                description:
-                                                                    - The root object reference value.
-                                                                    - Applicable when model_type is 'SHAPE_FIELD'
-                                                                type: dict
-                                                            parameter_value:
-                                                                description:
-                                                                    - Reference to the parameter by its key.
-                                                                    - Applicable when model_type is 'SHAPE_FIELD'
-                                                                type: str
-                                                    parent_ref:
-                                                        description:
-                                                            - ""
-                                                            - Applicable when model_type is 'SHAPE_FIELD'
-                                                        type: dict
-                                                        suboptions:
-                                                            parent:
-                                                                description:
-                                                                    - Key of the parent object.
-                                                                    - Applicable when model_type is 'SHAPE_FIELD'
-                                                                type: str
-                                            object_status:
-                                                description:
-                                                    - The status of an object that can be set to value 1 for shallow references across objects, other values
-                                                      reserved.
-                                                    - Applicable when model_type is 'SHAPE_FIELD'
-                                                type: int
-                                            name:
-                                                description:
-                                                    - Free form text without any restriction on permitted characters. Name can have letters, numbers, and
-                                                      special characters. The value is editable and is restricted to 1000 characters.
-                                                    - Applicable when model_type is 'SHAPE_FIELD'
-                                                type: str
-                                            description:
-                                                description:
-                                                    - Detailed description for the object.
-                                                    - Applicable when model_type is 'SHAPE_FIELD'
-                                                type: str
-                                            type:
-                                                description:
-                                                    - The type reference.
-                                                    - Required when model_type is 'SHAPE_FIELD'
-                                                type: dict
-                                                required: true
-                                            position:
-                                                description:
-                                                    - The position of the attribute.
-                                                    - Applicable when model_type is 'SHAPE_FIELD'
-                                                type: int
-                                            default_value_string:
-                                                description:
-                                                    - The default value.
-                                                    - Applicable when model_type is 'SHAPE_FIELD'
-                                                type: str
-                                            is_mandatory:
-                                                description:
-                                                    - Specifies whether the field is mandatory.
-                                                    - Applicable when model_type is 'SHAPE_FIELD'
-                                                type: bool
-                                    port_type:
-                                        description:
-                                            - The port details for the data asset.Type.
-                                            - Applicable when model_type is one of ['INPUT_PORT', 'OUTPUT_PORT']
-                                        type: str
-                                        choices:
-                                            - "DATA"
-                                            - "CONTROL"
-                                            - "MODEL"
-                                    fields:
-                                        description:
-                                            - An array of fields.
-                                            - Applicable when model_type is one of ['INPUT_PORT', 'OUTPUT_PORT']
-                                        type: list
-                                        elements: dict
-                                        suboptions:
-                                            model_type:
-                                                description:
-                                                    - The type of the types object.
-                                                type: str
-                                                choices:
-                                                    - "SHAPE"
-                                                    - "SHAPE_FIELD"
-                                                    - "NATIVE_SHAPE_FIELD"
-                                                required: true
-                                            key:
-                                                description:
-                                                    - The key of the object.
-                                                type: str
-                                            model_version:
-                                                description:
-                                                    - The model version of an object.
-                                                type: str
-                                            parent_ref:
-                                                description:
-                                                    - ""
-                                                type: dict
-                                            config_values:
-                                                description:
-                                                    - ""
-                                                type: dict
-                                            object_status:
-                                                description:
-                                                    - The status of an object that can be set to value 1 for shallow references across objects, other values
-                                                      reserved.
-                                                type: int
-                                            name:
-                                                description:
-                                                    - Free form text without any restriction on permitted characters. Name can have letters, numbers, and
-                                                      special characters. The value is editable and is restricted to 1000 characters.
-                                                type: str
-                                            description:
-                                                description:
-                                                    - Detailed description for the object.
-                                                type: str
-                                    default_value:
-                                        description:
-                                            - The default value of the parameter.
-                                            - Applicable when model_type is 'PARAMETER'
-                                        type: dict
-                                    root_object_default_value:
-                                        description:
-                                            - The default value of the parameter which can be an object in DIS, such as a data entity.
-                                            - Applicable when model_type is 'PARAMETER'
-                                        type: dict
-                                    is_input:
-                                        description:
-                                            - Specifies whether the parameter is input value.
-                                            - Applicable when model_type is 'PARAMETER'
-                                        type: bool
-                                    is_output:
-                                        description:
-                                            - Specifies whether the parameter is output value.
-                                            - Applicable when model_type is 'PARAMETER'
-                                        type: bool
-                                    output_aggregation_type:
-                                        description:
-                                            - The output aggregation type.
-                                            - Applicable when model_type is 'PARAMETER'
-                                        type: str
-                                        choices:
-                                            - "MIN"
-                                            - "MAX"
-                                            - "COUNT"
-                                            - "SUM"
-                                    type_name:
-                                        description:
-                                            - The type of value the parameter was created for.
-                                            - Applicable when model_type is 'PARAMETER'
-                                        type: str
-                                    model_type:
-                                        description:
-                                            - The type of the types object.
-                                        type: str
-                                        choices:
-                                            - "OUTPUT_PORT"
-                                            - "SHAPE"
-                                            - "SHAPE_FIELD"
-                                            - "INPUT_PORT"
-                                            - "PARAMETER"
-                                            - "NATIVE_SHAPE_FIELD"
-                                        required: true
-                                    key:
-                                        description:
-                                            - The key of the object.
-                                        type: str
-                                    model_version:
-                                        description:
-                                            - The model version of an object.
-                                        type: str
-                                    parent_ref:
-                                        description:
-                                            - ""
-                                        type: dict
-                                        suboptions:
-                                            parent:
-                                                description:
-                                                    - Key of the parent object.
-                                                    - Applicable when model_type is 'OUTPUT_PORT'
-                                                type: str
-                                    config_values:
-                                        description:
-                                            - ""
-                                        type: dict
-                                        suboptions:
-                                            config_param_values:
-                                                description:
-                                                    - The configuration parameter values.
-                                                    - Applicable when model_type is 'OUTPUT_PORT'
-                                                type: dict
-                                                suboptions:
-                                                    string_value:
-                                                        description:
-                                                            - A string value of the parameter.
-                                                            - Applicable when model_type is 'OUTPUT_PORT'
-                                                        type: str
-                                                    int_value:
-                                                        description:
-                                                            - An integer value of the parameter.
-                                                            - Applicable when model_type is 'OUTPUT_PORT'
-                                                        type: int
-                                                    object_value:
-                                                        description:
-                                                            - An object value of the parameter.
-                                                            - Applicable when model_type is 'OUTPUT_PORT'
-                                                        type: dict
-                                                    ref_value:
-                                                        description:
-                                                            - The root object reference value.
-                                                            - Applicable when model_type is 'OUTPUT_PORT'
-                                                        type: dict
-                                                    parameter_value:
-                                                        description:
-                                                            - Reference to the parameter by its key.
-                                                            - Applicable when model_type is 'OUTPUT_PORT'
-                                                        type: str
-                                            parent_ref:
-                                                description:
-                                                    - ""
-                                                    - Applicable when model_type is 'OUTPUT_PORT'
-                                                type: dict
-                                                suboptions:
-                                                    parent:
-                                                        description:
-                                                            - Key of the parent object.
-                                                            - Applicable when model_type is 'OUTPUT_PORT'
-                                                        type: str
-                                    object_status:
-                                        description:
-                                            - The status of an object that can be set to value 1 for shallow references across objects, other values reserved.
-                                        type: int
-                                    name:
-                                        description:
-                                            - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special
-                                              characters. The value is editable and is restricted to 1000 characters.
-                                        type: str
-                                    description:
-                                        description:
-                                            - Detailed description for the object.
-                                        type: str
-                                    type:
-                                        description:
-                                            - ""
-                                            - Applicable when model_type is one of ['SHAPE', 'SHAPE_FIELD', 'PARAMETER']
-                                            - Required when model_type is 'NATIVE_SHAPE_FIELD'
-                                        type: dict
-                                        suboptions:
-                                            model_type:
-                                                description:
-                                                    - The property which disciminates the subtypes.
-                                                type: str
-                                                choices:
-                                                    - "STRUCTURED_TYPE"
-                                                    - "DATA_TYPE"
-                                                    - "CONFIGURED_TYPE"
-                                                    - "COMPOSITE_TYPE"
-                                                    - "DERIVED_TYPE"
-                                            key:
-                                                description:
-                                                    - The key of the object.
-                                                type: str
-                                            model_version:
-                                                description:
-                                                    - The model version of an object.
-                                                type: str
-                                            parent_ref:
-                                                description:
-                                                    - ""
-                                                type: dict
-                                            name:
-                                                description:
-                                                    - Free form text without any restriction on permitted characters. Name can have letters, numbers, and
-                                                      special characters. The value is editable and is restricted to 1000 characters.
-                                                type: str
-                                            object_status:
-                                                description:
-                                                    - The status of an object that can be set to value 1 for shallow references across objects, other values
-                                                      reserved.
-                                                type: int
-                                            description:
-                                                description:
-                                                    - A user defined description for the object.
-                                                type: str
-                                    position:
-                                        description:
-                                            - The position of the attribute.
-                                            - Applicable when model_type is 'NATIVE_SHAPE_FIELD'
-                                        type: int
-                                    default_value_string:
-                                        description:
-                                            - The default value.
-                                            - Applicable when model_type is 'NATIVE_SHAPE_FIELD'
-                                        type: str
-                                    is_mandatory:
-                                        description:
-                                            - Specifies whether the field is mandatory.
-                                            - Applicable when model_type is 'NATIVE_SHAPE_FIELD'
-                                        type: bool
-                            config_definition:
-                                description:
-                                    - ""
-                                    - Applicable when model_type is one of ['DATA_TYPE', 'CONFIGURED_TYPE', 'COMPOSITE_TYPE']
-                                type: dict
-                                suboptions:
-                                    key:
-                                        description:
-                                            - The key of the object.
-                                            - Applicable when model_type is 'CONFIGURED_TYPE'
-                                        type: str
-                                    model_type:
-                                        description:
-                                            - The type of the object.
-                                            - Applicable when model_type is 'CONFIGURED_TYPE'
-                                        type: str
-                                    model_version:
-                                        description:
-                                            - The model version of an object.
-                                            - Applicable when model_type is 'CONFIGURED_TYPE'
-                                        type: str
-                                    parent_ref:
-                                        description:
-                                            - ""
-                                            - Applicable when model_type is 'CONFIGURED_TYPE'
-                                        type: dict
-                                        suboptions:
-                                            parent:
-                                                description:
-                                                    - Key of the parent object.
-                                                    - Applicable when model_type is 'CONFIGURED_TYPE'
-                                                type: str
-                                    name:
-                                        description:
-                                            - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special
-                                              characters. The value is editable and is restricted to 1000 characters.
-                                            - Applicable when model_type is 'CONFIGURED_TYPE'
-                                        type: str
-                                    is_contained:
-                                        description:
-                                            - Specifies whether the configuration is contained or not.
-                                            - Applicable when model_type is 'CONFIGURED_TYPE'
-                                        type: bool
-                                    object_status:
-                                        description:
-                                            - The status of an object that can be set to value 1 for shallow references across objects, other values reserved.
-                                            - Applicable when model_type is 'CONFIGURED_TYPE'
-                                        type: int
-                                    config_parameter_definitions:
-                                        description:
-                                            - The parameter configuration details.
-                                            - Applicable when model_type is 'CONFIGURED_TYPE'
-                                        type: dict
-                                        suboptions:
-                                            parameter_type:
-                                                description:
-                                                    - ""
-                                                    - Applicable when model_type is 'CONFIGURED_TYPE'
-                                                type: dict
-                                                suboptions:
-                                                    model_type:
-                                                        description:
-                                                            - The property which disciminates the subtypes.
-                                                        type: str
-                                                        choices:
-                                                            - "STRUCTURED_TYPE"
-                                                            - "DATA_TYPE"
-                                                            - "CONFIGURED_TYPE"
-                                                            - "COMPOSITE_TYPE"
-                                                            - "DERIVED_TYPE"
-                                                        required: true
-                                                    key:
-                                                        description:
-                                                            - The key of the object.
-                                                        type: str
-                                                    model_version:
-                                                        description:
-                                                            - The model version of an object.
-                                                        type: str
-                                                    parent_ref:
-                                                        description:
-                                                            - ""
-                                                        type: dict
-                                                    name:
-                                                        description:
-                                                            - Free form text without any restriction on permitted characters. Name can have letters, numbers,
-                                                              and special characters. The value is editable and is restricted to 1000 characters.
-                                                        type: str
-                                                    object_status:
-                                                        description:
-                                                            - The status of an object that can be set to value 1 for shallow references across objects, other
-                                                              values reserved.
-                                                        type: int
-                                                    description:
-                                                        description:
-                                                            - A user defined description for the object.
-                                                        type: str
-                                            parameter_name:
-                                                description:
-                                                    - This object represents the configurable properties for an object type.
-                                                    - Applicable when model_type is 'CONFIGURED_TYPE'
-                                                type: str
-                                            description:
-                                                description:
-                                                    - A user defined description for the object.
-                                                    - Applicable when model_type is 'CONFIGURED_TYPE'
-                                                type: str
-                                            default_value:
-                                                description:
-                                                    - The default value for the parameter.
-                                                    - Applicable when model_type is 'CONFIGURED_TYPE'
-                                                type: dict
-                                            class_field_name:
-                                                description:
-                                                    - The parameter class field name.
-                                                    - Applicable when model_type is 'CONFIGURED_TYPE'
-                                                type: str
-                                            is_static:
-                                                description:
-                                                    - Specifies whether the parameter is static or not.
-                                                    - Applicable when model_type is 'CONFIGURED_TYPE'
-                                                type: bool
-                                            is_class_field_value:
-                                                description:
-                                                    - Specifies whether the parameter is a class field or not.
-                                                    - Applicable when model_type is 'CONFIGURED_TYPE'
-                                                type: bool
-            shape_id:
-                description:
-                    - The shape ID.
+                    - The external key of the object.
+                    - Applicable when model_type is one of ['VIEW_ENTITY', 'SQL_ENTITY', 'DATA_STORE_ENTITY', 'TABLE_ENTITY', 'FILE_ENTITY']
                 type: str
             entity_type:
                 description:
                     - The entity type.
+                    - Applicable when model_type is one of ['VIEW_ENTITY', 'SQL_ENTITY', 'DATA_STORE_ENTITY', 'TABLE_ENTITY', 'FILE_ENTITY']
                 type: str
                 choices:
                     - "TABLE"
@@ -4103,13 +3151,16 @@ options:
                     - "FILE"
                     - "SQL"
                     - "DATA_STORE"
+                    - "MESSAGE"
             other_type_label:
                 description:
                     - Specifies other type label.
+                    - Applicable when model_type is one of ['VIEW_ENTITY', 'SQL_ENTITY', 'DATA_STORE_ENTITY', 'TABLE_ENTITY', 'FILE_ENTITY']
                 type: str
             unique_keys:
                 description:
                     - An array of unique keys.
+                    - Applicable when model_type is one of ['VIEW_ENTITY', 'SQL_ENTITY', 'DATA_STORE_ENTITY', 'TABLE_ENTITY', 'FILE_ENTITY']
                 type: list
                 elements: dict
                 suboptions:
@@ -4126,7 +3177,7 @@ options:
                         type: str
                     model_version:
                         description:
-                            - The object's model version.
+                            - The model version of the object.
                         type: str
                     parent_ref:
                         description:
@@ -4139,8 +3190,8 @@ options:
                                 type: str
                     name:
                         description:
-                            - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value
-                              is editable and is restricted to 1000 characters.
+                            - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The
+                              value is editable and is restricted to 1000 characters.
                         type: str
                     attribute_refs:
                         description:
@@ -4228,12 +3279,12 @@ options:
                                         type: int
                                     name:
                                         description:
-                                            - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special
+                                            - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
                                               characters. The value is editable and is restricted to 1000 characters.
                                         type: str
                                     description:
                                         description:
-                                            - Detailed description for the object.
+                                            - A detailed description of the object.
                                         type: str
                                     type:
                                         description:
@@ -4241,8 +3292,8 @@ options:
                                         type: dict
                                     labels:
                                         description:
-                                            - Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and
-                                              use them to categorize content.
+                                            - Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own
+                                              labels and use them to categorize content.
                                         type: list
                                         elements: str
                                     native_shape_field:
@@ -4322,12 +3373,12 @@ options:
                                                 type: int
                                             name:
                                                 description:
-                                                    - Free form text without any restriction on permitted characters. Name can have letters, numbers, and
+                                                    - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and
                                                       special characters. The value is editable and is restricted to 1000 characters.
                                                 type: str
                                             description:
                                                 description:
-                                                    - Detailed description for the object.
+                                                    - A detailed description of the object.
                                                 type: str
                                             type:
                                                 description:
@@ -4353,6 +3404,7 @@ options:
             foreign_keys:
                 description:
                     - An array of foreign keys.
+                    - Applicable when model_type is one of ['VIEW_ENTITY', 'SQL_ENTITY', 'DATA_STORE_ENTITY', 'TABLE_ENTITY', 'FILE_ENTITY']
                 type: list
                 elements: dict
                 suboptions:
@@ -4371,7 +3423,7 @@ options:
                         type: str
                     model_version:
                         description:
-                            - The object's model version.
+                            - The model version of the object.
                             - Applicable when model_type is 'TABLE_ENTITY'
                         type: str
                     parent_ref:
@@ -4387,8 +3439,8 @@ options:
                                 type: str
                     name:
                         description:
-                            - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value
-                              is editable and is restricted to 1000 characters.
+                            - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The
+                              value is editable and is restricted to 1000 characters.
                             - Applicable when model_type is 'TABLE_ENTITY'
                         type: str
                     attribute_refs:
@@ -4495,13 +3547,13 @@ options:
                                         type: int
                                     name:
                                         description:
-                                            - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special
+                                            - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
                                               characters. The value is editable and is restricted to 1000 characters.
                                             - Applicable when model_type is 'TABLE_ENTITY'
                                         type: str
                                     description:
                                         description:
-                                            - Detailed description for the object.
+                                            - A detailed description of the object.
                                             - Applicable when model_type is 'TABLE_ENTITY'
                                         type: str
                                     type:
@@ -4511,8 +3563,8 @@ options:
                                         type: dict
                                     labels:
                                         description:
-                                            - Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and
-                                              use them to categorize content.
+                                            - Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own
+                                              labels and use them to categorize content.
                                             - Applicable when model_type is 'TABLE_ENTITY'
                                         type: list
                                         elements: str
@@ -4609,13 +3661,13 @@ options:
                                                 type: int
                                             name:
                                                 description:
-                                                    - Free form text without any restriction on permitted characters. Name can have letters, numbers, and
+                                                    - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and
                                                       special characters. The value is editable and is restricted to 1000 characters.
                                                     - Applicable when model_type is 'TABLE_ENTITY'
                                                 type: str
                                             description:
                                                 description:
-                                                    - Detailed description for the object.
+                                                    - A detailed description of the object.
                                                     - Applicable when model_type is 'TABLE_ENTITY'
                                                 type: str
                                             type:
@@ -4668,7 +3720,7 @@ options:
                                 type: str
                             model_version:
                                 description:
-                                    - The object's model version.
+                                    - The model version of the object.
                                 type: str
                             parent_ref:
                                 description:
@@ -4681,8 +3733,8 @@ options:
                                         type: str
                             name:
                                 description:
-                                    - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters.
-                                      The value is editable and is restricted to 1000 characters.
+                                    - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
+                                      characters. The value is editable and is restricted to 1000 characters.
                                 type: str
                             attribute_refs:
                                 description:
@@ -4771,12 +3823,12 @@ options:
                                                 type: int
                                             name:
                                                 description:
-                                                    - Free form text without any restriction on permitted characters. Name can have letters, numbers, and
+                                                    - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and
                                                       special characters. The value is editable and is restricted to 1000 characters.
                                                 type: str
                                             description:
                                                 description:
-                                                    - Detailed description for the object.
+                                                    - A detailed description of the object.
                                                 type: str
                                             type:
                                                 description:
@@ -4784,8 +3836,8 @@ options:
                                                 type: dict
                                             labels:
                                                 description:
-                                                    - Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own
-                                                      labels and use them to categorize content.
+                                                    - Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your
+                                                      own labels and use them to categorize content.
                                                 type: list
                                                 elements: str
                                             native_shape_field:
@@ -4865,12 +3917,12 @@ options:
                                                         type: int
                                                     name:
                                                         description:
-                                                            - Free form text without any restriction on permitted characters. Name can have letters, numbers,
-                                                              and special characters. The value is editable and is restricted to 1000 characters.
+                                                            - Free form text without any restriction on the permitted characters. Name can have letters,
+                                                              numbers, and special characters. The value is editable and is restricted to 1000 characters.
                                                         type: str
                                                     description:
                                                         description:
-                                                            - Detailed description for the object.
+                                                            - A detailed description of the object.
                                                         type: str
                                                     type:
                                                         description:
@@ -4898,10 +3950,6 @@ options:
                             - The status of an object that can be set to value 1 for shallow references across objects, other values reserved.
                             - Applicable when model_type is 'TABLE_ENTITY'
                         type: int
-            resource_name:
-                description:
-                    - The resource name.
-                type: str
             data_format:
                 description:
                     - ""
@@ -4949,6 +3997,26 @@ options:
                                     - Format for timestamp information.
                                     - Applicable when model_type is 'CSV_FORMAT'
                                 type: str
+                            is_quote_all:
+                                description:
+                                    - Defines whether the quote entire content while performing read/write.
+                                    - Applicable when model_type is 'CSV_FORMAT'
+                                type: bool
+                            is_multiline:
+                                description:
+                                    - Defines whether the file has a multiline content
+                                    - Applicable when model_type is 'CSV_FORMAT'
+                                type: bool
+                            is_trailing_delimiter:
+                                description:
+                                    - Defines whether the file has a trailing delimiter
+                                    - Applicable when model_type is 'CSV_FORMAT'
+                                type: bool
+                            compression:
+                                description:
+                                    - The compression for the file.
+                                    - Applicable when model_type is one of ['PARQUET_FORMAT', 'AVRO_FORMAT']
+                                type: str
                             model_type:
                                 description:
                                     - The type of the format attribute.
@@ -4958,11 +4026,22 @@ options:
                                     - "JSON_FORMAT"
                                     - "CSV_FORMAT"
                                     - "PARQUET_FORMAT"
+                                    - "EXCEL_FORMAT"
                                 required: true
-                            compression:
+                            data_address:
                                 description:
-                                    - The compression for the file.
-                                    - Applicable when model_type is one of ['PARQUET_FORMAT', 'AVRO_FORMAT']
+                                    - "Range of the data. For example, \\"'My Sheet'!B3:C35\\""
+                                    - Applicable when model_type is 'EXCEL_FORMAT'
+                                type: str
+                            header:
+                                description:
+                                    - "Whether the dataAddress contains the header with column names. If false - column names fill be generated."
+                                    - Applicable when model_type is 'EXCEL_FORMAT'
+                                type: bool
+                            password:
+                                description:
+                                    - Workbook password if it is password protected.
+                                    - Applicable when model_type is 'EXCEL_FORMAT'
                                 type: str
                     type:
                         description:
@@ -4995,15 +4074,1082 @@ options:
                                     - "LZ4"
                                     - "SNAPPY"
                                 required: true
+            entity_properties:
+                description:
+                    - Map<String, String> for entity properties
+                type: dict
+            model_type:
+                description:
+                    - The data entity type.
+                type: str
+                choices:
+                    - "TABLE_ENTITY"
+                    - "DATA_STORE_ENTITY"
+                    - "VIEW_ENTITY"
+                    - "SQL_ENTITY"
+                    - "FILE_ENTITY"
+                    - "DERIVED_ENTITY"
+                required: true
+            metadata:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    created_by:
+                        description:
+                            - The user that created the object.
+                            - Applicable when model_type is 'TABLE_ENTITY'
+                        type: str
+                    created_by_name:
+                        description:
+                            - The user that created the object.
+                            - Applicable when model_type is 'TABLE_ENTITY'
+                        type: str
+                    updated_by:
+                        description:
+                            - The user that updated the object.
+                            - Applicable when model_type is 'TABLE_ENTITY'
+                        type: str
+                    updated_by_name:
+                        description:
+                            - The user that updated the object.
+                            - Applicable when model_type is 'TABLE_ENTITY'
+                        type: str
+                    time_created:
+                        description:
+                            - The date and time that the object was created.
+                            - Applicable when model_type is 'TABLE_ENTITY'
+                        type: str
+                    time_updated:
+                        description:
+                            - The date and time that the object was updated.
+                            - Applicable when model_type is 'TABLE_ENTITY'
+                        type: str
+                    aggregator_key:
+                        description:
+                            - The owning object key for this object.
+                            - Applicable when model_type is 'TABLE_ENTITY'
+                        type: str
+                    aggregator:
+                        description:
+                            - ""
+                            - Applicable when model_type is 'TABLE_ENTITY'
+                        type: dict
+                        suboptions:
+                            type:
+                                description:
+                                    - The type of the aggregator.
+                                    - Applicable when model_type is 'TABLE_ENTITY'
+                                type: str
+                            key:
+                                description:
+                                    - The key of the aggregator object.
+                                    - Applicable when model_type is 'TABLE_ENTITY'
+                                type: str
+                            name:
+                                description:
+                                    - The name of the aggregator.
+                                    - Applicable when model_type is 'TABLE_ENTITY'
+                                type: str
+                            identifier:
+                                description:
+                                    - The identifier of the aggregator.
+                                    - Applicable when model_type is 'TABLE_ENTITY'
+                                type: str
+                            description:
+                                description:
+                                    - The description of the aggregator.
+                                    - Applicable when model_type is 'TABLE_ENTITY'
+                                type: str
+                    identifier_path:
+                        description:
+                            - The full path to identify the object.
+                            - Applicable when model_type is 'TABLE_ENTITY'
+                        type: str
+                    info_fields:
+                        description:
+                            - Information property fields.
+                            - Applicable when model_type is 'TABLE_ENTITY'
+                        type: dict
+                    registry_version:
+                        description:
+                            - The registry version of the object.
+                            - Applicable when model_type is 'TABLE_ENTITY'
+                        type: int
+                    labels:
+                        description:
+                            - Labels are keywords or tags that you can add to data assets, dataflows, and so on. You can define your own labels and use them to
+                              categorize content.
+                            - Applicable when model_type is 'TABLE_ENTITY'
+                        type: list
+                        elements: str
+                    is_favorite:
+                        description:
+                            - Specifies whether this object is a favorite.
+                            - Applicable when model_type is 'TABLE_ENTITY'
+                        type: bool
+            key:
+                description:
+                    - The object key.
+                type: str
+            model_version:
+                description:
+                    - The model version of the object.
+                type: str
+            parent_ref:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    parent:
+                        description:
+                            - Key of the parent object.
+                            - Applicable when model_type is 'TABLE_ENTITY'
+                        type: str
+            name:
+                description:
+                    - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is
+                      editable and is restricted to 1000 characters.
+                    - Required when model_type is 'DERIVED_ENTITY'
+                type: str
+            object_version:
+                description:
+                    - The version of the object that is used to track changes in the object instance.
+                type: int
+            shape:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    model_type:
+                        description:
+                            - The type of the types object.
+                            - Required when model_type is 'TABLE_ENTITY'
+                        type: str
+                        choices:
+                            - "SHAPE"
+                            - "SHAPE_FIELD"
+                            - "NATIVE_SHAPE_FIELD"
+                        required: true
+                    key:
+                        description:
+                            - The key of the object.
+                            - Applicable when model_type is 'TABLE_ENTITY'
+                        type: str
+                    model_version:
+                        description:
+                            - The model version of an object.
+                            - Applicable when model_type is 'TABLE_ENTITY'
+                        type: str
+                    parent_ref:
+                        description:
+                            - ""
+                            - Applicable when model_type is 'TABLE_ENTITY'
+                        type: dict
+                        suboptions:
+                            parent:
+                                description:
+                                    - Key of the parent object.
+                                    - Applicable when model_type is 'TABLE_ENTITY'
+                                type: str
+                    config_values:
+                        description:
+                            - ""
+                            - Applicable when model_type is 'TABLE_ENTITY'
+                        type: dict
+                        suboptions:
+                            config_param_values:
+                                description:
+                                    - The configuration parameter values.
+                                    - Applicable when model_type is 'TABLE_ENTITY'
+                                type: dict
+                                suboptions:
+                                    string_value:
+                                        description:
+                                            - A string value of the parameter.
+                                            - Applicable when model_type is 'TABLE_ENTITY'
+                                        type: str
+                                    int_value:
+                                        description:
+                                            - An integer value of the parameter.
+                                            - Applicable when model_type is 'TABLE_ENTITY'
+                                        type: int
+                                    object_value:
+                                        description:
+                                            - An object value of the parameter.
+                                            - Applicable when model_type is 'TABLE_ENTITY'
+                                        type: dict
+                                    ref_value:
+                                        description:
+                                            - The root object reference value.
+                                            - Applicable when model_type is 'TABLE_ENTITY'
+                                        type: dict
+                                    parameter_value:
+                                        description:
+                                            - Reference to the parameter by its key.
+                                            - Applicable when model_type is 'TABLE_ENTITY'
+                                        type: str
+                            parent_ref:
+                                description:
+                                    - ""
+                                    - Applicable when model_type is 'TABLE_ENTITY'
+                                type: dict
+                                suboptions:
+                                    parent:
+                                        description:
+                                            - Key of the parent object.
+                                            - Applicable when model_type is 'TABLE_ENTITY'
+                                        type: str
+                    object_status:
+                        description:
+                            - The status of an object that can be set to value 1 for shallow references across objects, other values reserved.
+                            - Applicable when model_type is 'TABLE_ENTITY'
+                        type: int
+                    name:
+                        description:
+                            - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The
+                              value is editable and is restricted to 1000 characters.
+                            - Applicable when model_type is 'TABLE_ENTITY'
+                        type: str
+                    description:
+                        description:
+                            - A detailed description of the object.
+                            - Applicable when model_type is 'TABLE_ENTITY'
+                        type: str
+                    type:
+                        description:
+                            - ""
+                            - Applicable when model_type is 'TABLE_ENTITY'
+                        type: dict
+                        suboptions:
+                            wrapped_type:
+                                description:
+                                    - ""
+                                    - Applicable when model_type is 'CONFIGURED_TYPE'
+                                type: dict
+                                suboptions:
+                                    model_type:
+                                        description:
+                                            - The property which differentiates the subtypes.
+                                        type: str
+                                        choices:
+                                            - "STRUCTURED_TYPE"
+                                            - "DATA_TYPE"
+                                            - "CONFIGURED_TYPE"
+                                            - "COMPOSITE_TYPE"
+                                            - "DERIVED_TYPE"
+                                        required: true
+                                    key:
+                                        description:
+                                            - The key of the object.
+                                        type: str
+                                    model_version:
+                                        description:
+                                            - The model version of an object.
+                                        type: str
+                                    parent_ref:
+                                        description:
+                                            - ""
+                                        type: dict
+                                    name:
+                                        description:
+                                            - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
+                                              characters. The value is editable and is restricted to 1000 characters.
+                                        type: str
+                                    object_status:
+                                        description:
+                                            - The status of an object that can be set to value 1 for shallow references across objects, other values reserved.
+                                        type: int
+                                    description:
+                                        description:
+                                            - A user-defined description for the object.
+                                        type: str
+                            config_values:
+                                description:
+                                    - ""
+                                    - Applicable when model_type is 'CONFIGURED_TYPE'
+                                type: dict
+                                suboptions:
+                                    config_param_values:
+                                        description:
+                                            - The configuration parameter values.
+                                            - Applicable when model_type is 'CONFIGURED_TYPE'
+                                        type: dict
+                                        suboptions:
+                                            string_value:
+                                                description:
+                                                    - A string value of the parameter.
+                                                    - Applicable when model_type is 'CONFIGURED_TYPE'
+                                                type: str
+                                            int_value:
+                                                description:
+                                                    - An integer value of the parameter.
+                                                    - Applicable when model_type is 'CONFIGURED_TYPE'
+                                                type: int
+                                            object_value:
+                                                description:
+                                                    - An object value of the parameter.
+                                                    - Applicable when model_type is 'CONFIGURED_TYPE'
+                                                type: dict
+                                            ref_value:
+                                                description:
+                                                    - The root object reference value.
+                                                    - Applicable when model_type is 'CONFIGURED_TYPE'
+                                                type: dict
+                                            parameter_value:
+                                                description:
+                                                    - Reference to the parameter by its key.
+                                                    - Applicable when model_type is 'CONFIGURED_TYPE'
+                                                type: str
+                                    parent_ref:
+                                        description:
+                                            - ""
+                                            - Applicable when model_type is 'CONFIGURED_TYPE'
+                                        type: dict
+                                        suboptions:
+                                            parent:
+                                                description:
+                                                    - Key of the parent object.
+                                                    - Applicable when model_type is 'CONFIGURED_TYPE'
+                                                type: str
+                            dt_type:
+                                description:
+                                    - The data type.
+                                    - Applicable when model_type is 'DATA_TYPE'
+                                type: str
+                                choices:
+                                    - "PRIMITIVE"
+                                    - "STRUCTURED"
+                            type_system_name:
+                                description:
+                                    - The data type system name.
+                                    - Applicable when model_type is 'DATA_TYPE'
+                                type: str
+                            schema:
+                                description:
+                                    - ""
+                                    - Applicable when model_type is 'STRUCTURED_TYPE'
+                                type: dict
+                                suboptions:
+                                    model_type:
+                                        description:
+                                            - The property which differentiates the subtypes.
+                                        type: str
+                                        choices:
+                                            - "STRUCTURED_TYPE"
+                                            - "DATA_TYPE"
+                                            - "CONFIGURED_TYPE"
+                                            - "COMPOSITE_TYPE"
+                                            - "DERIVED_TYPE"
+                                        required: true
+                                    key:
+                                        description:
+                                            - The key of the object.
+                                        type: str
+                                    model_version:
+                                        description:
+                                            - The model version of an object.
+                                        type: str
+                                    parent_ref:
+                                        description:
+                                            - ""
+                                        type: dict
+                                    name:
+                                        description:
+                                            - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
+                                              characters. The value is editable and is restricted to 1000 characters.
+                                        type: str
+                                    object_status:
+                                        description:
+                                            - The status of an object that can be set to value 1 for shallow references across objects, other values reserved.
+                                        type: int
+                                    description:
+                                        description:
+                                            - A user-defined description for the object.
+                                        type: str
+                            model_type:
+                                description:
+                                    - The property which differentiates the subtypes.
+                                type: str
+                                choices:
+                                    - "CONFIGURED_TYPE"
+                                    - "DERIVED_TYPE"
+                                    - "DATA_TYPE"
+                                    - "STRUCTURED_TYPE"
+                                    - "COMPOSITE_TYPE"
+                                required: true
+                            key:
+                                description:
+                                    - The key of the object.
+                                type: str
+                            model_version:
+                                description:
+                                    - The model version of an object.
+                                type: str
+                            parent_ref:
+                                description:
+                                    - ""
+                                type: dict
+                                suboptions:
+                                    parent:
+                                        description:
+                                            - Key of the parent object.
+                                            - Applicable when model_type is 'CONFIGURED_TYPE'
+                                        type: str
+                            name:
+                                description:
+                                    - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
+                                      characters. The value is editable and is restricted to 1000 characters.
+                                type: str
+                            object_status:
+                                description:
+                                    - The status of an object that can be set to value 1 for shallow references across objects, other values reserved.
+                                type: int
+                            description:
+                                description:
+                                    - A user-defined description for the object.
+                                type: str
+                            parent_type:
+                                description:
+                                    - ""
+                                    - Applicable when model_type is 'COMPOSITE_TYPE'
+                                type: dict
+                                suboptions:
+                                    model_type:
+                                        description:
+                                            - The property which differentiates the subtypes.
+                                        type: str
+                                        choices:
+                                            - "STRUCTURED_TYPE"
+                                            - "DATA_TYPE"
+                                            - "CONFIGURED_TYPE"
+                                            - "COMPOSITE_TYPE"
+                                            - "DERIVED_TYPE"
+                                        required: true
+                                    key:
+                                        description:
+                                            - The key of the object.
+                                        type: str
+                                    model_version:
+                                        description:
+                                            - The model version of an object.
+                                        type: str
+                                    parent_ref:
+                                        description:
+                                            - ""
+                                        type: dict
+                                    name:
+                                        description:
+                                            - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
+                                              characters. The value is editable and is restricted to 1000 characters.
+                                        type: str
+                                    object_status:
+                                        description:
+                                            - The status of an object that can be set to value 1 for shallow references across objects, other values reserved.
+                                        type: int
+                                    description:
+                                        description:
+                                            - A user-defined description for the object.
+                                        type: str
+                                    parent_type:
+                                        description:
+                                            - ""
+                                        type: dict
+                                    elements:
+                                        description:
+                                            - An array of elements.
+                                        type: list
+                                        elements: dict
+                                    config_definition:
+                                        description:
+                                            - ""
+                                        type: dict
+                            elements:
+                                description:
+                                    - An array of elements.
+                                    - Applicable when model_type is 'COMPOSITE_TYPE'
+                                type: list
+                                elements: dict
+                                suboptions:
+                                    labels:
+                                        description:
+                                            - Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own
+                                              labels and use them to categorize content.
+                                            - Applicable when model_type is 'SHAPE_FIELD'
+                                        type: list
+                                        elements: str
+                                    native_shape_field:
+                                        description:
+                                            - ""
+                                            - Applicable when model_type is 'SHAPE_FIELD'
+                                        type: dict
+                                        suboptions:
+                                            model_type:
+                                                description:
+                                                    - The type of the types object.
+                                                    - Required when model_type is 'SHAPE_FIELD'
+                                                type: str
+                                                choices:
+                                                    - "SHAPE"
+                                                    - "SHAPE_FIELD"
+                                                    - "NATIVE_SHAPE_FIELD"
+                                                required: true
+                                            key:
+                                                description:
+                                                    - The key of the object.
+                                                    - Applicable when model_type is 'SHAPE_FIELD'
+                                                type: str
+                                            model_version:
+                                                description:
+                                                    - The model version of an object.
+                                                    - Applicable when model_type is 'SHAPE_FIELD'
+                                                type: str
+                                            parent_ref:
+                                                description:
+                                                    - ""
+                                                    - Applicable when model_type is 'SHAPE_FIELD'
+                                                type: dict
+                                                suboptions:
+                                                    parent:
+                                                        description:
+                                                            - Key of the parent object.
+                                                            - Applicable when model_type is 'SHAPE_FIELD'
+                                                        type: str
+                                            config_values:
+                                                description:
+                                                    - ""
+                                                    - Applicable when model_type is 'SHAPE_FIELD'
+                                                type: dict
+                                                suboptions:
+                                                    config_param_values:
+                                                        description:
+                                                            - The configuration parameter values.
+                                                            - Applicable when model_type is 'SHAPE_FIELD'
+                                                        type: dict
+                                                        suboptions:
+                                                            string_value:
+                                                                description:
+                                                                    - A string value of the parameter.
+                                                                    - Applicable when model_type is 'SHAPE_FIELD'
+                                                                type: str
+                                                            int_value:
+                                                                description:
+                                                                    - An integer value of the parameter.
+                                                                    - Applicable when model_type is 'SHAPE_FIELD'
+                                                                type: int
+                                                            object_value:
+                                                                description:
+                                                                    - An object value of the parameter.
+                                                                    - Applicable when model_type is 'SHAPE_FIELD'
+                                                                type: dict
+                                                            ref_value:
+                                                                description:
+                                                                    - The root object reference value.
+                                                                    - Applicable when model_type is 'SHAPE_FIELD'
+                                                                type: dict
+                                                            parameter_value:
+                                                                description:
+                                                                    - Reference to the parameter by its key.
+                                                                    - Applicable when model_type is 'SHAPE_FIELD'
+                                                                type: str
+                                                    parent_ref:
+                                                        description:
+                                                            - ""
+                                                            - Applicable when model_type is 'SHAPE_FIELD'
+                                                        type: dict
+                                                        suboptions:
+                                                            parent:
+                                                                description:
+                                                                    - Key of the parent object.
+                                                                    - Applicable when model_type is 'SHAPE_FIELD'
+                                                                type: str
+                                            object_status:
+                                                description:
+                                                    - The status of an object that can be set to value 1 for shallow references across objects, other values
+                                                      reserved.
+                                                    - Applicable when model_type is 'SHAPE_FIELD'
+                                                type: int
+                                            name:
+                                                description:
+                                                    - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and
+                                                      special characters. The value is editable and is restricted to 1000 characters.
+                                                    - Applicable when model_type is 'SHAPE_FIELD'
+                                                type: str
+                                            description:
+                                                description:
+                                                    - A detailed description of the object.
+                                                    - Applicable when model_type is 'SHAPE_FIELD'
+                                                type: str
+                                            type:
+                                                description:
+                                                    - The type reference.
+                                                    - Required when model_type is 'SHAPE_FIELD'
+                                                type: dict
+                                                required: true
+                                            position:
+                                                description:
+                                                    - The position of the attribute.
+                                                    - Applicable when model_type is 'SHAPE_FIELD'
+                                                type: int
+                                            default_value_string:
+                                                description:
+                                                    - The default value.
+                                                    - Applicable when model_type is 'SHAPE_FIELD'
+                                                type: str
+                                            is_mandatory:
+                                                description:
+                                                    - Specifies whether the field is mandatory.
+                                                    - Applicable when model_type is 'SHAPE_FIELD'
+                                                type: bool
+                                    port_type:
+                                        description:
+                                            - The port details of the data asset type.
+                                            - Applicable when model_type is one of ['INPUT_PORT', 'OUTPUT_PORT']
+                                        type: str
+                                        choices:
+                                            - "DATA"
+                                            - "CONTROL"
+                                            - "MODEL"
+                                    fields:
+                                        description:
+                                            - An array of fields.
+                                            - Applicable when model_type is one of ['INPUT_PORT', 'OUTPUT_PORT']
+                                        type: list
+                                        elements: dict
+                                        suboptions:
+                                            model_type:
+                                                description:
+                                                    - The type of the types object.
+                                                type: str
+                                                choices:
+                                                    - "SHAPE"
+                                                    - "SHAPE_FIELD"
+                                                    - "NATIVE_SHAPE_FIELD"
+                                                required: true
+                                            key:
+                                                description:
+                                                    - The key of the object.
+                                                type: str
+                                            model_version:
+                                                description:
+                                                    - The model version of an object.
+                                                type: str
+                                            parent_ref:
+                                                description:
+                                                    - ""
+                                                type: dict
+                                            config_values:
+                                                description:
+                                                    - ""
+                                                type: dict
+                                            object_status:
+                                                description:
+                                                    - The status of an object that can be set to value 1 for shallow references across objects, other values
+                                                      reserved.
+                                                type: int
+                                            name:
+                                                description:
+                                                    - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and
+                                                      special characters. The value is editable and is restricted to 1000 characters.
+                                                type: str
+                                            description:
+                                                description:
+                                                    - A detailed description of the object.
+                                                type: str
+                                    default_value:
+                                        description:
+                                            - The default value of the parameter.
+                                            - Applicable when model_type is 'PARAMETER'
+                                        type: dict
+                                    root_object_default_value:
+                                        description:
+                                            - The default value of the parameter, which can be an object in DIS, such as a data entity.
+                                            - Applicable when model_type is 'PARAMETER'
+                                        type: dict
+                                    is_input:
+                                        description:
+                                            - Specifies whether the parameter is an input value.
+                                            - Applicable when model_type is 'PARAMETER'
+                                        type: bool
+                                    is_output:
+                                        description:
+                                            - Specifies whether the parameter is an output value.
+                                            - Applicable when model_type is 'PARAMETER'
+                                        type: bool
+                                    output_aggregation_type:
+                                        description:
+                                            - The output aggregation type.
+                                            - Applicable when model_type is 'PARAMETER'
+                                        type: str
+                                        choices:
+                                            - "MIN"
+                                            - "MAX"
+                                            - "COUNT"
+                                            - "SUM"
+                                    type_name:
+                                        description:
+                                            - The type of value the parameter was created for.
+                                            - Applicable when model_type is 'PARAMETER'
+                                        type: str
+                                    model_type:
+                                        description:
+                                            - The type of the types object.
+                                        type: str
+                                        choices:
+                                            - "OUTPUT_PORT"
+                                            - "SHAPE"
+                                            - "SHAPE_FIELD"
+                                            - "INPUT_PORT"
+                                            - "PARAMETER"
+                                            - "NATIVE_SHAPE_FIELD"
+                                        required: true
+                                    key:
+                                        description:
+                                            - The key of the object.
+                                        type: str
+                                    model_version:
+                                        description:
+                                            - The model version of an object.
+                                        type: str
+                                    parent_ref:
+                                        description:
+                                            - ""
+                                        type: dict
+                                        suboptions:
+                                            parent:
+                                                description:
+                                                    - Key of the parent object.
+                                                    - Applicable when model_type is 'OUTPUT_PORT'
+                                                type: str
+                                    config_values:
+                                        description:
+                                            - ""
+                                        type: dict
+                                        suboptions:
+                                            config_param_values:
+                                                description:
+                                                    - The configuration parameter values.
+                                                    - Applicable when model_type is 'OUTPUT_PORT'
+                                                type: dict
+                                                suboptions:
+                                                    string_value:
+                                                        description:
+                                                            - A string value of the parameter.
+                                                            - Applicable when model_type is 'OUTPUT_PORT'
+                                                        type: str
+                                                    int_value:
+                                                        description:
+                                                            - An integer value of the parameter.
+                                                            - Applicable when model_type is 'OUTPUT_PORT'
+                                                        type: int
+                                                    object_value:
+                                                        description:
+                                                            - An object value of the parameter.
+                                                            - Applicable when model_type is 'OUTPUT_PORT'
+                                                        type: dict
+                                                    ref_value:
+                                                        description:
+                                                            - The root object reference value.
+                                                            - Applicable when model_type is 'OUTPUT_PORT'
+                                                        type: dict
+                                                    parameter_value:
+                                                        description:
+                                                            - Reference to the parameter by its key.
+                                                            - Applicable when model_type is 'OUTPUT_PORT'
+                                                        type: str
+                                            parent_ref:
+                                                description:
+                                                    - ""
+                                                    - Applicable when model_type is 'OUTPUT_PORT'
+                                                type: dict
+                                                suboptions:
+                                                    parent:
+                                                        description:
+                                                            - Key of the parent object.
+                                                            - Applicable when model_type is 'OUTPUT_PORT'
+                                                        type: str
+                                    object_status:
+                                        description:
+                                            - The status of an object that can be set to value 1 for shallow references across objects, other values reserved.
+                                        type: int
+                                    name:
+                                        description:
+                                            - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
+                                              characters. The value is editable and is restricted to 1000 characters.
+                                        type: str
+                                    description:
+                                        description:
+                                            - A detailed description of the object.
+                                        type: str
+                                    type:
+                                        description:
+                                            - ""
+                                            - Applicable when model_type is one of ['SHAPE', 'SHAPE_FIELD', 'PARAMETER']
+                                            - Required when model_type is 'NATIVE_SHAPE_FIELD'
+                                        type: dict
+                                        suboptions:
+                                            model_type:
+                                                description:
+                                                    - The property which differentiates the subtypes.
+                                                type: str
+                                                choices:
+                                                    - "STRUCTURED_TYPE"
+                                                    - "DATA_TYPE"
+                                                    - "CONFIGURED_TYPE"
+                                                    - "COMPOSITE_TYPE"
+                                                    - "DERIVED_TYPE"
+                                            key:
+                                                description:
+                                                    - The key of the object.
+                                                type: str
+                                            model_version:
+                                                description:
+                                                    - The model version of an object.
+                                                type: str
+                                            parent_ref:
+                                                description:
+                                                    - ""
+                                                type: dict
+                                            name:
+                                                description:
+                                                    - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and
+                                                      special characters. The value is editable and is restricted to 1000 characters.
+                                                type: str
+                                            object_status:
+                                                description:
+                                                    - The status of an object that can be set to value 1 for shallow references across objects, other values
+                                                      reserved.
+                                                type: int
+                                            description:
+                                                description:
+                                                    - A user-defined description for the object.
+                                                type: str
+                                    position:
+                                        description:
+                                            - The position of the attribute.
+                                            - Applicable when model_type is 'NATIVE_SHAPE_FIELD'
+                                        type: int
+                                    default_value_string:
+                                        description:
+                                            - The default value.
+                                            - Applicable when model_type is 'NATIVE_SHAPE_FIELD'
+                                        type: str
+                                    is_mandatory:
+                                        description:
+                                            - Specifies whether the field is mandatory.
+                                            - Applicable when model_type is 'NATIVE_SHAPE_FIELD'
+                                        type: bool
+                            config_definition:
+                                description:
+                                    - ""
+                                    - Applicable when model_type is one of ['DATA_TYPE', 'CONFIGURED_TYPE', 'COMPOSITE_TYPE']
+                                type: dict
+                                suboptions:
+                                    key:
+                                        description:
+                                            - The key of the object.
+                                            - Applicable when model_type is 'CONFIGURED_TYPE'
+                                        type: str
+                                    model_type:
+                                        description:
+                                            - The type of the object.
+                                            - Applicable when model_type is 'CONFIGURED_TYPE'
+                                        type: str
+                                    model_version:
+                                        description:
+                                            - The model version of an object.
+                                            - Applicable when model_type is 'CONFIGURED_TYPE'
+                                        type: str
+                                    parent_ref:
+                                        description:
+                                            - ""
+                                            - Applicable when model_type is 'CONFIGURED_TYPE'
+                                        type: dict
+                                        suboptions:
+                                            parent:
+                                                description:
+                                                    - Key of the parent object.
+                                                    - Applicable when model_type is 'CONFIGURED_TYPE'
+                                                type: str
+                                    name:
+                                        description:
+                                            - Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special
+                                              characters. The value is editable and is restricted to 1000 characters.
+                                            - Applicable when model_type is 'CONFIGURED_TYPE'
+                                        type: str
+                                    is_contained:
+                                        description:
+                                            - Specifies whether the configuration is contained.
+                                            - Applicable when model_type is 'CONFIGURED_TYPE'
+                                        type: bool
+                                    object_status:
+                                        description:
+                                            - The status of an object that can be set to value 1 for shallow references across objects, other values reserved.
+                                            - Applicable when model_type is 'CONFIGURED_TYPE'
+                                        type: int
+                                    config_parameter_definitions:
+                                        description:
+                                            - The parameter configuration details.
+                                            - Applicable when model_type is 'CONFIGURED_TYPE'
+                                        type: dict
+                                        suboptions:
+                                            parameter_type:
+                                                description:
+                                                    - ""
+                                                    - Applicable when model_type is 'CONFIGURED_TYPE'
+                                                type: dict
+                                                suboptions:
+                                                    model_type:
+                                                        description:
+                                                            - The property which differentiates the subtypes.
+                                                        type: str
+                                                        choices:
+                                                            - "STRUCTURED_TYPE"
+                                                            - "DATA_TYPE"
+                                                            - "CONFIGURED_TYPE"
+                                                            - "COMPOSITE_TYPE"
+                                                            - "DERIVED_TYPE"
+                                                        required: true
+                                                    key:
+                                                        description:
+                                                            - The key of the object.
+                                                        type: str
+                                                    model_version:
+                                                        description:
+                                                            - The model version of an object.
+                                                        type: str
+                                                    parent_ref:
+                                                        description:
+                                                            - ""
+                                                        type: dict
+                                                    name:
+                                                        description:
+                                                            - Free form text without any restriction on the permitted characters. Name can have letters,
+                                                              numbers, and special characters. The value is editable and is restricted to 1000 characters.
+                                                        type: str
+                                                    object_status:
+                                                        description:
+                                                            - The status of an object that can be set to value 1 for shallow references across objects, other
+                                                              values reserved.
+                                                        type: int
+                                                    description:
+                                                        description:
+                                                            - A user-defined description for the object.
+                                                        type: str
+                                            parameter_name:
+                                                description:
+                                                    - This object represents the configurable properties for an object type.
+                                                    - Applicable when model_type is 'CONFIGURED_TYPE'
+                                                type: str
+                                            description:
+                                                description:
+                                                    - A user-defined description for the object.
+                                                    - Applicable when model_type is 'CONFIGURED_TYPE'
+                                                type: str
+                                            default_value:
+                                                description:
+                                                    - The default value for the parameter.
+                                                    - Applicable when model_type is 'CONFIGURED_TYPE'
+                                                type: dict
+                                            class_field_name:
+                                                description:
+                                                    - The parameter class field name.
+                                                    - Applicable when model_type is 'CONFIGURED_TYPE'
+                                                type: str
+                                            is_static:
+                                                description:
+                                                    - Specifies whether the parameter is static.
+                                                    - Applicable when model_type is 'CONFIGURED_TYPE'
+                                                type: bool
+                                            is_class_field_value:
+                                                description:
+                                                    - Specifies whether the parameter is a class field.
+                                                    - Applicable when model_type is 'CONFIGURED_TYPE'
+                                                type: bool
+            shape_id:
+                description:
+                    - The shape ID.
+                type: str
+            resource_name:
+                description:
+                    - The resource name.
+                    - Required when model_type is 'DERIVED_ENTITY'
+                type: str
             object_status:
                 description:
                     - The status of an object that can be set to value 1 for shallow references across objects, other values reserved.
                 type: int
             identifier:
                 description:
-                    - Value can only contain upper case letters, underscore and numbers. It should begin with upper case letter or underscore. The value can be
-                      modified.
+                    - Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can
+                      be modified.
                 type: str
+            ref_data_object:
+                description:
+                    - ""
+                    - Applicable when model_type is 'DERIVED_ENTITY'
+                type: dict
+                suboptions:
+                    model_type:
+                        description:
+                            - The input Operation type.
+                        type: str
+                        choices:
+                            - "API"
+                            - "PROCEDURE"
+                        required: true
+                    model_version:
+                        description:
+                            - The object's model version.
+                        type: str
+                    parent_ref:
+                        description:
+                            - ""
+                        type: dict
+                        suboptions:
+                            parent:
+                                description:
+                                    - Key of the parent object.
+                                    - Applicable when model_type is 'API'
+                                type: str
+                    name:
+                        description:
+                            - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value
+                              is unique, editable and is restricted to 1000 characters.
+                        type: str
+                    object_version:
+                        description:
+                            - The version of the object that is used to track changes in the object instance.
+                        type: int
+                    resource_name:
+                        description:
+                            - The resource name.
+                        type: str
+                    object_status:
+                        description:
+                            - The status of an object that can be set to value 1 for shallow reference across objects, other values reserved.
+                        type: int
+                    external_key:
+                        description:
+                            - The external key for the object.
+                        type: str
+                    key:
+                        description:
+                            - The object key.
+                        type: str
+            mode:
+                description:
+                    - Determines whether entity is treated as source or target
+                    - Applicable when model_type is 'DERIVED_ENTITY'
+                type: str
+                choices:
+                    - "IN"
+                    - "OUT"
+            derived_properties:
+                description:
+                    - Property-bag (key-value pairs where key is Shape Field resource name and value is object)
+                    - Applicable when model_type is 'DERIVED_ENTITY'
+                type: dict
     profile_config:
         description:
             - ""
@@ -5011,12 +5157,12 @@ options:
         suboptions:
             attributes:
                 description:
-                    - Array of column names to profile. If empty all columns in the entity are profiled.
+                    - Array of column names to profile. If empty, all the columns in the entity are profiled.
                 type: list
                 elements: str
             functions:
                 description:
-                    - Array of enum Strings basically what all profile functions to run. If empty, all supported functions are run.
+                    - Array of enum strings to decide which profile functions to run. If empty, all the supported functions are run.
                 type: list
                 elements: str
                 choices:
@@ -5042,21 +5188,21 @@ options:
                     - "VALUE_FREQUENCY"
             top_n_val_freq:
                 description:
-                    - The maximum number of value frequencies to return per column. The VFs are sorted descending on frequency and ascending on value and then
+                    - The maximum number of value frequencies to return per column. The VFs are sorted descending on frequency, and ascending on value, and then
                       topN are returned and rest discarded.
                 type: int
             pattern_threshold:
                 description:
-                    - A pattern has to qualify minumum this percentage threshold to be considered a legitimate pattern on its own. All patterns which does not
-                      qualify this will be clubbed together into a single 'Others' pattern.
+                    - A pattern has to qualify at least this percentage threshold to be considered a pattern on its own. Patterns that do not qualify are
+                      clubbed together into 'Others' pattern.
                 type: int
             data_type_threshold:
                 description:
-                    - A data type has to qualify minimum this percentage threshold to be considered an infrred data type for a column.
+                    - A data type has to qualify at least this percentage threshold to be considered an inferred data type for a column.
                 type: int
     endpoint_id:
         description:
-            - Endpoint Id used for getDataAssetFullDetails.
+            - Endpoint ID used for getDataAssetFullDetails.
         type: str
     action:
         description:
@@ -5081,6 +5227,7 @@ EXAMPLES = """
       model_type: READ_OPERATION_CONFIG
 
       # optional
+      derived_attributes: null
       key: key_example
       model_version: model_version_example
       parent_ref:
@@ -5596,128 +5743,8 @@ EXAMPLES = """
       model_type: TABLE_ENTITY
 
       # optional
-      metadata:
-        # optional
-        created_by: created_by_example
-        created_by_name: created_by_name_example
-        updated_by: updated_by_example
-        updated_by_name: updated_by_name_example
-        time_created: time_created_example
-        time_updated: time_updated_example
-        aggregator_key: aggregator_key_example
-        aggregator:
-          # optional
-          type: type_example
-          key: key_example
-          name: name_example
-          identifier: identifier_example
-          description: description_example
-        identifier_path: identifier_path_example
-        info_fields: null
-        registry_version: 56
-        labels: [ "labels_example" ]
-        is_favorite: true
-      key: key_example
-      model_version: model_version_example
-      parent_ref:
-        # optional
-        parent: parent_example
-      name: name_example
       description: description_example
-      object_version: 56
       external_key: external_key_example
-      shape:
-        # required
-        model_type: SHAPE
-
-        # optional
-        key: key_example
-        model_version: model_version_example
-        parent_ref:
-          # optional
-          parent: parent_example
-        config_values:
-          # optional
-          config_param_values:
-            # optional
-            string_value: string_value_example
-            int_value: 56
-            object_value: null
-            ref_value: null
-            parameter_value: parameter_value_example
-          parent_ref:
-            # optional
-            parent: parent_example
-        object_status: 56
-        name: name_example
-        description: description_example
-        type:
-          # required
-          model_type: CONFIGURED_TYPE
-
-          # optional
-          wrapped_type:
-            # required
-            model_type: STRUCTURED_TYPE
-
-            # optional
-            key: key_example
-            model_version: model_version_example
-            parent_ref: null
-            name: name_example
-            object_status: 56
-            description: description_example
-          config_values:
-            # optional
-            config_param_values:
-              # optional
-              string_value: string_value_example
-              int_value: 56
-              object_value: null
-              ref_value: null
-              parameter_value: parameter_value_example
-            parent_ref:
-              # optional
-              parent: parent_example
-          key: key_example
-          model_version: model_version_example
-          parent_ref:
-            # optional
-            parent: parent_example
-          name: name_example
-          object_status: 56
-          description: description_example
-          config_definition:
-            # optional
-            key: key_example
-            model_type: model_type_example
-            model_version: model_version_example
-            parent_ref:
-              # optional
-              parent: parent_example
-            name: name_example
-            is_contained: true
-            object_status: 56
-            config_parameter_definitions:
-              # optional
-              parameter_type:
-                # required
-                model_type: STRUCTURED_TYPE
-
-                # optional
-                key: key_example
-                model_version: model_version_example
-                parent_ref: null
-                name: name_example
-                object_status: 56
-                description: description_example
-              parameter_name: parameter_name_example
-              description: description_example
-              default_value: null
-              class_field_name: class_field_name_example
-              is_static: true
-              is_class_field_value: true
-      shape_id: "ocid1.shape.oc1..xxxxxxEXAMPLExxxxxx"
       entity_type: TABLE
       other_type_label: other_type_label_example
       unique_keys:
@@ -5935,6 +5962,127 @@ EXAMPLES = """
                 is_mandatory: true
           object_status: 56
         object_status: 56
+      entity_properties: null
+      metadata:
+        # optional
+        created_by: created_by_example
+        created_by_name: created_by_name_example
+        updated_by: updated_by_example
+        updated_by_name: updated_by_name_example
+        time_created: time_created_example
+        time_updated: time_updated_example
+        aggregator_key: aggregator_key_example
+        aggregator:
+          # optional
+          type: type_example
+          key: key_example
+          name: name_example
+          identifier: identifier_example
+          description: description_example
+        identifier_path: identifier_path_example
+        info_fields: null
+        registry_version: 56
+        labels: [ "labels_example" ]
+        is_favorite: true
+      key: key_example
+      model_version: model_version_example
+      parent_ref:
+        # optional
+        parent: parent_example
+      name: name_example
+      object_version: 56
+      shape:
+        # required
+        model_type: SHAPE
+
+        # optional
+        key: key_example
+        model_version: model_version_example
+        parent_ref:
+          # optional
+          parent: parent_example
+        config_values:
+          # optional
+          config_param_values:
+            # optional
+            string_value: string_value_example
+            int_value: 56
+            object_value: null
+            ref_value: null
+            parameter_value: parameter_value_example
+          parent_ref:
+            # optional
+            parent: parent_example
+        object_status: 56
+        name: name_example
+        description: description_example
+        type:
+          # required
+          model_type: CONFIGURED_TYPE
+
+          # optional
+          wrapped_type:
+            # required
+            model_type: STRUCTURED_TYPE
+
+            # optional
+            key: key_example
+            model_version: model_version_example
+            parent_ref: null
+            name: name_example
+            object_status: 56
+            description: description_example
+          config_values:
+            # optional
+            config_param_values:
+              # optional
+              string_value: string_value_example
+              int_value: 56
+              object_value: null
+              ref_value: null
+              parameter_value: parameter_value_example
+            parent_ref:
+              # optional
+              parent: parent_example
+          key: key_example
+          model_version: model_version_example
+          parent_ref:
+            # optional
+            parent: parent_example
+          name: name_example
+          object_status: 56
+          description: description_example
+          config_definition:
+            # optional
+            key: key_example
+            model_type: model_type_example
+            model_version: model_version_example
+            parent_ref:
+              # optional
+              parent: parent_example
+            name: name_example
+            is_contained: true
+            object_status: 56
+            config_parameter_definitions:
+              # optional
+              parameter_type:
+                # required
+                model_type: STRUCTURED_TYPE
+
+                # optional
+                key: key_example
+                model_version: model_version_example
+                parent_ref: null
+                name: name_example
+                object_status: 56
+                description: description_example
+              parameter_name: parameter_name_example
+              description: description_example
+              default_value: null
+              class_field_name: class_field_name_example
+              is_static: true
+              is_class_field_value: true
+      shape_id: "ocid1.shape.oc1..xxxxxxEXAMPLExxxxxx"
       resource_name: resource_name_example
       object_status: 56
       identifier: identifier_example
@@ -5958,7 +6106,7 @@ data_profile:
     contains:
         entity_name:
             description:
-                - Entity name for which prodilig is requested.
+                - Entity name for which profiling is requested.
             returned: on success
             type: str
             sample: entity_name_example
@@ -5970,14 +6118,14 @@ data_profile:
             contains:
                 attribute_count:
                     description:
-                        - Number of columns in the DataFrame (arrow buffer) sent from Java layer. This value is not impacted by the List of attributes to
+                        - Number of columns in the DataFrame (arrow buffer) sent from Java layer. This value is not impacted by the list of attributes to
                           profile as being passed via configuration.
                     returned: on success
                     type: int
                     sample: 56
                 sampled_row_count:
                     description:
-                        - Number of rows were that were sampled
+                        - Number of rows that are sampled.
                     returned: on success
                     type: int
                     sample: 56
@@ -5989,7 +6137,7 @@ data_profile:
                     sample: 56
         attribute_profile_results:
             description:
-                - Array of profiling results
+                - Array of profiling results.
             returned: on success
             type: complex
             contains:
@@ -6008,7 +6156,7 @@ data_profile:
                             sample: 56
                         value:
                             description:
-                                - Value of the confidence of the profile result
+                                - Value of the confidence of the profile result.
                             returned: on success
                             type: str
                             sample: value_example
@@ -6027,7 +6175,7 @@ data_profile:
                             sample: 56
                         value:
                             description:
-                                - Value of the confidence of the profile result
+                                - Value of the confidence of the profile result.
                             returned: on success
                             type: str
                             sample: value_example
@@ -6046,7 +6194,7 @@ data_profile:
                             sample: 56
                         value:
                             description:
-                                - Value of the confidence of the profile result
+                                - Value of the confidence of the profile result.
                             returned: on success
                             type: str
                             sample: value_example
@@ -6065,7 +6213,7 @@ data_profile:
                             sample: 56
                         value:
                             description:
-                                - Value of the confidence of the profile result
+                                - Value of the confidence of the profile result.
                             returned: on success
                             type: str
                             sample: value_example
@@ -6125,7 +6273,7 @@ data_profile:
                     sample: {}
                 name:
                     description:
-                        - Name of attribute
+                        - Name of the attribute
                     returned: on success
                     type: str
                     sample: name_example
@@ -6144,7 +6292,7 @@ data_profile:
                             sample: 56
                         value:
                             description:
-                                - Value of the confidence of the profile result
+                                - Value of the confidence of the profile result.
                             returned: on success
                             type: str
                             sample: value_example
@@ -6163,7 +6311,7 @@ data_profile:
                             sample: 56
                         value:
                             description:
-                                - Value of the confidence of the profile result
+                                - Value of the confidence of the profile result.
                             returned: on success
                             type: str
                             sample: value_example
@@ -6182,7 +6330,7 @@ data_profile:
                             sample: 56
                         value:
                             description:
-                                - Value of the confidence of the profile result
+                                - Value of the confidence of the profile result.
                             returned: on success
                             type: str
                             sample: value_example
@@ -6201,7 +6349,7 @@ data_profile:
                             sample: 56
                         value:
                             description:
-                                - Value of the confidence of the profile result
+                                - Value of the confidence of the profile result.
                             returned: on success
                             type: str
                             sample: value_example
@@ -6220,7 +6368,7 @@ data_profile:
                             sample: 56
                         value:
                             description:
-                                - Value of the confidence of the profile result
+                                - Value of the confidence of the profile result.
                             returned: on success
                             type: str
                             sample: value_example
@@ -6239,19 +6387,19 @@ data_profile:
                             sample: 56
                         value:
                             description:
-                                - Value of the confidence of the profile result
+                                - Value of the confidence of the profile result.
                             returned: on success
                             type: str
                             sample: value_example
                 value_frequencies:
                     description:
-                        - Top N value frequencies for the column as described already in profile config topNValueFrequency property.
+                        - Top N value frequencies for the column as described already in the topNValueFrequency profile config property.
                     returned: on success
                     type: complex
                     contains:
                         value:
                             description:
-                                - Value of the confidence of the profile result
+                                - Value of the confidence of the profile result.
                             returned: on success
                             type: str
                             sample: value_example
@@ -6264,7 +6412,7 @@ data_profile:
                             sample: 56
                         freq:
                             description:
-                                - How many times that value occurred.
+                                - The number of times the value appeared.
                             returned: on success
                             type: int
                             sample: 56
@@ -6289,7 +6437,7 @@ data_profile:
                             sample: 56
                         value:
                             description:
-                                - Value of the confidence of the profile result
+                                - Value of the confidence of the profile result.
                             returned: on success
                             type: str
                             sample: value_example
@@ -6308,7 +6456,7 @@ data_profile:
                             sample: 56
                         value:
                             description:
-                                - Value of the confidence of the profile result
+                                - Value of the confidence of the profile result.
                             returned: on success
                             type: str
                             sample: value_example
@@ -6327,7 +6475,7 @@ data_profile:
                             sample: 56
                         value:
                             description:
-                                - Value of the confidence of the profile result
+                                - Value of the confidence of the profile result.
                             returned: on success
                             type: str
                             sample: value_example
@@ -6339,7 +6487,7 @@ data_profile:
                     contains:
                         value:
                             description:
-                                - Value of the confidence of the profile result
+                                - Value of the confidence of the profile result.
                             returned: on success
                             type: str
                             sample: value_example
@@ -6352,7 +6500,7 @@ data_profile:
                             sample: 56
                         freq:
                             description:
-                                - How many times that value occurred.
+                                - The number of times the value appeared.
                             returned: on success
                             type: int
                             sample: 56
@@ -6370,7 +6518,7 @@ data_profile:
                     contains:
                         value:
                             description:
-                                - Value of the confidence of the profile result
+                                - Value of the confidence of the profile result.
                             returned: on success
                             type: str
                             sample: value_example
@@ -6383,7 +6531,7 @@ data_profile:
                             sample: 56
                         freq:
                             description:
-                                - How many times that value occurred.
+                                - The number of times the value appeared.
                             returned: on success
                             type: int
                             sample: 56
@@ -6566,6 +6714,7 @@ def main():
                         required=True,
                         choices=["READ_OPERATION_CONFIG", "WRITE_OPERATION_CONFIG"],
                     ),
+                    derived_attributes=dict(type="dict"),
                     key=dict(type="str", no_log=True),
                     model_version=dict(type="str"),
                     parent_ref=dict(type="dict", options=dict(parent=dict(type="str"))),
@@ -6778,6 +6927,10 @@ def main():
                                     has_header=dict(type="bool"),
                                     is_file_pattern=dict(type="bool"),
                                     timestamp_format=dict(type="str"),
+                                    is_quote_all=dict(type="bool"),
+                                    is_multiline=dict(type="bool"),
+                                    is_trailing_delimiter=dict(type="bool"),
+                                    compression=dict(type="str"),
                                     model_type=dict(
                                         type="str",
                                         required=True,
@@ -6786,9 +6939,12 @@ def main():
                                             "JSON_FORMAT",
                                             "CSV_FORMAT",
                                             "PARQUET_FORMAT",
+                                            "EXCEL_FORMAT",
                                         ],
                                     ),
-                                    compression=dict(type="str"),
+                                    data_address=dict(type="str"),
+                                    header=dict(type="bool"),
+                                    password=dict(type="str", no_log=True),
                                 ),
                             ),
                             type=dict(
@@ -7421,367 +7577,18 @@ def main():
                     is_silent_error=dict(type="bool"),
                     supports_incremental=dict(type="bool"),
                     sql_query=dict(type="str"),
-                    model_type=dict(
-                        type="str",
-                        required=True,
-                        choices=[
-                            "TABLE_ENTITY",
-                            "DATA_STORE_ENTITY",
-                            "VIEW_ENTITY",
-                            "SQL_ENTITY",
-                            "FILE_ENTITY",
-                        ],
-                    ),
-                    metadata=dict(
-                        type="dict",
-                        options=dict(
-                            created_by=dict(type="str"),
-                            created_by_name=dict(type="str"),
-                            updated_by=dict(type="str"),
-                            updated_by_name=dict(type="str"),
-                            time_created=dict(type="str"),
-                            time_updated=dict(type="str"),
-                            aggregator_key=dict(type="str", no_log=True),
-                            aggregator=dict(
-                                type="dict",
-                                options=dict(
-                                    type=dict(type="str"),
-                                    key=dict(type="str", no_log=True),
-                                    name=dict(type="str"),
-                                    identifier=dict(type="str"),
-                                    description=dict(type="str"),
-                                ),
-                            ),
-                            identifier_path=dict(type="str"),
-                            info_fields=dict(type="dict"),
-                            registry_version=dict(type="int"),
-                            labels=dict(type="list", elements="str"),
-                            is_favorite=dict(type="bool"),
-                        ),
-                    ),
-                    key=dict(type="str", no_log=True),
-                    model_version=dict(type="str"),
-                    parent_ref=dict(type="dict", options=dict(parent=dict(type="str"))),
-                    name=dict(type="str"),
                     description=dict(type="str"),
-                    object_version=dict(type="int"),
                     external_key=dict(type="str", no_log=True),
-                    shape=dict(
-                        type="dict",
-                        options=dict(
-                            model_type=dict(
-                                type="str",
-                                required=True,
-                                choices=["SHAPE", "SHAPE_FIELD", "NATIVE_SHAPE_FIELD"],
-                            ),
-                            key=dict(type="str", no_log=True),
-                            model_version=dict(type="str"),
-                            parent_ref=dict(
-                                type="dict", options=dict(parent=dict(type="str"))
-                            ),
-                            config_values=dict(
-                                type="dict",
-                                options=dict(
-                                    config_param_values=dict(type="dict"),
-                                    parent_ref=dict(
-                                        type="dict",
-                                        options=dict(parent=dict(type="str")),
-                                    ),
-                                ),
-                            ),
-                            object_status=dict(type="int"),
-                            name=dict(type="str"),
-                            description=dict(type="str"),
-                            type=dict(
-                                type="dict",
-                                options=dict(
-                                    wrapped_type=dict(
-                                        type="dict",
-                                        options=dict(
-                                            model_type=dict(
-                                                type="str",
-                                                required=True,
-                                                choices=[
-                                                    "STRUCTURED_TYPE",
-                                                    "DATA_TYPE",
-                                                    "CONFIGURED_TYPE",
-                                                    "COMPOSITE_TYPE",
-                                                    "DERIVED_TYPE",
-                                                ],
-                                            ),
-                                            key=dict(type="str", no_log=True),
-                                            model_version=dict(type="str"),
-                                            parent_ref=dict(type="ParentReference"),
-                                            name=dict(type="str"),
-                                            object_status=dict(type="int"),
-                                            description=dict(type="str"),
-                                        ),
-                                    ),
-                                    config_values=dict(
-                                        type="dict",
-                                        options=dict(
-                                            config_param_values=dict(type="dict"),
-                                            parent_ref=dict(
-                                                type="dict",
-                                                options=dict(parent=dict(type="str")),
-                                            ),
-                                        ),
-                                    ),
-                                    dt_type=dict(
-                                        type="str", choices=["PRIMITIVE", "STRUCTURED"]
-                                    ),
-                                    type_system_name=dict(type="str"),
-                                    schema=dict(
-                                        type="dict",
-                                        options=dict(
-                                            model_type=dict(
-                                                type="str",
-                                                required=True,
-                                                choices=[
-                                                    "STRUCTURED_TYPE",
-                                                    "DATA_TYPE",
-                                                    "CONFIGURED_TYPE",
-                                                    "COMPOSITE_TYPE",
-                                                    "DERIVED_TYPE",
-                                                ],
-                                            ),
-                                            key=dict(type="str", no_log=True),
-                                            model_version=dict(type="str"),
-                                            parent_ref=dict(type="ParentReference"),
-                                            name=dict(type="str"),
-                                            object_status=dict(type="int"),
-                                            description=dict(type="str"),
-                                        ),
-                                    ),
-                                    model_type=dict(
-                                        type="str",
-                                        required=True,
-                                        choices=[
-                                            "CONFIGURED_TYPE",
-                                            "DERIVED_TYPE",
-                                            "DATA_TYPE",
-                                            "STRUCTURED_TYPE",
-                                            "COMPOSITE_TYPE",
-                                        ],
-                                    ),
-                                    key=dict(type="str", no_log=True),
-                                    model_version=dict(type="str"),
-                                    parent_ref=dict(
-                                        type="dict",
-                                        options=dict(parent=dict(type="str")),
-                                    ),
-                                    name=dict(type="str"),
-                                    object_status=dict(type="int"),
-                                    description=dict(type="str"),
-                                    parent_type=dict(
-                                        type="dict",
-                                        options=dict(
-                                            model_type=dict(
-                                                type="str",
-                                                required=True,
-                                                choices=[
-                                                    "STRUCTURED_TYPE",
-                                                    "DATA_TYPE",
-                                                    "CONFIGURED_TYPE",
-                                                    "COMPOSITE_TYPE",
-                                                    "DERIVED_TYPE",
-                                                ],
-                                            ),
-                                            key=dict(type="str", no_log=True),
-                                            model_version=dict(type="str"),
-                                            parent_ref=dict(type="ParentReference"),
-                                            name=dict(type="str"),
-                                            object_status=dict(type="int"),
-                                            description=dict(type="str"),
-                                            parent_type=dict(type="CompositeType"),
-                                            elements=dict(type="list", elements="dict"),
-                                            config_definition=dict(
-                                                type="ConfigDefinition"
-                                            ),
-                                        ),
-                                    ),
-                                    elements=dict(
-                                        type="list",
-                                        elements="dict",
-                                        options=dict(
-                                            labels=dict(type="list", elements="str"),
-                                            native_shape_field=dict(
-                                                type="dict",
-                                                options=dict(
-                                                    model_type=dict(
-                                                        type="str",
-                                                        required=True,
-                                                        choices=[
-                                                            "SHAPE",
-                                                            "SHAPE_FIELD",
-                                                            "NATIVE_SHAPE_FIELD",
-                                                        ],
-                                                    ),
-                                                    key=dict(type="str", no_log=True),
-                                                    model_version=dict(type="str"),
-                                                    parent_ref=dict(
-                                                        type="dict",
-                                                        options=dict(
-                                                            parent=dict(type="str")
-                                                        ),
-                                                    ),
-                                                    config_values=dict(
-                                                        type="dict",
-                                                        options=dict(
-                                                            config_param_values=dict(
-                                                                type="dict"
-                                                            ),
-                                                            parent_ref=dict(
-                                                                type="dict",
-                                                                options=dict(
-                                                                    parent=dict(
-                                                                        type="str"
-                                                                    )
-                                                                ),
-                                                            ),
-                                                        ),
-                                                    ),
-                                                    object_status=dict(type="int"),
-                                                    name=dict(type="str"),
-                                                    description=dict(type="str"),
-                                                    type=dict(
-                                                        type="dict", required=True
-                                                    ),
-                                                    position=dict(type="int"),
-                                                    default_value_string=dict(
-                                                        type="str"
-                                                    ),
-                                                    is_mandatory=dict(type="bool"),
-                                                ),
-                                            ),
-                                            port_type=dict(
-                                                type="str",
-                                                choices=["DATA", "CONTROL", "MODEL"],
-                                            ),
-                                            fields=dict(
-                                                type="list",
-                                                elements="dict",
-                                                options=dict(
-                                                    model_type=dict(
-                                                        type="str",
-                                                        required=True,
-                                                        choices=[
-                                                            "SHAPE",
-                                                            "SHAPE_FIELD",
-                                                            "NATIVE_SHAPE_FIELD",
-                                                        ],
-                                                    ),
-                                                    key=dict(type="str", no_log=True),
-                                                    model_version=dict(type="str"),
-                                                    parent_ref=dict(
-                                                        type="ParentReference"
-                                                    ),
-                                                    config_values=dict(
-                                                        type="ConfigValues"
-                                                    ),
-                                                    object_status=dict(type="int"),
-                                                    name=dict(type="str"),
-                                                    description=dict(type="str"),
-                                                ),
-                                            ),
-                                            default_value=dict(type="dict"),
-                                            root_object_default_value=dict(type="dict"),
-                                            is_input=dict(type="bool"),
-                                            is_output=dict(type="bool"),
-                                            output_aggregation_type=dict(
-                                                type="str",
-                                                choices=["MIN", "MAX", "COUNT", "SUM"],
-                                            ),
-                                            type_name=dict(type="str"),
-                                            model_type=dict(
-                                                type="str",
-                                                required=True,
-                                                choices=[
-                                                    "OUTPUT_PORT",
-                                                    "SHAPE",
-                                                    "SHAPE_FIELD",
-                                                    "INPUT_PORT",
-                                                    "PARAMETER",
-                                                    "NATIVE_SHAPE_FIELD",
-                                                ],
-                                            ),
-                                            key=dict(type="str", no_log=True),
-                                            model_version=dict(type="str"),
-                                            parent_ref=dict(
-                                                type="dict",
-                                                options=dict(parent=dict(type="str")),
-                                            ),
-                                            config_values=dict(
-                                                type="dict",
-                                                options=dict(
-                                                    config_param_values=dict(
-                                                        type="dict"
-                                                    ),
-                                                    parent_ref=dict(
-                                                        type="dict",
-                                                        options=dict(
-                                                            parent=dict(type="str")
-                                                        ),
-                                                    ),
-                                                ),
-                                            ),
-                                            object_status=dict(type="int"),
-                                            name=dict(type="str"),
-                                            description=dict(type="str"),
-                                            type=dict(
-                                                type="dict",
-                                                options=dict(
-                                                    model_type=dict(
-                                                        type="str",
-                                                        choices=[
-                                                            "STRUCTURED_TYPE",
-                                                            "DATA_TYPE",
-                                                            "CONFIGURED_TYPE",
-                                                            "COMPOSITE_TYPE",
-                                                            "DERIVED_TYPE",
-                                                        ],
-                                                    ),
-                                                    key=dict(type="str", no_log=True),
-                                                    model_version=dict(type="str"),
-                                                    parent_ref=dict(
-                                                        type="ParentReference"
-                                                    ),
-                                                    name=dict(type="str"),
-                                                    object_status=dict(type="int"),
-                                                    description=dict(type="str"),
-                                                ),
-                                            ),
-                                            position=dict(type="int"),
-                                            default_value_string=dict(type="str"),
-                                            is_mandatory=dict(type="bool"),
-                                        ),
-                                    ),
-                                    config_definition=dict(
-                                        type="dict",
-                                        options=dict(
-                                            key=dict(type="str", no_log=True),
-                                            model_type=dict(type="str"),
-                                            model_version=dict(type="str"),
-                                            parent_ref=dict(
-                                                type="dict",
-                                                options=dict(parent=dict(type="str")),
-                                            ),
-                                            name=dict(type="str"),
-                                            is_contained=dict(type="bool"),
-                                            object_status=dict(type="int"),
-                                            config_parameter_definitions=dict(
-                                                type="dict"
-                                            ),
-                                        ),
-                                    ),
-                                ),
-                            ),
-                        ),
-                    ),
-                    shape_id=dict(type="str"),
                     entity_type=dict(
                         type="str",
-                        choices=["TABLE", "VIEW", "FILE", "SQL", "DATA_STORE"],
+                        choices=[
+                            "TABLE",
+                            "VIEW",
+                            "FILE",
+                            "SQL",
+                            "DATA_STORE",
+                            "MESSAGE",
+                        ],
                     ),
                     other_type_label=dict(type="str"),
                     unique_keys=dict(
@@ -8143,7 +7950,6 @@ def main():
                             object_status=dict(type="int"),
                         ),
                     ),
-                    resource_name=dict(type="str"),
                     data_format=dict(
                         type="dict",
                         options=dict(
@@ -8157,6 +7963,10 @@ def main():
                                     has_header=dict(type="bool"),
                                     is_file_pattern=dict(type="bool"),
                                     timestamp_format=dict(type="str"),
+                                    is_quote_all=dict(type="bool"),
+                                    is_multiline=dict(type="bool"),
+                                    is_trailing_delimiter=dict(type="bool"),
+                                    compression=dict(type="str"),
                                     model_type=dict(
                                         type="str",
                                         required=True,
@@ -8165,9 +7975,12 @@ def main():
                                             "JSON_FORMAT",
                                             "CSV_FORMAT",
                                             "PARQUET_FORMAT",
+                                            "EXCEL_FORMAT",
                                         ],
                                     ),
-                                    compression=dict(type="str"),
+                                    data_address=dict(type="str"),
+                                    header=dict(type="bool"),
+                                    password=dict(type="str", no_log=True),
                                 ),
                             ),
                             type=dict(
@@ -8195,8 +8008,387 @@ def main():
                             ),
                         ),
                     ),
+                    entity_properties=dict(type="dict"),
+                    model_type=dict(
+                        type="str",
+                        required=True,
+                        choices=[
+                            "TABLE_ENTITY",
+                            "DATA_STORE_ENTITY",
+                            "VIEW_ENTITY",
+                            "SQL_ENTITY",
+                            "FILE_ENTITY",
+                            "DERIVED_ENTITY",
+                        ],
+                    ),
+                    metadata=dict(
+                        type="dict",
+                        options=dict(
+                            created_by=dict(type="str"),
+                            created_by_name=dict(type="str"),
+                            updated_by=dict(type="str"),
+                            updated_by_name=dict(type="str"),
+                            time_created=dict(type="str"),
+                            time_updated=dict(type="str"),
+                            aggregator_key=dict(type="str", no_log=True),
+                            aggregator=dict(
+                                type="dict",
+                                options=dict(
+                                    type=dict(type="str"),
+                                    key=dict(type="str", no_log=True),
+                                    name=dict(type="str"),
+                                    identifier=dict(type="str"),
+                                    description=dict(type="str"),
+                                ),
+                            ),
+                            identifier_path=dict(type="str"),
+                            info_fields=dict(type="dict"),
+                            registry_version=dict(type="int"),
+                            labels=dict(type="list", elements="str"),
+                            is_favorite=dict(type="bool"),
+                        ),
+                    ),
+                    key=dict(type="str", no_log=True),
+                    model_version=dict(type="str"),
+                    parent_ref=dict(type="dict", options=dict(parent=dict(type="str"))),
+                    name=dict(type="str"),
+                    object_version=dict(type="int"),
+                    shape=dict(
+                        type="dict",
+                        options=dict(
+                            model_type=dict(
+                                type="str",
+                                required=True,
+                                choices=["SHAPE", "SHAPE_FIELD", "NATIVE_SHAPE_FIELD"],
+                            ),
+                            key=dict(type="str", no_log=True),
+                            model_version=dict(type="str"),
+                            parent_ref=dict(
+                                type="dict", options=dict(parent=dict(type="str"))
+                            ),
+                            config_values=dict(
+                                type="dict",
+                                options=dict(
+                                    config_param_values=dict(type="dict"),
+                                    parent_ref=dict(
+                                        type="dict",
+                                        options=dict(parent=dict(type="str")),
+                                    ),
+                                ),
+                            ),
+                            object_status=dict(type="int"),
+                            name=dict(type="str"),
+                            description=dict(type="str"),
+                            type=dict(
+                                type="dict",
+                                options=dict(
+                                    wrapped_type=dict(
+                                        type="dict",
+                                        options=dict(
+                                            model_type=dict(
+                                                type="str",
+                                                required=True,
+                                                choices=[
+                                                    "STRUCTURED_TYPE",
+                                                    "DATA_TYPE",
+                                                    "CONFIGURED_TYPE",
+                                                    "COMPOSITE_TYPE",
+                                                    "DERIVED_TYPE",
+                                                ],
+                                            ),
+                                            key=dict(type="str", no_log=True),
+                                            model_version=dict(type="str"),
+                                            parent_ref=dict(type="ParentReference"),
+                                            name=dict(type="str"),
+                                            object_status=dict(type="int"),
+                                            description=dict(type="str"),
+                                        ),
+                                    ),
+                                    config_values=dict(
+                                        type="dict",
+                                        options=dict(
+                                            config_param_values=dict(type="dict"),
+                                            parent_ref=dict(
+                                                type="dict",
+                                                options=dict(parent=dict(type="str")),
+                                            ),
+                                        ),
+                                    ),
+                                    dt_type=dict(
+                                        type="str", choices=["PRIMITIVE", "STRUCTURED"]
+                                    ),
+                                    type_system_name=dict(type="str"),
+                                    schema=dict(
+                                        type="dict",
+                                        options=dict(
+                                            model_type=dict(
+                                                type="str",
+                                                required=True,
+                                                choices=[
+                                                    "STRUCTURED_TYPE",
+                                                    "DATA_TYPE",
+                                                    "CONFIGURED_TYPE",
+                                                    "COMPOSITE_TYPE",
+                                                    "DERIVED_TYPE",
+                                                ],
+                                            ),
+                                            key=dict(type="str", no_log=True),
+                                            model_version=dict(type="str"),
+                                            parent_ref=dict(type="ParentReference"),
+                                            name=dict(type="str"),
+                                            object_status=dict(type="int"),
+                                            description=dict(type="str"),
+                                        ),
+                                    ),
+                                    model_type=dict(
+                                        type="str",
+                                        required=True,
+                                        choices=[
+                                            "CONFIGURED_TYPE",
+                                            "DERIVED_TYPE",
+                                            "DATA_TYPE",
+                                            "STRUCTURED_TYPE",
+                                            "COMPOSITE_TYPE",
+                                        ],
+                                    ),
+                                    key=dict(type="str", no_log=True),
+                                    model_version=dict(type="str"),
+                                    parent_ref=dict(
+                                        type="dict",
+                                        options=dict(parent=dict(type="str")),
+                                    ),
+                                    name=dict(type="str"),
+                                    object_status=dict(type="int"),
+                                    description=dict(type="str"),
+                                    parent_type=dict(
+                                        type="dict",
+                                        options=dict(
+                                            model_type=dict(
+                                                type="str",
+                                                required=True,
+                                                choices=[
+                                                    "STRUCTURED_TYPE",
+                                                    "DATA_TYPE",
+                                                    "CONFIGURED_TYPE",
+                                                    "COMPOSITE_TYPE",
+                                                    "DERIVED_TYPE",
+                                                ],
+                                            ),
+                                            key=dict(type="str", no_log=True),
+                                            model_version=dict(type="str"),
+                                            parent_ref=dict(type="ParentReference"),
+                                            name=dict(type="str"),
+                                            object_status=dict(type="int"),
+                                            description=dict(type="str"),
+                                            parent_type=dict(type="CompositeType"),
+                                            elements=dict(type="list", elements="dict"),
+                                            config_definition=dict(
+                                                type="ConfigDefinition"
+                                            ),
+                                        ),
+                                    ),
+                                    elements=dict(
+                                        type="list",
+                                        elements="dict",
+                                        options=dict(
+                                            labels=dict(type="list", elements="str"),
+                                            native_shape_field=dict(
+                                                type="dict",
+                                                options=dict(
+                                                    model_type=dict(
+                                                        type="str",
+                                                        required=True,
+                                                        choices=[
+                                                            "SHAPE",
+                                                            "SHAPE_FIELD",
+                                                            "NATIVE_SHAPE_FIELD",
+                                                        ],
+                                                    ),
+                                                    key=dict(type="str", no_log=True),
+                                                    model_version=dict(type="str"),
+                                                    parent_ref=dict(
+                                                        type="dict",
+                                                        options=dict(
+                                                            parent=dict(type="str")
+                                                        ),
+                                                    ),
+                                                    config_values=dict(
+                                                        type="dict",
+                                                        options=dict(
+                                                            config_param_values=dict(
+                                                                type="dict"
+                                                            ),
+                                                            parent_ref=dict(
+                                                                type="dict",
+                                                                options=dict(
+                                                                    parent=dict(
+                                                                        type="str"
+                                                                    )
+                                                                ),
+                                                            ),
+                                                        ),
+                                                    ),
+                                                    object_status=dict(type="int"),
+                                                    name=dict(type="str"),
+                                                    description=dict(type="str"),
+                                                    type=dict(
+                                                        type="dict", required=True
+                                                    ),
+                                                    position=dict(type="int"),
+                                                    default_value_string=dict(
+                                                        type="str"
+                                                    ),
+                                                    is_mandatory=dict(type="bool"),
+                                                ),
+                                            ),
+                                            port_type=dict(
+                                                type="str",
+                                                choices=["DATA", "CONTROL", "MODEL"],
+                                            ),
+                                            fields=dict(
+                                                type="list",
+                                                elements="dict",
+                                                options=dict(
+                                                    model_type=dict(
+                                                        type="str",
+                                                        required=True,
+                                                        choices=[
+                                                            "SHAPE",
+                                                            "SHAPE_FIELD",
+                                                            "NATIVE_SHAPE_FIELD",
+                                                        ],
+                                                    ),
+                                                    key=dict(type="str", no_log=True),
+                                                    model_version=dict(type="str"),
+                                                    parent_ref=dict(
+                                                        type="ParentReference"
+                                                    ),
+                                                    config_values=dict(
+                                                        type="ConfigValues"
+                                                    ),
+                                                    object_status=dict(type="int"),
+                                                    name=dict(type="str"),
+                                                    description=dict(type="str"),
+                                                ),
+                                            ),
+                                            default_value=dict(type="dict"),
+                                            root_object_default_value=dict(type="dict"),
+                                            is_input=dict(type="bool"),
+                                            is_output=dict(type="bool"),
+                                            output_aggregation_type=dict(
+                                                type="str",
+                                                choices=["MIN", "MAX", "COUNT", "SUM"],
+                                            ),
+                                            type_name=dict(type="str"),
+                                            model_type=dict(
+                                                type="str",
+                                                required=True,
+                                                choices=[
+                                                    "OUTPUT_PORT",
+                                                    "SHAPE",
+                                                    "SHAPE_FIELD",
+                                                    "INPUT_PORT",
+                                                    "PARAMETER",
+                                                    "NATIVE_SHAPE_FIELD",
+                                                ],
+                                            ),
+                                            key=dict(type="str", no_log=True),
+                                            model_version=dict(type="str"),
+                                            parent_ref=dict(
+                                                type="dict",
+                                                options=dict(parent=dict(type="str")),
+                                            ),
+                                            config_values=dict(
+                                                type="dict",
+                                                options=dict(
+                                                    config_param_values=dict(
+                                                        type="dict"
+                                                    ),
+                                                    parent_ref=dict(
+                                                        type="dict",
+                                                        options=dict(
+                                                            parent=dict(type="str")
+                                                        ),
+                                                    ),
+                                                ),
+                                            ),
+                                            object_status=dict(type="int"),
+                                            name=dict(type="str"),
+                                            description=dict(type="str"),
+                                            type=dict(
+                                                type="dict",
+                                                options=dict(
+                                                    model_type=dict(
+                                                        type="str",
+                                                        choices=[
+                                                            "STRUCTURED_TYPE",
+                                                            "DATA_TYPE",
+                                                            "CONFIGURED_TYPE",
+                                                            "COMPOSITE_TYPE",
+                                                            "DERIVED_TYPE",
+                                                        ],
+                                                    ),
+                                                    key=dict(type="str", no_log=True),
+                                                    model_version=dict(type="str"),
+                                                    parent_ref=dict(
+                                                        type="ParentReference"
+                                                    ),
+                                                    name=dict(type="str"),
+                                                    object_status=dict(type="int"),
+                                                    description=dict(type="str"),
+                                                ),
+                                            ),
+                                            position=dict(type="int"),
+                                            default_value_string=dict(type="str"),
+                                            is_mandatory=dict(type="bool"),
+                                        ),
+                                    ),
+                                    config_definition=dict(
+                                        type="dict",
+                                        options=dict(
+                                            key=dict(type="str", no_log=True),
+                                            model_type=dict(type="str"),
+                                            model_version=dict(type="str"),
+                                            parent_ref=dict(
+                                                type="dict",
+                                                options=dict(parent=dict(type="str")),
+                                            ),
+                                            name=dict(type="str"),
+                                            is_contained=dict(type="bool"),
+                                            object_status=dict(type="int"),
+                                            config_parameter_definitions=dict(
+                                                type="dict"
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                    shape_id=dict(type="str"),
+                    resource_name=dict(type="str"),
                     object_status=dict(type="int"),
                     identifier=dict(type="str"),
+                    ref_data_object=dict(
+                        type="dict",
+                        options=dict(
+                            model_type=dict(
+                                type="str", required=True, choices=["API", "PROCEDURE"]
+                            ),
+                            model_version=dict(type="str"),
+                            parent_ref=dict(
+                                type="dict", options=dict(parent=dict(type="str"))
+                            ),
+                            name=dict(type="str"),
+                            object_version=dict(type="int"),
+                            resource_name=dict(type="str"),
+                            object_status=dict(type="int"),
+                            external_key=dict(type="str", no_log=True),
+                            key=dict(type="str", no_log=True),
+                        ),
+                    ),
+                    mode=dict(type="str", choices=["IN", "OUT"]),
+                    derived_properties=dict(type="dict"),
                 ),
             ),
             profile_config=dict(

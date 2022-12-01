@@ -98,6 +98,11 @@ options:
         description:
             - Endpoint ID used for getDataAssetFullDetails.
         type: str
+    include_types:
+        description:
+            - Artifact type which needs to be listed while listing Artifacts.
+        type: list
+        elements: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -130,6 +135,7 @@ EXAMPLES = """
     name_list: [ "name_list_example" ]
     is_pattern: true
     endpoint_id: "ocid1.endpoint.oc1..xxxxxxEXAMPLExxxxxx"
+    include_types: [ "include_types_example" ]
 
 """
 
@@ -175,6 +181,88 @@ data_entities:
             returned: on success
             type: bool
             sample: true
+        ref_data_object:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                model_type:
+                    description:
+                        - The input Operation type.
+                    returned: on success
+                    type: str
+                    sample: PROCEDURE
+                model_version:
+                    description:
+                        - The object's model version.
+                    returned: on success
+                    type: str
+                    sample: model_version_example
+                parent_ref:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        parent:
+                            description:
+                                - Key of the parent object.
+                            returned: on success
+                            type: str
+                            sample: parent_example
+                name:
+                    description:
+                        - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is
+                          unique, editable and is restricted to 1000 characters.
+                    returned: on success
+                    type: str
+                    sample: name_example
+                object_version:
+                    description:
+                        - The version of the object that is used to track changes in the object instance.
+                    returned: on success
+                    type: int
+                    sample: 56
+                resource_name:
+                    description:
+                        - The resource name.
+                    returned: on success
+                    type: str
+                    sample: resource_name_example
+                object_status:
+                    description:
+                        - The status of an object that can be set to value 1 for shallow reference across objects, other values reserved.
+                    returned: on success
+                    type: int
+                    sample: 56
+                external_key:
+                    description:
+                        - The external key for the object.
+                    returned: on success
+                    type: str
+                    sample: external_key_example
+                key:
+                    description:
+                        - The object key.
+                    returned: on success
+                    type: str
+                    sample: key_example
+        mode:
+            description:
+                - Determines whether entity is treated as source or target
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: IN
+        derived_properties:
+            description:
+                - Property-bag (key-value pairs where key is Shape Field resource name and value is object)
+                - Returned for get operation
+            returned: on success
+            type: dict
+            sample: {}
         data_format:
             description:
                 - ""
@@ -224,6 +312,24 @@ data_entities:
                             returned: on success
                             type: str
                             sample: timestamp_format_example
+                        is_quote_all:
+                            description:
+                                - Defines whether the quote entire content while performing read/write.
+                            returned: on success
+                            type: bool
+                            sample: true
+                        is_multiline:
+                            description:
+                                - Defines whether the file has a multiline content
+                            returned: on success
+                            type: bool
+                            sample: true
+                        is_trailing_delimiter:
+                            description:
+                                - Defines whether the file has a trailing delimiter
+                            returned: on success
+                            type: bool
+                            sample: true
                         data_address:
                             description:
                                 - "Range of the data. For example, \\"'My Sheet'!B3:C35\\""
@@ -285,6 +391,13 @@ data_entities:
             returned: on success
             type: str
             sample: sql_query_example
+        entity_properties:
+            description:
+                - Map<String, String> for entity properties
+                - Returned for get operation
+            returned: on success
+            type: dict
+            sample: {}
         key:
             description:
                 - The object key.
@@ -2400,6 +2513,21 @@ data_entities:
         "is_flex_data_store": true,
         "is_silent_error": true,
         "supports_incremental": true,
+        "ref_data_object": {
+            "model_type": "PROCEDURE",
+            "model_version": "model_version_example",
+            "parent_ref": {
+                "parent": "parent_example"
+            },
+            "name": "name_example",
+            "object_version": 56,
+            "resource_name": "resource_name_example",
+            "object_status": 56,
+            "external_key": "external_key_example",
+            "key": "key_example"
+        },
+        "mode": "IN",
+        "derived_properties": {},
         "data_format": {
             "format_attribute": {
                 "escape_character": "escape_character_example",
@@ -2408,6 +2536,9 @@ data_entities:
                 "has_header": true,
                 "is_file_pattern": true,
                 "timestamp_format": "timestamp_format_example",
+                "is_quote_all": true,
+                "is_multiline": true,
+                "is_trailing_delimiter": true,
                 "data_address": "data_address_example",
                 "header": true,
                 "password": "example-password",
@@ -2421,6 +2552,7 @@ data_entities:
             }
         },
         "sql_query": "sql_query_example",
+        "entity_properties": {},
         "key": "key_example",
         "model_version": "model_version_example",
         "parent_ref": {
@@ -2898,6 +3030,7 @@ class DataEntityFactsHelperGen(OCIResourceFactsHelperBase):
             "name_list",
             "is_pattern",
             "endpoint_id",
+            "include_types",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -2937,6 +3070,7 @@ def main():
             name_list=dict(type="list", elements="str"),
             is_pattern=dict(type="bool"),
             endpoint_id=dict(type="str"),
+            include_types=dict(type="list", elements="str"),
         )
     )
 

@@ -75,6 +75,7 @@ options:
         choices:
             - "TIME_CREATED"
             - "DISPLAY_NAME"
+            - "TIME_UPDATED"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_display_name_option ]
 """
 
@@ -215,6 +216,24 @@ workspaces:
             returned: on success
             type: str
             sample: state_message_example
+        endpoint_name:
+            description:
+                - Name of the private endpoint associated with the container/workspace.
+            returned: on success
+            type: str
+            sample: endpoint_name_example
+        endpoint_id:
+            description:
+                - OCID of the private endpoint associated with the container/workspace.
+            returned: on success
+            type: str
+            sample: "ocid1.endpoint.oc1..xxxxxxEXAMPLExxxxxx"
+        registry_id:
+            description:
+                - DCMS Registry ID associated with the container/workspace.
+            returned: on success
+            type: str
+            sample: "ocid1.registry.oc1..xxxxxxEXAMPLExxxxxx"
     sample: [{
         "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx",
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
@@ -230,7 +249,10 @@ workspaces:
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "lifecycle_state": "CREATING",
-        "state_message": "state_message_example"
+        "state_message": "state_message_example",
+        "endpoint_name": "endpoint_name_example",
+        "endpoint_id": "ocid1.endpoint.oc1..xxxxxxEXAMPLExxxxxx",
+        "registry_id": "ocid1.registry.oc1..xxxxxxEXAMPLExxxxxx"
     }]
 """
 
@@ -318,7 +340,9 @@ def main():
                 ],
             ),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
-            sort_by=dict(type="str", choices=["TIME_CREATED", "DISPLAY_NAME"]),
+            sort_by=dict(
+                type="str", choices=["TIME_CREATED", "DISPLAY_NAME", "TIME_UPDATED"]
+            ),
             display_name=dict(type="str"),
         )
     )

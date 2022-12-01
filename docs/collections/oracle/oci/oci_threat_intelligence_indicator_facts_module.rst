@@ -30,7 +30,7 @@ oracle.oci.oci_threat_intelligence_indicator_facts -- Fetches details about one 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.2.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.3.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple Indicator resources in Oracle Cloud Infrastructure
-- Returns a list of IndicatorSummary objects.
+- Get a list of threat indicator summaries based on the search criteria.
 - If *indicator_id* is specified, the details of a single Indicator will be returned.
 
 
@@ -213,7 +213,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The ID of the tenancy to use to filter results.</div>
+                                            <div>The OCID of the tenancy (root compartment) that is used to filter results.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -273,7 +273,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>unique indicator identifier</div>
+                                            <div>The unique identifier (OCID) of the threat indicator.</div>
                                             <div>Required to get a specific indicator.</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: id</div>
                                     </td>
@@ -305,7 +305,9 @@ Parameters
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>confidence</li>
+                                                                                                                                                                                                <li>timeCreated</li>
                                                                                                                                                                                                 <li>timeUpdated</li>
+                                                                                                                                                                                                <li>timeLastSeen</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -358,7 +360,67 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The result set will include indicators that have any of the provided threat types. To filter for multiple threat types repeat the query parameter.</div>
+                                            <div>The threat type of entites to be returned. To filter for multiple threat types, repeat this parameter.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-time_created_greater_than_or_equal_to"></div>
+                    <b>time_created_greater_than_or_equal_to</b>
+                    <a class="ansibleOptionLink" href="#parameter-time_created_greater_than_or_equal_to" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The oldest created/first seen time of entities to be returned.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-time_created_less_than"></div>
+                    <b>time_created_less_than</b>
+                    <a class="ansibleOptionLink" href="#parameter-time_created_less_than" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Return indicators created/first seen before the provided time.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-time_last_seen_greater_than_or_equal_to"></div>
+                    <b>time_last_seen_greater_than_or_equal_to</b>
+                    <a class="ansibleOptionLink" href="#parameter-time_last_seen_greater_than_or_equal_to" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The oldest last seen time of entities to be returned.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-time_last_seen_less_than"></div>
+                    <b>time_last_seen_less_than</b>
+                    <a class="ansibleOptionLink" href="#parameter-time_last_seen_less_than" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Return indicators last seen before the provided time.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -374,6 +436,21 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The oldest update time of entities to be returned.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-time_updated_less_than"></div>
+                    <b>time_updated_less_than</b>
+                    <a class="ansibleOptionLink" href="#parameter-time_updated_less_than" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Return indicators updated before the provided time.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -457,6 +534,11 @@ Examples
         value: value_example
         confidence_greater_than_or_equal_to: 0
         time_updated_greater_than_or_equal_to: 2013-10-20T19:20:30+01:00
+        time_updated_less_than: 2013-10-20T19:20:30+01:00
+        time_last_seen_greater_than_or_equal_to: 2013-10-20T19:20:30+01:00
+        time_last_seen_less_than: 2013-10-20T19:20:30+01:00
+        time_created_greater_than_or_equal_to: 2013-10-20T19:20:30+01:00
+        time_created_less_than: 2013-10-20T19:20:30+01:00
         sort_order: ASC
         sort_by: confidence
 
@@ -495,7 +577,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Indicator resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;attributes&#x27;: [{&#x27;attribution&#x27;: [{&#x27;confidence&#x27;: 56, &#x27;source&#x27;: {&#x27;name&#x27;: &#x27;name_example&#x27;}, &#x27;time_first_seen&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_last_seen&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;visibility&#x27;: {&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;tlp_name&#x27;: &#x27;TLP_INTERNAL_AUDIT&#x27;}}], &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;confidence&#x27;: 56, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;relationships&#x27;: [{&#x27;attribution&#x27;: [{&#x27;confidence&#x27;: 56, &#x27;source&#x27;: {&#x27;name&#x27;: &#x27;name_example&#x27;}, &#x27;time_first_seen&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_last_seen&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;visibility&#x27;: {&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;tlp_name&#x27;: &#x27;TLP_INTERNAL_AUDIT&#x27;}}], &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;related_entity&#x27;: {&#x27;indicator_id&#x27;: &#x27;ocid1.indicator.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;type&#x27;: &#x27;INDICATOR&#x27;}}], &#x27;threat_types&#x27;: [{&#x27;attribution&#x27;: [{&#x27;confidence&#x27;: 56, &#x27;source&#x27;: {&#x27;name&#x27;: &#x27;name_example&#x27;}, &#x27;time_first_seen&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_last_seen&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;visibility&#x27;: {&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;tlp_name&#x27;: &#x27;TLP_INTERNAL_AUDIT&#x27;}}], &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;DOMAIN_NAME&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;attributes&#x27;: [{&#x27;attribution&#x27;: [{&#x27;confidence&#x27;: 56, &#x27;source&#x27;: {&#x27;name&#x27;: &#x27;name_example&#x27;}, &#x27;time_first_seen&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_last_seen&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;visibility&#x27;: {&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;tlp_name&#x27;: &#x27;TLP_INTERNAL_AUDIT&#x27;}}], &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;confidence&#x27;: 56, &#x27;geodata&#x27;: {&#x27;admin_div&#x27;: &#x27;admin_div_example&#x27;, &#x27;city&#x27;: &#x27;city_example&#x27;, &#x27;country_code&#x27;: &#x27;country_code_example&#x27;, &#x27;geo_id&#x27;: &#x27;ocid1.geo.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;label&#x27;: &#x27;label_example&#x27;, &#x27;latitude&#x27;: &#x27;latitude_example&#x27;, &#x27;longitude&#x27;: &#x27;longitude_example&#x27;, &#x27;origin&#x27;: &#x27;origin_example&#x27;, &#x27;routed_prefix&#x27;: &#x27;routed_prefix_example&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;relationships&#x27;: [{&#x27;attribution&#x27;: [{&#x27;confidence&#x27;: 56, &#x27;source&#x27;: {&#x27;name&#x27;: &#x27;name_example&#x27;}, &#x27;time_first_seen&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_last_seen&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;visibility&#x27;: {&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;tlp_name&#x27;: &#x27;TLP_INTERNAL_AUDIT&#x27;}}], &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;related_entity&#x27;: {&#x27;indicator_id&#x27;: &#x27;ocid1.indicator.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;type&#x27;: &#x27;INDICATOR&#x27;}}], &#x27;threat_types&#x27;: [{&#x27;attribution&#x27;: [{&#x27;confidence&#x27;: 56, &#x27;source&#x27;: {&#x27;name&#x27;: &#x27;name_example&#x27;}, &#x27;time_first_seen&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_last_seen&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;visibility&#x27;: {&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;tlp_name&#x27;: &#x27;TLP_INTERNAL_AUDIT&#x27;}}], &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_last_seen&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;DOMAIN_NAME&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -510,8 +592,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A map of attribute name (string) to IndicatorAttribute (values and supporting data). This provides generic storage for additional data about an indicator.</div>
-                                            <div>Returned for get operation</div>
+                                            <div>A map of attributes with additional information about the indicator. Each attribute has a name (string), value (string), and attribution (supporting data).</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -546,7 +627,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Confidence is an integer from 0 to 100 that provides a measure of our certainty in the maliciousness of data attributed to an indicator.  For example, if the source of the data being attributed is the Tor Project, our confidence that the associated indicator is a tor exit node would be 100.</div>
+                                            <div>An integer from 0 to 100 that provides a measure of our certainty in the maliciousness of data attributed to an indicator. For example, if the source of the data being attributed is the Tor Project, our confidence that the associated indicator is a tor exit node would be 100.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -585,7 +666,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name of the source</div>
+                                            <div>The name of the source.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
@@ -606,7 +687,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The time the data was first seen for this entity. Defaults to time last seen if no time first seen is provided from the data source. An RFC3339 formatted datetime string</div>
+                                            <div>The date and time the attribution data was first seen for this entity. If the data source does not provide this information, it is set to the last time it was seen. An RFC3339 formatted string.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -626,7 +707,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The last time this data was seen for this entity. An RFC3339 formatted datetime string</div>
+                                            <div>The last date and time the attribution data was seen for this entity. An RFC3339 formatted string.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -686,7 +767,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The Traffic Light Protocol (TLP) name of the visibility level.</div>
+                                            <div>The Traffic Light Protocol (TLP) color of the visibility level.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">TLP_INTERNAL_AUDIT</div>
@@ -707,7 +788,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name of the attribute</div>
+                                            <div>The name of the attribute.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
@@ -745,7 +826,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Compartment Identifier</div>
+                                            <div>The OCID of the compartment that contains this indicator.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -763,12 +844,200 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Confidence is an integer from 0 to 100 that provides a measure of our certainty in the maliciousness of the indicator.  This confidence value is aggregated from the confidence in the threat types, attributes, and relationships to create an overall value for the indicator.</div>
+                                            <div>An integer from 0 to 100 that represents how certain we are that the indicator is malicious and a potential threat if it is detected communicating with your cloud resources. This confidence value is aggregated from the confidence in the threat types, attributes, and relationships to create an overall value for the indicator.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-indicators/geodata"></div>
+                    <b>geodata</b>
+                    <a class="ansibleOptionLink" href="#return-indicators/geodata" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-indicators/geodata/admin_div"></div>
+                    <b>admin_div</b>
+                    <a class="ansibleOptionLink" href="#return-indicators/geodata/admin_div" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>State/Province/subdivision within the country</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">admin_div_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-indicators/geodata/city"></div>
+                    <b>city</b>
+                    <a class="ansibleOptionLink" href="#return-indicators/geodata/city" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>City of origin</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">city_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-indicators/geodata/country_code"></div>
+                    <b>country_code</b>
+                    <a class="ansibleOptionLink" href="#return-indicators/geodata/country_code" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Two-letter abbreviation for country of origin</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">country_code_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-indicators/geodata/geo_id"></div>
+                    <b>geo_id</b>
+                    <a class="ansibleOptionLink" href="#return-indicators/geodata/geo_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Unique Identifier (optional)</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.geo.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-indicators/geodata/label"></div>
+                    <b>label</b>
+                    <a class="ansibleOptionLink" href="#return-indicators/geodata/label" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Information on source providing the information</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">label_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-indicators/geodata/latitude"></div>
+                    <b>latitude</b>
+                    <a class="ansibleOptionLink" href="#return-indicators/geodata/latitude" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Latitude</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">latitude_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-indicators/geodata/longitude"></div>
+                    <b>longitude</b>
+                    <a class="ansibleOptionLink" href="#return-indicators/geodata/longitude" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Longitude</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">longitude_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-indicators/geodata/origin"></div>
+                    <b>origin</b>
+                    <a class="ansibleOptionLink" href="#return-indicators/geodata/origin" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>ASN entry</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">origin_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-indicators/geodata/routed_prefix"></div>
+                    <b>routed_prefix</b>
+                    <a class="ansibleOptionLink" href="#return-indicators/geodata/routed_prefix" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Encompassing assigned prefix for the IP</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">routed_prefix_example</div>
+                                    </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="4">
@@ -799,7 +1068,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The state of the indicator.  It will always be ACTIVE.  This field is added for consistency.</div>
+                                            <div>The state of the indicator. It will always be `ACTIVE`.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ACTIVE</div>
@@ -817,7 +1086,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A map of relationship name (string) to IndicatorRelationship (related entities and supporting data). This provides generic storage for relationships between indicators or other entities.</div>
+                                            <div>A map of relationships between the indicator and other entities. Each relationship has a name (string), related entity, and attribution (supporting data).</div>
                                             <div>Returned for get operation</div>
                                         <br/>
                                                         </td>
@@ -835,7 +1104,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The array of attribution data that support this SourcedRelationship</div>
+                                            <div>The array of attribution data that support this relationship.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -853,7 +1122,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Confidence is an integer from 0 to 100 that provides a measure of our certainty in the maliciousness of data attributed to an indicator.  For example, if the source of the data being attributed is the Tor Project, our confidence that the associated indicator is a tor exit node would be 100.</div>
+                                            <div>An integer from 0 to 100 that provides a measure of our certainty in the maliciousness of data attributed to an indicator. For example, if the source of the data being attributed is the Tor Project, our confidence that the associated indicator is a tor exit node would be 100.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -892,7 +1161,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name of the source</div>
+                                            <div>The name of the source.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
@@ -913,7 +1182,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The time the data was first seen for this entity. Defaults to time last seen if no time first seen is provided from the data source. An RFC3339 formatted datetime string</div>
+                                            <div>The date and time the attribution data was first seen for this entity. If the data source does not provide this information, it is set to the last time it was seen. An RFC3339 formatted string.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -933,7 +1202,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The last time this data was seen for this entity. An RFC3339 formatted datetime string</div>
+                                            <div>The last date and time the attribution data was seen for this entity. An RFC3339 formatted string.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -993,7 +1262,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The Traffic Light Protocol (TLP) name of the visibility level.</div>
+                                            <div>The Traffic Light Protocol (TLP) color of the visibility level.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">TLP_INTERNAL_AUDIT</div>
@@ -1014,7 +1283,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name of the attribute</div>
+                                            <div>The name of the attribute.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
@@ -1051,7 +1320,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>the OCID of the referenced Indicator</div>
+                                            <div>The unique OCID of the referenced threat indicator.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.indicator.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1071,7 +1340,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>the type of the referenced entity</div>
+                                            <div>The type of the referenced entity.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">INDICATOR</div>
@@ -1126,7 +1395,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Confidence is an integer from 0 to 100 that provides a measure of our certainty in the maliciousness of data attributed to an indicator.  For example, if the source of the data being attributed is the Tor Project, our confidence that the associated indicator is a tor exit node would be 100.</div>
+                                            <div>An integer from 0 to 100 that provides a measure of our certainty in the maliciousness of data attributed to an indicator. For example, if the source of the data being attributed is the Tor Project, our confidence that the associated indicator is a tor exit node would be 100.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -1165,7 +1434,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name of the source</div>
+                                            <div>The name of the source.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
@@ -1186,7 +1455,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The time the data was first seen for this entity. Defaults to time last seen if no time first seen is provided from the data source. An RFC3339 formatted datetime string</div>
+                                            <div>The date and time the attribution data was first seen for this entity. If the data source does not provide this information, it is set to the last time it was seen. An RFC3339 formatted string.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -1206,7 +1475,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The last time this data was seen for this entity. An RFC3339 formatted datetime string</div>
+                                            <div>The last date and time the attribution data was seen for this entity. An RFC3339 formatted string.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -1266,7 +1535,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The Traffic Light Protocol (TLP) name of the visibility level.</div>
+                                            <div>The Traffic Light Protocol (TLP) color of the visibility level.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">TLP_INTERNAL_AUDIT</div>
@@ -1287,7 +1556,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID of the threat type</div>
+                                            <div>The OCID of the threat type.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1306,7 +1575,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The name of the threat type</div>
+                                            <div>The name of the threat type.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
@@ -1325,7 +1594,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The time the data was first seen for this indicator. An RFC3339 formatted datetime string</div>
+                                            <div>The date and time that the indicator was first detected. An RFC3339 formatted string.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-indicators/time_last_seen"></div>
+                    <b>time_last_seen</b>
+                    <a class="ansibleOptionLink" href="#return-indicators/time_last_seen" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The date and time that this indicator was last seen. The value is the same as `timeCreated` for a new indicator. An RFC3339 formatted string.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -1343,7 +1630,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The last time this indicator was updated. It starts with the same value as timeCreated and is never empty. An RFC3339 formatted datetime string</div>
+                                            <div>The date and time that this indicator was last updated. The value is the same as `timeCreated` for a new indicator. An RFC3339 formatted string.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -1361,7 +1648,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Type of indicator</div>
+                                            <div>The type of indicator.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">DOMAIN_NAME</div>
@@ -1379,7 +1666,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The value for this indicator. Format is dependent upon `type`, e.g. DOMAIN_NAME &quot;evil.example.com&quot;, MD5_HASH &quot;44d88612fea8a8f36de82e1278abb02f&quot;, IP_ADDRESS &quot;2001:db8::1&quot;.</div>
+                                            <div>The value for this indicator. The value&#x27;s format is dependent upon its `type`. Examples:</div>
+                                            <div>DOMAIN_NAME &quot;evil.example.com&quot;</div>
+                                            <div>MD5_HASH &quot;44d88612fea8a8f36de82e1278abb02f&quot;</div>
+                                            <div>IP_ADDRESS &quot;2001:db8::1&quot;</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>

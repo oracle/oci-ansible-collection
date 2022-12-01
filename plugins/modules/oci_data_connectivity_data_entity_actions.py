@@ -50,13 +50,13 @@ options:
     data_format:
         description:
             - ""
-            - Applicable when model_type is 'FILE_ENTITY'
+            - Applicable when model_type is one of ['FILE_ENTITY', 'MESSAGE_ENTITY']
         type: dict
         suboptions:
             format_attribute:
                 description:
                     - ""
-                    - Applicable when model_type is 'FILE_ENTITY'
+                    - Applicable when model_type is 'MESSAGE_ENTITY'
                 type: dict
                 suboptions:
                     encoding:
@@ -94,6 +94,21 @@ options:
                             - Format for timestamp information.
                             - Applicable when model_type is 'CSV_FORMAT'
                         type: str
+                    is_quote_all:
+                        description:
+                            - Defines whether the quote entire content while performing read/write.
+                            - Applicable when model_type is 'CSV_FORMAT'
+                        type: bool
+                    is_multiline:
+                        description:
+                            - Defines whether the file has a multiline content
+                            - Applicable when model_type is 'CSV_FORMAT'
+                        type: bool
+                    is_trailing_delimiter:
+                        description:
+                            - Defines whether the file has a trailing delimiter
+                            - Applicable when model_type is 'CSV_FORMAT'
+                        type: bool
                     compression:
                         description:
                             - The compression for the file.
@@ -128,7 +143,7 @@ options:
             type:
                 description:
                     - type
-                    - Required when model_type is 'FILE_ENTITY'
+                    - Required when model_type is 'MESSAGE_ENTITY'
                 type: str
                 choices:
                     - "JSON"
@@ -139,13 +154,13 @@ options:
             compression_config:
                 description:
                     - ""
-                    - Applicable when model_type is 'FILE_ENTITY'
+                    - Applicable when model_type is 'MESSAGE_ENTITY'
                 type: dict
                 suboptions:
                     codec:
                         description:
                             - Compression algorithm
-                            - Required when model_type is 'FILE_ENTITY'
+                            - Required when model_type is 'MESSAGE_ENTITY'
                         type: str
                         choices:
                             - "NONE"
@@ -162,6 +177,7 @@ options:
         type: str
         choices:
             - "DATA_STORE_ENTITY"
+            - "MESSAGE_ENTITY"
             - "TABLE_ENTITY"
             - "SQL_ENTITY"
             - "FILE_ENTITY"
@@ -1059,6 +1075,8 @@ options:
             - "VIEW"
             - "FILE"
             - "SQL"
+            - "DATA_STORE"
+            - "MESSAGE"
     other_type_label:
         description:
             - Specifies other type label.
@@ -2013,6 +2031,374 @@ EXAMPLES = """
     name: name_example
 
     # optional
+    key: key_example
+    model_version: model_version_example
+    parent_ref:
+      # optional
+      parent: parent_example
+    object_version: 56
+    external_key: external_key_example
+    shape:
+      # required
+      model_type: SHAPE
+
+      # optional
+      key: key_example
+      model_version: model_version_example
+      parent_ref:
+        # optional
+        parent: parent_example
+      config_values:
+        # optional
+        config_param_values:
+          # optional
+          string_value: string_value_example
+          int_value: 56
+          object_value: null
+          ref_value: null
+          parameter_value: parameter_value_example
+        parent_ref:
+          # optional
+          parent: parent_example
+      object_status: 56
+      name: name_example
+      description: description_example
+      type:
+        # required
+        model_type: CONFIGURED_TYPE
+
+        # optional
+        wrapped_type:
+          # required
+          model_type: STRUCTURED_TYPE
+
+          # optional
+          key: key_example
+          model_version: model_version_example
+          parent_ref: null
+          name: name_example
+          object_status: 56
+          description: description_example
+        config_values:
+          # optional
+          config_param_values:
+            # optional
+            string_value: string_value_example
+            int_value: 56
+            object_value: null
+            ref_value: null
+            parameter_value: parameter_value_example
+          parent_ref:
+            # optional
+            parent: parent_example
+        key: key_example
+        model_version: model_version_example
+        parent_ref:
+          # optional
+          parent: parent_example
+        name: name_example
+        object_status: 56
+        description: description_example
+        config_definition:
+          # optional
+          key: key_example
+          model_type: model_type_example
+          model_version: model_version_example
+          parent_ref:
+            # optional
+            parent: parent_example
+          name: name_example
+          is_contained: true
+          object_status: 56
+          config_parameter_definitions:
+            # optional
+            parameter_type:
+              # required
+              model_type: STRUCTURED_TYPE
+
+              # optional
+              key: key_example
+              model_version: model_version_example
+              parent_ref: null
+              name: name_example
+              object_status: 56
+              description: description_example
+            parameter_name: parameter_name_example
+            description: description_example
+            default_value: null
+            class_field_name: class_field_name_example
+            is_static: true
+            is_class_field_value: true
+    shape_id: "ocid1.shape.oc1..xxxxxxEXAMPLExxxxxx"
+    entity_type: TABLE
+    other_type_label: other_type_label_example
+    unique_keys:
+    - # required
+      model_type: PRIMARY_KEY
+
+      # optional
+      key: key_example
+      model_version: model_version_example
+      parent_ref:
+        # optional
+        parent: parent_example
+      name: name_example
+      attribute_refs:
+      - # optional
+        position: 56
+        attribute:
+          # required
+          model_type: SHAPE
+
+          # optional
+          key: key_example
+          model_version: model_version_example
+          parent_ref:
+            # optional
+            parent: parent_example
+          config_values:
+            # optional
+            config_param_values:
+              # optional
+              string_value: string_value_example
+              int_value: 56
+              object_value: null
+              ref_value: null
+              parameter_value: parameter_value_example
+            parent_ref:
+              # optional
+              parent: parent_example
+          object_status: 56
+          name: name_example
+          description: description_example
+          type: null
+          labels: [ "labels_example" ]
+          native_shape_field:
+            # required
+            model_type: SHAPE
+            type: null
+
+            # optional
+            key: key_example
+            model_version: model_version_example
+            parent_ref:
+              # optional
+              parent: parent_example
+            config_values:
+              # optional
+              config_param_values:
+                # optional
+                string_value: string_value_example
+                int_value: 56
+                object_value: null
+                ref_value: null
+                parameter_value: parameter_value_example
+              parent_ref:
+                # optional
+                parent: parent_example
+            object_status: 56
+            name: name_example
+            description: description_example
+            position: 56
+            default_value_string: default_value_string_example
+            is_mandatory: true
+      object_status: 56
+    foreign_keys:
+    - # required
+      model_type: FOREIGN_KEY
+
+      # optional
+      key: key_example
+      model_version: model_version_example
+      parent_ref:
+        # optional
+        parent: parent_example
+      name: name_example
+      attribute_refs:
+      - # optional
+        position: 56
+        attribute:
+          # required
+          model_type: SHAPE
+
+          # optional
+          key: key_example
+          model_version: model_version_example
+          parent_ref:
+            # optional
+            parent: parent_example
+          config_values:
+            # optional
+            config_param_values:
+              # optional
+              string_value: string_value_example
+              int_value: 56
+              object_value: null
+              ref_value: null
+              parameter_value: parameter_value_example
+            parent_ref:
+              # optional
+              parent: parent_example
+          object_status: 56
+          name: name_example
+          description: description_example
+          type: null
+          labels: [ "labels_example" ]
+          native_shape_field:
+            # required
+            model_type: SHAPE
+            type: null
+
+            # optional
+            key: key_example
+            model_version: model_version_example
+            parent_ref:
+              # optional
+              parent: parent_example
+            config_values:
+              # optional
+              config_param_values:
+                # optional
+                string_value: string_value_example
+                int_value: 56
+                object_value: null
+                ref_value: null
+                parameter_value: parameter_value_example
+              parent_ref:
+                # optional
+                parent: parent_example
+            object_status: 56
+            name: name_example
+            description: description_example
+            position: 56
+            default_value_string: default_value_string_example
+            is_mandatory: true
+      update_rule: 56
+      delete_rule: 56
+      reference_unique_key:
+        # required
+        model_type: PRIMARY_KEY
+
+        # optional
+        key: key_example
+        model_version: model_version_example
+        parent_ref:
+          # optional
+          parent: parent_example
+        name: name_example
+        attribute_refs:
+        - # optional
+          position: 56
+          attribute:
+            # required
+            model_type: SHAPE
+
+            # optional
+            key: key_example
+            model_version: model_version_example
+            parent_ref:
+              # optional
+              parent: parent_example
+            config_values:
+              # optional
+              config_param_values:
+                # optional
+                string_value: string_value_example
+                int_value: 56
+                object_value: null
+                ref_value: null
+                parameter_value: parameter_value_example
+              parent_ref:
+                # optional
+                parent: parent_example
+            object_status: 56
+            name: name_example
+            description: description_example
+            type: null
+            labels: [ "labels_example" ]
+            native_shape_field:
+              # required
+              model_type: SHAPE
+              type: null
+
+              # optional
+              key: key_example
+              model_version: model_version_example
+              parent_ref:
+                # optional
+                parent: parent_example
+              config_values:
+                # optional
+                config_param_values:
+                  # optional
+                  string_value: string_value_example
+                  int_value: 56
+                  object_value: null
+                  ref_value: null
+                  parameter_value: parameter_value_example
+                parent_ref:
+                  # optional
+                  parent: parent_example
+              object_status: 56
+              name: name_example
+              description: description_example
+              position: 56
+              default_value_string: default_value_string_example
+              is_mandatory: true
+        object_status: 56
+      object_status: 56
+    resource_name: resource_name_example
+    object_status: 56
+    identifier: identifier_example
+    types:
+      # optional
+      key: key_example
+      model_type: model_type_example
+      model_version: model_version_example
+      parent_ref:
+        # optional
+        parent: parent_example
+      name: name_example
+      description: description_example
+      object_version: 56
+      types:
+        # required
+        model_type: STRUCTURED_TYPE
+
+        # optional
+        key: key_example
+        model_version: model_version_example
+        parent_ref:
+          # optional
+          parent: parent_example
+        name: name_example
+        object_status: 56
+        description: description_example
+      object_status: 56
+      identifier: identifier_example
+    entity_properties: null
+
+- name: Perform action create_entity_shape on data_entity with model_type = MESSAGE_ENTITY
+  oci_data_connectivity_data_entity_actions:
+    # required
+    model_type: MESSAGE_ENTITY
+    name: name_example
+
+    # optional
+    data_format:
+      # required
+      type: JSON
+
+      # optional
+      format_attribute:
+        # required
+        model_type: AVRO_FORMAT
+
+        # optional
+        compression: compression_example
+      compression_config:
+        # required
+        codec: NONE
     key: key_example
     model_version: model_version_example
     parent_ref:
@@ -3830,6 +4216,85 @@ data_entity:
             returned: on success
             type: bool
             sample: true
+        ref_data_object:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                model_type:
+                    description:
+                        - The input Operation type.
+                    returned: on success
+                    type: str
+                    sample: PROCEDURE
+                model_version:
+                    description:
+                        - The object's model version.
+                    returned: on success
+                    type: str
+                    sample: model_version_example
+                parent_ref:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        parent:
+                            description:
+                                - Key of the parent object.
+                            returned: on success
+                            type: str
+                            sample: parent_example
+                name:
+                    description:
+                        - Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is
+                          unique, editable and is restricted to 1000 characters.
+                    returned: on success
+                    type: str
+                    sample: name_example
+                object_version:
+                    description:
+                        - The version of the object that is used to track changes in the object instance.
+                    returned: on success
+                    type: int
+                    sample: 56
+                resource_name:
+                    description:
+                        - The resource name.
+                    returned: on success
+                    type: str
+                    sample: resource_name_example
+                object_status:
+                    description:
+                        - The status of an object that can be set to value 1 for shallow reference across objects, other values reserved.
+                    returned: on success
+                    type: int
+                    sample: 56
+                external_key:
+                    description:
+                        - The external key for the object.
+                    returned: on success
+                    type: str
+                    sample: external_key_example
+                key:
+                    description:
+                        - The object key.
+                    returned: on success
+                    type: str
+                    sample: key_example
+        mode:
+            description:
+                - Determines whether entity is treated as source or target
+            returned: on success
+            type: str
+            sample: IN
+        derived_properties:
+            description:
+                - Property-bag (key-value pairs where key is Shape Field resource name and value is object)
+            returned: on success
+            type: dict
+            sample: {}
         data_format:
             description:
                 - ""
@@ -3878,6 +4343,24 @@ data_entity:
                             returned: on success
                             type: str
                             sample: timestamp_format_example
+                        is_quote_all:
+                            description:
+                                - Defines whether the quote entire content while performing read/write.
+                            returned: on success
+                            type: bool
+                            sample: true
+                        is_multiline:
+                            description:
+                                - Defines whether the file has a multiline content
+                            returned: on success
+                            type: bool
+                            sample: true
+                        is_trailing_delimiter:
+                            description:
+                                - Defines whether the file has a trailing delimiter
+                            returned: on success
+                            type: bool
+                            sample: true
                         data_address:
                             description:
                                 - "Range of the data. For example, \\"'My Sheet'!B3:C35\\""
@@ -3938,6 +4421,12 @@ data_entity:
             returned: on success
             type: str
             sample: sql_query_example
+        entity_properties:
+            description:
+                - Map<String, String> for entity properties
+            returned: on success
+            type: dict
+            sample: {}
         model_type:
             description:
                 - The data entity type.
@@ -6037,6 +6526,21 @@ data_entity:
         "is_flex_data_store": true,
         "is_silent_error": true,
         "supports_incremental": true,
+        "ref_data_object": {
+            "model_type": "PROCEDURE",
+            "model_version": "model_version_example",
+            "parent_ref": {
+                "parent": "parent_example"
+            },
+            "name": "name_example",
+            "object_version": 56,
+            "resource_name": "resource_name_example",
+            "object_status": 56,
+            "external_key": "external_key_example",
+            "key": "key_example"
+        },
+        "mode": "IN",
+        "derived_properties": {},
         "data_format": {
             "format_attribute": {
                 "escape_character": "escape_character_example",
@@ -6045,6 +6549,9 @@ data_entity:
                 "has_header": true,
                 "is_file_pattern": true,
                 "timestamp_format": "timestamp_format_example",
+                "is_quote_all": true,
+                "is_multiline": true,
+                "is_trailing_delimiter": true,
                 "data_address": "data_address_example",
                 "header": true,
                 "password": "example-password",
@@ -6058,6 +6565,7 @@ data_entity:
             }
         },
         "sql_query": "sql_query_example",
+        "entity_properties": {},
         "model_type": "VIEW_ENTITY",
         "metadata": {
             "created_by": "created_by_example",
@@ -6575,6 +7083,9 @@ def main():
                             has_header=dict(type="bool"),
                             is_file_pattern=dict(type="bool"),
                             timestamp_format=dict(type="str"),
+                            is_quote_all=dict(type="bool"),
+                            is_multiline=dict(type="bool"),
+                            is_trailing_delimiter=dict(type="bool"),
                             compression=dict(type="str"),
                             model_type=dict(
                                 type="str",
@@ -6622,6 +7133,7 @@ def main():
                 required=True,
                 choices=[
                     "DATA_STORE_ENTITY",
+                    "MESSAGE_ENTITY",
                     "TABLE_ENTITY",
                     "SQL_ENTITY",
                     "FILE_ENTITY",
@@ -6920,7 +7432,10 @@ def main():
                 ),
             ),
             shape_id=dict(type="str"),
-            entity_type=dict(type="str", choices=["TABLE", "VIEW", "FILE", "SQL"]),
+            entity_type=dict(
+                type="str",
+                choices=["TABLE", "VIEW", "FILE", "SQL", "DATA_STORE", "MESSAGE"],
+            ),
             other_type_label=dict(type="str"),
             unique_keys=dict(
                 type="list",

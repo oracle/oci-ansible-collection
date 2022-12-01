@@ -37,12 +37,6 @@ options:
         description:
             - Subnet identifier for the customer-connected databases.
         type: str
-    dns_zones:
-        description:
-            - "The list of DNS zones to be used by the data assets to be harvested.
-              Example: custpvtsubnet.oraclevcn.com for data asset: db.custpvtsubnet.oraclevcn.com"
-        type: list
-        elements: str
     compartment_id:
         description:
             - Compartment Identifier
@@ -86,6 +80,13 @@ options:
             - This parameter is updatable.
         type: list
         elements: str
+    dns_zones:
+        description:
+            - "The list of DNS zones to be used by the data assets to be harvested.
+              Example: custpvtsubnet.oraclevcn.com for data asset: db.custpvtsubnet.oraclevcn.com"
+            - This parameter is updatable.
+        type: list
+        elements: str
     endpoint_id:
         description:
             - DCMS endpoint ID.
@@ -124,12 +125,12 @@ EXAMPLES = """
     # optional
     vcn_id: "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx"
     subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-    dns_zones: [ "dns_zones_example" ]
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     description: description_example
     endpoint_size: 56
     nsg_ids: [ "nsg_ids_example" ]
+    dns_zones: [ "dns_zones_example" ]
     registry_id: "ocid1.registry.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update endpoint
@@ -144,6 +145,7 @@ EXAMPLES = """
     display_name: display_name_example
     endpoint_size: 56
     nsg_ids: [ "nsg_ids_example" ]
+    dns_zones: [ "dns_zones_example" ]
     registry_id: "ocid1.registry.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Update endpoint using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
@@ -158,6 +160,7 @@ EXAMPLES = """
     description: description_example
     endpoint_size: 56
     nsg_ids: [ "nsg_ids_example" ]
+    dns_zones: [ "dns_zones_example" ]
     registry_id: "ocid1.registry.oc1..xxxxxxEXAMPLExxxxxx"
 
 - name: Delete endpoint
@@ -468,7 +471,6 @@ def main():
         dict(
             vcn_id=dict(type="str"),
             subnet_id=dict(type="str"),
-            dns_zones=dict(type="list", elements="str"),
             compartment_id=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
@@ -476,6 +478,7 @@ def main():
             display_name=dict(aliases=["name"], type="str"),
             endpoint_size=dict(type="int"),
             nsg_ids=dict(type="list", elements="str"),
+            dns_zones=dict(type="list", elements="str"),
             endpoint_id=dict(aliases=["id"], type="str"),
             registry_id=dict(type="str"),
             is_force_operation=dict(type="bool"),
