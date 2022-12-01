@@ -121,25 +121,44 @@ snapshots:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        snapshot_type:
+            description:
+                - Specifies generation type of the snapshot.
+            returned: on success
+            type: str
+            sample: USER
+        snapshot_time:
+            description:
+                - "The date and time the snapshot was taken, expressed
+                  in L(RFC 3339,https://tools.ietf.org/rfc/rfc3339) timestamp format.
+                  This value might be the same or different from `timeCreated` depending
+                  on the following factors:
+                  - If the snapshot is created in the original file system directory.
+                  - If the snapshot is cloned from a file system.
+                  - If the snapshot is replicated from a file system."
+                - "Example: `2020-08-25T21:10:29.600Z`"
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         provenance_id:
             description:
                 - An L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) identifying the parent from which this snapshot was cloned.
                   If this snapshot was not cloned, then the `provenanceId` is the same as the snapshot `id` value.
                   If this snapshot was cloned, then the `provenanceId` value is the parent's `provenanceId`.
-                  See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm).
+                  See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningFS.htm).
             returned: on success
             type: str
             sample: "ocid1.provenance.oc1..xxxxxxEXAMPLExxxxxx"
         is_clone_source:
             description:
                 - Specifies whether the snapshot has been cloned.
-                  See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm).
+                  See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningFS.htm).
             returned: on success
             type: bool
             sample: true
         lifecycle_details:
             description:
-                - Additional information about the current 'lifecycleState'.
+                - Additional information about the current `lifecycleState`.
             returned: on success
             type: str
             sample: lifecycle_details_example
@@ -166,6 +185,8 @@ snapshots:
         "lifecycle_state": "CREATING",
         "name": "name_example",
         "time_created": "2013-10-20T19:20:30+01:00",
+        "snapshot_type": "USER",
+        "snapshot_time": "2013-10-20T19:20:30+01:00",
         "provenance_id": "ocid1.provenance.oc1..xxxxxxEXAMPLExxxxxx",
         "is_clone_source": true,
         "lifecycle_details": "lifecycle_details_example",

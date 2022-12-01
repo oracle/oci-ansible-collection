@@ -23,13 +23,13 @@ module: oci_threat_intelligence_indicator_count_facts
 short_description: Fetches details about one or multiple IndicatorCount resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple IndicatorCount resources in Oracle Cloud Infrastructure
-    - Get the current count of each indicator type.  Results can be sorted ASC or DESC by count.
+    - Get the current count of each threat indicator type. Indicator counts can be sorted in ascending or descending order.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
         description:
-            - The ID of the tenancy to use to filter results.
+            - The OCID of the tenancy (root compartment) that is used to filter results.
         type: str
         required: true
     sort_order:
@@ -68,19 +68,19 @@ indicator_counts:
             contains:
                 compartment_id:
                     description:
-                        - Compartment Identifier
+                        - The compartment OCID that contains the indicator type.
                     returned: on success
                     type: str
                     sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
                 type:
                     description:
-                        - The indicator type that corresponds to the count.
+                        - The indicator type that was counted.
                     returned: on success
                     type: str
                     sample: DOMAIN_NAME
         count:
             description:
-                - The count of indicators in the group
+                - The count of indicators in the group.
             returned: on success
             type: int
             sample: 56

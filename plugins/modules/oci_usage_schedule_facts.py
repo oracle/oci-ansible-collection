@@ -87,7 +87,7 @@ schedules:
     contains:
         compartment_id:
             description:
-                - The tenancy of the customer
+                - The customer tenancy.
                 - Returned for get operation
             returned: on success
             type: str
@@ -101,28 +101,42 @@ schedules:
             contains:
                 location_type:
                     description:
-                        - Defines the type of location where the usage/cost CSVs will be stored
+                        - Defines the type of location where the usage or cost CSVs will be stored.
                     returned: on success
                     type: str
                     sample: OBJECT_STORAGE
                 region:
                     description:
-                        - The destination Object Store Region specified by customer
+                        - The destination Object Store Region specified by the customer.
                     returned: on success
                     type: str
                     sample: us-phoenix-1
                 namespace:
                     description:
-                        - The namespace needed to determine object storage bucket.
+                        - The namespace needed to determine the object storage bucket.
                     returned: on success
                     type: str
                     sample: namespace_example
                 bucket_name:
                     description:
-                        - The bucket name where usage/cost CSVs will be uploaded
+                        - The bucket name where usage or cost CSVs will be uploaded.
                     returned: on success
                     type: str
                     sample: bucket_name_example
+        output_file_format:
+            description:
+                - Specifies supported output file format.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: CSV
+        saved_report_id:
+            description:
+                - The saved report id which can also be used to generate query.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.savedreport.oc1..xxxxxxEXAMPLExxxxxx"
         query_properties:
             description:
                 - ""
@@ -274,7 +288,7 @@ schedules:
                     sample: USAGE
                 is_aggregate_by_time:
                     description:
-                        - Specifies whether aggregated by time. If isAggregateByTime is true, all usage/cost over the query time period will be added up.
+                        - Specifies whether aggregated by time. If isAggregateByTime is true, all usage or cost over the query time period will be added up.
                     returned: on success
                     type: bool
                     sample: true
@@ -292,7 +306,7 @@ schedules:
                             sample: LAST_7_DAYS
                         date_range_type:
                             description:
-                                - Defines whether the schedule date range is STATIC or DYNAMIC
+                                - Defines whether the schedule date range is STATIC or DYNAMIC.
                             returned: on success
                             type: str
                             sample: STATIC
@@ -310,33 +324,46 @@ schedules:
                             sample: "2013-10-20T19:20:30+01:00"
         time_created:
             description:
-                - The date and time of when the schedule was created
+                - The date and time the schedule was created.
                 - Returned for get operation
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
         id:
             description:
-                - The OCID representing unique shedule
+                - The OCID representing a unique shedule.
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         name:
             description:
-                - The unique name of the schedule created by the user
+                - The unique name of the schedule created by the user.
             returned: on success
             type: str
             sample: name_example
+        description:
+            description:
+                - The description of the schedule.
+            returned: on success
+            type: str
+            sample: description_example
+        time_next_run:
+            description:
+                - The date and time of the next job execution.
+            returned: on success
+            type: str
+            sample: "2013-10-20T19:20:30+01:00"
         schedule_recurrences:
             description:
-                - "In x-obmcs-recurring-time format shown here: https://datatracker.ietf.org/doc/html/rfc5545#section-3.3.10
-                  Describes the frequency of when the schedule will be run"
+                - "Specifies the frequency according to when the schedule will be run,
+                  in the x-obmcs-recurring-time format described in L(RFC 5545 section 3.3.10,https://datatracker.ietf.org/doc/html/rfc5545#section-3.3.10).
+                  Supported values are : ONE_TIME, DAILY, WEEKLY and MONTHLY."
             returned: on success
             type: str
             sample: schedule_recurrences_example
         time_scheduled:
             description:
-                - The date and time of the first time job execution
+                - The date and time of the first time job execution.
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
@@ -364,7 +391,7 @@ schedules:
             sample: {}
         lifecycle_state:
             description:
-                - The lifecycle state of the schedule
+                - The schedule lifecycle state.
             returned: on success
             type: str
             sample: ACTIVE
@@ -376,6 +403,8 @@ schedules:
             "namespace": "namespace_example",
             "bucket_name": "bucket_name_example"
         },
+        "output_file_format": "CSV",
+        "saved_report_id": "ocid1.savedreport.oc1..xxxxxxEXAMPLExxxxxx",
         "query_properties": {
             "group_by": [],
             "group_by_tag": [{
@@ -415,6 +444,8 @@ schedules:
         "time_created": "2013-10-20T19:20:30+01:00",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
+        "description": "description_example",
+        "time_next_run": "2013-10-20T19:20:30+01:00",
         "schedule_recurrences": "schedule_recurrences_example",
         "time_scheduled": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},

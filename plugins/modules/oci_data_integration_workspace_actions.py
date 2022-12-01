@@ -201,6 +201,24 @@ workspace:
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        endpoint_id:
+            description:
+                - OCID of the private endpoint associated with the container/workspace.
+            returned: on success
+            type: str
+            sample: "ocid1.endpoint.oc1..xxxxxxEXAMPLExxxxxx"
+        endpoint_name:
+            description:
+                - Name of the private endpoint associated with the container/workspace.
+            returned: on success
+            type: str
+            sample: endpoint_name_example
+        registry_id:
+            description:
+                - DCMS Registry ID associated with the container/workspace.
+            returned: on success
+            type: str
+            sample: "ocid1.registry.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx",
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
@@ -216,7 +234,10 @@ workspace:
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "state_message": "state_message_example",
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "endpoint_id": "ocid1.endpoint.oc1..xxxxxxEXAMPLExxxxxx",
+        "endpoint_name": "endpoint_name_example",
+        "registry_id": "ocid1.registry.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """
 

@@ -30,7 +30,7 @@ oracle.oci.oci_usage_schedule -- Manage a Schedule resource in Oracle Cloud Infr
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.2.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.3.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -212,7 +212,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The tenancy of the customer</div>
+                                            <div>The customer tenancy.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for update when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                             <div>Required for delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
@@ -261,6 +261,22 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Defined tags for this resource. Each key is predefined and scoped to a namespace. See <a href='https://docs.cloud.oracle.com/Content/General/Concepts/resourcetags.htm'>Resource Tags</a>. Example: `{&quot;foo-namespace&quot;: {&quot;bar-key&quot;: &quot;value&quot;}}`</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-description"></div>
+                    <b>description</b>
+                    <a class="ansibleOptionLink" href="#parameter-description" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The description of the schedule.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -326,9 +342,29 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The unique name of the schedule created by the user</div>
+                                            <div>The unique name of the user-created schedule.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-output_file_format"></div>
+                    <b>output_file_format</b>
+                    <a class="ansibleOptionLink" href="#parameter-output_file_format" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>CSV</li>
+                                                                                                                                                                                                <li>PDF</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Specifies supported output file format.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -344,7 +380,6 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div></div>
-                                            <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -397,7 +432,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Defines whether the schedule date range is STATIC or DYNAMIC</div>
+                                            <div>Defines whether the schedule date range is STATIC or DYNAMIC.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -414,12 +449,17 @@ Parameters
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>LAST_7_DAYS</li>
+                                                                                                                                                                                                <li>LAST_10_DAYS</li>
                                                                                                                                                                                                 <li>LAST_CALENDAR_WEEK</li>
                                                                                                                                                                                                 <li>LAST_CALENDAR_MONTH</li>
+                                                                                                                                                                                                <li>LAST_2_CALENDAR_MONTHS</li>
+                                                                                                                                                                                                <li>LAST_3_CALENDAR_MONTHS</li>
+                                                                                                                                                                                                <li>LAST_6_CALENDAR_MONTHS</li>
                                                                                                                                                                                                 <li>LAST_30_DAYS</li>
                                                                                                                                                                                                 <li>MONTH_TO_DATE</li>
                                                                                                                                                                                                 <li>LAST_YEAR</li>
                                                                                                                                                                                                 <li>YEAR_TODATE</li>
+                                                                                                                                                                                                <li>ALL</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -845,7 +885,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether aggregated by time. If isAggregateByTime is true, all usage/cost over the query time period will be added up.</div>
+                                            <div>Specifies whether aggregated by time. If isAggregateByTime is true, all usage or cost over the query time period will be added up.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -899,6 +939,7 @@ Parameters
                                                                 <td>
                                             <div></div>
                                             <div>Required for create using <em>state=present</em>.</div>
+                                            <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -914,7 +955,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The bucket name where usage/cost CSVs will be uploaded</div>
+                                            <div>The bucket name where usage or cost CSVs will be uploaded.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -933,7 +974,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Defines the type of location where the usage/cost CSVs will be stored</div>
+                                            <div>Defines the type of location where the usage or cost CSVs will be stored.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -949,7 +990,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The namespace needed to determine object storage bucket.</div>
+                                            <div>The namespace needed to determine the object storage bucket.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -965,10 +1006,25 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The destination Object Store Region specified by customer</div>
+                                            <div>The destination Object Store Region specified by the customer.</div>
                                                         </td>
             </tr>
                     
+                                <tr>
+                                                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="parameter-saved_report_id"></div>
+                    <b>saved_report_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-saved_report_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The saved report id which can also be used to generate query.</div>
+                                                        </td>
+            </tr>
                                 <tr>
                                                                 <td colspan="4">
                     <div class="ansibleOptionAnchor" id="parameter-schedule_id"></div>
@@ -999,7 +1055,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>In x-obmcs-recurring-time format shown here: https://datatracker.ietf.org/doc/html/rfc5545#section-3.3.10 Describes the frequency of when the schedule will be run</div>
+                                            <div>Specifies the frequency according to when the schedule will be run, in the x-obmcs-recurring-time format described in <a href='https://datatracker.ietf.org/doc/html/rfc5545#section-3.3.10'>RFC 5545 section 3.3.10</a>. Supported values are : ONE_TIME, DAILY, WEEKLY and MONTHLY.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
@@ -1051,7 +1107,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The date and time of the first time job execution</div>
+                                            <div>The date and time of the first time job execution.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
@@ -1119,14 +1175,17 @@ Examples
         # required
         name: name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        schedule_recurrences: schedule_recurrences_example
+        time_scheduled: time_scheduled_example
         result_location:
           # required
           location_type: OBJECT_STORAGE
           region: us-phoenix-1
           namespace: namespace_example
           bucket_name: bucket_name_example
-        schedule_recurrences: schedule_recurrences_example
-        time_scheduled: time_scheduled_example
+
+        # optional
+        saved_report_id: "ocid1.savedreport.oc1..xxxxxxEXAMPLExxxxxx"
         query_properties:
           # required
           granularity: DAILY
@@ -1164,8 +1223,8 @@ Examples
           compartment_depth: 3.4
           query_type: USAGE
           is_aggregate_by_time: true
-
-        # optional
+        description: description_example
+        output_file_format: CSV
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -1175,6 +1234,14 @@ Examples
         schedule_id: "ocid1.schedule.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
+        description: description_example
+        output_file_format: CSV
+        result_location:
+          # required
+          location_type: OBJECT_STORAGE
+          region: us-phoenix-1
+          namespace: namespace_example
+          bucket_name: bucket_name_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -1185,6 +1252,14 @@ Examples
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
+        description: description_example
+        output_file_format: CSV
+        result_location:
+          # required
+          location_type: OBJECT_STORAGE
+          region: us-phoenix-1
+          namespace: namespace_example
+          bucket_name: bucket_name_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -1236,7 +1311,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Schedule resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;query_properties&#x27;: {&#x27;compartment_depth&#x27;: 10, &#x27;date_range&#x27;: {&#x27;date_range_type&#x27;: &#x27;STATIC&#x27;, &#x27;dynamic_date_range_type&#x27;: &#x27;LAST_7_DAYS&#x27;, &#x27;time_usage_ended&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_usage_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;filter&#x27;: {&#x27;dimensions&#x27;: [{&#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;filters&#x27;: [{&#x27;dimensions&#x27;: [], &#x27;filters&#x27;: [], &#x27;operator&#x27;: &#x27;AND&#x27;, &#x27;tags&#x27;: []}], &#x27;operator&#x27;: &#x27;AND&#x27;, &#x27;tags&#x27;: [{&#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}, &#x27;granularity&#x27;: &#x27;DAILY&#x27;, &#x27;group_by&#x27;: [], &#x27;group_by_tag&#x27;: [{&#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;is_aggregate_by_time&#x27;: True, &#x27;query_type&#x27;: &#x27;USAGE&#x27;}, &#x27;result_location&#x27;: {&#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;location_type&#x27;: &#x27;OBJECT_STORAGE&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;region&#x27;: &#x27;us-phoenix-1&#x27;}, &#x27;schedule_recurrences&#x27;: &#x27;schedule_recurrences_example&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_scheduled&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;output_file_format&#x27;: &#x27;CSV&#x27;, &#x27;query_properties&#x27;: {&#x27;compartment_depth&#x27;: 10, &#x27;date_range&#x27;: {&#x27;date_range_type&#x27;: &#x27;STATIC&#x27;, &#x27;dynamic_date_range_type&#x27;: &#x27;LAST_7_DAYS&#x27;, &#x27;time_usage_ended&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_usage_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;filter&#x27;: {&#x27;dimensions&#x27;: [{&#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;filters&#x27;: [{&#x27;dimensions&#x27;: [], &#x27;filters&#x27;: [], &#x27;operator&#x27;: &#x27;AND&#x27;, &#x27;tags&#x27;: []}], &#x27;operator&#x27;: &#x27;AND&#x27;, &#x27;tags&#x27;: [{&#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}, &#x27;granularity&#x27;: &#x27;DAILY&#x27;, &#x27;group_by&#x27;: [], &#x27;group_by_tag&#x27;: [{&#x27;key&#x27;: &#x27;key_example&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;is_aggregate_by_time&#x27;: True, &#x27;query_type&#x27;: &#x27;USAGE&#x27;}, &#x27;result_location&#x27;: {&#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;location_type&#x27;: &#x27;OBJECT_STORAGE&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;region&#x27;: &#x27;us-phoenix-1&#x27;}, &#x27;saved_report_id&#x27;: &#x27;ocid1.savedreport.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;schedule_recurrences&#x27;: &#x27;schedule_recurrences_example&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_next_run&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_scheduled&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1251,7 +1326,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The tenancy of the customer</div>
+                                            <div>The customer tenancy.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1273,6 +1348,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-schedule/description"></div>
+                    <b>description</b>
+                    <a class="ansibleOptionLink" href="#return-schedule/description" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The description of the schedule.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">description_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1305,7 +1398,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The OCID representing unique shedule</div>
+                                            <div>The OCID representing a unique shedule.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx</div>
@@ -1323,7 +1416,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The lifecycle state of the schedule</div>
+                                            <div>The schedule lifecycle state.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ACTIVE</div>
@@ -1341,10 +1434,28 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The unique name of the schedule created by the user</div>
+                                            <div>The unique name of the schedule created by the user.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-schedule/output_file_format"></div>
+                    <b>output_file_format</b>
+                    <a class="ansibleOptionLink" href="#return-schedule/output_file_format" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Specifies supported output file format.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CSV</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1413,7 +1524,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Defines whether the schedule date range is STATIC or DYNAMIC</div>
+                                            <div>Defines whether the schedule date range is STATIC or DYNAMIC.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">STATIC</div>
@@ -1885,7 +1996,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Specifies whether aggregated by time. If isAggregateByTime is true, all usage/cost over the query time period will be added up.</div>
+                                            <div>Specifies whether aggregated by time. If isAggregateByTime is true, all usage or cost over the query time period will be added up.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
@@ -1940,7 +2051,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The bucket name where usage/cost CSVs will be uploaded</div>
+                                            <div>The bucket name where usage or cost CSVs will be uploaded.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">bucket_name_example</div>
@@ -1959,7 +2070,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Defines the type of location where the usage/cost CSVs will be stored</div>
+                                            <div>Defines the type of location where the usage or cost CSVs will be stored.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">OBJECT_STORAGE</div>
@@ -1978,7 +2089,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The namespace needed to determine object storage bucket.</div>
+                                            <div>The namespace needed to determine the object storage bucket.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">namespace_example</div>
@@ -1997,13 +2108,31 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The destination Object Store Region specified by customer</div>
+                                            <div>The destination Object Store Region specified by the customer.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">us-phoenix-1</div>
                                     </td>
             </tr>
                     
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-schedule/saved_report_id"></div>
+                    <b>saved_report_id</b>
+                    <a class="ansibleOptionLink" href="#return-schedule/saved_report_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The saved report id which can also be used to generate query.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.savedreport.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="4">
@@ -2016,7 +2145,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>In x-obmcs-recurring-time format shown here: https://datatracker.ietf.org/doc/html/rfc5545#section-3.3.10 Describes the frequency of when the schedule will be run</div>
+                                            <div>Specifies the frequency according to when the schedule will be run, in the x-obmcs-recurring-time format described in <a href='https://datatracker.ietf.org/doc/html/rfc5545#section-3.3.10'>RFC 5545 section 3.3.10</a>. Supported values are : ONE_TIME, DAILY, WEEKLY and MONTHLY.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">schedule_recurrences_example</div>
@@ -2050,7 +2179,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time of when the schedule was created</div>
+                                            <div>The date and time the schedule was created.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-schedule/time_next_run"></div>
+                    <b>time_next_run</b>
+                    <a class="ansibleOptionLink" href="#return-schedule/time_next_run" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The date and time of the next job execution.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
@@ -2068,7 +2215,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The date and time of the first time job execution</div>
+                                            <div>The date and time of the first time job execution.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>

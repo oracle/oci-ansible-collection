@@ -30,7 +30,7 @@ oracle.oci.oci_file_storage_mount_target -- Manage a MountTarget resource in Ora
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.2.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.3.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -355,6 +355,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The hostname for the mount target&#x27;s IP address, used for DNS resolution. The value is the hostname portion of the private IP address&#x27;s fully qualified domain name (FQDN). For example, `files-1` in the FQDN `files-1.subnet123.vcn1.oraclevcn.com`. Must be unique across all VNICs in the subnet and comply with <a href='https://tools.ietf.org/html/rfc952'>RFC 952</a> and <a href='https://tools.ietf.org/html/rfc1123'>RFC 1123</a>.</div>
+                                            <div>Note: This attribute value is stored in the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/'>PrivateIp</a> resource, not in the `mountTarget` resource. To update the `hostnameLabel`, use `GetMountTarget` to obtain the <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCIDs</a> of the mount target&#x27;s private IPs (`privateIpIds`). Then, you can use <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/UpdatePrivateIp'>UpdatePrivateIp</a> to update the `hostnameLabel` value.</div>
                                             <div>For more information, see <a href='https://docs.cloud.oracle.com/Content/Network/Concepts/dns.htm'>DNS in Your Virtual Cloud Network</a>.</div>
                                             <div>Example: `files-1`</div>
                                                         </td>
@@ -372,6 +373,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A private IP address of your choice. Must be an available IP address within the subnet&#x27;s CIDR. If you don&#x27;t specify a value, Oracle automatically assigns a private IP address from the subnet.</div>
+                                            <div>Note: This attribute value is stored in the <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/'>PrivateIp</a> resource, not in the `mountTarget` resource. To update the `ipAddress`, use `GetMountTarget` to obtain the <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCIDs</a> of the mount target&#x27;s private IPs (`privateIpIds`). Then, you can use <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/UpdatePrivateIp'>UpdatePrivateIp</a> to update the `ipAddress` value.</div>
                                             <div>Example: `10.0.3.3`</div>
                                                         </td>
             </tr>

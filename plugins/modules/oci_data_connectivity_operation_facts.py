@@ -110,6 +110,25 @@ operations:
     returned: on success
     type: complex
     contains:
+        operation_attributes:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                model_type:
+                    description:
+                        - The operation type.
+                    returned: on success
+                    type: str
+                    sample: GENERIC_REST_API_ATTRIBUTES
+                server_url:
+                    description:
+                        - The server Url serving operation.
+                    returned: on success
+                    type: str
+                    sample: server_url_example
         key:
             description:
                 - The object key.
@@ -1062,7 +1081,7 @@ operations:
                                     sample: description_example
         name:
             description:
-                - The operation name.
+                - The operation name. This value is unique.
                 - Returned for get operation
             returned: on success
             type: str
@@ -1076,7 +1095,7 @@ operations:
             sample: 56
         external_key:
             description:
-                - The external key of the object.
+                - The external key for the object.
                 - Returned for get operation
             returned: on success
             type: str
@@ -1217,6 +1236,10 @@ operations:
                     type: bool
                     sample: true
     sample: [{
+        "operation_attributes": {
+            "model_type": "GENERIC_REST_API_ATTRIBUTES",
+            "server_url": "server_url_example"
+        },
         "key": "key_example",
         "model_version": "model_version_example",
         "parent_ref": {

@@ -79,6 +79,13 @@ options:
               Must be unique across all VNICs in the subnet and comply
               with L(RFC 952,https://tools.ietf.org/html/rfc952)
               and L(RFC 1123,https://tools.ietf.org/html/rfc1123).
+            - "Note: This attribute value is stored in the L(PrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/) resource,
+              not in the `mountTarget` resource.
+              To update the `hostnameLabel`, use `GetMountTarget` to obtain the
+              L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the mount target's
+              private IPs (`privateIpIds`). Then, you can use
+              L(UpdatePrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/UpdatePrivateIp)
+              to update the `hostnameLabel` value."
             - For more information, see
               L(DNS in Your Virtual Cloud Network,https://docs.cloud.oracle.com/Content/Network/Concepts/dns.htm).
             - "Example: `files-1`"
@@ -88,6 +95,13 @@ options:
             - A private IP address of your choice. Must be an available IP address within
               the subnet's CIDR. If you don't specify a value, Oracle automatically
               assigns a private IP address from the subnet.
+            - "Note: This attribute value is stored in the L(PrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/) resource,
+              not in the `mountTarget` resource.
+              To update the `ipAddress`, use `GetMountTarget` to obtain the
+              L(OCIDs,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the mount target's
+              private IPs (`privateIpIds`). Then, you can use
+              L(UpdatePrivateIp,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/iaas/20160918/PrivateIp/UpdatePrivateIp)
+              to update the `ipAddress` value."
             - "Example: `10.0.3.3`"
         type: str
     subnet_id:

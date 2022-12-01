@@ -30,7 +30,7 @@ oracle.oci.oci_data_connectivity_data_entity_actions -- Perform actions on a Dat
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.2.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.3.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -298,7 +298,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div></div>
-                                            <div>Applicable when model_type is &#x27;FILE_ENTITY&#x27;</div>
+                                            <div>Applicable when model_type is one of [&#x27;FILE_ENTITY&#x27;, &#x27;MESSAGE_ENTITY&#x27;]</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -315,7 +315,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div></div>
-                                            <div>Applicable when model_type is &#x27;FILE_ENTITY&#x27;</div>
+                                            <div>Applicable when model_type is &#x27;MESSAGE_ENTITY&#x27;</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -342,7 +342,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Compression algorithm</div>
-                                            <div>Required when model_type is &#x27;FILE_ENTITY&#x27;</div>
+                                            <div>Required when model_type is &#x27;MESSAGE_ENTITY&#x27;</div>
                                                         </td>
             </tr>
                     
@@ -360,7 +360,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div></div>
-                                            <div>Applicable when model_type is &#x27;FILE_ENTITY&#x27;</div>
+                                            <div>Applicable when model_type is &#x27;MESSAGE_ENTITY&#x27;</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -523,6 +523,72 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="6">
+                    <div class="ansibleOptionAnchor" id="parameter-data_format/format_attribute/is_multiline"></div>
+                    <b>is_multiline</b>
+                    <a class="ansibleOptionLink" href="#parameter-data_format/format_attribute/is_multiline" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Defines whether the file has a multiline content</div>
+                                            <div>Applicable when model_type is &#x27;CSV_FORMAT&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="6">
+                    <div class="ansibleOptionAnchor" id="parameter-data_format/format_attribute/is_quote_all"></div>
+                    <b>is_quote_all</b>
+                    <a class="ansibleOptionLink" href="#parameter-data_format/format_attribute/is_quote_all" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Defines whether the quote entire content while performing read/write.</div>
+                                            <div>Applicable when model_type is &#x27;CSV_FORMAT&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="6">
+                    <div class="ansibleOptionAnchor" id="parameter-data_format/format_attribute/is_trailing_delimiter"></div>
+                    <b>is_trailing_delimiter</b>
+                    <a class="ansibleOptionLink" href="#parameter-data_format/format_attribute/is_trailing_delimiter" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Defines whether the file has a trailing delimiter</div>
+                                            <div>Applicable when model_type is &#x27;CSV_FORMAT&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="6">
                     <div class="ansibleOptionAnchor" id="parameter-data_format/format_attribute/model_type"></div>
                     <b>model_type</b>
                     <a class="ansibleOptionLink" href="#parameter-data_format/format_attribute/model_type" title="Permalink to this option"></a>
@@ -618,7 +684,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>type</div>
-                                            <div>Required when model_type is &#x27;FILE_ENTITY&#x27;</div>
+                                            <div>Required when model_type is &#x27;MESSAGE_ENTITY&#x27;</div>
                                                         </td>
             </tr>
                     
@@ -667,6 +733,8 @@ Parameters
                                                                                                                                                                                                 <li>VIEW</li>
                                                                                                                                                                                                 <li>FILE</li>
                                                                                                                                                                                                 <li>SQL</li>
+                                                                                                                                                                                                <li>DATA_STORE</li>
+                                                                                                                                                                                                <li>MESSAGE</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -2862,6 +2930,7 @@ Parameters
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>DATA_STORE_ENTITY</li>
+                                                                                                                                                                                                <li>MESSAGE_ENTITY</li>
                                                                                                                                                                                                 <li>TABLE_ENTITY</li>
                                                                                                                                                                                                 <li>SQL_ENTITY</li>
                                                                                                                                                                                                 <li>FILE_ENTITY</li>
@@ -7588,6 +7657,374 @@ Examples
         name: name_example
 
         # optional
+        key: key_example
+        model_version: model_version_example
+        parent_ref:
+          # optional
+          parent: parent_example
+        object_version: 56
+        external_key: external_key_example
+        shape:
+          # required
+          model_type: SHAPE
+
+          # optional
+          key: key_example
+          model_version: model_version_example
+          parent_ref:
+            # optional
+            parent: parent_example
+          config_values:
+            # optional
+            config_param_values:
+              # optional
+              string_value: string_value_example
+              int_value: 56
+              object_value: null
+              ref_value: null
+              parameter_value: parameter_value_example
+            parent_ref:
+              # optional
+              parent: parent_example
+          object_status: 56
+          name: name_example
+          description: description_example
+          type:
+            # required
+            model_type: CONFIGURED_TYPE
+
+            # optional
+            wrapped_type:
+              # required
+              model_type: STRUCTURED_TYPE
+
+              # optional
+              key: key_example
+              model_version: model_version_example
+              parent_ref: null
+              name: name_example
+              object_status: 56
+              description: description_example
+            config_values:
+              # optional
+              config_param_values:
+                # optional
+                string_value: string_value_example
+                int_value: 56
+                object_value: null
+                ref_value: null
+                parameter_value: parameter_value_example
+              parent_ref:
+                # optional
+                parent: parent_example
+            key: key_example
+            model_version: model_version_example
+            parent_ref:
+              # optional
+              parent: parent_example
+            name: name_example
+            object_status: 56
+            description: description_example
+            config_definition:
+              # optional
+              key: key_example
+              model_type: model_type_example
+              model_version: model_version_example
+              parent_ref:
+                # optional
+                parent: parent_example
+              name: name_example
+              is_contained: true
+              object_status: 56
+              config_parameter_definitions:
+                # optional
+                parameter_type:
+                  # required
+                  model_type: STRUCTURED_TYPE
+
+                  # optional
+                  key: key_example
+                  model_version: model_version_example
+                  parent_ref: null
+                  name: name_example
+                  object_status: 56
+                  description: description_example
+                parameter_name: parameter_name_example
+                description: description_example
+                default_value: null
+                class_field_name: class_field_name_example
+                is_static: true
+                is_class_field_value: true
+        shape_id: "ocid1.shape.oc1..xxxxxxEXAMPLExxxxxx"
+        entity_type: TABLE
+        other_type_label: other_type_label_example
+        unique_keys:
+        - # required
+          model_type: PRIMARY_KEY
+
+          # optional
+          key: key_example
+          model_version: model_version_example
+          parent_ref:
+            # optional
+            parent: parent_example
+          name: name_example
+          attribute_refs:
+          - # optional
+            position: 56
+            attribute:
+              # required
+              model_type: SHAPE
+
+              # optional
+              key: key_example
+              model_version: model_version_example
+              parent_ref:
+                # optional
+                parent: parent_example
+              config_values:
+                # optional
+                config_param_values:
+                  # optional
+                  string_value: string_value_example
+                  int_value: 56
+                  object_value: null
+                  ref_value: null
+                  parameter_value: parameter_value_example
+                parent_ref:
+                  # optional
+                  parent: parent_example
+              object_status: 56
+              name: name_example
+              description: description_example
+              type: null
+              labels: [ "labels_example" ]
+              native_shape_field:
+                # required
+                model_type: SHAPE
+                type: null
+
+                # optional
+                key: key_example
+                model_version: model_version_example
+                parent_ref:
+                  # optional
+                  parent: parent_example
+                config_values:
+                  # optional
+                  config_param_values:
+                    # optional
+                    string_value: string_value_example
+                    int_value: 56
+                    object_value: null
+                    ref_value: null
+                    parameter_value: parameter_value_example
+                  parent_ref:
+                    # optional
+                    parent: parent_example
+                object_status: 56
+                name: name_example
+                description: description_example
+                position: 56
+                default_value_string: default_value_string_example
+                is_mandatory: true
+          object_status: 56
+        foreign_keys:
+        - # required
+          model_type: FOREIGN_KEY
+
+          # optional
+          key: key_example
+          model_version: model_version_example
+          parent_ref:
+            # optional
+            parent: parent_example
+          name: name_example
+          attribute_refs:
+          - # optional
+            position: 56
+            attribute:
+              # required
+              model_type: SHAPE
+
+              # optional
+              key: key_example
+              model_version: model_version_example
+              parent_ref:
+                # optional
+                parent: parent_example
+              config_values:
+                # optional
+                config_param_values:
+                  # optional
+                  string_value: string_value_example
+                  int_value: 56
+                  object_value: null
+                  ref_value: null
+                  parameter_value: parameter_value_example
+                parent_ref:
+                  # optional
+                  parent: parent_example
+              object_status: 56
+              name: name_example
+              description: description_example
+              type: null
+              labels: [ "labels_example" ]
+              native_shape_field:
+                # required
+                model_type: SHAPE
+                type: null
+
+                # optional
+                key: key_example
+                model_version: model_version_example
+                parent_ref:
+                  # optional
+                  parent: parent_example
+                config_values:
+                  # optional
+                  config_param_values:
+                    # optional
+                    string_value: string_value_example
+                    int_value: 56
+                    object_value: null
+                    ref_value: null
+                    parameter_value: parameter_value_example
+                  parent_ref:
+                    # optional
+                    parent: parent_example
+                object_status: 56
+                name: name_example
+                description: description_example
+                position: 56
+                default_value_string: default_value_string_example
+                is_mandatory: true
+          update_rule: 56
+          delete_rule: 56
+          reference_unique_key:
+            # required
+            model_type: PRIMARY_KEY
+
+            # optional
+            key: key_example
+            model_version: model_version_example
+            parent_ref:
+              # optional
+              parent: parent_example
+            name: name_example
+            attribute_refs:
+            - # optional
+              position: 56
+              attribute:
+                # required
+                model_type: SHAPE
+
+                # optional
+                key: key_example
+                model_version: model_version_example
+                parent_ref:
+                  # optional
+                  parent: parent_example
+                config_values:
+                  # optional
+                  config_param_values:
+                    # optional
+                    string_value: string_value_example
+                    int_value: 56
+                    object_value: null
+                    ref_value: null
+                    parameter_value: parameter_value_example
+                  parent_ref:
+                    # optional
+                    parent: parent_example
+                object_status: 56
+                name: name_example
+                description: description_example
+                type: null
+                labels: [ "labels_example" ]
+                native_shape_field:
+                  # required
+                  model_type: SHAPE
+                  type: null
+
+                  # optional
+                  key: key_example
+                  model_version: model_version_example
+                  parent_ref:
+                    # optional
+                    parent: parent_example
+                  config_values:
+                    # optional
+                    config_param_values:
+                      # optional
+                      string_value: string_value_example
+                      int_value: 56
+                      object_value: null
+                      ref_value: null
+                      parameter_value: parameter_value_example
+                    parent_ref:
+                      # optional
+                      parent: parent_example
+                  object_status: 56
+                  name: name_example
+                  description: description_example
+                  position: 56
+                  default_value_string: default_value_string_example
+                  is_mandatory: true
+            object_status: 56
+          object_status: 56
+        resource_name: resource_name_example
+        object_status: 56
+        identifier: identifier_example
+        types:
+          # optional
+          key: key_example
+          model_type: model_type_example
+          model_version: model_version_example
+          parent_ref:
+            # optional
+            parent: parent_example
+          name: name_example
+          description: description_example
+          object_version: 56
+          types:
+            # required
+            model_type: STRUCTURED_TYPE
+
+            # optional
+            key: key_example
+            model_version: model_version_example
+            parent_ref:
+              # optional
+              parent: parent_example
+            name: name_example
+            object_status: 56
+            description: description_example
+          object_status: 56
+          identifier: identifier_example
+        entity_properties: null
+
+    - name: Perform action create_entity_shape on data_entity with model_type = MESSAGE_ENTITY
+      oci_data_connectivity_data_entity_actions:
+        # required
+        model_type: MESSAGE_ENTITY
+        name: name_example
+
+        # optional
+        data_format:
+          # required
+          type: JSON
+
+          # optional
+          format_attribute:
+            # required
+            model_type: AVRO_FORMAT
+
+            # optional
+            compression: compression_example
+          compression_config:
+            # required
+            codec: NONE
         key: key_example
         model_version: model_version_example
         parent_ref:

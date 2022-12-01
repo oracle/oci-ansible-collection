@@ -1211,6 +1211,13 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                         )
                         continue
 
+                    ipv6_ip_addresses = [
+                        ipv6.ip_address
+                        for ipv6 in oci_common_utils.call_with_backoff(
+                            virtual_nw_client.list_ipv6s, vnic_id=vnic.id
+                        ).data
+                    ]
+
                     if instance_vars.get("id") == vnic_attachment.instance_id:
 
                         if getattr(vnic, "hostname_label", None):
@@ -1230,7 +1237,8 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                             instance_vars.update({"vlan": to_dict(vlan)})
                         instance_vars.update({"public_ip": vnic.public_ip})
                         instance_vars.update({"private_ip": vnic.private_ip})
-
+                        if ipv6_ip_addresses:
+                            instance_vars.update({"ipv6_ips": ipv6_ip_addresses})
                     host_name = self.get_hostname(instance_vars, vnic, region)
                     self.debug(
                         "hostname : {0} built for instance {1}".format(

@@ -30,7 +30,7 @@ oracle.oci.oci_data_connectivity_connection_validation -- Manage a ConnectionVal
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.2.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.3.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -56,7 +56,7 @@ Synopsis
 
 .. Description
 
-- This module allows the user to create and delete a ConnectionValidation resource in Oracle Cloud Infrastructure
+- This module allows the user to create a ConnectionValidation resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a connection validation.
 
 
@@ -258,7 +258,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The properties for the connection.</div>
+                                            <div>The properties of the connection.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -275,7 +275,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -309,7 +309,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>User-defined description for the connection.</div>
+                                            <div>User-defined description of the connection.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -325,7 +325,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The value can be modified.</div>
+                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can be modified.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -345,7 +345,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The default property for the connection.</div>
+                                            <div>The default property of the connection.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -361,7 +361,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Generated key that can be used in API calls to identify connection. On scenarios where reference to the connection is needed, a value can be passed in create.</div>
+                                            <div>Generated key that can be used in API calls to identify the connection. In scenarios where reference to the connection is required, a value can be passed in create.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -553,7 +553,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The full path to identify this object.</div>
+                                            <div>The full path to identify the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -591,7 +591,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether this object is a favorite or not.</div>
+                                            <div>Specifies whether this object is a favorite.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -608,7 +608,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Labels are keywords or tags that you can add to data assets, dataflows and so on. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or tags that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -742,7 +742,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -841,7 +841,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The external key for the object.</div>
+                                            <div>The external key of the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -858,7 +858,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The value can be modified.</div>
+                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can be modified.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1099,7 +1099,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The full path to identify this object.</div>
+                                            <div>The full path to identify the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1139,7 +1139,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether this object is a favorite or not.</div>
+                                            <div>Specifies whether this object is a favorite.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1157,7 +1157,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Labels are keywords or tags that you can add to data assets, dataflows and so on. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or tags that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1265,7 +1265,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The object&#x27;s type.</div>
+                                            <div>The object type.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1282,7 +1282,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The object&#x27;s model version.</div>
+                                            <div>The model version of the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1299,7 +1299,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1403,7 +1403,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>All the properties for the connection in a key-value map format.</div>
+                                            <div>All the properties of the connection in a key-value map format.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1453,7 +1453,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The id of the user who created the object.</div>
+                                            <div>The ID of the user who created the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1491,7 +1491,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether this object is a favorite or not.</div>
+                                            <div>Specifies whether the object is a favorite.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1525,7 +1525,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1593,7 +1593,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The id of the user who updated the object.</div>
+                                            <div>The ID of the user who updated the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1631,22 +1631,6 @@ Parameters
                                                         </td>
             </tr>
                     
-                                <tr>
-                                                                <td colspan="13">
-                    <div class="ansibleOptionAnchor" id="parameter-connection_validation_key"></div>
-                    <b>connection_validation_key</b>
-                    <a class="ansibleOptionLink" href="#parameter-connection_validation_key" title="Permalink to this option"></a>
-                    <div style="font-size: small">
-                        <span style="color: purple">string</span>
-                                                                    </div>
-                                                        </td>
-                                <td>
-                                                                                                                                                            </td>
-                                                                <td>
-                                            <div>The key of the connection validation.</div>
-                                            <div>Required for delete using <em>state=absent</em>.</div>
-                                                        </td>
-            </tr>
                                 <tr>
                                                                 <td colspan="13">
                     <div class="ansibleOptionAnchor" id="parameter-data_asset"></div>
@@ -1708,7 +1692,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The properties for the connection.</div>
+                                            <div>The properties of the connection.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -1726,7 +1710,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1779,7 +1763,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The value can be modified.</div>
+                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can be modified.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1800,7 +1784,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The default property for the connection.</div>
+                                            <div>The default property of the connection.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1817,7 +1801,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Generated key that can be used in API calls to identify connection. On scenarios where reference to the connection is needed, a value can be passed in create.</div>
+                                            <div>Generated key that can be used in API calls to identify the connection. In scenarios where reference to the connection is required, a value can be passed in create.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2020,7 +2004,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The full path to identify this object.</div>
+                                            <div>The full path to identify the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2060,7 +2044,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether this object is a favorite or not.</div>
+                                            <div>Specifies whether this object is a favorite.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2078,7 +2062,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Labels are keywords or tags that you can add to data assets, dataflows and so on. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or tags that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2220,7 +2204,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2325,7 +2309,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The external key for the object.</div>
+                                            <div>The external key of the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2343,7 +2327,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The value can be modified.</div>
+                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can be modified.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2597,7 +2581,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The full path to identify this object.</div>
+                                            <div>The full path to identify the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2639,7 +2623,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether this object is a favorite or not.</div>
+                                            <div>Specifies whether this object is a favorite.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2658,7 +2642,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Labels are keywords or tags that you can add to data assets, dataflows and so on. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or tags that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2772,7 +2756,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The object&#x27;s type.</div>
+                                            <div>The object type.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2790,7 +2774,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The object&#x27;s model version.</div>
+                                            <div>The model version of the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2808,7 +2792,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2918,7 +2902,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>All the properties for the connection in a key-value map format.</div>
+                                            <div>All the properties of the connection in a key-value map format.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2971,7 +2955,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The id of the user who created the object.</div>
+                                            <div>The ID of the user who created the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -3011,7 +2995,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether this object is a favorite or not.</div>
+                                            <div>Specifies whether the object is a favorite.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -3047,7 +3031,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -3119,7 +3103,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The id of the user who updated the object.</div>
+                                            <div>The ID of the user who updated the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -3205,7 +3189,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The compartmentId of private endpoint resource.</div>
+                                            <div>The compartmentId of the private endpoint resource.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -3223,7 +3207,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>List of data assets which belongs to this endpoint</div>
+                                            <div>The list of data assets that belong to the endpoint.</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -3280,7 +3264,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The properties for the connection.</div>
+                                            <div>The properties of the connection.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -3301,7 +3285,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -3363,7 +3347,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The value can be modified.</div>
+                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can be modified.</div>
                                             <div>Required when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -3387,7 +3371,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The default property for the connection.</div>
+                                            <div>The default property of the connection.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -3407,7 +3391,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Generated key that can be used in API calls to identify connection. On scenarios where reference to the connection is needed, a value can be passed in create.</div>
+                                            <div>Generated key that can be used in API calls to identify the connection. In scenarios where reference to the connection is required, a value can be passed in create.</div>
                                             <div>Required when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -3643,7 +3627,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The full path to identify this object.</div>
+                                            <div>The full path to identify the object.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -3689,7 +3673,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether this object is a favorite or not.</div>
+                                            <div>Specifies whether this object is a favorite.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -3710,7 +3694,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Labels are keywords or tags that you can add to data assets, dataflows and so on. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or tags that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -3876,7 +3860,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                             <div>Required when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -3999,7 +3983,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The external key for the object.</div>
+                                            <div>The external key of the object.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -4020,7 +4004,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The value can be modified.</div>
+                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can be modified.</div>
                                             <div>Required when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -4313,7 +4297,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The full path to identify this object.</div>
+                                            <div>The full path to identify the object.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -4361,7 +4345,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether this object is a favorite or not.</div>
+                                            <div>Specifies whether this object is a favorite.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -4383,7 +4367,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Labels are keywords or tags that you can add to data assets, dataflows and so on. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or tags that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -4515,7 +4499,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The object&#x27;s type.</div>
+                                            <div>The object type.</div>
                                             <div>Required when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -4536,7 +4520,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The object&#x27;s model version.</div>
+                                            <div>The model version of the object.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -4557,7 +4541,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                             <div>Required when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -4685,7 +4669,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>All the properties for the connection in a key-value map format.</div>
+                                            <div>All the properties of the connection in a key-value map format.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -4747,7 +4731,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The id of the user who created the object.</div>
+                                            <div>The ID of the user who created the object.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -4793,7 +4777,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether this object is a favorite or not.</div>
+                                            <div>Specifies whether the object is a favorite.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -4835,7 +4819,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -4919,7 +4903,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The id of the user who updated the object.</div>
+                                            <div>The ID of the user who updated the object.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -5020,7 +5004,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>List of data assets which belongs to this endpoint</div>
+                                            <div>The list of data assets that belong to the endpoint.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -5039,7 +5023,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>User-defined description for the endpoint.</div>
+                                            <div>User-defined description of the endpoint.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -5058,7 +5042,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The value can be modified.</div>
+                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can be modified.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -5077,7 +5061,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Generated key that can be used in API calls to identify endpoint. On scenarios where reference to the endpoint is needed, a value can be passed in create.</div>
+                                            <div>Generated key that can be used in API calls to identify the endpoint. In scenarios where reference to the endpoint is required, a value can be passed in create.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -5138,7 +5122,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -5214,7 +5198,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The external key for the object.</div>
+                                            <div>The external key of the object.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -5233,7 +5217,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The value can be modified.</div>
+                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can be modified.</div>
                                             <div>Required when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -5252,7 +5236,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Currently not used on data asset creation. Reserved for future.</div>
+                                            <div>Currently not used while creating a data asset. Reserved for future.</div>
                                             <div>Required when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -5477,7 +5461,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The full path to identify this object.</div>
+                                            <div>The full path to identify the object.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -5521,7 +5505,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether this object is a favorite or not.</div>
+                                            <div>Specifies whether this object is a favorite.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -5541,7 +5525,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Labels are keywords or tags that you can add to data assets, dataflows and so on. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or tags that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -5699,7 +5683,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                             <div>Required when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -5738,7 +5722,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A user defined description for the object.</div>
+                                            <div>A user-defined description for the object.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -5758,7 +5742,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The value can be modified.</div>
+                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can be modified.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -5838,7 +5822,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -6092,7 +6076,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A user defined description for the object.</div>
+                                            <div>A user-defined description for the object.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -6119,7 +6103,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether the parameter is a class field or not.</div>
+                                            <div>Specifies whether the parameter is a class field.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -6146,7 +6130,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether the parameter is static or not.</div>
+                                            <div>Specifies whether the parameter is static.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -6269,7 +6253,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether the configuration is contained or not.</div>
+                                            <div>Specifies whether the configuration is contained.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -6365,7 +6349,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -6670,7 +6654,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A user defined description for the object.</div>
+                                            <div>A user-defined description for the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -7037,7 +7021,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Detailed description for the object.</div>
+                                            <div>A detailed description of the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -7112,7 +7096,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Detailed description for the object.</div>
+                                            <div>A detailed description of the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -7217,7 +7201,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -7296,7 +7280,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether the parameter is input value.</div>
+                                            <div>Specifies whether the parameter is an input value.</div>
                                             <div>Applicable when model_type is &#x27;PARAMETER&#x27;</div>
                                                         </td>
             </tr>
@@ -7354,7 +7338,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether the parameter is output value.</div>
+                                            <div>Specifies whether the parameter is an output value.</div>
                                             <div>Applicable when model_type is &#x27;PARAMETER&#x27;</div>
                                                         </td>
             </tr>
@@ -7403,7 +7387,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                             <div>Applicable when model_type is &#x27;SHAPE_FIELD&#x27;</div>
                                                         </td>
             </tr>
@@ -7484,7 +7468,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -7811,7 +7795,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Detailed description for the object.</div>
+                                            <div>A detailed description of the object.</div>
                                             <div>Applicable when model_type is &#x27;SHAPE_FIELD&#x27;</div>
                                                         </td>
             </tr>
@@ -7950,7 +7934,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                             <div>Applicable when model_type is &#x27;SHAPE_FIELD&#x27;</div>
                                                         </td>
             </tr>
@@ -8219,7 +8203,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The port details for the data asset.Type.</div>
+                                            <div>The port details of the data asset type.</div>
                                             <div>Applicable when model_type is one of [&#x27;INPUT_PORT&#x27;, &#x27;OUTPUT_PORT&#x27;]</div>
                                                         </td>
             </tr>
@@ -8269,7 +8253,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The default value of the parameter which can be an object in DIS, such as a data entity.</div>
+                                            <div>The default value of the parameter, which can be an object in DIS, such as a data entity.</div>
                                             <div>Applicable when model_type is &#x27;PARAMETER&#x27;</div>
                                                         </td>
             </tr>
@@ -8321,7 +8305,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A user defined description for the object.</div>
+                                            <div>A user-defined description for the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -8378,7 +8362,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The property which disciminates the subtypes.</div>
+                                            <div>The property which differentiates the subtypes.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -8428,7 +8412,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -8558,7 +8542,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The property which disciminates the subtypes.</div>
+                                            <div>The property which differentiates the subtypes.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -8604,7 +8588,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -8748,7 +8732,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A user defined description for the object.</div>
+                                            <div>A user-defined description for the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -8827,7 +8811,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The property which disciminates the subtypes.</div>
+                                            <div>The property which differentiates the subtypes.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -8875,7 +8859,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -8996,7 +8980,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A user defined description for the object.</div>
+                                            <div>A user-defined description for the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -9051,7 +9035,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The property which disciminates the subtypes.</div>
+                                            <div>The property which differentiates the subtypes.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -9099,7 +9083,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -9220,7 +9204,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A user defined description for the object.</div>
+                                            <div>A user-defined description for the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -9275,7 +9259,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The property which disciminates the subtypes.</div>
+                                            <div>The property which differentiates the subtypes.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -9323,7 +9307,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -9399,7 +9383,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether the configuration is contained or not.</div>
+                                            <div>Specifies whether the configuration is contained.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -9487,7 +9471,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -9577,7 +9561,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A user defined description for the object.</div>
+                                            <div>A user-defined description for the object.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -9651,7 +9635,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The property which disciminates the subtypes.</div>
+                                            <div>The property which differentiates the subtypes.</div>
                                             <div>Required when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -9693,7 +9677,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -9897,7 +9881,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The id of the user who created the object.</div>
+                                            <div>The ID of the user who created the object.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -9941,7 +9925,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether this object is a favorite or not.</div>
+                                            <div>Specifies whether the object is a favorite.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -9981,7 +9965,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -10061,7 +10045,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The id of the user who updated the object.</div>
+                                            <div>The ID of the user who updated the object.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -10138,7 +10122,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>User-defined description for the endpoint.</div>
+                                            <div>User-defined description of the endpoint.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -10155,7 +10139,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The IP address of dns proxy.</div>
+                                            <div>The IP address of the DNS proxy.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -10173,7 +10157,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Array of dns zones to be use during private endpoint resolution.</div>
+                                            <div>Array of DNS zones to be used during the private endpoint resolution.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -10191,7 +10175,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The value can be modified.</div>
+                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can be modified.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -10208,7 +10192,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Generated key that can be used in API calls to identify endpoint. On scenarios where reference to the endpoint is needed, a value can be passed in create.</div>
+                                            <div>Generated key that can be used in API calls to identify the endpoint. In scenarios where reference to the endpoint is required, a value can be passed in create.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -10263,7 +10247,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -10351,7 +10335,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The ocid of private endpoint resource.</div>
+                                            <div>The OCID of the private endpoint resource.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -10369,7 +10353,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The ocid of private endpoint resource.</div>
+                                            <div>The OCID of the private endpoint resource.</div>
                                             <div>Applicable when model_type is &#x27;PRIVATE_END_POINT&#x27;</div>
                                                         </td>
             </tr>
@@ -10409,7 +10393,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The external key for the object.</div>
+                                            <div>The external key of the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -10425,7 +10409,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The value can be modified.</div>
+                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can be modified.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -10441,7 +10425,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Generated key that can be used in API calls to identify dataasset.</div>
+                                            <div>Generated key that can be used in API calls to identify the data asset.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -10633,7 +10617,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The full path to identify this object.</div>
+                                            <div>The full path to identify the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -10671,7 +10655,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether this object is a favorite or not.</div>
+                                            <div>Specifies whether this object is a favorite.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -10688,7 +10672,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Labels are keywords or tags that you can add to data assets, dataflows and so on. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or tags that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -10822,7 +10806,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -10855,7 +10839,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A user defined description for the object.</div>
+                                            <div>A user-defined description for the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -10872,7 +10856,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with upper case letter or underscore. The value can be modified.</div>
+                                            <div>Value can only contain upper case letters, underscore, and numbers. It should begin with an upper case letter or underscore. The value can be modified.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -10940,7 +10924,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -11158,7 +11142,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A user defined description for the object.</div>
+                                            <div>A user-defined description for the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -11182,7 +11166,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether the parameter is a class field or not.</div>
+                                            <div>Specifies whether the parameter is a class field.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -11206,7 +11190,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether the parameter is static or not.</div>
+                                            <div>Specifies whether the parameter is static.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -11316,7 +11300,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether the configuration is contained or not.</div>
+                                            <div>Specifies whether the configuration is contained.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -11404,7 +11388,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -11685,7 +11669,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A user defined description for the object.</div>
+                                            <div>A user-defined description for the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -12024,7 +12008,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Detailed description for the object.</div>
+                                            <div>A detailed description of the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -12093,7 +12077,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Detailed description for the object.</div>
+                                            <div>A detailed description of the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -12190,7 +12174,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -12263,7 +12247,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether the parameter is input value.</div>
+                                            <div>Specifies whether the parameter is an input value.</div>
                                             <div>Applicable when model_type is &#x27;PARAMETER&#x27;</div>
                                                         </td>
             </tr>
@@ -12317,7 +12301,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether the parameter is output value.</div>
+                                            <div>Specifies whether the parameter is an output value.</div>
                                             <div>Applicable when model_type is &#x27;PARAMETER&#x27;</div>
                                                         </td>
             </tr>
@@ -12362,7 +12346,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                             <div>Applicable when model_type is &#x27;SHAPE_FIELD&#x27;</div>
                                                         </td>
             </tr>
@@ -12437,7 +12421,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -12740,7 +12724,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Detailed description for the object.</div>
+                                            <div>A detailed description of the object.</div>
                                             <div>Applicable when model_type is &#x27;SHAPE_FIELD&#x27;</div>
                                                         </td>
             </tr>
@@ -12869,7 +12853,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                             <div>Applicable when model_type is &#x27;SHAPE_FIELD&#x27;</div>
                                                         </td>
             </tr>
@@ -13118,7 +13102,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The port details for the data asset.Type.</div>
+                                            <div>The port details of the data asset type.</div>
                                             <div>Applicable when model_type is one of [&#x27;INPUT_PORT&#x27;, &#x27;OUTPUT_PORT&#x27;]</div>
                                                         </td>
             </tr>
@@ -13164,7 +13148,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The default value of the parameter which can be an object in DIS, such as a data entity.</div>
+                                            <div>The default value of the parameter, which can be an object in DIS, such as a data entity.</div>
                                             <div>Applicable when model_type is &#x27;PARAMETER&#x27;</div>
                                                         </td>
             </tr>
@@ -13212,7 +13196,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A user defined description for the object.</div>
+                                            <div>A user-defined description for the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -13265,7 +13249,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The property which disciminates the subtypes.</div>
+                                            <div>The property which differentiates the subtypes.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -13311,7 +13295,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -13431,7 +13415,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The property which disciminates the subtypes.</div>
+                                            <div>The property which differentiates the subtypes.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -13473,7 +13457,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -13605,7 +13589,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A user defined description for the object.</div>
+                                            <div>A user-defined description for the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -13678,7 +13662,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The property which disciminates the subtypes.</div>
+                                            <div>The property which differentiates the subtypes.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -13722,7 +13706,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -13833,7 +13817,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A user defined description for the object.</div>
+                                            <div>A user-defined description for the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -13884,7 +13868,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The property which disciminates the subtypes.</div>
+                                            <div>The property which differentiates the subtypes.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -13928,7 +13912,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -14039,7 +14023,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A user defined description for the object.</div>
+                                            <div>A user-defined description for the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -14090,7 +14074,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The property which disciminates the subtypes.</div>
+                                            <div>The property which differentiates the subtypes.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -14134,7 +14118,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -14204,7 +14188,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether the configuration is contained or not.</div>
+                                            <div>Specifies whether the configuration is contained.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -14280,7 +14264,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -14358,7 +14342,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>A user defined description for the object.</div>
+                                            <div>A user-defined description for the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -14423,7 +14407,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The property which disciminates the subtypes.</div>
+                                            <div>The property which differentiates the subtypes.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -14459,7 +14443,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Free form text without any restriction on permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
+                                            <div>Free form text without any restriction on the permitted characters. Name can have letters, numbers, and special characters. The value is editable and is restricted to 1000 characters.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -14633,7 +14617,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The id of the user who created the object.</div>
+                                            <div>The ID of the user who created the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -14671,7 +14655,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether this object is a favorite or not.</div>
+                                            <div>Specifies whether the object is a favorite.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -14705,7 +14689,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -14773,7 +14757,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The id of the user who updated the object.</div>
+                                            <div>The ID of the user who updated the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -14823,7 +14807,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Endpoint Id used for getDataAssetFullDetails.</div>
+                                            <div>Endpoint ID used for getDataAssetFullDetails.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -14887,7 +14871,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The registry Ocid.</div>
+                                            <div>The registry OCID.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -14934,7 +14918,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The id of the user who created the object.</div>
+                                            <div>The ID of the user who created the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -14970,7 +14954,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Specifies whether this object is a favorite or not.</div>
+                                            <div>Specifies whether the object is a favorite.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -15002,7 +14986,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Labels are keywords or labels that you can add to data assets, dataflows etc. You can define your own labels and use them to categorize content.</div>
+                                            <div>Labels are keywords or labels that you can add to data assets, dataflows, and so on. You can define your own labels and use them to categorize content.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -15066,7 +15050,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The id of the user who updated the object.</div>
+                                            <div>The ID of the user who updated the object.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -15098,13 +15082,11 @@ Parameters
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li><div style="color: blue"><b>present</b>&nbsp;&larr;</div></li>
-                                                                                                                                                                                                <li>absent</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
                                             <div>The state of the ConnectionValidation.</div>
                                             <div>Use <em>state=present</em> to create a ConnectionValidation.</div>
-                                            <div>Use <em>state=absent</em> to delete a ConnectionValidation.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -15771,16 +15753,6 @@ Examples
           updated_by_user_name: updated_by_user_name_example
           time_created: time_created_example
           time_updated: time_updated_example
-        endpoint_id: "ocid1.endpoint.oc1..xxxxxxEXAMPLExxxxxx"
-
-    - name: Delete connection_validation
-      oci_data_connectivity_connection_validation:
-        # required
-        registry_id: "ocid1.registry.oc1..xxxxxxEXAMPLExxxxxx"
-        connection_validation_key: connection_validation_key_example
-        state: absent
-
-        # optional
         endpoint_id: "ocid1.endpoint.oc1..xxxxxxEXAMPLExxxxxx"
 
 

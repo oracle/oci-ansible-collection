@@ -82,6 +82,11 @@ options:
         description:
             - Endpoint ID used for getDataAssetFullDetails.
         type: str
+    include_types:
+        description:
+            - Artifact type which needs to be listed while listing Artifacts.
+        type: list
+        elements: str
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -110,6 +115,7 @@ EXAMPLES = """
     name: name_example
     name_list: [ "name_list_example" ]
     endpoint_id: "ocid1.endpoint.oc1..xxxxxxEXAMPLExxxxxx"
+    include_types: [ "include_types_example" ]
 
 """
 
@@ -418,6 +424,7 @@ class SchemaFactsHelperGen(OCIResourceFactsHelperBase):
             "name",
             "name_list",
             "endpoint_id",
+            "include_types",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -453,6 +460,7 @@ def main():
             name=dict(type="str"),
             name_list=dict(type="list", elements="str"),
             endpoint_id=dict(type="str"),
+            include_types=dict(type="list", elements="str"),
         )
     )
 

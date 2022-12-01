@@ -26,20 +26,26 @@ description:
     - For I(action=change_compartment), moves a file system and its associated snapshots into a different compartment within the same tenancy. For information
       about moving resources between compartments, see L(Moving Resources to a Different
       Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes)
+    - For I(action=estimate_replication), provides estimates for replication created using specific file system.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment to move the file system to.
+            - Required for I(action=change_compartment).
+        type: str
     file_system_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the file system.
         type: str
         aliases: ["id"]
         required: true
-    compartment_id:
+    change_rate_in_m_bps:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment to move the file system to.
-        type: str
-        required: true
+            - The rate of change of data on source file system in MegaBytes per second.
+            - Applicable only for I(action=estimate_replication).
+        type: int
     action:
         description:
             - The action to perform on the FileSystem.
@@ -47,6 +53,7 @@ options:
         required: true
         choices:
             - "change_compartment"
+            - "estimate_replication"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -54,9 +61,18 @@ EXAMPLES = """
 - name: Perform action change_compartment on file_system
   oci_file_storage_file_system_actions:
     # required
-    file_system_id: "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    file_system_id: "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
+
+- name: Perform action estimate_replication on file_system
+  oci_file_storage_file_system_actions:
+    # required
+    file_system_id: "ocid1.filesystem.oc1..xxxxxxEXAMPLExxxxxx"
+    action: estimate_replication
+
+    # optional
+    change_rate_in_m_bps: 56
 
 """
 
@@ -153,7 +169,7 @@ file_system:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the file system that contains the source
                           snapshot of a cloned file system.
-                          See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm).
+                          See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningFS.htm).
                     returned: on success
                     type: str
                     sample: "ocid1.parentfilesystem.oc1..xxxxxxEXAMPLExxxxxx"
@@ -161,14 +177,14 @@ file_system:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the source snapshot used to create a cloned file
                           system.
-                          See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm).
+                          See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningFS.htm).
                     returned: on success
                     type: str
                     sample: "ocid1.sourcesnapshot.oc1..xxxxxxEXAMPLExxxxxx"
         is_clone_parent:
             description:
                 - Specifies whether the file system has been cloned.
-                  See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm).
+                  See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningFS.htm).
             returned: on success
             type: bool
             sample: true
@@ -177,7 +193,7 @@ file_system:
                 - Specifies whether the data has finished copying from the source to the clone.
                   Hydration can take up to several hours to complete depending on the size of the source.
                   The source and clone remain available during hydration, but there may be some performance impact.
-                  See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm#hydration).
+                  See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningFS.htm#hydration).
             returned: on success
             type: bool
             sample: true
@@ -187,6 +203,20 @@ file_system:
             returned: on success
             type: str
             sample: lifecycle_details_example
+        is_targetable:
+            description:
+                - Specifies whether the file system can be used as a target file system for replication.
+                  For more information, see L(Using Replication,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/using-replication.htm).
+            returned: on success
+            type: bool
+            sample: true
+        replication_target_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the replication target associated with the file system.
+                  Empty if the file system is not being used as target in a replication.
+            returned: on success
+            type: str
+            sample: "ocid1.replicationtarget.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "availability_domain": "Uocm:PHX-AD-1",
         "metered_bytes": 56,
@@ -204,7 +234,9 @@ file_system:
         },
         "is_clone_parent": true,
         "is_hydrated": true,
-        "lifecycle_details": "lifecycle_details_example"
+        "lifecycle_details": "lifecycle_details_example",
+        "is_targetable": true,
+        "replication_target_id": "ocid1.replicationtarget.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """
 
@@ -231,6 +263,7 @@ class FileSystemActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         change_compartment
+        estimate_replication
     """
 
     @staticmethod
@@ -272,6 +305,26 @@ class FileSystemActionsHelperGen(OCIActionsHelperBase):
             ),
         )
 
+    def estimate_replication(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.estimate_replication,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                file_system_id=self.module.params.get("file_system_id"),
+                change_rate_in_m_bps=self.module.params.get("change_rate_in_m_bps"),
+            ),
+            waiter_type=oci_wait_utils.NONE_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=self.get_action_desired_states(
+                self.module.params.get("action")
+            ),
+        )
+
 
 FileSystemActionsHelperCustom = get_custom_class("FileSystemActionsHelperCustom")
 
@@ -286,9 +339,14 @@ def main():
     )
     module_args.update(
         dict(
+            compartment_id=dict(type="str"),
             file_system_id=dict(aliases=["id"], type="str", required=True),
-            compartment_id=dict(type="str", required=True),
-            action=dict(type="str", required=True, choices=["change_compartment"]),
+            change_rate_in_m_bps=dict(type="int"),
+            action=dict(
+                type="str",
+                required=True,
+                choices=["change_compartment", "estimate_replication"],
+            ),
         )
     )
 

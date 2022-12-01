@@ -57,6 +57,30 @@ options:
         description:
             - Specifies whether the private network connection is enabled or disabled.
         type: bool
+    registry_id:
+        description:
+            - DCMS Data Asset Registry ID to which the workspace is associated
+        type: str
+    endpoint_id:
+        description:
+            - DCMS Private Endpoint ID associated with workspace if the pvt networking is enabled
+        type: str
+    registry_name:
+        description:
+            - DCMS Data Asset Registry display name
+        type: str
+    registry_compartment_id:
+        description:
+            - DCMS Data Asset Registry Compartment Identifier
+        type: str
+    endpoint_name:
+        description:
+            - DCMS Private Endpoint Name
+        type: str
+    endpoint_compartment_id:
+        description:
+            - DCMS PRivate Endpoint Compartment Identifier
+        type: str
     freeform_tags:
         description:
             - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. See L(Resource
@@ -124,6 +148,12 @@ EXAMPLES = """
     dns_server_ip: dns_server_ip_example
     dns_server_zone: dns_server_zone_example
     is_private_network_enabled: true
+    registry_id: "ocid1.registry.oc1..xxxxxxEXAMPLExxxxxx"
+    endpoint_id: "ocid1.endpoint.oc1..xxxxxxEXAMPLExxxxxx"
+    registry_name: registry_name_example
+    registry_compartment_id: "ocid1.registrycompartment.oc1..xxxxxxEXAMPLExxxxxx"
+    endpoint_name: endpoint_name_example
+    endpoint_compartment_id: "ocid1.endpointcompartment.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     description: description_example
@@ -282,6 +312,24 @@ workspace:
             returned: on success
             type: str
             sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        endpoint_id:
+            description:
+                - OCID of the private endpoint associated with the container/workspace.
+            returned: on success
+            type: str
+            sample: "ocid1.endpoint.oc1..xxxxxxEXAMPLExxxxxx"
+        endpoint_name:
+            description:
+                - Name of the private endpoint associated with the container/workspace.
+            returned: on success
+            type: str
+            sample: endpoint_name_example
+        registry_id:
+            description:
+                - DCMS Registry ID associated with the container/workspace.
+            returned: on success
+            type: str
+            sample: "ocid1.registry.oc1..xxxxxxEXAMPLExxxxxx"
     sample: {
         "vcn_id": "ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx",
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
@@ -297,7 +345,10 @@ workspace:
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
         "state_message": "state_message_example",
-        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+        "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+        "endpoint_id": "ocid1.endpoint.oc1..xxxxxxEXAMPLExxxxxx",
+        "endpoint_name": "endpoint_name_example",
+        "registry_id": "ocid1.registry.oc1..xxxxxxEXAMPLExxxxxx"
     }
 """
 
@@ -385,6 +436,9 @@ class WorkspaceHelperGen(OCIResourceHelperBase):
     def get_create_model_class(self):
         return CreateWorkspaceDetails
 
+    def get_exclude_attributes(self):
+        return ["registry_compartment_id", "registry_name", "endpoint_compartment_id"]
+
     def create_resource(self):
         create_details = self.get_create_model()
         return oci_wait_utils.call_and_wait(
@@ -453,6 +507,12 @@ def main():
             dns_server_zone=dict(type="str"),
             compartment_id=dict(type="str"),
             is_private_network_enabled=dict(type="bool"),
+            registry_id=dict(type="str"),
+            endpoint_id=dict(type="str"),
+            registry_name=dict(type="str"),
+            registry_compartment_id=dict(type="str"),
+            endpoint_name=dict(type="str"),
+            endpoint_compartment_id=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             description=dict(type="str"),

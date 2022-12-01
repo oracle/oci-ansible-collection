@@ -65,12 +65,12 @@ options:
     source_snapshot_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the snapshot used to create a cloned file system. See
-              L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm).
+              L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningFS.htm).
         type: str
     parent_file_system_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the file system that contains the source snapshot of a
-              cloned file system. See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm).
+              cloned file system. See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningFS.htm).
         type: str
     sort_by:
         description:
@@ -123,6 +123,22 @@ file_systems:
     returned: on success
     type: complex
     contains:
+        is_targetable:
+            description:
+                - Specifies whether the file system can be used as a target file system for replication.
+                  For more information, see L(Using Replication,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/using-replication.htm).
+                - Returned for get operation
+            returned: on success
+            type: bool
+            sample: true
+        replication_target_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the replication target associated with the file system.
+                  Empty if the file system is not being used as target in a replication.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.replicationtarget.oc1..xxxxxxEXAMPLExxxxxx"
         availability_domain:
             description:
                 - The availability domain the file system is in. May be unset
@@ -209,7 +225,7 @@ file_systems:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the file system that contains the source
                           snapshot of a cloned file system.
-                          See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm).
+                          See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningFS.htm).
                     returned: on success
                     type: str
                     sample: "ocid1.parentfilesystem.oc1..xxxxxxEXAMPLExxxxxx"
@@ -217,14 +233,14 @@ file_systems:
                     description:
                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the source snapshot used to create a cloned file
                           system.
-                          See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm).
+                          See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningFS.htm).
                     returned: on success
                     type: str
                     sample: "ocid1.sourcesnapshot.oc1..xxxxxxEXAMPLExxxxxx"
         is_clone_parent:
             description:
                 - Specifies whether the file system has been cloned.
-                  See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm).
+                  See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningFS.htm).
             returned: on success
             type: bool
             sample: true
@@ -233,7 +249,7 @@ file_systems:
                 - Specifies whether the data has finished copying from the source to the clone.
                   Hydration can take up to several hours to complete depending on the size of the source.
                   The source and clone remain available during hydration, but there may be some performance impact.
-                  See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningafilesystem.htm#hydration).
+                  See L(Cloning a File System,https://docs.cloud.oracle.com/iaas/Content/File/Tasks/cloningFS.htm#hydration).
             returned: on success
             type: bool
             sample: true
@@ -244,6 +260,8 @@ file_systems:
             type: str
             sample: lifecycle_details_example
     sample: [{
+        "is_targetable": true,
+        "replication_target_id": "ocid1.replicationtarget.oc1..xxxxxxEXAMPLExxxxxx",
         "availability_domain": "Uocm:PHX-AD-1",
         "metered_bytes": 56,
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

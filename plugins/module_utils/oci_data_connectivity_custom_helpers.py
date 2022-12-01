@@ -11,18 +11,6 @@ __metaclass__ = type
 from ansible_collections.oracle.oci.plugins.module_utils import oci_common_utils
 
 
-class ConnectionValidationHelperCustom:
-    def get_get_model_from_summary_model(self, summary_model):
-        """
-        need this customisation because the codegen doesnt handle the GET apis that have query params
-        """
-        return oci_common_utils.call_with_backoff(
-            self.client.get_connection_validation,
-            registry_id=self.module.params.get("registry_id"),
-            connection_validation_key=summary_model.key,
-        ).data
-
-
 class DataEntityActionsHelperCustom:
     """
     generated code has data_entity_key but we need to pass the key.

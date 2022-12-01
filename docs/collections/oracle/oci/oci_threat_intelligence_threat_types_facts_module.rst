@@ -30,7 +30,7 @@ oracle.oci.oci_threat_intelligence_threat_types_facts -- Fetches details about o
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.2.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.3.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple ThreatTypes resources in Oracle Cloud Infrastructure
-- Gets a list of threat types that are available to use as parameters when querying indicators. This is sorted by threat type name according to the sort order query param.
+- Gets a list of threat types that are available to use as parameters when querying indicators. The list is sorted by threat type name according to the sort order query param.
 
 
 .. Aliases
@@ -212,7 +212,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The ID of the tenancy to use to filter results.</div>
+                                            <div>The OCID of the tenancy (root compartment) that is used to filter results.</div>
                                                         </td>
             </tr>
                                 <tr>

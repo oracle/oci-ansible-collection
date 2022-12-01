@@ -30,7 +30,7 @@ oracle.oci.oci_data_connectivity_schema_facts -- Fetches details about one or mu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.2.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.3.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -278,6 +278,21 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-include_types"></div>
+                    <b>include_types</b>
+                    <a class="ansibleOptionLink" href="#parameter-include_types" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=string</span>                                            </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Artifact type which needs to be listed while listing Artifacts.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-name"></div>
                     <b>name</b>
                     <a class="ansibleOptionLink" href="#parameter-name" title="Permalink to this option"></a>
@@ -470,6 +485,7 @@ Examples
         name: name_example
         name_list: [ "name_list_example" ]
         endpoint_id: "ocid1.endpoint.oc1..xxxxxxEXAMPLExxxxxx"
+        include_types: [ "include_types_example" ]
 
 
 
