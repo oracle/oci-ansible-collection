@@ -30,7 +30,7 @@ oracle.oci.oci_resource_manager_stack_facts -- Fetches details about one or mult
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.3.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.4.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple Stack resources in Oracle Cloud Infrastructure
-- Returns a list of stacks. - If called using the compartment ID, returns all stacks in the specified compartment. - If called using the stack ID, returns the specified stack.
+- Lists stacks according to the specified filter. - If called using the compartment ID, returns all stacks in the specified compartment. - If called using the stack ID, returns the specified stack. (See also `GetStack <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/resourcemanager/latest/Stack/GetStack>`_.)
 - If *stack_id* is specified, the details of a single Stack will be returned.
 
 

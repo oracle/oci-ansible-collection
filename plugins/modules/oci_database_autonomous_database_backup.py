@@ -32,7 +32,6 @@ options:
             - The user-friendly name for the backup. The name does not have to be unique.
         type: str
         aliases: ["name"]
-        required: true
     autonomous_database_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Autonomous Database backup.
@@ -53,8 +52,10 @@ EXAMPLES = """
 - name: Create autonomous_database_backup
   oci_database_autonomous_database_backup:
     # required
-    display_name: display_name_example
     autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    display_name: display_name_example
 
 """
 
@@ -313,7 +314,7 @@ def main():
     )
     module_args.update(
         dict(
-            display_name=dict(aliases=["name"], type="str", required=True),
+            display_name=dict(aliases=["name"], type="str"),
             autonomous_database_id=dict(type="str", required=True),
             state=dict(type="str", default="present", choices=["present"]),
         )

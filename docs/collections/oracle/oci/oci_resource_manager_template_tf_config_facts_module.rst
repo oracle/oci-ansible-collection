@@ -30,7 +30,7 @@ oracle.oci.oci_resource_manager_template_tf_config_facts -- Fetches details abou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.3.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.4.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about a TemplateTfConfig resource in Oracle Cloud Infrastructure
-- Returns the Terraform configuration file in .zip format for the specified template. Returns an error if no zip file is found.
+- Returns the Terraform configuration file in zip format for the specified template. Returns an error if no zip file is found.
 
 
 .. Aliases

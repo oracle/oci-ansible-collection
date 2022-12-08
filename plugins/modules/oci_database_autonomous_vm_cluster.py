@@ -70,7 +70,7 @@ options:
         type: int
     cpu_core_count_per_node:
         description:
-            - The number of OCPU cores to enable per VM cluster node.
+            - The number of CPU cores to enable per VM cluster node.
         type: int
     memory_per_oracle_compute_unit_in_gbs:
         description:
@@ -80,6 +80,18 @@ options:
         description:
             - The data disk group size to be allocated for Autonomous Databases, in TBs.
         type: float
+    scan_listener_port_tls:
+        description:
+            - The SCAN Listener TLS port number. Default value is 2484.
+        type: int
+    scan_listener_port_non_tls:
+        description:
+            - The SCAN Listener Non TLS port number. Default value is 1521.
+        type: int
+    is_mtls_enabled:
+        description:
+            - Enable mutual TLS(mTLS) authentication for database at time of provisioning a VMCluster.Default is TLS.
+        type: bool
     maintenance_window_details:
         description:
             - ""
@@ -236,6 +248,9 @@ EXAMPLES = """
     cpu_core_count_per_node: 56
     memory_per_oracle_compute_unit_in_gbs: 56
     autonomous_data_storage_size_in_tbs: 3.4
+    scan_listener_port_tls: 56
+    scan_listener_port_non_tls: 56
+    is_mtls_enabled: true
     maintenance_window_details:
       # required
       preference: NO_PREFERENCE
@@ -431,7 +446,7 @@ autonomous_vm_cluster:
             sample: 56
         cpu_core_count_per_node:
             description:
-                - The number of OCPU cores enabled per VM cluster node.
+                - The number of CPU cores enabled per VM cluster node.
             returned: on success
             type: int
             sample: 56
@@ -614,6 +629,24 @@ autonomous_vm_cluster:
             returned: on success
             type: float
             sample: 1.2
+        scan_listener_port_tls:
+            description:
+                - The SCAN Listener TLS port number. Default value is 2484.
+            returned: on success
+            type: int
+            sample: 56
+        scan_listener_port_non_tls:
+            description:
+                - The SCAN Listener Non TLS port number. Default value is 1521.
+            returned: on success
+            type: int
+            sample: 56
+        is_mtls_enabled:
+            description:
+                - Enable mutual TLS(mTLS) authentication for database at time of provisioning a VMCluster. Default is TLS.
+            returned: on success
+            type: bool
+            sample: true
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -660,7 +693,10 @@ autonomous_vm_cluster:
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "reclaimable_cpus": 56,
         "available_container_databases": 56,
-        "available_autonomous_data_storage_size_in_tbs": 1.2
+        "available_autonomous_data_storage_size_in_tbs": 1.2,
+        "scan_listener_port_tls": 56,
+        "scan_listener_port_non_tls": 56,
+        "is_mtls_enabled": true
     }
 """
 
@@ -840,6 +876,9 @@ def main():
             cpu_core_count_per_node=dict(type="int"),
             memory_per_oracle_compute_unit_in_gbs=dict(type="int"),
             autonomous_data_storage_size_in_tbs=dict(type="float"),
+            scan_listener_port_tls=dict(type="int"),
+            scan_listener_port_non_tls=dict(type="int"),
+            is_mtls_enabled=dict(type="bool"),
             maintenance_window_details=dict(
                 type="dict",
                 options=dict(

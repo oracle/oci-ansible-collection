@@ -30,7 +30,7 @@ oracle.oci.oci_resource_manager_job_tf_plan_facts -- Fetches details about a Job
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.3.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.4.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about a JobTfPlan resource in Oracle Cloud Infrastructure
-- Returns the output of the specified Terraform plan job in binary or JSON format. For information about running Terraform plan jobs, see `To run a plan job <https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Tasks/managingstacksandjobs.htm#PlanJobRun>`_.
+- Returns the output of the specified Terraform plan job in binary or JSON format. For information about running Terraform plan jobs, see `Creating Plan Jobs <https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Tasks/create-job.htm>`_.
 
 
 .. Aliases

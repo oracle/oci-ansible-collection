@@ -46,6 +46,25 @@ options:
                     - Base64-encoded state file
                     - Required when operation is 'IMPORT_TF_STATE'
                 type: str
+            execution_plan_rollback_strategy:
+                description:
+                    - Specifies the source of the execution plan for rollback to apply.
+                      Use `AUTO_APPROVED` to run the job without an execution plan for rollback job.
+                    - Required when operation is 'APPLY_ROLLBACK'
+                type: str
+            execution_plan_rollback_job_id:
+                description:
+                    - "The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of a plan rollback job, for use when specifying
+                      `\\"FROM_PLAN_ROLLBACK_JOB_ID\\"` as the `executionPlanRollbackStrategy`."
+                    - Applicable when operation is 'APPLY_ROLLBACK'
+                type: str
+            target_rollback_job_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of a successful apply job to use for the plan
+                      rollback job.
+                    - Applicable when operation is 'APPLY_ROLLBACK'
+                    - Required when operation is 'PLAN_ROLLBACK'
+                type: str
             execution_plan_job_id:
                 description:
                     - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of a plan job, for use when specifying
@@ -58,6 +77,8 @@ options:
                 type: str
                 choices:
                     - "IMPORT_TF_STATE"
+                    - "PLAN_ROLLBACK"
+                    - "APPLY_ROLLBACK"
                     - "APPLY"
                     - "PLAN"
                     - "DESTROY"
@@ -72,7 +93,7 @@ options:
             terraform_advanced_options:
                 description:
                     - ""
-                    - Applicable when operation is one of ['DESTROY', 'APPLY', 'PLAN']
+                    - Applicable when operation is one of ['DESTROY', 'APPLY_ROLLBACK', 'APPLY', 'PLAN_ROLLBACK', 'PLAN']
                 type: dict
                 suboptions:
                     is_refresh_required:
@@ -80,7 +101,7 @@ options:
                             - "Specifies whether to refresh the state for each resource before running the job (operation).
                               Refreshing the state can affect performance. Consider setting to `false` if the configuration includes several resources.
                               Used with the following operations: `PLAN`, `APPLY`, `DESTROY`."
-                            - Applicable when operation is 'APPLY'
+                            - Applicable when operation is 'PLAN_ROLLBACK'
                         type: bool
                     parallelism:
                         description:
@@ -89,12 +110,12 @@ options:
                               Use this parameter to help debug Terraform issues or to accomplish certain special use cases.
                               A higher value might cause resources to be throttled.
                               Used with the following operations: `PLAN`, `APPLY`, `DESTROY`."
-                            - Applicable when operation is 'APPLY'
+                            - Applicable when operation is 'PLAN_ROLLBACK'
                         type: int
                     detailed_log_level:
                         description:
                             - Enables detailed logs at the specified verbosity for running the job (operation).
-                            - Applicable when operation is 'APPLY'
+                            - Applicable when operation is 'PLAN_ROLLBACK'
                         type: str
                         choices:
                             - "ERROR"
@@ -276,6 +297,17 @@ job:
             returned: on success
             type: str
             sample: PLAN
+        is_third_party_provider_experience_enabled:
+            description:
+                - When `true`, the stack sources third-party Terraform providers from
+                  L(Terraform Registry,https://registry.terraform.io/browse/providers) and allows
+                  L(custom providers,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/resourcemanager/latest/datatypes/CustomTerraformProvider).
+                  For more information about stack sourcing of third-party Terraform providers, see
+                  L(Third-party Provider
+                  Configuration,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/terraformconfigresourcemanager.htm#third-party-providers).
+            returned: on success
+            type: bool
+            sample: true
         is_provider_upgrade_required:
             description:
                 - Specifies whether or not to upgrade provider versions.
@@ -298,6 +330,20 @@ job:
                     returned: on success
                     type: str
                     sample: "ocid1.executionplanjob.oc1..xxxxxxEXAMPLExxxxxx"
+                execution_plan_rollback_strategy:
+                    description:
+                        - Specifies the source of the execution plan for rollback to apply.
+                          Use `AUTO_APPROVED` to run the job without an execution plan for rollback.
+                    returned: on success
+                    type: str
+                    sample: FROM_PLAN_ROLLBACK_JOB_ID
+                execution_plan_rollback_job_id:
+                    description:
+                        - "The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of a plan rollback job, for use when
+                          specifying `\\"FROM_PLAN_ROLLBACK_JOB_ID\\"` as the `executionPlanRollbackStrategy`."
+                    returned: on success
+                    type: str
+                    sample: "ocid1.executionplanrollbackjob.oc1..xxxxxxEXAMPLExxxxxx"
                 execution_plan_strategy:
                     description:
                         - Specifies the source of the execution plan to apply.
@@ -341,6 +387,13 @@ job:
                             returned: on success
                             type: str
                             sample: ERROR
+                target_rollback_job_id:
+                    description:
+                        - "The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of a successful apply job, for use when
+                          specifying `\\"AUTO_APPROVED\\"` as the `executionPlanRollbackStrategy`."
+                    returned: on success
+                    type: str
+                    sample: "ocid1.targetrollbackjob.oc1..xxxxxxEXAMPLExxxxxx"
         apply_job_plan_resolution:
             description:
                 - ""
@@ -534,16 +587,20 @@ job:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "operation": "PLAN",
+        "is_third_party_provider_experience_enabled": true,
         "is_provider_upgrade_required": true,
         "job_operation_details": {
             "execution_plan_job_id": "ocid1.executionplanjob.oc1..xxxxxxEXAMPLExxxxxx",
+            "execution_plan_rollback_strategy": "FROM_PLAN_ROLLBACK_JOB_ID",
+            "execution_plan_rollback_job_id": "ocid1.executionplanrollbackjob.oc1..xxxxxxEXAMPLExxxxxx",
             "execution_plan_strategy": "FROM_PLAN_JOB_ID",
             "operation": "APPLY",
             "terraform_advanced_options": {
                 "is_refresh_required": true,
                 "parallelism": 56,
                 "detailed_log_level": "ERROR"
-            }
+            },
+            "target_rollback_job_id": "ocid1.targetrollbackjob.oc1..xxxxxxEXAMPLExxxxxx"
         },
         "apply_job_plan_resolution": {
             "plan_job_id": "ocid1.planjob.oc1..xxxxxxEXAMPLExxxxxx",
@@ -739,11 +796,21 @@ def main():
                 type="dict",
                 options=dict(
                     tf_state_base64_encoded=dict(type="str"),
+                    execution_plan_rollback_strategy=dict(type="str"),
+                    execution_plan_rollback_job_id=dict(type="str"),
+                    target_rollback_job_id=dict(type="str"),
                     execution_plan_job_id=dict(type="str"),
                     operation=dict(
                         type="str",
                         required=True,
-                        choices=["IMPORT_TF_STATE", "APPLY", "PLAN", "DESTROY"],
+                        choices=[
+                            "IMPORT_TF_STATE",
+                            "PLAN_ROLLBACK",
+                            "APPLY_ROLLBACK",
+                            "APPLY",
+                            "PLAN",
+                            "DESTROY",
+                        ],
                     ),
                     is_provider_upgrade_required=dict(type="bool"),
                     terraform_advanced_options=dict(

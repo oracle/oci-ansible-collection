@@ -23,16 +23,30 @@ module: oci_database_cloud_vm_cluster_actions
 short_description: Perform actions on a CloudVmCluster resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a CloudVmCluster resource in Oracle Cloud Infrastructure
+    - For I(action=add_virtual_machine), add Virtual Machines to the Cloud VM cluster. Applies to Exadata Cloud instances only.
     - For I(action=change_compartment), moves a cloud VM cluster and its dependent resources to another compartment. Applies to Exadata Cloud Service instances
       and Autonomous Database on dedicated Exadata infrastructure only.
+    - For I(action=remove_virtual_machine), remove Virtual Machines from the Cloud VM cluster. Applies to Exadata Cloud instances only.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
+            - Required for I(action=change_compartment).
         type: str
-        required: true
+    db_servers:
+        description:
+            - The list of ExaCS DB servers for the cluster to be added.
+            - Required for I(action=add_virtual_machine), I(action=remove_virtual_machine).
+        type: list
+        elements: dict
+        suboptions:
+            db_server_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of ExaCS Db server.
+                type: str
+                required: true
     cloud_vm_cluster_id:
         description:
             - The cloud VM cluster L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -45,17 +59,37 @@ options:
         type: str
         required: true
         choices:
+            - "add_virtual_machine"
             - "change_compartment"
+            - "remove_virtual_machine"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
 EXAMPLES = """
+- name: Perform action add_virtual_machine on cloud_vm_cluster
+  oci_database_cloud_vm_cluster_actions:
+    # required
+    db_servers:
+    - # required
+      db_server_id: "ocid1.dbserver.oc1..xxxxxxEXAMPLExxxxxx"
+    cloud_vm_cluster_id: "ocid1.cloudvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
+    action: add_virtual_machine
+
 - name: Perform action change_compartment on cloud_vm_cluster
   oci_database_cloud_vm_cluster_actions:
     # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     cloud_vm_cluster_id: "ocid1.cloudvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
+
+- name: Perform action remove_virtual_machine on cloud_vm_cluster
+  oci_database_cloud_vm_cluster_actions:
+    # required
+    db_servers:
+    - # required
+      db_server_id: "ocid1.dbserver.oc1..xxxxxxEXAMPLExxxxxx"
+    cloud_vm_cluster_id: "ocid1.cloudvmcluster.oc1..xxxxxxEXAMPLExxxxxx"
+    action: remove_virtual_machine
 
 """
 
@@ -259,6 +293,30 @@ cloud_vm_cluster:
             returned: on success
             type: float
             sample: 3.4
+        memory_size_in_gbs:
+            description:
+                - The memory to be allocated in GBs.
+            returned: on success
+            type: int
+            sample: 56
+        db_node_storage_size_in_gbs:
+            description:
+                - The local node storage to be allocated in GBs.
+            returned: on success
+            type: int
+            sample: 56
+        data_storage_size_in_tbs:
+            description:
+                - The data disk group size to be allocated in TBs.
+            returned: on success
+            type: float
+            sample: 1.2
+        db_servers:
+            description:
+                - The list of Db servers.
+            returned: on success
+            type: list
+            sample: []
         cluster_name:
             description:
                 - The cluster name for cloud VM cluster. The cluster name must begin with an alphabetic character, and may contain hyphens (-). Underscores (_)
@@ -460,6 +518,10 @@ cloud_vm_cluster:
         "domain": "domain_example",
         "cpu_core_count": 56,
         "ocpu_count": 3.4,
+        "memory_size_in_gbs": 56,
+        "db_node_storage_size_in_gbs": 56,
+        "data_storage_size_in_tbs": 1.2,
+        "db_servers": [],
         "cluster_name": "cluster_name_example",
         "data_storage_percentage": 56,
         "is_local_backup_enabled": true,
@@ -500,7 +562,9 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 try:
     from oci.work_requests import WorkRequestClient
     from oci.database import DatabaseClient
+    from oci.database.models import AddVirtualMachineToCloudVmClusterDetails
     from oci.database.models import ChangeCloudVmClusterCompartmentDetails
+    from oci.database.models import RemoveVirtualMachineFromCloudVmClusterDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -510,7 +574,9 @@ except ImportError:
 class CloudVmClusterActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        add_virtual_machine
         change_compartment
+        remove_virtual_machine
     """
 
     def __init__(self, *args, **kwargs):
@@ -535,6 +601,27 @@ class CloudVmClusterActionsHelperGen(OCIActionsHelperBase):
             cloud_vm_cluster_id=self.module.params.get("cloud_vm_cluster_id"),
         )
 
+    def add_virtual_machine(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, AddVirtualMachineToCloudVmClusterDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.add_virtual_machine_to_cloud_vm_cluster,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                add_virtual_machine_to_cloud_vm_cluster_details=action_details,
+                cloud_vm_cluster_id=self.module.params.get("cloud_vm_cluster_id"),
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
     def change_compartment(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, ChangeCloudVmClusterCompartmentDetails
@@ -544,6 +631,27 @@ class CloudVmClusterActionsHelperGen(OCIActionsHelperBase):
             call_fn_args=(),
             call_fn_kwargs=dict(
                 change_cloud_vm_cluster_compartment_details=action_details,
+                cloud_vm_cluster_id=self.module.params.get("cloud_vm_cluster_id"),
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def remove_virtual_machine(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, RemoveVirtualMachineFromCloudVmClusterDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.remove_virtual_machine_from_cloud_vm_cluster,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                remove_virtual_machine_from_cloud_vm_cluster_details=action_details,
                 cloud_vm_cluster_id=self.module.params.get("cloud_vm_cluster_id"),
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
@@ -572,9 +680,22 @@ def main():
     )
     module_args.update(
         dict(
-            compartment_id=dict(type="str", required=True),
+            compartment_id=dict(type="str"),
+            db_servers=dict(
+                type="list",
+                elements="dict",
+                options=dict(db_server_id=dict(type="str", required=True)),
+            ),
             cloud_vm_cluster_id=dict(aliases=["id"], type="str", required=True),
-            action=dict(type="str", required=True, choices=["change_compartment"]),
+            action=dict(
+                type="str",
+                required=True,
+                choices=[
+                    "add_virtual_machine",
+                    "change_compartment",
+                    "remove_virtual_machine",
+                ],
+            ),
         )
     )
 

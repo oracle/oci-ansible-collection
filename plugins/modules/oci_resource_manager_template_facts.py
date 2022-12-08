@@ -36,8 +36,11 @@ options:
         type: str
     template_category_id:
         description:
-            - Unique identifier of the template category.
-              Possible values are `0` (Quick Starts), `1` (Service), `2` (Architecture), and `3` (Private).
+            - Unique identifier for the template category.
+              Possible values are `0` (Quickstarts), `1` (Service), `2` (Architecture), and `3` (Private).
+              Template category labels are displayed in the Console page listing templates.
+              Quickstarts, Service, and Architecture templates (categories 0, 1, and 2) are available in all compartments.
+              Each private template (category 3) is available in the compartment where it was created.
         type: str
     template_id:
         description:

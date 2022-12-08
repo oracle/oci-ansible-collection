@@ -30,7 +30,7 @@ oracle.oci.oci_resource_manager_stack_actions -- Perform actions on a Stack reso
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.3.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.4.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Perform actions on a Stack resource in Oracle Cloud Infrastructure
-- For *action=change_compartment*, moves a Stack and it's associated Jobs into a different compartment.
+- For *action=change_compartment*, moves a stack (and its associated jobs) into a different compartment within the same tenancy. For information about moving resources between compartments, see `Moving Resources to a Different Compartment <https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes>`_.
 - For *action=detect_stack_drift*, checks drift status for the specified stack.
 
 

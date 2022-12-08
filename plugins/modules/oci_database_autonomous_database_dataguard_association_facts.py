@@ -115,7 +115,7 @@ autonomous_database_dataguard_associations:
             sample: PROVISIONING
         protection_mode:
             description:
-                - The protection mode of this Data Guard association. For more information, see
+                - The protection mode of this Autonomous Data Guard association. For more information, see
                   L(Oracle Data Guard Protection Modes,http://docs.oracle.com/database/122/SBYDB/oracle-data-guard-protection-modes.htm#SBYDB02000)
                   in the Oracle Data Guard documentation.
             returned: on success

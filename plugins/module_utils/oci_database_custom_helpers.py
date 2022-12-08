@@ -874,6 +874,19 @@ class CloudVmClusterIormConfigHelperCustom:
 
 
 class DbSystemActionsHelperCustom:
+    # mapping actions - precheck, upgrade, rollback and update_snapshot_retention_days to upgrade method.
+    def get_action_fn(self, action):
+        action = action.lower()
+        if (
+            action == "precheck"
+            or action == "upgrade"
+            or action == "rollback"
+            or action == "update_snapshot_retention_days"
+        ):
+            self.module.params["action"] = action.upper()
+            return getattr(self, "upgrade", None)
+        return super(DbSystemActionsHelperCustom, self).get_action_fn(action)
+
     def is_action_necessary(self, action, resource=None):
         db_system = resource or self.get_resource().data
         if action == "migrate_exadata_db_system_resource_model":

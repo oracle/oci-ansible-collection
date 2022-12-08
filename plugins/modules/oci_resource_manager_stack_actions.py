@@ -23,7 +23,9 @@ module: oci_resource_manager_stack_actions
 short_description: Perform actions on a Stack resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a Stack resource in Oracle Cloud Infrastructure
-    - For I(action=change_compartment), moves a Stack and it's associated Jobs into a different compartment.
+    - For I(action=change_compartment), moves a stack (and its associated jobs) into a different compartment within the same tenancy.
+      For information about moving resources between compartments, see
+      L(Moving Resources to a Different Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
     - For I(action=detect_stack_drift), checks drift status for the specified stack.
 version_added: "2.9.0"
 author: Oracle (@oracle)

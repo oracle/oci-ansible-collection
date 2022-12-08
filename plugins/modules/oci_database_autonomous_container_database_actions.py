@@ -349,7 +349,7 @@ autonomous_container_database:
             sample: {'Operations': {'CostCenter': 'US'}}
         role:
             description:
-                - The role of the Autonomous Data Guard-enabled Autonomous Container Database.
+                - The Data Guard role of the Autonomous Container Database or Autonomous Database, if Autonomous Data Guard is enabled.
             returned: on success
             type: str
             sample: PRIMARY
@@ -437,7 +437,7 @@ autonomous_container_database:
             sample: 56
         available_cpus:
             description:
-                - Sum of OCPUs available on the Autonomous VM Cluster + Sum of fractional OCPUs available in the Autonomous Container Database.
+                - Sum of OCPUs available on the Autonomous VM Cluster + Sum of reclaimable OCPUs available in the Autonomous Container Database.
             returned: on success
             type: float
             sample: 3.4

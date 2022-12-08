@@ -46,7 +46,7 @@ options:
     timestamp:
         description:
             - The timestamp specified for the point-in-time clone of the source Autonomous Database. The timestamp must be in the past.
-            - Required when source is 'BACKUP_FROM_TIMESTAMP'
+            - Applicable when source is 'BACKUP_FROM_TIMESTAMP'
         type: str
     clone_type:
         description:
@@ -56,6 +56,11 @@ options:
         choices:
             - "FULL"
             - "METADATA"
+    use_latest_available_backup_time_stamp:
+        description:
+            - Clone from latest available backup timestamp.
+            - Applicable when source is 'BACKUP_FROM_TIMESTAMP'
+        type: bool
     source_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the source Autonomous Database that you will clone to create
@@ -660,13 +665,14 @@ EXAMPLES = """
 - name: Create autonomous_database with source = BACKUP_FROM_TIMESTAMP
   oci_database_autonomous_database:
     # required
-    timestamp: timestamp_example
     clone_type: FULL
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     source: BACKUP_FROM_TIMESTAMP
     autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    timestamp: timestamp_example
+    use_latest_available_backup_time_stamp: true
     character_set: character_set_example
     ncharacter_set: ncharacter_set_example
     kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
@@ -1111,10 +1117,10 @@ autonomous_database:
                     sample: "2013-10-20T19:20:30+01:00"
         cpu_core_count:
             description:
-                - The number of OCPU cores to be made available to the database. For Autonomous Databases on dedicated Exadata infrastructure, the maximum
-                  number of cores is determined by the infrastructure shape. See L(Characteristics of Infrastructure
-                  Shapes,https://www.oracle.com/pls/topic/lookup?ctx=en/cloud/paas/autonomous-database&id=ATPFG-GUID-B0F033C1-CC5A-42F0-B2E7-3CECFEDA1FD1) for
-                  shape details.
+                - The number of OCPU cores to be made available to the database. When the ECPU is selected, the value for cpuCoreCount is 0. For Autonomous
+                  Databases on dedicated Exadata infrastructure, the maximum number of cores is determined by the infrastructure shape. See L(Characteristics of
+                  Infrastructure Shapes,https://www.oracle.com/pls/topic/lookup?ctx=en/cloud/paas/autonomous-database&id=ATPFG-
+                  GUID-B0F033C1-CC5A-42F0-B2E7-3CECFEDA1FD1) for shape details.
                 - "**Note:** This parameter cannot be used with the `ocpuCount` parameter."
             returned: on success
             type: int
@@ -2116,6 +2122,7 @@ class AutonomousDatabaseHelperGen(OCIResourceHelperBase):
 
     def get_exclude_attributes(self):
         return [
+            "use_latest_available_backup_time_stamp",
             "autonomous_database_backup_id",
             "source",
             "clone_type",
@@ -2189,6 +2196,7 @@ def main():
             autonomous_database_backup_id=dict(type="str"),
             timestamp=dict(type="str"),
             clone_type=dict(type="str", choices=["FULL", "METADATA"]),
+            use_latest_available_backup_time_stamp=dict(type="bool"),
             source_id=dict(type="str"),
             compartment_id=dict(type="str"),
             character_set=dict(type="str"),

@@ -23,7 +23,8 @@ module: oci_resource_manager_resource_discovery_service_facts
 short_description: Fetches details about one or multiple ResourceDiscoveryService resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple ResourceDiscoveryService resources in Oracle Cloud Infrastructure
-    - Returns a list of supported services for Resource Discovery. For reference on service names, see the L(Terraform provider
+    - Returns a list of supported services for L(Resource Discovery,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/resource-discovery.htm).
+      For reference on service names, see the L(Terraform provider
       documentation,https://www.terraform.io/docs/providers/oci/guides/resource_discovery.html#services).
 version_added: "2.9.0"
 author: Oracle (@oracle)

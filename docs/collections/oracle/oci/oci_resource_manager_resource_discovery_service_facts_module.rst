@@ -30,7 +30,7 @@ oracle.oci.oci_resource_manager_resource_discovery_service_facts -- Fetches deta
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.3.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.4.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about one or multiple ResourceDiscoveryService resources in Oracle Cloud Infrastructure
-- Returns a list of supported services for Resource Discovery. For reference on service names, see the `Terraform provider documentation <https://www.terraform.io/docs/providers/oci/guides/resource_discovery.html#services>`_.
+- Returns a list of supported services for `Resource Discovery <https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/resource-discovery.htm>`_. For reference on service names, see the `Terraform provider documentation <https://www.terraform.io/docs/providers/oci/guides/resource_discovery.html#services>`_.
 
 
 .. Aliases

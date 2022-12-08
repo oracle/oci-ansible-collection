@@ -53,21 +53,30 @@ options:
                 type: str
                 choices:
                     - "MANAGED_SSH"
+                    - "DYNAMIC_PORT_FORWARDING"
                     - "PORT_FORWARDING"
                 required: true
-            target_resource_port:
-                description:
-                    - The port number to connect to on the target resource.
-                type: int
             target_resource_id:
                 description:
                     - The unique identifier (OCID) of the target resource (a Compute instance, for example) that the session connects to.
+                    - Applicable when session_type is 'PORT_FORWARDING'
                     - Required when session_type is 'MANAGED_SSH'
                 type: str
             target_resource_private_ip_address:
                 description:
                     - The private IP address of the target resource that the session connects to.
+                    - Applicable when session_type is one of ['MANAGED_SSH', 'PORT_FORWARDING']
                 type: str
+            target_resource_fqdn:
+                description:
+                    - The Fully Qualified Domain Name of the target resource that the session connects to.
+                    - Applicable when session_type is 'PORT_FORWARDING'
+                type: str
+            target_resource_port:
+                description:
+                    - The port number to connect to on the target resource.
+                    - Applicable when session_type is one of ['MANAGED_SSH', 'PORT_FORWARDING']
+                type: int
     key_type:
         description:
             - The type of the key used to connect to the session. PUB is a standard public key in OpenSSH format.
@@ -128,8 +137,8 @@ EXAMPLES = """
       target_resource_id: "ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx"
 
       # optional
-      target_resource_port: 56
       target_resource_private_ip_address: target_resource_private_ip_address_example
+      target_resource_port: 56
     key_details:
       # required
       public_key_content: public_key_content_example
@@ -219,17 +228,12 @@ session:
                     sample: target_resource_operating_system_user_name_example
                 session_type:
                     description:
-                        - The Bastion service recognizes two types of sessions, managed SSH sessions and SSH port forwarding sessions. Managed SSH sessions
-                          require that the target resource has an OpenSSH server and the Oracle Cloud Agent both running.
+                        - The Bastion service recognizes three types of sessions, managed SSH sessions, SSH port forwarding sessions, and Dynamic SSH port
+                          forwarding sessions. Managed SSH sessions require that the target resource has an OpenSSH server and the Oracle Cloud Agent both
+                          running.
                     returned: on success
                     type: str
                     sample: MANAGED_SSH
-                target_resource_port:
-                    description:
-                        - The port number to connect to on the target resource.
-                    returned: on success
-                    type: int
-                    sample: 56
                 target_resource_id:
                     description:
                         - The unique identifier (OCID) of the target resource (a Compute instance, for example) that the session connects to.
@@ -248,6 +252,18 @@ session:
                     returned: on success
                     type: str
                     sample: target_resource_display_name_example
+                target_resource_fqdn:
+                    description:
+                        - The Fully Qualified Domain Name of the target resource that the session connects to.
+                    returned: on success
+                    type: str
+                    sample: target_resource_fqdn_example
+                target_resource_port:
+                    description:
+                        - The port number to connect to on the target resource.
+                    returned: on success
+                    type: int
+                    sample: 56
         ssh_metadata:
             description:
                 - The connection message for the session.
@@ -320,10 +336,11 @@ session:
         "target_resource_details": {
             "target_resource_operating_system_user_name": "target_resource_operating_system_user_name_example",
             "session_type": "MANAGED_SSH",
-            "target_resource_port": 56,
             "target_resource_id": "ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx",
             "target_resource_private_ip_address": "target_resource_private_ip_address_example",
-            "target_resource_display_name": "target_resource_display_name_example"
+            "target_resource_display_name": "target_resource_display_name_example",
+            "target_resource_fqdn": "target_resource_fqdn_example",
+            "target_resource_port": 56
         },
         "ssh_metadata": {},
         "key_type": "PUB",
@@ -495,11 +512,16 @@ def main():
                     session_type=dict(
                         type="str",
                         required=True,
-                        choices=["MANAGED_SSH", "PORT_FORWARDING"],
+                        choices=[
+                            "MANAGED_SSH",
+                            "DYNAMIC_PORT_FORWARDING",
+                            "PORT_FORWARDING",
+                        ],
                     ),
-                    target_resource_port=dict(type="int"),
                     target_resource_id=dict(type="str"),
                     target_resource_private_ip_address=dict(type="str"),
+                    target_resource_fqdn=dict(type="str"),
+                    target_resource_port=dict(type="int"),
                 ),
             ),
             key_type=dict(type="str", choices=["PUB"]),

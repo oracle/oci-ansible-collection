@@ -30,7 +30,7 @@ oracle.oci.oci_resource_manager_job_tf_config_facts -- Fetches details about a J
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.3.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.4.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about a JobTfConfig resource in Oracle Cloud Infrastructure
-- Returns the Terraform configuration file for the specified job in .zip format. Returns an error if no zip file is found.
+- Returns the Terraform configuration for the specified job in zip format. If no zip file is found, returns an error.
 
 
 .. Aliases

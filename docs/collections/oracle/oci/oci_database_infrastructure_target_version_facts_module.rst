@@ -30,7 +30,7 @@ oracle.oci.oci_database_infrastructure_target_version_facts -- Fetches details a
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.3.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.4.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -293,6 +293,7 @@ Parameters
                                                                                                                                                                                                 <li>EXACC_INFRASTRUCTURE</li>
                                                                                                                                                                                                 <li>AUTONOMOUS_VM_CLUSTER</li>
                                                                                                                                                                                                 <li>AUTONOMOUS_DATABASE</li>
+                                                                                                                                                                                                <li>CLOUD_AUTONOMOUS_VM_CLUSTER</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>

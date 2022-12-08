@@ -217,16 +217,22 @@ cloud_autonomous_vm_cluster:
             sample: 1.2
         cpu_core_count:
             description:
-                - The number of CPU cores enabled on the cloud Autonomous VM cluster.
+                - The number of CPU cores on the cloud Autonomous VM cluster.
             returned: on success
             type: int
             sample: 56
         ocpu_count:
             description:
-                - The number of CPU cores enabled on the cloud Autonomous VM cluster. Only 1 decimal place is allowed for the fractional part.
+                - The number of CPU cores on the cloud Autonomous VM cluster. Only 1 decimal place is allowed for the fractional part.
             returned: on success
             type: float
             sample: 3.4
+        cpu_core_count_per_node:
+            description:
+                - The number of OCPU cores enabled per VM cluster node.
+            returned: on success
+            type: int
+            sample: 56
         memory_size_in_gbs:
             description:
                 - The memory allocated in GBs.
@@ -257,6 +263,96 @@ cloud_autonomous_vm_cluster:
             returned: on success
             type: str
             sample: "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx"
+        maintenance_window:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                preference:
+                    description:
+                        - The maintenance window scheduling preference.
+                    returned: on success
+                    type: str
+                    sample: NO_PREFERENCE
+                patching_mode:
+                    description:
+                        - "Cloud Exadata infrastructure node patching method, either \\"ROLLING\\" or \\"NONROLLING\\". Default value is ROLLING."
+                        - "*IMPORTANT*: Non-rolling infrastructure patching involves system down time. See L(Oracle-Managed Infrastructure Maintenance
+                          Updates,https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/examaintenance.htm#Oracle) for more information."
+                    returned: on success
+                    type: str
+                    sample: ROLLING
+                is_custom_action_timeout_enabled:
+                    description:
+                        - If true, enables the configuration of a custom action timeout (waiting period) between database server patching operations.
+                    returned: on success
+                    type: bool
+                    sample: true
+                custom_action_timeout_in_mins:
+                    description:
+                        - Determines the amount of time the system will wait before the start of each database server patching operation.
+                          Custom action timeout is in minutes and valid value is between 15 to 120 (inclusive).
+                    returned: on success
+                    type: int
+                    sample: 56
+                is_monthly_patching_enabled:
+                    description:
+                        - If true, enables the monthly patching option.
+                    returned: on success
+                    type: bool
+                    sample: true
+                months:
+                    description:
+                        - Months during the year when maintenance should be performed.
+                    returned: on success
+                    type: complex
+                    contains:
+                        name:
+                            description:
+                                - Name of the month of the year.
+                            returned: on success
+                            type: str
+                            sample: JANUARY
+                weeks_of_month:
+                    description:
+                        - Weeks during the month when maintenance should be performed. Weeks start on the 1st, 8th, 15th, and 22nd days of the month, and have a
+                          duration of 7 days. Weeks start and end based on calendar dates, not days of the week.
+                          For example, to allow maintenance during the 2nd week of the month (from the 8th day to the 14th day of the month), use the value 2.
+                          Maintenance cannot be scheduled for the fifth week of months that contain more than 28 days.
+                          Note that this parameter works in conjunction with the  daysOfWeek and hoursOfDay parameters to allow you to specify specific days of
+                          the week and hours that maintenance will be performed.
+                    returned: on success
+                    type: list
+                    sample: []
+                days_of_week:
+                    description:
+                        - Days during the week when maintenance should be performed.
+                    returned: on success
+                    type: complex
+                    contains:
+                        name:
+                            description:
+                                - Name of the day of the week.
+                            returned: on success
+                            type: str
+                            sample: MONDAY
+                hours_of_day:
+                    description:
+                        - "The window of hours during the day when maintenance should be performed. The window is a 4 hour slot. Valid values are
+                          - 0 - represents time slot 0:00 - 3:59 UTC - 4 - represents time slot 4:00 - 7:59 UTC - 8 - represents time slot 8:00 - 11:59 UTC - 12
+                            - represents time slot 12:00 - 15:59 UTC - 16 - represents time slot 16:00 - 19:59 UTC - 20 - represents time slot 20:00 - 23:59
+                            UTC"
+                    returned: on success
+                    type: list
+                    sample: []
+                lead_time_in_weeks:
+                    description:
+                        - Lead time window allows user to set a lead time to prepare for a down time. The lead time is in weeks and valid value is between 1 to
+                          4.
+                    returned: on success
+                    type: int
+                    sample: 56
         freeform_tags:
             description:
                 - Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace.
@@ -345,10 +441,27 @@ cloud_autonomous_vm_cluster:
         "data_storage_size_in_gbs": 1.2,
         "cpu_core_count": 56,
         "ocpu_count": 3.4,
+        "cpu_core_count_per_node": 56,
         "memory_size_in_gbs": 56,
         "license_model": "LICENSE_INCLUDED",
         "last_maintenance_run_id": "ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
         "next_maintenance_run_id": "ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx",
+        "maintenance_window": {
+            "preference": "NO_PREFERENCE",
+            "patching_mode": "ROLLING",
+            "is_custom_action_timeout_enabled": true,
+            "custom_action_timeout_in_mins": 56,
+            "is_monthly_patching_enabled": true,
+            "months": [{
+                "name": "JANUARY"
+            }],
+            "weeks_of_month": [],
+            "days_of_week": [{
+                "name": "MONDAY"
+            }],
+            "hours_of_day": [],
+            "lead_time_in_weeks": 56
+        },
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "available_cpus": 3.4,

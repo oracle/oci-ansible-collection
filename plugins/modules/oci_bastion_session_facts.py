@@ -180,17 +180,12 @@ sessions:
                     sample: target_resource_operating_system_user_name_example
                 session_type:
                     description:
-                        - The Bastion service recognizes two types of sessions, managed SSH sessions and SSH port forwarding sessions. Managed SSH sessions
-                          require that the target resource has an OpenSSH server and the Oracle Cloud Agent both running.
+                        - The Bastion service recognizes three types of sessions, managed SSH sessions, SSH port forwarding sessions, and Dynamic SSH port
+                          forwarding sessions. Managed SSH sessions require that the target resource has an OpenSSH server and the Oracle Cloud Agent both
+                          running.
                     returned: on success
                     type: str
                     sample: MANAGED_SSH
-                target_resource_port:
-                    description:
-                        - The port number to connect to on the target resource.
-                    returned: on success
-                    type: int
-                    sample: 56
                 target_resource_id:
                     description:
                         - The unique identifier (OCID) of the target resource (a Compute instance, for example) that the session connects to.
@@ -209,6 +204,18 @@ sessions:
                     returned: on success
                     type: str
                     sample: target_resource_display_name_example
+                target_resource_fqdn:
+                    description:
+                        - The Fully Qualified Domain Name of the target resource that the session connects to.
+                    returned: on success
+                    type: str
+                    sample: target_resource_fqdn_example
+                target_resource_port:
+                    description:
+                        - The port number to connect to on the target resource.
+                    returned: on success
+                    type: int
+                    sample: 56
         time_created:
             description:
                 - "The time the session was created. Format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
@@ -256,10 +263,11 @@ sessions:
         "target_resource_details": {
             "target_resource_operating_system_user_name": "target_resource_operating_system_user_name_example",
             "session_type": "MANAGED_SSH",
-            "target_resource_port": 56,
             "target_resource_id": "ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx",
             "target_resource_private_ip_address": "target_resource_private_ip_address_example",
-            "target_resource_display_name": "target_resource_display_name_example"
+            "target_resource_display_name": "target_resource_display_name_example",
+            "target_resource_fqdn": "target_resource_fqdn_example",
+            "target_resource_port": 56
         },
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",

@@ -23,6 +23,8 @@ module: oci_database_cloud_exadata_infrastructure_actions
 short_description: Perform actions on a CloudExadataInfrastructure resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a CloudExadataInfrastructure resource in Oracle Cloud Infrastructure
+    - For I(action=add_storage_capacity), makes the storage capacity from additional storage servers available for Cloud VM Cluster consumption. Applies to
+      Exadata Cloud Service instances and Autonomous Database on dedicated Exadata infrastructure only.
     - For I(action=change_compartment), moves a cloud Exadata infrastructure resource and its dependent resources to another compartment. Applies to Exadata
       Cloud Service instances and Autonomous Database on dedicated Exadata infrastructure only.For more information about moving resources to a different
       compartment, see L(Moving Database Resources to a Different
@@ -33,8 +35,8 @@ options:
     compartment_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment.
+            - Required for I(action=change_compartment).
         type: str
-        required: true
     cloud_exadata_infrastructure_id:
         description:
             - The cloud Exadata infrastructure L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm).
@@ -47,11 +49,18 @@ options:
         type: str
         required: true
         choices:
+            - "add_storage_capacity"
             - "change_compartment"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
 EXAMPLES = """
+- name: Perform action add_storage_capacity on cloud_exadata_infrastructure
+  oci_database_cloud_exadata_infrastructure_actions:
+    # required
+    cloud_exadata_infrastructure_id: "ocid1.cloudexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
+    action: add_storage_capacity
+
 - name: Perform action change_compartment on cloud_exadata_infrastructure
   oci_database_cloud_exadata_infrastructure_actions:
     # required
@@ -125,6 +134,66 @@ cloud_exadata_infrastructure:
         available_storage_size_in_gbs:
             description:
                 - The available storage can be allocated to the cloud Exadata infrastructure resource, in gigabytes (GB).
+            returned: on success
+            type: int
+            sample: 56
+        cpu_count:
+            description:
+                - The total number of CPU cores allocated.
+            returned: on success
+            type: int
+            sample: 56
+        max_cpu_count:
+            description:
+                - The total number of CPU cores available.
+            returned: on success
+            type: int
+            sample: 56
+        memory_size_in_gbs:
+            description:
+                - The memory allocated in GBs.
+            returned: on success
+            type: int
+            sample: 56
+        max_memory_in_gbs:
+            description:
+                - The total memory available in GBs.
+            returned: on success
+            type: int
+            sample: 56
+        db_node_storage_size_in_gbs:
+            description:
+                - The local node storage allocated in GBs.
+            returned: on success
+            type: int
+            sample: 56
+        max_db_node_storage_in_gbs:
+            description:
+                - The total local node storage available in GBs.
+            returned: on success
+            type: int
+            sample: 56
+        data_storage_size_in_tbs:
+            description:
+                - Size, in terabytes, of the DATA disk group.
+            returned: on success
+            type: float
+            sample: 1.2
+        max_data_storage_in_tbs:
+            description:
+                - The total available DATA disk group size.
+            returned: on success
+            type: float
+            sample: 1.2
+        additional_storage_count:
+            description:
+                - The requested number of additional storage servers for the Exadata infrastructure.
+            returned: on success
+            type: int
+            sample: 56
+        activated_storage_count:
+            description:
+                - The requested number of additional storage servers activated for the Exadata infrastructure.
             returned: on success
             type: int
             sample: 56
@@ -283,6 +352,16 @@ cloud_exadata_infrastructure:
         "storage_count": 56,
         "total_storage_size_in_gbs": 56,
         "available_storage_size_in_gbs": 56,
+        "cpu_count": 56,
+        "max_cpu_count": 56,
+        "memory_size_in_gbs": 56,
+        "max_memory_in_gbs": 56,
+        "db_node_storage_size_in_gbs": 56,
+        "max_db_node_storage_in_gbs": 56,
+        "data_storage_size_in_tbs": 1.2,
+        "max_data_storage_in_tbs": 1.2,
+        "additional_storage_count": 56,
+        "activated_storage_count": 56,
         "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_details": "lifecycle_details_example",
         "maintenance_window": {
@@ -334,6 +413,7 @@ except ImportError:
 class CloudExadataInfrastructureActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        add_storage_capacity
         change_compartment
     """
 
@@ -361,6 +441,25 @@ class CloudExadataInfrastructureActionsHelperGen(OCIActionsHelperBase):
             cloud_exadata_infrastructure_id=self.module.params.get(
                 "cloud_exadata_infrastructure_id"
             ),
+        )
+
+    def add_storage_capacity(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.add_storage_capacity_cloud_exadata_infrastructure,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                cloud_exadata_infrastructure_id=self.module.params.get(
+                    "cloud_exadata_infrastructure_id"
+                ),
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
     def change_compartment(self):
@@ -405,11 +504,15 @@ def main():
     )
     module_args.update(
         dict(
-            compartment_id=dict(type="str", required=True),
+            compartment_id=dict(type="str"),
             cloud_exadata_infrastructure_id=dict(
                 aliases=["id"], type="str", required=True
             ),
-            action=dict(type="str", required=True, choices=["change_compartment"]),
+            action=dict(
+                type="str",
+                required=True,
+                choices=["add_storage_capacity", "change_compartment"],
+            ),
         )
     )
 

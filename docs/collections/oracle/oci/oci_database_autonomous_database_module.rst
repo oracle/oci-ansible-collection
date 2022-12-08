@@ -30,7 +30,7 @@ oracle.oci.oci_database_autonomous_database -- Manage an AutonomousDatabase reso
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.3.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.4.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -1277,7 +1277,27 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The timestamp specified for the point-in-time clone of the source Autonomous Database. The timestamp must be in the past.</div>
-                                            <div>Required when source is &#x27;BACKUP_FROM_TIMESTAMP&#x27;</div>
+                                            <div>Applicable when source is &#x27;BACKUP_FROM_TIMESTAMP&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-use_latest_available_backup_time_stamp"></div>
+                    <b>use_latest_available_backup_time_stamp</b>
+                    <a class="ansibleOptionLink" href="#parameter-use_latest_available_backup_time_stamp" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Clone from latest available backup timestamp.</div>
+                                            <div>Applicable when source is &#x27;BACKUP_FROM_TIMESTAMP&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1546,13 +1566,14 @@ Examples
     - name: Create autonomous_database with source = BACKUP_FROM_TIMESTAMP
       oci_database_autonomous_database:
         # required
-        timestamp: timestamp_example
         clone_type: FULL
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         source: BACKUP_FROM_TIMESTAMP
         autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
+        timestamp: timestamp_example
+        use_latest_available_backup_time_stamp: true
         character_set: character_set_example
         ncharacter_set: ncharacter_set_example
         kms_key_id: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
@@ -2512,7 +2533,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The number of OCPU cores to be made available to the database. For Autonomous Databases on dedicated Exadata infrastructure, the maximum number of cores is determined by the infrastructure shape. See <a href='https://www.oracle.com/pls/topic/lookup?ctx=en/cloud/paas/autonomous-database&amp;id=ATPFG-GUID-B0F033C1-CC5A-42F0-B2E7-3CECFEDA1FD1'>Characteristics of Infrastructure Shapes</a> for shape details.</div>
+                                            <div>The number of OCPU cores to be made available to the database. When the ECPU is selected, the value for cpuCoreCount is 0. For Autonomous Databases on dedicated Exadata infrastructure, the maximum number of cores is determined by the infrastructure shape. See <a href='https://www.oracle.com/pls/topic/lookup?ctx=en/cloud/paas/autonomous-database&amp;id=ATPFG- GUID-B0F033C1-CC5A-42F0-B2E7-3CECFEDA1FD1'>Characteristics of Infrastructure Shapes</a> for shape details.</div>
                                             <div>**Note:** This parameter cannot be used with the `ocpuCount` parameter.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>

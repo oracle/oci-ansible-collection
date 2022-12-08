@@ -178,6 +178,12 @@ bastions:
             returned: on success
             type: str
             sample: "ocid1.targetsubnet.oc1..xxxxxxEXAMPLExxxxxx"
+        dns_proxy_status:
+            description:
+                - The current dns proxy status of the bastion.
+            returned: on success
+            type: str
+            sample: DISABLED
         time_created:
             description:
                 - "The time the bastion was created. Format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
@@ -238,6 +244,7 @@ bastions:
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "target_vcn_id": "ocid1.targetvcn.oc1..xxxxxxEXAMPLExxxxxx",
         "target_subnet_id": "ocid1.targetsubnet.oc1..xxxxxxEXAMPLExxxxxx",
+        "dns_proxy_status": "DISABLED",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",

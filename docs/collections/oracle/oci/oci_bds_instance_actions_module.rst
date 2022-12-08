@@ -30,7 +30,7 @@ oracle.oci.oci_bds_instance_actions -- Perform actions on a BdsInstance resource
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.3.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.4.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -401,6 +401,7 @@ Parameters
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>WORKER</li>
                                                                                                                                                                                                 <li>COMPUTE_ONLY_WORKER</li>
+                                                                                                                                                                                                <li>EDGE</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -581,6 +582,90 @@ Parameters
                     <div class="ansibleOptionAnchor" id="parameter-nodes/compute_only_worker_shape_config/ocpus"></div>
                     <b>ocpus</b>
                     <a class="ansibleOptionLink" href="#parameter-nodes/compute_only_worker_shape_config/ocpus" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The total number of OCPUs available to the node.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-nodes/edge"></div>
+                    <b>edge</b>
+                    <a class="ansibleOptionLink" href="#parameter-nodes/edge" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Change shape of edge nodes to the desired target shape. Both VM_STANDARD and E4 Flex shapes are allowed here.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-nodes/edge_shape_config"></div>
+                    <b>edge_shape_config</b>
+                    <a class="ansibleOptionLink" href="#parameter-nodes/edge_shape_config" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-nodes/edge_shape_config/memory_in_gbs"></div>
+                    <b>memory_in_gbs</b>
+                    <a class="ansibleOptionLink" href="#parameter-nodes/edge_shape_config/memory_in_gbs" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The total amount of memory available to the node, in gigabytes.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-nodes/edge_shape_config/nvmes"></div>
+                    <b>nvmes</b>
+                    <a class="ansibleOptionLink" href="#parameter-nodes/edge_shape_config/nvmes" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The number of NVMe drives to be used for storage. A single drive has 6.8 TB available.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-nodes/edge_shape_config/ocpus"></div>
+                    <b>ocpus</b>
+                    <a class="ansibleOptionLink" href="#parameter-nodes/edge_shape_config/ocpus" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">integer</span>
                                                                     </div>
@@ -1128,6 +1213,12 @@ Examples
             nvmes: 56
           cloudsql: cloudsql_example
           cloudsql_shape_config:
+            # optional
+            ocpus: 56
+            memory_in_gbs: 56
+            nvmes: 56
+          edge: edge_example
+          edge_shape_config:
             # optional
             ocpus: 56
             memory_in_gbs: 56
