@@ -161,6 +161,66 @@ cloud_exadata_infrastructures:
             returned: on success
             type: int
             sample: 56
+        cpu_count:
+            description:
+                - The total number of CPU cores allocated.
+            returned: on success
+            type: int
+            sample: 56
+        max_cpu_count:
+            description:
+                - The total number of CPU cores available.
+            returned: on success
+            type: int
+            sample: 56
+        memory_size_in_gbs:
+            description:
+                - The memory allocated in GBs.
+            returned: on success
+            type: int
+            sample: 56
+        max_memory_in_gbs:
+            description:
+                - The total memory available in GBs.
+            returned: on success
+            type: int
+            sample: 56
+        db_node_storage_size_in_gbs:
+            description:
+                - The local node storage allocated in GBs.
+            returned: on success
+            type: int
+            sample: 56
+        max_db_node_storage_in_gbs:
+            description:
+                - The total local node storage available in GBs.
+            returned: on success
+            type: int
+            sample: 56
+        data_storage_size_in_tbs:
+            description:
+                - Size, in terabytes, of the DATA disk group.
+            returned: on success
+            type: float
+            sample: 1.2
+        max_data_storage_in_tbs:
+            description:
+                - The total available DATA disk group size.
+            returned: on success
+            type: float
+            sample: 1.2
+        additional_storage_count:
+            description:
+                - The requested number of additional storage servers for the Exadata infrastructure.
+            returned: on success
+            type: int
+            sample: 56
+        activated_storage_count:
+            description:
+                - The requested number of additional storage servers activated for the Exadata infrastructure.
+            returned: on success
+            type: int
+            sample: 56
         time_created:
             description:
                 - The date and time the cloud Exadata infrastructure resource was created.
@@ -316,6 +376,16 @@ cloud_exadata_infrastructures:
         "storage_count": 56,
         "total_storage_size_in_gbs": 56,
         "available_storage_size_in_gbs": 56,
+        "cpu_count": 56,
+        "max_cpu_count": 56,
+        "memory_size_in_gbs": 56,
+        "max_memory_in_gbs": 56,
+        "db_node_storage_size_in_gbs": 56,
+        "max_db_node_storage_in_gbs": 56,
+        "data_storage_size_in_tbs": 1.2,
+        "max_data_storage_in_tbs": 1.2,
+        "additional_storage_count": 56,
+        "activated_storage_count": 56,
         "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_details": "lifecycle_details_example",
         "maintenance_window": {

@@ -23,8 +23,8 @@ module: oci_resource_manager_job_tf_config_facts
 short_description: Fetches details about a JobTfConfig resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a JobTfConfig resource in Oracle Cloud Infrastructure
-    - Returns the Terraform configuration file for the specified job in .zip format.
-      Returns an error if no zip file is found.
+    - Returns the Terraform configuration for the specified job in zip format.
+      If no zip file is found, returns an error.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:

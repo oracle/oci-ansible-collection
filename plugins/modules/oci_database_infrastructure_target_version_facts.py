@@ -50,6 +50,7 @@ options:
             - "EXACC_INFRASTRUCTURE"
             - "AUTONOMOUS_VM_CLUSTER"
             - "AUTONOMOUS_DATABASE"
+            - "CLOUD_AUTONOMOUS_VM_CLUSTER"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -172,6 +173,7 @@ def main():
                     "EXACC_INFRASTRUCTURE",
                     "AUTONOMOUS_VM_CLUSTER",
                     "AUTONOMOUS_DATABASE",
+                    "CLOUD_AUTONOMOUS_VM_CLUSTER",
                 ],
             ),
         )

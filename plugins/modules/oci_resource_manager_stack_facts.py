@@ -23,9 +23,10 @@ module: oci_resource_manager_stack_facts
 short_description: Fetches details about one or multiple Stack resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple Stack resources in Oracle Cloud Infrastructure
-    - "Returns a list of stacks.
+    - "Lists stacks according to the specified filter.
       - If called using the compartment ID, returns all stacks in the specified compartment.
-      - If called using the stack ID, returns the specified stack."
+      - If called using the stack ID, returns the specified stack. (See also L(GetStack,https://docs.cloud.oracle.com/en-
+        us/iaas/api/#/en/resourcemanager/latest/Stack/GetStack).)"
     - If I(stack_id) is specified, the details of a single Stack will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)

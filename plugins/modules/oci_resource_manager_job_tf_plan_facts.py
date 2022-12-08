@@ -25,7 +25,7 @@ description:
     - Fetches details about a JobTfPlan resource in Oracle Cloud Infrastructure
     - Returns the output of the specified Terraform plan job in binary or JSON format.
       For information about running Terraform plan jobs, see
-      L(To run a plan job,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Tasks/managingstacksandjobs.htm#PlanJobRun).
+      L(Creating Plan Jobs,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Tasks/create-job.htm).
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:

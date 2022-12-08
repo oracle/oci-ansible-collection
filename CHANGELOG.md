@@ -4,6 +4,35 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [4.4.0]
+
+## Added
+- Support for the Disaster Recovery service
+- Support for adding multiple cloud VM clusters in the Database service
+- Support for listing local and cross-region refreshable clones in the Database service
+- Support for creating multiple Autonomous VM Clusters in the same Exadata infrastructure in the Database service
+- Support for cloning from a backup from the last available timestamp in the Database service
+- Support for mTLS authentication with listeners during Autonomous VM Cluster creation on Exadata Cloud at Customer in the Database service
+- Support for providing custom values for TLS and non-TLS ports during Autonomous VM Cluster creation on Exadata Cloud at Customer in the Database service
+- Support for target host identification and SOCKS support on dynamic port forwarding sessions in the Bastion service
+- Support for additional filters when listing application dependencies in the Application Dependency Management service
+- Support for additional properties when reading Vulnerability Audit resources in the Application Dependency Management service
+- Support for optionally passing compartment IDs when creating Vulnerability Audit resources in the Application Dependency Management service
+- Support for creating rollback jobs in the Resource Manager service
+- Support to list resources associated with resource manager job in the Resource Manager service
+- Support to list resources associated with resource manager stack in the Resource Manager service
+- Support to list outputs associated with resource manager job in the Resource Manager service
+
+## Fixed
+- Issue with upgrade action of `oci_database_db_system_actions` module.
+- Inventory_plugin failure due to permission issue for `list_ipv6s` api. 
+
+## Breaking
+- Property `certificate_id` changed from optional to required for PrivateServerConfigDetails in the Resource Manager service
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.89.0
+
 ## [4.3.0]
 
 ## Added

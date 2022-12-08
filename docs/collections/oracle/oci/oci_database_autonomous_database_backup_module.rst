@@ -30,7 +30,7 @@ oracle.oci.oci_database_autonomous_database_backup -- Manage an AutonomousDataba
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.3.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.4.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -252,7 +252,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-display_name" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -406,8 +406,10 @@ Examples
     - name: Create autonomous_database_backup
       oci_database_autonomous_database_backup:
         # required
-        display_name: display_name_example
         autonomous_database_id: "ocid1.autonomousdatabase.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        display_name: display_name_example
 
 
 

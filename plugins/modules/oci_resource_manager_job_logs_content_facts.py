@@ -23,8 +23,8 @@ module: oci_resource_manager_job_logs_content_facts
 short_description: Fetches details about a JobLogsContent resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a JobLogsContent resource in Oracle Cloud Infrastructure
-    - Returns a raw log file for the specified job. The raw log file contains console log entries in text format. The maximum number of entries in a file is
-      100,000.
+    - Returns the raw log file for the specified job in text format.
+      The file includes a maximum of 100,000 log entries.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:

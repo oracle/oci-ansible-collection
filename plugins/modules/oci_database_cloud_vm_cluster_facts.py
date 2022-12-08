@@ -300,6 +300,30 @@ cloud_vm_clusters:
             returned: on success
             type: float
             sample: 3.4
+        memory_size_in_gbs:
+            description:
+                - The memory to be allocated in GBs.
+            returned: on success
+            type: int
+            sample: 56
+        db_node_storage_size_in_gbs:
+            description:
+                - The local node storage to be allocated in GBs.
+            returned: on success
+            type: int
+            sample: 56
+        data_storage_size_in_tbs:
+            description:
+                - The data disk group size to be allocated in TBs.
+            returned: on success
+            type: float
+            sample: 1.2
+        db_servers:
+            description:
+                - The list of Db servers.
+            returned: on success
+            type: list
+            sample: []
         cluster_name:
             description:
                 - The cluster name for cloud VM cluster. The cluster name must begin with an alphabetic character, and may contain hyphens (-). Underscores (_)
@@ -501,6 +525,10 @@ cloud_vm_clusters:
         "domain": "domain_example",
         "cpu_core_count": 56,
         "ocpu_count": 3.4,
+        "memory_size_in_gbs": 56,
+        "db_node_storage_size_in_gbs": 56,
+        "data_storage_size_in_tbs": 1.2,
+        "db_servers": [],
         "cluster_name": "cluster_name_example",
         "data_storage_percentage": 56,
         "is_local_backup_enabled": true,

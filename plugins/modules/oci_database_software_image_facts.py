@@ -207,7 +207,7 @@ database_software_images:
             sample: []
         included_patches_summary:
             description:
-                - The patches included in the image and the version of the image
+                - The patches included in the image and the version of the image.
             returned: on success
             type: str
             sample: included_patches_summary_example

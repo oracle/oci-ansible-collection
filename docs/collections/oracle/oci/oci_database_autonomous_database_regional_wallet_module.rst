@@ -30,7 +30,7 @@ oracle.oci.oci_database_autonomous_database_regional_wallet -- Manage an Autonom
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.3.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.4.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -241,7 +241,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Grace period in hours to keep the existing wallet valid after rotation.</div>
+                                            <div>The number of hours that the old wallet can be used after it has been rotated. The old wallet will no longer be valid after the number of hours in the wallet rotation grace period has passed. During the grace period, both the old wallet and the current wallet can be used.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>

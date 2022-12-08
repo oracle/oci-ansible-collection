@@ -26,10 +26,10 @@ description:
     - For I(state=present), creates a stack in the specified compartment.
       You can create a stack from a Terraform configuration.
       The Terraform configuration can be directly uploaded or referenced from a source code control system.
-      You can also create a stack from an existing compartment.
+      You can also create a stack from an existing compartment, which generates a Terraform configuration.
       You can also upload the Terraform configuration from an Object Storage bucket.
       For more information, see
-      L(To create a stack,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Tasks/managingstacksandjobs.htm#createstack-all).
+      L(Creating Stacks,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Tasks/create-stack.htm).
     - "This resource has the following action operations in the M(oracle.oci.oci_resource_manager_stack_actions) module: change_compartment,
       detect_stack_drift."
 version_added: "2.9.0"
@@ -185,8 +185,7 @@ options:
             - When `true`, changes the stack's sourcing of third-party Terraform providers to
               L(Terraform Registry,https://registry.terraform.io/browse/providers) and allows
               L(custom providers,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/resourcemanager/latest/datatypes/CustomTerraformProvider).
-              Applies to older stacks that use Terraform version 0.12.x and 0.13.x only.
-              (Older stacks that use other Terraform versions are automatically updated.)
+              Applies to older stacks.
               Once set to `true`, cannot be reverted.
               For more information about stack sourcing of third-party Terraform providers, see
               L(Third-party Provider Configuration,https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/terraformconfigresourcemanager.htm#third-

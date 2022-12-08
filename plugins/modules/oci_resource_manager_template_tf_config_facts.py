@@ -23,7 +23,7 @@ module: oci_resource_manager_template_tf_config_facts
 short_description: Fetches details about a TemplateTfConfig resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a TemplateTfConfig resource in Oracle Cloud Infrastructure
-    - Returns the Terraform configuration file in .zip format for the specified template.
+    - Returns the Terraform configuration file in zip format for the specified template.
       Returns an error if no zip file is found.
 version_added: "2.9.0"
 author: Oracle (@oracle)

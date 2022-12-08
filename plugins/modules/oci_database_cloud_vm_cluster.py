@@ -24,7 +24,8 @@ short_description: Manage a CloudVmCluster resource in Oracle Cloud Infrastructu
 description:
     - This module allows the user to create, update and delete a CloudVmCluster resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a cloud VM cluster.
-    - "This resource has the following action operations in the M(oracle.oci.oci_database_cloud_vm_cluster_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_database_cloud_vm_cluster_actions) module: add_virtual_machine,
+      change_compartment, remove_virtual_machine."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -46,6 +47,11 @@ options:
               cluster.
             - Required for create using I(state=present).
         type: str
+    db_servers:
+        description:
+            - The list of Db servers.
+        type: list
+        elements: str
     cluster_name:
         description:
             - The cluster name for cloud VM cluster. The cluster name must begin with an alphabetic character, and may contain hyphens (-). Underscores (_) are
@@ -132,6 +138,21 @@ options:
     ocpu_count:
         description:
             - The number of OCPU cores to enable for a cloud VM cluster. Only 1 decimal place is allowed for the fractional part.
+            - This parameter is updatable.
+        type: float
+    memory_size_in_gbs:
+        description:
+            - The memory to be allocated in GBs.
+            - This parameter is updatable.
+        type: int
+    db_node_storage_size_in_gbs:
+        description:
+            - The local node storage to be allocated in GBs.
+            - This parameter is updatable.
+        type: int
+    data_storage_size_in_tbs:
+        description:
+            - The data disk group size to be allocated in TBs.
             - This parameter is updatable.
         type: float
     license_model:
@@ -276,6 +297,7 @@ EXAMPLES = """
     ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
 
     # optional
+    db_servers: [ "db_servers_example" ]
     cluster_name: cluster_name_example
     data_storage_percentage: 56
     domain: domain_example
@@ -285,6 +307,9 @@ EXAMPLES = """
     scan_listener_port_tcp: 56
     scan_listener_port_tcp_ssl: 56
     ocpu_count: 3.4
+    memory_size_in_gbs: 56
+    db_node_storage_size_in_gbs: 56
+    data_storage_size_in_tbs: 3.4
     license_model: LICENSE_INCLUDED
     nsg_ids: [ "nsg_ids_example" ]
     backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
@@ -305,6 +330,9 @@ EXAMPLES = """
     display_name: display_name_example
     cpu_core_count: 56
     ocpu_count: 3.4
+    memory_size_in_gbs: 56
+    db_node_storage_size_in_gbs: 56
+    data_storage_size_in_tbs: 3.4
     license_model: LICENSE_INCLUDED
     ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
     update_details:
@@ -332,6 +360,9 @@ EXAMPLES = """
     # optional
     cpu_core_count: 56
     ocpu_count: 3.4
+    memory_size_in_gbs: 56
+    db_node_storage_size_in_gbs: 56
+    data_storage_size_in_tbs: 3.4
     license_model: LICENSE_INCLUDED
     ssh_public_keys: [ "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAz..." ]
     update_details:
@@ -565,6 +596,30 @@ cloud_vm_cluster:
             returned: on success
             type: float
             sample: 3.4
+        memory_size_in_gbs:
+            description:
+                - The memory to be allocated in GBs.
+            returned: on success
+            type: int
+            sample: 56
+        db_node_storage_size_in_gbs:
+            description:
+                - The local node storage to be allocated in GBs.
+            returned: on success
+            type: int
+            sample: 56
+        data_storage_size_in_tbs:
+            description:
+                - The data disk group size to be allocated in TBs.
+            returned: on success
+            type: float
+            sample: 1.2
+        db_servers:
+            description:
+                - The list of Db servers.
+            returned: on success
+            type: list
+            sample: []
         cluster_name:
             description:
                 - The cluster name for cloud VM cluster. The cluster name must begin with an alphabetic character, and may contain hyphens (-). Underscores (_)
@@ -766,6 +821,10 @@ cloud_vm_cluster:
         "domain": "domain_example",
         "cpu_core_count": 56,
         "ocpu_count": 3.4,
+        "memory_size_in_gbs": 56,
+        "db_node_storage_size_in_gbs": 56,
+        "data_storage_size_in_tbs": 1.2,
+        "db_servers": [],
         "cluster_name": "cluster_name_example",
         "data_storage_percentage": 56,
         "is_local_backup_enabled": true,
@@ -957,6 +1016,7 @@ def main():
             compartment_id=dict(type="str"),
             subnet_id=dict(type="str"),
             backup_subnet_id=dict(type="str"),
+            db_servers=dict(type="list", elements="str"),
             cluster_name=dict(type="str"),
             data_storage_percentage=dict(type="int"),
             cloud_exadata_infrastructure_id=dict(type="str"),
@@ -971,6 +1031,9 @@ def main():
             display_name=dict(aliases=["name"], type="str"),
             cpu_core_count=dict(type="int"),
             ocpu_count=dict(type="float"),
+            memory_size_in_gbs=dict(type="int"),
+            db_node_storage_size_in_gbs=dict(type="int"),
+            data_storage_size_in_tbs=dict(type="float"),
             license_model=dict(
                 type="str", choices=["LICENSE_INCLUDED", "BRING_YOUR_OWN_LICENSE"]
             ),

@@ -56,6 +56,7 @@ options:
         choices:
             - "WORKER"
             - "COMPUTE_ONLY_WORKER"
+            - "EDGE"
     shape:
         description:
             - Shape of the node.
@@ -185,6 +186,27 @@ options:
                     - Change shape of the Cloud SQL node to the desired target shape. Both VM_STANDARD and E4 Flex shapes are allowed here.
                 type: str
             cloudsql_shape_config:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    ocpus:
+                        description:
+                            - The total number of OCPUs available to the node.
+                        type: int
+                    memory_in_gbs:
+                        description:
+                            - The total amount of memory available to the node, in gigabytes.
+                        type: int
+                    nvmes:
+                        description:
+                            - The number of NVMe drives to be used for storage. A single drive has 6.8 TB available.
+                        type: int
+            edge:
+                description:
+                    - Change shape of edge nodes to the desired target shape. Both VM_STANDARD and E4 Flex shapes are allowed here.
+                type: str
+            edge_shape_config:
                 description:
                     - ""
                 type: dict
@@ -336,6 +358,12 @@ EXAMPLES = """
         nvmes: 56
       cloudsql: cloudsql_example
       cloudsql_shape_config:
+        # optional
+        ocpus: 56
+        memory_in_gbs: 56
+        nvmes: 56
+      edge: edge_example
+      edge_shape_config:
         # optional
         ocpus: 56
         memory_in_gbs: 56
@@ -1179,7 +1207,9 @@ def main():
     module_args.update(
         dict(
             number_of_worker_nodes=dict(type="int"),
-            node_type=dict(type="str", choices=["WORKER", "COMPUTE_ONLY_WORKER"]),
+            node_type=dict(
+                type="str", choices=["WORKER", "COMPUTE_ONLY_WORKER", "EDGE"]
+            ),
             shape=dict(type="str"),
             block_volume_size_in_gbs=dict(type="int"),
             shape_config=dict(
@@ -1232,6 +1262,15 @@ def main():
                     ),
                     cloudsql=dict(type="str"),
                     cloudsql_shape_config=dict(
+                        type="dict",
+                        options=dict(
+                            ocpus=dict(type="int"),
+                            memory_in_gbs=dict(type="int"),
+                            nvmes=dict(type="int"),
+                        ),
+                    ),
+                    edge=dict(type="str"),
+                    edge_shape_config=dict(
                         type="dict",
                         options=dict(
                             ocpus=dict(type="int"),

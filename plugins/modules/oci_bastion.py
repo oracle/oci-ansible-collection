@@ -56,6 +56,13 @@ options:
         description:
             - The phonebook entry of the customer's team, which can't be changed after creation. Not applicable to `standard` bastions.
         type: str
+    dns_proxy_status:
+        description:
+            - The desired dns proxy status of the bastion.
+        type: str
+        choices:
+            - "DISABLED"
+            - "ENABLED"
     max_session_ttl_in_seconds:
         description:
             - The maximum amount of time that any session on the bastion can remain active.
@@ -115,6 +122,7 @@ EXAMPLES = """
     # optional
     name: name_example
     phone_book_entry: phone_book_entry_example
+    dns_proxy_status: DISABLED
     max_session_ttl_in_seconds: 56
     static_jump_host_ip_addresses: [ "static_jump_host_ip_addresses_example" ]
     client_cidr_block_allow_list: [ "client_cidr_block_allow_list_example" ]
@@ -240,6 +248,12 @@ bastion:
             returned: on success
             type: int
             sample: 56
+        dns_proxy_status:
+            description:
+                - The current dns proxy status of the bastion.
+            returned: on success
+            type: str
+            sample: DISABLED
         time_created:
             description:
                 - "The time the bastion was created. Format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339).
@@ -300,6 +314,7 @@ bastion:
         "private_endpoint_ip_address": "private_endpoint_ip_address_example",
         "max_session_ttl_in_seconds": 56,
         "max_sessions_allowed": 56,
+        "dns_proxy_status": "DISABLED",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",
@@ -460,6 +475,7 @@ def main():
             compartment_id=dict(type="str"),
             target_subnet_id=dict(type="str"),
             phone_book_entry=dict(type="str"),
+            dns_proxy_status=dict(type="str", choices=["DISABLED", "ENABLED"]),
             max_session_ttl_in_seconds=dict(type="int"),
             static_jump_host_ip_addresses=dict(type="list", elements="str"),
             client_cidr_block_allow_list=dict(type="list", elements="str"),

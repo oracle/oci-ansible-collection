@@ -718,6 +718,7 @@ The inventory plugin makes API calls for the following operations:
 -  ListDBNodes
 -  ListDBSystems
 -  ListRegionSubscriptions
+-  ListIpv6
 
 Troubleshooting Guides
 ----------------------

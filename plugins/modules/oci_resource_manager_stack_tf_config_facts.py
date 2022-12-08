@@ -23,7 +23,7 @@ module: oci_resource_manager_stack_tf_config_facts
 short_description: Fetches details about a StackTfConfig resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a StackTfConfig resource in Oracle Cloud Infrastructure
-    - Returns the Terraform configuration file in .zip format for the specified stack.
+    - Returns the Terraform configuration file for the specified stack in zip format.
       Returns an error if no zip file is found.
 version_added: "2.9.0"
 author: Oracle (@oracle)

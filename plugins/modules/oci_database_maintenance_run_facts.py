@@ -55,6 +55,7 @@ options:
             - "EXACC_INFRASTRUCTURE"
             - "AUTONOMOUS_VM_CLUSTER"
             - "AUTONOMOUS_DATABASE"
+            - "CLOUD_AUTONOMOUS_VM_CLUSTER"
     maintenance_type:
         description:
             - The maintenance type.
@@ -462,6 +463,7 @@ def main():
                     "EXACC_INFRASTRUCTURE",
                     "AUTONOMOUS_VM_CLUSTER",
                     "AUTONOMOUS_DATABASE",
+                    "CLOUD_AUTONOMOUS_VM_CLUSTER",
                 ],
             ),
             maintenance_type=dict(type="str", choices=["PLANNED", "UNPLANNED"]),

@@ -30,7 +30,7 @@ oracle.oci.oci_resource_manager_job -- Manage a Job resource in Oracle Cloud Inf
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.3.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.4.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -443,6 +443,40 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-job_operation_details/execution_plan_rollback_job_id"></div>
+                    <b>execution_plan_rollback_job_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-job_operation_details/execution_plan_rollback_job_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of a plan rollback job, for use when specifying `&quot;FROM_PLAN_ROLLBACK_JOB_ID&quot;` as the `executionPlanRollbackStrategy`.</div>
+                                            <div>Applicable when operation is &#x27;APPLY_ROLLBACK&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-job_operation_details/execution_plan_rollback_strategy"></div>
+                    <b>execution_plan_rollback_strategy</b>
+                    <a class="ansibleOptionLink" href="#parameter-job_operation_details/execution_plan_rollback_strategy" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Specifies the source of the execution plan for rollback to apply. Use `AUTO_APPROVED` to run the job without an execution plan for rollback job.</div>
+                                            <div>Required when operation is &#x27;APPLY_ROLLBACK&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-job_operation_details/execution_plan_strategy"></div>
                     <b>execution_plan_strategy</b>
                     <a class="ansibleOptionLink" href="#parameter-job_operation_details/execution_plan_strategy" title="Permalink to this option"></a>
@@ -491,6 +525,8 @@ Parameters
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>IMPORT_TF_STATE</li>
+                                                                                                                                                                                                <li>PLAN_ROLLBACK</li>
+                                                                                                                                                                                                <li>APPLY_ROLLBACK</li>
                                                                                                                                                                                                 <li>APPLY</li>
                                                                                                                                                                                                 <li>PLAN</li>
                                                                                                                                                                                                 <li>DESTROY</li>
@@ -498,6 +534,24 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Terraform-specific operation to execute.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-job_operation_details/target_rollback_job_id"></div>
+                    <b>target_rollback_job_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-job_operation_details/target_rollback_job_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of a successful apply job to use for the plan rollback job.</div>
+                                            <div>Applicable when operation is &#x27;APPLY_ROLLBACK&#x27;</div>
+                                            <div>Required when operation is &#x27;PLAN_ROLLBACK&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -514,7 +568,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div></div>
-                                            <div>Applicable when operation is one of [&#x27;DESTROY&#x27;, &#x27;APPLY&#x27;, &#x27;PLAN&#x27;]</div>
+                                            <div>Applicable when operation is one of [&#x27;DESTROY&#x27;, &#x27;APPLY_ROLLBACK&#x27;, &#x27;APPLY&#x27;, &#x27;PLAN_ROLLBACK&#x27;, &#x27;PLAN&#x27;]</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -539,7 +593,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Enables detailed logs at the specified verbosity for running the job (operation).</div>
-                                            <div>Applicable when operation is &#x27;APPLY&#x27;</div>
+                                            <div>Applicable when operation is &#x27;PLAN_ROLLBACK&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -561,7 +615,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Specifies whether to refresh the state for each resource before running the job (operation). Refreshing the state can affect performance. Consider setting to `false` if the configuration includes several resources. Used with the following operations: `PLAN`, `APPLY`, `DESTROY`.</div>
-                                            <div>Applicable when operation is &#x27;APPLY&#x27;</div>
+                                            <div>Applicable when operation is &#x27;PLAN_ROLLBACK&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -579,7 +633,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Limits the number of concurrent Terraform operations when <a href='https://www.terraform.io/docs/internals/graph.html#walking-the-graph'>walking the graph</a>. Use this parameter to help debug Terraform issues or to accomplish certain special use cases. A higher value might cause resources to be throttled. Used with the following operations: `PLAN`, `APPLY`, `DESTROY`.</div>
-                                            <div>Applicable when operation is &#x27;APPLY&#x27;</div>
+                                            <div>Applicable when operation is &#x27;PLAN_ROLLBACK&#x27;</div>
                                                         </td>
             </tr>
                     
@@ -849,7 +903,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Job resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;apply_job_plan_resolution&#x27;: {&#x27;is_auto_approved&#x27;: True, &#x27;is_use_latest_job_id&#x27;: True, &#x27;plan_job_id&#x27;: &#x27;ocid1.planjob.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;cancellation_details&#x27;: {&#x27;is_forced&#x27;: True}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source&#x27;: {&#x27;branch_name&#x27;: &#x27;branch_name_example&#x27;, &#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;commit_id&#x27;: &#x27;ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source_record_type&#x27;: &#x27;COMPARTMENT_CONFIG_SOURCE&#x27;, &#x27;configuration_source_provider_id&#x27;: &#x27;ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;region&#x27;: &#x27;us-phoenix-1&#x27;, &#x27;repository_url&#x27;: &#x27;repository_url_example&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;failure_details&#x27;: {&#x27;code&#x27;: &#x27;INTERNAL_SERVICE_ERROR&#x27;, &#x27;message&#x27;: &#x27;message_example&#x27;}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_provider_upgrade_required&#x27;: True, &#x27;job_operation_details&#x27;: {&#x27;execution_plan_job_id&#x27;: &#x27;ocid1.executionplanjob.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;execution_plan_strategy&#x27;: &#x27;FROM_PLAN_JOB_ID&#x27;, &#x27;operation&#x27;: &#x27;APPLY&#x27;, &#x27;terraform_advanced_options&#x27;: {&#x27;detailed_log_level&#x27;: &#x27;ERROR&#x27;, &#x27;is_refresh_required&#x27;: True, &#x27;parallelism&#x27;: 56}}, &#x27;lifecycle_state&#x27;: &#x27;ACCEPTED&#x27;, &#x27;operation&#x27;: &#x27;PLAN&#x27;, &#x27;resolved_plan_job_id&#x27;: &#x27;ocid1.resolvedplanjob.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;stack_id&#x27;: &#x27;ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;variables&#x27;: {}, &#x27;working_directory&#x27;: &#x27;working_directory_example&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;apply_job_plan_resolution&#x27;: {&#x27;is_auto_approved&#x27;: True, &#x27;is_use_latest_job_id&#x27;: True, &#x27;plan_job_id&#x27;: &#x27;ocid1.planjob.oc1..xxxxxxEXAMPLExxxxxx&#x27;}, &#x27;cancellation_details&#x27;: {&#x27;is_forced&#x27;: True}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source&#x27;: {&#x27;branch_name&#x27;: &#x27;branch_name_example&#x27;, &#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;commit_id&#x27;: &#x27;ocid1.commit.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;config_source_record_type&#x27;: &#x27;COMPARTMENT_CONFIG_SOURCE&#x27;, &#x27;configuration_source_provider_id&#x27;: &#x27;ocid1.configurationsourceprovider.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;region&#x27;: &#x27;us-phoenix-1&#x27;, &#x27;repository_url&#x27;: &#x27;repository_url_example&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;failure_details&#x27;: {&#x27;code&#x27;: &#x27;INTERNAL_SERVICE_ERROR&#x27;, &#x27;message&#x27;: &#x27;message_example&#x27;}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_provider_upgrade_required&#x27;: True, &#x27;is_third_party_provider_experience_enabled&#x27;: True, &#x27;job_operation_details&#x27;: {&#x27;execution_plan_job_id&#x27;: &#x27;ocid1.executionplanjob.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;execution_plan_rollback_job_id&#x27;: &#x27;ocid1.executionplanrollbackjob.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;execution_plan_rollback_strategy&#x27;: &#x27;FROM_PLAN_ROLLBACK_JOB_ID&#x27;, &#x27;execution_plan_strategy&#x27;: &#x27;FROM_PLAN_JOB_ID&#x27;, &#x27;operation&#x27;: &#x27;APPLY&#x27;, &#x27;target_rollback_job_id&#x27;: &#x27;ocid1.targetrollbackjob.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;terraform_advanced_options&#x27;: {&#x27;detailed_log_level&#x27;: &#x27;ERROR&#x27;, &#x27;is_refresh_required&#x27;: True, &#x27;parallelism&#x27;: 56}}, &#x27;lifecycle_state&#x27;: &#x27;ACCEPTED&#x27;, &#x27;operation&#x27;: &#x27;PLAN&#x27;, &#x27;resolved_plan_job_id&#x27;: &#x27;ocid1.resolvedplanjob.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;stack_id&#x27;: &#x27;ocid1.stack.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;variables&#x27;: {}, &#x27;working_directory&#x27;: &#x27;working_directory_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1297,6 +1351,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-job/is_third_party_provider_experience_enabled"></div>
+                    <b>is_third_party_provider_experience_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-job/is_third_party_provider_experience_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>When `true`, the stack sources third-party Terraform providers from <a href='https://registry.terraform.io/browse/providers'>Terraform Registry</a> and allows <a href='https://docs.cloud.oracle.com/en-us/iaas/api/#/en/resourcemanager/latest/datatypes/CustomTerraformProvider'>custom providers</a>. For more information about stack sourcing of third-party Terraform providers, see <a href='https://docs.cloud.oracle.com/iaas/Content/ResourceManager/Concepts/terraformconfigresourcemanager.htm#third-party-providers'>Third-party Provider Configuration</a>.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-job/job_operation_details"></div>
                     <b>job_operation_details</b>
                     <a class="ansibleOptionLink" href="#return-job/job_operation_details" title="Permalink to this return value"></a>
@@ -1327,6 +1399,44 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.executionplanjob.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-job/job_operation_details/execution_plan_rollback_job_id"></div>
+                    <b>execution_plan_rollback_job_id</b>
+                    <a class="ansibleOptionLink" href="#return-job/job_operation_details/execution_plan_rollback_job_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of a plan rollback job, for use when specifying `&quot;FROM_PLAN_ROLLBACK_JOB_ID&quot;` as the `executionPlanRollbackStrategy`.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.executionplanrollbackjob.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-job/job_operation_details/execution_plan_rollback_strategy"></div>
+                    <b>execution_plan_rollback_strategy</b>
+                    <a class="ansibleOptionLink" href="#return-job/job_operation_details/execution_plan_rollback_strategy" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Specifies the source of the execution plan for rollback to apply. Use `AUTO_APPROVED` to run the job without an execution plan for rollback.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">FROM_PLAN_ROLLBACK_JOB_ID</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1365,6 +1475,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">APPLY</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-job/job_operation_details/target_rollback_job_id"></div>
+                    <b>target_rollback_job_id</b>
+                    <a class="ansibleOptionLink" href="#return-job/job_operation_details/target_rollback_job_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of a successful apply job, for use when specifying `&quot;AUTO_APPROVED&quot;` as the `executionPlanRollbackStrategy`.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.targetrollbackjob.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                                 <tr>

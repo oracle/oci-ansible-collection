@@ -219,16 +219,14 @@ class KnowledgeBaseHelperGen(OCIResourceHelperBase):
 
     def get_possible_entity_types(self):
         return super(KnowledgeBaseHelperGen, self).get_possible_entity_types() + [
-            "service",
-            "services",
-            "admservice",
-            "admservices",
-            "serviceresource",
-            "servicesresource",
-            "knowledgebase",
-            "knowledgebases",
             "admknowledgebase",
             "admknowledgebases",
+            "admadmknowledgebase",
+            "admadmknowledgebases",
+            "admknowledgebaseresource",
+            "admknowledgebasesresource",
+            "knowledgebase",
+            "knowledgebases",
             "knowledgebaseresource",
             "knowledgebasesresource",
             "adm",

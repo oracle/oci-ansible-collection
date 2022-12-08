@@ -30,7 +30,7 @@ oracle.oci.oci_database_cloud_autonomous_vm_cluster_facts -- Fetches details abo
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.3.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.4.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -462,12 +462,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="2">Key</th>
+            <th colspan="4">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="2">
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters"></div>
                     <b>cloud_autonomous_vm_clusters</b>
                     <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters" title="Permalink to this return value"></a>
@@ -480,12 +480,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of CloudAutonomousVmCluster resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;autonomous_data_storage_size_in_tbs&#x27;: 1.2, &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;available_autonomous_data_storage_size_in_tbs&#x27;: 1.2, &#x27;available_container_databases&#x27;: 56, &#x27;available_cpus&#x27;: 3.4, &#x27;cloud_exadata_infrastructure_id&#x27;: &#x27;ocid1.cloudexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cluster_time_zone&#x27;: &#x27;cluster_time_zone_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cpu_core_count&#x27;: 56, &#x27;data_storage_size_in_gbs&#x27;: 1.2, &#x27;data_storage_size_in_tbs&#x27;: 1.2, &#x27;db_node_storage_size_in_gbs&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;domain&#x27;: &#x27;domain_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;last_maintenance_run_id&#x27;: &#x27;ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;last_update_history_entry_id&#x27;: &#x27;ocid1.lastupdatehistoryentry.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;license_model&#x27;: &#x27;LICENSE_INCLUDED&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;memory_per_oracle_compute_unit_in_gbs&#x27;: 56, &#x27;memory_size_in_gbs&#x27;: 56, &#x27;next_maintenance_run_id&#x27;: &#x27;ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;node_count&#x27;: 56, &#x27;nsg_ids&#x27;: [], &#x27;ocpu_count&#x27;: 3.4, &#x27;reclaimable_cpus&#x27;: 3.4, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;total_container_databases&#x27;: 56}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;autonomous_data_storage_size_in_tbs&#x27;: 1.2, &#x27;availability_domain&#x27;: &#x27;Uocm:PHX-AD-1&#x27;, &#x27;available_autonomous_data_storage_size_in_tbs&#x27;: 1.2, &#x27;available_container_databases&#x27;: 56, &#x27;available_cpus&#x27;: 3.4, &#x27;cloud_exadata_infrastructure_id&#x27;: &#x27;ocid1.cloudexadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cluster_time_zone&#x27;: &#x27;cluster_time_zone_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cpu_core_count&#x27;: 56, &#x27;cpu_core_count_per_node&#x27;: 56, &#x27;data_storage_size_in_gbs&#x27;: 1.2, &#x27;data_storage_size_in_tbs&#x27;: 1.2, &#x27;db_node_storage_size_in_gbs&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;domain&#x27;: &#x27;domain_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;last_maintenance_run_id&#x27;: &#x27;ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;last_update_history_entry_id&#x27;: &#x27;ocid1.lastupdatehistoryentry.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;license_model&#x27;: &#x27;LICENSE_INCLUDED&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;maintenance_window&#x27;: {&#x27;custom_action_timeout_in_mins&#x27;: 56, &#x27;days_of_week&#x27;: [{&#x27;name&#x27;: &#x27;MONDAY&#x27;}], &#x27;hours_of_day&#x27;: [], &#x27;is_custom_action_timeout_enabled&#x27;: True, &#x27;is_monthly_patching_enabled&#x27;: True, &#x27;lead_time_in_weeks&#x27;: 56, &#x27;months&#x27;: [{&#x27;name&#x27;: &#x27;JANUARY&#x27;}], &#x27;patching_mode&#x27;: &#x27;ROLLING&#x27;, &#x27;preference&#x27;: &#x27;NO_PREFERENCE&#x27;, &#x27;weeks_of_month&#x27;: []}, &#x27;memory_per_oracle_compute_unit_in_gbs&#x27;: 56, &#x27;memory_size_in_gbs&#x27;: 56, &#x27;next_maintenance_run_id&#x27;: &#x27;ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;node_count&#x27;: 56, &#x27;nsg_ids&#x27;: [], &#x27;ocpu_count&#x27;: 3.4, &#x27;reclaimable_cpus&#x27;: 3.4, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;total_container_databases&#x27;: 56}]</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/autonomous_data_storage_size_in_tbs"></div>
                     <b>autonomous_data_storage_size_in_tbs</b>
                     <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/autonomous_data_storage_size_in_tbs" title="Permalink to this return value"></a>
@@ -503,7 +503,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/availability_domain"></div>
                     <b>availability_domain</b>
                     <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/availability_domain" title="Permalink to this return value"></a>
@@ -521,7 +521,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/available_autonomous_data_storage_size_in_tbs"></div>
                     <b>available_autonomous_data_storage_size_in_tbs</b>
                     <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/available_autonomous_data_storage_size_in_tbs" title="Permalink to this return value"></a>
@@ -539,7 +539,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/available_container_databases"></div>
                     <b>available_container_databases</b>
                     <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/available_container_databases" title="Permalink to this return value"></a>
@@ -557,7 +557,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/available_cpus"></div>
                     <b>available_cpus</b>
                     <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/available_cpus" title="Permalink to this return value"></a>
@@ -575,7 +575,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/cloud_exadata_infrastructure_id"></div>
                     <b>cloud_exadata_infrastructure_id</b>
                     <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/cloud_exadata_infrastructure_id" title="Permalink to this return value"></a>
@@ -593,7 +593,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/cluster_time_zone"></div>
                     <b>cluster_time_zone</b>
                     <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/cluster_time_zone" title="Permalink to this return value"></a>
@@ -611,7 +611,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/compartment_id" title="Permalink to this return value"></a>
@@ -629,7 +629,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/cpu_core_count"></div>
                     <b>cpu_core_count</b>
                     <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/cpu_core_count" title="Permalink to this return value"></a>
@@ -639,7 +639,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The number of CPU cores enabled on the cloud Autonomous VM cluster.</div>
+                                            <div>The number of CPU cores on the cloud Autonomous VM cluster.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -647,7 +647,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/cpu_core_count_per_node"></div>
+                    <b>cpu_core_count_per_node</b>
+                    <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/cpu_core_count_per_node" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The number of OCPU cores enabled per VM cluster node.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/data_storage_size_in_gbs"></div>
                     <b>data_storage_size_in_gbs</b>
                     <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/data_storage_size_in_gbs" title="Permalink to this return value"></a>
@@ -665,7 +683,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/data_storage_size_in_tbs"></div>
                     <b>data_storage_size_in_tbs</b>
                     <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/data_storage_size_in_tbs" title="Permalink to this return value"></a>
@@ -683,7 +701,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/db_node_storage_size_in_gbs"></div>
                     <b>db_node_storage_size_in_gbs</b>
                     <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/db_node_storage_size_in_gbs" title="Permalink to this return value"></a>
@@ -701,7 +719,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/defined_tags"></div>
                     <b>defined_tags</b>
                     <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/defined_tags" title="Permalink to this return value"></a>
@@ -719,7 +737,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/description"></div>
                     <b>description</b>
                     <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/description" title="Permalink to this return value"></a>
@@ -737,7 +755,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/display_name" title="Permalink to this return value"></a>
@@ -755,7 +773,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/domain"></div>
                     <b>domain</b>
                     <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/domain" title="Permalink to this return value"></a>
@@ -773,7 +791,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/freeform_tags"></div>
                     <b>freeform_tags</b>
                     <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/freeform_tags" title="Permalink to this return value"></a>
@@ -792,7 +810,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/hostname"></div>
                     <b>hostname</b>
                     <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/hostname" title="Permalink to this return value"></a>
@@ -810,7 +828,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/id" title="Permalink to this return value"></a>
@@ -828,7 +846,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/last_maintenance_run_id"></div>
                     <b>last_maintenance_run_id</b>
                     <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/last_maintenance_run_id" title="Permalink to this return value"></a>
@@ -846,7 +864,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/last_update_history_entry_id"></div>
                     <b>last_update_history_entry_id</b>
                     <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/last_update_history_entry_id" title="Permalink to this return value"></a>
@@ -864,7 +882,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/license_model"></div>
                     <b>license_model</b>
                     <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/license_model" title="Permalink to this return value"></a>
@@ -882,7 +900,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/lifecycle_details"></div>
                     <b>lifecycle_details</b>
                     <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/lifecycle_details" title="Permalink to this return value"></a>
@@ -900,7 +918,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/lifecycle_state" title="Permalink to this return value"></a>
@@ -918,7 +936,249 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/maintenance_window"></div>
+                    <b>maintenance_window</b>
+                    <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/maintenance_window" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/maintenance_window/custom_action_timeout_in_mins"></div>
+                    <b>custom_action_timeout_in_mins</b>
+                    <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/maintenance_window/custom_action_timeout_in_mins" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Determines the amount of time the system will wait before the start of each database server patching operation. Custom action timeout is in minutes and valid value is between 15 to 120 (inclusive).</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/maintenance_window/days_of_week"></div>
+                    <b>days_of_week</b>
+                    <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/maintenance_window/days_of_week" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Days during the week when maintenance should be performed.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/maintenance_window/days_of_week/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/maintenance_window/days_of_week/name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name of the day of the week.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">MONDAY</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/maintenance_window/hours_of_day"></div>
+                    <b>hours_of_day</b>
+                    <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/maintenance_window/hours_of_day" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The window of hours during the day when maintenance should be performed. The window is a 4 hour slot. Valid values are - 0 - represents time slot 0:00 - 3:59 UTC - 4 - represents time slot 4:00 - 7:59 UTC - 8 - represents time slot 8:00 - 11:59 UTC - 12 - represents time slot 12:00 - 15:59 UTC - 16 - represents time slot 16:00 - 19:59 UTC - 20 - represents time slot 20:00 - 23:59 UTC</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/maintenance_window/is_custom_action_timeout_enabled"></div>
+                    <b>is_custom_action_timeout_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/maintenance_window/is_custom_action_timeout_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>If true, enables the configuration of a custom action timeout (waiting period) between database server patching operations.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/maintenance_window/is_monthly_patching_enabled"></div>
+                    <b>is_monthly_patching_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/maintenance_window/is_monthly_patching_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>If true, enables the monthly patching option.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/maintenance_window/lead_time_in_weeks"></div>
+                    <b>lead_time_in_weeks</b>
+                    <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/maintenance_window/lead_time_in_weeks" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Lead time window allows user to set a lead time to prepare for a down time. The lead time is in weeks and valid value is between 1 to 4.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/maintenance_window/months"></div>
+                    <b>months</b>
+                    <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/maintenance_window/months" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Months during the year when maintenance should be performed.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/maintenance_window/months/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/maintenance_window/months/name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name of the month of the year.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">JANUARY</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/maintenance_window/patching_mode"></div>
+                    <b>patching_mode</b>
+                    <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/maintenance_window/patching_mode" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Cloud Exadata infrastructure node patching method, either &quot;ROLLING&quot; or &quot;NONROLLING&quot;. Default value is ROLLING.</div>
+                                            <div>*IMPORTANT*: Non-rolling infrastructure patching involves system down time. See <a href='https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/examaintenance.htm#Oracle'>Oracle-Managed Infrastructure Maintenance Updates</a> for more information.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ROLLING</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/maintenance_window/preference"></div>
+                    <b>preference</b>
+                    <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/maintenance_window/preference" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The maintenance window scheduling preference.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">NO_PREFERENCE</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/maintenance_window/weeks_of_month"></div>
+                    <b>weeks_of_month</b>
+                    <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/maintenance_window/weeks_of_month" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">list</span>
+                       / <span style="color: purple">elements=string</span>                    </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Weeks during the month when maintenance should be performed. Weeks start on the 1st, 8th, 15th, and 22nd days of the month, and have a duration of 7 days. Weeks start and end based on calendar dates, not days of the week. For example, to allow maintenance during the 2nd week of the month (from the 8th day to the 14th day of the month), use the value 2. Maintenance cannot be scheduled for the fifth week of months that contain more than 28 days. Note that this parameter works in conjunction with the  daysOfWeek and hoursOfDay parameters to allow you to specify specific days of the week and hours that maintenance will be performed.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/memory_per_oracle_compute_unit_in_gbs"></div>
                     <b>memory_per_oracle_compute_unit_in_gbs</b>
                     <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/memory_per_oracle_compute_unit_in_gbs" title="Permalink to this return value"></a>
@@ -936,7 +1196,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/memory_size_in_gbs"></div>
                     <b>memory_size_in_gbs</b>
                     <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/memory_size_in_gbs" title="Permalink to this return value"></a>
@@ -954,7 +1214,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/next_maintenance_run_id"></div>
                     <b>next_maintenance_run_id</b>
                     <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/next_maintenance_run_id" title="Permalink to this return value"></a>
@@ -972,7 +1232,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/node_count"></div>
                     <b>node_count</b>
                     <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/node_count" title="Permalink to this return value"></a>
@@ -990,7 +1250,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/nsg_ids"></div>
                     <b>nsg_ids</b>
                     <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/nsg_ids" title="Permalink to this return value"></a>
@@ -1006,7 +1266,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/ocpu_count"></div>
                     <b>ocpu_count</b>
                     <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/ocpu_count" title="Permalink to this return value"></a>
@@ -1016,7 +1276,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The number of CPU cores enabled on the cloud Autonomous VM cluster. Only 1 decimal place is allowed for the fractional part.</div>
+                                            <div>The number of CPU cores on the cloud Autonomous VM cluster. Only 1 decimal place is allowed for the fractional part.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
@@ -1024,7 +1284,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/reclaimable_cpus"></div>
                     <b>reclaimable_cpus</b>
                     <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/reclaimable_cpus" title="Permalink to this return value"></a>
@@ -1042,7 +1302,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/shape"></div>
                     <b>shape</b>
                     <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/shape" title="Permalink to this return value"></a>
@@ -1060,7 +1320,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/subnet_id"></div>
                     <b>subnet_id</b>
                     <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/subnet_id" title="Permalink to this return value"></a>
@@ -1080,7 +1340,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/time_created"></div>
                     <b>time_created</b>
                     <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/time_created" title="Permalink to this return value"></a>
@@ -1098,7 +1358,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/time_updated"></div>
                     <b>time_updated</b>
                     <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/time_updated" title="Permalink to this return value"></a>
@@ -1116,7 +1376,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-cloud_autonomous_vm_clusters/total_container_databases"></div>
                     <b>total_container_databases</b>
                     <a class="ansibleOptionLink" href="#return-cloud_autonomous_vm_clusters/total_container_databases" title="Permalink to this return value"></a>

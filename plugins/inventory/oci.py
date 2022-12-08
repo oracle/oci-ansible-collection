@@ -1211,12 +1211,22 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                         )
                         continue
 
-                    ipv6_ip_addresses = [
-                        ipv6.ip_address
-                        for ipv6 in oci_common_utils.call_with_backoff(
-                            virtual_nw_client.list_ipv6s, vnic_id=vnic.id
-                        ).data
-                    ]
+                    try:
+                        ipv6_ip_addresses = [
+                            ipv6.ip_address
+                            for ipv6 in oci_common_utils.call_with_backoff(
+                                virtual_nw_client.list_ipv6s, vnic_id=vnic.id
+                            ).data
+                        ]
+                    except ServiceError as ex:
+                        if ex.status != 404:
+                            raise
+                        else:
+                            self.debug(
+                                "Skipped Ipv6 information because we got 404 unauthorized error. Please check the "
+                                "relevant permissions. Please refer to "
+                                "https://docs.oracle.com/en-us/iaas/tools/oci-ansible-collection/latest/inventory_plugin/index.html"
+                            )
 
                     if instance_vars.get("id") == vnic_attachment.instance_id:
 

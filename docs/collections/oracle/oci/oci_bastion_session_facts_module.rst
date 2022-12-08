@@ -30,7 +30,7 @@ oracle.oci.oci_bastion_session_facts -- Fetches details about one or multiple Se
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.3.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.4.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -447,7 +447,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Session resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;bastion_id&#x27;: &#x27;ocid1.bastion.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;bastion_name&#x27;: &#x27;bastion_name_example&#x27;, &#x27;bastion_public_host_key_info&#x27;: &#x27;bastion_public_host_key_info_example&#x27;, &#x27;bastion_user_name&#x27;: &#x27;bastion_user_name_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;key_details&#x27;: {&#x27;public_key_content&#x27;: &#x27;public_key_content_example&#x27;}, &#x27;key_type&#x27;: &#x27;PUB&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;session_ttl_in_seconds&#x27;: 56, &#x27;ssh_metadata&#x27;: {}, &#x27;target_resource_details&#x27;: {&#x27;session_type&#x27;: &#x27;MANAGED_SSH&#x27;, &#x27;target_resource_display_name&#x27;: &#x27;target_resource_display_name_example&#x27;, &#x27;target_resource_id&#x27;: &#x27;ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;target_resource_operating_system_user_name&#x27;: &#x27;target_resource_operating_system_user_name_example&#x27;, &#x27;target_resource_port&#x27;: 56, &#x27;target_resource_private_ip_address&#x27;: &#x27;target_resource_private_ip_address_example&#x27;}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;bastion_id&#x27;: &#x27;ocid1.bastion.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;bastion_name&#x27;: &#x27;bastion_name_example&#x27;, &#x27;bastion_public_host_key_info&#x27;: &#x27;bastion_public_host_key_info_example&#x27;, &#x27;bastion_user_name&#x27;: &#x27;bastion_user_name_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;key_details&#x27;: {&#x27;public_key_content&#x27;: &#x27;public_key_content_example&#x27;}, &#x27;key_type&#x27;: &#x27;PUB&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;session_ttl_in_seconds&#x27;: 56, &#x27;ssh_metadata&#x27;: {}, &#x27;target_resource_details&#x27;: {&#x27;session_type&#x27;: &#x27;MANAGED_SSH&#x27;, &#x27;target_resource_display_name&#x27;: &#x27;target_resource_display_name_example&#x27;, &#x27;target_resource_fqdn&#x27;: &#x27;target_resource_fqdn_example&#x27;, &#x27;target_resource_id&#x27;: &#x27;ocid1.targetresource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;target_resource_operating_system_user_name&#x27;: &#x27;target_resource_operating_system_user_name_example&#x27;, &#x27;target_resource_port&#x27;: 56, &#x27;target_resource_private_ip_address&#x27;: &#x27;target_resource_private_ip_address_example&#x27;}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -716,7 +716,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The Bastion service recognizes two types of sessions, managed SSH sessions and SSH port forwarding sessions. Managed SSH sessions require that the target resource has an OpenSSH server and the Oracle Cloud Agent both running.</div>
+                                            <div>The Bastion service recognizes three types of sessions, managed SSH sessions, SSH port forwarding sessions, and Dynamic SSH port forwarding sessions. Managed SSH sessions require that the target resource has an OpenSSH server and the Oracle Cloud Agent both running.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">MANAGED_SSH</div>
@@ -739,6 +739,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">target_resource_display_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-sessions/target_resource_details/target_resource_fqdn"></div>
+                    <b>target_resource_fqdn</b>
+                    <a class="ansibleOptionLink" href="#return-sessions/target_resource_details/target_resource_fqdn" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The Fully Qualified Domain Name of the target resource that the session connects to.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">target_resource_fqdn_example</div>
                                     </td>
             </tr>
                                 <tr>

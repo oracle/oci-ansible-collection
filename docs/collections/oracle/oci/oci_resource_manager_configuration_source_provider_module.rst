@@ -30,7 +30,7 @@ oracle.oci.oci_resource_manager_configuration_source_provider -- Manage a Config
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.3.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.4.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -445,13 +445,13 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-private_server_config_details/certificate_id" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                                    </div>
+                                                 / <span style="color: red">required</span>                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm'>OCID</a> of a certificate associated with the configuration source provider.</div>
-                                            <div>Applicable when config_source_provider_type is &#x27;GITLAB_ACCESS_TOKEN&#x27;</div>
+                                            <div>Required when config_source_provider_type is &#x27;GITLAB_ACCESS_TOKEN&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -594,8 +594,6 @@ Examples
         private_server_config_details:
           # required
           private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
-
-          # optional
           certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -614,8 +612,6 @@ Examples
         private_server_config_details:
           # required
           private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
-
-          # optional
           certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -633,8 +629,6 @@ Examples
         private_server_config_details:
           # required
           private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
-
-          # optional
           certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -652,8 +646,6 @@ Examples
         private_server_config_details:
           # required
           private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
-
-          # optional
           certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -673,8 +665,6 @@ Examples
         private_server_config_details:
           # required
           private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
-
-          # optional
           certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -694,8 +684,6 @@ Examples
         private_server_config_details:
           # required
           private_endpoint_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
-
-          # optional
           certificate_id: "ocid1.certificate.oc1..xxxxxxEXAMPLExxxxxx"
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}

@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 4.3.0
+Collection version 4.4.0
 
 .. toctree::
     :maxdepth: 1
@@ -561,6 +561,7 @@ Modules
 * :ref:`oci_database_cloud_exadata_infrastructure <ansible_collections.oracle.oci.oci_database_cloud_exadata_infrastructure_module>` -- Manage a CloudExadataInfrastructure resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_cloud_exadata_infrastructure_actions <ansible_collections.oracle.oci.oci_database_cloud_exadata_infrastructure_actions_module>` -- Perform actions on a CloudExadataInfrastructure resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_cloud_exadata_infrastructure_facts <ansible_collections.oracle.oci.oci_database_cloud_exadata_infrastructure_facts_module>` -- Fetches details about one or multiple CloudExadataInfrastructure resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_cloud_exadata_infrastructure_unallocated_resources_facts <ansible_collections.oracle.oci.oci_database_cloud_exadata_infrastructure_unallocated_resources_facts_module>` -- Fetches details about a CloudExadataInfrastructureUnallocatedResources resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_cloud_vm_cluster <ansible_collections.oracle.oci.oci_database_cloud_vm_cluster_module>` -- Manage a CloudVmCluster resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_cloud_vm_cluster_actions <ansible_collections.oracle.oci.oci_database_cloud_vm_cluster_actions_module>` -- Perform actions on a CloudVmCluster resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_cloud_vm_cluster_facts <ansible_collections.oracle.oci.oci_database_cloud_vm_cluster_facts_module>` -- Fetches details about one or multiple CloudVmCluster resources in Oracle Cloud Infrastructure
@@ -699,6 +700,7 @@ Modules
 * :ref:`oci_database_pluggable_database <ansible_collections.oracle.oci.oci_database_pluggable_database_module>` -- Manage a PluggableDatabase resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_pluggable_database_actions <ansible_collections.oracle.oci.oci_database_pluggable_database_actions_module>` -- Perform actions on a PluggableDatabase resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_pluggable_database_facts <ansible_collections.oracle.oci.oci_database_pluggable_database_facts_module>` -- Fetches details about one or multiple PluggableDatabase resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_refreshable_clone_facts <ansible_collections.oracle.oci.oci_database_refreshable_clone_facts_module>` -- Fetches details about one or multiple RefreshableClone resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_software_image <ansible_collections.oracle.oci.oci_database_software_image_module>` -- Manage a DatabaseSoftwareImage resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_software_image_actions <ansible_collections.oracle.oci.oci_database_software_image_actions_module>` -- Perform actions on a DatabaseSoftwareImage resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_software_image_facts <ansible_collections.oracle.oci.oci_database_software_image_facts_module>` -- Fetches details about one or multiple DatabaseSoftwareImage resources in Oracle Cloud Infrastructure
@@ -763,6 +765,14 @@ Modules
 * :ref:`oci_devops_repository_ref_facts <ansible_collections.oracle.oci.oci_devops_repository_ref_facts_module>` -- Fetches details about one or multiple RepositoryRef resources in Oracle Cloud Infrastructure
 * :ref:`oci_devops_trigger <ansible_collections.oracle.oci.oci_devops_trigger_module>` -- Manage a Trigger resource in Oracle Cloud Infrastructure
 * :ref:`oci_devops_trigger_facts <ansible_collections.oracle.oci.oci_devops_trigger_facts_module>` -- Fetches details about one or multiple Trigger resources in Oracle Cloud Infrastructure
+* :ref:`oci_disaster_recovery_dr_plan <ansible_collections.oracle.oci.oci_disaster_recovery_dr_plan_module>` -- Manage a DrPlan resource in Oracle Cloud Infrastructure
+* :ref:`oci_disaster_recovery_dr_plan_execution <ansible_collections.oracle.oci.oci_disaster_recovery_dr_plan_execution_module>` -- Manage a DrPlanExecution resource in Oracle Cloud Infrastructure
+* :ref:`oci_disaster_recovery_dr_plan_execution_actions <ansible_collections.oracle.oci.oci_disaster_recovery_dr_plan_execution_actions_module>` -- Perform actions on a DrPlanExecution resource in Oracle Cloud Infrastructure
+* :ref:`oci_disaster_recovery_dr_plan_execution_facts <ansible_collections.oracle.oci.oci_disaster_recovery_dr_plan_execution_facts_module>` -- Fetches details about one or multiple DrPlanExecution resources in Oracle Cloud Infrastructure
+* :ref:`oci_disaster_recovery_dr_plan_facts <ansible_collections.oracle.oci.oci_disaster_recovery_dr_plan_facts_module>` -- Fetches details about one or multiple DrPlan resources in Oracle Cloud Infrastructure
+* :ref:`oci_disaster_recovery_dr_protection_group <ansible_collections.oracle.oci.oci_disaster_recovery_dr_protection_group_module>` -- Manage a DrProtectionGroup resource in Oracle Cloud Infrastructure
+* :ref:`oci_disaster_recovery_dr_protection_group_actions <ansible_collections.oracle.oci.oci_disaster_recovery_dr_protection_group_actions_module>` -- Perform actions on a DrProtectionGroup resource in Oracle Cloud Infrastructure
+* :ref:`oci_disaster_recovery_dr_protection_group_facts <ansible_collections.oracle.oci.oci_disaster_recovery_dr_protection_group_facts_module>` -- Fetches details about one or multiple DrProtectionGroup resources in Oracle Cloud Infrastructure
 * :ref:`oci_dns_domain_records <ansible_collections.oracle.oci.oci_dns_domain_records_module>` -- Manage a DomainRecords resource in Oracle Cloud Infrastructure
 * :ref:`oci_dns_domain_records_facts <ansible_collections.oracle.oci.oci_dns_domain_records_facts_module>` -- Fetches details about one or multiple DomainRecords resources in Oracle Cloud Infrastructure
 * :ref:`oci_dns_resolver <ansible_collections.oracle.oci.oci_dns_resolver_module>` -- Manage a Resolver resource in Oracle Cloud Infrastructure
@@ -1565,10 +1575,12 @@ Modules
 * :ref:`oci_resource_manager_configuration_source_provider_actions <ansible_collections.oracle.oci.oci_resource_manager_configuration_source_provider_actions_module>` -- Perform actions on a ConfigurationSourceProvider resource in Oracle Cloud Infrastructure
 * :ref:`oci_resource_manager_configuration_source_provider_facts <ansible_collections.oracle.oci.oci_resource_manager_configuration_source_provider_facts_module>` -- Fetches details about one or multiple ConfigurationSourceProvider resources in Oracle Cloud Infrastructure
 * :ref:`oci_resource_manager_job <ansible_collections.oracle.oci.oci_resource_manager_job_module>` -- Manage a Job resource in Oracle Cloud Infrastructure
+* :ref:`oci_resource_manager_job_associated_resource_facts <ansible_collections.oracle.oci.oci_resource_manager_job_associated_resource_facts_module>` -- Fetches details about one or multiple JobAssociatedResource resources in Oracle Cloud Infrastructure
 * :ref:`oci_resource_manager_job_detailed_log_content_facts <ansible_collections.oracle.oci.oci_resource_manager_job_detailed_log_content_facts_module>` -- Fetches details about a JobDetailedLogContent resource in Oracle Cloud Infrastructure
 * :ref:`oci_resource_manager_job_facts <ansible_collections.oracle.oci.oci_resource_manager_job_facts_module>` -- Fetches details about one or multiple Job resources in Oracle Cloud Infrastructure
 * :ref:`oci_resource_manager_job_log_facts <ansible_collections.oracle.oci.oci_resource_manager_job_log_facts_module>` -- Fetches details about one or multiple JobLog resources in Oracle Cloud Infrastructure
 * :ref:`oci_resource_manager_job_logs_content_facts <ansible_collections.oracle.oci.oci_resource_manager_job_logs_content_facts_module>` -- Fetches details about a JobLogsContent resource in Oracle Cloud Infrastructure
+* :ref:`oci_resource_manager_job_output_facts <ansible_collections.oracle.oci.oci_resource_manager_job_output_facts_module>` -- Fetches details about one or multiple JobOutput resources in Oracle Cloud Infrastructure
 * :ref:`oci_resource_manager_job_tf_config_facts <ansible_collections.oracle.oci.oci_resource_manager_job_tf_config_facts_module>` -- Fetches details about a JobTfConfig resource in Oracle Cloud Infrastructure
 * :ref:`oci_resource_manager_job_tf_plan_facts <ansible_collections.oracle.oci.oci_resource_manager_job_tf_plan_facts_module>` -- Fetches details about a JobTfPlan resource in Oracle Cloud Infrastructure
 * :ref:`oci_resource_manager_job_tf_state_facts <ansible_collections.oracle.oci.oci_resource_manager_job_tf_state_facts_module>` -- Fetches details about a JobTfState resource in Oracle Cloud Infrastructure
@@ -1579,6 +1591,7 @@ Modules
 * :ref:`oci_resource_manager_resource_discovery_service_facts <ansible_collections.oracle.oci.oci_resource_manager_resource_discovery_service_facts_module>` -- Fetches details about one or multiple ResourceDiscoveryService resources in Oracle Cloud Infrastructure
 * :ref:`oci_resource_manager_stack <ansible_collections.oracle.oci.oci_resource_manager_stack_module>` -- Manage a Stack resource in Oracle Cloud Infrastructure
 * :ref:`oci_resource_manager_stack_actions <ansible_collections.oracle.oci.oci_resource_manager_stack_actions_module>` -- Perform actions on a Stack resource in Oracle Cloud Infrastructure
+* :ref:`oci_resource_manager_stack_associated_resource_facts <ansible_collections.oracle.oci.oci_resource_manager_stack_associated_resource_facts_module>` -- Fetches details about one or multiple StackAssociatedResource resources in Oracle Cloud Infrastructure
 * :ref:`oci_resource_manager_stack_facts <ansible_collections.oracle.oci.oci_resource_manager_stack_facts_module>` -- Fetches details about one or multiple Stack resources in Oracle Cloud Infrastructure
 * :ref:`oci_resource_manager_stack_resource_drift_facts <ansible_collections.oracle.oci.oci_resource_manager_stack_resource_drift_facts_module>` -- Fetches details about one or multiple StackResourceDrift resources in Oracle Cloud Infrastructure
 * :ref:`oci_resource_manager_stack_tf_config_facts <ansible_collections.oracle.oci.oci_resource_manager_stack_tf_config_facts_module>` -- Fetches details about a StackTfConfig resource in Oracle Cloud Infrastructure
@@ -2346,6 +2359,7 @@ Modules
     oci_database_cloud_exadata_infrastructure_module
     oci_database_cloud_exadata_infrastructure_actions_module
     oci_database_cloud_exadata_infrastructure_facts_module
+    oci_database_cloud_exadata_infrastructure_unallocated_resources_facts_module
     oci_database_cloud_vm_cluster_module
     oci_database_cloud_vm_cluster_actions_module
     oci_database_cloud_vm_cluster_facts_module
@@ -2484,6 +2498,7 @@ Modules
     oci_database_pluggable_database_module
     oci_database_pluggable_database_actions_module
     oci_database_pluggable_database_facts_module
+    oci_database_refreshable_clone_facts_module
     oci_database_software_image_module
     oci_database_software_image_actions_module
     oci_database_software_image_facts_module
@@ -2548,6 +2563,14 @@ Modules
     oci_devops_repository_ref_facts_module
     oci_devops_trigger_module
     oci_devops_trigger_facts_module
+    oci_disaster_recovery_dr_plan_module
+    oci_disaster_recovery_dr_plan_execution_module
+    oci_disaster_recovery_dr_plan_execution_actions_module
+    oci_disaster_recovery_dr_plan_execution_facts_module
+    oci_disaster_recovery_dr_plan_facts_module
+    oci_disaster_recovery_dr_protection_group_module
+    oci_disaster_recovery_dr_protection_group_actions_module
+    oci_disaster_recovery_dr_protection_group_facts_module
     oci_dns_domain_records_module
     oci_dns_domain_records_facts_module
     oci_dns_resolver_module
@@ -3350,10 +3373,12 @@ Modules
     oci_resource_manager_configuration_source_provider_actions_module
     oci_resource_manager_configuration_source_provider_facts_module
     oci_resource_manager_job_module
+    oci_resource_manager_job_associated_resource_facts_module
     oci_resource_manager_job_detailed_log_content_facts_module
     oci_resource_manager_job_facts_module
     oci_resource_manager_job_log_facts_module
     oci_resource_manager_job_logs_content_facts_module
+    oci_resource_manager_job_output_facts_module
     oci_resource_manager_job_tf_config_facts_module
     oci_resource_manager_job_tf_plan_facts_module
     oci_resource_manager_job_tf_state_facts_module
@@ -3364,6 +3389,7 @@ Modules
     oci_resource_manager_resource_discovery_service_facts_module
     oci_resource_manager_stack_module
     oci_resource_manager_stack_actions_module
+    oci_resource_manager_stack_associated_resource_facts_module
     oci_resource_manager_stack_facts_module
     oci_resource_manager_stack_resource_drift_facts_module
     oci_resource_manager_stack_tf_config_facts_module
