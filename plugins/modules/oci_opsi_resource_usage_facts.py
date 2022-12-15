@@ -221,13 +221,20 @@ resource_usage:
             sample: 1.2
         capacity:
             description:
-                - The maximum allocated amount of the resource metric type  (CPU, STORAGE).
+                - The maximum allocated amount of the resource metric type  (CPU, STORAGE) for a set of databases.
             returned: on success
             type: float
             sample: 1.2
         usage_change_percent:
             description:
                 - Percentage change in resource usage during the current period calculated using linear regression functions
+            returned: on success
+            type: float
+            sample: 1.2
+        total_host_capacity:
+            description:
+                - The maximum host CPUs (cores x threads/core) on the underlying infrastructure. This only applies to CPU and does not not apply for Autonomous
+                  Databases.
             returned: on success
             type: float
             sample: 1.2
@@ -238,7 +245,8 @@ resource_usage:
         "usage_unit": "CORES",
         "usage": 1.2,
         "capacity": 1.2,
-        "usage_change_percent": 1.2
+        "usage_change_percent": 1.2,
+        "total_host_capacity": 1.2
     }
 """
 

@@ -202,7 +202,7 @@ summarize_exadata_insight_resource_usages:
             sample: 1.2
         capacity:
             description:
-                - The maximum allocated amount of the resource metric type  (CPU, STORAGE).
+                - The maximum allocated amount of the resource metric type  (CPU, STORAGE) for a set of databases.
             returned: on success
             type: float
             sample: 1.2
@@ -218,13 +218,21 @@ summarize_exadata_insight_resource_usages:
             returned: on success
             type: float
             sample: 1.2
+        total_host_capacity:
+            description:
+                - The maximum host CPUs (cores x threads/core) on the underlying infrastructure. This only applies to CPU and does not not apply for Autonomous
+                  Databases.
+            returned: on success
+            type: float
+            sample: 1.2
     sample: [{
         "exadata_insight_id": "ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx",
         "exadata_display_name": "exadata_display_name_example",
         "usage": 1.2,
         "capacity": 1.2,
         "utilization_percent": 1.2,
-        "usage_change_percent": 1.2
+        "usage_change_percent": 1.2,
+        "total_host_capacity": 1.2
     }]
 """
 

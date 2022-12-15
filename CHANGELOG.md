@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [4.5.0]
+
+## Added
+- Support for third-party scanning using Qualys in the Vulnerability Scanning service
+- Support for security recipes in Cloud Guard service
+- Support for viewing top processes running at a particular point of time in the Operations Insights service
+- Support for filtering top processes by a single process to view that process's trend over time in the Operations Insights service
+- Support for Optimizer statistics advisor execution script and collection aggregations on various database administration operations in the Database Management service
+- Support for running code interactively with session applications using statements in the Data Flow service
+- Support for Single Client Access Name (SCAN) in the Data Flow service
+
+## Fixed
+- Issue with logging proper error message when error occurs instead of module failure for ansible version < 2.10 (#187)
+ 
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.90.0
+
 ## [4.4.0]
 
 ## Added

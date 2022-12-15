@@ -122,7 +122,7 @@ tablespace_usage_trends:
                     sample: 1.2
                 capacity:
                     description:
-                        - The maximum allocated amount of the resource metric type  (CPU, STORAGE).
+                        - The maximum allocated amount of the resource metric type  (CPU, STORAGE) for a set of databases.
                     returned: on success
                     type: float
                     sample: 1.2

@@ -1268,7 +1268,9 @@ class OCIAnsibleModule(AnsibleModule):
             kwargs[self.OCI_DEBUG_LOGS_KEY] = self.log_container.get_logs()
         return super().exit_json(**kwargs)
 
+    # Ansible has added msg as positional param in ansible v2.10.
+    # Making fail_json() to be compatible with ansible version < 2.10.
     def fail_json(self, msg, **kwargs):
         if self.log_container.get_logs():
             kwargs[self.OCI_DEBUG_LOGS_KEY] = self.log_container.get_logs()
-        return super().fail_json(msg, **kwargs)
+        return super().fail_json(msg=msg, **kwargs)

@@ -250,7 +250,14 @@ resource_usage_trend:
                     sample: 1.2
                 capacity:
                     description:
-                        - The maximum allocated amount of the resource metric type  (CPU, STORAGE).
+                        - The maximum allocated amount of the resource metric type  (CPU, STORAGE) for a set of databases.
+                    returned: on success
+                    type: float
+                    sample: 1.2
+                total_host_capacity:
+                    description:
+                        - The maximum host CPUs (cores x threads/core) on the underlying infrastructure. This only applies to CPU and does not not apply for
+                          Autonomous Databases.
                     returned: on success
                     type: float
                     sample: 1.2
@@ -263,7 +270,8 @@ resource_usage_trend:
         "usage_data": [{
             "end_timestamp": "2013-10-20T19:20:30+01:00",
             "usage": 1.2,
-            "capacity": 1.2
+            "capacity": 1.2,
+            "total_host_capacity": 1.2
         }]
     }
 """

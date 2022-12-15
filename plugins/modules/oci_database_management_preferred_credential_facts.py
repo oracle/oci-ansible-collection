@@ -23,7 +23,7 @@ module: oci_database_management_preferred_credential_facts
 short_description: Fetches details about one or multiple PreferredCredential resources in Oracle Cloud Infrastructure
 description:
     - Fetches details about one or multiple PreferredCredential resources in Oracle Cloud Infrastructure
-    - List the preferred credentials for a given managed database.
+    - Gets the list of preferred credentials for a given Managed Database.
     - If I(credential_name) is specified, the details of a single PreferredCredential will be returned.
 version_added: "2.9.0"
 author: Oracle (@oracle)
@@ -64,44 +64,45 @@ preferred_credentials:
     contains:
         type:
             description:
-                - Type of the preferred credential.
+                - The type of preferred credential. Only 'BASIC' is supported currently.
                 - Returned for get operation
             returned: on success
             type: str
             sample: BASIC
         credential_name:
             description:
-                - Name of the preferred credential.
+                - The name of the preferred credential.
             returned: on success
             type: str
             sample: credential_name_example
         status:
             description:
-                - Status of the preferred credential.
+                - The status of the preferred credential.
             returned: on success
             type: str
             sample: SET
         is_accessible:
             description:
-                - Is preferred credential accessible.
+                - Indicates whether the preferred credential is accessible.
             returned: on success
             type: bool
             sample: true
         user_name:
             description:
-                - The user to connect to the database.
+                - The user name used to connect to the database.
             returned: on success
             type: str
             sample: user_name_example
         role:
             description:
-                - Role of the database user.
+                - The role of the database user.
             returned: on success
             type: str
             sample: NORMAL
         password_secret_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the secret.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Vault service secret that contains the database user
+                  password.
             returned: on success
             type: str
             sample: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"

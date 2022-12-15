@@ -68,6 +68,7 @@ options:
         description:
             - "Filter by one or more platform types.
               Supported platformType(s) for MACS-managed external host insight: [LINUX].
+              Supported platformType(s) for MACS-managed cloud host insight: [LINUX].
               Supported platformType(s) for EM-managed external host insight: [LINUX, SOLARIS, SUNOS, ZLINUX]."
         type: list
         elements: str
@@ -204,7 +205,7 @@ host_insight_resource_usage_summary:
             sample: 1.2
         capacity:
             description:
-                - The maximum allocated amount of the resource metric type  (CPU, STORAGE).
+                - The maximum allocated amount of the resource metric type  (CPU, STORAGE) for a set of databases.
             returned: on success
             type: float
             sample: 1.2

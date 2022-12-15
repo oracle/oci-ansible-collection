@@ -23,7 +23,7 @@ module: oci_database_management_preferred_credential_actions
 short_description: Perform actions on a PreferredCredential resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a PreferredCredential resource in Oracle Cloud Infrastructure
-    - For I(action=test), test the preferred credential.
+    - For I(action=test), tests the preferred credential.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -39,25 +39,26 @@ options:
         required: true
     type:
         description:
-            - The type of preferred credential.
+            - The type of preferred credential. Only 'BASIC' is supported currently.
         type: str
         choices:
             - "BASIC"
         required: true
     user_name:
         description:
-            - The user to connect to the database.
+            - The user name used to connect to the database.
         type: str
     role:
         description:
-            - Role of the database user.
+            - The role of the database user.
         type: str
         choices:
             - "NORMAL"
             - "SYSDBA"
     password_secret_id:
         description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the secret.
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Vault service secret that contains the database user
+              password.
         type: str
     action:
         description:
@@ -91,43 +92,44 @@ preferred_credential:
     contains:
         type:
             description:
-                - Type of the preferred credential.
+                - The type of preferred credential. Only 'BASIC' is supported currently.
             returned: on success
             type: str
             sample: BASIC
         credential_name:
             description:
-                - Name of the preferred credential.
+                - The name of the preferred credential.
             returned: on success
             type: str
             sample: credential_name_example
         status:
             description:
-                - Status of the preferred credential.
+                - The status of the preferred credential.
             returned: on success
             type: str
             sample: SET
         is_accessible:
             description:
-                - Is preferred credential accessible.
+                - Indicates whether the preferred credential is accessible.
             returned: on success
             type: bool
             sample: true
         user_name:
             description:
-                - The user to connect to the database.
+                - The user name used to connect to the database.
             returned: on success
             type: str
             sample: user_name_example
         role:
             description:
-                - Role of the database user.
+                - The role of the database user.
             returned: on success
             type: str
             sample: NORMAL
         password_secret_id:
             description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the secret.
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Vault service secret that contains the database user
+                  password.
             returned: on success
             type: str
             sample: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
