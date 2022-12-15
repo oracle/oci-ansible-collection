@@ -50,8 +50,9 @@ options:
         type: str
     archive_uri:
         description:
-            - An Oracle Cloud Infrastructure URI of an archive.zip file containing custom dependencies that may be used to support the execution a Python, Java,
-              or Scala application.
+            - A comma separated list of one or more archive files as Oracle Cloud Infrastructure URIs. For example, ``oci://path/to/a.zip,oci://path/to/b.zip``.
+              An Oracle Cloud Infrastructure URI of an archive.zip file containing custom dependencies that may be used to support the execution of a Python,
+              Java, or Scala application.
               See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat.
         type: str
     arguments:
@@ -183,6 +184,7 @@ options:
         choices:
             - "BATCH"
             - "STREAMING"
+            - "SESSION"
     warehouse_bucket_uri:
         description:
             - An Oracle Cloud Infrastructure URI of the bucket to be used as default warehouse directory
@@ -203,6 +205,18 @@ options:
               Example: `{\\"Department\\": \\"Finance\\"}`"
             - This parameter is updatable.
         type: dict
+    max_duration_in_minutes:
+        description:
+            - The maximum duration in minutes for which an Application should run. Data Flow Run would be terminated
+              once it reaches this duration from the time it transitions to `IN_PROGRESS` state.
+            - This parameter is updatable.
+        type: int
+    idle_timeout_in_minutes:
+        description:
+            - "The timeout value in minutes used to manage Runs. A Run would be stopped after inactivity for this amount of time period.
+              Note: This parameter is currently only applicable for Runs of type `SESSION`. Default value is 2880 minutes (2 days)"
+            - This parameter is updatable.
+        type: int
     run_id:
         description:
             - The unique ID for the run
@@ -259,6 +273,8 @@ EXAMPLES = """
     warehouse_bucket_uri: warehouse_bucket_uri_example
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
+    max_duration_in_minutes: 56
+    idle_timeout_in_minutes: 56
 
 - name: Update run
   oci_data_flow_run:
@@ -268,6 +284,8 @@ EXAMPLES = """
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
+    max_duration_in_minutes: 56
+    idle_timeout_in_minutes: 56
 
 - name: Update run using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_flow_run:
@@ -278,6 +296,8 @@ EXAMPLES = """
     # optional
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     freeform_tags: {'Department': 'Finance'}
+    max_duration_in_minutes: 56
+    idle_timeout_in_minutes: 56
 
 """
 
@@ -290,8 +310,9 @@ run:
     contains:
         archive_uri:
             description:
-                - An Oracle Cloud Infrastructure URI of an archive.zip file containing custom dependencies that may be used to support the execution a Python,
-                  Java, or Scala application.
+                - A comma separated list of one or more archive files as Oracle Cloud Infrastructure URIs. For example,
+                  ``oci://path/to/a.zip,oci://path/to/b.zip``. An Oracle Cloud Infrastructure URI of an archive.zip file containing custom dependencies that may
+                  be used to support the execution of a Python, Java, or Scala application.
                   See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat.
             returned: on success
             type: str
@@ -628,6 +649,20 @@ run:
             returned: on success
             type: str
             sample: warehouse_bucket_uri_example
+        max_duration_in_minutes:
+            description:
+                - The maximum duration in minutes for which an Application should run. Data Flow Run would be terminated
+                  once it reaches this duration from the time it transitions to `IN_PROGRESS` state.
+            returned: on success
+            type: int
+            sample: 56
+        idle_timeout_in_minutes:
+            description:
+                - "The timeout value in minutes used to manage Runs. A Run would be stopped after inactivity for this amount of time period.
+                  Note: This parameter is currently only applicable for Runs of type `SESSION`. Default value is 2880 minutes (2 days)"
+            returned: on success
+            type: int
+            sample: 56
     sample: {
         "archive_uri": "archive_uri_example",
         "arguments": [],
@@ -681,7 +716,9 @@ run:
         "time_updated": "2013-10-20T19:20:30+01:00",
         "total_o_cpu": 56,
         "type": "BATCH",
-        "warehouse_bucket_uri": "warehouse_bucket_uri_example"
+        "warehouse_bucket_uri": "warehouse_bucket_uri_example",
+        "max_duration_in_minutes": 56,
+        "idle_timeout_in_minutes": 56
     }
 """
 
@@ -869,10 +906,12 @@ def main():
                 ),
             ),
             spark_version=dict(type="str"),
-            type=dict(type="str", choices=["BATCH", "STREAMING"]),
+            type=dict(type="str", choices=["BATCH", "STREAMING", "SESSION"]),
             warehouse_bucket_uri=dict(type="str"),
             defined_tags=dict(type="dict"),
             freeform_tags=dict(type="dict"),
+            max_duration_in_minutes=dict(type="int"),
+            idle_timeout_in_minutes=dict(type="int"),
             run_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present"]),
         )

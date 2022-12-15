@@ -129,8 +129,9 @@ runs:
     contains:
         archive_uri:
             description:
-                - An Oracle Cloud Infrastructure URI of an archive.zip file containing custom dependencies that may be used to support the execution a Python,
-                  Java, or Scala application.
+                - A comma separated list of one or more archive files as Oracle Cloud Infrastructure URIs. For example,
+                  ``oci://path/to/a.zip,oci://path/to/b.zip``. An Oracle Cloud Infrastructure URI of an archive.zip file containing custom dependencies that may
+                  be used to support the execution of a Python, Java, or Scala application.
                   See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat.
                 - Returned for get operation
             returned: on success
@@ -367,6 +368,22 @@ runs:
             returned: on success
             type: str
             sample: warehouse_bucket_uri_example
+        max_duration_in_minutes:
+            description:
+                - The maximum duration in minutes for which an Application should run. Data Flow Run would be terminated
+                  once it reaches this duration from the time it transitions to `IN_PROGRESS` state.
+                - Returned for get operation
+            returned: on success
+            type: int
+            sample: 56
+        idle_timeout_in_minutes:
+            description:
+                - "The timeout value in minutes used to manage Runs. A Run would be stopped after inactivity for this amount of time period.
+                  Note: This parameter is currently only applicable for Runs of type `SESSION`. Default value is 2880 minutes (2 days)"
+                - Returned for get operation
+            returned: on success
+            type: int
+            sample: 56
         application_id:
             description:
                 - The application ID.
@@ -524,6 +541,8 @@ runs:
         "private_endpoint_subnet_id": "ocid1.privateendpointsubnet.oc1..xxxxxxEXAMPLExxxxxx",
         "spark_version": "spark_version_example",
         "warehouse_bucket_uri": "warehouse_bucket_uri_example",
+        "max_duration_in_minutes": 56,
+        "idle_timeout_in_minutes": 56,
         "application_id": "ocid1.application.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "data_read_in_bytes": 56,

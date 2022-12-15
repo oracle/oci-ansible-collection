@@ -30,7 +30,7 @@ oracle.oci.oci_opsi_summarize_exadata_insight_resource_usage_facts -- Fetches de
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.4.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.5.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -608,7 +608,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of SummarizeExadataInsightResourceUsage resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;capacity&#x27;: 1.2, &#x27;exadata_display_name&#x27;: &#x27;exadata_display_name_example&#x27;, &#x27;exadata_insight_id&#x27;: &#x27;ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;usage&#x27;: 1.2, &#x27;usage_change_percent&#x27;: 1.2, &#x27;utilization_percent&#x27;: 1.2}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;capacity&#x27;: 1.2, &#x27;exadata_display_name&#x27;: &#x27;exadata_display_name_example&#x27;, &#x27;exadata_insight_id&#x27;: &#x27;ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;total_host_capacity&#x27;: 1.2, &#x27;usage&#x27;: 1.2, &#x27;usage_change_percent&#x27;: 1.2, &#x27;utilization_percent&#x27;: 1.2}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -623,7 +623,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The maximum allocated amount of the resource metric type  (CPU, STORAGE).</div>
+                                            <div>The maximum allocated amount of the resource metric type  (CPU, STORAGE) for a set of databases.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
@@ -663,6 +663,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.exadatainsight.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-summarize_exadata_insight_resource_usages/total_host_capacity"></div>
+                    <b>total_host_capacity</b>
+                    <a class="ansibleOptionLink" href="#return-summarize_exadata_insight_resource_usages/total_host_capacity" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The maximum host CPUs (cores x threads/core) on the underlying infrastructure. This only applies to CPU and does not not apply for Autonomous Databases.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
                                     </td>
             </tr>
                                 <tr>

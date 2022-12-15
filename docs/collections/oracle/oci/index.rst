@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 4.4.0
+Collection version 4.5.0
 
 .. toctree::
     :maxdepth: 1
@@ -292,6 +292,9 @@ Modules
 * :ref:`oci_cloud_guard_responder_recipe <ansible_collections.oracle.oci.oci_cloud_guard_responder_recipe_module>` -- Manage a ResponderRecipe resource in Oracle Cloud Infrastructure
 * :ref:`oci_cloud_guard_responder_recipe_actions <ansible_collections.oracle.oci.oci_cloud_guard_responder_recipe_actions_module>` -- Perform actions on a ResponderRecipe resource in Oracle Cloud Infrastructure
 * :ref:`oci_cloud_guard_responder_recipe_facts <ansible_collections.oracle.oci.oci_cloud_guard_responder_recipe_facts_module>` -- Fetches details about one or multiple ResponderRecipe resources in Oracle Cloud Infrastructure
+* :ref:`oci_cloud_guard_security_recipe <ansible_collections.oracle.oci.oci_cloud_guard_security_recipe_module>` -- Manage a SecurityRecipe resource in Oracle Cloud Infrastructure
+* :ref:`oci_cloud_guard_security_recipe_actions <ansible_collections.oracle.oci.oci_cloud_guard_security_recipe_actions_module>` -- Perform actions on a SecurityRecipe resource in Oracle Cloud Infrastructure
+* :ref:`oci_cloud_guard_security_recipe_facts <ansible_collections.oracle.oci.oci_cloud_guard_security_recipe_facts_module>` -- Fetches details about one or multiple SecurityRecipe resources in Oracle Cloud Infrastructure
 * :ref:`oci_cloud_guard_security_zone <ansible_collections.oracle.oci.oci_cloud_guard_security_zone_module>` -- Manage a SecurityZone resource in Oracle Cloud Infrastructure
 * :ref:`oci_cloud_guard_security_zone_actions <ansible_collections.oracle.oci.oci_cloud_guard_security_zone_actions_module>` -- Perform actions on a SecurityZone resource in Oracle Cloud Infrastructure
 * :ref:`oci_cloud_guard_security_zone_facts <ansible_collections.oracle.oci.oci_cloud_guard_security_zone_facts_module>` -- Fetches details about one or multiple SecurityZone resources in Oracle Cloud Infrastructure
@@ -454,6 +457,8 @@ Modules
 * :ref:`oci_data_flow_run_facts <ansible_collections.oracle.oci.oci_data_flow_run_facts_module>` -- Fetches details about one or multiple Run resources in Oracle Cloud Infrastructure
 * :ref:`oci_data_flow_run_log_content_facts <ansible_collections.oracle.oci.oci_data_flow_run_log_content_facts_module>` -- Fetches details about a RunLogContent resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_flow_run_log_facts <ansible_collections.oracle.oci.oci_data_flow_run_log_facts_module>` -- Fetches details about one or multiple RunLog resources in Oracle Cloud Infrastructure
+* :ref:`oci_data_flow_statement <ansible_collections.oracle.oci.oci_data_flow_statement_module>` -- Manage a Statement resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_flow_statement_facts <ansible_collections.oracle.oci.oci_data_flow_statement_facts_module>` -- Fetches details about one or multiple Statement resources in Oracle Cloud Infrastructure
 * :ref:`oci_data_integration_workspace <ansible_collections.oracle.oci.oci_data_integration_workspace_module>` -- Manage a Workspace resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_integration_workspace_actions <ansible_collections.oracle.oci.oci_data_integration_workspace_actions_module>` -- Perform actions on a Workspace resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_integration_workspace_facts <ansible_collections.oracle.oci.oci_data_integration_workspace_facts_module>` -- Fetches details about one or multiple Workspace resources in Oracle Cloud Infrastructure
@@ -661,6 +666,8 @@ Modules
 * :ref:`oci_database_management_managed_database_group_actions <ansible_collections.oracle.oci.oci_database_management_managed_database_group_actions_module>` -- Perform actions on a ManagedDatabaseGroup resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_managed_database_group_facts <ansible_collections.oracle.oci.oci_database_management_managed_database_group_facts_module>` -- Fetches details about one or multiple ManagedDatabaseGroup resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_object_privilege_facts <ansible_collections.oracle.oci.oci_database_management_object_privilege_facts_module>` -- Fetches details about one or multiple ObjectPrivilege resources in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_optimizer_statistics_advisor_execution_script_facts <ansible_collections.oracle.oci.oci_database_management_optimizer_statistics_advisor_execution_script_facts_module>` -- Fetches details about a OptimizerStatisticsAdvisorExecutionScript resource in Oracle Cloud Infrastructure
+* :ref:`oci_database_management_optimizer_statistics_collection_aggregations_facts <ansible_collections.oracle.oci.oci_database_management_optimizer_statistics_collection_aggregations_facts_module>` -- Fetches details about one or multiple OptimizerStatisticsCollectionAggregations resources in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_pdb_metrics_facts <ansible_collections.oracle.oci.oci_database_management_pdb_metrics_facts_module>` -- Fetches details about a PdbMetrics resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_preferred_credential <ansible_collections.oracle.oci.oci_database_management_preferred_credential_module>` -- Manage a PreferredCredential resource in Oracle Cloud Infrastructure
 * :ref:`oci_database_management_preferred_credential_actions <ansible_collections.oracle.oci.oci_database_management_preferred_credential_actions_module>` -- Perform actions on a PreferredCredential resource in Oracle Cloud Infrastructure
@@ -1507,6 +1514,7 @@ Modules
 * :ref:`oci_opsi_summarize_exadata_insight_resource_forecast_trend_facts <ansible_collections.oracle.oci.oci_opsi_summarize_exadata_insight_resource_forecast_trend_facts_module>` -- Fetches details about one or multiple SummarizeExadataInsightResourceForecastTrend resources in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_summarize_exadata_insight_resource_statistics_aggregation_facts <ansible_collections.oracle.oci.oci_opsi_summarize_exadata_insight_resource_statistics_aggregation_facts_module>` -- Fetches details about one or multiple SummarizeExadataInsightResourceStatisticsAggregation resources in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_summarize_exadata_insight_resource_usage_facts <ansible_collections.oracle.oci.oci_opsi_summarize_exadata_insight_resource_usage_facts_module>` -- Fetches details about one or multiple SummarizeExadataInsightResourceUsage resources in Oracle Cloud Infrastructure
+* :ref:`oci_opsi_summarize_host_insights_top_processes_usage_facts <ansible_collections.oracle.oci.oci_opsi_summarize_host_insights_top_processes_usage_facts_module>` -- Fetches details about one or multiple SummarizeHostInsightsTopProcessesUsage resources in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_summarize_host_insights_top_processes_usage_trend_facts <ansible_collections.oracle.oci.oci_opsi_summarize_host_insights_top_processes_usage_trend_facts_module>` -- Fetches details about one or multiple SummarizeHostInsightsTopProcessesUsageTrend resources in Oracle Cloud Infrastructure
 * :ref:`oci_opsi_tablespace_usage_trend_facts <ansible_collections.oracle.oci.oci_opsi_tablespace_usage_trend_facts_module>` -- Fetches details about one or multiple TablespaceUsageTrend resources in Oracle Cloud Infrastructure
 * :ref:`oci_optimizer_category_facts <ansible_collections.oracle.oci.oci_optimizer_category_facts_module>` -- Fetches details about one or multiple Category resources in Oracle Cloud Infrastructure
@@ -2090,6 +2098,9 @@ Modules
     oci_cloud_guard_responder_recipe_module
     oci_cloud_guard_responder_recipe_actions_module
     oci_cloud_guard_responder_recipe_facts_module
+    oci_cloud_guard_security_recipe_module
+    oci_cloud_guard_security_recipe_actions_module
+    oci_cloud_guard_security_recipe_facts_module
     oci_cloud_guard_security_zone_module
     oci_cloud_guard_security_zone_actions_module
     oci_cloud_guard_security_zone_facts_module
@@ -2252,6 +2263,8 @@ Modules
     oci_data_flow_run_facts_module
     oci_data_flow_run_log_content_facts_module
     oci_data_flow_run_log_facts_module
+    oci_data_flow_statement_module
+    oci_data_flow_statement_facts_module
     oci_data_integration_workspace_module
     oci_data_integration_workspace_actions_module
     oci_data_integration_workspace_facts_module
@@ -2459,6 +2472,8 @@ Modules
     oci_database_management_managed_database_group_actions_module
     oci_database_management_managed_database_group_facts_module
     oci_database_management_object_privilege_facts_module
+    oci_database_management_optimizer_statistics_advisor_execution_script_facts_module
+    oci_database_management_optimizer_statistics_collection_aggregations_facts_module
     oci_database_management_pdb_metrics_facts_module
     oci_database_management_preferred_credential_module
     oci_database_management_preferred_credential_actions_module
@@ -3305,6 +3320,7 @@ Modules
     oci_opsi_summarize_exadata_insight_resource_forecast_trend_facts_module
     oci_opsi_summarize_exadata_insight_resource_statistics_aggregation_facts_module
     oci_opsi_summarize_exadata_insight_resource_usage_facts_module
+    oci_opsi_summarize_host_insights_top_processes_usage_facts_module
     oci_opsi_summarize_host_insights_top_processes_usage_trend_facts_module
     oci_opsi_tablespace_usage_trend_facts_module
     oci_optimizer_category_facts_module

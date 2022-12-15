@@ -87,8 +87,9 @@ application:
                     sample: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
         archive_uri:
             description:
-                - An Oracle Cloud Infrastructure URI of an archive.zip file containing custom dependencies that may be used to support the execution a Python,
-                  Java, or Scala application.
+                - A comma separated list of one or more archive files as Oracle Cloud Infrastructure URIs. For example,
+                  ``oci://path/to/a.zip,oci://path/to/b.zip``. An Oracle Cloud Infrastructure URI of an archive.zip file containing custom dependencies that may
+                  be used to support the execution of a Python, Java, or Scala application.
                   See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat.
             returned: on success
             type: str
@@ -342,6 +343,20 @@ application:
             returned: on success
             type: str
             sample: warehouse_bucket_uri_example
+        max_duration_in_minutes:
+            description:
+                - The maximum duration in minutes for which an Application should run. Data Flow Run would be terminated
+                  once it reaches this duration from the time it transitions to `IN_PROGRESS` state.
+            returned: on success
+            type: int
+            sample: 56
+        idle_timeout_in_minutes:
+            description:
+                - "The timeout value in minutes used to manage Runs. A Run would be stopped after inactivity for this amount of time period.
+                  Note: This parameter is currently only applicable for Runs of type `SESSION`. Default value is 2880 minutes (2 days)"
+            returned: on success
+            type: int
+            sample: 56
     sample: {
         "application_log_config": {
             "log_group_id": "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx",
@@ -385,7 +400,9 @@ application:
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "type": "BATCH",
-        "warehouse_bucket_uri": "warehouse_bucket_uri_example"
+        "warehouse_bucket_uri": "warehouse_bucket_uri_example",
+        "max_duration_in_minutes": 56,
+        "idle_timeout_in_minutes": 56
     }
 """
 

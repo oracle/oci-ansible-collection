@@ -30,7 +30,7 @@ oracle.oci.oci_opsi_summarize_host_insights_top_processes_usage_trend_facts -- F
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.4.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.5.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -307,6 +307,21 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-process_hash"></div>
+                    <b>process_hash</b>
+                    <a class="ansibleOptionLink" href="#parameter-process_hash" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Unique identifier for a process.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#parameter-region" title="Permalink to this option"></a>
@@ -418,6 +433,7 @@ Examples
         time_interval_end: 2013-10-20T19:20:30+01:00
         host_type: [ "host_type_example" ]
         host_id: "ocid1.host.oc1..xxxxxxEXAMPLExxxxxx"
+        process_hash: process_hash_example
 
 
 

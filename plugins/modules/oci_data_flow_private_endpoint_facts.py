@@ -198,6 +198,26 @@ private_endpoints:
             returned: on success
             type: str
             sample: owner_user_name_example
+        scan_details:
+            description:
+                - "An array of fqdn/port pairs used to create private endpoint. Each object is a simple key-value pair with FQDN as key and port number as
+                  value.
+                  [ { fqdn: \\"scan1.oracle.com\\", port: \\"1521\\"}, { fqdn: \\"scan2.oracle.com\\", port: \\"1521\\" } ]"
+            returned: on success
+            type: complex
+            contains:
+                fqdn:
+                    description:
+                        - A fully-qualified domain name (FQDN).
+                    returned: on success
+                    type: str
+                    sample: fqdn_example
+                port:
+                    description:
+                        - The port number of the FQDN
+                    returned: on success
+                    type: str
+                    sample: port_example
         subnet_id:
             description:
                 - The OCID of a subnet.
@@ -232,6 +252,10 @@ private_endpoints:
         "nsg_ids": [],
         "owner_principal_id": "ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx",
         "owner_user_name": "owner_user_name_example",
+        "scan_details": [{
+            "fqdn": "fqdn_example",
+            "port": "port_example"
+        }],
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00"

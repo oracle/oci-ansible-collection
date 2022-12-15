@@ -340,13 +340,13 @@ resource_statistics:
                             sample: 1.2
                         capacity:
                             description:
-                                - The maximum allocated amount of the resource metric type  (CPU, STORAGE).
+                                - The maximum allocated amount of the resource metric type  (CPU, STORAGE) for a set of databases.
                             returned: on success
                             type: float
                             sample: 1.2
                         base_capacity:
                             description:
-                                - The base allocated amount of the resource metric type  (CPU, STORAGE).
+                                - The base allocated amount of the resource metric type  (CPU, STORAGE) for a set of databases.
                             returned: on success
                             type: float
                             sample: 1.2
@@ -394,7 +394,14 @@ resource_statistics:
                                     sample: 1.2
                                 capacity:
                                     description:
-                                        - The maximum allocated amount of the resource metric type  (CPU, STORAGE).
+                                        - The maximum allocated amount of the resource metric type  (CPU, STORAGE) for a set of databases.
+                                    returned: on success
+                                    type: float
+                                    sample: 1.2
+                                total_host_capacity:
+                                    description:
+                                        - The maximum host CPUs (cores x threads/core) on the underlying infrastructure. This only applies to CPU and does not
+                                          not apply for Autonomous Databases.
                                     returned: on success
                                     type: float
                                     sample: 1.2
@@ -410,6 +417,13 @@ resource_statistics:
                                     returned: on success
                                     type: float
                                     sample: 1.2
+                        total_host_capacity:
+                            description:
+                                - The maximum host CPUs (cores x threads/core) on the underlying infrastructure. This only applies to CPU and does not not apply
+                                  for Autonomous Databases.
+                            returned: on success
+                            type: float
+                            sample: 1.2
     sample: {
         "time_interval_start": "2013-10-20T19:20:30+01:00",
         "time_interval_end": "2013-10-20T19:20:30+01:00",
@@ -442,9 +456,11 @@ resource_statistics:
                     "instance_name": "instance_name_example",
                     "usage": 1.2,
                     "capacity": 1.2,
+                    "total_host_capacity": 1.2,
                     "utilization_percent": 1.2,
                     "usage_change_percent": 1.2
-                }]
+                }],
+                "total_host_capacity": 1.2
             }
         }]
     }

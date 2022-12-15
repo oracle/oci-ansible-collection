@@ -88,6 +88,22 @@ options:
             - This parameter is updatable.
         type: list
         elements: str
+    scan_details:
+        description:
+            - "An array of fqdn/port pairs used to create private endpoint. Each object is a simple key-value pair with FQDN as key and port number as value.
+              [ { fqdn: \\"scan1.oracle.com\\", port: \\"1521\\"}, { fqdn: \\"scan2.oracle.com\\", port: \\"1521\\" } ]"
+            - This parameter is updatable.
+        type: list
+        elements: dict
+        suboptions:
+            fqdn:
+                description:
+                    - A fully-qualified domain name (FQDN).
+                type: str
+            port:
+                description:
+                    - The port number of the FQDN
+                type: str
     private_endpoint_id:
         description:
             - The unique ID for a private endpoint.
@@ -122,6 +138,10 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     max_host_count: 56
     nsg_ids: [ "nsg_ids_example" ]
+    scan_details:
+    - # optional
+      fqdn: fqdn_example
+      port: port_example
 
 - name: Update private_endpoint
   oci_data_flow_private_endpoint:
@@ -136,6 +156,10 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     max_host_count: 56
     nsg_ids: [ "nsg_ids_example" ]
+    scan_details:
+    - # optional
+      fqdn: fqdn_example
+      port: port_example
 
 - name: Update private_endpoint using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_flow_private_endpoint:
@@ -150,6 +174,10 @@ EXAMPLES = """
     freeform_tags: {'Department': 'Finance'}
     max_host_count: 56
     nsg_ids: [ "nsg_ids_example" ]
+    scan_details:
+    - # optional
+      fqdn: fqdn_example
+      port: port_example
 
 - name: Delete private_endpoint
   oci_data_flow_private_endpoint:
@@ -260,6 +288,26 @@ private_endpoint:
             returned: on success
             type: str
             sample: owner_user_name_example
+        scan_details:
+            description:
+                - "An array of fqdn/port pairs used to create private endpoint. Each object is a simple key-value pair with FQDN as key and port number as
+                  value.
+                  [ { fqdn: \\"scan1.oracle.com\\", port: \\"1521\\"}, { fqdn: \\"scan2.oracle.com\\", port: \\"1521\\" } ]"
+            returned: on success
+            type: complex
+            contains:
+                fqdn:
+                    description:
+                        - A fully-qualified domain name (FQDN).
+                    returned: on success
+                    type: str
+                    sample: fqdn_example
+                port:
+                    description:
+                        - The port number of the FQDN
+                    returned: on success
+                    type: str
+                    sample: port_example
         subnet_id:
             description:
                 - The OCID of a subnet.
@@ -294,6 +342,10 @@ private_endpoint:
         "nsg_ids": [],
         "owner_principal_id": "ocid1.ownerprincipal.oc1..xxxxxxEXAMPLExxxxxx",
         "owner_user_name": "owner_user_name_example",
+        "scan_details": [{
+            "fqdn": "fqdn_example",
+            "port": "port_example"
+        }],
         "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00"
@@ -472,6 +524,11 @@ def main():
             freeform_tags=dict(type="dict"),
             max_host_count=dict(type="int"),
             nsg_ids=dict(type="list", elements="str"),
+            scan_details=dict(
+                type="list",
+                elements="dict",
+                options=dict(fqdn=dict(type="str"), port=dict(type="str")),
+            ),
             private_endpoint_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

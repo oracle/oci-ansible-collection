@@ -668,10 +668,14 @@ class DatabaseInsightsHelperGen(OCIResourceHelperBase):
 
     def get_possible_entity_types(self):
         return super(DatabaseInsightsHelperGen, self).get_possible_entity_types() + [
+            "opsidatabaseinsight",
+            "opsidatabaseinsights",
+            "opsiopsidatabaseinsight",
+            "opsiopsidatabaseinsights",
+            "opsidatabaseinsightresource",
+            "opsidatabaseinsightsresource",
             "databaseinsights",
             "databaseinsight",
-            "opsidatabaseinsights",
-            "opsidatabaseinsight",
             "databaseinsightsresource",
             "databaseinsightresource",
             "opsi",

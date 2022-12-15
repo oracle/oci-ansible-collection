@@ -402,6 +402,15 @@ class TablespaceActionsHelperGen(OCIActionsHelperBase):
             tablespace_name=self.module.params.get("tablespace_name"),
         )
 
+    def get_response_field_name(self, action):
+        response_fields = dict(
+            add_data_files="tablespace_admin_status",
+            drop="tablespace_admin_status",
+            remove_data_file="tablespace_admin_status",
+            resize_data_file="tablespace_admin_status",
+        )
+        return response_fields.get(action, "tablespace")
+
     def add_data_files(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, AddDataFilesDetails
