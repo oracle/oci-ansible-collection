@@ -139,6 +139,23 @@ announcement_subscriptions:
                             returned: on success
                             type: str
                             sample: value_example
+        preferred_language:
+            description:
+                - (For announcement subscriptions with Oracle Fusion Applications configured as the service only) The language in which the user prefers to
+                  receive emailed announcements. Specify the preference with a value that uses the language tag format (x-obmcs-human-language). For example fr-
+                  FR.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: preferred_language_example
+        preferred_time_zone:
+            description:
+                - The time zone that the user prefers for announcement time stamps. Specify the preference with a value that uses the IANA Time Zone Database
+                  format (x-obmcs-time-zone). For example America/Los_Angeles.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: preferred_time_zone_example
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the announcement subscription.
@@ -222,6 +239,8 @@ announcement_subscriptions:
                 "value": "value_example"
             }]
         },
+        "preferred_language": "preferred_language_example",
+        "preferred_time_zone": "preferred_time_zone_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",

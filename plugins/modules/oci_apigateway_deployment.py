@@ -75,12 +75,209 @@ options:
                             - ""
                         type: dict
                         suboptions:
+                            validation_policy:
+                                description:
+                                    - ""
+                                    - Required when type is 'TOKEN_AUTHENTICATION'
+                                type: dict
+                                suboptions:
+                                    uri:
+                                        description:
+                                            - The uri from which to retrieve the key. It must be accessible
+                                              without authentication.
+                                            - Required when type is 'REMOTE_JWKS'
+                                        type: str
+                                    client_details:
+                                        description:
+                                            - ""
+                                            - Required when type is 'REMOTE_DISCOVERY'
+                                        type: dict
+                                        suboptions:
+                                            client_id:
+                                                description:
+                                                    - Client ID for the OAuth2/OIDC app.
+                                                    - Required when type is 'CUSTOM'
+                                                type: str
+                                            client_secret_id:
+                                                description:
+                                                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Vault
+                                                      Service secret resource.
+                                                    - Required when type is 'CUSTOM'
+                                                type: str
+                                            client_secret_version_number:
+                                                description:
+                                                    - The version number of the client secret to use.
+                                                    - Required when type is 'CUSTOM'
+                                                type: int
+                                            type:
+                                                description:
+                                                    - To specify where the Client App details should be taken from.
+                                                type: str
+                                                choices:
+                                                    - "CUSTOM"
+                                                    - "VALIDATION_BLOCK"
+                                                required: true
+                                    source_uri_details:
+                                        description:
+                                            - ""
+                                            - Required when type is 'REMOTE_DISCOVERY'
+                                        type: dict
+                                        suboptions:
+                                            uri:
+                                                description:
+                                                    - The discovery URI for the auth server.
+                                                    - Required when type is 'DISCOVERY_URI'
+                                                type: str
+                                            type:
+                                                description:
+                                                    - Type of the Uri detail.
+                                                type: str
+                                                choices:
+                                                    - "DISCOVERY_URI"
+                                                    - "VALIDATION_BLOCK"
+                                                required: true
+                                    is_ssl_verify_disabled:
+                                        description:
+                                            - Defines whether or not to uphold SSL verification.
+                                            - Applicable when type is one of ['REMOTE_JWKS', 'REMOTE_DISCOVERY']
+                                        type: bool
+                                    max_cache_duration_in_hours:
+                                        description:
+                                            - The duration for which the JWKS should be cached before it is
+                                              fetched again.
+                                            - Applicable when type is one of ['REMOTE_JWKS', 'REMOTE_DISCOVERY']
+                                        type: int
+                                    type:
+                                        description:
+                                            - Type of the token validation policy.
+                                        type: str
+                                        choices:
+                                            - "REMOTE_JWKS"
+                                            - "REMOTE_DISCOVERY"
+                                            - "STATIC_KEYS"
+                                        required: true
+                                    additional_validation_policy:
+                                        description:
+                                            - ""
+                                        type: dict
+                                        suboptions:
+                                            issuers:
+                                                description:
+                                                    - A list of parties that could have issued the token.
+                                                    - Applicable when type is 'REMOTE_JWKS'
+                                                type: list
+                                                elements: str
+                                            audiences:
+                                                description:
+                                                    - The list of intended recipients for the token.
+                                                    - Applicable when type is 'REMOTE_JWKS'
+                                                type: list
+                                                elements: str
+                                            verify_claims:
+                                                description:
+                                                    - A list of claims which should be validated to consider the token valid.
+                                                    - Applicable when type is 'REMOTE_JWKS'
+                                                type: list
+                                                elements: dict
+                                                suboptions:
+                                                    key:
+                                                        description:
+                                                            - Name of the claim.
+                                                            - Required when type is 'REMOTE_JWKS'
+                                                        type: str
+                                                        required: true
+                                                    values:
+                                                        description:
+                                                            - "The list of acceptable values for a given claim.
+                                                              If this value is \\"null\\" or empty and \\"isRequired\\" set to \\"true\\", then
+                                                              the presence of this claim in the JWT is validated."
+                                                            - Applicable when type is 'REMOTE_JWKS'
+                                                        type: list
+                                                        elements: str
+                                                    is_required:
+                                                        description:
+                                                            - "Whether the claim is required to be present in the JWT or not. If set
+                                                              to \\"false\\", the claim values will be matched only if the claim is
+                                                              present in the JWT."
+                                                            - Applicable when type is 'REMOTE_JWKS'
+                                                        type: bool
+                                    keys:
+                                        description:
+                                            - The set of static public keys.
+                                            - Applicable when type is 'STATIC_KEYS'
+                                        type: list
+                                        elements: dict
+                                        suboptions:
+                                            kty:
+                                                description:
+                                                    - The key type.
+                                                    - Required when format is 'JSON_WEB_KEY'
+                                                type: str
+                                                choices:
+                                                    - "RSA"
+                                            use:
+                                                description:
+                                                    - The intended use of the public key.
+                                                    - Applicable when format is 'JSON_WEB_KEY'
+                                                type: str
+                                                choices:
+                                                    - "sig"
+                                            key_ops:
+                                                description:
+                                                    - The operations for which this key is to be used.
+                                                    - Applicable when format is 'JSON_WEB_KEY'
+                                                type: list
+                                                elements: str
+                                                choices:
+                                                    - "verify"
+                                            alg:
+                                                description:
+                                                    - The algorithm intended for use with this key.
+                                                    - Required when format is 'JSON_WEB_KEY'
+                                                type: str
+                                            n:
+                                                description:
+                                                    - The base64 url encoded modulus of the RSA public key represented
+                                                      by this key.
+                                                    - Required when format is 'JSON_WEB_KEY'
+                                                type: str
+                                            e:
+                                                description:
+                                                    - The base64 url encoded exponent of the RSA public key represented
+                                                      by this key.
+                                                    - Required when format is 'JSON_WEB_KEY'
+                                                type: str
+                                            kid:
+                                                description:
+                                                    - "A unique key ID. This key will be used to verify the signature of a
+                                                      JWT with matching \\"kid\\"."
+                                                type: str
+                                                required: true
+                                            format:
+                                                description:
+                                                    - The format of the public key.
+                                                type: str
+                                                choices:
+                                                    - "JSON_WEB_KEY"
+                                                    - "PEM"
+                                                required: true
+                                            key:
+                                                description:
+                                                    - The content of the PEM-encoded public key.
+                                                    - Required when format is 'PEM'
+                                                type: str
                             token_auth_scheme:
                                 description:
                                     - "The authentication scheme that is to be used when authenticating
                                       the token. This must to be provided if \\"tokenHeader\\" is specified."
-                                    - Applicable when type is 'JWT_AUTHENTICATION'
+                                    - Applicable when type is one of ['TOKEN_AUTHENTICATION', 'JWT_AUTHENTICATION']
                                 type: str
+                            max_clock_skew_in_seconds:
+                                description:
+                                    - The maximum expected time difference between the system clocks
+                                      of the token issuer and the API Gateway.
+                                    - Applicable when type is one of ['TOKEN_AUTHENTICATION', 'JWT_AUTHENTICATION']
+                                type: float
                             issuers:
                                 description:
                                     - A list of parties that could have issued the token.
@@ -121,12 +318,6 @@ options:
                                               present in the JWT."
                                             - Applicable when type is 'JWT_AUTHENTICATION'
                                         type: bool
-                            max_clock_skew_in_seconds:
-                                description:
-                                    - The maximum expected time difference between the system clocks
-                                      of the token issuer and the API Gateway.
-                                    - Applicable when type is 'JWT_AUTHENTICATION'
-                                type: float
                             public_keys:
                                 description:
                                     - ""
@@ -233,6 +424,7 @@ options:
                                     - Type of the authentication policy to use.
                                 type: str
                                 choices:
+                                    - "TOKEN_AUTHENTICATION"
                                     - "JWT_AUTHENTICATION"
                                     - "CUSTOM_AUTHENTICATION"
                                 required: true
@@ -266,37 +458,35 @@ options:
                             validation_failure_policy:
                                 description:
                                     - ""
-                                    - Applicable when type is 'CUSTOM_AUTHENTICATION'
+                                    - Applicable when type is one of ['TOKEN_AUTHENTICATION', 'CUSTOM_AUTHENTICATION']
                                 type: dict
                                 suboptions:
-                                    type:
-                                        description:
-                                            - Type of the Validation failure Policy.
-                                        type: str
-                                        choices:
-                                            - "MODIFY_RESPONSE"
-                                        required: true
                                     response_code:
                                         description:
                                             - HTTP response code, can include context variables.
+                                            - Applicable when type is 'MODIFY_RESPONSE'
                                         type: str
                                     response_message:
                                         description:
                                             - HTTP response message.
+                                            - Applicable when type is 'MODIFY_RESPONSE'
                                         type: str
                                     response_header_transformations:
                                         description:
                                             - ""
+                                            - Applicable when type is 'MODIFY_RESPONSE'
                                         type: dict
                                         suboptions:
                                             set_headers:
                                                 description:
                                                     - ""
+                                                    - Applicable when type is 'MODIFY_RESPONSE'
                                                 type: dict
                                                 suboptions:
                                                     items:
                                                         description:
                                                             - The list of headers.
+                                                            - Required when type is 'MODIFY_RESPONSE'
                                                         type: list
                                                         elements: dict
                                                         required: true
@@ -305,6 +495,7 @@ options:
                                                                 description:
                                                                     - The case-insensitive name of the header.  This name must be unique across transformation
                                                                       policies.
+                                                                    - Required when type is 'MODIFY_RESPONSE'
                                                                 type: str
                                                                 required: true
                                                             values:
@@ -312,6 +503,7 @@ options:
                                                                     - A list of new values.  Each value can be a constant or may include one or more expressions
                                                                       enclosed within
                                                                       ${} delimiters.
+                                                                    - Required when type is 'MODIFY_RESPONSE'
                                                                 type: list
                                                                 elements: str
                                                                 required: true
@@ -320,6 +512,7 @@ options:
                                                                     - If a header with the same name already exists in the request, OVERWRITE will overwrite the
                                                                       value,
                                                                       APPEND will append to the existing value, or SKIP will keep the existing value.
+                                                                    - Applicable when type is 'MODIFY_RESPONSE'
                                                                 type: str
                                                                 choices:
                                                                     - "OVERWRITE"
@@ -328,11 +521,13 @@ options:
                                             rename_headers:
                                                 description:
                                                     - ""
+                                                    - Applicable when type is 'MODIFY_RESPONSE'
                                                 type: dict
                                                 suboptions:
                                                     items:
                                                         description:
                                                             - The list of headers.
+                                                            - Required when type is 'MODIFY_RESPONSE'
                                                         type: list
                                                         elements: dict
                                                         required: true
@@ -341,22 +536,26 @@ options:
                                                                 description:
                                                                     - The original case-insensitive name of the header.  This name must be unique across
                                                                       transformation policies.
+                                                                    - Required when type is 'MODIFY_RESPONSE'
                                                                 type: str
                                                                 required: true
                                                             to:
                                                                 description:
                                                                     - The new name of the header.  This name must be unique across transformation policies.
+                                                                    - Required when type is 'MODIFY_RESPONSE'
                                                                 type: str
                                                                 required: true
                                             filter_headers:
                                                 description:
                                                     - ""
+                                                    - Applicable when type is 'MODIFY_RESPONSE'
                                                 type: dict
                                                 suboptions:
                                                     type:
                                                         description:
                                                             - BLOCK drops any headers that are in the list of items, so it acts as an exclusion list.  ALLOW
                                                               permits only the headers in the list and removes all others, so it acts as an inclusion list.
+                                                            - Required when type is 'MODIFY_RESPONSE'
                                                         type: str
                                                         choices:
                                                             - "ALLOW"
@@ -365,6 +564,7 @@ options:
                                                     items:
                                                         description:
                                                             - The list of headers.
+                                                            - Required when type is 'MODIFY_RESPONSE'
                                                         type: list
                                                         elements: dict
                                                         required: true
@@ -373,8 +573,110 @@ options:
                                                                 description:
                                                                     - The case-insensitive name of the header.  This name must be unique across transformation
                                                                       policies.
+                                                                    - Required when type is 'MODIFY_RESPONSE'
                                                                 type: str
                                                                 required: true
+                                    type:
+                                        description:
+                                            - Type of the Validation failure Policy.
+                                        type: str
+                                        choices:
+                                            - "MODIFY_RESPONSE"
+                                            - "OAUTH2"
+                                        required: true
+                                    client_details:
+                                        description:
+                                            - ""
+                                            - Required when type is 'OAUTH2'
+                                        type: dict
+                                        suboptions:
+                                            client_id:
+                                                description:
+                                                    - Client ID for the OAuth2/OIDC app.
+                                                    - Required when type is 'CUSTOM'
+                                                type: str
+                                            client_secret_id:
+                                                description:
+                                                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Vault
+                                                      Service secret resource.
+                                                    - Required when type is 'CUSTOM'
+                                                type: str
+                                            client_secret_version_number:
+                                                description:
+                                                    - The version number of the client secret to use.
+                                                    - Required when type is 'CUSTOM'
+                                                type: int
+                                            type:
+                                                description:
+                                                    - To specify where the Client App details should be taken from.
+                                                type: str
+                                                choices:
+                                                    - "CUSTOM"
+                                                    - "VALIDATION_BLOCK"
+                                                required: true
+                                    source_uri_details:
+                                        description:
+                                            - ""
+                                            - Required when type is 'OAUTH2'
+                                        type: dict
+                                        suboptions:
+                                            uri:
+                                                description:
+                                                    - The discovery URI for the auth server.
+                                                    - Required when type is 'DISCOVERY_URI'
+                                                type: str
+                                            type:
+                                                description:
+                                                    - Type of the Uri detail.
+                                                type: str
+                                                choices:
+                                                    - "DISCOVERY_URI"
+                                                    - "VALIDATION_BLOCK"
+                                                required: true
+                                    scopes:
+                                        description:
+                                            - List of scopes.
+                                            - Required when type is 'OAUTH2'
+                                        type: list
+                                        elements: str
+                                    max_expiry_duration_in_hours:
+                                        description:
+                                            - The duration for which the OAuth2 success token should be cached before it is
+                                              fetched again.
+                                            - Applicable when type is 'OAUTH2'
+                                        type: int
+                                    use_cookies_for_session:
+                                        description:
+                                            - Defines whether or not to use cookies for session maintenance.
+                                            - Applicable when type is 'OAUTH2'
+                                        type: bool
+                                    use_cookies_for_intermediate_steps:
+                                        description:
+                                            - Defines whether or not to use cookies for OAuth2 intermediate steps.
+                                            - Applicable when type is 'OAUTH2'
+                                        type: bool
+                                    use_pkce:
+                                        description:
+                                            - Defines whether or not to support PKCE.
+                                            - Applicable when type is 'OAUTH2'
+                                        type: bool
+                                    response_type:
+                                        description:
+                                            - Response Type.
+                                            - Required when type is 'OAUTH2'
+                                        type: str
+                                        choices:
+                                            - "CODE"
+                                    fallback_redirect_path:
+                                        description:
+                                            - The path to be used as fallback after OAuth2.
+                                            - Applicable when type is 'OAUTH2'
+                                        type: str
+                                    logout_path:
+                                        description:
+                                            - The path to be used as logout.
+                                            - Applicable when type is 'OAUTH2'
+                                        type: str
                     rate_limiting:
                         description:
                             - ""
@@ -502,12 +804,16 @@ options:
                                         suboptions:
                                             expression:
                                                 description:
-                                                    - String describing the expression with wildcards.
+                                                    - "A selection key string containing a wildcard to match with the context variable in an incoming request.
+                                                      If the context variable matches the string, the request is sent to the route or authentication server
+                                                      associated with the selection key. Valid wildcards are '*' (zero or more characters) and '+' (one or more
+                                                      characters). The string can only contain one wildcard, and the wildcard must be at the start or the end of
+                                                      the string."
                                                     - Required when type is 'WILDCARD'
                                                 type: str
                                             type:
                                                 description:
-                                                    - Information regarding type of the selection key.
+                                                    - Type of the selection key.
                                                 type: str
                                                 choices:
                                                     - "WILDCARD"
@@ -515,7 +821,9 @@ options:
                                                 default: "ANY_OF"
                                             is_default:
                                                 description:
-                                                    - Information regarding whether this is the default branch.
+                                                    - Specifies whether to use the route or authentication server associated with this selection key as the
+                                                      default. The default is used if the value of a context variable in an incoming request does not match any
+                                                      of the other selection key values when dynamically routing and dynamically authenticating requests.
                                                 type: bool
                                             name:
                                                 description:
@@ -524,7 +832,9 @@ options:
                                                 required: true
                                             values:
                                                 description:
-                                                    - Information regarding the set of values of selector for which this branch should be selected.
+                                                    - The set of selection keys to match with the context variable in an incoming request. If the context
+                                                      variable exactly matches one of the keys in the set, the request is sent to the route or authentication
+                                                      server associated with the set.
                                                     - Applicable when type is 'ANY_OF'
                                                 type: list
                                                 elements: str
@@ -534,12 +844,209 @@ options:
                                         type: dict
                                         required: true
                                         suboptions:
+                                            validation_policy:
+                                                description:
+                                                    - ""
+                                                    - Required when type is 'TOKEN_AUTHENTICATION'
+                                                type: dict
+                                                suboptions:
+                                                    uri:
+                                                        description:
+                                                            - The uri from which to retrieve the key. It must be accessible
+                                                              without authentication.
+                                                            - Required when type is 'REMOTE_JWKS'
+                                                        type: str
+                                                    client_details:
+                                                        description:
+                                                            - ""
+                                                            - Required when type is 'REMOTE_DISCOVERY'
+                                                        type: dict
+                                                        suboptions:
+                                                            client_id:
+                                                                description:
+                                                                    - Client ID for the OAuth2/OIDC app.
+                                                                    - Required when type is 'CUSTOM'
+                                                                type: str
+                                                            client_secret_id:
+                                                                description:
+                                                                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the
+                                                                      Oracle Vault Service secret resource.
+                                                                    - Required when type is 'CUSTOM'
+                                                                type: str
+                                                            client_secret_version_number:
+                                                                description:
+                                                                    - The version number of the client secret to use.
+                                                                    - Required when type is 'CUSTOM'
+                                                                type: int
+                                                            type:
+                                                                description:
+                                                                    - To specify where the Client App details should be taken from.
+                                                                type: str
+                                                                choices:
+                                                                    - "CUSTOM"
+                                                                    - "VALIDATION_BLOCK"
+                                                                required: true
+                                                    source_uri_details:
+                                                        description:
+                                                            - ""
+                                                            - Required when type is 'REMOTE_DISCOVERY'
+                                                        type: dict
+                                                        suboptions:
+                                                            uri:
+                                                                description:
+                                                                    - The discovery URI for the auth server.
+                                                                    - Required when type is 'DISCOVERY_URI'
+                                                                type: str
+                                                            type:
+                                                                description:
+                                                                    - Type of the Uri detail.
+                                                                type: str
+                                                                choices:
+                                                                    - "DISCOVERY_URI"
+                                                                    - "VALIDATION_BLOCK"
+                                                                required: true
+                                                    is_ssl_verify_disabled:
+                                                        description:
+                                                            - Defines whether or not to uphold SSL verification.
+                                                            - Applicable when type is one of ['REMOTE_JWKS', 'REMOTE_DISCOVERY']
+                                                        type: bool
+                                                    max_cache_duration_in_hours:
+                                                        description:
+                                                            - The duration for which the JWKS should be cached before it is
+                                                              fetched again.
+                                                            - Applicable when type is one of ['REMOTE_JWKS', 'REMOTE_DISCOVERY']
+                                                        type: int
+                                                    type:
+                                                        description:
+                                                            - Type of the token validation policy.
+                                                        type: str
+                                                        choices:
+                                                            - "REMOTE_JWKS"
+                                                            - "REMOTE_DISCOVERY"
+                                                            - "STATIC_KEYS"
+                                                        required: true
+                                                    additional_validation_policy:
+                                                        description:
+                                                            - ""
+                                                        type: dict
+                                                        suboptions:
+                                                            issuers:
+                                                                description:
+                                                                    - A list of parties that could have issued the token.
+                                                                    - Applicable when type is 'REMOTE_JWKS'
+                                                                type: list
+                                                                elements: str
+                                                            audiences:
+                                                                description:
+                                                                    - The list of intended recipients for the token.
+                                                                    - Applicable when type is 'REMOTE_JWKS'
+                                                                type: list
+                                                                elements: str
+                                                            verify_claims:
+                                                                description:
+                                                                    - A list of claims which should be validated to consider the token valid.
+                                                                    - Applicable when type is 'REMOTE_JWKS'
+                                                                type: list
+                                                                elements: dict
+                                                                suboptions:
+                                                                    key:
+                                                                        description:
+                                                                            - Name of the claim.
+                                                                            - Required when type is 'REMOTE_JWKS'
+                                                                        type: str
+                                                                        required: true
+                                                                    values:
+                                                                        description:
+                                                                            - "The list of acceptable values for a given claim.
+                                                                              If this value is \\"null\\" or empty and \\"isRequired\\" set to \\"true\\", then
+                                                                              the presence of this claim in the JWT is validated."
+                                                                            - Applicable when type is 'REMOTE_JWKS'
+                                                                        type: list
+                                                                        elements: str
+                                                                    is_required:
+                                                                        description:
+                                                                            - "Whether the claim is required to be present in the JWT or not. If set
+                                                                              to \\"false\\", the claim values will be matched only if the claim is
+                                                                              present in the JWT."
+                                                                            - Applicable when type is 'REMOTE_JWKS'
+                                                                        type: bool
+                                                    keys:
+                                                        description:
+                                                            - The set of static public keys.
+                                                            - Applicable when type is 'STATIC_KEYS'
+                                                        type: list
+                                                        elements: dict
+                                                        suboptions:
+                                                            kty:
+                                                                description:
+                                                                    - The key type.
+                                                                    - Required when format is 'JSON_WEB_KEY'
+                                                                type: str
+                                                                choices:
+                                                                    - "RSA"
+                                                            use:
+                                                                description:
+                                                                    - The intended use of the public key.
+                                                                    - Applicable when format is 'JSON_WEB_KEY'
+                                                                type: str
+                                                                choices:
+                                                                    - "sig"
+                                                            key_ops:
+                                                                description:
+                                                                    - The operations for which this key is to be used.
+                                                                    - Applicable when format is 'JSON_WEB_KEY'
+                                                                type: list
+                                                                elements: str
+                                                                choices:
+                                                                    - "verify"
+                                                            alg:
+                                                                description:
+                                                                    - The algorithm intended for use with this key.
+                                                                    - Required when format is 'JSON_WEB_KEY'
+                                                                type: str
+                                                            n:
+                                                                description:
+                                                                    - The base64 url encoded modulus of the RSA public key represented
+                                                                      by this key.
+                                                                    - Required when format is 'JSON_WEB_KEY'
+                                                                type: str
+                                                            e:
+                                                                description:
+                                                                    - The base64 url encoded exponent of the RSA public key represented
+                                                                      by this key.
+                                                                    - Required when format is 'JSON_WEB_KEY'
+                                                                type: str
+                                                            kid:
+                                                                description:
+                                                                    - "A unique key ID. This key will be used to verify the signature of a
+                                                                      JWT with matching \\"kid\\"."
+                                                                type: str
+                                                                required: true
+                                                            format:
+                                                                description:
+                                                                    - The format of the public key.
+                                                                type: str
+                                                                choices:
+                                                                    - "JSON_WEB_KEY"
+                                                                    - "PEM"
+                                                                required: true
+                                                            key:
+                                                                description:
+                                                                    - The content of the PEM-encoded public key.
+                                                                    - Required when format is 'PEM'
+                                                                type: str
                                             token_auth_scheme:
                                                 description:
                                                     - "The authentication scheme that is to be used when authenticating
                                                       the token. This must to be provided if \\"tokenHeader\\" is specified."
-                                                    - Applicable when type is 'JWT_AUTHENTICATION'
+                                                    - Applicable when type is one of ['TOKEN_AUTHENTICATION', 'JWT_AUTHENTICATION']
                                                 type: str
+                                            max_clock_skew_in_seconds:
+                                                description:
+                                                    - The maximum expected time difference between the system clocks
+                                                      of the token issuer and the API Gateway.
+                                                    - Applicable when type is one of ['TOKEN_AUTHENTICATION', 'JWT_AUTHENTICATION']
+                                                type: float
                                             issuers:
                                                 description:
                                                     - A list of parties that could have issued the token.
@@ -580,12 +1087,6 @@ options:
                                                               present in the JWT."
                                                             - Applicable when type is 'JWT_AUTHENTICATION'
                                                         type: bool
-                                            max_clock_skew_in_seconds:
-                                                description:
-                                                    - The maximum expected time difference between the system clocks
-                                                      of the token issuer and the API Gateway.
-                                                    - Applicable when type is 'JWT_AUTHENTICATION'
-                                                type: float
                                             public_keys:
                                                 description:
                                                     - ""
@@ -692,6 +1193,7 @@ options:
                                                     - Type of the authentication policy to use.
                                                 type: str
                                                 choices:
+                                                    - "TOKEN_AUTHENTICATION"
                                                     - "JWT_AUTHENTICATION"
                                                     - "CUSTOM_AUTHENTICATION"
                                                 required: true
@@ -725,37 +1227,35 @@ options:
                                             validation_failure_policy:
                                                 description:
                                                     - ""
-                                                    - Applicable when type is 'CUSTOM_AUTHENTICATION'
+                                                    - Applicable when type is one of ['TOKEN_AUTHENTICATION', 'CUSTOM_AUTHENTICATION']
                                                 type: dict
                                                 suboptions:
-                                                    type:
-                                                        description:
-                                                            - Type of the Validation failure Policy.
-                                                        type: str
-                                                        choices:
-                                                            - "MODIFY_RESPONSE"
-                                                        required: true
                                                     response_code:
                                                         description:
                                                             - HTTP response code, can include context variables.
+                                                            - Applicable when type is 'MODIFY_RESPONSE'
                                                         type: str
                                                     response_message:
                                                         description:
                                                             - HTTP response message.
+                                                            - Applicable when type is 'MODIFY_RESPONSE'
                                                         type: str
                                                     response_header_transformations:
                                                         description:
                                                             - ""
+                                                            - Applicable when type is 'MODIFY_RESPONSE'
                                                         type: dict
                                                         suboptions:
                                                             set_headers:
                                                                 description:
                                                                     - ""
+                                                                    - Applicable when type is 'MODIFY_RESPONSE'
                                                                 type: dict
                                                                 suboptions:
                                                                     items:
                                                                         description:
                                                                             - The list of headers.
+                                                                            - Required when type is 'MODIFY_RESPONSE'
                                                                         type: list
                                                                         elements: dict
                                                                         required: true
@@ -764,6 +1264,7 @@ options:
                                                                                 description:
                                                                                     - The case-insensitive name of the header.  This name must be unique across
                                                                                       transformation policies.
+                                                                                    - Required when type is 'MODIFY_RESPONSE'
                                                                                 type: str
                                                                                 required: true
                                                                             values:
@@ -771,6 +1272,7 @@ options:
                                                                                     - A list of new values.  Each value can be a constant or may include one or
                                                                                       more expressions enclosed within
                                                                                       ${} delimiters.
+                                                                                    - Required when type is 'MODIFY_RESPONSE'
                                                                                 type: list
                                                                                 elements: str
                                                                                 required: true
@@ -780,6 +1282,7 @@ options:
                                                                                       will overwrite the value,
                                                                                       APPEND will append to the existing value, or SKIP will keep the existing
                                                                                       value.
+                                                                                    - Applicable when type is 'MODIFY_RESPONSE'
                                                                                 type: str
                                                                                 choices:
                                                                                     - "OVERWRITE"
@@ -788,11 +1291,13 @@ options:
                                                             rename_headers:
                                                                 description:
                                                                     - ""
+                                                                    - Applicable when type is 'MODIFY_RESPONSE'
                                                                 type: dict
                                                                 suboptions:
                                                                     items:
                                                                         description:
                                                                             - The list of headers.
+                                                                            - Required when type is 'MODIFY_RESPONSE'
                                                                         type: list
                                                                         elements: dict
                                                                         required: true
@@ -801,17 +1306,20 @@ options:
                                                                                 description:
                                                                                     - The original case-insensitive name of the header.  This name must be
                                                                                       unique across transformation policies.
+                                                                                    - Required when type is 'MODIFY_RESPONSE'
                                                                                 type: str
                                                                                 required: true
                                                                             to:
                                                                                 description:
                                                                                     - The new name of the header.  This name must be unique across
                                                                                       transformation policies.
+                                                                                    - Required when type is 'MODIFY_RESPONSE'
                                                                                 type: str
                                                                                 required: true
                                                             filter_headers:
                                                                 description:
                                                                     - ""
+                                                                    - Applicable when type is 'MODIFY_RESPONSE'
                                                                 type: dict
                                                                 suboptions:
                                                                     type:
@@ -820,6 +1328,7 @@ options:
                                                                               list.  ALLOW
                                                                               permits only the headers in the list and removes all others, so it acts as an
                                                                               inclusion list.
+                                                                            - Required when type is 'MODIFY_RESPONSE'
                                                                         type: str
                                                                         choices:
                                                                             - "ALLOW"
@@ -828,6 +1337,7 @@ options:
                                                                     items:
                                                                         description:
                                                                             - The list of headers.
+                                                                            - Required when type is 'MODIFY_RESPONSE'
                                                                         type: list
                                                                         elements: dict
                                                                         required: true
@@ -836,8 +1346,110 @@ options:
                                                                                 description:
                                                                                     - The case-insensitive name of the header.  This name must be unique across
                                                                                       transformation policies.
+                                                                                    - Required when type is 'MODIFY_RESPONSE'
                                                                                 type: str
                                                                                 required: true
+                                                    type:
+                                                        description:
+                                                            - Type of the Validation failure Policy.
+                                                        type: str
+                                                        choices:
+                                                            - "MODIFY_RESPONSE"
+                                                            - "OAUTH2"
+                                                        required: true
+                                                    client_details:
+                                                        description:
+                                                            - ""
+                                                            - Required when type is 'OAUTH2'
+                                                        type: dict
+                                                        suboptions:
+                                                            client_id:
+                                                                description:
+                                                                    - Client ID for the OAuth2/OIDC app.
+                                                                    - Required when type is 'CUSTOM'
+                                                                type: str
+                                                            client_secret_id:
+                                                                description:
+                                                                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the
+                                                                      Oracle Vault Service secret resource.
+                                                                    - Required when type is 'CUSTOM'
+                                                                type: str
+                                                            client_secret_version_number:
+                                                                description:
+                                                                    - The version number of the client secret to use.
+                                                                    - Required when type is 'CUSTOM'
+                                                                type: int
+                                                            type:
+                                                                description:
+                                                                    - To specify where the Client App details should be taken from.
+                                                                type: str
+                                                                choices:
+                                                                    - "CUSTOM"
+                                                                    - "VALIDATION_BLOCK"
+                                                                required: true
+                                                    source_uri_details:
+                                                        description:
+                                                            - ""
+                                                            - Required when type is 'OAUTH2'
+                                                        type: dict
+                                                        suboptions:
+                                                            uri:
+                                                                description:
+                                                                    - The discovery URI for the auth server.
+                                                                    - Required when type is 'DISCOVERY_URI'
+                                                                type: str
+                                                            type:
+                                                                description:
+                                                                    - Type of the Uri detail.
+                                                                type: str
+                                                                choices:
+                                                                    - "DISCOVERY_URI"
+                                                                    - "VALIDATION_BLOCK"
+                                                                required: true
+                                                    scopes:
+                                                        description:
+                                                            - List of scopes.
+                                                            - Required when type is 'OAUTH2'
+                                                        type: list
+                                                        elements: str
+                                                    max_expiry_duration_in_hours:
+                                                        description:
+                                                            - The duration for which the OAuth2 success token should be cached before it is
+                                                              fetched again.
+                                                            - Applicable when type is 'OAUTH2'
+                                                        type: int
+                                                    use_cookies_for_session:
+                                                        description:
+                                                            - Defines whether or not to use cookies for session maintenance.
+                                                            - Applicable when type is 'OAUTH2'
+                                                        type: bool
+                                                    use_cookies_for_intermediate_steps:
+                                                        description:
+                                                            - Defines whether or not to use cookies for OAuth2 intermediate steps.
+                                                            - Applicable when type is 'OAUTH2'
+                                                        type: bool
+                                                    use_pkce:
+                                                        description:
+                                                            - Defines whether or not to support PKCE.
+                                                            - Applicable when type is 'OAUTH2'
+                                                        type: bool
+                                                    response_type:
+                                                        description:
+                                                            - Response Type.
+                                                            - Required when type is 'OAUTH2'
+                                                        type: str
+                                                        choices:
+                                                            - "CODE"
+                                                    fallback_redirect_path:
+                                                        description:
+                                                            - The path to be used as fallback after OAuth2.
+                                                            - Applicable when type is 'OAUTH2'
+                                                        type: str
+                                                    logout_path:
+                                                        description:
+                                                            - The path to be used as logout.
+                                                            - Applicable when type is 'OAUTH2'
+                                                        type: str
             logging_policies:
                 description:
                     - ""
@@ -1457,6 +2069,17 @@ options:
                         type: dict
                         required: true
                         suboptions:
+                            allowed_post_logout_uris:
+                                description:
+                                    - ""
+                                    - Applicable when type is 'OAUTH2_LOGOUT_BACKEND'
+                                type: list
+                                elements: str
+                            post_logout_state:
+                                description:
+                                    - Defines a state that should be shared on redirecting to postLogout URL.
+                                    - Applicable when type is 'OAUTH2_LOGOUT_BACKEND'
+                                type: str
                             url:
                                 description:
                                     - ""
@@ -1520,6 +2143,7 @@ options:
                                     - Type of the API backend.
                                 type: str
                                 choices:
+                                    - "OAUTH2_LOGOUT_BACKEND"
                                     - "HTTP_BACKEND"
                                     - "ORACLE_FUNCTIONS_BACKEND"
                                     - "STOCK_RESPONSE_BACKEND"
@@ -1559,12 +2183,16 @@ options:
                                         suboptions:
                                             expression:
                                                 description:
-                                                    - String describing the expression with wildcards.
+                                                    - "A selection key string containing a wildcard to match with the context variable in an incoming request.
+                                                      If the context variable matches the string, the request is sent to the route or authentication server
+                                                      associated with the selection key. Valid wildcards are '*' (zero or more characters) and '+' (one or more
+                                                      characters). The string can only contain one wildcard, and the wildcard must be at the start or the end of
+                                                      the string."
                                                     - Required when type is 'WILDCARD'
                                                 type: str
                                             type:
                                                 description:
-                                                    - Information regarding type of the selection key.
+                                                    - Type of the selection key.
                                                 type: str
                                                 choices:
                                                     - "WILDCARD"
@@ -1572,7 +2200,9 @@ options:
                                                 default: "ANY_OF"
                                             is_default:
                                                 description:
-                                                    - Information regarding whether this is the default branch.
+                                                    - Specifies whether to use the route or authentication server associated with this selection key as the
+                                                      default. The default is used if the value of a context variable in an incoming request does not match any
+                                                      of the other selection key values when dynamically routing and dynamically authenticating requests.
                                                 type: bool
                                             name:
                                                 description:
@@ -1581,7 +2211,9 @@ options:
                                                 required: true
                                             values:
                                                 description:
-                                                    - Information regarding the set of values of selector for which this branch should be selected.
+                                                    - The set of selection keys to match with the context variable in an incoming request. If the context
+                                                      variable exactly matches one of the keys in the set, the request is sent to the route or authentication
+                                                      server associated with the set.
                                                     - Applicable when type is 'ANY_OF'
                                                 type: list
                                                 elements: str
@@ -1601,6 +2233,7 @@ options:
                                                     - "HTTP_BACKEND"
                                                     - "STOCK_RESPONSE_BACKEND"
                                                     - "DYNAMIC_ROUTING_BACKEND"
+                                                    - "OAUTH2_LOGOUT_BACKEND"
                                                 required: true
     freeform_tags:
         description:
@@ -1650,40 +2283,63 @@ EXAMPLES = """
         # optional
         authentication:
           # required
-          issuers: [ "issuers_example" ]
-          audiences: [ "audiences_example" ]
-          public_keys:
+          validation_policy:
             # required
-            type: STATIC_KEYS
+            uri: uri_example
+            type: REMOTE_JWKS
 
             # optional
-            keys:
-            - # required
-              kty: RSA
-              alg: alg_example
-              n: n_example
-              e: e_example
-              kid: kid_example
-              format: JSON_WEB_KEY
-
+            is_ssl_verify_disabled: true
+            max_cache_duration_in_hours: 56
+            additional_validation_policy:
               # optional
-              use: sig
-              key_ops: [ "verify" ]
-          type: JWT_AUTHENTICATION
+              issuers: [ "issuers_example" ]
+              audiences: [ "audiences_example" ]
+              verify_claims:
+              - # required
+                key: key_example
 
-              # optional
+                # optional
+                values: [ "values_example" ]
+                is_required: true
+          type: TOKEN_AUTHENTICATION
+
+                # optional
           token_auth_scheme: token_auth_scheme_example
-          verify_claims:
-          - # required
-            key: key_example
-
-            # optional
-            values: [ "values_example" ]
-            is_required: true
           max_clock_skew_in_seconds: 3.4
           is_anonymous_access_allowed: true
           token_header: token_header_example
           token_query_param: token_query_param_example
+          validation_failure_policy:
+            # required
+            type: MODIFY_RESPONSE
+
+            # optional
+            response_code: response_code_example
+            response_message: response_message_example
+            response_header_transformations:
+              # optional
+              set_headers:
+                # required
+                items:
+                - # required
+                  name: name_example
+                  values: [ "values_example" ]
+
+                  # optional
+                  if_exists: OVERWRITE
+              rename_headers:
+                # required
+                items:
+                - # required
+                  _from: _from_example
+                  to: to_example
+              filter_headers:
+                # required
+                type: ALLOW
+                items:
+                - # required
+                  name: name_example
         rate_limiting:
           # required
           rate_in_requests_per_second: 56
@@ -1725,40 +2381,63 @@ EXAMPLES = """
               is_default: true
             authentication_server_detail:
               # required
-              issuers: [ "issuers_example" ]
-              audiences: [ "audiences_example" ]
-              public_keys:
+              validation_policy:
                 # required
-                type: STATIC_KEYS
+                uri: uri_example
+                type: REMOTE_JWKS
 
                 # optional
-                keys:
-                - # required
-                  kty: RSA
-                  alg: alg_example
-                  n: n_example
-                  e: e_example
-                  kid: kid_example
-                  format: JSON_WEB_KEY
-
+                is_ssl_verify_disabled: true
+                max_cache_duration_in_hours: 56
+                additional_validation_policy:
                   # optional
-                  use: sig
-                  key_ops: [ "verify" ]
-              type: JWT_AUTHENTICATION
+                  issuers: [ "issuers_example" ]
+                  audiences: [ "audiences_example" ]
+                  verify_claims:
+                  - # required
+                    key: key_example
 
-                  # optional
+                    # optional
+                    values: [ "values_example" ]
+                    is_required: true
+              type: TOKEN_AUTHENTICATION
+
+                    # optional
               token_auth_scheme: token_auth_scheme_example
-              verify_claims:
-              - # required
-                key: key_example
-
-                # optional
-                values: [ "values_example" ]
-                is_required: true
               max_clock_skew_in_seconds: 3.4
               is_anonymous_access_allowed: true
               token_header: token_header_example
               token_query_param: token_query_param_example
+              validation_failure_policy:
+                # required
+                type: MODIFY_RESPONSE
+
+                # optional
+                response_code: response_code_example
+                response_message: response_message_example
+                response_header_transformations:
+                  # optional
+                  set_headers:
+                    # required
+                    items:
+                    - # required
+                      name: name_example
+                      values: [ "values_example" ]
+
+                      # optional
+                      if_exists: OVERWRITE
+                  rename_headers:
+                    # required
+                    items:
+                    - # required
+                      _from: _from_example
+                      to: to_example
+                  filter_headers:
+                    # required
+                    type: ALLOW
+                    items:
+                    - # required
+                      name: name_example
       logging_policies:
         # optional
         access_log:
@@ -1773,14 +2452,11 @@ EXAMPLES = """
         path: path_example
         backend:
           # required
-          url: url_example
-          type: HTTP_BACKEND
+          type: OAUTH2_LOGOUT_BACKEND
 
           # optional
-          connect_timeout_in_seconds: 3.4
-          read_timeout_in_seconds: 3.4
-          send_timeout_in_seconds: 3.4
-          is_ssl_verify_disabled: true
+          allowed_post_logout_uris: [ "allowed_post_logout_uris_example" ]
+          post_logout_state: post_logout_state_example
 
         # optional
         methods: [ "ANY" ]
@@ -1937,40 +2613,63 @@ EXAMPLES = """
         # optional
         authentication:
           # required
-          issuers: [ "issuers_example" ]
-          audiences: [ "audiences_example" ]
-          public_keys:
+          validation_policy:
             # required
-            type: STATIC_KEYS
+            uri: uri_example
+            type: REMOTE_JWKS
 
             # optional
-            keys:
-            - # required
-              kty: RSA
-              alg: alg_example
-              n: n_example
-              e: e_example
-              kid: kid_example
-              format: JSON_WEB_KEY
-
+            is_ssl_verify_disabled: true
+            max_cache_duration_in_hours: 56
+            additional_validation_policy:
               # optional
-              use: sig
-              key_ops: [ "verify" ]
-          type: JWT_AUTHENTICATION
+              issuers: [ "issuers_example" ]
+              audiences: [ "audiences_example" ]
+              verify_claims:
+              - # required
+                key: key_example
 
-              # optional
+                # optional
+                values: [ "values_example" ]
+                is_required: true
+          type: TOKEN_AUTHENTICATION
+
+                # optional
           token_auth_scheme: token_auth_scheme_example
-          verify_claims:
-          - # required
-            key: key_example
-
-            # optional
-            values: [ "values_example" ]
-            is_required: true
           max_clock_skew_in_seconds: 3.4
           is_anonymous_access_allowed: true
           token_header: token_header_example
           token_query_param: token_query_param_example
+          validation_failure_policy:
+            # required
+            type: MODIFY_RESPONSE
+
+            # optional
+            response_code: response_code_example
+            response_message: response_message_example
+            response_header_transformations:
+              # optional
+              set_headers:
+                # required
+                items:
+                - # required
+                  name: name_example
+                  values: [ "values_example" ]
+
+                  # optional
+                  if_exists: OVERWRITE
+              rename_headers:
+                # required
+                items:
+                - # required
+                  _from: _from_example
+                  to: to_example
+              filter_headers:
+                # required
+                type: ALLOW
+                items:
+                - # required
+                  name: name_example
         rate_limiting:
           # required
           rate_in_requests_per_second: 56
@@ -2012,40 +2711,63 @@ EXAMPLES = """
               is_default: true
             authentication_server_detail:
               # required
-              issuers: [ "issuers_example" ]
-              audiences: [ "audiences_example" ]
-              public_keys:
+              validation_policy:
                 # required
-                type: STATIC_KEYS
+                uri: uri_example
+                type: REMOTE_JWKS
 
                 # optional
-                keys:
-                - # required
-                  kty: RSA
-                  alg: alg_example
-                  n: n_example
-                  e: e_example
-                  kid: kid_example
-                  format: JSON_WEB_KEY
-
+                is_ssl_verify_disabled: true
+                max_cache_duration_in_hours: 56
+                additional_validation_policy:
                   # optional
-                  use: sig
-                  key_ops: [ "verify" ]
-              type: JWT_AUTHENTICATION
+                  issuers: [ "issuers_example" ]
+                  audiences: [ "audiences_example" ]
+                  verify_claims:
+                  - # required
+                    key: key_example
 
-                  # optional
+                    # optional
+                    values: [ "values_example" ]
+                    is_required: true
+              type: TOKEN_AUTHENTICATION
+
+                    # optional
               token_auth_scheme: token_auth_scheme_example
-              verify_claims:
-              - # required
-                key: key_example
-
-                # optional
-                values: [ "values_example" ]
-                is_required: true
               max_clock_skew_in_seconds: 3.4
               is_anonymous_access_allowed: true
               token_header: token_header_example
               token_query_param: token_query_param_example
+              validation_failure_policy:
+                # required
+                type: MODIFY_RESPONSE
+
+                # optional
+                response_code: response_code_example
+                response_message: response_message_example
+                response_header_transformations:
+                  # optional
+                  set_headers:
+                    # required
+                    items:
+                    - # required
+                      name: name_example
+                      values: [ "values_example" ]
+
+                      # optional
+                      if_exists: OVERWRITE
+                  rename_headers:
+                    # required
+                    items:
+                    - # required
+                      _from: _from_example
+                      to: to_example
+                  filter_headers:
+                    # required
+                    type: ALLOW
+                    items:
+                    - # required
+                      name: name_example
       logging_policies:
         # optional
         access_log:
@@ -2060,14 +2782,11 @@ EXAMPLES = """
         path: path_example
         backend:
           # required
-          url: url_example
-          type: HTTP_BACKEND
+          type: OAUTH2_LOGOUT_BACKEND
 
           # optional
-          connect_timeout_in_seconds: 3.4
-          read_timeout_in_seconds: 3.4
-          send_timeout_in_seconds: 3.4
-          is_ssl_verify_disabled: true
+          allowed_post_logout_uris: [ "allowed_post_logout_uris_example" ]
+          post_logout_state: post_logout_state_example
 
         # optional
         methods: [ "ANY" ]
@@ -2221,40 +2940,63 @@ EXAMPLES = """
         # optional
         authentication:
           # required
-          issuers: [ "issuers_example" ]
-          audiences: [ "audiences_example" ]
-          public_keys:
+          validation_policy:
             # required
-            type: STATIC_KEYS
+            uri: uri_example
+            type: REMOTE_JWKS
 
             # optional
-            keys:
-            - # required
-              kty: RSA
-              alg: alg_example
-              n: n_example
-              e: e_example
-              kid: kid_example
-              format: JSON_WEB_KEY
-
+            is_ssl_verify_disabled: true
+            max_cache_duration_in_hours: 56
+            additional_validation_policy:
               # optional
-              use: sig
-              key_ops: [ "verify" ]
-          type: JWT_AUTHENTICATION
+              issuers: [ "issuers_example" ]
+              audiences: [ "audiences_example" ]
+              verify_claims:
+              - # required
+                key: key_example
 
-              # optional
+                # optional
+                values: [ "values_example" ]
+                is_required: true
+          type: TOKEN_AUTHENTICATION
+
+                # optional
           token_auth_scheme: token_auth_scheme_example
-          verify_claims:
-          - # required
-            key: key_example
-
-            # optional
-            values: [ "values_example" ]
-            is_required: true
           max_clock_skew_in_seconds: 3.4
           is_anonymous_access_allowed: true
           token_header: token_header_example
           token_query_param: token_query_param_example
+          validation_failure_policy:
+            # required
+            type: MODIFY_RESPONSE
+
+            # optional
+            response_code: response_code_example
+            response_message: response_message_example
+            response_header_transformations:
+              # optional
+              set_headers:
+                # required
+                items:
+                - # required
+                  name: name_example
+                  values: [ "values_example" ]
+
+                  # optional
+                  if_exists: OVERWRITE
+              rename_headers:
+                # required
+                items:
+                - # required
+                  _from: _from_example
+                  to: to_example
+              filter_headers:
+                # required
+                type: ALLOW
+                items:
+                - # required
+                  name: name_example
         rate_limiting:
           # required
           rate_in_requests_per_second: 56
@@ -2296,40 +3038,63 @@ EXAMPLES = """
               is_default: true
             authentication_server_detail:
               # required
-              issuers: [ "issuers_example" ]
-              audiences: [ "audiences_example" ]
-              public_keys:
+              validation_policy:
                 # required
-                type: STATIC_KEYS
+                uri: uri_example
+                type: REMOTE_JWKS
 
                 # optional
-                keys:
-                - # required
-                  kty: RSA
-                  alg: alg_example
-                  n: n_example
-                  e: e_example
-                  kid: kid_example
-                  format: JSON_WEB_KEY
-
+                is_ssl_verify_disabled: true
+                max_cache_duration_in_hours: 56
+                additional_validation_policy:
                   # optional
-                  use: sig
-                  key_ops: [ "verify" ]
-              type: JWT_AUTHENTICATION
+                  issuers: [ "issuers_example" ]
+                  audiences: [ "audiences_example" ]
+                  verify_claims:
+                  - # required
+                    key: key_example
 
-                  # optional
+                    # optional
+                    values: [ "values_example" ]
+                    is_required: true
+              type: TOKEN_AUTHENTICATION
+
+                    # optional
               token_auth_scheme: token_auth_scheme_example
-              verify_claims:
-              - # required
-                key: key_example
-
-                # optional
-                values: [ "values_example" ]
-                is_required: true
               max_clock_skew_in_seconds: 3.4
               is_anonymous_access_allowed: true
               token_header: token_header_example
               token_query_param: token_query_param_example
+              validation_failure_policy:
+                # required
+                type: MODIFY_RESPONSE
+
+                # optional
+                response_code: response_code_example
+                response_message: response_message_example
+                response_header_transformations:
+                  # optional
+                  set_headers:
+                    # required
+                    items:
+                    - # required
+                      name: name_example
+                      values: [ "values_example" ]
+
+                      # optional
+                      if_exists: OVERWRITE
+                  rename_headers:
+                    # required
+                    items:
+                    - # required
+                      _from: _from_example
+                      to: to_example
+                  filter_headers:
+                    # required
+                    type: ALLOW
+                    items:
+                    - # required
+                      name: name_example
       logging_policies:
         # optional
         access_log:
@@ -2344,14 +3109,11 @@ EXAMPLES = """
         path: path_example
         backend:
           # required
-          url: url_example
-          type: HTTP_BACKEND
+          type: OAUTH2_LOGOUT_BACKEND
 
           # optional
-          connect_timeout_in_seconds: 3.4
-          read_timeout_in_seconds: 3.4
-          send_timeout_in_seconds: 3.4
-          is_ssl_verify_disabled: true
+          allowed_post_logout_uris: [ "allowed_post_logout_uris_example" ]
+          post_logout_state: post_logout_state_example
 
         # optional
         methods: [ "ANY" ]
@@ -2595,18 +3357,376 @@ deployment:
                                     returned: on success
                                     type: list
                                     sample: []
+                                issuers:
+                                    description:
+                                        - A list of parties that could have issued the token.
+                                    returned: on success
+                                    type: list
+                                    sample: []
+                                audiences:
+                                    description:
+                                        - The list of intended recipients for the token.
+                                    returned: on success
+                                    type: list
+                                    sample: []
+                                verify_claims:
+                                    description:
+                                        - A list of claims which should be validated to consider the token valid.
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        key:
+                                            description:
+                                                - Name of the claim.
+                                            returned: on success
+                                            type: str
+                                            sample: key_example
+                                        values:
+                                            description:
+                                                - "The list of acceptable values for a given claim.
+                                                  If this value is \\"null\\" or empty and \\"isRequired\\" set to \\"true\\", then
+                                                  the presence of this claim in the JWT is validated."
+                                            returned: on success
+                                            type: list
+                                            sample: []
+                                        is_required:
+                                            description:
+                                                - "Whether the claim is required to be present in the JWT or not. If set
+                                                  to \\"false\\", the claim values will be matched only if the claim is
+                                                  present in the JWT."
+                                            returned: on success
+                                            type: bool
+                                            sample: true
+                                public_keys:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        uri:
+                                            description:
+                                                - The uri from which to retrieve the key. It must be accessible
+                                                  without authentication.
+                                            returned: on success
+                                            type: str
+                                            sample: uri_example
+                                        is_ssl_verify_disabled:
+                                            description:
+                                                - Defines whether or not to uphold SSL verification.
+                                            returned: on success
+                                            type: bool
+                                            sample: true
+                                        max_cache_duration_in_hours:
+                                            description:
+                                                - The duration for which the JWKS should be cached before it is
+                                                  fetched again.
+                                            returned: on success
+                                            type: int
+                                            sample: 56
+                                        type:
+                                            description:
+                                                - Type of the public key set.
+                                            returned: on success
+                                            type: str
+                                            sample: STATIC_KEYS
+                                        keys:
+                                            description:
+                                                - The set of static public keys.
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                kty:
+                                                    description:
+                                                        - The key type.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: RSA
+                                                use:
+                                                    description:
+                                                        - The intended use of the public key.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: sig
+                                                key_ops:
+                                                    description:
+                                                        - The operations for which this key is to be used.
+                                                    returned: on success
+                                                    type: list
+                                                    sample: []
+                                                alg:
+                                                    description:
+                                                        - The algorithm intended for use with this key.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: alg_example
+                                                n:
+                                                    description:
+                                                        - The base64 url encoded modulus of the RSA public key represented
+                                                          by this key.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: n_example
+                                                e:
+                                                    description:
+                                                        - The base64 url encoded exponent of the RSA public key represented
+                                                          by this key.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: e_example
+                                                kid:
+                                                    description:
+                                                        - "A unique key ID. This key will be used to verify the signature of a
+                                                          JWT with matching \\"kid\\"."
+                                                    returned: on success
+                                                    type: str
+                                                    sample: kid_example
+                                                format:
+                                                    description:
+                                                        - The format of the public key.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: JSON_WEB_KEY
+                                                key:
+                                                    description:
+                                                        - The content of the PEM-encoded public key.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: key_example
+                                is_anonymous_access_allowed:
+                                    description:
+                                        - "Whether an unauthenticated user may access the API. Must be \\"true\\" to enable ANONYMOUS
+                                          route authorization."
+                                    returned: on success
+                                    type: bool
+                                    sample: true
+                                type:
+                                    description:
+                                        - Type of the authentication policy to use.
+                                    returned: on success
+                                    type: str
+                                    sample: CUSTOM_AUTHENTICATION
+                                token_header:
+                                    description:
+                                        - The name of the header containing the authentication token.
+                                    returned: on success
+                                    type: str
+                                    sample: token_header_example
+                                token_query_param:
+                                    description:
+                                        - The name of the query parameter containing the authentication token.
+                                    returned: on success
+                                    type: str
+                                    sample: token_query_param_example
+                                token_auth_scheme:
+                                    description:
+                                        - "The authentication scheme that is to be used when authenticating
+                                          the token. This must to be provided if \\"tokenHeader\\" is specified."
+                                    returned: on success
+                                    type: str
+                                    sample: token_auth_scheme_example
+                                max_clock_skew_in_seconds:
+                                    description:
+                                        - The maximum expected time difference between the system clocks
+                                          of the token issuer and the API Gateway.
+                                    returned: on success
+                                    type: float
+                                    sample: 3.4
+                                validation_policy:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        client_details:
+                                            description:
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                client_id:
+                                                    description:
+                                                        - Client ID for the OAuth2/OIDC app.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: "ocid1.client.oc1..xxxxxxEXAMPLExxxxxx"
+                                                client_secret_id:
+                                                    description:
+                                                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Vault
+                                                          Service secret resource.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: "ocid1.clientsecret.oc1..xxxxxxEXAMPLExxxxxx"
+                                                client_secret_version_number:
+                                                    description:
+                                                        - The version number of the client secret to use.
+                                                    returned: on success
+                                                    type: int
+                                                    sample: 56
+                                                type:
+                                                    description:
+                                                        - To specify where the Client App details should be taken from.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: VALIDATION_BLOCK
+                                        source_uri_details:
+                                            description:
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                uri:
+                                                    description:
+                                                        - The discovery URI for the auth server.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: uri_example
+                                                type:
+                                                    description:
+                                                        - Type of the Uri detail.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: DISCOVERY_URI
+                                        uri:
+                                            description:
+                                                - The uri from which to retrieve the key. It must be accessible
+                                                  without authentication.
+                                            returned: on success
+                                            type: str
+                                            sample: uri_example
+                                        is_ssl_verify_disabled:
+                                            description:
+                                                - Defines whether or not to uphold SSL verification.
+                                            returned: on success
+                                            type: bool
+                                            sample: true
+                                        max_cache_duration_in_hours:
+                                            description:
+                                                - The duration for which the introspect URL response should be cached before it is
+                                                  fetched again.
+                                            returned: on success
+                                            type: int
+                                            sample: 56
+                                        type:
+                                            description:
+                                                - Type of the token validation policy.
+                                            returned: on success
+                                            type: str
+                                            sample: STATIC_KEYS
+                                        additional_validation_policy:
+                                            description:
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                issuers:
+                                                    description:
+                                                        - A list of parties that could have issued the token.
+                                                    returned: on success
+                                                    type: list
+                                                    sample: []
+                                                audiences:
+                                                    description:
+                                                        - The list of intended recipients for the token.
+                                                    returned: on success
+                                                    type: list
+                                                    sample: []
+                                                verify_claims:
+                                                    description:
+                                                        - A list of claims which should be validated to consider the token valid.
+                                                    returned: on success
+                                                    type: complex
+                                                    contains:
+                                                        key:
+                                                            description:
+                                                                - Name of the claim.
+                                                            returned: on success
+                                                            type: str
+                                                            sample: key_example
+                                                        values:
+                                                            description:
+                                                                - "The list of acceptable values for a given claim.
+                                                                  If this value is \\"null\\" or empty and \\"isRequired\\" set to \\"true\\", then
+                                                                  the presence of this claim in the JWT is validated."
+                                                            returned: on success
+                                                            type: list
+                                                            sample: []
+                                                        is_required:
+                                                            description:
+                                                                - "Whether the claim is required to be present in the JWT or not. If set
+                                                                  to \\"false\\", the claim values will be matched only if the claim is
+                                                                  present in the JWT."
+                                                            returned: on success
+                                                            type: bool
+                                                            sample: true
+                                        keys:
+                                            description:
+                                                - The set of static public keys.
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                kty:
+                                                    description:
+                                                        - The key type.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: RSA
+                                                use:
+                                                    description:
+                                                        - The intended use of the public key.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: sig
+                                                key_ops:
+                                                    description:
+                                                        - The operations for which this key is to be used.
+                                                    returned: on success
+                                                    type: list
+                                                    sample: []
+                                                alg:
+                                                    description:
+                                                        - The algorithm intended for use with this key.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: alg_example
+                                                n:
+                                                    description:
+                                                        - The base64 url encoded modulus of the RSA public key represented
+                                                          by this key.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: n_example
+                                                e:
+                                                    description:
+                                                        - The base64 url encoded exponent of the RSA public key represented
+                                                          by this key.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: e_example
+                                                kid:
+                                                    description:
+                                                        - "A unique key ID. This key will be used to verify the signature of a
+                                                          JWT with matching \\"kid\\"."
+                                                    returned: on success
+                                                    type: str
+                                                    sample: kid_example
+                                                format:
+                                                    description:
+                                                        - The format of the public key.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: JSON_WEB_KEY
+                                                key:
+                                                    description:
+                                                        - The content of the PEM-encoded public key.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: key_example
                                 validation_failure_policy:
                                     description:
                                         - ""
                                     returned: on success
                                     type: complex
                                     contains:
-                                        type:
-                                            description:
-                                                - Type of the Validation failure Policy.
-                                            returned: on success
-                                            type: str
-                                            sample: MODIFY_RESPONSE
                                         response_code:
                                             description:
                                                 - HTTP response code, can include context variables.
@@ -2711,180 +3831,110 @@ deployment:
                                                                     returned: on success
                                                                     type: str
                                                                     sample: name_example
-                                is_anonymous_access_allowed:
-                                    description:
-                                        - "Whether an unauthenticated user may access the API. Must be \\"true\\" to enable ANONYMOUS
-                                          route authorization."
-                                    returned: on success
-                                    type: bool
-                                    sample: true
-                                type:
-                                    description:
-                                        - Type of the authentication policy to use.
-                                    returned: on success
-                                    type: str
-                                    sample: CUSTOM_AUTHENTICATION
-                                token_header:
-                                    description:
-                                        - The name of the header containing the authentication token.
-                                    returned: on success
-                                    type: str
-                                    sample: token_header_example
-                                token_query_param:
-                                    description:
-                                        - The name of the query parameter containing the authentication token.
-                                    returned: on success
-                                    type: str
-                                    sample: token_query_param_example
-                                token_auth_scheme:
-                                    description:
-                                        - "The authentication scheme that is to be used when authenticating
-                                          the token. This must to be provided if \\"tokenHeader\\" is specified."
-                                    returned: on success
-                                    type: str
-                                    sample: token_auth_scheme_example
-                                issuers:
-                                    description:
-                                        - A list of parties that could have issued the token.
-                                    returned: on success
-                                    type: list
-                                    sample: []
-                                audiences:
-                                    description:
-                                        - The list of intended recipients for the token.
-                                    returned: on success
-                                    type: list
-                                    sample: []
-                                verify_claims:
-                                    description:
-                                        - A list of claims which should be validated to consider the token valid.
-                                    returned: on success
-                                    type: complex
-                                    contains:
-                                        key:
+                                        type:
                                             description:
-                                                - Name of the claim.
+                                                - Type of the Validation failure Policy.
                                             returned: on success
                                             type: str
-                                            sample: key_example
-                                        values:
+                                            sample: MODIFY_RESPONSE
+                                        client_details:
                                             description:
-                                                - "The list of acceptable values for a given claim.
-                                                  If this value is \\"null\\" or empty and \\"isRequired\\" set to \\"true\\", then
-                                                  the presence of this claim in the JWT is validated."
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                client_id:
+                                                    description:
+                                                        - Client ID for the OAuth2/OIDC app.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: "ocid1.client.oc1..xxxxxxEXAMPLExxxxxx"
+                                                client_secret_id:
+                                                    description:
+                                                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Vault
+                                                          Service secret resource.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: "ocid1.clientsecret.oc1..xxxxxxEXAMPLExxxxxx"
+                                                client_secret_version_number:
+                                                    description:
+                                                        - The version number of the client secret to use.
+                                                    returned: on success
+                                                    type: int
+                                                    sample: 56
+                                                type:
+                                                    description:
+                                                        - To specify where the Client App details should be taken from.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: VALIDATION_BLOCK
+                                        source_uri_details:
+                                            description:
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                uri:
+                                                    description:
+                                                        - The discovery URI for the auth server.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: uri_example
+                                                type:
+                                                    description:
+                                                        - Type of the Uri detail.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: DISCOVERY_URI
+                                        scopes:
+                                            description:
+                                                - List of scopes.
                                             returned: on success
                                             type: list
                                             sample: []
-                                        is_required:
+                                        max_expiry_duration_in_hours:
                                             description:
-                                                - "Whether the claim is required to be present in the JWT or not. If set
-                                                  to \\"false\\", the claim values will be matched only if the claim is
-                                                  present in the JWT."
-                                            returned: on success
-                                            type: bool
-                                            sample: true
-                                max_clock_skew_in_seconds:
-                                    description:
-                                        - The maximum expected time difference between the system clocks
-                                          of the token issuer and the API Gateway.
-                                    returned: on success
-                                    type: float
-                                    sample: 3.4
-                                public_keys:
-                                    description:
-                                        - ""
-                                    returned: on success
-                                    type: complex
-                                    contains:
-                                        uri:
-                                            description:
-                                                - The uri from which to retrieve the key. It must be accessible
-                                                  without authentication.
-                                            returned: on success
-                                            type: str
-                                            sample: uri_example
-                                        is_ssl_verify_disabled:
-                                            description:
-                                                - Defines whether or not to uphold SSL verification.
-                                            returned: on success
-                                            type: bool
-                                            sample: true
-                                        max_cache_duration_in_hours:
-                                            description:
-                                                - The duration for which the JWKS should be cached before it is
+                                                - The duration for which the OAuth2 success token should be cached before it is
                                                   fetched again.
                                             returned: on success
                                             type: int
                                             sample: 56
-                                        type:
+                                        use_cookies_for_session:
                                             description:
-                                                - Type of the public key set.
+                                                - Defines whether or not to use cookies for session maintenance.
+                                            returned: on success
+                                            type: bool
+                                            sample: true
+                                        use_cookies_for_intermediate_steps:
+                                            description:
+                                                - Defines whether or not to use cookies for OAuth2 intermediate steps.
+                                            returned: on success
+                                            type: bool
+                                            sample: true
+                                        use_pkce:
+                                            description:
+                                                - Defines whether or not to support PKCE.
+                                            returned: on success
+                                            type: bool
+                                            sample: true
+                                        response_type:
+                                            description:
+                                                - Response Type.
                                             returned: on success
                                             type: str
-                                            sample: STATIC_KEYS
-                                        keys:
+                                            sample: CODE
+                                        fallback_redirect_path:
                                             description:
-                                                - The set of static public keys.
+                                                - The path to be used as fallback after OAuth2.
                                             returned: on success
-                                            type: complex
-                                            contains:
-                                                kty:
-                                                    description:
-                                                        - The key type.
-                                                    returned: on success
-                                                    type: str
-                                                    sample: RSA
-                                                use:
-                                                    description:
-                                                        - The intended use of the public key.
-                                                    returned: on success
-                                                    type: str
-                                                    sample: sig
-                                                key_ops:
-                                                    description:
-                                                        - The operations for which this key is to be used.
-                                                    returned: on success
-                                                    type: list
-                                                    sample: []
-                                                alg:
-                                                    description:
-                                                        - The algorithm intended for use with this key.
-                                                    returned: on success
-                                                    type: str
-                                                    sample: alg_example
-                                                n:
-                                                    description:
-                                                        - The base64 url encoded modulus of the RSA public key represented
-                                                          by this key.
-                                                    returned: on success
-                                                    type: str
-                                                    sample: n_example
-                                                e:
-                                                    description:
-                                                        - The base64 url encoded exponent of the RSA public key represented
-                                                          by this key.
-                                                    returned: on success
-                                                    type: str
-                                                    sample: e_example
-                                                kid:
-                                                    description:
-                                                        - "A unique key ID. This key will be used to verify the signature of a
-                                                          JWT with matching \\"kid\\"."
-                                                    returned: on success
-                                                    type: str
-                                                    sample: kid_example
-                                                format:
-                                                    description:
-                                                        - The format of the public key.
-                                                    returned: on success
-                                                    type: str
-                                                    sample: JSON_WEB_KEY
-                                                key:
-                                                    description:
-                                                        - The content of the PEM-encoded public key.
-                                                    returned: on success
-                                                    type: str
-                                                    sample: key_example
+                                            type: str
+                                            sample: fallback_redirect_path_example
+                                        logout_path:
+                                            description:
+                                                - The path to be used as logout.
+                                            returned: on success
+                                            type: str
+                                            sample: logout_path_example
                         rate_limiting:
                             description:
                                 - ""
@@ -3025,19 +4075,24 @@ deployment:
                                             contains:
                                                 values:
                                                     description:
-                                                        - Information regarding the set of values of selector for which this branch should be selected.
+                                                        - The set of selection keys to match with the context variable in an incoming request. If the context
+                                                          variable exactly matches one of the keys in the set, the request is sent to the route or
+                                                          authentication server associated with the set.
                                                     returned: on success
                                                     type: list
                                                     sample: []
                                                 type:
                                                     description:
-                                                        - Information regarding type of the selection key.
+                                                        - Type of the selection key.
                                                     returned: on success
                                                     type: str
                                                     sample: ANY_OF
                                                 is_default:
                                                     description:
-                                                        - Information regarding whether this is the default branch.
+                                                        - Specifies whether to use the route or authentication server associated with this selection key as the
+                                                          default. The default is used if the value of a context variable in an incoming request does not match
+                                                          any of the other selection key values when dynamically routing and dynamically authenticating
+                                                          requests.
                                                     returned: on success
                                                     type: bool
                                                     sample: true
@@ -3049,7 +4104,11 @@ deployment:
                                                     sample: name_example
                                                 expression:
                                                     description:
-                                                        - String describing the expression with wildcards.
+                                                        - "A selection key string containing a wildcard to match with the context variable in an incoming
+                                                          request. If the context variable matches the string, the request is sent to the route or
+                                                          authentication server associated with the selection key. Valid wildcards are '*' (zero or more
+                                                          characters) and '+' (one or more characters). The string can only contain one wildcard, and the
+                                                          wildcard must be at the start or the end of the string."
                                                     returned: on success
                                                     type: str
                                                     sample: expression_example
@@ -3080,18 +4139,377 @@ deployment:
                                                     returned: on success
                                                     type: list
                                                     sample: []
+                                                issuers:
+                                                    description:
+                                                        - A list of parties that could have issued the token.
+                                                    returned: on success
+                                                    type: list
+                                                    sample: []
+                                                audiences:
+                                                    description:
+                                                        - The list of intended recipients for the token.
+                                                    returned: on success
+                                                    type: list
+                                                    sample: []
+                                                verify_claims:
+                                                    description:
+                                                        - A list of claims which should be validated to consider the token valid.
+                                                    returned: on success
+                                                    type: complex
+                                                    contains:
+                                                        key:
+                                                            description:
+                                                                - Name of the claim.
+                                                            returned: on success
+                                                            type: str
+                                                            sample: key_example
+                                                        values:
+                                                            description:
+                                                                - "The list of acceptable values for a given claim.
+                                                                  If this value is \\"null\\" or empty and \\"isRequired\\" set to \\"true\\", then
+                                                                  the presence of this claim in the JWT is validated."
+                                                            returned: on success
+                                                            type: list
+                                                            sample: []
+                                                        is_required:
+                                                            description:
+                                                                - "Whether the claim is required to be present in the JWT or not. If set
+                                                                  to \\"false\\", the claim values will be matched only if the claim is
+                                                                  present in the JWT."
+                                                            returned: on success
+                                                            type: bool
+                                                            sample: true
+                                                public_keys:
+                                                    description:
+                                                        - ""
+                                                    returned: on success
+                                                    type: complex
+                                                    contains:
+                                                        uri:
+                                                            description:
+                                                                - The uri from which to retrieve the key. It must be accessible
+                                                                  without authentication.
+                                                            returned: on success
+                                                            type: str
+                                                            sample: uri_example
+                                                        is_ssl_verify_disabled:
+                                                            description:
+                                                                - Defines whether or not to uphold SSL verification.
+                                                            returned: on success
+                                                            type: bool
+                                                            sample: true
+                                                        max_cache_duration_in_hours:
+                                                            description:
+                                                                - The duration for which the JWKS should be cached before it is
+                                                                  fetched again.
+                                                            returned: on success
+                                                            type: int
+                                                            sample: 56
+                                                        type:
+                                                            description:
+                                                                - Type of the public key set.
+                                                            returned: on success
+                                                            type: str
+                                                            sample: STATIC_KEYS
+                                                        keys:
+                                                            description:
+                                                                - The set of static public keys.
+                                                            returned: on success
+                                                            type: complex
+                                                            contains:
+                                                                kty:
+                                                                    description:
+                                                                        - The key type.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: RSA
+                                                                use:
+                                                                    description:
+                                                                        - The intended use of the public key.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: sig
+                                                                key_ops:
+                                                                    description:
+                                                                        - The operations for which this key is to be used.
+                                                                    returned: on success
+                                                                    type: list
+                                                                    sample: []
+                                                                alg:
+                                                                    description:
+                                                                        - The algorithm intended for use with this key.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: alg_example
+                                                                n:
+                                                                    description:
+                                                                        - The base64 url encoded modulus of the RSA public key represented
+                                                                          by this key.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: n_example
+                                                                e:
+                                                                    description:
+                                                                        - The base64 url encoded exponent of the RSA public key represented
+                                                                          by this key.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: e_example
+                                                                kid:
+                                                                    description:
+                                                                        - "A unique key ID. This key will be used to verify the signature of a
+                                                                          JWT with matching \\"kid\\"."
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: kid_example
+                                                                format:
+                                                                    description:
+                                                                        - The format of the public key.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: JSON_WEB_KEY
+                                                                key:
+                                                                    description:
+                                                                        - The content of the PEM-encoded public key.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: key_example
+                                                is_anonymous_access_allowed:
+                                                    description:
+                                                        - "Whether an unauthenticated user may access the API. Must be \\"true\\" to enable ANONYMOUS
+                                                          route authorization."
+                                                    returned: on success
+                                                    type: bool
+                                                    sample: true
+                                                type:
+                                                    description:
+                                                        - Type of the authentication policy to use.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: CUSTOM_AUTHENTICATION
+                                                token_header:
+                                                    description:
+                                                        - The name of the header containing the authentication token.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: token_header_example
+                                                token_query_param:
+                                                    description:
+                                                        - The name of the query parameter containing the authentication token.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: token_query_param_example
+                                                token_auth_scheme:
+                                                    description:
+                                                        - "The authentication scheme that is to be used when authenticating
+                                                          the token. This must to be provided if \\"tokenHeader\\" is specified."
+                                                    returned: on success
+                                                    type: str
+                                                    sample: token_auth_scheme_example
+                                                max_clock_skew_in_seconds:
+                                                    description:
+                                                        - The maximum expected time difference between the system clocks
+                                                          of the token issuer and the API Gateway.
+                                                    returned: on success
+                                                    type: float
+                                                    sample: 3.4
+                                                validation_policy:
+                                                    description:
+                                                        - ""
+                                                    returned: on success
+                                                    type: complex
+                                                    contains:
+                                                        client_details:
+                                                            description:
+                                                                - ""
+                                                            returned: on success
+                                                            type: complex
+                                                            contains:
+                                                                client_id:
+                                                                    description:
+                                                                        - Client ID for the OAuth2/OIDC app.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: "ocid1.client.oc1..xxxxxxEXAMPLExxxxxx"
+                                                                client_secret_id:
+                                                                    description:
+                                                                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of
+                                                                          the Oracle Vault Service secret resource.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: "ocid1.clientsecret.oc1..xxxxxxEXAMPLExxxxxx"
+                                                                client_secret_version_number:
+                                                                    description:
+                                                                        - The version number of the client secret to use.
+                                                                    returned: on success
+                                                                    type: int
+                                                                    sample: 56
+                                                                type:
+                                                                    description:
+                                                                        - To specify where the Client App details should be taken from.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: VALIDATION_BLOCK
+                                                        source_uri_details:
+                                                            description:
+                                                                - ""
+                                                            returned: on success
+                                                            type: complex
+                                                            contains:
+                                                                uri:
+                                                                    description:
+                                                                        - The discovery URI for the auth server.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: uri_example
+                                                                type:
+                                                                    description:
+                                                                        - Type of the Uri detail.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: DISCOVERY_URI
+                                                        uri:
+                                                            description:
+                                                                - The uri from which to retrieve the key. It must be accessible
+                                                                  without authentication.
+                                                            returned: on success
+                                                            type: str
+                                                            sample: uri_example
+                                                        is_ssl_verify_disabled:
+                                                            description:
+                                                                - Defines whether or not to uphold SSL verification.
+                                                            returned: on success
+                                                            type: bool
+                                                            sample: true
+                                                        max_cache_duration_in_hours:
+                                                            description:
+                                                                - The duration for which the introspect URL response should be cached before it is
+                                                                  fetched again.
+                                                            returned: on success
+                                                            type: int
+                                                            sample: 56
+                                                        type:
+                                                            description:
+                                                                - Type of the token validation policy.
+                                                            returned: on success
+                                                            type: str
+                                                            sample: STATIC_KEYS
+                                                        additional_validation_policy:
+                                                            description:
+                                                                - ""
+                                                            returned: on success
+                                                            type: complex
+                                                            contains:
+                                                                issuers:
+                                                                    description:
+                                                                        - A list of parties that could have issued the token.
+                                                                    returned: on success
+                                                                    type: list
+                                                                    sample: []
+                                                                audiences:
+                                                                    description:
+                                                                        - The list of intended recipients for the token.
+                                                                    returned: on success
+                                                                    type: list
+                                                                    sample: []
+                                                                verify_claims:
+                                                                    description:
+                                                                        - A list of claims which should be validated to consider the token valid.
+                                                                    returned: on success
+                                                                    type: complex
+                                                                    contains:
+                                                                        key:
+                                                                            description:
+                                                                                - Name of the claim.
+                                                                            returned: on success
+                                                                            type: str
+                                                                            sample: key_example
+                                                                        values:
+                                                                            description:
+                                                                                - "The list of acceptable values for a given claim.
+                                                                                  If this value is \\"null\\" or empty and \\"isRequired\\" set to \\"true\\",
+                                                                                  then
+                                                                                  the presence of this claim in the JWT is validated."
+                                                                            returned: on success
+                                                                            type: list
+                                                                            sample: []
+                                                                        is_required:
+                                                                            description:
+                                                                                - "Whether the claim is required to be present in the JWT or not. If set
+                                                                                  to \\"false\\", the claim values will be matched only if the claim is
+                                                                                  present in the JWT."
+                                                                            returned: on success
+                                                                            type: bool
+                                                                            sample: true
+                                                        keys:
+                                                            description:
+                                                                - The set of static public keys.
+                                                            returned: on success
+                                                            type: complex
+                                                            contains:
+                                                                kty:
+                                                                    description:
+                                                                        - The key type.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: RSA
+                                                                use:
+                                                                    description:
+                                                                        - The intended use of the public key.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: sig
+                                                                key_ops:
+                                                                    description:
+                                                                        - The operations for which this key is to be used.
+                                                                    returned: on success
+                                                                    type: list
+                                                                    sample: []
+                                                                alg:
+                                                                    description:
+                                                                        - The algorithm intended for use with this key.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: alg_example
+                                                                n:
+                                                                    description:
+                                                                        - The base64 url encoded modulus of the RSA public key represented
+                                                                          by this key.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: n_example
+                                                                e:
+                                                                    description:
+                                                                        - The base64 url encoded exponent of the RSA public key represented
+                                                                          by this key.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: e_example
+                                                                kid:
+                                                                    description:
+                                                                        - "A unique key ID. This key will be used to verify the signature of a
+                                                                          JWT with matching \\"kid\\"."
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: kid_example
+                                                                format:
+                                                                    description:
+                                                                        - The format of the public key.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: JSON_WEB_KEY
+                                                                key:
+                                                                    description:
+                                                                        - The content of the PEM-encoded public key.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: key_example
                                                 validation_failure_policy:
                                                     description:
                                                         - ""
                                                     returned: on success
                                                     type: complex
                                                     contains:
-                                                        type:
-                                                            description:
-                                                                - Type of the Validation failure Policy.
-                                                            returned: on success
-                                                            type: str
-                                                            sample: MODIFY_RESPONSE
                                                         response_code:
                                                             description:
                                                                 - HTTP response code, can include context variables.
@@ -3200,180 +4618,110 @@ deployment:
                                                                                     returned: on success
                                                                                     type: str
                                                                                     sample: name_example
-                                                is_anonymous_access_allowed:
-                                                    description:
-                                                        - "Whether an unauthenticated user may access the API. Must be \\"true\\" to enable ANONYMOUS
-                                                          route authorization."
-                                                    returned: on success
-                                                    type: bool
-                                                    sample: true
-                                                type:
-                                                    description:
-                                                        - Type of the authentication policy to use.
-                                                    returned: on success
-                                                    type: str
-                                                    sample: CUSTOM_AUTHENTICATION
-                                                token_header:
-                                                    description:
-                                                        - The name of the header containing the authentication token.
-                                                    returned: on success
-                                                    type: str
-                                                    sample: token_header_example
-                                                token_query_param:
-                                                    description:
-                                                        - The name of the query parameter containing the authentication token.
-                                                    returned: on success
-                                                    type: str
-                                                    sample: token_query_param_example
-                                                token_auth_scheme:
-                                                    description:
-                                                        - "The authentication scheme that is to be used when authenticating
-                                                          the token. This must to be provided if \\"tokenHeader\\" is specified."
-                                                    returned: on success
-                                                    type: str
-                                                    sample: token_auth_scheme_example
-                                                issuers:
-                                                    description:
-                                                        - A list of parties that could have issued the token.
-                                                    returned: on success
-                                                    type: list
-                                                    sample: []
-                                                audiences:
-                                                    description:
-                                                        - The list of intended recipients for the token.
-                                                    returned: on success
-                                                    type: list
-                                                    sample: []
-                                                verify_claims:
-                                                    description:
-                                                        - A list of claims which should be validated to consider the token valid.
-                                                    returned: on success
-                                                    type: complex
-                                                    contains:
-                                                        key:
+                                                        type:
                                                             description:
-                                                                - Name of the claim.
+                                                                - Type of the Validation failure Policy.
                                                             returned: on success
                                                             type: str
-                                                            sample: key_example
-                                                        values:
+                                                            sample: MODIFY_RESPONSE
+                                                        client_details:
                                                             description:
-                                                                - "The list of acceptable values for a given claim.
-                                                                  If this value is \\"null\\" or empty and \\"isRequired\\" set to \\"true\\", then
-                                                                  the presence of this claim in the JWT is validated."
+                                                                - ""
+                                                            returned: on success
+                                                            type: complex
+                                                            contains:
+                                                                client_id:
+                                                                    description:
+                                                                        - Client ID for the OAuth2/OIDC app.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: "ocid1.client.oc1..xxxxxxEXAMPLExxxxxx"
+                                                                client_secret_id:
+                                                                    description:
+                                                                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of
+                                                                          the Oracle Vault Service secret resource.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: "ocid1.clientsecret.oc1..xxxxxxEXAMPLExxxxxx"
+                                                                client_secret_version_number:
+                                                                    description:
+                                                                        - The version number of the client secret to use.
+                                                                    returned: on success
+                                                                    type: int
+                                                                    sample: 56
+                                                                type:
+                                                                    description:
+                                                                        - To specify where the Client App details should be taken from.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: VALIDATION_BLOCK
+                                                        source_uri_details:
+                                                            description:
+                                                                - ""
+                                                            returned: on success
+                                                            type: complex
+                                                            contains:
+                                                                uri:
+                                                                    description:
+                                                                        - The discovery URI for the auth server.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: uri_example
+                                                                type:
+                                                                    description:
+                                                                        - Type of the Uri detail.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: DISCOVERY_URI
+                                                        scopes:
+                                                            description:
+                                                                - List of scopes.
                                                             returned: on success
                                                             type: list
                                                             sample: []
-                                                        is_required:
+                                                        max_expiry_duration_in_hours:
                                                             description:
-                                                                - "Whether the claim is required to be present in the JWT or not. If set
-                                                                  to \\"false\\", the claim values will be matched only if the claim is
-                                                                  present in the JWT."
-                                                            returned: on success
-                                                            type: bool
-                                                            sample: true
-                                                max_clock_skew_in_seconds:
-                                                    description:
-                                                        - The maximum expected time difference between the system clocks
-                                                          of the token issuer and the API Gateway.
-                                                    returned: on success
-                                                    type: float
-                                                    sample: 3.4
-                                                public_keys:
-                                                    description:
-                                                        - ""
-                                                    returned: on success
-                                                    type: complex
-                                                    contains:
-                                                        uri:
-                                                            description:
-                                                                - The uri from which to retrieve the key. It must be accessible
-                                                                  without authentication.
-                                                            returned: on success
-                                                            type: str
-                                                            sample: uri_example
-                                                        is_ssl_verify_disabled:
-                                                            description:
-                                                                - Defines whether or not to uphold SSL verification.
-                                                            returned: on success
-                                                            type: bool
-                                                            sample: true
-                                                        max_cache_duration_in_hours:
-                                                            description:
-                                                                - The duration for which the JWKS should be cached before it is
+                                                                - The duration for which the OAuth2 success token should be cached before it is
                                                                   fetched again.
                                                             returned: on success
                                                             type: int
                                                             sample: 56
-                                                        type:
+                                                        use_cookies_for_session:
                                                             description:
-                                                                - Type of the public key set.
+                                                                - Defines whether or not to use cookies for session maintenance.
+                                                            returned: on success
+                                                            type: bool
+                                                            sample: true
+                                                        use_cookies_for_intermediate_steps:
+                                                            description:
+                                                                - Defines whether or not to use cookies for OAuth2 intermediate steps.
+                                                            returned: on success
+                                                            type: bool
+                                                            sample: true
+                                                        use_pkce:
+                                                            description:
+                                                                - Defines whether or not to support PKCE.
+                                                            returned: on success
+                                                            type: bool
+                                                            sample: true
+                                                        response_type:
+                                                            description:
+                                                                - Response Type.
                                                             returned: on success
                                                             type: str
-                                                            sample: STATIC_KEYS
-                                                        keys:
+                                                            sample: CODE
+                                                        fallback_redirect_path:
                                                             description:
-                                                                - The set of static public keys.
+                                                                - The path to be used as fallback after OAuth2.
                                                             returned: on success
-                                                            type: complex
-                                                            contains:
-                                                                kty:
-                                                                    description:
-                                                                        - The key type.
-                                                                    returned: on success
-                                                                    type: str
-                                                                    sample: RSA
-                                                                use:
-                                                                    description:
-                                                                        - The intended use of the public key.
-                                                                    returned: on success
-                                                                    type: str
-                                                                    sample: sig
-                                                                key_ops:
-                                                                    description:
-                                                                        - The operations for which this key is to be used.
-                                                                    returned: on success
-                                                                    type: list
-                                                                    sample: []
-                                                                alg:
-                                                                    description:
-                                                                        - The algorithm intended for use with this key.
-                                                                    returned: on success
-                                                                    type: str
-                                                                    sample: alg_example
-                                                                n:
-                                                                    description:
-                                                                        - The base64 url encoded modulus of the RSA public key represented
-                                                                          by this key.
-                                                                    returned: on success
-                                                                    type: str
-                                                                    sample: n_example
-                                                                e:
-                                                                    description:
-                                                                        - The base64 url encoded exponent of the RSA public key represented
-                                                                          by this key.
-                                                                    returned: on success
-                                                                    type: str
-                                                                    sample: e_example
-                                                                kid:
-                                                                    description:
-                                                                        - "A unique key ID. This key will be used to verify the signature of a
-                                                                          JWT with matching \\"kid\\"."
-                                                                    returned: on success
-                                                                    type: str
-                                                                    sample: kid_example
-                                                                format:
-                                                                    description:
-                                                                        - The format of the public key.
-                                                                    returned: on success
-                                                                    type: str
-                                                                    sample: JSON_WEB_KEY
-                                                                key:
-                                                                    description:
-                                                                        - The content of the PEM-encoded public key.
-                                                                    returned: on success
-                                                                    type: str
-                                                                    sample: key_example
+                                                            type: str
+                                                            sample: fallback_redirect_path_example
+                                                        logout_path:
+                                                            description:
+                                                                - The path to be used as logout.
+                                                            returned: on success
+                                                            type: str
+                                                            sample: logout_path_example
                 logging_policies:
                     description:
                         - ""
@@ -4059,19 +5407,24 @@ deployment:
                                             contains:
                                                 values:
                                                     description:
-                                                        - Information regarding the set of values of selector for which this branch should be selected.
+                                                        - The set of selection keys to match with the context variable in an incoming request. If the context
+                                                          variable exactly matches one of the keys in the set, the request is sent to the route or
+                                                          authentication server associated with the set.
                                                     returned: on success
                                                     type: list
                                                     sample: []
                                                 type:
                                                     description:
-                                                        - Information regarding type of the selection key.
+                                                        - Type of the selection key.
                                                     returned: on success
                                                     type: str
                                                     sample: ANY_OF
                                                 is_default:
                                                     description:
-                                                        - Information regarding whether this is the default branch.
+                                                        - Specifies whether to use the route or authentication server associated with this selection key as the
+                                                          default. The default is used if the value of a context variable in an incoming request does not match
+                                                          any of the other selection key values when dynamically routing and dynamically authenticating
+                                                          requests.
                                                     returned: on success
                                                     type: bool
                                                     sample: true
@@ -4083,7 +5436,11 @@ deployment:
                                                     sample: name_example
                                                 expression:
                                                     description:
-                                                        - String describing the expression with wildcards.
+                                                        - "A selection key string containing a wildcard to match with the context variable in an incoming
+                                                          request. If the context variable matches the string, the request is sent to the route or
+                                                          authentication server associated with the selection key. Valid wildcards are '*' (zero or more
+                                                          characters) and '+' (one or more characters). The string can only contain one wildcard, and the
+                                                          wildcard must be at the start or the end of the string."
                                                     returned: on success
                                                     type: str
                                                     sample: expression_example
@@ -4129,6 +5486,18 @@ deployment:
                                     returned: on success
                                     type: bool
                                     sample: true
+                                allowed_post_logout_uris:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: list
+                                    sample: []
+                                post_logout_state:
+                                    description:
+                                        - Defines a state that should be shared on redirecting to postLogout URL.
+                                    returned: on success
+                                    type: str
+                                    sample: post_logout_state_example
                                 function_id:
                                     description:
                                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Functions function
@@ -4229,8 +5598,73 @@ deployment:
                     "function_id": "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx",
                     "parameters": {},
                     "cache_key": [],
+                    "issuers": [],
+                    "audiences": [],
+                    "verify_claims": [{
+                        "key": "key_example",
+                        "values": [],
+                        "is_required": true
+                    }],
+                    "public_keys": {
+                        "uri": "uri_example",
+                        "is_ssl_verify_disabled": true,
+                        "max_cache_duration_in_hours": 56,
+                        "type": "STATIC_KEYS",
+                        "keys": [{
+                            "kty": "RSA",
+                            "use": "sig",
+                            "key_ops": [],
+                            "alg": "alg_example",
+                            "n": "n_example",
+                            "e": "e_example",
+                            "kid": "kid_example",
+                            "format": "JSON_WEB_KEY",
+                            "key": "key_example"
+                        }]
+                    },
+                    "is_anonymous_access_allowed": true,
+                    "type": "CUSTOM_AUTHENTICATION",
+                    "token_header": "token_header_example",
+                    "token_query_param": "token_query_param_example",
+                    "token_auth_scheme": "token_auth_scheme_example",
+                    "max_clock_skew_in_seconds": 3.4,
+                    "validation_policy": {
+                        "client_details": {
+                            "client_id": "ocid1.client.oc1..xxxxxxEXAMPLExxxxxx",
+                            "client_secret_id": "ocid1.clientsecret.oc1..xxxxxxEXAMPLExxxxxx",
+                            "client_secret_version_number": 56,
+                            "type": "VALIDATION_BLOCK"
+                        },
+                        "source_uri_details": {
+                            "uri": "uri_example",
+                            "type": "DISCOVERY_URI"
+                        },
+                        "uri": "uri_example",
+                        "is_ssl_verify_disabled": true,
+                        "max_cache_duration_in_hours": 56,
+                        "type": "STATIC_KEYS",
+                        "additional_validation_policy": {
+                            "issuers": [],
+                            "audiences": [],
+                            "verify_claims": [{
+                                "key": "key_example",
+                                "values": [],
+                                "is_required": true
+                            }]
+                        },
+                        "keys": [{
+                            "kty": "RSA",
+                            "use": "sig",
+                            "key_ops": [],
+                            "alg": "alg_example",
+                            "n": "n_example",
+                            "e": "e_example",
+                            "kid": "kid_example",
+                            "format": "JSON_WEB_KEY",
+                            "key": "key_example"
+                        }]
+                    },
                     "validation_failure_policy": {
-                        "type": "MODIFY_RESPONSE",
                         "response_code": "response_code_example",
                         "response_message": "response_message_example",
                         "response_header_transformations": {
@@ -4253,37 +5687,26 @@ deployment:
                                     "name": "name_example"
                                 }]
                             }
-                        }
-                    },
-                    "is_anonymous_access_allowed": true,
-                    "type": "CUSTOM_AUTHENTICATION",
-                    "token_header": "token_header_example",
-                    "token_query_param": "token_query_param_example",
-                    "token_auth_scheme": "token_auth_scheme_example",
-                    "issuers": [],
-                    "audiences": [],
-                    "verify_claims": [{
-                        "key": "key_example",
-                        "values": [],
-                        "is_required": true
-                    }],
-                    "max_clock_skew_in_seconds": 3.4,
-                    "public_keys": {
-                        "uri": "uri_example",
-                        "is_ssl_verify_disabled": true,
-                        "max_cache_duration_in_hours": 56,
-                        "type": "STATIC_KEYS",
-                        "keys": [{
-                            "kty": "RSA",
-                            "use": "sig",
-                            "key_ops": [],
-                            "alg": "alg_example",
-                            "n": "n_example",
-                            "e": "e_example",
-                            "kid": "kid_example",
-                            "format": "JSON_WEB_KEY",
-                            "key": "key_example"
-                        }]
+                        },
+                        "type": "MODIFY_RESPONSE",
+                        "client_details": {
+                            "client_id": "ocid1.client.oc1..xxxxxxEXAMPLExxxxxx",
+                            "client_secret_id": "ocid1.clientsecret.oc1..xxxxxxEXAMPLExxxxxx",
+                            "client_secret_version_number": 56,
+                            "type": "VALIDATION_BLOCK"
+                        },
+                        "source_uri_details": {
+                            "uri": "uri_example",
+                            "type": "DISCOVERY_URI"
+                        },
+                        "scopes": [],
+                        "max_expiry_duration_in_hours": 56,
+                        "use_cookies_for_session": true,
+                        "use_cookies_for_intermediate_steps": true,
+                        "use_pkce": true,
+                        "response_type": "CODE",
+                        "fallback_redirect_path": "fallback_redirect_path_example",
+                        "logout_path": "logout_path_example"
                     }
                 },
                 "rate_limiting": {
@@ -4322,8 +5745,73 @@ deployment:
                             "function_id": "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx",
                             "parameters": {},
                             "cache_key": [],
+                            "issuers": [],
+                            "audiences": [],
+                            "verify_claims": [{
+                                "key": "key_example",
+                                "values": [],
+                                "is_required": true
+                            }],
+                            "public_keys": {
+                                "uri": "uri_example",
+                                "is_ssl_verify_disabled": true,
+                                "max_cache_duration_in_hours": 56,
+                                "type": "STATIC_KEYS",
+                                "keys": [{
+                                    "kty": "RSA",
+                                    "use": "sig",
+                                    "key_ops": [],
+                                    "alg": "alg_example",
+                                    "n": "n_example",
+                                    "e": "e_example",
+                                    "kid": "kid_example",
+                                    "format": "JSON_WEB_KEY",
+                                    "key": "key_example"
+                                }]
+                            },
+                            "is_anonymous_access_allowed": true,
+                            "type": "CUSTOM_AUTHENTICATION",
+                            "token_header": "token_header_example",
+                            "token_query_param": "token_query_param_example",
+                            "token_auth_scheme": "token_auth_scheme_example",
+                            "max_clock_skew_in_seconds": 3.4,
+                            "validation_policy": {
+                                "client_details": {
+                                    "client_id": "ocid1.client.oc1..xxxxxxEXAMPLExxxxxx",
+                                    "client_secret_id": "ocid1.clientsecret.oc1..xxxxxxEXAMPLExxxxxx",
+                                    "client_secret_version_number": 56,
+                                    "type": "VALIDATION_BLOCK"
+                                },
+                                "source_uri_details": {
+                                    "uri": "uri_example",
+                                    "type": "DISCOVERY_URI"
+                                },
+                                "uri": "uri_example",
+                                "is_ssl_verify_disabled": true,
+                                "max_cache_duration_in_hours": 56,
+                                "type": "STATIC_KEYS",
+                                "additional_validation_policy": {
+                                    "issuers": [],
+                                    "audiences": [],
+                                    "verify_claims": [{
+                                        "key": "key_example",
+                                        "values": [],
+                                        "is_required": true
+                                    }]
+                                },
+                                "keys": [{
+                                    "kty": "RSA",
+                                    "use": "sig",
+                                    "key_ops": [],
+                                    "alg": "alg_example",
+                                    "n": "n_example",
+                                    "e": "e_example",
+                                    "kid": "kid_example",
+                                    "format": "JSON_WEB_KEY",
+                                    "key": "key_example"
+                                }]
+                            },
                             "validation_failure_policy": {
-                                "type": "MODIFY_RESPONSE",
                                 "response_code": "response_code_example",
                                 "response_message": "response_message_example",
                                 "response_header_transformations": {
@@ -4346,37 +5834,26 @@ deployment:
                                             "name": "name_example"
                                         }]
                                     }
-                                }
-                            },
-                            "is_anonymous_access_allowed": true,
-                            "type": "CUSTOM_AUTHENTICATION",
-                            "token_header": "token_header_example",
-                            "token_query_param": "token_query_param_example",
-                            "token_auth_scheme": "token_auth_scheme_example",
-                            "issuers": [],
-                            "audiences": [],
-                            "verify_claims": [{
-                                "key": "key_example",
-                                "values": [],
-                                "is_required": true
-                            }],
-                            "max_clock_skew_in_seconds": 3.4,
-                            "public_keys": {
-                                "uri": "uri_example",
-                                "is_ssl_verify_disabled": true,
-                                "max_cache_duration_in_hours": 56,
-                                "type": "STATIC_KEYS",
-                                "keys": [{
-                                    "kty": "RSA",
-                                    "use": "sig",
-                                    "key_ops": [],
-                                    "alg": "alg_example",
-                                    "n": "n_example",
-                                    "e": "e_example",
-                                    "kid": "kid_example",
-                                    "format": "JSON_WEB_KEY",
-                                    "key": "key_example"
-                                }]
+                                },
+                                "type": "MODIFY_RESPONSE",
+                                "client_details": {
+                                    "client_id": "ocid1.client.oc1..xxxxxxEXAMPLExxxxxx",
+                                    "client_secret_id": "ocid1.clientsecret.oc1..xxxxxxEXAMPLExxxxxx",
+                                    "client_secret_version_number": 56,
+                                    "type": "VALIDATION_BLOCK"
+                                },
+                                "source_uri_details": {
+                                    "uri": "uri_example",
+                                    "type": "DISCOVERY_URI"
+                                },
+                                "scopes": [],
+                                "max_expiry_duration_in_hours": 56,
+                                "use_cookies_for_session": true,
+                                "use_cookies_for_intermediate_steps": true,
+                                "use_pkce": true,
+                                "response_type": "CODE",
+                                "fallback_redirect_path": "fallback_redirect_path_example",
+                                "logout_path": "logout_path_example"
                             }
                         }
                     }]
@@ -4535,6 +6012,8 @@ deployment:
                     "read_timeout_in_seconds": 3.4,
                     "send_timeout_in_seconds": 3.4,
                     "is_ssl_verify_disabled": true,
+                    "allowed_post_logout_uris": [],
+                    "post_logout_state": "post_logout_state_example",
                     "function_id": "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx",
                     "type": "ORACLE_FUNCTIONS_BACKEND",
                     "body": "body_example",
@@ -4724,7 +6203,117 @@ def main():
                             authentication=dict(
                                 type="dict",
                                 options=dict(
+                                    validation_policy=dict(
+                                        type="dict",
+                                        options=dict(
+                                            uri=dict(type="str"),
+                                            client_details=dict(
+                                                type="dict",
+                                                options=dict(
+                                                    client_id=dict(type="str"),
+                                                    client_secret_id=dict(type="str"),
+                                                    client_secret_version_number=dict(
+                                                        type="int", no_log=True
+                                                    ),
+                                                    type=dict(
+                                                        type="str",
+                                                        required=True,
+                                                        choices=[
+                                                            "CUSTOM",
+                                                            "VALIDATION_BLOCK",
+                                                        ],
+                                                    ),
+                                                ),
+                                            ),
+                                            source_uri_details=dict(
+                                                type="dict",
+                                                options=dict(
+                                                    uri=dict(type="str"),
+                                                    type=dict(
+                                                        type="str",
+                                                        required=True,
+                                                        choices=[
+                                                            "DISCOVERY_URI",
+                                                            "VALIDATION_BLOCK",
+                                                        ],
+                                                    ),
+                                                ),
+                                            ),
+                                            is_ssl_verify_disabled=dict(type="bool"),
+                                            max_cache_duration_in_hours=dict(
+                                                type="int"
+                                            ),
+                                            type=dict(
+                                                type="str",
+                                                required=True,
+                                                choices=[
+                                                    "REMOTE_JWKS",
+                                                    "REMOTE_DISCOVERY",
+                                                    "STATIC_KEYS",
+                                                ],
+                                            ),
+                                            additional_validation_policy=dict(
+                                                type="dict",
+                                                options=dict(
+                                                    issuers=dict(
+                                                        type="list", elements="str"
+                                                    ),
+                                                    audiences=dict(
+                                                        type="list", elements="str"
+                                                    ),
+                                                    verify_claims=dict(
+                                                        type="list",
+                                                        elements="dict",
+                                                        options=dict(
+                                                            key=dict(
+                                                                type="str",
+                                                                required=True,
+                                                                no_log=True,
+                                                            ),
+                                                            values=dict(
+                                                                type="list",
+                                                                elements="str",
+                                                            ),
+                                                            is_required=dict(
+                                                                type="bool"
+                                                            ),
+                                                        ),
+                                                    ),
+                                                ),
+                                            ),
+                                            keys=dict(
+                                                type="list",
+                                                elements="dict",
+                                                no_log=False,
+                                                options=dict(
+                                                    kty=dict(
+                                                        type="str", choices=["RSA"]
+                                                    ),
+                                                    use=dict(
+                                                        type="str", choices=["sig"]
+                                                    ),
+                                                    key_ops=dict(
+                                                        type="list",
+                                                        elements="str",
+                                                        choices=["verify"],
+                                                        no_log=True,
+                                                    ),
+                                                    alg=dict(type="str"),
+                                                    n=dict(type="str"),
+                                                    e=dict(type="str"),
+                                                    kid=dict(type="str", required=True),
+                                                    format=dict(
+                                                        type="str",
+                                                        required=True,
+                                                        choices=["JSON_WEB_KEY", "PEM"],
+                                                    ),
+                                                    key=dict(type="str", no_log=True),
+                                                ),
+                                            ),
+                                        ),
+                                    ),
                                     token_auth_scheme=dict(type="str", no_log=True),
+                                    max_clock_skew_in_seconds=dict(type="float"),
                                     issuers=dict(type="list", elements="str"),
                                     audiences=dict(type="list", elements="str"),
                                     verify_claims=dict(
@@ -4738,7 +6327,6 @@ def main():
                                             is_required=dict(type="bool"),
                                         ),
                                     ),
-                                    max_clock_skew_in_seconds=dict(type="float"),
                                     public_keys=dict(
                                         type="dict",
                                         no_log=False,
@@ -4789,6 +6377,7 @@ def main():
                                         type="str",
                                         required=True,
                                         choices=[
+                                            "TOKEN_AUTHENTICATION",
                                             "JWT_AUTHENTICATION",
                                             "CUSTOM_AUTHENTICATION",
                                         ],
@@ -4803,11 +6392,6 @@ def main():
                                     validation_failure_policy=dict(
                                         type="dict",
                                         options=dict(
-                                            type=dict(
-                                                type="str",
-                                                required=True,
-                                                choices=["MODIFY_RESPONSE"],
-                                            ),
                                             response_code=dict(type="str"),
                                             response_message=dict(type="str"),
                                             response_header_transformations=dict(
@@ -4888,6 +6472,57 @@ def main():
                                                     ),
                                                 ),
                                             ),
+                                            type=dict(
+                                                type="str",
+                                                required=True,
+                                                choices=["MODIFY_RESPONSE", "OAUTH2"],
+                                            ),
+                                            client_details=dict(
+                                                type="dict",
+                                                options=dict(
+                                                    client_id=dict(type="str"),
+                                                    client_secret_id=dict(type="str"),
+                                                    client_secret_version_number=dict(
+                                                        type="int", no_log=True
+                                                    ),
+                                                    type=dict(
+                                                        type="str",
+                                                        required=True,
+                                                        choices=[
+                                                            "CUSTOM",
+                                                            "VALIDATION_BLOCK",
+                                                        ],
+                                                    ),
+                                                ),
+                                            ),
+                                            source_uri_details=dict(
+                                                type="dict",
+                                                options=dict(
+                                                    uri=dict(type="str"),
+                                                    type=dict(
+                                                        type="str",
+                                                        required=True,
+                                                        choices=[
+                                                            "DISCOVERY_URI",
+                                                            "VALIDATION_BLOCK",
+                                                        ],
+                                                    ),
+                                                ),
+                                            ),
+                                            scopes=dict(type="list", elements="str"),
+                                            max_expiry_duration_in_hours=dict(
+                                                type="int"
+                                            ),
+                                            use_cookies_for_session=dict(type="bool"),
+                                            use_cookies_for_intermediate_steps=dict(
+                                                type="bool"
+                                            ),
+                                            use_pkce=dict(type="bool"),
+                                            response_type=dict(
+                                                type="str", choices=["CODE"]
+                                            ),
+                                            fallback_redirect_path=dict(type="str"),
+                                            logout_path=dict(type="str"),
                                         ),
                                     ),
                                 ),
@@ -4981,8 +6616,146 @@ def main():
                                                 type="dict",
                                                 required=True,
                                                 options=dict(
+                                                    validation_policy=dict(
+                                                        type="dict",
+                                                        options=dict(
+                                                            uri=dict(type="str"),
+                                                            client_details=dict(
+                                                                type="dict",
+                                                                options=dict(
+                                                                    client_id=dict(
+                                                                        type="str"
+                                                                    ),
+                                                                    client_secret_id=dict(
+                                                                        type="str"
+                                                                    ),
+                                                                    client_secret_version_number=dict(
+                                                                        type="int",
+                                                                        no_log=True,
+                                                                    ),
+                                                                    type=dict(
+                                                                        type="str",
+                                                                        required=True,
+                                                                        choices=[
+                                                                            "CUSTOM",
+                                                                            "VALIDATION_BLOCK",
+                                                                        ],
+                                                                    ),
+                                                                ),
+                                                            ),
+                                                            source_uri_details=dict(
+                                                                type="dict",
+                                                                options=dict(
+                                                                    uri=dict(
+                                                                        type="str"
+                                                                    ),
+                                                                    type=dict(
+                                                                        type="str",
+                                                                        required=True,
+                                                                        choices=[
+                                                                            "DISCOVERY_URI",
+                                                                            "VALIDATION_BLOCK",
+                                                                        ],
+                                                                    ),
+                                                                ),
+                                                            ),
+                                                            is_ssl_verify_disabled=dict(
+                                                                type="bool"
+                                                            ),
+                                                            max_cache_duration_in_hours=dict(
+                                                                type="int"
+                                                            ),
+                                                            type=dict(
+                                                                type="str",
+                                                                required=True,
+                                                                choices=[
+                                                                    "REMOTE_JWKS",
+                                                                    "REMOTE_DISCOVERY",
+                                                                    "STATIC_KEYS",
+                                                                ],
+                                                            ),
+                                                            additional_validation_policy=dict(
+                                                                type="dict",
+                                                                options=dict(
+                                                                    issuers=dict(
+                                                                        type="list",
+                                                                        elements="str",
+                                                                    ),
+                                                                    audiences=dict(
+                                                                        type="list",
+                                                                        elements="str",
+                                                                    ),
+                                                                    verify_claims=dict(
+                                                                        type="list",
+                                                                        elements="dict",
+                                                                        options=dict(
+                                                                            key=dict(
+                                                                                type="str",
+                                                                                required=True,
+                                                                                no_log=True,
+                                                                            ),
+                                                                            values=dict(
+                                                                                type="list",
+                                                                                elements="str",
+                                                                            ),
+                                                                            is_required=dict(
+                                                                                type="bool"
+                                                                            ),
+                                                                        ),
+                                                                    ),
+                                                                ),
+                                                            ),
+                                                            keys=dict(
+                                                                type="list",
+                                                                elements="dict",
+                                                                no_log=False,
+                                                                options=dict(
+                                                                    kty=dict(
+                                                                        type="str",
+                                                                        choices=["RSA"],
+                                                                    ),
+                                                                    use=dict(
+                                                                        type="str",
+                                                                        choices=["sig"],
+                                                                    ),
+                                                                    key_ops=dict(
+                                                                        type="list",
+                                                                        elements="str",
+                                                                        choices=[
+                                                                            "verify"
+                                                                        ],
+                                                                        no_log=True,
+                                                                    ),
+                                                                    alg=dict(
+                                                                        type="str"
+                                                                    ),
+                                                                    n=dict(type="str"),
+                                                                    e=dict(type="str"),
+                                                                    kid=dict(
+                                                                        type="str",
+                                                                        required=True,
+                                                                    ),
+                                                                    format=dict(
+                                                                        type="str",
+                                                                        required=True,
+                                                                        choices=[
+                                                                            "JSON_WEB_KEY",
+                                                                            "PEM",
+                                                                        ],
+                                                                    ),
+                                                                    key=dict(
+                                                                        type="str",
+                                                                        no_log=True,
+                                                                    ),
+                                                                ),
+                                                            ),
+                                                        ),
+                                                    ),
                                                     token_auth_scheme=dict(
                                                         type="str", no_log=True
+                                                    ),
+                                                    max_clock_skew_in_seconds=dict(
+                                                        type="float"
                                                     ),
                                                     issuers=dict(
                                                         type="list", elements="str"
@@ -5007,9 +6780,6 @@ def main():
                                                                 type="bool"
                                                             ),
                                                         ),
-                                                    ),
-                                                    max_clock_skew_in_seconds=dict(
-                                                        type="float"
                                                     ),
                                                     public_keys=dict(
                                                         type="dict",
@@ -5083,6 +6853,7 @@ def main():
                                                         type="str",
                                                         required=True,
                                                         choices=[
+                                                            "TOKEN_AUTHENTICATION",
                                                             "JWT_AUTHENTICATION",
                                                             "CUSTOM_AUTHENTICATION",
                                                         ],
@@ -5103,13 +6874,6 @@ def main():
                                                     validation_failure_policy=dict(
                                                         type="dict",
                                                         options=dict(
-                                                            type=dict(
-                                                                type="str",
-                                                                required=True,
-                                                                choices=[
-                                                                    "MODIFY_RESPONSE"
-                                                                ],
-                                                            ),
                                                             response_code=dict(
                                                                 type="str"
                                                             ),
@@ -5193,6 +6957,77 @@ def main():
                                                                         ),
                                                                     ),
                                                                 ),
+                                                            ),
+                                                            type=dict(
+                                                                type="str",
+                                                                required=True,
+                                                                choices=[
+                                                                    "MODIFY_RESPONSE",
+                                                                    "OAUTH2",
+                                                                ],
+                                                            ),
+                                                            client_details=dict(
+                                                                type="dict",
+                                                                options=dict(
+                                                                    client_id=dict(
+                                                                        type="str"
+                                                                    ),
+                                                                    client_secret_id=dict(
+                                                                        type="str"
+                                                                    ),
+                                                                    client_secret_version_number=dict(
+                                                                        type="int",
+                                                                        no_log=True,
+                                                                    ),
+                                                                    type=dict(
+                                                                        type="str",
+                                                                        required=True,
+                                                                        choices=[
+                                                                            "CUSTOM",
+                                                                            "VALIDATION_BLOCK",
+                                                                        ],
+                                                                    ),
+                                                                ),
+                                                            ),
+                                                            source_uri_details=dict(
+                                                                type="dict",
+                                                                options=dict(
+                                                                    uri=dict(
+                                                                        type="str"
+                                                                    ),
+                                                                    type=dict(
+                                                                        type="str",
+                                                                        required=True,
+                                                                        choices=[
+                                                                            "DISCOVERY_URI",
+                                                                            "VALIDATION_BLOCK",
+                                                                        ],
+                                                                    ),
+                                                                ),
+                                                            ),
+                                                            scopes=dict(
+                                                                type="list",
+                                                                elements="str",
+                                                            ),
+                                                            max_expiry_duration_in_hours=dict(
+                                                                type="int"
+                                                            ),
+                                                            use_cookies_for_session=dict(
+                                                                type="bool"
+                                                            ),
+                                                            use_cookies_for_intermediate_steps=dict(
+                                                                type="bool"
+                                                            ),
+                                                            use_pkce=dict(type="bool"),
+                                                            response_type=dict(
+                                                                type="str",
+                                                                choices=["CODE"],
+                                                            ),
+                                                            fallback_redirect_path=dict(
+                                                                type="str"
+                                                            ),
+                                                            logout_path=dict(
+                                                                type="str"
                                                             ),
                                                         ),
                                                     ),
@@ -5629,6 +7464,10 @@ def main():
                                 type="dict",
                                 required=True,
                                 options=dict(
+                                    allowed_post_logout_uris=dict(
+                                        type="list", elements="str"
+                                    ),
+                                    post_logout_state=dict(type="str"),
                                     url=dict(type="str"),
                                     connect_timeout_in_seconds=dict(type="float"),
                                     read_timeout_in_seconds=dict(type="float"),
@@ -5649,6 +7488,7 @@ def main():
                                         type="str",
                                         required=True,
                                         choices=[
+                                            "OAUTH2_LOGOUT_BACKEND",
                                             "HTTP_BACKEND",
                                             "ORACLE_FUNCTIONS_BACKEND",
                                             "STOCK_RESPONSE_BACKEND",
@@ -5702,6 +7542,7 @@ def main():
                                                             "HTTP_BACKEND",
                                                             "STOCK_RESPONSE_BACKEND",
                                                             "DYNAMIC_ROUTING_BACKEND",
+                                                            "OAUTH2_LOGOUT_BACKEND",
                                                         ],
                                                     )
                                                 ),

@@ -109,6 +109,13 @@ announcements_preferences:
             returned: on success
             type: str
             sample: preference_type_example
+        preferred_time_zone:
+            description:
+                - The time zone that the user prefers for announcement time stamps. Specify the preference with a value that uses the IANA Time Zone Database
+                  format (x-obmcs-time-zone). For example America/Los_Angeles.
+            returned: on success
+            type: str
+            sample: preferred_time_zone_example
     sample: [{
         "type": "type_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -116,7 +123,8 @@ announcements_preferences:
         "is_unsubscribed": true,
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
-        "preference_type": "preference_type_example"
+        "preference_type": "preference_type_example",
+        "preferred_time_zone": "preferred_time_zone_example"
     }]
 """
 

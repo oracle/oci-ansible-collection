@@ -228,9 +228,9 @@ user_assessment:
                   by a 'refresh' action (triggered by the user).
                   SAVE_SCHEDULE: A schedule to periodically save LATEST assessments.
                   COMPARTMENT: An automatic managed assessment type that stores all details of targets in one compartment. This will keep an up-to-date status
-                  of all database risks in one compartment.
-                        It is automatically updated once the latest assessment or refresh action is executed, as well as when a target is deleted or move to a
-                        different compartment."
+                  of all potential risks identified in the compartment.
+                         It is automatically updated once the latest assessment or refresh action is executed, as well as when a target is deleted or moved to a
+                         different compartment."
             returned: on success
             type: str
             sample: LATEST

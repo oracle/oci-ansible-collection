@@ -82,7 +82,8 @@ options:
         type: bool
     timeout_in_seconds:
         description:
-            - Timeout in seconds. Timeout cannot be more than 30% of repeatIntervalInSeconds time for monitors.
+            - Timeout in seconds. If isFailureRetried is true, then timeout cannot be more than 30% of repeatIntervalInSeconds time for monitors.
+              If isFailureRetried is false, then timeout cannot be more than 50% of repeatIntervalInSeconds time for monitors.
               Also, timeoutInSeconds should be a multiple of 60 for Scripted REST, Scripted Browser and Browser monitors.
               Monitor will be allowed to run only for timeoutInSeconds time. It would be terminated after that.
             - This parameter is updatable.
@@ -345,6 +346,36 @@ options:
                         choices:
                             - "SACK"
                             - "SYN"
+    availability_configuration:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            max_allowed_failures_per_interval:
+                description:
+                    - Intervals with failed runs more than this value will be classified as UNAVAILABLE.
+                type: int
+            min_allowed_runs_per_interval:
+                description:
+                    - Intervals with runs less than this value will be classified as UNKNOWN and excluded from the availability calculations.
+                type: int
+    maintenance_window_schedule:
+        description:
+            - ""
+            - This parameter is updatable.
+        type: dict
+        suboptions:
+            time_started:
+                description:
+                    - "Start time for the maintenance window, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
+                      Example: `2020-02-12T22:47:12.613Z`"
+                type: str
+            time_ended:
+                description:
+                    - "End time for the maintenance window, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
+                      Example: `2020-02-12T22:47:12.613Z`"
+                type: str
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -437,6 +468,14 @@ EXAMPLES = """
         transmission_rate: 56
         protocol: ICMP
         probe_mode: SACK
+    availability_configuration:
+      # optional
+      max_allowed_failures_per_interval: 56
+      min_allowed_runs_per_interval: 56
+    maintenance_window_schedule:
+      # optional
+      time_started: time_started_example
+      time_ended: time_ended_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     is_run_now: true
@@ -479,6 +518,14 @@ EXAMPLES = """
         transmission_rate: 56
         protocol: ICMP
         probe_mode: SACK
+    availability_configuration:
+      # optional
+      max_allowed_failures_per_interval: 56
+      min_allowed_runs_per_interval: 56
+    maintenance_window_schedule:
+      # optional
+      time_started: time_started_example
+      time_ended: time_ended_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     is_run_now: true
@@ -520,6 +567,14 @@ EXAMPLES = """
         transmission_rate: 56
         protocol: ICMP
         probe_mode: SACK
+    availability_configuration:
+      # optional
+      max_allowed_failures_per_interval: 56
+      min_allowed_runs_per_interval: 56
+    maintenance_window_schedule:
+      # optional
+      time_started: time_started_example
+      time_ended: time_ended_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
     is_run_now: true
@@ -626,7 +681,8 @@ monitor:
             sample: true
         timeout_in_seconds:
             description:
-                - Timeout in seconds. Timeout cannot be more than 30% of repeatIntervalInSeconds time for monitors.
+                - Timeout in seconds. If isFailureRetried is true, then timeout cannot be more than 30% of repeatIntervalInSeconds time for monitors.
+                  If isFailureRetried is false, then timeout cannot be more than 50% of repeatIntervalInSeconds time for monitors.
                   Also, timeoutInSeconds should be a multiple of 60 for Scripted REST, Scripted Browser and Browser monitors.
                   Monitor will be allowed to run only for timeoutInSeconds time. It would be terminated after that.
             returned: on success
@@ -910,6 +966,44 @@ monitor:
                             returned: on success
                             type: str
                             sample: SACK
+        availability_configuration:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                max_allowed_failures_per_interval:
+                    description:
+                        - Intervals with failed runs more than this value will be classified as UNAVAILABLE.
+                    returned: on success
+                    type: int
+                    sample: 56
+                min_allowed_runs_per_interval:
+                    description:
+                        - Intervals with runs less than this value will be classified as UNKNOWN and excluded from the availability calculations.
+                    returned: on success
+                    type: int
+                    sample: 56
+        maintenance_window_schedule:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                time_started:
+                    description:
+                        - "Start time for the maintenance window, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
+                          Example: `2020-02-12T22:47:12.613Z`"
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
+                time_ended:
+                    description:
+                        - "End time for the maintenance window, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
+                          Example: `2020-02-12T22:47:12.613Z`"
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
         time_created:
             description:
                 - "The time the resource was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
@@ -1027,6 +1121,14 @@ monitor:
                 "protocol": "ICMP",
                 "probe_mode": "SACK"
             }
+        },
+        "availability_configuration": {
+            "max_allowed_failures_per_interval": 56,
+            "min_allowed_runs_per_interval": 56
+        },
+        "maintenance_window_schedule": {
+            "time_started": "2013-10-20T19:20:30+01:00",
+            "time_ended": "2013-10-20T19:20:30+01:00"
         },
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
@@ -1304,6 +1406,19 @@ def main():
                             probe_mode=dict(type="str", choices=["SACK", "SYN"]),
                         ),
                     ),
+                ),
+            ),
+            availability_configuration=dict(
+                type="dict",
+                options=dict(
+                    max_allowed_failures_per_interval=dict(type="int"),
+                    min_allowed_runs_per_interval=dict(type="int"),
+                ),
+            ),
+            maintenance_window_schedule=dict(
+                type="dict",
+                options=dict(
+                    time_started=dict(type="str"), time_ended=dict(type="str")
                 ),
             ),
             freeform_tags=dict(type="dict"),

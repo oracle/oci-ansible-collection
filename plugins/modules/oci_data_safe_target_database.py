@@ -66,15 +66,10 @@ options:
                     - Applicable when database_type is 'INSTALLED_DATABASE'
                 type: list
                 elements: str
-            listener_port:
-                description:
-                    - The port number of the database listener.
-                    - Applicable when database_type is 'INSTALLED_DATABASE'
-                type: int
             autonomous_database_id:
                 description:
                     - The OCID of the autonomous database registered as a target database in Data Safe.
-                    - Applicable when database_type is 'AUTONOMOUS_DATABASE'
+                    - Required when database_type is 'AUTONOMOUS_DATABASE'
                 type: str
             database_type:
                 description:
@@ -105,10 +100,16 @@ options:
                     - The OCID of the cloud database system registered as a target database in Data Safe.
                     - Applicable when database_type is 'DATABASE_CLOUD_SERVICE'
                 type: str
+            listener_port:
+                description:
+                    - The port number of the database listener.
+                    - Applicable when database_type is 'DATABASE_CLOUD_SERVICE'
+                    - Required when database_type is 'INSTALLED_DATABASE'
+                type: int
             service_name:
                 description:
                     - The service name of the database registered as target database.
-                    - Applicable when database_type is one of ['INSTALLED_DATABASE', 'DATABASE_CLOUD_SERVICE']
+                    - Required when database_type is one of ['INSTALLED_DATABASE', 'DATABASE_CLOUD_SERVICE']
                 type: str
     credentials:
         description:
@@ -167,7 +168,7 @@ options:
             datasafe_private_endpoint_id:
                 description:
                     - The OCID of the Data Safe private endpoint.
-                    - Applicable when connection_type is 'PRIVATE_ENDPOINT'
+                    - Required when connection_type is 'PRIVATE_ENDPOINT'
                 type: str
             connection_type:
                 description:
@@ -182,7 +183,7 @@ options:
             on_prem_connector_id:
                 description:
                     - The OCID of the on-premises connector.
-                    - Applicable when connection_type is 'ONPREM_CONNECTOR'
+                    - Required when connection_type is 'ONPREM_CONNECTOR'
                 type: str
     freeform_tags:
         description:
@@ -226,12 +227,12 @@ EXAMPLES = """
       # required
       database_type: INSTALLED_DATABASE
       infrastructure_type: ORACLE_CLOUD
+      listener_port: 56
+      service_name: service_name_example
 
       # optional
       instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
       ip_addresses: [ "ip_addresses_example" ]
-      listener_port: 56
-      service_name: service_name_example
 
     # optional
     display_name: display_name_example
@@ -251,10 +252,8 @@ EXAMPLES = """
       key_store_content: key_store_content_example
     connection_option:
       # required
-      connection_type: PRIVATE_ENDPOINT
-
-      # optional
       datasafe_private_endpoint_id: "ocid1.datasafeprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+      connection_type: PRIVATE_ENDPOINT
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -270,12 +269,12 @@ EXAMPLES = """
       # required
       database_type: INSTALLED_DATABASE
       infrastructure_type: ORACLE_CLOUD
+      listener_port: 56
+      service_name: service_name_example
 
       # optional
       instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
       ip_addresses: [ "ip_addresses_example" ]
-      listener_port: 56
-      service_name: service_name_example
     credentials:
       # required
       user_name: user_name_example
@@ -291,10 +290,8 @@ EXAMPLES = """
       key_store_content: key_store_content_example
     connection_option:
       # required
-      connection_type: PRIVATE_ENDPOINT
-
-      # optional
       datasafe_private_endpoint_id: "ocid1.datasafeprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+      connection_type: PRIVATE_ENDPOINT
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -310,12 +307,12 @@ EXAMPLES = """
       # required
       database_type: INSTALLED_DATABASE
       infrastructure_type: ORACLE_CLOUD
+      listener_port: 56
+      service_name: service_name_example
 
       # optional
       instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
       ip_addresses: [ "ip_addresses_example" ]
-      listener_port: 56
-      service_name: service_name_example
     credentials:
       # required
       user_name: user_name_example
@@ -331,10 +328,8 @@ EXAMPLES = """
       key_store_content: key_store_content_example
     connection_option:
       # required
-      connection_type: PRIVATE_ENDPOINT
-
-      # optional
       datasafe_private_endpoint_id: "ocid1.datasafeprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+      connection_type: PRIVATE_ENDPOINT
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -791,7 +786,6 @@ def main():
                 options=dict(
                     instance_id=dict(type="str"),
                     ip_addresses=dict(type="list", elements="str"),
-                    listener_port=dict(type="int"),
                     autonomous_database_id=dict(type="str"),
                     database_type=dict(
                         type="str",
@@ -814,6 +808,7 @@ def main():
                     ),
                     vm_cluster_id=dict(type="str"),
                     db_system_id=dict(type="str"),
+                    listener_port=dict(type="int"),
                     service_name=dict(type="str"),
                 ),
             ),

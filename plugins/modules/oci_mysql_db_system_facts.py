@@ -301,6 +301,44 @@ db_systems:
                                     returned: on success
                                     type: str
                                     sample: contents_example
+                        anonymous_transactions_handling:
+                            description:
+                                - ""
+                            returned: on success
+                            type: complex
+                            contains:
+                                uuid:
+                                    description:
+                                        - The UUID that is used as a prefix when generating transaction identifiers for anonymous transactions
+                                          coming from the source. You can change the UUID later.
+                                    returned: on success
+                                    type: str
+                                    sample: "null"
+
+                                last_configured_log_filename:
+                                    description:
+                                        - Specifies one of the coordinates (file) at which the replica should begin
+                                          reading the source's log. As this value specifies the point where replication
+                                          starts from, it is only used once, when it starts. It is never used again,
+                                          unless a new UpdateChannel operation modifies it.
+                                    returned: on success
+                                    type: str
+                                    sample: last_configured_log_filename_example
+                                last_configured_log_offset:
+                                    description:
+                                        - Specifies one of the coordinates (offset) at which the replica should begin
+                                          reading the source's log. As this value specifies the point where replication
+                                          starts from, it is only used once, when it starts. It is never used again,
+                                          unless a new UpdateChannel operation modifies it.
+                                    returned: on success
+                                    type: int
+                                    sample: 56
+                                policy:
+                                    description:
+                                        - Specifies how the replication channel handles anonymous transactions.
+                                    returned: on success
+                                    type: str
+                                    sample: ERROR_ON_ANONYMOUS
                 target:
                     description:
                         - ""
@@ -333,6 +371,28 @@ db_systems:
                             returned: on success
                             type: str
                             sample: applier_username_example
+                        filters:
+                            description:
+                                - Replication filter rules to be applied at the DB System Channel target.
+                            returned: on success
+                            type: complex
+                            contains:
+                                type:
+                                    description:
+                                        - The type of the filter rule.
+                                        - For details on each type, see
+                                          L(Replication Filtering Rules,https://dev.mysql.com/doc/refman/8.0/en/replication-rules.html)
+                                    returned: on success
+                                    type: str
+                                    sample: REPLICATE_DO_DB
+                                value:
+                                    description:
+                                        - "The body of the filter rule. This can represent a database, a table, or a database pair (represented as
+                                          \\"db1->db2\\"). For more information, see
+                                          L(Replication Filtering Rules,https://dev.mysql.com/doc/refman/8.0/en/replication-rules.html)."
+                                    returned: on success
+                                    type: str
+                                    sample: value_example
                 lifecycle_state:
                     description:
                         - The state of the Channel.
@@ -398,6 +458,8 @@ db_systems:
                         - "\\"{day-of-week}\\" is a case-insensitive string like \\"mon\\", \\"tue\\", &c."
                         - "\\"{time-of-day}\\" is the \\"Time\\" portion of an RFC3339-formatted timestamp. Any second or sub-second time data will be truncated
                           to zero."
+                        - "If you set the read replica maintenance window to \\"\\" or if not specified, the read replica is set same as the DB system
+                          maintenance window."
                     returned: on success
                     type: str
                     sample: window_start_time_example
@@ -628,6 +690,18 @@ db_systems:
                     returned: on success
                     type: str
                     sample: status_details_example
+                resource_type:
+                    description:
+                        - The type of endpoint that clients and connectors can connect to.
+                    returned: on success
+                    type: str
+                    sample: DBSYSTEM
+                resource_id:
+                    description:
+                        - The OCID of the resource that this endpoint is attached to.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
                 - The current state of the DB System.
@@ -797,13 +871,23 @@ db_systems:
                 "ssl_ca_certificate": {
                     "certificate_type": "PEM",
                     "contents": "contents_example"
+                },
+                "anonymous_transactions_handling": {
+                    "uuid": null,
+                    "last_configured_log_filename": "last_configured_log_filename_example",
+                    "last_configured_log_offset": 56,
+                    "policy": "ERROR_ON_ANONYMOUS"
                 }
             },
             "target": {
                 "target_type": "DBSYSTEM",
                 "db_system_id": "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx",
                 "channel_name": "channel_name_example",
-                "applier_username": "applier_username_example"
+                "applier_username": "applier_username_example",
+                "filters": [{
+                    "type": "REPLICATE_DO_DB",
+                    "value": "value_example"
+                }]
             },
             "lifecycle_state": "lifecycle_state_example",
             "lifecycle_details": "lifecycle_details_example",
@@ -855,7 +939,9 @@ db_systems:
             "port_x": 56,
             "modes": [],
             "status": "ACTIVE",
-            "status_details": "status_details_example"
+            "status_details": "status_details_example",
+            "resource_type": "DBSYSTEM",
+            "resource_id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
         }],
         "lifecycle_state": "CREATING",
         "mysql_version": "mysql_version_example",

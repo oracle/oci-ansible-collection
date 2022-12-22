@@ -360,6 +360,18 @@ backup:
                             returned: on success
                             type: str
                             sample: status_details_example
+                        resource_type:
+                            description:
+                                - The type of endpoint that clients and connectors can connect to.
+                            returned: on success
+                            type: str
+                            sample: DBSYSTEM
+                        resource_id:
+                            description:
+                                - The OCID of the resource that this endpoint is attached to.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 maintenance:
                     description:
                         - ""
@@ -373,6 +385,8 @@ backup:
                                 - "\\"{day-of-week}\\" is a case-insensitive string like \\"mon\\", \\"tue\\", &c."
                                 - "\\"{time-of-day}\\" is the \\"Time\\" portion of an RFC3339-formatted timestamp. Any second or sub-second time data will be
                                   truncated to zero."
+                                - "If you set the read replica maintenance window to \\"\\" or if not specified, the read replica is set same as the DB system
+                                  maintenance window."
                             returned: on success
                             type: str
                             sample: window_start_time_example
@@ -514,7 +528,9 @@ backup:
                 "port_x": 56,
                 "modes": [],
                 "status": "ACTIVE",
-                "status_details": "status_details_example"
+                "status_details": "status_details_example",
+                "resource_type": "DBSYSTEM",
+                "resource_id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
             }],
             "maintenance": {
                 "window_start_time": "window_start_time_example"
