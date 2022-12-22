@@ -748,6 +748,14 @@ class BulkEditTagOperationWorkRequestWaiter(WorkRequestWaiter):
         return None
 
 
+class DeleteTagOperationWorkRequestWaiter(WorkRequestWaiter):
+    def get_fetch_func(self):
+        return lambda **kwargs: oci_common_utils.call_with_backoff(
+            self.client.get_tagging_work_request,
+            work_request_id=self.operation_response.headers[WORK_REQUEST_HEADER],
+        )
+
+
 class UpdateAutonomousDatabaseWorkRequestWaiter(WorkRequestWaiter):
     def __init__(self, client, resource_helper, operation_response, wait_for_states):
         super(UpdateAutonomousDatabaseWorkRequestWaiter, self).__init__(
@@ -877,6 +885,13 @@ _WAITER_OVERRIDE_MAP = {
     # there is no other state we can reliably wait on to determine the update has completed and in all currently
     # known examples the UPDATE completes synchronously
     ("identity", "tag", oci_common_utils.UPDATE_OPERATION_KEY): NoneWaiter,
+    # work-request generated for operation `delete` can not be fetched using the generic Identity
+    # work-request api. all tagging operations, use tagging work request api.
+    (
+        "identity",
+        "tag",
+        oci_common_utils.DELETE_OPERATION_KEY,
+    ): DeleteTagOperationWorkRequestWaiter,
     # update_tag_namespace has the same issue as update_tag
     ("identity", "tag_namespace", oci_common_utils.UPDATE_OPERATION_KEY): NoneWaiter,
     # mfa_totp_device.seed is only returned on the "generate" call

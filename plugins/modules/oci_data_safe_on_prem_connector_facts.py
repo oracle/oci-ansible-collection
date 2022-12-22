@@ -56,6 +56,7 @@ options:
             - "DELETING"
             - "DELETED"
             - "FAILED"
+            - "NEEDS_ATTENTION"
     sort_order:
         description:
             - The sort order to use, either ascending (ASC) or descending (DESC).
@@ -298,6 +299,7 @@ def main():
                     "DELETING",
                     "DELETED",
                     "FAILED",
+                    "NEEDS_ATTENTION",
                 ],
             ),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),

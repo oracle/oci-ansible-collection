@@ -148,18 +148,376 @@ deployments:
                                     returned: on success
                                     type: list
                                     sample: []
+                                issuers:
+                                    description:
+                                        - A list of parties that could have issued the token.
+                                    returned: on success
+                                    type: list
+                                    sample: []
+                                audiences:
+                                    description:
+                                        - The list of intended recipients for the token.
+                                    returned: on success
+                                    type: list
+                                    sample: []
+                                verify_claims:
+                                    description:
+                                        - A list of claims which should be validated to consider the token valid.
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        key:
+                                            description:
+                                                - Name of the claim.
+                                            returned: on success
+                                            type: str
+                                            sample: key_example
+                                        values:
+                                            description:
+                                                - "The list of acceptable values for a given claim.
+                                                  If this value is \\"null\\" or empty and \\"isRequired\\" set to \\"true\\", then
+                                                  the presence of this claim in the JWT is validated."
+                                            returned: on success
+                                            type: list
+                                            sample: []
+                                        is_required:
+                                            description:
+                                                - "Whether the claim is required to be present in the JWT or not. If set
+                                                  to \\"false\\", the claim values will be matched only if the claim is
+                                                  present in the JWT."
+                                            returned: on success
+                                            type: bool
+                                            sample: true
+                                public_keys:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        uri:
+                                            description:
+                                                - The uri from which to retrieve the key. It must be accessible
+                                                  without authentication.
+                                            returned: on success
+                                            type: str
+                                            sample: uri_example
+                                        is_ssl_verify_disabled:
+                                            description:
+                                                - Defines whether or not to uphold SSL verification.
+                                            returned: on success
+                                            type: bool
+                                            sample: true
+                                        max_cache_duration_in_hours:
+                                            description:
+                                                - The duration for which the JWKS should be cached before it is
+                                                  fetched again.
+                                            returned: on success
+                                            type: int
+                                            sample: 56
+                                        type:
+                                            description:
+                                                - Type of the public key set.
+                                            returned: on success
+                                            type: str
+                                            sample: STATIC_KEYS
+                                        keys:
+                                            description:
+                                                - The set of static public keys.
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                kty:
+                                                    description:
+                                                        - The key type.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: RSA
+                                                use:
+                                                    description:
+                                                        - The intended use of the public key.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: sig
+                                                key_ops:
+                                                    description:
+                                                        - The operations for which this key is to be used.
+                                                    returned: on success
+                                                    type: list
+                                                    sample: []
+                                                alg:
+                                                    description:
+                                                        - The algorithm intended for use with this key.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: alg_example
+                                                n:
+                                                    description:
+                                                        - The base64 url encoded modulus of the RSA public key represented
+                                                          by this key.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: n_example
+                                                e:
+                                                    description:
+                                                        - The base64 url encoded exponent of the RSA public key represented
+                                                          by this key.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: e_example
+                                                kid:
+                                                    description:
+                                                        - "A unique key ID. This key will be used to verify the signature of a
+                                                          JWT with matching \\"kid\\"."
+                                                    returned: on success
+                                                    type: str
+                                                    sample: kid_example
+                                                format:
+                                                    description:
+                                                        - The format of the public key.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: JSON_WEB_KEY
+                                                key:
+                                                    description:
+                                                        - The content of the PEM-encoded public key.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: key_example
+                                is_anonymous_access_allowed:
+                                    description:
+                                        - "Whether an unauthenticated user may access the API. Must be \\"true\\" to enable ANONYMOUS
+                                          route authorization."
+                                    returned: on success
+                                    type: bool
+                                    sample: true
+                                type:
+                                    description:
+                                        - Type of the authentication policy to use.
+                                    returned: on success
+                                    type: str
+                                    sample: CUSTOM_AUTHENTICATION
+                                token_header:
+                                    description:
+                                        - The name of the header containing the authentication token.
+                                    returned: on success
+                                    type: str
+                                    sample: token_header_example
+                                token_query_param:
+                                    description:
+                                        - The name of the query parameter containing the authentication token.
+                                    returned: on success
+                                    type: str
+                                    sample: token_query_param_example
+                                token_auth_scheme:
+                                    description:
+                                        - "The authentication scheme that is to be used when authenticating
+                                          the token. This must to be provided if \\"tokenHeader\\" is specified."
+                                    returned: on success
+                                    type: str
+                                    sample: token_auth_scheme_example
+                                max_clock_skew_in_seconds:
+                                    description:
+                                        - The maximum expected time difference between the system clocks
+                                          of the token issuer and the API Gateway.
+                                    returned: on success
+                                    type: float
+                                    sample: 3.4
+                                validation_policy:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: complex
+                                    contains:
+                                        client_details:
+                                            description:
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                client_id:
+                                                    description:
+                                                        - Client ID for the OAuth2/OIDC app.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: "ocid1.client.oc1..xxxxxxEXAMPLExxxxxx"
+                                                client_secret_id:
+                                                    description:
+                                                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Vault
+                                                          Service secret resource.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: "ocid1.clientsecret.oc1..xxxxxxEXAMPLExxxxxx"
+                                                client_secret_version_number:
+                                                    description:
+                                                        - The version number of the client secret to use.
+                                                    returned: on success
+                                                    type: int
+                                                    sample: 56
+                                                type:
+                                                    description:
+                                                        - To specify where the Client App details should be taken from.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: VALIDATION_BLOCK
+                                        source_uri_details:
+                                            description:
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                uri:
+                                                    description:
+                                                        - The discovery URI for the auth server.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: uri_example
+                                                type:
+                                                    description:
+                                                        - Type of the Uri detail.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: DISCOVERY_URI
+                                        uri:
+                                            description:
+                                                - The uri from which to retrieve the key. It must be accessible
+                                                  without authentication.
+                                            returned: on success
+                                            type: str
+                                            sample: uri_example
+                                        is_ssl_verify_disabled:
+                                            description:
+                                                - Defines whether or not to uphold SSL verification.
+                                            returned: on success
+                                            type: bool
+                                            sample: true
+                                        max_cache_duration_in_hours:
+                                            description:
+                                                - The duration for which the introspect URL response should be cached before it is
+                                                  fetched again.
+                                            returned: on success
+                                            type: int
+                                            sample: 56
+                                        type:
+                                            description:
+                                                - Type of the token validation policy.
+                                            returned: on success
+                                            type: str
+                                            sample: STATIC_KEYS
+                                        additional_validation_policy:
+                                            description:
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                issuers:
+                                                    description:
+                                                        - A list of parties that could have issued the token.
+                                                    returned: on success
+                                                    type: list
+                                                    sample: []
+                                                audiences:
+                                                    description:
+                                                        - The list of intended recipients for the token.
+                                                    returned: on success
+                                                    type: list
+                                                    sample: []
+                                                verify_claims:
+                                                    description:
+                                                        - A list of claims which should be validated to consider the token valid.
+                                                    returned: on success
+                                                    type: complex
+                                                    contains:
+                                                        key:
+                                                            description:
+                                                                - Name of the claim.
+                                                            returned: on success
+                                                            type: str
+                                                            sample: key_example
+                                                        values:
+                                                            description:
+                                                                - "The list of acceptable values for a given claim.
+                                                                  If this value is \\"null\\" or empty and \\"isRequired\\" set to \\"true\\", then
+                                                                  the presence of this claim in the JWT is validated."
+                                                            returned: on success
+                                                            type: list
+                                                            sample: []
+                                                        is_required:
+                                                            description:
+                                                                - "Whether the claim is required to be present in the JWT or not. If set
+                                                                  to \\"false\\", the claim values will be matched only if the claim is
+                                                                  present in the JWT."
+                                                            returned: on success
+                                                            type: bool
+                                                            sample: true
+                                        keys:
+                                            description:
+                                                - The set of static public keys.
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                kty:
+                                                    description:
+                                                        - The key type.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: RSA
+                                                use:
+                                                    description:
+                                                        - The intended use of the public key.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: sig
+                                                key_ops:
+                                                    description:
+                                                        - The operations for which this key is to be used.
+                                                    returned: on success
+                                                    type: list
+                                                    sample: []
+                                                alg:
+                                                    description:
+                                                        - The algorithm intended for use with this key.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: alg_example
+                                                n:
+                                                    description:
+                                                        - The base64 url encoded modulus of the RSA public key represented
+                                                          by this key.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: n_example
+                                                e:
+                                                    description:
+                                                        - The base64 url encoded exponent of the RSA public key represented
+                                                          by this key.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: e_example
+                                                kid:
+                                                    description:
+                                                        - "A unique key ID. This key will be used to verify the signature of a
+                                                          JWT with matching \\"kid\\"."
+                                                    returned: on success
+                                                    type: str
+                                                    sample: kid_example
+                                                format:
+                                                    description:
+                                                        - The format of the public key.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: JSON_WEB_KEY
+                                                key:
+                                                    description:
+                                                        - The content of the PEM-encoded public key.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: key_example
                                 validation_failure_policy:
                                     description:
                                         - ""
                                     returned: on success
                                     type: complex
                                     contains:
-                                        type:
-                                            description:
-                                                - Type of the Validation failure Policy.
-                                            returned: on success
-                                            type: str
-                                            sample: MODIFY_RESPONSE
                                         response_code:
                                             description:
                                                 - HTTP response code, can include context variables.
@@ -264,180 +622,110 @@ deployments:
                                                                     returned: on success
                                                                     type: str
                                                                     sample: name_example
-                                is_anonymous_access_allowed:
-                                    description:
-                                        - "Whether an unauthenticated user may access the API. Must be \\"true\\" to enable ANONYMOUS
-                                          route authorization."
-                                    returned: on success
-                                    type: bool
-                                    sample: true
-                                type:
-                                    description:
-                                        - Type of the authentication policy to use.
-                                    returned: on success
-                                    type: str
-                                    sample: CUSTOM_AUTHENTICATION
-                                token_header:
-                                    description:
-                                        - The name of the header containing the authentication token.
-                                    returned: on success
-                                    type: str
-                                    sample: token_header_example
-                                token_query_param:
-                                    description:
-                                        - The name of the query parameter containing the authentication token.
-                                    returned: on success
-                                    type: str
-                                    sample: token_query_param_example
-                                token_auth_scheme:
-                                    description:
-                                        - "The authentication scheme that is to be used when authenticating
-                                          the token. This must to be provided if \\"tokenHeader\\" is specified."
-                                    returned: on success
-                                    type: str
-                                    sample: token_auth_scheme_example
-                                issuers:
-                                    description:
-                                        - A list of parties that could have issued the token.
-                                    returned: on success
-                                    type: list
-                                    sample: []
-                                audiences:
-                                    description:
-                                        - The list of intended recipients for the token.
-                                    returned: on success
-                                    type: list
-                                    sample: []
-                                verify_claims:
-                                    description:
-                                        - A list of claims which should be validated to consider the token valid.
-                                    returned: on success
-                                    type: complex
-                                    contains:
-                                        key:
+                                        type:
                                             description:
-                                                - Name of the claim.
+                                                - Type of the Validation failure Policy.
                                             returned: on success
                                             type: str
-                                            sample: key_example
-                                        values:
+                                            sample: MODIFY_RESPONSE
+                                        client_details:
                                             description:
-                                                - "The list of acceptable values for a given claim.
-                                                  If this value is \\"null\\" or empty and \\"isRequired\\" set to \\"true\\", then
-                                                  the presence of this claim in the JWT is validated."
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                client_id:
+                                                    description:
+                                                        - Client ID for the OAuth2/OIDC app.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: "ocid1.client.oc1..xxxxxxEXAMPLExxxxxx"
+                                                client_secret_id:
+                                                    description:
+                                                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Vault
+                                                          Service secret resource.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: "ocid1.clientsecret.oc1..xxxxxxEXAMPLExxxxxx"
+                                                client_secret_version_number:
+                                                    description:
+                                                        - The version number of the client secret to use.
+                                                    returned: on success
+                                                    type: int
+                                                    sample: 56
+                                                type:
+                                                    description:
+                                                        - To specify where the Client App details should be taken from.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: VALIDATION_BLOCK
+                                        source_uri_details:
+                                            description:
+                                                - ""
+                                            returned: on success
+                                            type: complex
+                                            contains:
+                                                uri:
+                                                    description:
+                                                        - The discovery URI for the auth server.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: uri_example
+                                                type:
+                                                    description:
+                                                        - Type of the Uri detail.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: DISCOVERY_URI
+                                        scopes:
+                                            description:
+                                                - List of scopes.
                                             returned: on success
                                             type: list
                                             sample: []
-                                        is_required:
+                                        max_expiry_duration_in_hours:
                                             description:
-                                                - "Whether the claim is required to be present in the JWT or not. If set
-                                                  to \\"false\\", the claim values will be matched only if the claim is
-                                                  present in the JWT."
-                                            returned: on success
-                                            type: bool
-                                            sample: true
-                                max_clock_skew_in_seconds:
-                                    description:
-                                        - The maximum expected time difference between the system clocks
-                                          of the token issuer and the API Gateway.
-                                    returned: on success
-                                    type: float
-                                    sample: 3.4
-                                public_keys:
-                                    description:
-                                        - ""
-                                    returned: on success
-                                    type: complex
-                                    contains:
-                                        uri:
-                                            description:
-                                                - The uri from which to retrieve the key. It must be accessible
-                                                  without authentication.
-                                            returned: on success
-                                            type: str
-                                            sample: uri_example
-                                        is_ssl_verify_disabled:
-                                            description:
-                                                - Defines whether or not to uphold SSL verification.
-                                            returned: on success
-                                            type: bool
-                                            sample: true
-                                        max_cache_duration_in_hours:
-                                            description:
-                                                - The duration for which the JWKS should be cached before it is
+                                                - The duration for which the OAuth2 success token should be cached before it is
                                                   fetched again.
                                             returned: on success
                                             type: int
                                             sample: 56
-                                        type:
+                                        use_cookies_for_session:
                                             description:
-                                                - Type of the public key set.
+                                                - Defines whether or not to use cookies for session maintenance.
+                                            returned: on success
+                                            type: bool
+                                            sample: true
+                                        use_cookies_for_intermediate_steps:
+                                            description:
+                                                - Defines whether or not to use cookies for OAuth2 intermediate steps.
+                                            returned: on success
+                                            type: bool
+                                            sample: true
+                                        use_pkce:
+                                            description:
+                                                - Defines whether or not to support PKCE.
+                                            returned: on success
+                                            type: bool
+                                            sample: true
+                                        response_type:
+                                            description:
+                                                - Response Type.
                                             returned: on success
                                             type: str
-                                            sample: STATIC_KEYS
-                                        keys:
+                                            sample: CODE
+                                        fallback_redirect_path:
                                             description:
-                                                - The set of static public keys.
+                                                - The path to be used as fallback after OAuth2.
                                             returned: on success
-                                            type: complex
-                                            contains:
-                                                kty:
-                                                    description:
-                                                        - The key type.
-                                                    returned: on success
-                                                    type: str
-                                                    sample: RSA
-                                                use:
-                                                    description:
-                                                        - The intended use of the public key.
-                                                    returned: on success
-                                                    type: str
-                                                    sample: sig
-                                                key_ops:
-                                                    description:
-                                                        - The operations for which this key is to be used.
-                                                    returned: on success
-                                                    type: list
-                                                    sample: []
-                                                alg:
-                                                    description:
-                                                        - The algorithm intended for use with this key.
-                                                    returned: on success
-                                                    type: str
-                                                    sample: alg_example
-                                                n:
-                                                    description:
-                                                        - The base64 url encoded modulus of the RSA public key represented
-                                                          by this key.
-                                                    returned: on success
-                                                    type: str
-                                                    sample: n_example
-                                                e:
-                                                    description:
-                                                        - The base64 url encoded exponent of the RSA public key represented
-                                                          by this key.
-                                                    returned: on success
-                                                    type: str
-                                                    sample: e_example
-                                                kid:
-                                                    description:
-                                                        - "A unique key ID. This key will be used to verify the signature of a
-                                                          JWT with matching \\"kid\\"."
-                                                    returned: on success
-                                                    type: str
-                                                    sample: kid_example
-                                                format:
-                                                    description:
-                                                        - The format of the public key.
-                                                    returned: on success
-                                                    type: str
-                                                    sample: JSON_WEB_KEY
-                                                key:
-                                                    description:
-                                                        - The content of the PEM-encoded public key.
-                                                    returned: on success
-                                                    type: str
-                                                    sample: key_example
+                                            type: str
+                                            sample: fallback_redirect_path_example
+                                        logout_path:
+                                            description:
+                                                - The path to be used as logout.
+                                            returned: on success
+                                            type: str
+                                            sample: logout_path_example
                         rate_limiting:
                             description:
                                 - ""
@@ -578,19 +866,24 @@ deployments:
                                             contains:
                                                 values:
                                                     description:
-                                                        - Information regarding the set of values of selector for which this branch should be selected.
+                                                        - The set of selection keys to match with the context variable in an incoming request. If the context
+                                                          variable exactly matches one of the keys in the set, the request is sent to the route or
+                                                          authentication server associated with the set.
                                                     returned: on success
                                                     type: list
                                                     sample: []
                                                 type:
                                                     description:
-                                                        - Information regarding type of the selection key.
+                                                        - Type of the selection key.
                                                     returned: on success
                                                     type: str
                                                     sample: ANY_OF
                                                 is_default:
                                                     description:
-                                                        - Information regarding whether this is the default branch.
+                                                        - Specifies whether to use the route or authentication server associated with this selection key as the
+                                                          default. The default is used if the value of a context variable in an incoming request does not match
+                                                          any of the other selection key values when dynamically routing and dynamically authenticating
+                                                          requests.
                                                     returned: on success
                                                     type: bool
                                                     sample: true
@@ -602,7 +895,11 @@ deployments:
                                                     sample: name_example
                                                 expression:
                                                     description:
-                                                        - String describing the expression with wildcards.
+                                                        - "A selection key string containing a wildcard to match with the context variable in an incoming
+                                                          request. If the context variable matches the string, the request is sent to the route or
+                                                          authentication server associated with the selection key. Valid wildcards are '*' (zero or more
+                                                          characters) and '+' (one or more characters). The string can only contain one wildcard, and the
+                                                          wildcard must be at the start or the end of the string."
                                                     returned: on success
                                                     type: str
                                                     sample: expression_example
@@ -633,18 +930,377 @@ deployments:
                                                     returned: on success
                                                     type: list
                                                     sample: []
+                                                issuers:
+                                                    description:
+                                                        - A list of parties that could have issued the token.
+                                                    returned: on success
+                                                    type: list
+                                                    sample: []
+                                                audiences:
+                                                    description:
+                                                        - The list of intended recipients for the token.
+                                                    returned: on success
+                                                    type: list
+                                                    sample: []
+                                                verify_claims:
+                                                    description:
+                                                        - A list of claims which should be validated to consider the token valid.
+                                                    returned: on success
+                                                    type: complex
+                                                    contains:
+                                                        key:
+                                                            description:
+                                                                - Name of the claim.
+                                                            returned: on success
+                                                            type: str
+                                                            sample: key_example
+                                                        values:
+                                                            description:
+                                                                - "The list of acceptable values for a given claim.
+                                                                  If this value is \\"null\\" or empty and \\"isRequired\\" set to \\"true\\", then
+                                                                  the presence of this claim in the JWT is validated."
+                                                            returned: on success
+                                                            type: list
+                                                            sample: []
+                                                        is_required:
+                                                            description:
+                                                                - "Whether the claim is required to be present in the JWT or not. If set
+                                                                  to \\"false\\", the claim values will be matched only if the claim is
+                                                                  present in the JWT."
+                                                            returned: on success
+                                                            type: bool
+                                                            sample: true
+                                                public_keys:
+                                                    description:
+                                                        - ""
+                                                    returned: on success
+                                                    type: complex
+                                                    contains:
+                                                        uri:
+                                                            description:
+                                                                - The uri from which to retrieve the key. It must be accessible
+                                                                  without authentication.
+                                                            returned: on success
+                                                            type: str
+                                                            sample: uri_example
+                                                        is_ssl_verify_disabled:
+                                                            description:
+                                                                - Defines whether or not to uphold SSL verification.
+                                                            returned: on success
+                                                            type: bool
+                                                            sample: true
+                                                        max_cache_duration_in_hours:
+                                                            description:
+                                                                - The duration for which the JWKS should be cached before it is
+                                                                  fetched again.
+                                                            returned: on success
+                                                            type: int
+                                                            sample: 56
+                                                        type:
+                                                            description:
+                                                                - Type of the public key set.
+                                                            returned: on success
+                                                            type: str
+                                                            sample: STATIC_KEYS
+                                                        keys:
+                                                            description:
+                                                                - The set of static public keys.
+                                                            returned: on success
+                                                            type: complex
+                                                            contains:
+                                                                kty:
+                                                                    description:
+                                                                        - The key type.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: RSA
+                                                                use:
+                                                                    description:
+                                                                        - The intended use of the public key.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: sig
+                                                                key_ops:
+                                                                    description:
+                                                                        - The operations for which this key is to be used.
+                                                                    returned: on success
+                                                                    type: list
+                                                                    sample: []
+                                                                alg:
+                                                                    description:
+                                                                        - The algorithm intended for use with this key.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: alg_example
+                                                                n:
+                                                                    description:
+                                                                        - The base64 url encoded modulus of the RSA public key represented
+                                                                          by this key.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: n_example
+                                                                e:
+                                                                    description:
+                                                                        - The base64 url encoded exponent of the RSA public key represented
+                                                                          by this key.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: e_example
+                                                                kid:
+                                                                    description:
+                                                                        - "A unique key ID. This key will be used to verify the signature of a
+                                                                          JWT with matching \\"kid\\"."
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: kid_example
+                                                                format:
+                                                                    description:
+                                                                        - The format of the public key.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: JSON_WEB_KEY
+                                                                key:
+                                                                    description:
+                                                                        - The content of the PEM-encoded public key.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: key_example
+                                                is_anonymous_access_allowed:
+                                                    description:
+                                                        - "Whether an unauthenticated user may access the API. Must be \\"true\\" to enable ANONYMOUS
+                                                          route authorization."
+                                                    returned: on success
+                                                    type: bool
+                                                    sample: true
+                                                type:
+                                                    description:
+                                                        - Type of the authentication policy to use.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: CUSTOM_AUTHENTICATION
+                                                token_header:
+                                                    description:
+                                                        - The name of the header containing the authentication token.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: token_header_example
+                                                token_query_param:
+                                                    description:
+                                                        - The name of the query parameter containing the authentication token.
+                                                    returned: on success
+                                                    type: str
+                                                    sample: token_query_param_example
+                                                token_auth_scheme:
+                                                    description:
+                                                        - "The authentication scheme that is to be used when authenticating
+                                                          the token. This must to be provided if \\"tokenHeader\\" is specified."
+                                                    returned: on success
+                                                    type: str
+                                                    sample: token_auth_scheme_example
+                                                max_clock_skew_in_seconds:
+                                                    description:
+                                                        - The maximum expected time difference between the system clocks
+                                                          of the token issuer and the API Gateway.
+                                                    returned: on success
+                                                    type: float
+                                                    sample: 3.4
+                                                validation_policy:
+                                                    description:
+                                                        - ""
+                                                    returned: on success
+                                                    type: complex
+                                                    contains:
+                                                        client_details:
+                                                            description:
+                                                                - ""
+                                                            returned: on success
+                                                            type: complex
+                                                            contains:
+                                                                client_id:
+                                                                    description:
+                                                                        - Client ID for the OAuth2/OIDC app.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: "ocid1.client.oc1..xxxxxxEXAMPLExxxxxx"
+                                                                client_secret_id:
+                                                                    description:
+                                                                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of
+                                                                          the Oracle Vault Service secret resource.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: "ocid1.clientsecret.oc1..xxxxxxEXAMPLExxxxxx"
+                                                                client_secret_version_number:
+                                                                    description:
+                                                                        - The version number of the client secret to use.
+                                                                    returned: on success
+                                                                    type: int
+                                                                    sample: 56
+                                                                type:
+                                                                    description:
+                                                                        - To specify where the Client App details should be taken from.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: VALIDATION_BLOCK
+                                                        source_uri_details:
+                                                            description:
+                                                                - ""
+                                                            returned: on success
+                                                            type: complex
+                                                            contains:
+                                                                uri:
+                                                                    description:
+                                                                        - The discovery URI for the auth server.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: uri_example
+                                                                type:
+                                                                    description:
+                                                                        - Type of the Uri detail.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: DISCOVERY_URI
+                                                        uri:
+                                                            description:
+                                                                - The uri from which to retrieve the key. It must be accessible
+                                                                  without authentication.
+                                                            returned: on success
+                                                            type: str
+                                                            sample: uri_example
+                                                        is_ssl_verify_disabled:
+                                                            description:
+                                                                - Defines whether or not to uphold SSL verification.
+                                                            returned: on success
+                                                            type: bool
+                                                            sample: true
+                                                        max_cache_duration_in_hours:
+                                                            description:
+                                                                - The duration for which the introspect URL response should be cached before it is
+                                                                  fetched again.
+                                                            returned: on success
+                                                            type: int
+                                                            sample: 56
+                                                        type:
+                                                            description:
+                                                                - Type of the token validation policy.
+                                                            returned: on success
+                                                            type: str
+                                                            sample: STATIC_KEYS
+                                                        additional_validation_policy:
+                                                            description:
+                                                                - ""
+                                                            returned: on success
+                                                            type: complex
+                                                            contains:
+                                                                issuers:
+                                                                    description:
+                                                                        - A list of parties that could have issued the token.
+                                                                    returned: on success
+                                                                    type: list
+                                                                    sample: []
+                                                                audiences:
+                                                                    description:
+                                                                        - The list of intended recipients for the token.
+                                                                    returned: on success
+                                                                    type: list
+                                                                    sample: []
+                                                                verify_claims:
+                                                                    description:
+                                                                        - A list of claims which should be validated to consider the token valid.
+                                                                    returned: on success
+                                                                    type: complex
+                                                                    contains:
+                                                                        key:
+                                                                            description:
+                                                                                - Name of the claim.
+                                                                            returned: on success
+                                                                            type: str
+                                                                            sample: key_example
+                                                                        values:
+                                                                            description:
+                                                                                - "The list of acceptable values for a given claim.
+                                                                                  If this value is \\"null\\" or empty and \\"isRequired\\" set to \\"true\\",
+                                                                                  then
+                                                                                  the presence of this claim in the JWT is validated."
+                                                                            returned: on success
+                                                                            type: list
+                                                                            sample: []
+                                                                        is_required:
+                                                                            description:
+                                                                                - "Whether the claim is required to be present in the JWT or not. If set
+                                                                                  to \\"false\\", the claim values will be matched only if the claim is
+                                                                                  present in the JWT."
+                                                                            returned: on success
+                                                                            type: bool
+                                                                            sample: true
+                                                        keys:
+                                                            description:
+                                                                - The set of static public keys.
+                                                            returned: on success
+                                                            type: complex
+                                                            contains:
+                                                                kty:
+                                                                    description:
+                                                                        - The key type.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: RSA
+                                                                use:
+                                                                    description:
+                                                                        - The intended use of the public key.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: sig
+                                                                key_ops:
+                                                                    description:
+                                                                        - The operations for which this key is to be used.
+                                                                    returned: on success
+                                                                    type: list
+                                                                    sample: []
+                                                                alg:
+                                                                    description:
+                                                                        - The algorithm intended for use with this key.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: alg_example
+                                                                n:
+                                                                    description:
+                                                                        - The base64 url encoded modulus of the RSA public key represented
+                                                                          by this key.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: n_example
+                                                                e:
+                                                                    description:
+                                                                        - The base64 url encoded exponent of the RSA public key represented
+                                                                          by this key.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: e_example
+                                                                kid:
+                                                                    description:
+                                                                        - "A unique key ID. This key will be used to verify the signature of a
+                                                                          JWT with matching \\"kid\\"."
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: kid_example
+                                                                format:
+                                                                    description:
+                                                                        - The format of the public key.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: JSON_WEB_KEY
+                                                                key:
+                                                                    description:
+                                                                        - The content of the PEM-encoded public key.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: key_example
                                                 validation_failure_policy:
                                                     description:
                                                         - ""
                                                     returned: on success
                                                     type: complex
                                                     contains:
-                                                        type:
-                                                            description:
-                                                                - Type of the Validation failure Policy.
-                                                            returned: on success
-                                                            type: str
-                                                            sample: MODIFY_RESPONSE
                                                         response_code:
                                                             description:
                                                                 - HTTP response code, can include context variables.
@@ -753,180 +1409,110 @@ deployments:
                                                                                     returned: on success
                                                                                     type: str
                                                                                     sample: name_example
-                                                is_anonymous_access_allowed:
-                                                    description:
-                                                        - "Whether an unauthenticated user may access the API. Must be \\"true\\" to enable ANONYMOUS
-                                                          route authorization."
-                                                    returned: on success
-                                                    type: bool
-                                                    sample: true
-                                                type:
-                                                    description:
-                                                        - Type of the authentication policy to use.
-                                                    returned: on success
-                                                    type: str
-                                                    sample: CUSTOM_AUTHENTICATION
-                                                token_header:
-                                                    description:
-                                                        - The name of the header containing the authentication token.
-                                                    returned: on success
-                                                    type: str
-                                                    sample: token_header_example
-                                                token_query_param:
-                                                    description:
-                                                        - The name of the query parameter containing the authentication token.
-                                                    returned: on success
-                                                    type: str
-                                                    sample: token_query_param_example
-                                                token_auth_scheme:
-                                                    description:
-                                                        - "The authentication scheme that is to be used when authenticating
-                                                          the token. This must to be provided if \\"tokenHeader\\" is specified."
-                                                    returned: on success
-                                                    type: str
-                                                    sample: token_auth_scheme_example
-                                                issuers:
-                                                    description:
-                                                        - A list of parties that could have issued the token.
-                                                    returned: on success
-                                                    type: list
-                                                    sample: []
-                                                audiences:
-                                                    description:
-                                                        - The list of intended recipients for the token.
-                                                    returned: on success
-                                                    type: list
-                                                    sample: []
-                                                verify_claims:
-                                                    description:
-                                                        - A list of claims which should be validated to consider the token valid.
-                                                    returned: on success
-                                                    type: complex
-                                                    contains:
-                                                        key:
+                                                        type:
                                                             description:
-                                                                - Name of the claim.
+                                                                - Type of the Validation failure Policy.
                                                             returned: on success
                                                             type: str
-                                                            sample: key_example
-                                                        values:
+                                                            sample: MODIFY_RESPONSE
+                                                        client_details:
                                                             description:
-                                                                - "The list of acceptable values for a given claim.
-                                                                  If this value is \\"null\\" or empty and \\"isRequired\\" set to \\"true\\", then
-                                                                  the presence of this claim in the JWT is validated."
+                                                                - ""
+                                                            returned: on success
+                                                            type: complex
+                                                            contains:
+                                                                client_id:
+                                                                    description:
+                                                                        - Client ID for the OAuth2/OIDC app.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: "ocid1.client.oc1..xxxxxxEXAMPLExxxxxx"
+                                                                client_secret_id:
+                                                                    description:
+                                                                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of
+                                                                          the Oracle Vault Service secret resource.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: "ocid1.clientsecret.oc1..xxxxxxEXAMPLExxxxxx"
+                                                                client_secret_version_number:
+                                                                    description:
+                                                                        - The version number of the client secret to use.
+                                                                    returned: on success
+                                                                    type: int
+                                                                    sample: 56
+                                                                type:
+                                                                    description:
+                                                                        - To specify where the Client App details should be taken from.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: VALIDATION_BLOCK
+                                                        source_uri_details:
+                                                            description:
+                                                                - ""
+                                                            returned: on success
+                                                            type: complex
+                                                            contains:
+                                                                uri:
+                                                                    description:
+                                                                        - The discovery URI for the auth server.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: uri_example
+                                                                type:
+                                                                    description:
+                                                                        - Type of the Uri detail.
+                                                                    returned: on success
+                                                                    type: str
+                                                                    sample: DISCOVERY_URI
+                                                        scopes:
+                                                            description:
+                                                                - List of scopes.
                                                             returned: on success
                                                             type: list
                                                             sample: []
-                                                        is_required:
+                                                        max_expiry_duration_in_hours:
                                                             description:
-                                                                - "Whether the claim is required to be present in the JWT or not. If set
-                                                                  to \\"false\\", the claim values will be matched only if the claim is
-                                                                  present in the JWT."
-                                                            returned: on success
-                                                            type: bool
-                                                            sample: true
-                                                max_clock_skew_in_seconds:
-                                                    description:
-                                                        - The maximum expected time difference between the system clocks
-                                                          of the token issuer and the API Gateway.
-                                                    returned: on success
-                                                    type: float
-                                                    sample: 3.4
-                                                public_keys:
-                                                    description:
-                                                        - ""
-                                                    returned: on success
-                                                    type: complex
-                                                    contains:
-                                                        uri:
-                                                            description:
-                                                                - The uri from which to retrieve the key. It must be accessible
-                                                                  without authentication.
-                                                            returned: on success
-                                                            type: str
-                                                            sample: uri_example
-                                                        is_ssl_verify_disabled:
-                                                            description:
-                                                                - Defines whether or not to uphold SSL verification.
-                                                            returned: on success
-                                                            type: bool
-                                                            sample: true
-                                                        max_cache_duration_in_hours:
-                                                            description:
-                                                                - The duration for which the JWKS should be cached before it is
+                                                                - The duration for which the OAuth2 success token should be cached before it is
                                                                   fetched again.
                                                             returned: on success
                                                             type: int
                                                             sample: 56
-                                                        type:
+                                                        use_cookies_for_session:
                                                             description:
-                                                                - Type of the public key set.
+                                                                - Defines whether or not to use cookies for session maintenance.
+                                                            returned: on success
+                                                            type: bool
+                                                            sample: true
+                                                        use_cookies_for_intermediate_steps:
+                                                            description:
+                                                                - Defines whether or not to use cookies for OAuth2 intermediate steps.
+                                                            returned: on success
+                                                            type: bool
+                                                            sample: true
+                                                        use_pkce:
+                                                            description:
+                                                                - Defines whether or not to support PKCE.
+                                                            returned: on success
+                                                            type: bool
+                                                            sample: true
+                                                        response_type:
+                                                            description:
+                                                                - Response Type.
                                                             returned: on success
                                                             type: str
-                                                            sample: STATIC_KEYS
-                                                        keys:
+                                                            sample: CODE
+                                                        fallback_redirect_path:
                                                             description:
-                                                                - The set of static public keys.
+                                                                - The path to be used as fallback after OAuth2.
                                                             returned: on success
-                                                            type: complex
-                                                            contains:
-                                                                kty:
-                                                                    description:
-                                                                        - The key type.
-                                                                    returned: on success
-                                                                    type: str
-                                                                    sample: RSA
-                                                                use:
-                                                                    description:
-                                                                        - The intended use of the public key.
-                                                                    returned: on success
-                                                                    type: str
-                                                                    sample: sig
-                                                                key_ops:
-                                                                    description:
-                                                                        - The operations for which this key is to be used.
-                                                                    returned: on success
-                                                                    type: list
-                                                                    sample: []
-                                                                alg:
-                                                                    description:
-                                                                        - The algorithm intended for use with this key.
-                                                                    returned: on success
-                                                                    type: str
-                                                                    sample: alg_example
-                                                                n:
-                                                                    description:
-                                                                        - The base64 url encoded modulus of the RSA public key represented
-                                                                          by this key.
-                                                                    returned: on success
-                                                                    type: str
-                                                                    sample: n_example
-                                                                e:
-                                                                    description:
-                                                                        - The base64 url encoded exponent of the RSA public key represented
-                                                                          by this key.
-                                                                    returned: on success
-                                                                    type: str
-                                                                    sample: e_example
-                                                                kid:
-                                                                    description:
-                                                                        - "A unique key ID. This key will be used to verify the signature of a
-                                                                          JWT with matching \\"kid\\"."
-                                                                    returned: on success
-                                                                    type: str
-                                                                    sample: kid_example
-                                                                format:
-                                                                    description:
-                                                                        - The format of the public key.
-                                                                    returned: on success
-                                                                    type: str
-                                                                    sample: JSON_WEB_KEY
-                                                                key:
-                                                                    description:
-                                                                        - The content of the PEM-encoded public key.
-                                                                    returned: on success
-                                                                    type: str
-                                                                    sample: key_example
+                                                            type: str
+                                                            sample: fallback_redirect_path_example
+                                                        logout_path:
+                                                            description:
+                                                                - The path to be used as logout.
+                                                            returned: on success
+                                                            type: str
+                                                            sample: logout_path_example
                 logging_policies:
                     description:
                         - ""
@@ -1612,19 +2198,24 @@ deployments:
                                             contains:
                                                 values:
                                                     description:
-                                                        - Information regarding the set of values of selector for which this branch should be selected.
+                                                        - The set of selection keys to match with the context variable in an incoming request. If the context
+                                                          variable exactly matches one of the keys in the set, the request is sent to the route or
+                                                          authentication server associated with the set.
                                                     returned: on success
                                                     type: list
                                                     sample: []
                                                 type:
                                                     description:
-                                                        - Information regarding type of the selection key.
+                                                        - Type of the selection key.
                                                     returned: on success
                                                     type: str
                                                     sample: ANY_OF
                                                 is_default:
                                                     description:
-                                                        - Information regarding whether this is the default branch.
+                                                        - Specifies whether to use the route or authentication server associated with this selection key as the
+                                                          default. The default is used if the value of a context variable in an incoming request does not match
+                                                          any of the other selection key values when dynamically routing and dynamically authenticating
+                                                          requests.
                                                     returned: on success
                                                     type: bool
                                                     sample: true
@@ -1636,7 +2227,11 @@ deployments:
                                                     sample: name_example
                                                 expression:
                                                     description:
-                                                        - String describing the expression with wildcards.
+                                                        - "A selection key string containing a wildcard to match with the context variable in an incoming
+                                                          request. If the context variable matches the string, the request is sent to the route or
+                                                          authentication server associated with the selection key. Valid wildcards are '*' (zero or more
+                                                          characters) and '+' (one or more characters). The string can only contain one wildcard, and the
+                                                          wildcard must be at the start or the end of the string."
                                                     returned: on success
                                                     type: str
                                                     sample: expression_example
@@ -1682,6 +2277,18 @@ deployments:
                                     returned: on success
                                     type: bool
                                     sample: true
+                                allowed_post_logout_uris:
+                                    description:
+                                        - ""
+                                    returned: on success
+                                    type: list
+                                    sample: []
+                                post_logout_state:
+                                    description:
+                                        - Defines a state that should be shared on redirecting to postLogout URL.
+                                    returned: on success
+                                    type: str
+                                    sample: post_logout_state_example
                                 function_id:
                                     description:
                                         - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Functions function
@@ -1818,8 +2425,73 @@ deployments:
                     "function_id": "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx",
                     "parameters": {},
                     "cache_key": [],
+                    "issuers": [],
+                    "audiences": [],
+                    "verify_claims": [{
+                        "key": "key_example",
+                        "values": [],
+                        "is_required": true
+                    }],
+                    "public_keys": {
+                        "uri": "uri_example",
+                        "is_ssl_verify_disabled": true,
+                        "max_cache_duration_in_hours": 56,
+                        "type": "STATIC_KEYS",
+                        "keys": [{
+                            "kty": "RSA",
+                            "use": "sig",
+                            "key_ops": [],
+                            "alg": "alg_example",
+                            "n": "n_example",
+                            "e": "e_example",
+                            "kid": "kid_example",
+                            "format": "JSON_WEB_KEY",
+                            "key": "key_example"
+                        }]
+                    },
+                    "is_anonymous_access_allowed": true,
+                    "type": "CUSTOM_AUTHENTICATION",
+                    "token_header": "token_header_example",
+                    "token_query_param": "token_query_param_example",
+                    "token_auth_scheme": "token_auth_scheme_example",
+                    "max_clock_skew_in_seconds": 3.4,
+                    "validation_policy": {
+                        "client_details": {
+                            "client_id": "ocid1.client.oc1..xxxxxxEXAMPLExxxxxx",
+                            "client_secret_id": "ocid1.clientsecret.oc1..xxxxxxEXAMPLExxxxxx",
+                            "client_secret_version_number": 56,
+                            "type": "VALIDATION_BLOCK"
+                        },
+                        "source_uri_details": {
+                            "uri": "uri_example",
+                            "type": "DISCOVERY_URI"
+                        },
+                        "uri": "uri_example",
+                        "is_ssl_verify_disabled": true,
+                        "max_cache_duration_in_hours": 56,
+                        "type": "STATIC_KEYS",
+                        "additional_validation_policy": {
+                            "issuers": [],
+                            "audiences": [],
+                            "verify_claims": [{
+                                "key": "key_example",
+                                "values": [],
+                                "is_required": true
+                            }]
+                        },
+                        "keys": [{
+                            "kty": "RSA",
+                            "use": "sig",
+                            "key_ops": [],
+                            "alg": "alg_example",
+                            "n": "n_example",
+                            "e": "e_example",
+                            "kid": "kid_example",
+                            "format": "JSON_WEB_KEY",
+                            "key": "key_example"
+                        }]
+                    },
                     "validation_failure_policy": {
-                        "type": "MODIFY_RESPONSE",
                         "response_code": "response_code_example",
                         "response_message": "response_message_example",
                         "response_header_transformations": {
@@ -1842,37 +2514,26 @@ deployments:
                                     "name": "name_example"
                                 }]
                             }
-                        }
-                    },
-                    "is_anonymous_access_allowed": true,
-                    "type": "CUSTOM_AUTHENTICATION",
-                    "token_header": "token_header_example",
-                    "token_query_param": "token_query_param_example",
-                    "token_auth_scheme": "token_auth_scheme_example",
-                    "issuers": [],
-                    "audiences": [],
-                    "verify_claims": [{
-                        "key": "key_example",
-                        "values": [],
-                        "is_required": true
-                    }],
-                    "max_clock_skew_in_seconds": 3.4,
-                    "public_keys": {
-                        "uri": "uri_example",
-                        "is_ssl_verify_disabled": true,
-                        "max_cache_duration_in_hours": 56,
-                        "type": "STATIC_KEYS",
-                        "keys": [{
-                            "kty": "RSA",
-                            "use": "sig",
-                            "key_ops": [],
-                            "alg": "alg_example",
-                            "n": "n_example",
-                            "e": "e_example",
-                            "kid": "kid_example",
-                            "format": "JSON_WEB_KEY",
-                            "key": "key_example"
-                        }]
+                        },
+                        "type": "MODIFY_RESPONSE",
+                        "client_details": {
+                            "client_id": "ocid1.client.oc1..xxxxxxEXAMPLExxxxxx",
+                            "client_secret_id": "ocid1.clientsecret.oc1..xxxxxxEXAMPLExxxxxx",
+                            "client_secret_version_number": 56,
+                            "type": "VALIDATION_BLOCK"
+                        },
+                        "source_uri_details": {
+                            "uri": "uri_example",
+                            "type": "DISCOVERY_URI"
+                        },
+                        "scopes": [],
+                        "max_expiry_duration_in_hours": 56,
+                        "use_cookies_for_session": true,
+                        "use_cookies_for_intermediate_steps": true,
+                        "use_pkce": true,
+                        "response_type": "CODE",
+                        "fallback_redirect_path": "fallback_redirect_path_example",
+                        "logout_path": "logout_path_example"
                     }
                 },
                 "rate_limiting": {
@@ -1911,8 +2572,73 @@ deployments:
                             "function_id": "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx",
                             "parameters": {},
                             "cache_key": [],
+                            "issuers": [],
+                            "audiences": [],
+                            "verify_claims": [{
+                                "key": "key_example",
+                                "values": [],
+                                "is_required": true
+                            }],
+                            "public_keys": {
+                                "uri": "uri_example",
+                                "is_ssl_verify_disabled": true,
+                                "max_cache_duration_in_hours": 56,
+                                "type": "STATIC_KEYS",
+                                "keys": [{
+                                    "kty": "RSA",
+                                    "use": "sig",
+                                    "key_ops": [],
+                                    "alg": "alg_example",
+                                    "n": "n_example",
+                                    "e": "e_example",
+                                    "kid": "kid_example",
+                                    "format": "JSON_WEB_KEY",
+                                    "key": "key_example"
+                                }]
+                            },
+                            "is_anonymous_access_allowed": true,
+                            "type": "CUSTOM_AUTHENTICATION",
+                            "token_header": "token_header_example",
+                            "token_query_param": "token_query_param_example",
+                            "token_auth_scheme": "token_auth_scheme_example",
+                            "max_clock_skew_in_seconds": 3.4,
+                            "validation_policy": {
+                                "client_details": {
+                                    "client_id": "ocid1.client.oc1..xxxxxxEXAMPLExxxxxx",
+                                    "client_secret_id": "ocid1.clientsecret.oc1..xxxxxxEXAMPLExxxxxx",
+                                    "client_secret_version_number": 56,
+                                    "type": "VALIDATION_BLOCK"
+                                },
+                                "source_uri_details": {
+                                    "uri": "uri_example",
+                                    "type": "DISCOVERY_URI"
+                                },
+                                "uri": "uri_example",
+                                "is_ssl_verify_disabled": true,
+                                "max_cache_duration_in_hours": 56,
+                                "type": "STATIC_KEYS",
+                                "additional_validation_policy": {
+                                    "issuers": [],
+                                    "audiences": [],
+                                    "verify_claims": [{
+                                        "key": "key_example",
+                                        "values": [],
+                                        "is_required": true
+                                    }]
+                                },
+                                "keys": [{
+                                    "kty": "RSA",
+                                    "use": "sig",
+                                    "key_ops": [],
+                                    "alg": "alg_example",
+                                    "n": "n_example",
+                                    "e": "e_example",
+                                    "kid": "kid_example",
+                                    "format": "JSON_WEB_KEY",
+                                    "key": "key_example"
+                                }]
+                            },
                             "validation_failure_policy": {
-                                "type": "MODIFY_RESPONSE",
                                 "response_code": "response_code_example",
                                 "response_message": "response_message_example",
                                 "response_header_transformations": {
@@ -1935,37 +2661,26 @@ deployments:
                                             "name": "name_example"
                                         }]
                                     }
-                                }
-                            },
-                            "is_anonymous_access_allowed": true,
-                            "type": "CUSTOM_AUTHENTICATION",
-                            "token_header": "token_header_example",
-                            "token_query_param": "token_query_param_example",
-                            "token_auth_scheme": "token_auth_scheme_example",
-                            "issuers": [],
-                            "audiences": [],
-                            "verify_claims": [{
-                                "key": "key_example",
-                                "values": [],
-                                "is_required": true
-                            }],
-                            "max_clock_skew_in_seconds": 3.4,
-                            "public_keys": {
-                                "uri": "uri_example",
-                                "is_ssl_verify_disabled": true,
-                                "max_cache_duration_in_hours": 56,
-                                "type": "STATIC_KEYS",
-                                "keys": [{
-                                    "kty": "RSA",
-                                    "use": "sig",
-                                    "key_ops": [],
-                                    "alg": "alg_example",
-                                    "n": "n_example",
-                                    "e": "e_example",
-                                    "kid": "kid_example",
-                                    "format": "JSON_WEB_KEY",
-                                    "key": "key_example"
-                                }]
+                                },
+                                "type": "MODIFY_RESPONSE",
+                                "client_details": {
+                                    "client_id": "ocid1.client.oc1..xxxxxxEXAMPLExxxxxx",
+                                    "client_secret_id": "ocid1.clientsecret.oc1..xxxxxxEXAMPLExxxxxx",
+                                    "client_secret_version_number": 56,
+                                    "type": "VALIDATION_BLOCK"
+                                },
+                                "source_uri_details": {
+                                    "uri": "uri_example",
+                                    "type": "DISCOVERY_URI"
+                                },
+                                "scopes": [],
+                                "max_expiry_duration_in_hours": 56,
+                                "use_cookies_for_session": true,
+                                "use_cookies_for_intermediate_steps": true,
+                                "use_pkce": true,
+                                "response_type": "CODE",
+                                "fallback_redirect_path": "fallback_redirect_path_example",
+                                "logout_path": "logout_path_example"
                             }
                         }
                     }]
@@ -2124,6 +2839,8 @@ deployments:
                     "read_timeout_in_seconds": 3.4,
                     "send_timeout_in_seconds": 3.4,
                     "is_ssl_verify_disabled": true,
+                    "allowed_post_logout_uris": [],
+                    "post_logout_state": "post_logout_state_example",
                     "function_id": "ocid1.function.oc1..xxxxxxEXAMPLExxxxxx",
                     "type": "ORACLE_FUNCTIONS_BACKEND",
                     "body": "body_example",

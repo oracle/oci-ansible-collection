@@ -4,6 +4,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [4.6.0]
+
+## Added
+- Support for the Container Instances service
+- Support for availability configurations and maintenance window schedules on synthetic monitors in the Application Performance Monitoring service
+- Support for managed read replicas in the MySQL Database service
+- Support for setting replication filters on channels in the MySQL Database service
+- Support for replicating from a source configured without global transaction identifiers into a channel in the MySQL Database service
+- Support for returning compartment ids when listing backups in the MySQL Database service
+- Support for adding a load balancer endpoint to a DB system in the MySQL Database service
+- Support for OpenId Connect in the API Gateway service
+- Support for alerts and target_alert_policy_association in Data Safe service
+- Support for time zone and language preferences in the Announcements service
+
+## Fixed
+- `Tenant has been throttled. Too Many Requests.` error while deleting tags of tag_namespace in identity service. (#191)
+
+## Breaking
+- For database_type AUTONOMOUS_DATABASE, parameter `autonomous_database_id` of target database resource has changed from optional to required in the Data Safe service
+- For database_type INSTALLED_DATABASE, parameter `listener_port` of target database resource has changed from optional to required in the Data Safe service
+- For database_type INSTALLED_DATABASE & DATABASE_CLOUD_SERVICE, parameter `service_name` of target database has changed from optional to required in the Data Safe service
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.90.0
+
 ## [4.5.0]
 
 ## Added

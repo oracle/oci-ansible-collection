@@ -30,7 +30,7 @@ oracle.oci.oci_apm_synthetics_monitor_facts -- Fetches details about one or mult
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.5.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.6.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -264,6 +264,44 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-is_maintenance_window_active"></div>
+                    <b>is_maintenance_window_active</b>
+                    <a class="ansibleOptionLink" href="#parameter-is_maintenance_window_active" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>A filter to return the monitors whose maintenance window is currently active.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-is_maintenance_window_set"></div>
+                    <b>is_maintenance_window_set</b>
+                    <a class="ansibleOptionLink" href="#parameter-is_maintenance_window_set" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">boolean</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                                        <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>no</li>
+                                                                                                                                                                                                <li>yes</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>A filter to return the monitors whose maintenance window is set.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-monitor_id"></div>
                     <b>monitor_id</b>
                     <a class="ansibleOptionLink" href="#parameter-monitor_id" title="Permalink to this option"></a>
@@ -340,6 +378,7 @@ Parameters
                                                                                                                                                                                                 <li>timeUpdated</li>
                                                                                                                                                                                                 <li>status</li>
                                                                                                                                                                                                 <li>monitorType</li>
+                                                                                                                                                                                                <li>maintenanceWindowTimeStarted</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -457,6 +496,8 @@ Examples
         vantage_point: vantage_point_example
         monitor_type: monitor_type_example
         status: ENABLED
+        is_maintenance_window_active: true
+        is_maintenance_window_set: true
         sort_order: ASC
         sort_by: displayName
 
@@ -495,10 +536,66 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Monitor resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;batch_interval_in_seconds&#x27;: 56, &#x27;configuration&#x27;: {&#x27;config_type&#x27;: &#x27;BROWSER_CONFIG&#x27;, &#x27;dns_configuration&#x27;: {&#x27;is_override_dns&#x27;: True, &#x27;override_dns_ip&#x27;: &#x27;override_dns_ip_example&#x27;}, &#x27;is_certificate_validation_enabled&#x27;: True, &#x27;is_failure_retried&#x27;: True, &#x27;is_redirection_enabled&#x27;: True, &#x27;network_configuration&#x27;: {&#x27;number_of_hops&#x27;: 56, &#x27;probe_mode&#x27;: &#x27;SACK&#x27;, &#x27;probe_per_hop&#x27;: 56, &#x27;protocol&#x27;: &#x27;ICMP&#x27;, &#x27;transmission_rate&#x27;: 56}, &#x27;req_authentication_details&#x27;: {&#x27;auth_headers&#x27;: [{&#x27;header_name&#x27;: &#x27;header_name_example&#x27;, &#x27;header_value&#x27;: &#x27;header_value_example&#x27;}], &#x27;auth_request_method&#x27;: &#x27;GET&#x27;, &#x27;auth_request_post_body&#x27;: &#x27;auth_request_post_body_example&#x27;, &#x27;auth_token&#x27;: &#x27;auth_token_example&#x27;, &#x27;auth_url&#x27;: &#x27;auth_url_example&#x27;, &#x27;auth_user_name&#x27;: &#x27;auth_user_name_example&#x27;, &#x27;auth_user_password&#x27;: &#x27;example-password&#x27;, &#x27;oauth_scheme&#x27;: &#x27;NONE&#x27;}, &#x27;req_authentication_scheme&#x27;: &#x27;OAUTH&#x27;, &#x27;request_headers&#x27;: [{&#x27;header_name&#x27;: &#x27;header_name_example&#x27;, &#x27;header_value&#x27;: &#x27;header_value_example&#x27;}], &#x27;request_method&#x27;: &#x27;GET&#x27;, &#x27;request_post_body&#x27;: &#x27;request_post_body_example&#x27;, &#x27;request_query_params&#x27;: [{&#x27;param_name&#x27;: &#x27;param_name_example&#x27;, &#x27;param_value&#x27;: &#x27;param_value_example&#x27;}], &#x27;verify_response_codes&#x27;: [], &#x27;verify_response_content&#x27;: &#x27;verify_response_content_example&#x27;, &#x27;verify_texts&#x27;: [{&#x27;text&#x27;: &#x27;text_example&#x27;}]}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_run_now&#x27;: True, &#x27;is_run_once&#x27;: True, &#x27;monitor_type&#x27;: &#x27;SCRIPTED_BROWSER&#x27;, &#x27;repeat_interval_in_seconds&#x27;: 56, &#x27;scheduling_policy&#x27;: &#x27;ALL&#x27;, &#x27;script_id&#x27;: &#x27;ocid1.script.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;script_name&#x27;: &#x27;script_name_example&#x27;, &#x27;script_parameters&#x27;: [{&#x27;is_overwritten&#x27;: True, &#x27;is_secret&#x27;: True, &#x27;monitor_script_parameter&#x27;: {&#x27;param_name&#x27;: &#x27;param_name_example&#x27;, &#x27;param_value&#x27;: &#x27;param_value_example&#x27;}}], &#x27;status&#x27;: &#x27;ENABLED&#x27;, &#x27;target&#x27;: &#x27;target_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;timeout_in_seconds&#x27;: 56, &#x27;vantage_point_count&#x27;: 56, &#x27;vantage_points&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}]}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;availability_configuration&#x27;: {&#x27;max_allowed_failures_per_interval&#x27;: 56, &#x27;min_allowed_runs_per_interval&#x27;: 56}, &#x27;batch_interval_in_seconds&#x27;: 56, &#x27;configuration&#x27;: {&#x27;config_type&#x27;: &#x27;BROWSER_CONFIG&#x27;, &#x27;dns_configuration&#x27;: {&#x27;is_override_dns&#x27;: True, &#x27;override_dns_ip&#x27;: &#x27;override_dns_ip_example&#x27;}, &#x27;is_certificate_validation_enabled&#x27;: True, &#x27;is_failure_retried&#x27;: True, &#x27;is_redirection_enabled&#x27;: True, &#x27;network_configuration&#x27;: {&#x27;number_of_hops&#x27;: 56, &#x27;probe_mode&#x27;: &#x27;SACK&#x27;, &#x27;probe_per_hop&#x27;: 56, &#x27;protocol&#x27;: &#x27;ICMP&#x27;, &#x27;transmission_rate&#x27;: 56}, &#x27;req_authentication_details&#x27;: {&#x27;auth_headers&#x27;: [{&#x27;header_name&#x27;: &#x27;header_name_example&#x27;, &#x27;header_value&#x27;: &#x27;header_value_example&#x27;}], &#x27;auth_request_method&#x27;: &#x27;GET&#x27;, &#x27;auth_request_post_body&#x27;: &#x27;auth_request_post_body_example&#x27;, &#x27;auth_token&#x27;: &#x27;auth_token_example&#x27;, &#x27;auth_url&#x27;: &#x27;auth_url_example&#x27;, &#x27;auth_user_name&#x27;: &#x27;auth_user_name_example&#x27;, &#x27;auth_user_password&#x27;: &#x27;example-password&#x27;, &#x27;oauth_scheme&#x27;: &#x27;NONE&#x27;}, &#x27;req_authentication_scheme&#x27;: &#x27;OAUTH&#x27;, &#x27;request_headers&#x27;: [{&#x27;header_name&#x27;: &#x27;header_name_example&#x27;, &#x27;header_value&#x27;: &#x27;header_value_example&#x27;}], &#x27;request_method&#x27;: &#x27;GET&#x27;, &#x27;request_post_body&#x27;: &#x27;request_post_body_example&#x27;, &#x27;request_query_params&#x27;: [{&#x27;param_name&#x27;: &#x27;param_name_example&#x27;, &#x27;param_value&#x27;: &#x27;param_value_example&#x27;}], &#x27;verify_response_codes&#x27;: [], &#x27;verify_response_content&#x27;: &#x27;verify_response_content_example&#x27;, &#x27;verify_texts&#x27;: [{&#x27;text&#x27;: &#x27;text_example&#x27;}]}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_run_now&#x27;: True, &#x27;is_run_once&#x27;: True, &#x27;maintenance_window_schedule&#x27;: {&#x27;time_ended&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;monitor_type&#x27;: &#x27;SCRIPTED_BROWSER&#x27;, &#x27;repeat_interval_in_seconds&#x27;: 56, &#x27;scheduling_policy&#x27;: &#x27;ALL&#x27;, &#x27;script_id&#x27;: &#x27;ocid1.script.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;script_name&#x27;: &#x27;script_name_example&#x27;, &#x27;script_parameters&#x27;: [{&#x27;is_overwritten&#x27;: True, &#x27;is_secret&#x27;: True, &#x27;monitor_script_parameter&#x27;: {&#x27;param_name&#x27;: &#x27;param_name_example&#x27;, &#x27;param_value&#x27;: &#x27;param_value_example&#x27;}}], &#x27;status&#x27;: &#x27;ENABLED&#x27;, &#x27;target&#x27;: &#x27;target_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;timeout_in_seconds&#x27;: 56, &#x27;vantage_point_count&#x27;: 56, &#x27;vantage_points&#x27;: [{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;}]}]</div>
                                     </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-monitors/availability_configuration"></div>
+                    <b>availability_configuration</b>
+                    <a class="ansibleOptionLink" href="#return-monitors/availability_configuration" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-monitors/availability_configuration/max_allowed_failures_per_interval"></div>
+                    <b>max_allowed_failures_per_interval</b>
+                    <a class="ansibleOptionLink" href="#return-monitors/availability_configuration/max_allowed_failures_per_interval" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Intervals with failed runs more than this value will be classified as UNAVAILABLE.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-monitors/availability_configuration/min_allowed_runs_per_interval"></div>
+                    <b>min_allowed_runs_per_interval</b>
+                    <a class="ansibleOptionLink" href="#return-monitors/availability_configuration/min_allowed_runs_per_interval" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Intervals with runs less than this value will be classified as UNKNOWN and excluded from the availability calculations.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-monitors/batch_interval_in_seconds"></div>
@@ -1363,6 +1460,61 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-monitors/maintenance_window_schedule"></div>
+                    <b>maintenance_window_schedule</b>
+                    <a class="ansibleOptionLink" href="#return-monitors/maintenance_window_schedule" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-monitors/maintenance_window_schedule/time_ended"></div>
+                    <b>time_ended</b>
+                    <a class="ansibleOptionLink" href="#return-monitors/maintenance_window_schedule/time_ended" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>End time for the maintenance window, expressed in <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> timestamp format. Example: `2020-02-12T22:47:12.613Z`</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-monitors/maintenance_window_schedule/time_started"></div>
+                    <b>time_started</b>
+                    <a class="ansibleOptionLink" href="#return-monitors/maintenance_window_schedule/time_started" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Start time for the maintenance window, expressed in <a href='https://tools.ietf.org/html/rfc3339'>RFC 3339</a> timestamp format. Example: `2020-02-12T22:47:12.613Z`</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
                     <div class="ansibleOptionAnchor" id="return-monitors/monitor_type"></div>
                     <b>monitor_type</b>
                     <a class="ansibleOptionLink" href="#return-monitors/monitor_type" title="Permalink to this return value"></a>
@@ -1648,7 +1800,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Timeout in seconds. Timeout cannot be more than 30% of repeatIntervalInSeconds time for monitors. Also, timeoutInSeconds should be a multiple of 60 for Scripted REST, Scripted Browser and Browser monitors. Monitor will be allowed to run only for timeoutInSeconds time. It would be terminated after that.</div>
+                                            <div>Timeout in seconds. If isFailureRetried is true, then timeout cannot be more than 30% of repeatIntervalInSeconds time for monitors. If isFailureRetried is false, then timeout cannot be more than 50% of repeatIntervalInSeconds time for monitors. Also, timeoutInSeconds should be a multiple of 60 for Scripted REST, Scripted Browser and Browser monitors. Monitor will be allowed to run only for timeoutInSeconds time. It would be terminated after that.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>

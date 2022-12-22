@@ -101,6 +101,42 @@ options:
                             - The string containing the CA certificate in PEM format.
                         type: str
                         required: true
+            anonymous_transactions_handling:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    uuid:
+                        description:
+                            - The UUID that is used as a prefix when generating transaction identifiers for anonymous transactions
+                              coming from the source. You can change the UUID later.
+                            - Applicable when policy is 'ASSIGN_MANUAL_UUID'
+                        type: str
+                    policy:
+                        description:
+                            - Specifies how the replication channel handles anonymous transactions.
+                        type: str
+                        choices:
+                            - "ERROR_ON_ANONYMOUS"
+                            - "ASSIGN_MANUAL_UUID"
+                            - "ASSIGN_TARGET_UUID"
+                        required: true
+                    last_configured_log_filename:
+                        description:
+                            - Specifies one of the coordinates (file) at which the replica should begin
+                              reading the source's log. As this value specifies the point where replication
+                              starts from, it is only used once, when it starts. It is never used again,
+                              unless a new UpdateChannel operation modifies it.
+                            - Applicable when policy is one of ['ASSIGN_TARGET_UUID', 'ASSIGN_MANUAL_UUID']
+                        type: str
+                    last_configured_log_offset:
+                        description:
+                            - Specifies one of the coordinates (offset) at which the replica should begin
+                              reading the source's log. As this value specifies the point where replication
+                              starts from, it is only used once, when it starts. It is never used again,
+                              unless a new UpdateChannel operation modifies it.
+                            - Applicable when policy is one of ['ASSIGN_TARGET_UUID', 'ASSIGN_MANUAL_UUID']
+                        type: int
     target:
         description:
             - ""
@@ -132,6 +168,34 @@ options:
                     - The username for the replication applier of the target MySQL DB System.
                     - This parameter is updatable.
                 type: str
+            filters:
+                description:
+                    - Replication filter rules to be applied at the DB System Channel target.
+                type: list
+                elements: dict
+                suboptions:
+                    type:
+                        description:
+                            - The type of the filter rule.
+                            - For details on each type, see
+                              L(Replication Filtering Rules,https://dev.mysql.com/doc/refman/8.0/en/replication-rules.html)
+                        type: str
+                        choices:
+                            - "REPLICATE_DO_DB"
+                            - "REPLICATE_IGNORE_DB"
+                            - "REPLICATE_DO_TABLE"
+                            - "REPLICATE_IGNORE_TABLE"
+                            - "REPLICATE_WILD_DO_TABLE"
+                            - "REPLICATE_WILD_IGNORE_TABLE"
+                            - "REPLICATE_REWRITE_DB"
+                        required: true
+                    value:
+                        description:
+                            - "The body of the filter rule. This can represent a database, a table, or a database pair (represented as
+                              \\"db1->db2\\"). For more information, see
+                              L(Replication Filtering Rules,https://dev.mysql.com/doc/refman/8.0/en/replication-rules.html)."
+                        type: str
+                        required: true
     display_name:
         description:
             - The user-friendly name for the Channel. It does not have to be unique.
@@ -200,6 +264,9 @@ EXAMPLES = """
         # required
         certificate_type: PEM
         contents: contents_example
+      anonymous_transactions_handling:
+        # required
+        policy: ERROR_ON_ANONYMOUS
     target:
       # required
       db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
@@ -208,6 +275,10 @@ EXAMPLES = """
       # optional
       channel_name: channel_name_example
       applier_username: applier_username_example
+      filters:
+      - # required
+        type: REPLICATE_DO_DB
+        value: value_example
 
     # optional
     display_name: display_name_example
@@ -236,6 +307,9 @@ EXAMPLES = """
         # required
         certificate_type: PEM
         contents: contents_example
+      anonymous_transactions_handling:
+        # required
+        policy: ERROR_ON_ANONYMOUS
     target:
       # required
       db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
@@ -244,6 +318,10 @@ EXAMPLES = """
       # optional
       channel_name: channel_name_example
       applier_username: applier_username_example
+      filters:
+      - # required
+        type: REPLICATE_DO_DB
+        value: value_example
     display_name: display_name_example
     is_enabled: true
     description: description_example
@@ -271,6 +349,9 @@ EXAMPLES = """
         # required
         certificate_type: PEM
         contents: contents_example
+      anonymous_transactions_handling:
+        # required
+        policy: ERROR_ON_ANONYMOUS
     target:
       # required
       db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
@@ -279,6 +360,10 @@ EXAMPLES = """
       # optional
       channel_name: channel_name_example
       applier_username: applier_username_example
+      filters:
+      - # required
+        type: REPLICATE_DO_DB
+        value: value_example
     is_enabled: true
     description: description_example
     freeform_tags: {'Department': 'Finance'}
@@ -386,6 +471,44 @@ channel:
                             returned: on success
                             type: str
                             sample: contents_example
+                anonymous_transactions_handling:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        uuid:
+                            description:
+                                - The UUID that is used as a prefix when generating transaction identifiers for anonymous transactions
+                                  coming from the source. You can change the UUID later.
+                            returned: on success
+                            type: str
+                            sample: "null"
+
+                        last_configured_log_filename:
+                            description:
+                                - Specifies one of the coordinates (file) at which the replica should begin
+                                  reading the source's log. As this value specifies the point where replication
+                                  starts from, it is only used once, when it starts. It is never used again,
+                                  unless a new UpdateChannel operation modifies it.
+                            returned: on success
+                            type: str
+                            sample: last_configured_log_filename_example
+                        last_configured_log_offset:
+                            description:
+                                - Specifies one of the coordinates (offset) at which the replica should begin
+                                  reading the source's log. As this value specifies the point where replication
+                                  starts from, it is only used once, when it starts. It is never used again,
+                                  unless a new UpdateChannel operation modifies it.
+                            returned: on success
+                            type: int
+                            sample: 56
+                        policy:
+                            description:
+                                - Specifies how the replication channel handles anonymous transactions.
+                            returned: on success
+                            type: str
+                            sample: ERROR_ON_ANONYMOUS
         target:
             description:
                 - ""
@@ -418,6 +541,28 @@ channel:
                     returned: on success
                     type: str
                     sample: applier_username_example
+                filters:
+                    description:
+                        - Replication filter rules to be applied at the DB System Channel target.
+                    returned: on success
+                    type: complex
+                    contains:
+                        type:
+                            description:
+                                - The type of the filter rule.
+                                - For details on each type, see
+                                  L(Replication Filtering Rules,https://dev.mysql.com/doc/refman/8.0/en/replication-rules.html)
+                            returned: on success
+                            type: str
+                            sample: REPLICATE_DO_DB
+                        value:
+                            description:
+                                - "The body of the filter rule. This can represent a database, a table, or a database pair (represented as
+                                  \\"db1->db2\\"). For more information, see
+                                  L(Replication Filtering Rules,https://dev.mysql.com/doc/refman/8.0/en/replication-rules.html)."
+                            returned: on success
+                            type: str
+                            sample: value_example
         description:
             description:
                 - User provided description of the Channel.
@@ -476,13 +621,23 @@ channel:
             "ssl_ca_certificate": {
                 "certificate_type": "PEM",
                 "contents": "contents_example"
+            },
+            "anonymous_transactions_handling": {
+                "uuid": null,
+                "last_configured_log_filename": "last_configured_log_filename_example",
+                "last_configured_log_offset": 56,
+                "policy": "ERROR_ON_ANONYMOUS"
             }
         },
         "target": {
             "target_type": "DBSYSTEM",
             "db_system_id": "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx",
             "channel_name": "channel_name_example",
-            "applier_username": "applier_username_example"
+            "applier_username": "applier_username_example",
+            "filters": [{
+                "type": "REPLICATE_DO_DB",
+                "value": "value_example"
+            }]
         },
         "description": "description_example",
         "lifecycle_state": "CREATING",
@@ -671,6 +826,23 @@ def main():
                             contents=dict(type="str", required=True),
                         ),
                     ),
+                    anonymous_transactions_handling=dict(
+                        type="dict",
+                        options=dict(
+                            uuid=dict(type="str"),
+                            policy=dict(
+                                type="str",
+                                required=True,
+                                choices=[
+                                    "ERROR_ON_ANONYMOUS",
+                                    "ASSIGN_MANUAL_UUID",
+                                    "ASSIGN_TARGET_UUID",
+                                ],
+                            ),
+                            last_configured_log_filename=dict(type="str"),
+                            last_configured_log_offset=dict(type="int"),
+                        ),
+                    ),
                 ),
             ),
             target=dict(
@@ -680,6 +852,26 @@ def main():
                     target_type=dict(type="str", required=True, choices=["DBSYSTEM"]),
                     channel_name=dict(type="str"),
                     applier_username=dict(type="str"),
+                    filters=dict(
+                        type="list",
+                        elements="dict",
+                        options=dict(
+                            type=dict(
+                                type="str",
+                                required=True,
+                                choices=[
+                                    "REPLICATE_DO_DB",
+                                    "REPLICATE_IGNORE_DB",
+                                    "REPLICATE_DO_TABLE",
+                                    "REPLICATE_IGNORE_TABLE",
+                                    "REPLICATE_WILD_DO_TABLE",
+                                    "REPLICATE_WILD_IGNORE_TABLE",
+                                    "REPLICATE_REWRITE_DB",
+                                ],
+                            ),
+                            value=dict(type="str", required=True),
+                        ),
+                    ),
                 ),
             ),
             display_name=dict(aliases=["name"], type="str"),

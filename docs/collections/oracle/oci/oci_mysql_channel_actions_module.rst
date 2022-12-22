@@ -30,7 +30,7 @@ oracle.oci.oci_mysql_channel_actions -- Perform actions on a Channel resource in
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.5.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.6.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -402,7 +402,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Channel resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_enabled&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;source&#x27;: {&#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;port&#x27;: 56, &#x27;source_type&#x27;: &#x27;MYSQL&#x27;, &#x27;ssl_ca_certificate&#x27;: {&#x27;certificate_type&#x27;: &#x27;PEM&#x27;, &#x27;contents&#x27;: &#x27;contents_example&#x27;}, &#x27;ssl_mode&#x27;: &#x27;VERIFY_IDENTITY&#x27;, &#x27;username&#x27;: &#x27;username_example&#x27;}, &#x27;target&#x27;: {&#x27;applier_username&#x27;: &#x27;applier_username_example&#x27;, &#x27;channel_name&#x27;: &#x27;channel_name_example&#x27;, &#x27;db_system_id&#x27;: &#x27;ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;target_type&#x27;: &#x27;DBSYSTEM&#x27;}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_enabled&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;source&#x27;: {&#x27;anonymous_transactions_handling&#x27;: {&#x27;last_configured_log_filename&#x27;: &#x27;last_configured_log_filename_example&#x27;, &#x27;last_configured_log_offset&#x27;: 56, &#x27;policy&#x27;: &#x27;ERROR_ON_ANONYMOUS&#x27;, &#x27;uuid&#x27;: None}, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;port&#x27;: 56, &#x27;source_type&#x27;: &#x27;MYSQL&#x27;, &#x27;ssl_ca_certificate&#x27;: {&#x27;certificate_type&#x27;: &#x27;PEM&#x27;, &#x27;contents&#x27;: &#x27;contents_example&#x27;}, &#x27;ssl_mode&#x27;: &#x27;VERIFY_IDENTITY&#x27;, &#x27;username&#x27;: &#x27;username_example&#x27;}, &#x27;target&#x27;: {&#x27;applier_username&#x27;: &#x27;applier_username_example&#x27;, &#x27;channel_name&#x27;: &#x27;channel_name_example&#x27;, &#x27;db_system_id&#x27;: &#x27;ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;filters&#x27;: [{&#x27;type&#x27;: &#x27;REPLICATE_DO_DB&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;target_type&#x27;: &#x27;DBSYSTEM&#x27;}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -584,6 +584,104 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                         </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-channel/source/anonymous_transactions_handling"></div>
+                    <b>anonymous_transactions_handling</b>
+                    <a class="ansibleOptionLink" href="#return-channel/source/anonymous_transactions_handling" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-channel/source/anonymous_transactions_handling/last_configured_log_filename"></div>
+                    <b>last_configured_log_filename</b>
+                    <a class="ansibleOptionLink" href="#return-channel/source/anonymous_transactions_handling/last_configured_log_filename" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Specifies one of the coordinates (file) at which the replica should begin reading the source&#x27;s log. As this value specifies the point where replication starts from, it is only used once, when it starts. It is never used again, unless a new UpdateChannel operation modifies it.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">last_configured_log_filename_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-channel/source/anonymous_transactions_handling/last_configured_log_offset"></div>
+                    <b>last_configured_log_offset</b>
+                    <a class="ansibleOptionLink" href="#return-channel/source/anonymous_transactions_handling/last_configured_log_offset" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Specifies one of the coordinates (offset) at which the replica should begin reading the source&#x27;s log. As this value specifies the point where replication starts from, it is only used once, when it starts. It is never used again, unless a new UpdateChannel operation modifies it.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-channel/source/anonymous_transactions_handling/policy"></div>
+                    <b>policy</b>
+                    <a class="ansibleOptionLink" href="#return-channel/source/anonymous_transactions_handling/policy" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Specifies how the replication channel handles anonymous transactions.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ERROR_ON_ANONYMOUS</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-channel/source/anonymous_transactions_handling/uuid"></div>
+                    <b>uuid</b>
+                    <a class="ansibleOptionLink" href="#return-channel/source/anonymous_transactions_handling/uuid" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The UUID that is used as a prefix when generating transaction identifiers for anonymous transactions coming from the source. You can change the UUID later.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">null</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
@@ -810,6 +908,65 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-channel/target/filters"></div>
+                    <b>filters</b>
+                    <a class="ansibleOptionLink" href="#return-channel/target/filters" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Replication filter rules to be applied at the DB System Channel target.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-channel/target/filters/type"></div>
+                    <b>type</b>
+                    <a class="ansibleOptionLink" href="#return-channel/target/filters/type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The type of the filter rule.</div>
+                                            <div>For details on each type, see <a href='https://dev.mysql.com/doc/refman/8.0/en/replication-rules.html'>Replication Filtering Rules</a></div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">REPLICATE_DO_DB</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-channel/target/filters/value"></div>
+                    <b>value</b>
+                    <a class="ansibleOptionLink" href="#return-channel/target/filters/value" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The body of the filter rule. This can represent a database, a table, or a database pair (represented as &quot;db1-&gt;db2&quot;). For more information, see <a href='https://dev.mysql.com/doc/refman/8.0/en/replication-rules.html'>Replication Filtering Rules</a>.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
+                                    </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>

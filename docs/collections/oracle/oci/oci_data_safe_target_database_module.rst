@@ -30,7 +30,7 @@ oracle.oci.oci_data_safe_target_database -- Manage a TargetDatabase resource in 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.5.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.6.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -299,7 +299,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The OCID of the Data Safe private endpoint.</div>
-                                            <div>Applicable when connection_type is &#x27;PRIVATE_ENDPOINT&#x27;</div>
+                                            <div>Required when connection_type is &#x27;PRIVATE_ENDPOINT&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -316,7 +316,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The OCID of the on-premises connector.</div>
-                                            <div>Applicable when connection_type is &#x27;ONPREM_CONNECTOR&#x27;</div>
+                                            <div>Required when connection_type is &#x27;ONPREM_CONNECTOR&#x27;</div>
                                                         </td>
             </tr>
                     
@@ -400,7 +400,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The OCID of the autonomous database registered as a target database in Data Safe.</div>
-                                            <div>Applicable when database_type is &#x27;AUTONOMOUS_DATABASE&#x27;</div>
+                                            <div>Required when database_type is &#x27;AUTONOMOUS_DATABASE&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -511,7 +511,8 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The port number of the database listener.</div>
-                                            <div>Applicable when database_type is &#x27;INSTALLED_DATABASE&#x27;</div>
+                                            <div>Applicable when database_type is &#x27;DATABASE_CLOUD_SERVICE&#x27;</div>
+                                            <div>Required when database_type is &#x27;INSTALLED_DATABASE&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -528,7 +529,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The service name of the database registered as target database.</div>
-                                            <div>Applicable when database_type is one of [&#x27;INSTALLED_DATABASE&#x27;, &#x27;DATABASE_CLOUD_SERVICE&#x27;]</div>
+                                            <div>Required when database_type is one of [&#x27;INSTALLED_DATABASE&#x27;, &#x27;DATABASE_CLOUD_SERVICE&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -891,12 +892,12 @@ Examples
           # required
           database_type: INSTALLED_DATABASE
           infrastructure_type: ORACLE_CLOUD
+          listener_port: 56
+          service_name: service_name_example
 
           # optional
           instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
           ip_addresses: [ "ip_addresses_example" ]
-          listener_port: 56
-          service_name: service_name_example
 
         # optional
         display_name: display_name_example
@@ -916,10 +917,8 @@ Examples
           key_store_content: key_store_content_example
         connection_option:
           # required
-          connection_type: PRIVATE_ENDPOINT
-
-          # optional
           datasafe_private_endpoint_id: "ocid1.datasafeprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+          connection_type: PRIVATE_ENDPOINT
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -935,12 +934,12 @@ Examples
           # required
           database_type: INSTALLED_DATABASE
           infrastructure_type: ORACLE_CLOUD
+          listener_port: 56
+          service_name: service_name_example
 
           # optional
           instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
           ip_addresses: [ "ip_addresses_example" ]
-          listener_port: 56
-          service_name: service_name_example
         credentials:
           # required
           user_name: user_name_example
@@ -956,10 +955,8 @@ Examples
           key_store_content: key_store_content_example
         connection_option:
           # required
-          connection_type: PRIVATE_ENDPOINT
-
-          # optional
           datasafe_private_endpoint_id: "ocid1.datasafeprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+          connection_type: PRIVATE_ENDPOINT
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -975,12 +972,12 @@ Examples
           # required
           database_type: INSTALLED_DATABASE
           infrastructure_type: ORACLE_CLOUD
+          listener_port: 56
+          service_name: service_name_example
 
           # optional
           instance_id: "ocid1.instance.oc1..xxxxxxEXAMPLExxxxxx"
           ip_addresses: [ "ip_addresses_example" ]
-          listener_port: 56
-          service_name: service_name_example
         credentials:
           # required
           user_name: user_name_example
@@ -996,10 +993,8 @@ Examples
           key_store_content: key_store_content_example
         connection_option:
           # required
-          connection_type: PRIVATE_ENDPOINT
-
-          # optional
           datasafe_private_endpoint_id: "ocid1.datasafeprivateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+          connection_type: PRIVATE_ENDPOINT
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 

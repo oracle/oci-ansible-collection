@@ -93,6 +93,18 @@ options:
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
+    preferred_language:
+        description:
+            - (For announcement subscriptions with Oracle Fusion Applications configured as the service only) The language in which the user prefers to receive
+              emailed announcements. Specify the preference with a value that uses the language tag format (x-obmcs-human-language). For example fr-FR.
+            - This parameter is updatable.
+        type: str
+    preferred_time_zone:
+        description:
+            - The time zone that the user prefers for announcement time stamps. Specify the preference with a value that uses the IANA Time Zone Database format
+              (x-obmcs-time-zone). For example America/Los_Angeles.
+            - This parameter is updatable.
+        type: str
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -140,6 +152,8 @@ EXAMPLES = """
         type: COMPARTMENT_ID
         value: value_example
     description: description_example
+    preferred_language: preferred_language_example
+    preferred_time_zone: preferred_time_zone_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -152,6 +166,8 @@ EXAMPLES = """
     display_name: display_name_example
     description: description_example
     ons_topic_id: "ocid1.onstopic.oc1..xxxxxxEXAMPLExxxxxx"
+    preferred_language: preferred_language_example
+    preferred_time_zone: preferred_time_zone_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -164,6 +180,8 @@ EXAMPLES = """
     # optional
     description: description_example
     ons_topic_id: "ocid1.onstopic.oc1..xxxxxxEXAMPLExxxxxx"
+    preferred_language: preferred_language_example
+    preferred_time_zone: preferred_time_zone_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -280,6 +298,21 @@ announcement_subscription:
                             returned: on success
                             type: str
                             sample: value_example
+        preferred_language:
+            description:
+                - (For announcement subscriptions with Oracle Fusion Applications configured as the service only) The language in which the user prefers to
+                  receive emailed announcements. Specify the preference with a value that uses the language tag format (x-obmcs-human-language). For example fr-
+                  FR.
+            returned: on success
+            type: str
+            sample: preferred_language_example
+        preferred_time_zone:
+            description:
+                - The time zone that the user prefers for announcement time stamps. Specify the preference with a value that uses the IANA Time Zone Database
+                  format (x-obmcs-time-zone). For example America/Los_Angeles.
+            returned: on success
+            type: str
+            sample: preferred_time_zone_example
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -318,6 +351,8 @@ announcement_subscription:
                 "value": "value_example"
             }]
         },
+        "preferred_language": "preferred_language_example",
+        "preferred_time_zone": "preferred_time_zone_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "system_tags": {}
@@ -501,6 +536,8 @@ def main():
             display_name=dict(aliases=["name"], type="str"),
             description=dict(type="str"),
             ons_topic_id=dict(type="str"),
+            preferred_language=dict(type="str"),
+            preferred_time_zone=dict(type="str"),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
             announcement_subscription_id=dict(aliases=["id"], type="str"),

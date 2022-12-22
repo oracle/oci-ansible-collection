@@ -65,6 +65,14 @@ options:
             - "ENABLED"
             - "DISABLED"
             - "INVALID"
+    is_maintenance_window_active:
+        description:
+            - A filter to return the monitors whose maintenance window is currently active.
+        type: bool
+    is_maintenance_window_set:
+        description:
+            - A filter to return the monitors whose maintenance window is set.
+        type: bool
     sort_order:
         description:
             - The sort order to use, either ascending (`ASC`) or descending (`DESC`). Default sort order is ascending.
@@ -85,6 +93,7 @@ options:
             - "timeUpdated"
             - "status"
             - "monitorType"
+            - "maintenanceWindowTimeStarted"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -106,6 +115,8 @@ EXAMPLES = """
     vantage_point: vantage_point_example
     monitor_type: monitor_type_example
     status: ENABLED
+    is_maintenance_window_active: true
+    is_maintenance_window_set: true
     sort_order: ASC
     sort_by: displayName
 
@@ -388,6 +399,25 @@ monitors:
                             returned: on success
                             type: str
                             sample: SACK
+        availability_configuration:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                max_allowed_failures_per_interval:
+                    description:
+                        - Intervals with failed runs more than this value will be classified as UNAVAILABLE.
+                    returned: on success
+                    type: int
+                    sample: 56
+                min_allowed_runs_per_interval:
+                    description:
+                        - Intervals with runs less than this value will be classified as UNKNOWN and excluded from the availability calculations.
+                    returned: on success
+                    type: int
+                    sample: 56
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the monitor.
@@ -465,7 +495,8 @@ monitors:
             sample: true
         timeout_in_seconds:
             description:
-                - Timeout in seconds. Timeout cannot be more than 30% of repeatIntervalInSeconds time for monitors.
+                - Timeout in seconds. If isFailureRetried is true, then timeout cannot be more than 30% of repeatIntervalInSeconds time for monitors.
+                  If isFailureRetried is false, then timeout cannot be more than 50% of repeatIntervalInSeconds time for monitors.
                   Also, timeoutInSeconds should be a multiple of 60 for Scripted REST, Scripted Browser and Browser monitors.
                   Monitor will be allowed to run only for timeoutInSeconds time. It would be terminated after that.
             returned: on success
@@ -481,6 +512,26 @@ monitors:
             returned: on success
             type: str
             sample: target_example
+        maintenance_window_schedule:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                time_started:
+                    description:
+                        - "Start time for the maintenance window, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
+                          Example: `2020-02-12T22:47:12.613Z`"
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
+                time_ended:
+                    description:
+                        - "End time for the maintenance window, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339) timestamp format.
+                          Example: `2020-02-12T22:47:12.613Z`"
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
         time_created:
             description:
                 - "The time the resource was created, expressed in L(RFC 3339,https://tools.ietf.org/html/rfc3339)
@@ -584,6 +635,10 @@ monitors:
                 "probe_mode": "SACK"
             }
         },
+        "availability_configuration": {
+            "max_allowed_failures_per_interval": 56,
+            "min_allowed_runs_per_interval": 56
+        },
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "monitor_type": "SCRIPTED_BROWSER",
@@ -599,6 +654,10 @@ monitors:
         "is_run_once": true,
         "timeout_in_seconds": 56,
         "target": "target_example",
+        "maintenance_window_schedule": {
+            "time_started": "2013-10-20T19:20:30+01:00",
+            "time_ended": "2013-10-20T19:20:30+01:00"
+        },
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},
@@ -652,6 +711,8 @@ class MonitorFactsHelperGen(OCIResourceFactsHelperBase):
             "vantage_point",
             "monitor_type",
             "status",
+            "is_maintenance_window_active",
+            "is_maintenance_window_set",
             "sort_order",
             "sort_by",
         ]
@@ -685,6 +746,8 @@ def main():
             vantage_point=dict(type="str"),
             monitor_type=dict(type="str"),
             status=dict(type="str", choices=["ENABLED", "DISABLED", "INVALID"]),
+            is_maintenance_window_active=dict(type="bool"),
+            is_maintenance_window_set=dict(type="bool"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(
                 type="str",
@@ -694,6 +757,7 @@ def main():
                     "timeUpdated",
                     "status",
                     "monitorType",
+                    "maintenanceWindowTimeStarted",
                 ],
             ),
         )
