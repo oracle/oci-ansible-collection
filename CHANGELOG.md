@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [4.7.0]
+
+## Added
+- Support for the Queue service
+- Support for elastic compute for Exadata Cloud at Customer in the Database service
+- Support for additional connections types on database resources in the GoldenGate service
+- Support for collecting diagnostics on deployments in the GoldenGate service
+- Support for cluster profiles in the Big Data service
+- Support for PeopleSoft discovery in the Stack Monitoring service
+- Support for Apache Tomcat discovery in the Stack Monitoring service
+- Support for SQL Server discovery in the Stack Monitoring service
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.90.0
+
 ## [4.6.0]
 
 ## Added

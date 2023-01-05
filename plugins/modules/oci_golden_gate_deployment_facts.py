@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2020, 2022 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2023 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -46,9 +46,13 @@ options:
         choices:
             - "GOLDENGATE"
             - "KAFKA"
+            - "KAFKA_SCHEMA_REGISTRY"
             - "MYSQL"
             - "OCI_OBJECT_STORAGE"
             - "ORACLE"
+            - "AZURE_DATA_LAKE_STORAGE"
+            - "POSTGRESQL"
+            - "AZURE_SYNAPSE_ANALYTICS"
     assigned_connection_id:
         description:
             - The OCID of the connection which for the deployment must be assigned.
@@ -198,6 +202,51 @@ deployments:
                     returned: on success
                     type: str
                     sample: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
+        deployment_diagnostic_data:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                namespace_name:
+                    description:
+                        - Name of namespace that serves as a container for all of your buckets
+                    returned: on success
+                    type: str
+                    sample: namespace_name_example
+                bucket_name:
+                    description:
+                        - Name of the bucket where the object is to be uploaded in the object storage
+                    returned: on success
+                    type: str
+                    sample: bucket_name_example
+                object_name:
+                    description:
+                        - Name of the diagnostic collected and uploaded to object storage
+                    returned: on success
+                    type: str
+                    sample: object_name_example
+                diagnostic_state:
+                    description:
+                        - The state of the deployment diagnostic collection.
+                    returned: on success
+                    type: str
+                    sample: IN_PROGRESS
+                time_diagnostic_start:
+                    description:
+                        - The time from which the diagnostic collection should collect the logs. The format is defined by
+                          L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
+                time_diagnostic_end:
+                    description:
+                        - The time until which the diagnostic collection should collect the logs. The format is defined by
+                          L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
         id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the deployment being referenced.
@@ -380,6 +429,14 @@ deployments:
             "ogg_version": "ogg_version_example",
             "certificate": "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
         },
+        "deployment_diagnostic_data": {
+            "namespace_name": "namespace_name_example",
+            "bucket_name": "bucket_name_example",
+            "object_name": "object_name_example",
+            "diagnostic_state": "IN_PROGRESS",
+            "time_diagnostic_start": "2013-10-20T19:20:30+01:00",
+            "time_diagnostic_end": "2013-10-20T19:20:30+01:00"
+        },
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "description": "description_example",
@@ -485,9 +542,13 @@ def main():
                 choices=[
                     "GOLDENGATE",
                     "KAFKA",
+                    "KAFKA_SCHEMA_REGISTRY",
                     "MYSQL",
                     "OCI_OBJECT_STORAGE",
                     "ORACLE",
+                    "AZURE_DATA_LAKE_STORAGE",
+                    "POSTGRESQL",
+                    "AZURE_SYNAPSE_ANALYTICS",
                 ],
             ),
             assigned_connection_id=dict(type="str"),

@@ -30,7 +30,7 @@ oracle.oci.oci_database_db_system_actions -- Perform actions on a DbSystem resou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.6.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.7.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,9 +57,9 @@ Synopsis
 .. Description
 
 - Perform actions on a DbSystem resource in Oracle Cloud Infrastructure
-- Moves the DB system and its dependent resources to the specified compartment. For more information about moving DB systems, see `Moving Database Resources to a Different Compartment <https://docs.cloud.oracle.com/Content/Database/Concepts/databaseoverview.htm#moveRes>`_.
-- Migrates the Exadata DB system to the new `Exadata resource model <https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/exaflexsystem.htm#exaflexsystem_topic-resource_model>`_. All related resources will be migrated.
-- Upgrades the operating system and grid infrastructure of the DB system.
+- For *action=change_compartment*, moves the DB system and its dependent resources to the specified compartment. For more information about moving DB systems, see `Moving Database Resources to a Different Compartment <https://docs.cloud.oracle.com/Content/Database/Concepts/databaseoverview.htm#moveRes>`_.
+- For *action=migrate_exadata_db_system_resource_model*, migrates the Exadata DB system to the new `Exadata resource model <https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/exaflexsystem.htm#exaflexsystem_topic-resource_model>`_. All related resources will be migrated.
+- For *action=upgrade*, upgrades the operating system and grid infrastructure of the DB system.
 
 
 .. Aliases

@@ -30,7 +30,7 @@ oracle.oci.oci_database_vm_cluster_network -- Manage a VmClusterNetwork resource
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.6.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.7.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -58,7 +58,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a VmClusterNetwork resource in Oracle Cloud Infrastructure
 - For *state=present*, creates the VM cluster network. Applies to Exadata Cloud@Customer instances only. To create a cloud VM cluster in an Exadata Cloud Service instance, use the `CreateCloudVmCluster  <https://docs.cloud.oracle.com/en- us/iaas/api/#/en/database/latest/CloudVmCluster/CreateCloudVmCluster>`_ operation.
-- This resource has the following action operations in the :ref:`oracle.oci.oci_database_vm_cluster_network_actions <ansible_collections.oracle.oci.oci_database_vm_cluster_network_actions_module>` module: download_validation_report, download_vm_cluster_network_config_file, validate.
+- This resource has the following action operations in the :ref:`oracle.oci.oci_database_vm_cluster_network_actions <ansible_collections.oracle.oci.oci_database_vm_cluster_network_actions_module>` module: add_dbserver_network, remove_dbserver_network.
 
 
 .. Aliases
@@ -573,7 +573,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-vm_networks/domain_name" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -589,7 +589,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-vm_networks/gateway" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -605,7 +605,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-vm_networks/netmask" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -653,6 +653,23 @@ Parameters
                                                     <td class="elbow-placeholder"></td>
                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-vm_networks/nodes/db_server_id"></div>
+                    <b>db_server_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-vm_networks/nodes/db_server_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The Db server associated with the node.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-vm_networks/nodes/hostname"></div>
                     <b>hostname</b>
                     <a class="ansibleOptionLink" href="#parameter-vm_networks/nodes/hostname" title="Permalink to this option"></a>
@@ -681,6 +698,35 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The node IP address.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-vm_networks/nodes/lifecycle_state"></div>
+                    <b>lifecycle_state</b>
+                    <a class="ansibleOptionLink" href="#parameter-vm_networks/nodes/lifecycle_state" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>CREATING</li>
+                                                                                                                                                                                                <li>REQUIRES_VALIDATION</li>
+                                                                                                                                                                                                <li>VALIDATING</li>
+                                                                                                                                                                                                <li>VALIDATED</li>
+                                                                                                                                                                                                <li>VALIDATION_FAILED</li>
+                                                                                                                                                                                                <li>UPDATING</li>
+                                                                                                                                                                                                <li>ALLOCATED</li>
+                                                                                                                                                                                                <li>TERMINATING</li>
+                                                                                                                                                                                                <li>TERMINATED</li>
+                                                                                                                                                                                                <li>FAILED</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The current state of the VM cluster network nodes. CREATING - The resource is being created REQUIRES_VALIDATION - The resource is created and may not be usable until it is validated. VALIDATING - The resource is being validated and not available to use. VALIDATED - The resource is validated and is available for consumption by VM cluster. VALIDATION_FAILED - The resource validation has failed and might require user input to be corrected. UPDATING - The resource is being updated and not available to use. ALLOCATED - The resource is currently being used by VM cluster. TERMINATING - The resource is being deleted and not available to use. TERMINATED - The resource is deleted and unavailable. FAILED - The resource is in a failed state due to validation or other errors.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -726,7 +772,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-vm_networks/vlan_id" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
@@ -810,11 +856,7 @@ Examples
           scan_listener_port_tcp_ssl: 56
         vm_networks:
         - # required
-          vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
           network_type: CLIENT
-          netmask: netmask_example
-          gateway: gateway_example
-          domain_name: domain_name_example
           nodes:
           - # required
             hostname: hostname_example
@@ -823,6 +865,14 @@ Examples
             # optional
             vip_hostname: vip_hostname_example
             vip: vip_example
+            lifecycle_state: CREATING
+            db_server_id: "ocid1.dbserver.oc1..xxxxxxEXAMPLExxxxxx"
+
+          # optional
+          vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
+          netmask: netmask_example
+          gateway: gateway_example
+          domain_name: domain_name_example
         exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
@@ -851,11 +901,7 @@ Examples
         ntp: [ "ntp_example" ]
         vm_networks:
         - # required
-          vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
           network_type: CLIENT
-          netmask: netmask_example
-          gateway: gateway_example
-          domain_name: domain_name_example
           nodes:
           - # required
             hostname: hostname_example
@@ -864,6 +910,14 @@ Examples
             # optional
             vip_hostname: vip_hostname_example
             vip: vip_example
+            lifecycle_state: CREATING
+            db_server_id: "ocid1.dbserver.oc1..xxxxxxEXAMPLExxxxxx"
+
+          # optional
+          vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
+          netmask: netmask_example
+          gateway: gateway_example
+          domain_name: domain_name_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -888,11 +942,7 @@ Examples
         ntp: [ "ntp_example" ]
         vm_networks:
         - # required
-          vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
           network_type: CLIENT
-          netmask: netmask_example
-          gateway: gateway_example
-          domain_name: domain_name_example
           nodes:
           - # required
             hostname: hostname_example
@@ -901,6 +951,14 @@ Examples
             # optional
             vip_hostname: vip_hostname_example
             vip: vip_example
+            lifecycle_state: CREATING
+            db_server_id: "ocid1.dbserver.oc1..xxxxxxEXAMPLExxxxxx"
+
+          # optional
+          vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
+          netmask: netmask_example
+          gateway: gateway_example
+          domain_name: domain_name_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -954,7 +1012,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the VmClusterNetwork resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;dns&#x27;: [], &#x27;exadata_infrastructure_id&#x27;: &#x27;ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;ntp&#x27;: [], &#x27;scans&#x27;: [{&#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;ips&#x27;: [], &#x27;port&#x27;: 56, &#x27;scan_listener_port_tcp&#x27;: 56, &#x27;scan_listener_port_tcp_ssl&#x27;: 56}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vm_cluster_id&#x27;: &#x27;ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vm_networks&#x27;: [{&#x27;domain_name&#x27;: &#x27;domain_name_example&#x27;, &#x27;gateway&#x27;: &#x27;gateway_example&#x27;, &#x27;netmask&#x27;: &#x27;netmask_example&#x27;, &#x27;network_type&#x27;: &#x27;CLIENT&#x27;, &#x27;nodes&#x27;: [{&#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;ip&#x27;: &#x27;ip_example&#x27;, &#x27;vip&#x27;: &#x27;vip_example&#x27;, &#x27;vip_hostname&#x27;: &#x27;vip_hostname_example&#x27;}], &#x27;vlan_id&#x27;: &#x27;ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;dns&#x27;: [], &#x27;exadata_infrastructure_id&#x27;: &#x27;ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;ntp&#x27;: [], &#x27;scans&#x27;: [{&#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;ips&#x27;: [], &#x27;port&#x27;: 56, &#x27;scan_listener_port_tcp&#x27;: 56, &#x27;scan_listener_port_tcp_ssl&#x27;: 56}], &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;vm_cluster_id&#x27;: &#x27;ocid1.vmcluster.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vm_networks&#x27;: [{&#x27;domain_name&#x27;: &#x27;domain_name_example&#x27;, &#x27;gateway&#x27;: &#x27;gateway_example&#x27;, &#x27;netmask&#x27;: &#x27;netmask_example&#x27;, &#x27;network_type&#x27;: &#x27;CLIENT&#x27;, &#x27;nodes&#x27;: [{&#x27;db_server_id&#x27;: &#x27;ocid1.dbserver.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;ip&#x27;: &#x27;ip_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;vip&#x27;: &#x27;vip_example&#x27;, &#x27;vip_hostname&#x27;: &#x27;vip_hostname_example&#x27;}], &#x27;vlan_id&#x27;: &#x27;ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1112,7 +1170,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The current state of the VM cluster network.</div>
+                                            <div>The current state of the VM cluster network. CREATING - The resource is being created REQUIRES_VALIDATION - The resource is created and may not be usable until it is validated. VALIDATING - The resource is being validated and not available to use. VALIDATED - The resource is validated and is available for consumption by VM cluster. VALIDATION_FAILED - The resource validation has failed and might require user input to be corrected. UPDATING - The resource is being updated and not available to use. ALLOCATED - The resource is is currently being used by VM cluster. TERMINATING - The resource is being deleted and not available to use. TERMINATED - The resource is deleted and unavailable. FAILED - The resource is in a failed state due to validation or other errors. NEEDS_ATTENTION - The resource is in needs attention state as some of it&#x27;s child nodes are not validated and unusable by VM cluster.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
@@ -1394,6 +1452,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-vm_cluster_network/vm_networks/nodes/db_server_id"></div>
+                    <b>db_server_id</b>
+                    <a class="ansibleOptionLink" href="#return-vm_cluster_network/vm_networks/nodes/db_server_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The Db server associated with the node.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.dbserver.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-vm_cluster_network/vm_networks/nodes/hostname"></div>
                     <b>hostname</b>
                     <a class="ansibleOptionLink" href="#return-vm_cluster_network/vm_networks/nodes/hostname" title="Permalink to this return value"></a>
@@ -1427,6 +1505,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ip_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-vm_cluster_network/vm_networks/nodes/lifecycle_state"></div>
+                    <b>lifecycle_state</b>
+                    <a class="ansibleOptionLink" href="#return-vm_cluster_network/vm_networks/nodes/lifecycle_state" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The current state of the VM cluster network nodes. CREATING - The resource is being created REQUIRES_VALIDATION - The resource is created and may not be usable until it is validated. VALIDATING - The resource is being validated and not available to use. VALIDATED - The resource is validated and is available for consumption by VM cluster. VALIDATION_FAILED - The resource validation has failed and might require user input to be corrected. UPDATING - The resource is being updated and not available to use. ALLOCATED - The resource is currently being used by VM cluster. TERMINATING - The resource is being deleted and not available to use. TERMINATED - The resource is deleted and unavailable. FAILED - The resource is in a failed state due to validation or other errors.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
                                     </td>
             </tr>
                                 <tr>

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2020, 2022 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2023 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,12 +23,12 @@ module: oci_compute_instance_actions
 short_description: Perform actions on an Instance resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on an Instance resource in Oracle Cloud Infrastructure
-    - Moves an instance into a different compartment within the same tenancy. For information about
+    - For I(action=change_compartment), moves an instance into a different compartment within the same tenancy. For information about
       moving resources between compartments, see
       L(Moving Resources to a Different Compartment,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
     - When you move an instance to a different compartment, associated resources such as boot volumes and VNICs
       are not moved.
-    - "Performs one of the following power actions on the specified instance:"
+    - "For I(action=instance_action), performs one of the following power actions on the specified instance:"
     - "- **START** - Powers on the instance."
     - "- **STOP** - Powers off the instance."
     - "- **RESET** - Powers off the instance and then powers it back on."
@@ -1060,6 +1060,22 @@ class InstanceActionsHelperGen(OCIActionsHelperBase):
         return oci_common_utils.call_with_backoff(
             self.client.get_instance, instance_id=self.module.params.get("instance_id"),
         )
+
+    def get_action_fn(self, action):
+        action = action.lower()
+        if action in [
+            "stop",
+            "start",
+            "softreset",
+            "reset",
+            "softstop",
+            "senddiagnosticinterrupt",
+            "diagnosticreboot",
+            "rebootmigrate",
+        ]:
+            self.module.params["action"] = action.upper()
+            return getattr(self, "instance_action", None)
+        return super(InstanceActionsHelperGen, self).get_action_fn(action)
 
     def change_compartment(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(

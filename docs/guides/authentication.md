@@ -4,12 +4,11 @@ OCI Ansible supports the following authentication mechanisms:
 
 - [API Key](#api-key-authentication)
 - [Instance Principal](#instance-principal)
+- [Service Principal](#service-principal)
 - [Delegation Auth](#delegation-auth)
 - [Resource Principal](#resource-principal)
 
 The *default* option is api_key.
-
-
 
 ## API Key Authentication
 
@@ -42,6 +41,23 @@ The *default* option is api_key.
     region: "us-ashburn-1"
 ```
 
+## Service Principal
+
+- Used for service to service (S2S) Authentication.
+
+- It can be used in conjunction with instance principal auth type.
+
+- For example, similar to the *fetch VCNs in a compartment* example above,  
+  via auth purpose as service principal along with auth type as instance principal, can be achieved like this:
+
+``` yaml
+- name: List vcns
+  oci_network_vcn_facts:
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    auth_type: "instance_principal"
+    auth_purpose: "service_principal
+    region: "us-ashburn-1"
+```
 
 ## Delegation Auth
 
@@ -55,7 +71,6 @@ The *default* option is api_key.
     region: "us-ashburn-1"
 ```
 
-
 ## Resource Principal
 
 - Very similar to instance principal auth but used for resources  
@@ -68,8 +83,6 @@ The *default* option is api_key.
     auth_type: "resource_principal"
     region: "us-ashburn-1"
 ```
-
-
 
 ## Parameters
 
@@ -91,7 +104,21 @@ The following parameters need to be set when one of the above authentication mec
 
     Options:                              [api_key, instance_obo_user, instance_principal, resource_principal]
 
+### CERTIFICATE BUNDLE
 
+    Description:                          The full path to a CA certificate bundle to be used for SSL verification.
+
+    Type:                                 String
+
+    Default:                              None
+
+    Configuration Mechanisms:
+
+            Environment Variable:         OCI_ANSIBLE_CERT_BUNDLE
+
+            Module Option:                cert_bundle
+
+    Used:                                 This will override the default CA certificate bundle used to do ssl verification by SDK.
 
 ### TENANCY
 
@@ -109,8 +136,6 @@ The following parameters need to be set when one of the above authentication mec
 
     Used:                                 When auth_type is api_key (required)
 
-
-
 ### REGION
 
     Description:                          The Oracle Cloud Infrastructure region to use for all OCI API requests.
@@ -126,8 +151,6 @@ The following parameters need to be set when one of the above authentication mec
             SDK and CLI Configuration     region
 
     Used:                                 When auth_type is api_key (required)
-
-
 
 ### API USER
 
@@ -145,8 +168,6 @@ The following parameters need to be set when one of the above authentication mec
 
     Used:                                 When auth_type is api_key (required)
 
-
-
 ### API USER FINGERPRINT
 
     Description:                          Fingerprint for the key pair being used
@@ -163,9 +184,8 @@ The following parameters need to be set when one of the above authentication mec
 
     Used:                                 When auth_type is api_key (required)
 
-
-
 ### API USER KEY FILE
+
     Description:                          Full path and filename of the private key (in PEM format)
 
     Type:                                 String
@@ -179,8 +199,6 @@ The following parameters need to be set when one of the above authentication mec
             SDK and CLI Configuration     key_file
 
     Used:                                 When auth_type is api_key (required)
-
-
 
 ### API USER KEY PASSPHRASE
 
@@ -198,13 +216,10 @@ The following parameters need to be set when one of the above authentication mec
 
     Used:                                 When auth_type is api_key (optional)
 
-
-
 ## Module Options Example
 
 Ansible module option auth_type can be set to configure the authentication type,
 for example, to fetch VCNs in a compartment, we can pass the authentication as below:
-
 
 ``` yaml
 - name: List vcns
@@ -212,7 +227,6 @@ for example, to fetch VCNs in a compartment, we can pass the authentication as b
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     auth_type: "instance_principal"
 ```
-
 
 When auth_type is api_key, tenancy, region and other variables can also be set via module options as below:
 
@@ -227,7 +241,6 @@ When auth_type is api_key, tenancy, region and other variables can also be set v
     api_user_key_file: "api_user_key_file"
     api_user_key_pass_phrase: "api_user_key_pass_phrase"
 ```
-
 
 ## SDK and CLI Configuration
 
@@ -249,7 +262,6 @@ When auth_type is api_key, tenancy, region and other variables can also be set v
 
 - When neither the module option is used nor the environment variable,  
   Config profile name defaults to the ```DEFAULT``` profile in the config file
-
 
 ## Precedence
 

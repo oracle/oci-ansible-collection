@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2020, 2022 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2023 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -63,11 +63,14 @@ options:
                 choices:
                     - "WEBLOGIC_DOMAIN"
                     - "EBS_INSTANCE"
+                    - "SQL_SERVER"
+                    - "APACHE_TOMCAT"
                     - "ORACLE_DATABASE"
                     - "OCI_ORACLE_DB"
                     - "OCI_ORACLE_CDB"
                     - "OCI_ORACLE_PDB"
                     - "HOST"
+                    - "ORACLE_PSFT"
                 required: true
             resource_name:
                 description:
@@ -428,6 +431,12 @@ class DiscoveryJobHelperGen(OCIResourceHelperBase):
 
     def get_possible_entity_types(self):
         return super(DiscoveryJobHelperGen, self).get_possible_entity_types() + [
+            "stackmonitoringdiscoveryjob",
+            "stackmonitoringdiscoveryjobs",
+            "stackMonitoringstackmonitoringdiscoveryjob",
+            "stackMonitoringstackmonitoringdiscoveryjobs",
+            "stackmonitoringdiscoveryjobresource",
+            "stackmonitoringdiscoveryjobsresource",
             "discoveryjob",
             "discoveryjobs",
             "stackMonitoringdiscoveryjob",
@@ -541,11 +550,14 @@ def main():
                         choices=[
                             "WEBLOGIC_DOMAIN",
                             "EBS_INSTANCE",
+                            "SQL_SERVER",
+                            "APACHE_TOMCAT",
                             "ORACLE_DATABASE",
                             "OCI_ORACLE_DB",
                             "OCI_ORACLE_CDB",
                             "OCI_ORACLE_PDB",
                             "HOST",
+                            "ORACLE_PSFT",
                         ],
                     ),
                     resource_name=dict(type="str", required=True),

@@ -30,7 +30,7 @@ oracle.oci.oci_golden_gate_connection -- Manage a Connection resource in Oracle 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.6.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.7.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -89,6 +89,41 @@ Parameters
         </tr>
                     <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-account_key"></div>
+                    <b>account_key</b>
+                    <a class="ansibleOptionLink" href="#parameter-account_key" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Azure storage account key. This property is required when &#x27;authenticationType&#x27; is set to &#x27;SHARED_KEY&#x27;. e.g.: pa3WbhVATzj56xD4DH1VjOUhApRGEGHvOo58eQJVWIzX+j8j4CUVFcTjpIqDSRaSa1Wo2LbWY5at+AStEgLOIQ==</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when connection_type is &#x27;AZURE_DATA_LAKE_STORAGE&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-account_name"></div>
+                    <b>account_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-account_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Sets the Azure storage account name.</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when connection_type is &#x27;AZURE_DATA_LAKE_STORAGE&#x27;</div>
+                                            <div>Required when connection_type is &#x27;AZURE_DATA_LAKE_STORAGE&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-additional_attributes"></div>
                     <b>additional_attributes</b>
                     <a class="ansibleOptionLink" href="#parameter-additional_attributes" title="Permalink to this option"></a>
@@ -101,7 +136,7 @@ Parameters
                                                                 <td>
                                             <div>An array of name-value pair attribute entries. Used as additional parameters in connection string.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when connection_type is &#x27;MYSQL&#x27;</div>
+                                            <div>Applicable when connection_type is one of [&#x27;MYSQL&#x27;, &#x27;POSTGRESQL&#x27;]</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -118,7 +153,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The name of the property entry.</div>
-                                            <div>Required when connection_type is &#x27;MYSQL&#x27;</div>
+                                            <div>Required when connection_type is &#x27;POSTGRESQL&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -135,7 +170,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The value of the property entry.</div>
-                                            <div>Required when connection_type is &#x27;MYSQL&#x27;</div>
+                                            <div>Required when connection_type is &#x27;POSTGRESQL&#x27;</div>
                                                         </td>
             </tr>
                     
@@ -240,6 +275,41 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-authentication_type"></div>
+                    <b>authentication_type</b>
+                    <a class="ansibleOptionLink" href="#parameter-authentication_type" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Used authentication mechanism to access Schema Registry.</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when connection_type is one of [&#x27;AZURE_DATA_LAKE_STORAGE&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;]</div>
+                                            <div>Required when connection_type is one of [&#x27;AZURE_DATA_LAKE_STORAGE&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;]</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-azure_tenant_id"></div>
+                    <b>azure_tenant_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-azure_tenant_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Azure tenant ID of the application. This property is required when &#x27;authenticationType&#x27; is set to &#x27;AZURE_ACTIVE_DIRECTORY&#x27;. e.g.: 14593954-d337-4a61-a364-9f758c64f97f</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when connection_type is &#x27;AZURE_DATA_LAKE_STORAGE&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-bootstrap_servers"></div>
                     <b>bootstrap_servers</b>
                     <a class="ansibleOptionLink" href="#parameter-bootstrap_servers" title="Permalink to this option"></a>
@@ -324,6 +394,40 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-client_id"></div>
+                    <b>client_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-client_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Azure client ID of the application. This property is required when &#x27;authenticationType&#x27; is set to &#x27;AZURE_ACTIVE_DIRECTORY&#x27;. e.g.: 06ecaabf-8b80-4ec8-a0ec-20cbf463703d</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when connection_type is &#x27;AZURE_DATA_LAKE_STORAGE&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-client_secret"></div>
+                    <b>client_secret</b>
+                    <a class="ansibleOptionLink" href="#parameter-client_secret" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Azure client secret (aka application password) for authentication. This property is required when &#x27;authenticationType&#x27; is set to &#x27;AZURE_ACTIVE_DIRECTORY&#x27;. e.g.: dO29Q~F5-VwnA.lZdd11xFF_t5NAXCaGwDl9NbT1</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when connection_type is &#x27;AZURE_DATA_LAKE_STORAGE&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
@@ -400,9 +504,10 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Connect descriptor or Easy Connect Naming method that Oracle GoldenGate uses to connect to a database.</div>
+                                            <div>JDBC connection string. e.g.: &#x27;jdbc:sqlserver://&lt;synapse-workspace&gt;.sql.azuresynapse.net:1433;database=&lt;db- name&gt;;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.sql.azuresynapse.net;loginTimeout=300;&#x27;</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when connection_type is &#x27;ORACLE&#x27;</div>
+                                            <div>Applicable when connection_type is one of [&#x27;AZURE_SYNAPSE_ANALYTICS&#x27;, &#x27;ORACLE&#x27;]</div>
+                                            <div>Required when connection_type is &#x27;AZURE_SYNAPSE_ANALYTICS&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -416,7 +521,11 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>MYSQL</li>
+                                                                                                                                                                <li>POSTGRESQL</li>
+                                                                                                                                                                                                <li>KAFKA_SCHEMA_REGISTRY</li>
+                                                                                                                                                                                                <li>AZURE_SYNAPSE_ANALYTICS</li>
+                                                                                                                                                                                                <li>AZURE_DATA_LAKE_STORAGE</li>
+                                                                                                                                                                                                <li>MYSQL</li>
                                                                                                                                                                                                 <li>OCI_OBJECT_STORAGE</li>
                                                                                                                                                                                                 <li>KAFKA</li>
                                                                                                                                                                                                 <li>ORACLE</li>
@@ -426,7 +535,7 @@ Parameters
                                                                 <td>
                                             <div>The connection type.</div>
                                             <div>Required for create using <em>state=present</em>, update using <em>state=present</em> with connection_id present.</div>
-                                            <div>Applicable when connection_type is one of [&#x27;MYSQL&#x27;, &#x27;OCI_OBJECT_STORAGE&#x27;, &#x27;KAFKA&#x27;, &#x27;GOLDENGATE&#x27;, &#x27;ORACLE&#x27;]</div>
+                                            <div>Applicable when connection_type is one of [&#x27;AZURE_DATA_LAKE_STORAGE&#x27;, &#x27;MYSQL&#x27;, &#x27;OCI_OBJECT_STORAGE&#x27;, &#x27;KAFKA&#x27;, &#x27;GOLDENGATE&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;, &#x27;AZURE_SYNAPSE_ANALYTICS&#x27;, &#x27;POSTGRESQL&#x27;, &#x27;ORACLE&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -477,8 +586,8 @@ Parameters
                                                                 <td>
                                             <div>The name of the database.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when connection_type is &#x27;MYSQL&#x27;</div>
-                                            <div>Required when connection_type is &#x27;MYSQL&#x27;</div>
+                                            <div>Applicable when connection_type is one of [&#x27;MYSQL&#x27;, &#x27;POSTGRESQL&#x27;]</div>
+                                            <div>Required when connection_type is one of [&#x27;MYSQL&#x27;, &#x27;POSTGRESQL&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -564,9 +673,26 @@ Parameters
                                             <div>Required for create using <em>state=present</em>.</div>
                                             <div>Required for update, delete when environment variable <code>OCI_USE_NAME_AS_IDENTIFIER</code> is set.</div>
                                             <div>This parameter is updatable when <code>OCI_USE_NAME_AS_IDENTIFIER</code> is not set.</div>
-                                            <div>Applicable when connection_type is one of [&#x27;MYSQL&#x27;, &#x27;OCI_OBJECT_STORAGE&#x27;, &#x27;KAFKA&#x27;, &#x27;GOLDENGATE&#x27;, &#x27;ORACLE&#x27;]</div>
+                                            <div>Applicable when connection_type is one of [&#x27;AZURE_DATA_LAKE_STORAGE&#x27;, &#x27;MYSQL&#x27;, &#x27;OCI_OBJECT_STORAGE&#x27;, &#x27;KAFKA&#x27;, &#x27;GOLDENGATE&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;, &#x27;AZURE_SYNAPSE_ANALYTICS&#x27;, &#x27;POSTGRESQL&#x27;, &#x27;ORACLE&#x27;]</div>
                                                                 <div style="font-size: small; color: darkgreen"><br/>aliases: name</div>
                                     </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-endpoint"></div>
+                    <b>endpoint</b>
+                    <a class="ansibleOptionLink" href="#parameter-endpoint" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Azure Storage service endpoint. e.g: https://test.blob.core.windows.net</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when connection_type is &#x27;AZURE_DATA_LAKE_STORAGE&#x27;</div>
+                                                        </td>
             </tr>
                                 <tr>
                                                                 <td colspan="2">
@@ -618,7 +744,8 @@ Parameters
                                                                 <td>
                                             <div>The name or address of a host.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when connection_type is one of [&#x27;MYSQL&#x27;, &#x27;GOLDENGATE&#x27;]</div>
+                                            <div>Applicable when connection_type is one of [&#x27;MYSQL&#x27;, &#x27;GOLDENGATE&#x27;, &#x27;POSTGRESQL&#x27;]</div>
+                                            <div>Required when connection_type is &#x27;POSTGRESQL&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -666,7 +793,7 @@ Parameters
                                                                 <td>
                                             <div>The base64 encoded content of the KeyStore file.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when connection_type is &#x27;KAFKA&#x27;</div>
+                                            <div>Applicable when connection_type is one of [&#x27;KAFKA&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -683,7 +810,7 @@ Parameters
                                                                 <td>
                                             <div>The KeyStore password.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when connection_type is &#x27;KAFKA&#x27;</div>
+                                            <div>Applicable when connection_type is one of [&#x27;KAFKA&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -716,7 +843,8 @@ Parameters
                                                                 <td>
                                             <div>The password Oracle GoldenGate uses to connect the associated RDBMS.  It must conform to the specific security requirements implemented by the database including length, case sensitivity, and so on.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Required when connection_type is one of [&#x27;MYSQL&#x27;, &#x27;ORACLE&#x27;]</div>
+                                            <div>Applicable when connection_type is one of [&#x27;MYSQL&#x27;, &#x27;KAFKA&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;, &#x27;AZURE_SYNAPSE_ANALYTICS&#x27;, &#x27;POSTGRESQL&#x27;, &#x27;ORACLE&#x27;]</div>
+                                            <div>Required when connection_type is one of [&#x27;MYSQL&#x27;, &#x27;AZURE_SYNAPSE_ANALYTICS&#x27;, &#x27;POSTGRESQL&#x27;, &#x27;ORACLE&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -733,7 +861,8 @@ Parameters
                                                                 <td>
                                             <div>The port of an endpoint usually specified for a connection.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when connection_type is one of [&#x27;MYSQL&#x27;, &#x27;GOLDENGATE&#x27;]</div>
+                                            <div>Applicable when connection_type is one of [&#x27;MYSQL&#x27;, &#x27;GOLDENGATE&#x27;, &#x27;POSTGRESQL&#x27;]</div>
+                                            <div>Required when connection_type is &#x27;POSTGRESQL&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -750,7 +879,7 @@ Parameters
                                                                 <td>
                                             <div>The private IP address of the connection&#x27;s endpoint in the customer&#x27;s VCN, typically a database endpoint or a big data endpoint (e.g. Kafka bootstrap server). In case the privateIp is provided, the subnetId must also be provided. In case the privateIp (and the subnetId) is not provided it is assumed the datasource is publicly accessible. In case the connection is accessible only privately, the lack of privateIp will result in not being able to access the connection.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when connection_type is one of [&#x27;MYSQL&#x27;, &#x27;GOLDENGATE&#x27;, &#x27;ORACLE&#x27;]</div>
+                                            <div>Applicable when connection_type is one of [&#x27;MYSQL&#x27;, &#x27;GOLDENGATE&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;, &#x27;POSTGRESQL&#x27;, &#x27;ORACLE&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -769,6 +898,23 @@ Parameters
                                             <div>This parameter is updatable.</div>
                                             <div>Applicable when connection_type is &#x27;OCI_OBJECT_STORAGE&#x27;</div>
                                             <div>Required when connection_type is &#x27;OCI_OBJECT_STORAGE&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-private_key_passphrase"></div>
+                    <b>private_key_passphrase</b>
+                    <a class="ansibleOptionLink" href="#parameter-private_key_passphrase" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The passphrase of the private key.</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when connection_type is &#x27;OCI_OBJECT_STORAGE&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -825,6 +971,23 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-sas_token"></div>
+                    <b>sas_token</b>
+                    <a class="ansibleOptionLink" href="#parameter-sas_token" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Credential that uses a shared access signature (SAS) to authenticate to an Azure Service. This property is required when &#x27;authenticationType&#x27; is set to &#x27;SHARED_ACCESS_SIGNATURE&#x27;. e.g.: ?sv=2020-06-08&amp;ss=bfqt&amp;srt=sco&amp;sp=rwdlacupyx&amp;se=2020-09-10T20:27:28Z&amp;st=2022-08-05T12:27:28Z&amp;spr=https&amp;sig=C1IgHsiLBmTSStYkXXGLTP8it0xBrArcg CqOsZbXwIQ%3D</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when connection_type is &#x27;AZURE_DATA_LAKE_STORAGE&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-security_protocol"></div>
                     <b>security_protocol</b>
                     <a class="ansibleOptionLink" href="#parameter-security_protocol" title="Permalink to this option"></a>
@@ -835,10 +998,10 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Security Type for MySQL.</div>
+                                            <div>Security protocol for PostgreSQL.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when connection_type is one of [&#x27;MYSQL&#x27;, &#x27;KAFKA&#x27;]</div>
-                                            <div>Required when connection_type is &#x27;MYSQL&#x27;</div>
+                                            <div>Applicable when connection_type is one of [&#x27;MYSQL&#x27;, &#x27;KAFKA&#x27;, &#x27;POSTGRESQL&#x27;]</div>
+                                            <div>Required when connection_type is one of [&#x27;MYSQL&#x27;, &#x27;POSTGRESQL&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -870,9 +1033,9 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Database Certificate - The base64 encoded content of mysql.pem file containing the server public key (for 1 and 2-way SSL).</div>
+                                            <div>The base64 encoded certificate of the trusted certificate authorities (Trusted CA) for PostgreSQL.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when connection_type is &#x27;MYSQL&#x27;</div>
+                                            <div>Applicable when connection_type is one of [&#x27;MYSQL&#x27;, &#x27;POSTGRESQL&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -887,9 +1050,9 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Client Certificate - The base64 encoded content of client-cert.pem file containing the client public key (for 2-way SSL).</div>
+                                            <div>The base64 encoded certificate of the PostgreSQL server.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when connection_type is &#x27;MYSQL&#x27;</div>
+                                            <div>Applicable when connection_type is one of [&#x27;MYSQL&#x27;, &#x27;POSTGRESQL&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -904,9 +1067,9 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Certificates revoked by certificate authorities (CA). Server certificate must not be on this list (for 1 and 2-way SSL). Note: This is an optional and that too only applicable if TLS/MTLS option is selected.</div>
+                                            <div>The base64 encoded list of certificates revoked by the trusted certificate authorities (Trusted CA) for PostgreSQL.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when connection_type is &#x27;MYSQL&#x27;</div>
+                                            <div>Applicable when connection_type is one of [&#x27;MYSQL&#x27;, &#x27;POSTGRESQL&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -921,9 +1084,9 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Client Key - The client-key.pem containing the client private key (for 2-way SSL).</div>
+                                            <div>The base64 encoded private key of the PostgreSQL server.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when connection_type is &#x27;MYSQL&#x27;</div>
+                                            <div>Applicable when connection_type is one of [&#x27;MYSQL&#x27;, &#x27;POSTGRESQL&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -938,9 +1101,9 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The password for the cert inside of of the KeyStore. In case it differs from the KeyStore password, it should be provided.</div>
+                                            <div>The password for the cert inside the KeyStore. In case it differs from the KeyStore password, it should be provided.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when connection_type is &#x27;KAFKA&#x27;</div>
+                                            <div>Applicable when connection_type is one of [&#x27;KAFKA&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -955,9 +1118,9 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>SSL modes for MySQL.</div>
+                                            <div>SSL modes for PostgreSQL.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when connection_type is &#x27;MYSQL&#x27;</div>
+                                            <div>Applicable when connection_type is one of [&#x27;MYSQL&#x27;, &#x27;POSTGRESQL&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1025,7 +1188,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The MySQL technology type.</div>
+                                            <div>The PostgreSQL technology type.</div>
                                             <div>Required for create using <em>state=present</em>.</div>
                                                         </td>
             </tr>
@@ -1075,7 +1238,7 @@ Parameters
                                                                 <td>
                                             <div>The base64 encoded content of the TrustStore file.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when connection_type is &#x27;KAFKA&#x27;</div>
+                                            <div>Applicable when connection_type is one of [&#x27;KAFKA&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1092,7 +1255,25 @@ Parameters
                                                                 <td>
                                             <div>The TrustStore password.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Applicable when connection_type is &#x27;KAFKA&#x27;</div>
+                                            <div>Applicable when connection_type is one of [&#x27;KAFKA&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;]</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-url"></div>
+                    <b>url</b>
+                    <a class="ansibleOptionLink" href="#parameter-url" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Kafka Schema Registry URL. e.g.: &#x27;https://server1.us.oracle.com:8081&#x27;</div>
+                                            <div>This parameter is updatable.</div>
+                                            <div>Applicable when connection_type is &#x27;KAFKA_SCHEMA_REGISTRY&#x27;</div>
+                                            <div>Required when connection_type is &#x27;KAFKA_SCHEMA_REGISTRY&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1126,7 +1307,8 @@ Parameters
                                                                 <td>
                                             <div>The username Oracle GoldenGate uses to connect the associated RDBMS.  This username must already exist and be available for use by the database.  It must conform to the security requirements implemented by the database including length, case sensitivity, and so on.</div>
                                             <div>This parameter is updatable.</div>
-                                            <div>Required when connection_type is one of [&#x27;MYSQL&#x27;, &#x27;ORACLE&#x27;]</div>
+                                            <div>Applicable when connection_type is one of [&#x27;MYSQL&#x27;, &#x27;KAFKA&#x27;, &#x27;KAFKA_SCHEMA_REGISTRY&#x27;, &#x27;AZURE_SYNAPSE_ANALYTICS&#x27;, &#x27;POSTGRESQL&#x27;, &#x27;ORACLE&#x27;]</div>
+                                            <div>Required when connection_type is one of [&#x27;MYSQL&#x27;, &#x27;AZURE_SYNAPSE_ANALYTICS&#x27;, &#x27;POSTGRESQL&#x27;, &#x27;ORACLE&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1221,6 +1403,111 @@ Examples
 .. code-block:: yaml+jinja
 
     
+    - name: Create connection with connection_type = POSTGRESQL
+      oci_golden_gate_connection:
+        # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        technology_type: technology_type_example
+        connection_type: POSTGRESQL
+
+        # optional
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        database_name: database_name_example
+        ssl_mode: ssl_mode_example
+        ssl_ca: ssl_ca_example
+        ssl_crl: ssl_crl_example
+        ssl_cert: ssl_cert_example
+        ssl_key: ssl_key_example
+        additional_attributes:
+        - # required
+          name: name_example
+          value: value_example
+        security_protocol: security_protocol_example
+        host: host_example
+        port: 56
+        private_ip: private_ip_example
+        display_name: display_name_example
+        description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        nsg_ids: [ "nsg_ids_example" ]
+        username: username_example
+        password: example-password
+
+    - name: Create connection with connection_type = KAFKA_SCHEMA_REGISTRY
+      oci_golden_gate_connection:
+        # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        technology_type: technology_type_example
+        connection_type: KAFKA_SCHEMA_REGISTRY
+
+        # optional
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        url: url_example
+        trust_store: trust_store_example
+        trust_store_password: example-password
+        key_store: key_store_example
+        key_store_password: example-password
+        ssl_key_password: example-password
+        authentication_type: authentication_type_example
+        private_ip: private_ip_example
+        display_name: display_name_example
+        description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        nsg_ids: [ "nsg_ids_example" ]
+        username: username_example
+        password: example-password
+
+    - name: Create connection with connection_type = AZURE_SYNAPSE_ANALYTICS
+      oci_golden_gate_connection:
+        # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        technology_type: technology_type_example
+        connection_type: AZURE_SYNAPSE_ANALYTICS
+
+        # optional
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        display_name: display_name_example
+        description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        nsg_ids: [ "nsg_ids_example" ]
+        connection_string: connection_string_example
+        username: username_example
+        password: example-password
+
+    - name: Create connection with connection_type = AZURE_DATA_LAKE_STORAGE
+      oci_golden_gate_connection:
+        # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        technology_type: technology_type_example
+        connection_type: AZURE_DATA_LAKE_STORAGE
+
+        # optional
+        subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        authentication_type: authentication_type_example
+        account_name: account_name_example
+        account_key: account_key_example
+        sas_token: sas_token_example
+        azure_tenant_id: "ocid1.azuretenant.oc1..xxxxxxEXAMPLExxxxxx"
+        client_id: "ocid1.client.oc1..xxxxxxEXAMPLExxxxxx"
+        client_secret: client_secret_example
+        endpoint: endpoint_example
+        display_name: display_name_example
+        description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        nsg_ids: [ "nsg_ids_example" ]
+
     - name: Create connection with connection_type = MYSQL
       oci_golden_gate_connection:
         # required
@@ -1242,8 +1529,9 @@ Examples
           value: value_example
         db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         security_protocol: security_protocol_example
-        username: username_example
-        password: example-password
+        host: host_example
+        port: 56
+        private_ip: private_ip_example
         display_name: display_name_example
         description: description_example
         freeform_tags: {'Department': 'Finance'}
@@ -1251,9 +1539,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
-        host: host_example
-        port: 56
-        private_ip: private_ip_example
+        username: username_example
+        password: example-password
 
     - name: Create connection with connection_type = OCI_OBJECT_STORAGE
       oci_golden_gate_connection:
@@ -1268,6 +1555,7 @@ Examples
         region: us-phoenix-1
         user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
         private_key_file: private_key_file_example
+        private_key_passphrase: private_key_passphrase_example
         public_key_fingerprint: public_key_fingerprint_example
         display_name: display_name_example
         description: description_example
@@ -1295,8 +1583,6 @@ Examples
           port: 56
           private_ip: private_ip_example
         security_protocol: security_protocol_example
-        username: username_example
-        password: example-password
         trust_store: trust_store_example
         trust_store_password: example-password
         key_store: key_store_example
@@ -1311,6 +1597,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        username: username_example
+        password: example-password
 
     - name: Create connection with connection_type = ORACLE
       oci_golden_gate_connection:
@@ -1321,12 +1609,10 @@ Examples
 
         # optional
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
-        connection_string: connection_string_example
         wallet: wallet_example
         session_mode: session_mode_example
         database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-        username: username_example
-        password: example-password
+        private_ip: private_ip_example
         display_name: display_name_example
         description: description_example
         freeform_tags: {'Department': 'Finance'}
@@ -1334,7 +1620,9 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
-        private_ip: private_ip_example
+        connection_string: connection_string_example
+        username: username_example
+        password: example-password
 
     - name: Create connection with connection_type = GOLDENGATE
       oci_golden_gate_connection:
@@ -1345,6 +1633,10 @@ Examples
 
         # optional
         subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+        deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
+        host: host_example
+        port: 56
+        private_ip: private_ip_example
         display_name: display_name_example
         description: description_example
         freeform_tags: {'Department': 'Finance'}
@@ -1352,10 +1644,99 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
-        deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    - name: Update connection with connection_type = POSTGRESQL
+      oci_golden_gate_connection:
+        # required
+        connection_type: POSTGRESQL
+
+        # optional
+        database_name: database_name_example
+        ssl_mode: ssl_mode_example
+        ssl_ca: ssl_ca_example
+        ssl_crl: ssl_crl_example
+        ssl_cert: ssl_cert_example
+        ssl_key: ssl_key_example
+        additional_attributes:
+        - # required
+          name: name_example
+          value: value_example
+        security_protocol: security_protocol_example
         host: host_example
         port: 56
         private_ip: private_ip_example
+        display_name: display_name_example
+        description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        nsg_ids: [ "nsg_ids_example" ]
+        username: username_example
+        password: example-password
+
+    - name: Update connection with connection_type = KAFKA_SCHEMA_REGISTRY
+      oci_golden_gate_connection:
+        # required
+        connection_type: KAFKA_SCHEMA_REGISTRY
+
+        # optional
+        url: url_example
+        trust_store: trust_store_example
+        trust_store_password: example-password
+        key_store: key_store_example
+        key_store_password: example-password
+        ssl_key_password: example-password
+        authentication_type: authentication_type_example
+        private_ip: private_ip_example
+        display_name: display_name_example
+        description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        nsg_ids: [ "nsg_ids_example" ]
+        username: username_example
+        password: example-password
+
+    - name: Update connection with connection_type = AZURE_SYNAPSE_ANALYTICS
+      oci_golden_gate_connection:
+        # required
+        connection_type: AZURE_SYNAPSE_ANALYTICS
+
+        # optional
+        display_name: display_name_example
+        description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        nsg_ids: [ "nsg_ids_example" ]
+        connection_string: connection_string_example
+        username: username_example
+        password: example-password
+
+    - name: Update connection with connection_type = AZURE_DATA_LAKE_STORAGE
+      oci_golden_gate_connection:
+        # required
+        connection_type: AZURE_DATA_LAKE_STORAGE
+
+        # optional
+        authentication_type: authentication_type_example
+        account_name: account_name_example
+        account_key: account_key_example
+        sas_token: sas_token_example
+        azure_tenant_id: "ocid1.azuretenant.oc1..xxxxxxEXAMPLExxxxxx"
+        client_id: "ocid1.client.oc1..xxxxxxEXAMPLExxxxxx"
+        client_secret: client_secret_example
+        endpoint: endpoint_example
+        display_name: display_name_example
+        description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        nsg_ids: [ "nsg_ids_example" ]
 
     - name: Update connection with connection_type = MYSQL
       oci_golden_gate_connection:
@@ -1375,8 +1756,9 @@ Examples
           value: value_example
         db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         security_protocol: security_protocol_example
-        username: username_example
-        password: example-password
+        host: host_example
+        port: 56
+        private_ip: private_ip_example
         display_name: display_name_example
         description: description_example
         freeform_tags: {'Department': 'Finance'}
@@ -1384,9 +1766,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
-        host: host_example
-        port: 56
-        private_ip: private_ip_example
+        username: username_example
+        password: example-password
 
     - name: Update connection with connection_type = OCI_OBJECT_STORAGE
       oci_golden_gate_connection:
@@ -1398,6 +1779,7 @@ Examples
         region: us-phoenix-1
         user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
         private_key_file: private_key_file_example
+        private_key_passphrase: private_key_passphrase_example
         public_key_fingerprint: public_key_fingerprint_example
         display_name: display_name_example
         description: description_example
@@ -1422,8 +1804,6 @@ Examples
           port: 56
           private_ip: private_ip_example
         security_protocol: security_protocol_example
-        username: username_example
-        password: example-password
         trust_store: trust_store_example
         trust_store_password: example-password
         key_store: key_store_example
@@ -1438,6 +1818,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        username: username_example
+        password: example-password
 
     - name: Update connection with connection_type = ORACLE
       oci_golden_gate_connection:
@@ -1445,12 +1827,10 @@ Examples
         connection_type: ORACLE
 
         # optional
-        connection_string: connection_string_example
         wallet: wallet_example
         session_mode: session_mode_example
         database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-        username: username_example
-        password: example-password
+        private_ip: private_ip_example
         display_name: display_name_example
         description: description_example
         freeform_tags: {'Department': 'Finance'}
@@ -1458,12 +1838,89 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
-        private_ip: private_ip_example
+        connection_string: connection_string_example
+        username: username_example
+        password: example-password
 
     - name: Update connection with connection_type = GOLDENGATE
       oci_golden_gate_connection:
         # required
         connection_type: GOLDENGATE
+
+        # optional
+        deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
+        host: host_example
+        port: 56
+        private_ip: private_ip_example
+        display_name: display_name_example
+        description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        nsg_ids: [ "nsg_ids_example" ]
+
+    - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = POSTGRESQL
+      oci_golden_gate_connection:
+        # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        connection_type: POSTGRESQL
+
+        # optional
+        database_name: database_name_example
+        ssl_mode: ssl_mode_example
+        ssl_ca: ssl_ca_example
+        ssl_crl: ssl_crl_example
+        ssl_cert: ssl_cert_example
+        ssl_key: ssl_key_example
+        additional_attributes:
+        - # required
+          name: name_example
+          value: value_example
+        security_protocol: security_protocol_example
+        host: host_example
+        port: 56
+        private_ip: private_ip_example
+        display_name: display_name_example
+        description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        nsg_ids: [ "nsg_ids_example" ]
+        username: username_example
+        password: example-password
+
+    - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = KAFKA_SCHEMA_REGISTRY
+      oci_golden_gate_connection:
+        # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        connection_type: KAFKA_SCHEMA_REGISTRY
+
+        # optional
+        url: url_example
+        trust_store: trust_store_example
+        trust_store_password: example-password
+        key_store: key_store_example
+        key_store_password: example-password
+        ssl_key_password: example-password
+        authentication_type: authentication_type_example
+        private_ip: private_ip_example
+        display_name: display_name_example
+        description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        nsg_ids: [ "nsg_ids_example" ]
+        username: username_example
+        password: example-password
+
+    - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = AZURE_SYNAPSE_ANALYTICS
+      oci_golden_gate_connection:
+        # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        connection_type: AZURE_SYNAPSE_ANALYTICS
 
         # optional
         display_name: display_name_example
@@ -1473,10 +1930,32 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
-        deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
-        host: host_example
-        port: 56
-        private_ip: private_ip_example
+        connection_string: connection_string_example
+        username: username_example
+        password: example-password
+
+    - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = AZURE_DATA_LAKE_STORAGE
+      oci_golden_gate_connection:
+        # required
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        connection_type: AZURE_DATA_LAKE_STORAGE
+
+        # optional
+        authentication_type: authentication_type_example
+        account_name: account_name_example
+        account_key: account_key_example
+        sas_token: sas_token_example
+        azure_tenant_id: "ocid1.azuretenant.oc1..xxxxxxEXAMPLExxxxxx"
+        client_id: "ocid1.client.oc1..xxxxxxEXAMPLExxxxxx"
+        client_secret: client_secret_example
+        endpoint: endpoint_example
+        display_name: display_name_example
+        description: description_example
+        freeform_tags: {'Department': 'Finance'}
+        defined_tags: {'Operations': {'CostCenter': 'US'}}
+        vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
+        key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
+        nsg_ids: [ "nsg_ids_example" ]
 
     - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = MYSQL
       oci_golden_gate_connection:
@@ -1497,8 +1976,9 @@ Examples
           value: value_example
         db_system_id: "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx"
         security_protocol: security_protocol_example
-        username: username_example
-        password: example-password
+        host: host_example
+        port: 56
+        private_ip: private_ip_example
         display_name: display_name_example
         description: description_example
         freeform_tags: {'Department': 'Finance'}
@@ -1506,9 +1986,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
-        host: host_example
-        port: 56
-        private_ip: private_ip_example
+        username: username_example
+        password: example-password
 
     - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = OCI_OBJECT_STORAGE
       oci_golden_gate_connection:
@@ -1521,6 +2000,7 @@ Examples
         region: us-phoenix-1
         user_id: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
         private_key_file: private_key_file_example
+        private_key_passphrase: private_key_passphrase_example
         public_key_fingerprint: public_key_fingerprint_example
         display_name: display_name_example
         description: description_example
@@ -1546,8 +2026,6 @@ Examples
           port: 56
           private_ip: private_ip_example
         security_protocol: security_protocol_example
-        username: username_example
-        password: example-password
         trust_store: trust_store_example
         trust_store_password: example-password
         key_store: key_store_example
@@ -1562,6 +2040,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
+        username: username_example
+        password: example-password
 
     - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = ORACLE
       oci_golden_gate_connection:
@@ -1570,12 +2050,10 @@ Examples
         connection_type: ORACLE
 
         # optional
-        connection_string: connection_string_example
         wallet: wallet_example
         session_mode: session_mode_example
         database_id: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
-        username: username_example
-        password: example-password
+        private_ip: private_ip_example
         display_name: display_name_example
         description: description_example
         freeform_tags: {'Department': 'Finance'}
@@ -1583,7 +2061,9 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
-        private_ip: private_ip_example
+        connection_string: connection_string_example
+        username: username_example
+        password: example-password
 
     - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set) with connection_type = GOLDENGATE
       oci_golden_gate_connection:
@@ -1592,6 +2072,10 @@ Examples
         connection_type: GOLDENGATE
 
         # optional
+        deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
+        host: host_example
+        port: 56
+        private_ip: private_ip_example
         display_name: display_name_example
         description: description_example
         freeform_tags: {'Department': 'Finance'}
@@ -1599,10 +2083,6 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
         nsg_ids: [ "nsg_ids_example" ]
-        deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
-        host: host_example
-        port: 56
-        private_ip: private_ip_example
 
     - name: Delete connection
       oci_golden_gate_connection:
@@ -1652,10 +2132,28 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Connection resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;additional_attributes&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;bootstrap_servers&#x27;: [{&#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;port&#x27;: 56, &#x27;private_ip&#x27;: &#x27;private_ip_example&#x27;}], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_string&#x27;: &#x27;connection_string_example&#x27;, &#x27;connection_type&#x27;: &#x27;GOLDENGATE&#x27;, &#x27;database_id&#x27;: &#x27;ocid1.database.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_name&#x27;: &#x27;database_name_example&#x27;, &#x27;db_system_id&#x27;: &#x27;ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deployment_id&#x27;: &#x27;ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ingress_ips&#x27;: [{&#x27;ingress_ip&#x27;: &#x27;ingress_ip_example&#x27;}], &#x27;key_id&#x27;: &#x27;ocid1.key.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;port&#x27;: 56, &#x27;private_ip&#x27;: &#x27;private_ip_example&#x27;, &#x27;region&#x27;: &#x27;us-phoenix-1&#x27;, &#x27;security_protocol&#x27;: &#x27;SSL&#x27;, &#x27;session_mode&#x27;: &#x27;DIRECT&#x27;, &#x27;ssl_mode&#x27;: &#x27;DISABLED&#x27;, &#x27;stream_pool_id&#x27;: &#x27;ocid1.streampool.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;technology_type&#x27;: &#x27;GOLDENGATE&#x27;, &#x27;tenancy_id&#x27;: &#x27;ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;user_id&#x27;: &#x27;ocid1.user.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;username&#x27;: &#x27;username_example&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;account_name&#x27;: &#x27;account_name_example&#x27;, &#x27;additional_attributes&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;authentication_type&#x27;: &#x27;SHARED_KEY&#x27;, &#x27;azure_tenant_id&#x27;: &#x27;ocid1.azuretenant.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;bootstrap_servers&#x27;: [{&#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;port&#x27;: 56, &#x27;private_ip&#x27;: &#x27;private_ip_example&#x27;}], &#x27;client_id&#x27;: &#x27;ocid1.client.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_string&#x27;: &#x27;connection_string_example&#x27;, &#x27;connection_type&#x27;: &#x27;GOLDENGATE&#x27;, &#x27;database_id&#x27;: &#x27;ocid1.database.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_name&#x27;: &#x27;database_name_example&#x27;, &#x27;db_system_id&#x27;: &#x27;ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deployment_id&#x27;: &#x27;ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;endpoint&#x27;: &#x27;endpoint_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ingress_ips&#x27;: [{&#x27;ingress_ip&#x27;: &#x27;ingress_ip_example&#x27;}], &#x27;key_id&#x27;: &#x27;ocid1.key.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;port&#x27;: 56, &#x27;private_ip&#x27;: &#x27;private_ip_example&#x27;, &#x27;region&#x27;: &#x27;us-phoenix-1&#x27;, &#x27;security_protocol&#x27;: &#x27;SSL&#x27;, &#x27;session_mode&#x27;: &#x27;DIRECT&#x27;, &#x27;ssl_mode&#x27;: &#x27;DISABLED&#x27;, &#x27;stream_pool_id&#x27;: &#x27;ocid1.streampool.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;technology_type&#x27;: &#x27;AZURE_DATA_LAKE_STORAGE&#x27;, &#x27;tenancy_id&#x27;: &#x27;ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;url&#x27;: &#x27;url_example&#x27;, &#x27;user_id&#x27;: &#x27;ocid1.user.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;username&#x27;: &#x27;username_example&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-connection/account_name"></div>
+                    <b>account_name</b>
+                    <a class="ansibleOptionLink" href="#return-connection/account_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Sets the Azure storage account name.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">account_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-connection/additional_attributes"></div>
@@ -1710,6 +2208,42 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                     
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-connection/authentication_type"></div>
+                    <b>authentication_type</b>
+                    <a class="ansibleOptionLink" href="#return-connection/authentication_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Used authentication mechanism to access Azure Data Lake Storage.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">SHARED_KEY</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-connection/azure_tenant_id"></div>
+                    <b>azure_tenant_id</b>
+                    <a class="ansibleOptionLink" href="#return-connection/azure_tenant_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Azure tenant ID of the application. This property is required when &#x27;authenticationType&#x27; is set to &#x27;AZURE_ACTIVE_DIRECTORY&#x27;. e.g.: 14593954-d337-4a61-a364-9f758c64f97f</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.azuretenant.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
@@ -1787,6 +2321,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-connection/client_id"></div>
+                    <b>client_id</b>
+                    <a class="ansibleOptionLink" href="#return-connection/client_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Azure client ID of the application. This property is required when &#x27;authenticationType&#x27; is set to &#x27;AZURE_ACTIVE_DIRECTORY&#x27;. e.g.: 06ecaabf-8b80-4ec8-a0ec-20cbf463703d</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.client.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-connection/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-connection/compartment_id" title="Permalink to this return value"></a>
@@ -1814,7 +2366,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Connect descriptor or Easy Connect Naming method that Oracle GoldenGate uses to connect to a database.</div>
+                                            <div>JDBC connection string. e.g.: &#x27;jdbc:sqlserver://&lt;synapse-workspace&gt;.sql.azuresynapse.net:1433;database=&lt;db- name&gt;;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.sql.azuresynapse.net;loginTimeout=300;&#x27;</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">connection_string_example</div>
@@ -1963,6 +2515,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-connection/endpoint"></div>
+                    <b>endpoint</b>
+                    <a class="ansibleOptionLink" href="#return-connection/endpoint" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Azure Storage service endpoint. e.g: https://test.blob.core.windows.net</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">endpoint_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -2299,10 +2869,10 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The GoldenGate technology type.</div>
+                                            <div>The Azure Data Lake Storage technology type.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">GOLDENGATE</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">AZURE_DATA_LAKE_STORAGE</div>
                                     </td>
             </tr>
                                 <tr>
@@ -2357,6 +2927,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-connection/url"></div>
+                    <b>url</b>
+                    <a class="ansibleOptionLink" href="#return-connection/url" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Kafka Schema Registry URL. e.g.: &#x27;https://server1.us.oracle.com:8081&#x27;</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">url_example</div>
                                     </td>
             </tr>
                                 <tr>

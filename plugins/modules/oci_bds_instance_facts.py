@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2020, 2022 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2023 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -485,6 +485,12 @@ bds_instances:
             returned: on success
             type: bool
             sample: true
+        cluster_profile:
+            description:
+                - Profile of the Big Data Service cluster.
+            returned: on success
+            type: str
+            sample: HADOOP_EXTENDED
         time_created:
             description:
                 - The time the cluster was created, shown as an RFC 3339 formatted datetime string.
@@ -574,6 +580,7 @@ bds_instances:
         "is_high_availability": true,
         "is_secure": true,
         "is_cloud_sql_configured": true,
+        "cluster_profile": "HADOOP_EXTENDED",
         "time_created": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2020, 2022 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2023 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -123,6 +123,10 @@ options:
         description:
             - The user-defined kerberos realm name.
         type: str
+    cluster_profile:
+        description:
+            - Profile of the Big Data Service cluster.
+        type: str
     display_name:
         description:
             - Name of the Big Data Service cluster.
@@ -203,6 +207,7 @@ EXAMPLES = """
       is_nat_gateway_required: true
       cidr_block: cidr_block_example
     kerberos_realm_name: kerberos_realm_name_example
+    cluster_profile: cluster_profile_example
     bootstrap_script_url: bootstrap_script_url_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -648,6 +653,12 @@ bds_instance:
             returned: on success
             type: str
             sample: "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        cluster_profile:
+            description:
+                - Profile of the Big Data Service cluster.
+            returned: on success
+            type: str
+            sample: HADOOP_EXTENDED
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -719,7 +730,8 @@ bds_instance:
         "bootstrap_script_url": "bootstrap_script_url_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx"
+        "kms_key_id": "ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx",
+        "cluster_profile": "HADOOP_EXTENDED"
     }
 """
 
@@ -915,6 +927,7 @@ def main():
                 ),
             ),
             kerberos_realm_name=dict(type="str"),
+            cluster_profile=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             bootstrap_script_url=dict(type="str"),
             freeform_tags=dict(type="dict"),

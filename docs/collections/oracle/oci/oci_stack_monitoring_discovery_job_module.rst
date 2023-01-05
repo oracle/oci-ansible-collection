@@ -30,7 +30,7 @@ oracle.oci.oci_stack_monitoring_discovery_job -- Manage a DiscoveryJob resource 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.6.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.7.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -481,11 +481,14 @@ Parameters
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>WEBLOGIC_DOMAIN</li>
                                                                                                                                                                                                 <li>EBS_INSTANCE</li>
+                                                                                                                                                                                                <li>SQL_SERVER</li>
+                                                                                                                                                                                                <li>APACHE_TOMCAT</li>
                                                                                                                                                                                                 <li>ORACLE_DATABASE</li>
                                                                                                                                                                                                 <li>OCI_ORACLE_DB</li>
                                                                                                                                                                                                 <li>OCI_ORACLE_CDB</li>
                                                                                                                                                                                                 <li>OCI_ORACLE_PDB</li>
                                                                                                                                                                                                 <li>HOST</li>
+                                                                                                                                                                                                <li>ORACLE_PSFT</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>

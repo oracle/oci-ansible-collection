@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2020, 2022 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2023 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -158,6 +158,12 @@ db_servers:
             returned: on success
             type: list
             sample: []
+        shape:
+            description:
+                - The shape of the Db server. The shape determines the amount of CPU, storage, and memory resources available.
+            returned: on success
+            type: str
+            sample: shape_example
         lifecycle_state:
             description:
                 - The current state of the Db server.
@@ -249,6 +255,7 @@ db_servers:
         "db_node_storage_size_in_gbs": 56,
         "vm_cluster_ids": [],
         "db_node_ids": [],
+        "shape": "shape_example",
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
         "max_cpu_count": 56,

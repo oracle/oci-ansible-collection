@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2020, 2022 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2023 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -24,8 +24,8 @@ short_description: Manage a Deployment resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Deployment resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new Deployment.
-    - "This resource has the following action operations in the M(oracle.oci.oci_golden_gate_deployment_actions) module: change_compartment, start, stop,
-      upgrade."
+    - "This resource has the following action operations in the M(oracle.oci.oci_golden_gate_deployment_actions) module: change_compartment,
+      collect_deployment_diagnostic, start, stop, upgrade."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -52,6 +52,7 @@ options:
             - "DATABASE_ORACLE"
             - "BIGDATA"
             - "DATABASE_MYSQL"
+            - "DATABASE_POSTGRESQL"
     display_name:
         description:
             - An object's Display Name.
@@ -139,9 +140,10 @@ options:
                 type: str
             admin_password:
                 description:
-                    - The password associated with the GoldenGate deployment console username.
+                    - "The password associated with the GoldenGate deployment console username.
                       The password must be 8 to 30 characters long and must contain at least 1 uppercase, 1 lowercase, 1 numeric,
                       and 1 special character. Special characters such as '$', '^', or '?' are not allowed.
+                      This field will be deprecated and replaced by \\"passwordSecretId\\"."
                     - This parameter is updatable.
                 type: str
             certificate:
@@ -494,6 +496,50 @@ deployment:
                     returned: on success
                     type: str
                     sample: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
+        deployment_diagnostic_data:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                namespace_name:
+                    description:
+                        - Name of namespace that serves as a container for all of your buckets
+                    returned: on success
+                    type: str
+                    sample: namespace_name_example
+                bucket_name:
+                    description:
+                        - Name of the bucket where the object is to be uploaded in the object storage
+                    returned: on success
+                    type: str
+                    sample: bucket_name_example
+                object_name:
+                    description:
+                        - Name of the diagnostic collected and uploaded to object storage
+                    returned: on success
+                    type: str
+                    sample: object_name_example
+                diagnostic_state:
+                    description:
+                        - The state of the deployment diagnostic collection.
+                    returned: on success
+                    type: str
+                    sample: IN_PROGRESS
+                time_diagnostic_start:
+                    description:
+                        - The time from which the diagnostic collection should collect the logs. The format is defined by
+                          L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
+                time_diagnostic_end:
+                    description:
+                        - The time until which the diagnostic collection should collect the logs. The format is defined by
+                          L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -529,6 +575,14 @@ deployment:
             "admin_username": "admin_username_example",
             "ogg_version": "ogg_version_example",
             "certificate": "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
+        },
+        "deployment_diagnostic_data": {
+            "namespace_name": "namespace_name_example",
+            "bucket_name": "bucket_name_example",
+            "object_name": "object_name_example",
+            "diagnostic_state": "IN_PROGRESS",
+            "time_diagnostic_start": "2013-10-20T19:20:30+01:00",
+            "time_diagnostic_end": "2013-10-20T19:20:30+01:00"
         }
     }
 """
@@ -696,7 +750,13 @@ def main():
             deployment_backup_id=dict(type="str"),
             deployment_type=dict(
                 type="str",
-                choices=["OGG", "DATABASE_ORACLE", "BIGDATA", "DATABASE_MYSQL"],
+                choices=[
+                    "OGG",
+                    "DATABASE_ORACLE",
+                    "BIGDATA",
+                    "DATABASE_MYSQL",
+                    "DATABASE_POSTGRESQL",
+                ],
             ),
             display_name=dict(aliases=["name"], type="str"),
             license_model=dict(

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2020, 2022 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2023 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -27,6 +27,8 @@ description:
       If-Match is checked against ETag values of the resource.  For information about moving
       resources between compartments, see L(Moving Resources Between
       Compartments,https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes).
+    - For I(action=collect_deployment_diagnostic), collects the diagnostic of a Deployment. When provided, If-Match is checked against ETag values of the
+      resource.
     - For I(action=start), starts a Deployment. When provided, If-Match is checked against ETag values of the resource.
     - For I(action=stop), stops a Deployment. When provided, If-Match is checked against ETag values of the resource.
     - For I(action=upgrade), upgrade a Deployment. When provided, If-Match is checked against ETag values of the resource.
@@ -37,6 +39,33 @@ options:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment being referenced.
             - Required for I(action=change_compartment).
+        type: str
+    namespace_name:
+        description:
+            - Name of namespace that serves as a container for all of your buckets
+            - Required for I(action=collect_deployment_diagnostic).
+        type: str
+    bucket_name:
+        description:
+            - Name of the bucket where the object is to be uploaded in the object storage
+            - Required for I(action=collect_deployment_diagnostic).
+        type: str
+    diagnostic_name_prefix:
+        description:
+            - Prefix of the diagnostic collected and uploaded to object storage
+            - Required for I(action=collect_deployment_diagnostic).
+        type: str
+    time_diagnostic_start:
+        description:
+            - The time from which the diagnostic collection should collect the logs. The format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339),
+              such as `2016-08-25T21:10:29.600Z`.
+            - Applicable only for I(action=collect_deployment_diagnostic).
+        type: str
+    time_diagnostic_end:
+        description:
+            - The time until which the diagnostic collection should collect the logs. The format is defined by L(RFC3339,https://tools.ietf.org/html/rfc3339),
+              such as `2016-08-25T21:10:29.600Z`.
+            - Applicable only for I(action=collect_deployment_diagnostic).
         type: str
     deployment_id:
         description:
@@ -59,6 +88,7 @@ options:
         required: true
         choices:
             - "change_compartment"
+            - "collect_deployment_diagnostic"
             - "start"
             - "stop"
             - "upgrade"
@@ -72,6 +102,19 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
+
+- name: Perform action collect_deployment_diagnostic on deployment
+  oci_golden_gate_deployment_actions:
+    # required
+    namespace_name: namespace_name_example
+    bucket_name: bucket_name_example
+    diagnostic_name_prefix: diagnostic_name_prefix_example
+    deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
+    action: collect_deployment_diagnostic
+
+    # optional
+    time_diagnostic_start: time_diagnostic_start_example
+    time_diagnostic_end: time_diagnostic_end_example
 
 - name: Perform action start on deployment with type = DEFAULT
   oci_golden_gate_deployment_actions:
@@ -333,6 +376,50 @@ deployment:
                     returned: on success
                     type: str
                     sample: "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
+        deployment_diagnostic_data:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                namespace_name:
+                    description:
+                        - Name of namespace that serves as a container for all of your buckets
+                    returned: on success
+                    type: str
+                    sample: namespace_name_example
+                bucket_name:
+                    description:
+                        - Name of the bucket where the object is to be uploaded in the object storage
+                    returned: on success
+                    type: str
+                    sample: bucket_name_example
+                object_name:
+                    description:
+                        - Name of the diagnostic collected and uploaded to object storage
+                    returned: on success
+                    type: str
+                    sample: object_name_example
+                diagnostic_state:
+                    description:
+                        - The state of the deployment diagnostic collection.
+                    returned: on success
+                    type: str
+                    sample: IN_PROGRESS
+                time_diagnostic_start:
+                    description:
+                        - The time from which the diagnostic collection should collect the logs. The format is defined by
+                          L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
+                time_diagnostic_end:
+                    description:
+                        - The time until which the diagnostic collection should collect the logs. The format is defined by
+                          L(RFC3339,https://tools.ietf.org/html/rfc3339), such as `2016-08-25T21:10:29.600Z`.
+                    returned: on success
+                    type: str
+                    sample: "2013-10-20T19:20:30+01:00"
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -368,6 +455,14 @@ deployment:
             "admin_username": "admin_username_example",
             "ogg_version": "ogg_version_example",
             "certificate": "-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----"
+        },
+        "deployment_diagnostic_data": {
+            "namespace_name": "namespace_name_example",
+            "bucket_name": "bucket_name_example",
+            "object_name": "object_name_example",
+            "diagnostic_state": "IN_PROGRESS",
+            "time_diagnostic_start": "2013-10-20T19:20:30+01:00",
+            "time_diagnostic_end": "2013-10-20T19:20:30+01:00"
         }
     }
 """
@@ -385,6 +480,7 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 try:
     from oci.golden_gate import GoldenGateClient
     from oci.golden_gate.models import ChangeDeploymentCompartmentDetails
+    from oci.golden_gate.models import CollectDeploymentDiagnosticDetails
     from oci.golden_gate.models import StartDeploymentDetails
     from oci.golden_gate.models import StopDeploymentDetails
     from oci.golden_gate.models import UpgradeDeploymentDetails
@@ -398,6 +494,7 @@ class DeploymentActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         change_compartment
+        collect_deployment_diagnostic
         start
         stop
         upgrade
@@ -429,6 +526,27 @@ class DeploymentActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 deployment_id=self.module.params.get("deployment_id"),
                 change_deployment_compartment_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def collect_deployment_diagnostic(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, CollectDeploymentDiagnosticDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.collect_deployment_diagnostic,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                deployment_id=self.module.params.get("deployment_id"),
+                collect_deployment_diagnostic_details=action_details,
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -518,12 +636,23 @@ def main():
     module_args.update(
         dict(
             compartment_id=dict(type="str"),
+            namespace_name=dict(type="str"),
+            bucket_name=dict(type="str"),
+            diagnostic_name_prefix=dict(type="str"),
+            time_diagnostic_start=dict(type="str"),
+            time_diagnostic_end=dict(type="str"),
             deployment_id=dict(aliases=["id"], type="str", required=True),
             type=dict(type="str", choices=["DEFAULT", "CURRENT_RELEASE"]),
             action=dict(
                 type="str",
                 required=True,
-                choices=["change_compartment", "start", "stop", "upgrade"],
+                choices=[
+                    "change_compartment",
+                    "collect_deployment_diagnostic",
+                    "start",
+                    "stop",
+                    "upgrade",
+                ],
             ),
         )
     )

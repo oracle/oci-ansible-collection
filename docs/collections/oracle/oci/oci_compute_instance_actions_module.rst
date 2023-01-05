@@ -30,7 +30,7 @@ oracle.oci.oci_compute_instance_actions -- Perform actions on an Instance resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.6.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.7.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,9 +57,9 @@ Synopsis
 .. Description
 
 - Perform actions on an Instance resource in Oracle Cloud Infrastructure
-- Moves an instance into a different compartment within the same tenancy. For information about moving resources between compartments, see `Moving Resources to a Different Compartment <https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes>`_.
+- For *action=change_compartment*, moves an instance into a different compartment within the same tenancy. For information about moving resources between compartments, see `Moving Resources to a Different Compartment <https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes>`_.
 - When you move an instance to a different compartment, associated resources such as boot volumes and VNICs are not moved.
-- Performs one of the following power actions on the specified instance:
+- For *action=instance_action*, performs one of the following power actions on the specified instance:
 - - **START** - Powers on the instance.
 - - **STOP** - Powers off the instance.
 - - **RESET** - Powers off the instance and then powers it back on.

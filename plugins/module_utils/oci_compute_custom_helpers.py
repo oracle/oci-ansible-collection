@@ -1,4 +1,4 @@
-# Copyright (c) 2020, 2022 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2023 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -507,17 +507,7 @@ class ComputeGlobalImageCapabilitySchemaVersionFactsHelperCustom:
         return get_resource_with_updated_schema_data_param_names(resource)
 
 
-def get_compute_instane_action_fn_attr(action):
-    if action == "change_compartment":
-        return "change_compartment"
-    return "instance_action"
-
-
 class InstanceActionsHelperCustom:
-    def get_action_fn(self, action):
-        action_fn_name = get_compute_instane_action_fn_attr(action)
-        return super(InstanceActionsHelperCustom, self).get_action_fn(action_fn_name)
-
     def instance_action(self):
         if self.module.params.get("action_type") is not None:
             action_details = oci_common_utils.convert_input_data_to_model_class(

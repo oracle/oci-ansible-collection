@@ -30,7 +30,7 @@ oracle.oci.oci_database_exadata_infrastructure -- Manage an ExadataInfrastructur
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.6.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.7.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -88,6 +88,44 @@ Parameters
                         <th width="100%">Comments</th>
         </tr>
                     <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-additional_compute_count"></div>
+                    <b>additional_compute_count</b>
+                    <a class="ansibleOptionLink" href="#parameter-additional_compute_count" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The requested number of additional compute servers for the Exadata infrastructure.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-additional_compute_system_model"></div>
+                    <b>additional_compute_system_model</b>
+                    <a class="ansibleOptionLink" href="#parameter-additional_compute_system_model" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>X7</li>
+                                                                                                                                                                                                <li>X8</li>
+                                                                                                                                                                                                <li>X8M</li>
+                                                                                                                                                                                                <li>X9M</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Oracle Exadata System Model specification. The system model determines the amount of compute or storage server resources available for use. For more information, please see <a href='https://docs.oracle.com/en/engineered-systems/exadata-cloud-at-customer/ecccm/ecc-system-config- options.html#GUID-9E090174-5C57-4EB1-9243-B470F9F10D6B'>System and Shape Configuration Options]</a></div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
                                                                 <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-additional_storage_count"></div>
                     <b>additional_storage_count</b>
@@ -1163,6 +1201,8 @@ Examples
           hours_of_day: [ "hours_of_day_example" ]
           lead_time_in_weeks: 56
         additional_storage_count: 56
+        additional_compute_count: 56
+        additional_compute_system_model: X7
         dns_server: [ "dns_server_example" ]
         ntp_server: [ "ntp_server_example" ]
         time_zone: time_zone_example
@@ -1212,6 +1252,8 @@ Examples
           hours_of_day: [ "hours_of_day_example" ]
           lead_time_in_weeks: 56
         additional_storage_count: 56
+        additional_compute_count: 56
+        additional_compute_system_model: X7
         dns_server: [ "dns_server_example" ]
         ntp_server: [ "ntp_server_example" ]
         time_zone: time_zone_example
@@ -1267,7 +1309,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the ExadataInfrastructure resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;activated_storage_count&#x27;: 56, &#x27;additional_storage_count&#x27;: 56, &#x27;admin_network_cidr&#x27;: &#x27;admin_network_cidr_example&#x27;, &#x27;cloud_control_plane_server1&#x27;: &#x27;cloud_control_plane_server1_example&#x27;, &#x27;cloud_control_plane_server2&#x27;: &#x27;cloud_control_plane_server2_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_count&#x27;: 56, &#x27;contacts&#x27;: [{&#x27;email&#x27;: &#x27;email_example&#x27;, &#x27;is_contact_mos_validated&#x27;: True, &#x27;is_primary&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;phone_number&#x27;: &#x27;phone_number_example&#x27;}], &#x27;corporate_proxy&#x27;: &#x27;corporate_proxy_example&#x27;, &#x27;cpus_enabled&#x27;: 56, &#x27;csi_number&#x27;: &#x27;csi_number_example&#x27;, &#x27;data_storage_size_in_tbs&#x27;: 1.2, &#x27;db_node_storage_size_in_gbs&#x27;: 56, &#x27;db_server_version&#x27;: &#x27;db_server_version_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;dns_server&#x27;: [], &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;gateway&#x27;: &#x27;gateway_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;infini_band_network_cidr&#x27;: &#x27;infini_band_network_cidr_example&#x27;, &#x27;is_cps_offline_report_enabled&#x27;: True, &#x27;last_maintenance_run_id&#x27;: &#x27;ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;maintenance_slo_status&#x27;: &#x27;OK&#x27;, &#x27;maintenance_window&#x27;: {&#x27;custom_action_timeout_in_mins&#x27;: 56, &#x27;days_of_week&#x27;: [{&#x27;name&#x27;: &#x27;MONDAY&#x27;}], &#x27;hours_of_day&#x27;: [], &#x27;is_custom_action_timeout_enabled&#x27;: True, &#x27;is_monthly_patching_enabled&#x27;: True, &#x27;lead_time_in_weeks&#x27;: 56, &#x27;months&#x27;: [{&#x27;name&#x27;: &#x27;JANUARY&#x27;}], &#x27;patching_mode&#x27;: &#x27;ROLLING&#x27;, &#x27;preference&#x27;: &#x27;NO_PREFERENCE&#x27;, &#x27;weeks_of_month&#x27;: []}, &#x27;max_cpu_count&#x27;: 56, &#x27;max_data_storage_in_t_bs&#x27;: 1.2, &#x27;max_db_node_storage_in_g_bs&#x27;: 56, &#x27;max_memory_in_gbs&#x27;: 56, &#x27;memory_size_in_gbs&#x27;: 56, &#x27;monthly_db_server_version&#x27;: &#x27;monthly_db_server_version_example&#x27;, &#x27;netmask&#x27;: &#x27;netmask_example&#x27;, &#x27;next_maintenance_run_id&#x27;: &#x27;ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ntp_server&#x27;: [], &#x27;rack_serial_number&#x27;: &#x27;rack_serial_number_example&#x27;, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;storage_count&#x27;: 56, &#x27;storage_server_version&#x27;: &#x27;storage_server_version_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_zone&#x27;: &#x27;time_zone_example&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;activated_storage_count&#x27;: 56, &#x27;additional_compute_count&#x27;: 56, &#x27;additional_compute_system_model&#x27;: &#x27;X7&#x27;, &#x27;additional_storage_count&#x27;: 56, &#x27;admin_network_cidr&#x27;: &#x27;admin_network_cidr_example&#x27;, &#x27;cloud_control_plane_server1&#x27;: &#x27;cloud_control_plane_server1_example&#x27;, &#x27;cloud_control_plane_server2&#x27;: &#x27;cloud_control_plane_server2_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compute_count&#x27;: 56, &#x27;contacts&#x27;: [{&#x27;email&#x27;: &#x27;email_example&#x27;, &#x27;is_contact_mos_validated&#x27;: True, &#x27;is_primary&#x27;: True, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;phone_number&#x27;: &#x27;phone_number_example&#x27;}], &#x27;corporate_proxy&#x27;: &#x27;corporate_proxy_example&#x27;, &#x27;cpus_enabled&#x27;: 56, &#x27;csi_number&#x27;: &#x27;csi_number_example&#x27;, &#x27;data_storage_size_in_tbs&#x27;: 1.2, &#x27;db_node_storage_size_in_gbs&#x27;: 56, &#x27;db_server_version&#x27;: &#x27;db_server_version_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;dns_server&#x27;: [], &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;gateway&#x27;: &#x27;gateway_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;infini_band_network_cidr&#x27;: &#x27;infini_band_network_cidr_example&#x27;, &#x27;is_cps_offline_report_enabled&#x27;: True, &#x27;last_maintenance_run_id&#x27;: &#x27;ocid1.lastmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;maintenance_slo_status&#x27;: &#x27;OK&#x27;, &#x27;maintenance_window&#x27;: {&#x27;custom_action_timeout_in_mins&#x27;: 56, &#x27;days_of_week&#x27;: [{&#x27;name&#x27;: &#x27;MONDAY&#x27;}], &#x27;hours_of_day&#x27;: [], &#x27;is_custom_action_timeout_enabled&#x27;: True, &#x27;is_monthly_patching_enabled&#x27;: True, &#x27;lead_time_in_weeks&#x27;: 56, &#x27;months&#x27;: [{&#x27;name&#x27;: &#x27;JANUARY&#x27;}], &#x27;patching_mode&#x27;: &#x27;ROLLING&#x27;, &#x27;preference&#x27;: &#x27;NO_PREFERENCE&#x27;, &#x27;weeks_of_month&#x27;: []}, &#x27;max_cpu_count&#x27;: 56, &#x27;max_data_storage_in_t_bs&#x27;: 1.2, &#x27;max_db_node_storage_in_g_bs&#x27;: 56, &#x27;max_memory_in_gbs&#x27;: 56, &#x27;memory_size_in_gbs&#x27;: 56, &#x27;monthly_db_server_version&#x27;: &#x27;monthly_db_server_version_example&#x27;, &#x27;netmask&#x27;: &#x27;netmask_example&#x27;, &#x27;next_maintenance_run_id&#x27;: &#x27;ocid1.nextmaintenancerun.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ntp_server&#x27;: [], &#x27;rack_serial_number&#x27;: &#x27;rack_serial_number_example&#x27;, &#x27;shape&#x27;: &#x27;shape_example&#x27;, &#x27;storage_count&#x27;: 56, &#x27;storage_server_version&#x27;: &#x27;storage_server_version_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_zone&#x27;: &#x27;time_zone_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1286,6 +1328,42 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-exadata_infrastructure/additional_compute_count"></div>
+                    <b>additional_compute_count</b>
+                    <a class="ansibleOptionLink" href="#return-exadata_infrastructure/additional_compute_count" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The requested number of additional compute servers for the Exadata infrastructure.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-exadata_infrastructure/additional_compute_system_model"></div>
+                    <b>additional_compute_system_model</b>
+                    <a class="ansibleOptionLink" href="#return-exadata_infrastructure/additional_compute_system_model" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Oracle Exadata System Model specification. The system model determines the amount of compute or storage server resources available for use. For more information, please see <a href='https://docs.oracle.com/en/engineered-systems/exadata-cloud-at-customer/ecccm/ecc-system-config- options.html#GUID-9E090174-5C57-4EB1-9243-B470F9F10D6B'>System and Shape Configuration Options]</a></div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">X7</div>
                                     </td>
             </tr>
                                 <tr>

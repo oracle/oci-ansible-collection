@@ -30,7 +30,7 @@ oracle.oci.oci_golden_gate_deployment_actions -- Perform actions on a Deployment
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.6.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.7.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -58,6 +58,7 @@ Synopsis
 
 - Perform actions on a Deployment resource in Oracle Cloud Infrastructure
 - For *action=change_compartment*, moves the Deployment into a different compartment within the same tenancy.  When provided, If-Match is checked against ETag values of the resource.  For information about moving resources between compartments, see `Moving Resources Between Compartments <https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/managingcompartments.htm#moveRes>`_.
+- For *action=collect_deployment_diagnostic*, collects the diagnostic of a Deployment. When provided, If-Match is checked against ETag values of the resource.
 - For *action=start*, starts a Deployment. When provided, If-Match is checked against ETag values of the resource.
 - For *action=stop*, stops a Deployment. When provided, If-Match is checked against ETag values of the resource.
 - For *action=upgrade*, upgrade a Deployment. When provided, If-Match is checked against ETag values of the resource.
@@ -101,6 +102,7 @@ Parameters
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>change_compartment</li>
+                                                                                                                                                                                                <li>collect_deployment_diagnostic</li>
                                                                                                                                                                                                 <li>start</li>
                                                                                                                                                                                                 <li>stop</li>
                                                                                                                                                                                                 <li>upgrade</li>
@@ -211,6 +213,22 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-bucket_name"></div>
+                    <b>bucket_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-bucket_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Name of the bucket where the object is to be uploaded in the object storage</div>
+                                            <div>Required for <em>action=collect_deployment_diagnostic</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-cert_bundle"></div>
                     <b>cert_bundle</b>
                     <a class="ansibleOptionLink" href="#parameter-cert_bundle" title="Permalink to this option"></a>
@@ -288,6 +306,38 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-diagnostic_name_prefix"></div>
+                    <b>diagnostic_name_prefix</b>
+                    <a class="ansibleOptionLink" href="#parameter-diagnostic_name_prefix" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Prefix of the diagnostic collected and uploaded to object storage</div>
+                                            <div>Required for <em>action=collect_deployment_diagnostic</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-namespace_name"></div>
+                    <b>namespace_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-namespace_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Name of namespace that serves as a container for all of your buckets</div>
+                                            <div>Required for <em>action=collect_deployment_diagnostic</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#parameter-region" title="Permalink to this option"></a>
@@ -314,6 +364,38 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>OCID of your tenancy. If not set, then the value of the OCI_TENANCY variable, if any, is used. This option is required if the tenancy OCID is not specified through a configuration file (See <code>config_file_location</code>). To get the tenancy OCID, please refer <a href='https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm'>https://docs.us-phoenix-1.oraclecloud.com/Content/API/Concepts/apisigningkey.htm</a></div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-time_diagnostic_end"></div>
+                    <b>time_diagnostic_end</b>
+                    <a class="ansibleOptionLink" href="#parameter-time_diagnostic_end" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The time until which the diagnostic collection should collect the logs. The format is defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>, such as `2016-08-25T21:10:29.600Z`.</div>
+                                            <div>Applicable only for <em>action=collect_deployment_diagnostic</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-time_diagnostic_start"></div>
+                    <b>time_diagnostic_start</b>
+                    <a class="ansibleOptionLink" href="#parameter-time_diagnostic_start" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The time from which the diagnostic collection should collect the logs. The format is defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>, such as `2016-08-25T21:10:29.600Z`.</div>
+                                            <div>Applicable only for <em>action=collect_deployment_diagnostic</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -402,6 +484,19 @@ Examples
         deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
         action: change_compartment
 
+    - name: Perform action collect_deployment_diagnostic on deployment
+      oci_golden_gate_deployment_actions:
+        # required
+        namespace_name: namespace_name_example
+        bucket_name: bucket_name_example
+        diagnostic_name_prefix: diagnostic_name_prefix_example
+        deployment_id: "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx"
+        action: collect_deployment_diagnostic
+
+        # optional
+        time_diagnostic_start: time_diagnostic_start_example
+        time_diagnostic_end: time_diagnostic_end_example
+
     - name: Perform action start on deployment with type = DEFAULT
       oci_golden_gate_deployment_actions:
         # required
@@ -467,7 +562,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Deployment resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cpu_core_count&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deployment_backup_id&#x27;: &#x27;ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deployment_type&#x27;: &#x27;OGG&#x27;, &#x27;deployment_url&#x27;: &#x27;deployment_url_example&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;fqdn&#x27;: &#x27;fqdn_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_auto_scaling_enabled&#x27;: True, &#x27;is_healthy&#x27;: True, &#x27;is_latest_version&#x27;: True, &#x27;is_public&#x27;: True, &#x27;is_storage_utilization_limit_exceeded&#x27;: True, &#x27;license_model&#x27;: &#x27;LICENSE_INCLUDED&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;lifecycle_sub_state&#x27;: &#x27;RECOVERING&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;ogg_data&#x27;: {&#x27;admin_username&#x27;: &#x27;admin_username_example&#x27;, &#x27;certificate&#x27;: &#x27;-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----&#x27;, &#x27;deployment_name&#x27;: &#x27;deployment_name_example&#x27;, &#x27;ogg_version&#x27;: &#x27;ogg_version_example&#x27;}, &#x27;private_ip_address&#x27;: &#x27;private_ip_address_example&#x27;, &#x27;public_ip_address&#x27;: &#x27;public_ip_address_example&#x27;, &#x27;storage_utilization_in_bytes&#x27;: 56, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_upgrade_required&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;cpu_core_count&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deployment_backup_id&#x27;: &#x27;ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deployment_diagnostic_data&#x27;: {&#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;diagnostic_state&#x27;: &#x27;IN_PROGRESS&#x27;, &#x27;namespace_name&#x27;: &#x27;namespace_name_example&#x27;, &#x27;object_name&#x27;: &#x27;object_name_example&#x27;, &#x27;time_diagnostic_end&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_diagnostic_start&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;deployment_type&#x27;: &#x27;OGG&#x27;, &#x27;deployment_url&#x27;: &#x27;deployment_url_example&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;fqdn&#x27;: &#x27;fqdn_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_auto_scaling_enabled&#x27;: True, &#x27;is_healthy&#x27;: True, &#x27;is_latest_version&#x27;: True, &#x27;is_public&#x27;: True, &#x27;is_storage_utilization_limit_exceeded&#x27;: True, &#x27;license_model&#x27;: &#x27;LICENSE_INCLUDED&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;lifecycle_sub_state&#x27;: &#x27;RECOVERING&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;ogg_data&#x27;: {&#x27;admin_username&#x27;: &#x27;admin_username_example&#x27;, &#x27;certificate&#x27;: &#x27;-----BEGIN CERTIFICATE----MIIBIjANBgkqhkiG9w0BA..-----END PUBLIC KEY-----&#x27;, &#x27;deployment_name&#x27;: &#x27;deployment_name_example&#x27;, &#x27;ogg_version&#x27;: &#x27;ogg_version_example&#x27;}, &#x27;private_ip_address&#x27;: &#x27;private_ip_address_example&#x27;, &#x27;public_ip_address&#x27;: &#x27;public_ip_address_example&#x27;, &#x27;storage_utilization_in_bytes&#x27;: 56, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_upgrade_required&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -543,6 +638,137 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.deploymentbackup.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-deployment/deployment_diagnostic_data"></div>
+                    <b>deployment_diagnostic_data</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/deployment_diagnostic_data" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment/deployment_diagnostic_data/bucket_name"></div>
+                    <b>bucket_name</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/deployment_diagnostic_data/bucket_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name of the bucket where the object is to be uploaded in the object storage</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">bucket_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment/deployment_diagnostic_data/diagnostic_state"></div>
+                    <b>diagnostic_state</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/deployment_diagnostic_data/diagnostic_state" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The state of the deployment diagnostic collection.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">IN_PROGRESS</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment/deployment_diagnostic_data/namespace_name"></div>
+                    <b>namespace_name</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/deployment_diagnostic_data/namespace_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name of namespace that serves as a container for all of your buckets</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">namespace_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment/deployment_diagnostic_data/object_name"></div>
+                    <b>object_name</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/deployment_diagnostic_data/object_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name of the diagnostic collected and uploaded to object storage</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">object_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment/deployment_diagnostic_data/time_diagnostic_end"></div>
+                    <b>time_diagnostic_end</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/deployment_diagnostic_data/time_diagnostic_end" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The time until which the diagnostic collection should collect the logs. The format is defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>, such as `2016-08-25T21:10:29.600Z`.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-deployment/deployment_diagnostic_data/time_diagnostic_start"></div>
+                    <b>time_diagnostic_start</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/deployment_diagnostic_data/time_diagnostic_start" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The time from which the diagnostic collection should collect the logs. The format is defined by <a href='https://tools.ietf.org/html/rfc3339'>RFC3339</a>, such as `2016-08-25T21:10:29.600Z`.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
