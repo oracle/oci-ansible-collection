@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2020, 2022 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2023 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -174,13 +174,13 @@ db_system_shapes:
             sample: 56
         minimum_node_count:
             description:
-                - The minimum number of database nodes available for this shape.
+                - The minimum number of compute servers available for this shape.
             returned: on success
             type: int
             sample: 56
         maximum_node_count:
             description:
-                - The maximum number of database nodes available for this shape.
+                - The maximum number of compute servers available for this shape.
             returned: on success
             type: int
             sample: 56

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2020, 2022 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2023 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,13 +23,13 @@ module: oci_database_db_system_actions
 short_description: Perform actions on a DbSystem resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a DbSystem resource in Oracle Cloud Infrastructure
-    - Moves the DB system and its dependent resources to the specified compartment.
+    - For I(action=change_compartment), moves the DB system and its dependent resources to the specified compartment.
       For more information about moving DB systems, see
       L(Moving Database Resources to a Different Compartment,https://docs.cloud.oracle.com/Content/Database/Concepts/databaseoverview.htm#moveRes).
-    - Migrates the Exadata DB system to the new L(Exadata resource
+    - For I(action=migrate_exadata_db_system_resource_model), migrates the Exadata DB system to the new L(Exadata resource
       model,https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/exaflexsystem.htm#exaflexsystem_topic-resource_model).
       All related resources will be migrated.
-    - Upgrades the operating system and grid infrastructure of the DB system.
+    - For I(action=upgrade), upgrades the operating system and grid infrastructure of the DB system.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -766,6 +766,18 @@ class DbSystemActionsHelperGen(OCIActionsHelperBase):
             self.client.get_db_system,
             db_system_id=self.module.params.get("db_system_id"),
         )
+
+    def get_action_fn(self, action):
+        action = action.lower()
+        if action in [
+            "precheck",
+            "rollback",
+            "update_snapshot_retention_days",
+            "upgrade",
+        ]:
+            self.module.params["action"] = action.upper()
+            return getattr(self, "upgrade", None)
+        return super(DbSystemActionsHelperGen, self).get_action_fn(action)
 
     def change_compartment(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(

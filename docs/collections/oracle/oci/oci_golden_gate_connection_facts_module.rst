@@ -30,7 +30,7 @@ oracle.oci.oci_golden_gate_connection_facts -- Fetches details about one or mult
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.6.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.7.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -177,6 +177,7 @@ Parameters
                                                                                                                                                                                                 <li>DATABASE_ORACLE</li>
                                                                                                                                                                                                 <li>BIGDATA</li>
                                                                                                                                                                                                 <li>DATABASE_MYSQL</li>
+                                                                                                                                                                                                <li>DATABASE_POSTGRESQL</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -328,9 +329,13 @@ Parameters
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>GOLDENGATE</li>
                                                                                                                                                                                                 <li>KAFKA</li>
+                                                                                                                                                                                                <li>KAFKA_SCHEMA_REGISTRY</li>
                                                                                                                                                                                                 <li>MYSQL</li>
                                                                                                                                                                                                 <li>OCI_OBJECT_STORAGE</li>
                                                                                                                                                                                                 <li>ORACLE</li>
+                                                                                                                                                                                                <li>AZURE_DATA_LAKE_STORAGE</li>
+                                                                                                                                                                                                <li>POSTGRESQL</li>
+                                                                                                                                                                                                <li>AZURE_SYNAPSE_ANALYTICS</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -440,7 +445,8 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>OCI_AUTONOMOUS_DATABASE</li>
+                                                                                                                                                                <li>GOLDENGATE</li>
+                                                                                                                                                                                                <li>OCI_AUTONOMOUS_DATABASE</li>
                                                                                                                                                                                                 <li>OCI_MYSQL</li>
                                                                                                                                                                                                 <li>OCI_OBJECT_STORAGE</li>
                                                                                                                                                                                                 <li>OCI_STREAMING</li>
@@ -448,14 +454,23 @@ Parameters
                                                                                                                                                                                                 <li>ORACLE_EXADATA</li>
                                                                                                                                                                                                 <li>AMAZON_RDS_ORACLE</li>
                                                                                                                                                                                                 <li>AMAZON_AURORA_MYSQL</li>
+                                                                                                                                                                                                <li>AMAZON_AURORA_POSTGRESQL</li>
                                                                                                                                                                                                 <li>AMAZON_RDS_MARIADB</li>
                                                                                                                                                                                                 <li>AMAZON_RDS_MYSQL</li>
+                                                                                                                                                                                                <li>AMAZON_RDS_POSTGRESQL</li>
                                                                                                                                                                                                 <li>APACHE_KAFKA</li>
+                                                                                                                                                                                                <li>AZURE_DATA_LAKE_STORAGE</li>
+                                                                                                                                                                                                <li>AZURE_EVENT_HUBS</li>
                                                                                                                                                                                                 <li>AZURE_MYSQL</li>
-                                                                                                                                                                                                <li>GOLDENGATE</li>
+                                                                                                                                                                                                <li>AZURE_POSTGRESQL</li>
+                                                                                                                                                                                                <li>AZURE_SYNAPSE_ANALYTICS</li>
+                                                                                                                                                                                                <li>CONFLUENT_KAFKA</li>
+                                                                                                                                                                                                <li>CONFLUENT_SCHEMA_REGISTRY</li>
                                                                                                                                                                                                 <li>GOOGLE_CLOUD_SQL_MYSQL</li>
+                                                                                                                                                                                                <li>GOOGLE_CLOUD_SQL_POSTGRESQL</li>
                                                                                                                                                                                                 <li>MARIADB</li>
                                                                                                                                                                                                 <li>MYSQL_SERVER</li>
+                                                                                                                                                                                                <li>POSTGRESQL_SERVER</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -513,7 +528,7 @@ Examples
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
         # optional
-        technology_type: [ "OCI_AUTONOMOUS_DATABASE" ]
+        technology_type: [ "GOLDENGATE" ]
         connection_type: [ "GOLDENGATE" ]
         assigned_deployment_id: "ocid1.assigneddeployment.oc1..xxxxxxEXAMPLExxxxxx"
         assignable_deployment_id: "ocid1.assignabledeployment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -558,10 +573,29 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Connection resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;additional_attributes&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;bootstrap_servers&#x27;: [{&#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;port&#x27;: 56, &#x27;private_ip&#x27;: &#x27;private_ip_example&#x27;}], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_string&#x27;: &#x27;connection_string_example&#x27;, &#x27;connection_type&#x27;: &#x27;GOLDENGATE&#x27;, &#x27;database_id&#x27;: &#x27;ocid1.database.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_name&#x27;: &#x27;database_name_example&#x27;, &#x27;db_system_id&#x27;: &#x27;ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deployment_id&#x27;: &#x27;ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ingress_ips&#x27;: [{&#x27;ingress_ip&#x27;: &#x27;ingress_ip_example&#x27;}], &#x27;key_id&#x27;: &#x27;ocid1.key.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;port&#x27;: 56, &#x27;private_ip&#x27;: &#x27;private_ip_example&#x27;, &#x27;region&#x27;: &#x27;us-phoenix-1&#x27;, &#x27;security_protocol&#x27;: &#x27;SSL&#x27;, &#x27;session_mode&#x27;: &#x27;DIRECT&#x27;, &#x27;ssl_mode&#x27;: &#x27;DISABLED&#x27;, &#x27;stream_pool_id&#x27;: &#x27;ocid1.streampool.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;technology_type&#x27;: &#x27;GOLDENGATE&#x27;, &#x27;tenancy_id&#x27;: &#x27;ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;user_id&#x27;: &#x27;ocid1.user.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;username&#x27;: &#x27;username_example&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;account_name&#x27;: &#x27;account_name_example&#x27;, &#x27;additional_attributes&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}], &#x27;authentication_type&#x27;: &#x27;SHARED_KEY&#x27;, &#x27;azure_tenant_id&#x27;: &#x27;ocid1.azuretenant.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;bootstrap_servers&#x27;: [{&#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;port&#x27;: 56, &#x27;private_ip&#x27;: &#x27;private_ip_example&#x27;}], &#x27;client_id&#x27;: &#x27;ocid1.client.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_string&#x27;: &#x27;connection_string_example&#x27;, &#x27;connection_type&#x27;: &#x27;GOLDENGATE&#x27;, &#x27;database_id&#x27;: &#x27;ocid1.database.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;database_name&#x27;: &#x27;database_name_example&#x27;, &#x27;db_system_id&#x27;: &#x27;ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deployment_id&#x27;: &#x27;ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;endpoint&#x27;: &#x27;endpoint_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;host&#x27;: &#x27;host_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;ingress_ips&#x27;: [{&#x27;ingress_ip&#x27;: &#x27;ingress_ip_example&#x27;}], &#x27;key_id&#x27;: &#x27;ocid1.key.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;nsg_ids&#x27;: [], &#x27;port&#x27;: 56, &#x27;private_ip&#x27;: &#x27;private_ip_example&#x27;, &#x27;region&#x27;: &#x27;us-phoenix-1&#x27;, &#x27;security_protocol&#x27;: &#x27;SSL&#x27;, &#x27;session_mode&#x27;: &#x27;DIRECT&#x27;, &#x27;ssl_mode&#x27;: &#x27;DISABLED&#x27;, &#x27;stream_pool_id&#x27;: &#x27;ocid1.streampool.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;technology_type&#x27;: &#x27;AZURE_DATA_LAKE_STORAGE&#x27;, &#x27;tenancy_id&#x27;: &#x27;ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;url&#x27;: &#x27;url_example&#x27;, &#x27;user_id&#x27;: &#x27;ocid1.user.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;username&#x27;: &#x27;username_example&#x27;, &#x27;vault_id&#x27;: &#x27;ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-connections/account_name"></div>
+                    <b>account_name</b>
+                    <a class="ansibleOptionLink" href="#return-connections/account_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Sets the Azure storage account name.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">account_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-connections/additional_attributes"></div>
@@ -617,6 +651,44 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                     
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-connections/authentication_type"></div>
+                    <b>authentication_type</b>
+                    <a class="ansibleOptionLink" href="#return-connections/authentication_type" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Used authentication mechanism to access Azure Data Lake Storage.</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">SHARED_KEY</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-connections/azure_tenant_id"></div>
+                    <b>azure_tenant_id</b>
+                    <a class="ansibleOptionLink" href="#return-connections/azure_tenant_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Azure tenant ID of the application. This property is required when &#x27;authenticationType&#x27; is set to &#x27;AZURE_ACTIVE_DIRECTORY&#x27;. e.g.: 14593954-d337-4a61-a364-9f758c64f97f</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.azuretenant.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
@@ -695,6 +767,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-connections/client_id"></div>
+                    <b>client_id</b>
+                    <a class="ansibleOptionLink" href="#return-connections/client_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Azure client ID of the application. This property is required when &#x27;authenticationType&#x27; is set to &#x27;AZURE_ACTIVE_DIRECTORY&#x27;. e.g.: 06ecaabf-8b80-4ec8-a0ec-20cbf463703d</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.client.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-connections/compartment_id"></div>
                     <b>compartment_id</b>
                     <a class="ansibleOptionLink" href="#return-connections/compartment_id" title="Permalink to this return value"></a>
@@ -722,7 +813,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Connect descriptor or Easy Connect Naming method that Oracle GoldenGate uses to connect to a database.</div>
+                                            <div>JDBC connection string. e.g.: &#x27;jdbc:sqlserver://&lt;synapse-workspace&gt;.sql.azuresynapse.net:1433;database=&lt;db- name&gt;;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.sql.azuresynapse.net;loginTimeout=300;&#x27;</div>
                                             <div>Returned for get operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
@@ -876,6 +967,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">display_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-connections/endpoint"></div>
+                    <b>endpoint</b>
+                    <a class="ansibleOptionLink" href="#return-connections/endpoint" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Azure Storage service endpoint. e.g: https://test.blob.core.windows.net</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">endpoint_example</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1220,11 +1330,11 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The GoldenGate technology type.</div>
+                                            <div>The Azure Data Lake Storage technology type.</div>
                                             <div>Returned for get operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">GOLDENGATE</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">AZURE_DATA_LAKE_STORAGE</div>
                                     </td>
             </tr>
                                 <tr>
@@ -1280,6 +1390,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">2013-10-20T19:20:30+01:00</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-connections/url"></div>
+                    <b>url</b>
+                    <a class="ansibleOptionLink" href="#return-connections/url" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Kafka Schema Registry URL. e.g.: &#x27;https://server1.us.oracle.com:8081&#x27;</div>
+                                            <div>Returned for get operation</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">url_example</div>
                                     </td>
             </tr>
                                 <tr>

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2020, 2022 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2023 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -45,6 +45,7 @@ options:
         type: list
         elements: str
         choices:
+            - "GOLDENGATE"
             - "OCI_AUTONOMOUS_DATABASE"
             - "OCI_MYSQL"
             - "OCI_OBJECT_STORAGE"
@@ -53,14 +54,23 @@ options:
             - "ORACLE_EXADATA"
             - "AMAZON_RDS_ORACLE"
             - "AMAZON_AURORA_MYSQL"
+            - "AMAZON_AURORA_POSTGRESQL"
             - "AMAZON_RDS_MARIADB"
             - "AMAZON_RDS_MYSQL"
+            - "AMAZON_RDS_POSTGRESQL"
             - "APACHE_KAFKA"
+            - "AZURE_DATA_LAKE_STORAGE"
+            - "AZURE_EVENT_HUBS"
             - "AZURE_MYSQL"
-            - "GOLDENGATE"
+            - "AZURE_POSTGRESQL"
+            - "AZURE_SYNAPSE_ANALYTICS"
+            - "CONFLUENT_KAFKA"
+            - "CONFLUENT_SCHEMA_REGISTRY"
             - "GOOGLE_CLOUD_SQL_MYSQL"
+            - "GOOGLE_CLOUD_SQL_POSTGRESQL"
             - "MARIADB"
             - "MYSQL_SERVER"
+            - "POSTGRESQL_SERVER"
     connection_type:
         description:
             - The array of connection types.
@@ -69,9 +79,13 @@ options:
         choices:
             - "GOLDENGATE"
             - "KAFKA"
+            - "KAFKA_SCHEMA_REGISTRY"
             - "MYSQL"
             - "OCI_OBJECT_STORAGE"
             - "ORACLE"
+            - "AZURE_DATA_LAKE_STORAGE"
+            - "POSTGRESQL"
+            - "AZURE_SYNAPSE_ANALYTICS"
     assigned_deployment_id:
         description:
             - The OCID of the deployment which for the connection must be assigned.
@@ -89,6 +103,7 @@ options:
             - "DATABASE_ORACLE"
             - "BIGDATA"
             - "DATABASE_MYSQL"
+            - "DATABASE_POSTGRESQL"
     lifecycle_state:
         description:
             - A filter to return only connections having the 'lifecycleState' given.
@@ -136,7 +151,7 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
-    technology_type: [ "OCI_AUTONOMOUS_DATABASE" ]
+    technology_type: [ "GOLDENGATE" ]
     connection_type: [ "GOLDENGATE" ]
     assigned_deployment_id: "ocid1.assigneddeployment.oc1..xxxxxxEXAMPLExxxxxx"
     assignable_deployment_id: "ocid1.assignabledeployment.oc1..xxxxxxEXAMPLExxxxxx"
@@ -155,6 +170,37 @@ connections:
     returned: on success
     type: complex
     contains:
+        account_name:
+            description:
+                - Sets the Azure storage account name.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: account_name_example
+        azure_tenant_id:
+            description:
+                - "Azure tenant ID of the application. This property is required when 'authenticationType' is set to 'AZURE_ACTIVE_DIRECTORY'.
+                  e.g.: 14593954-d337-4a61-a364-9f758c64f97f"
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.azuretenant.oc1..xxxxxxEXAMPLExxxxxx"
+        client_id:
+            description:
+                - "Azure client ID of the application. This property is required when 'authenticationType' is set to 'AZURE_ACTIVE_DIRECTORY'.
+                  e.g.: 06ecaabf-8b80-4ec8-a0ec-20cbf463703d"
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.client.oc1..xxxxxxEXAMPLExxxxxx"
+        endpoint:
+            description:
+                - "Azure Storage service endpoint.
+                  e.g: https://test.blob.core.windows.net"
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: endpoint_example
         deployment_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the deployment being referenced.
@@ -201,61 +247,21 @@ connections:
                     returned: on success
                     type: str
                     sample: private_ip_example
-        host:
+        url:
             description:
-                - The name or address of a host.
+                - "Kafka Schema Registry URL.
+                  e.g.: 'https://server1.us.oracle.com:8081'"
                 - Returned for get operation
             returned: on success
             type: str
-            sample: host_example
-        port:
+            sample: url_example
+        authentication_type:
             description:
-                - The port of an endpoint usually specified for a connection.
-                - Returned for get operation
-            returned: on success
-            type: int
-            sample: 56
-        database_name:
-            description:
-                - The name of the database.
+                - Used authentication mechanism to access Azure Data Lake Storage.
                 - Returned for get operation
             returned: on success
             type: str
-            sample: database_name_example
-        security_protocol:
-            description:
-                - Kafka security protocol.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: SSL
-        ssl_mode:
-            description:
-                - SSL modes for MySQL.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: DISABLED
-        additional_attributes:
-            description:
-                - An array of name-value pair attribute entries.
-                  Used as additional parameters in connection string.
-                - Returned for get operation
-            returned: on success
-            type: complex
-            contains:
-                name:
-                    description:
-                        - The name of the property entry.
-                    returned: on success
-                    type: str
-                    sample: name_example
-                value:
-                    description:
-                        - The value of the property entry.
-                    returned: on success
-                    type: str
-                    sample: value_example
+            sample: SHARED_KEY
         db_system_id:
             description:
                 - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database system being referenced.
@@ -285,26 +291,11 @@ connections:
             returned: on success
             type: str
             sample: "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx"
-        technology_type:
-            description:
-                - The GoldenGate technology type.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: GOLDENGATE
-        username:
-            description:
-                - The username Oracle GoldenGate uses to connect the associated RDBMS.  This username must
-                  already exist and be available for use by the database.  It must conform to the security
-                  requirements implemented by the database including length, case sensitivity, and so on.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: username_example
         connection_string:
             description:
-                - Connect descriptor or Easy Connect Naming method that Oracle GoldenGate uses to connect to a
-                  database.
+                - "JDBC connection string.
+                  e.g.: 'jdbc:sqlserver://<synapse-workspace>.sql.azuresynapse.net:1433;database=<db-
+                  name>;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.sql.azuresynapse.net;loginTimeout=300;'"
                 - Returned for get operation
             returned: on success
             type: str
@@ -319,6 +310,84 @@ connections:
             returned: on success
             type: str
             sample: DIRECT
+        database_id:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database being referenced.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
+        technology_type:
+            description:
+                - The Azure Data Lake Storage technology type.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: AZURE_DATA_LAKE_STORAGE
+        database_name:
+            description:
+                - The name of the database.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: database_name_example
+        host:
+            description:
+                - The name or address of a host.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: host_example
+        port:
+            description:
+                - The port of an endpoint usually specified for a connection.
+                - Returned for get operation
+            returned: on success
+            type: int
+            sample: 56
+        username:
+            description:
+                - The username Oracle GoldenGate uses to connect the associated RDBMS.  This username must
+                  already exist and be available for use by the database.  It must conform to the security
+                  requirements implemented by the database including length, case sensitivity, and so on.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: username_example
+        additional_attributes:
+            description:
+                - An array of name-value pair attribute entries.
+                  Used as additional parameters in connection string.
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                name:
+                    description:
+                        - The name of the property entry.
+                    returned: on success
+                    type: str
+                    sample: name_example
+                value:
+                    description:
+                        - The value of the property entry.
+                    returned: on success
+                    type: str
+                    sample: value_example
+        security_protocol:
+            description:
+                - Kafka security protocol.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: SSL
+        ssl_mode:
+            description:
+                - SSL modes for MySQL.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: DISABLED
         private_ip:
             description:
                 - The private IP address of the connection's endpoint in the customer's VCN, typically a
@@ -330,13 +399,6 @@ connections:
             returned: on success
             type: str
             sample: private_ip_example
-        database_id:
-            description:
-                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the database being referenced.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx"
         connection_type:
             description:
                 - The connection type.
@@ -464,6 +526,10 @@ connections:
             type: list
             sample: []
     sample: [{
+        "account_name": "account_name_example",
+        "azure_tenant_id": "ocid1.azuretenant.oc1..xxxxxxEXAMPLExxxxxx",
+        "client_id": "ocid1.client.oc1..xxxxxxEXAMPLExxxxxx",
+        "endpoint": "endpoint_example",
         "deployment_id": "ocid1.deployment.oc1..xxxxxxEXAMPLExxxxxx",
         "stream_pool_id": "ocid1.streampool.oc1..xxxxxxEXAMPLExxxxxx",
         "bootstrap_servers": [{
@@ -471,25 +537,27 @@ connections:
             "port": 56,
             "private_ip": "private_ip_example"
         }],
-        "host": "host_example",
-        "port": 56,
-        "database_name": "database_name_example",
-        "security_protocol": "SSL",
-        "ssl_mode": "DISABLED",
-        "additional_attributes": [{
-            "name": "name_example",
-            "value": "value_example"
-        }],
+        "url": "url_example",
+        "authentication_type": "SHARED_KEY",
         "db_system_id": "ocid1.dbsystem.oc1..xxxxxxEXAMPLExxxxxx",
         "tenancy_id": "ocid1.tenancy.oc1..xxxxxxEXAMPLExxxxxx",
         "region": "us-phoenix-1",
         "user_id": "ocid1.user.oc1..xxxxxxEXAMPLExxxxxx",
-        "technology_type": "GOLDENGATE",
-        "username": "username_example",
         "connection_string": "connection_string_example",
         "session_mode": "DIRECT",
-        "private_ip": "private_ip_example",
         "database_id": "ocid1.database.oc1..xxxxxxEXAMPLExxxxxx",
+        "technology_type": "AZURE_DATA_LAKE_STORAGE",
+        "database_name": "database_name_example",
+        "host": "host_example",
+        "port": 56,
+        "username": "username_example",
+        "additional_attributes": [{
+            "name": "name_example",
+            "value": "value_example"
+        }],
+        "security_protocol": "SSL",
+        "ssl_mode": "DISABLED",
+        "private_ip": "private_ip_example",
         "connection_type": "GOLDENGATE",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -587,6 +655,7 @@ def main():
                 type="list",
                 elements="str",
                 choices=[
+                    "GOLDENGATE",
                     "OCI_AUTONOMOUS_DATABASE",
                     "OCI_MYSQL",
                     "OCI_OBJECT_STORAGE",
@@ -595,14 +664,23 @@ def main():
                     "ORACLE_EXADATA",
                     "AMAZON_RDS_ORACLE",
                     "AMAZON_AURORA_MYSQL",
+                    "AMAZON_AURORA_POSTGRESQL",
                     "AMAZON_RDS_MARIADB",
                     "AMAZON_RDS_MYSQL",
+                    "AMAZON_RDS_POSTGRESQL",
                     "APACHE_KAFKA",
+                    "AZURE_DATA_LAKE_STORAGE",
+                    "AZURE_EVENT_HUBS",
                     "AZURE_MYSQL",
-                    "GOLDENGATE",
+                    "AZURE_POSTGRESQL",
+                    "AZURE_SYNAPSE_ANALYTICS",
+                    "CONFLUENT_KAFKA",
+                    "CONFLUENT_SCHEMA_REGISTRY",
                     "GOOGLE_CLOUD_SQL_MYSQL",
+                    "GOOGLE_CLOUD_SQL_POSTGRESQL",
                     "MARIADB",
                     "MYSQL_SERVER",
+                    "POSTGRESQL_SERVER",
                 ],
             ),
             connection_type=dict(
@@ -611,16 +689,26 @@ def main():
                 choices=[
                     "GOLDENGATE",
                     "KAFKA",
+                    "KAFKA_SCHEMA_REGISTRY",
                     "MYSQL",
                     "OCI_OBJECT_STORAGE",
                     "ORACLE",
+                    "AZURE_DATA_LAKE_STORAGE",
+                    "POSTGRESQL",
+                    "AZURE_SYNAPSE_ANALYTICS",
                 ],
             ),
             assigned_deployment_id=dict(type="str"),
             assignable_deployment_id=dict(type="str"),
             assignable_deployment_type=dict(
                 type="str",
-                choices=["OGG", "DATABASE_ORACLE", "BIGDATA", "DATABASE_MYSQL"],
+                choices=[
+                    "OGG",
+                    "DATABASE_ORACLE",
+                    "BIGDATA",
+                    "DATABASE_MYSQL",
+                    "DATABASE_POSTGRESQL",
+                ],
             ),
             lifecycle_state=dict(
                 type="str",

@@ -30,7 +30,7 @@ oracle.oci.oci_database_db_node_actions -- Perform actions on a DbNode resource 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.6.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.7.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Perform actions on a DbNode resource in Oracle Cloud Infrastructure
-- Performs one of the following power actions on the specified DB node: - start - power on - stop - power off - softreset - ACPI shutdown and power on - reset - power off and power on
+- For *action=db_node_action*, performs one of the following power actions on the specified DB node: - start - power on - stop - power off - softreset - ACPI shutdown and power on - reset - power off and power on
 - **Note:** Stopping a node affects billing differently, depending on the type of DB system: *Bare metal and Exadata systems* - The _stop_ state has no effect on the resources you consume. Billing continues for DB nodes that you stop, and related resources continue to apply against any relevant quotas. You must terminate the DB system (`TerminateDbSystem <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/latest/DbSystem/TerminateDbSystem>`_) to remove its resources from billing and quotas. *Virtual machine DB systems* - Stopping a node stops billing for all OCPUs associated with that node, and billing resumes when you restart the node.
 
 

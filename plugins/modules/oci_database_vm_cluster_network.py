@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2020, 2022 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2023 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -26,8 +26,8 @@ description:
     - For I(state=present), creates the VM cluster network. Applies to Exadata Cloud@Customer instances only.
       To create a cloud VM cluster in an Exadata Cloud Service instance, use the L(CreateCloudVmCluster ,https://docs.cloud.oracle.com/en-
       us/iaas/api/#/en/database/latest/CloudVmCluster/CreateCloudVmCluster) operation.
-    - "This resource has the following action operations in the M(oracle.oci.oci_database_vm_cluster_network_actions) module: download_validation_report,
-      download_vm_cluster_network_config_file, validate."
+    - "This resource has the following action operations in the M(oracle.oci.oci_database_vm_cluster_network_actions) module: add_dbserver_network,
+      remove_dbserver_network."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -101,7 +101,6 @@ options:
                 description:
                     - The network VLAN ID.
                 type: str
-                required: true
             network_type:
                 description:
                     - The network type.
@@ -114,17 +113,14 @@ options:
                 description:
                     - The network netmask.
                 type: str
-                required: true
             gateway:
                 description:
                     - The network gateway.
                 type: str
-                required: true
             domain_name:
                 description:
                     - The network domain name.
                 type: str
-                required: true
             nodes:
                 description:
                     - The list of node details.
@@ -149,6 +145,35 @@ options:
                     vip:
                         description:
                             - The node virtual IP (VIP) address.
+                        type: str
+                    lifecycle_state:
+                        description:
+                            - "The current state of the VM cluster network nodes.
+                              CREATING - The resource is being created
+                              REQUIRES_VALIDATION - The resource is created and may not be usable until it is validated.
+                              VALIDATING - The resource is being validated and not available to use.
+                              VALIDATED - The resource is validated and is available for consumption by VM cluster.
+                              VALIDATION_FAILED - The resource validation has failed and might require user input to be corrected.
+                              UPDATING - The resource is being updated and not available to use.
+                              ALLOCATED - The resource is currently being used by VM cluster.
+                              TERMINATING - The resource is being deleted and not available to use.
+                              TERMINATED - The resource is deleted and unavailable.
+                              FAILED - The resource is in a failed state due to validation or other errors."
+                        type: str
+                        choices:
+                            - "CREATING"
+                            - "REQUIRES_VALIDATION"
+                            - "VALIDATING"
+                            - "VALIDATED"
+                            - "VALIDATION_FAILED"
+                            - "UPDATING"
+                            - "ALLOCATED"
+                            - "TERMINATING"
+                            - "TERMINATED"
+                            - "FAILED"
+                    db_server_id:
+                        description:
+                            - The Db server associated with the node.
                         type: str
     freeform_tags:
         description:
@@ -204,11 +229,7 @@ EXAMPLES = """
       scan_listener_port_tcp_ssl: 56
     vm_networks:
     - # required
-      vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
       network_type: CLIENT
-      netmask: netmask_example
-      gateway: gateway_example
-      domain_name: domain_name_example
       nodes:
       - # required
         hostname: hostname_example
@@ -217,6 +238,14 @@ EXAMPLES = """
         # optional
         vip_hostname: vip_hostname_example
         vip: vip_example
+        lifecycle_state: CREATING
+        db_server_id: "ocid1.dbserver.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
+      netmask: netmask_example
+      gateway: gateway_example
+      domain_name: domain_name_example
     exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
@@ -245,11 +274,7 @@ EXAMPLES = """
     ntp: [ "ntp_example" ]
     vm_networks:
     - # required
-      vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
       network_type: CLIENT
-      netmask: netmask_example
-      gateway: gateway_example
-      domain_name: domain_name_example
       nodes:
       - # required
         hostname: hostname_example
@@ -258,6 +283,14 @@ EXAMPLES = """
         # optional
         vip_hostname: vip_hostname_example
         vip: vip_example
+        lifecycle_state: CREATING
+        db_server_id: "ocid1.dbserver.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
+      netmask: netmask_example
+      gateway: gateway_example
+      domain_name: domain_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -282,11 +315,7 @@ EXAMPLES = """
     ntp: [ "ntp_example" ]
     vm_networks:
     - # required
-      vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
       network_type: CLIENT
-      netmask: netmask_example
-      gateway: gateway_example
-      domain_name: domain_name_example
       nodes:
       - # required
         hostname: hostname_example
@@ -295,6 +324,14 @@ EXAMPLES = """
         # optional
         vip_hostname: vip_hostname_example
         vip: vip_example
+        lifecycle_state: CREATING
+        db_server_id: "ocid1.dbserver.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      vlan_id: "ocid1.vlan.oc1..xxxxxxEXAMPLExxxxxx"
+      netmask: netmask_example
+      gateway: gateway_example
+      domain_name: domain_name_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -466,9 +503,43 @@ vm_cluster_network:
                             returned: on success
                             type: str
                             sample: vip_example
+                        lifecycle_state:
+                            description:
+                                - "The current state of the VM cluster network nodes.
+                                  CREATING - The resource is being created
+                                  REQUIRES_VALIDATION - The resource is created and may not be usable until it is validated.
+                                  VALIDATING - The resource is being validated and not available to use.
+                                  VALIDATED - The resource is validated and is available for consumption by VM cluster.
+                                  VALIDATION_FAILED - The resource validation has failed and might require user input to be corrected.
+                                  UPDATING - The resource is being updated and not available to use.
+                                  ALLOCATED - The resource is currently being used by VM cluster.
+                                  TERMINATING - The resource is being deleted and not available to use.
+                                  TERMINATED - The resource is deleted and unavailable.
+                                  FAILED - The resource is in a failed state due to validation or other errors."
+                            returned: on success
+                            type: str
+                            sample: CREATING
+                        db_server_id:
+                            description:
+                                - The Db server associated with the node.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.dbserver.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
-                - The current state of the VM cluster network.
+                - "The current state of the VM cluster network.
+                  CREATING - The resource is being created
+                  REQUIRES_VALIDATION - The resource is created and may not be usable until it is validated.
+                  VALIDATING - The resource is being validated and not available to use.
+                  VALIDATED - The resource is validated and is available for consumption by VM cluster.
+                  VALIDATION_FAILED - The resource validation has failed and might require user input to be corrected.
+                  UPDATING - The resource is being updated and not available to use.
+                  ALLOCATED - The resource is is currently being used by VM cluster.
+                  TERMINATING - The resource is being deleted and not available to use.
+                  TERMINATED - The resource is deleted and unavailable.
+                  FAILED - The resource is in a failed state due to validation or other errors.
+                  NEEDS_ATTENTION - The resource is in needs attention state as some of it's child nodes are not validated
+                                    and unusable by VM cluster."
             returned: on success
             type: str
             sample: CREATING
@@ -524,7 +595,9 @@ vm_cluster_network:
                 "hostname": "hostname_example",
                 "ip": "ip_example",
                 "vip_hostname": "vip_hostname_example",
-                "vip": "vip_example"
+                "vip": "vip_example",
+                "lifecycle_state": "CREATING",
+                "db_server_id": "ocid1.dbserver.oc1..xxxxxxEXAMPLExxxxxx"
             }]
         }],
         "lifecycle_state": "CREATING",
@@ -731,13 +804,13 @@ def main():
                 type="list",
                 elements="dict",
                 options=dict(
-                    vlan_id=dict(type="str", required=True),
+                    vlan_id=dict(type="str"),
                     network_type=dict(
                         type="str", required=True, choices=["CLIENT", "BACKUP"]
                     ),
-                    netmask=dict(type="str", required=True),
-                    gateway=dict(type="str", required=True),
-                    domain_name=dict(type="str", required=True),
+                    netmask=dict(type="str"),
+                    gateway=dict(type="str"),
+                    domain_name=dict(type="str"),
                     nodes=dict(
                         type="list",
                         elements="dict",
@@ -747,6 +820,22 @@ def main():
                             ip=dict(type="str", required=True),
                             vip_hostname=dict(type="str"),
                             vip=dict(type="str"),
+                            lifecycle_state=dict(
+                                type="str",
+                                choices=[
+                                    "CREATING",
+                                    "REQUIRES_VALIDATION",
+                                    "VALIDATING",
+                                    "VALIDATED",
+                                    "VALIDATION_FAILED",
+                                    "UPDATING",
+                                    "ALLOCATED",
+                                    "TERMINATING",
+                                    "TERMINATED",
+                                    "FAILED",
+                                ],
+                            ),
+                            db_server_id=dict(type="str"),
                         ),
                     ),
                 ),

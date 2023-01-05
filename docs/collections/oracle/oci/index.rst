@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 4.6.0
+Collection version 4.7.0
 
 .. toctree::
     :maxdepth: 1
@@ -1597,6 +1597,10 @@ Modules
 * :ref:`oci_osub_subscription_subscription_facts <ansible_collections.oracle.oci.oci_osub_subscription_subscription_facts_module>` -- Fetches details about one or multiple Subscription resources in Oracle Cloud Infrastructure
 * :ref:`oci_osub_usage_computed_usage_aggregated_facts <ansible_collections.oracle.oci.oci_osub_usage_computed_usage_aggregated_facts_module>` -- Fetches details about one or multiple ComputedUsageAggregated resources in Oracle Cloud Infrastructure
 * :ref:`oci_osub_usage_computed_usage_facts <ansible_collections.oracle.oci.oci_osub_usage_computed_usage_facts_module>` -- Fetches details about one or multiple ComputedUsage resources in Oracle Cloud Infrastructure
+* :ref:`oci_queue <ansible_collections.oracle.oci.oci_queue_module>` -- Manage a Queue resource in Oracle Cloud Infrastructure
+* :ref:`oci_queue_actions <ansible_collections.oracle.oci.oci_queue_actions_module>` -- Perform actions on a Queue resource in Oracle Cloud Infrastructure
+* :ref:`oci_queue_facts <ansible_collections.oracle.oci.oci_queue_facts_module>` -- Fetches details about one or multiple Queue resources in Oracle Cloud Infrastructure
+* :ref:`oci_queue_stats_facts <ansible_collections.oracle.oci.oci_queue_stats_facts_module>` -- Fetches details about a QueueStats resource in Oracle Cloud Infrastructure
 * :ref:`oci_resource_manager_configuration_source_provider <ansible_collections.oracle.oci.oci_resource_manager_configuration_source_provider_module>` -- Manage a ConfigurationSourceProvider resource in Oracle Cloud Infrastructure
 * :ref:`oci_resource_manager_configuration_source_provider_actions <ansible_collections.oracle.oci.oci_resource_manager_configuration_source_provider_actions_module>` -- Perform actions on a ConfigurationSourceProvider resource in Oracle Cloud Infrastructure
 * :ref:`oci_resource_manager_configuration_source_provider_facts <ansible_collections.oracle.oci.oci_resource_manager_configuration_source_provider_facts_module>` -- Fetches details about one or multiple ConfigurationSourceProvider resources in Oracle Cloud Infrastructure
@@ -3421,6 +3425,10 @@ Modules
     oci_osub_subscription_subscription_facts_module
     oci_osub_usage_computed_usage_aggregated_facts_module
     oci_osub_usage_computed_usage_facts_module
+    oci_queue_module
+    oci_queue_actions_module
+    oci_queue_facts_module
+    oci_queue_stats_facts_module
     oci_resource_manager_configuration_source_provider_module
     oci_resource_manager_configuration_source_provider_actions_module
     oci_resource_manager_configuration_source_provider_facts_module

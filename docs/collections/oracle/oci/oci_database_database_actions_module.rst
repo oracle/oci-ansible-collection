@@ -30,7 +30,7 @@ oracle.oci.oci_database_database_actions -- Perform actions on a Database resour
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.6.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.7.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,13 +57,13 @@ Synopsis
 .. Description
 
 - Perform actions on a Database resource in Oracle Cloud Infrastructure
-- Disables the Database Management service for the database.
-- Enables the Database Management service for an Oracle Database located in Oracle Cloud Infrastructure. This service allows the database to access tools including Metrics and Performance hub. Database Management is enabled at the container database (CDB) level.
-- Changes encryption key management from customer-managed, using the `Vault service <https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm>`_, to Oracle-managed.
-- Updates one or more attributes of the Database Management service for the database.
-- Restore a Database based on the request parameters you provide.
-- Creates a new version of an existing `Vault service <https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm>`_ key.
-- Upgrades the specified Oracle Database instance.
+- For *action=disable_database_management*, disables the Database Management service for the database.
+- For *action=enable_database_management*, enables the Database Management service for an Oracle Database located in Oracle Cloud Infrastructure. This service allows the database to access tools including Metrics and Performance hub. Database Management is enabled at the container database (CDB) level.
+- For *action=migrate_vault_key*, changes encryption key management from customer-managed, using the `Vault service <https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm>`_, to Oracle-managed.
+- For *action=modify_database_management*, updates one or more attributes of the Database Management service for the database.
+- For *action=restore*, restore a Database based on the request parameters you provide.
+- For *action=rotate_vault_key*, creates a new version of an existing `Vault service <https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm>`_ key.
+- For *action=upgrade*, upgrades the specified Oracle Database instance.
 
 
 .. Aliases

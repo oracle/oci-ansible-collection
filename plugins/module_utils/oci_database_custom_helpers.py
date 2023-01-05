@@ -1,4 +1,4 @@
-# Copyright (c) 2020, 2022 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2023 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -514,24 +514,6 @@ class ExadataInfrastructureHelperCustom:
 class ExadataInfrastructureActionsHelperCustom:
     ACTIVATE_ACTION_KEY = "activate"
 
-    def download_exadata_infrastructure_config_file(self):
-        operation_response = oci_common_utils.call_with_backoff(
-            self.client.download_exadata_infrastructure_config_file,
-            exadata_infrastructure_id=self.module.params.get(
-                "exadata_infrastructure_id"
-            ),
-        )
-
-        dest = self.module.params.get("config_file_dest")
-        chunk_size = oci_common_utils.MEBIBYTE
-        with open(to_bytes(dest), "wb") as dest_file:
-            for chunk in operation_response.data.raw.stream(
-                chunk_size, decode_content=True
-            ):
-                dest_file.write(chunk)
-
-        return None
-
     def is_action_necessary(self, action, resource=None):
         resource = resource or self.get_resource().data
         if self.module.params.get("action") == self.ACTIVATE_ACTION_KEY:
@@ -651,46 +633,6 @@ class VmClusterNetworkHelperCustom:
             ).list_resources()
         ]
         return result
-
-
-class VmClusterNetworkActionsHelperCustom:
-    def download_vm_cluster_network_config_file(self):
-        operation_response = oci_common_utils.call_with_backoff(
-            self.client.download_vm_cluster_network_config_file,
-            exadata_infrastructure_id=self.module.params.get(
-                "exadata_infrastructure_id"
-            ),
-            vm_cluster_network_id=self.module.params.get("vm_cluster_network_id"),
-        )
-
-        dest = self.module.params.get("config_file_dest")
-        chunk_size = oci_common_utils.MEBIBYTE
-        with open(to_bytes(dest), "wb") as dest_file:
-            for chunk in operation_response.data.raw.stream(
-                chunk_size, decode_content=True
-            ):
-                dest_file.write(chunk)
-
-        return None
-
-    def download_validation_report(self):
-        operation_response = oci_common_utils.call_with_backoff(
-            self.client.download_validation_report,
-            exadata_infrastructure_id=self.module.params.get(
-                "exadata_infrastructure_id"
-            ),
-            vm_cluster_network_id=self.module.params.get("vm_cluster_network_id"),
-        )
-
-        dest = self.module.params.get("validation_report_dest")
-        chunk_size = oci_common_utils.MEBIBYTE
-        with open(to_bytes(dest), "wb") as dest_file:
-            for chunk in operation_response.data.raw.stream(
-                chunk_size, decode_content=True
-            ):
-                dest_file.write(chunk)
-
-        return None
 
 
 class VmClusterHelperCustom:
@@ -874,19 +816,6 @@ class CloudVmClusterIormConfigHelperCustom:
 
 
 class DbSystemActionsHelperCustom:
-    # mapping actions - precheck, upgrade, rollback and update_snapshot_retention_days to upgrade method.
-    def get_action_fn(self, action):
-        action = action.lower()
-        if (
-            action == "precheck"
-            or action == "upgrade"
-            or action == "rollback"
-            or action == "update_snapshot_retention_days"
-        ):
-            self.module.params["action"] = action.upper()
-            return getattr(self, "upgrade", None)
-        return super(DbSystemActionsHelperCustom, self).get_action_fn(action)
-
     def is_action_necessary(self, action, resource=None):
         db_system = resource or self.get_resource().data
         if action == "migrate_exadata_db_system_resource_model":
@@ -902,13 +831,6 @@ class DatabaseActionsHelperCustom:
     DISABLE_DATABASE_MANAGEMENT_ACTION_KEY = "disable_database_management"
     ENABLE_DATABASE_MANAGEMENT_ACTION_KEY = "enable_database_management"
     MODIFY_DATABASE_MANAGEMENT_ACTION_KEY = "modify_database_management"
-
-    # mapping actions - precheck, upgrade, rollback to upgrade method.
-    def get_action_fn(self, action):
-        if action == "precheck" or action == "upgrade" or action == "rollback":
-            self.module.params["action"] = action.upper()
-            return getattr(self, "upgrade", None)
-        return super(DatabaseActionsHelperCustom, self).get_action_fn(action)
 
     # to decide if database upgrade is necessary or not we need to compare database version from DB home or Database
     # software image.

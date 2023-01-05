@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2020, 2022 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2023 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,15 +23,16 @@ module: oci_database_database_actions
 short_description: Perform actions on a Database resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a Database resource in Oracle Cloud Infrastructure
-    - Disables the Database Management service for the database.
-    - Enables the Database Management service for an Oracle Database located in Oracle Cloud Infrastructure. This service allows the database to access tools
-      including Metrics and Performance hub. Database Management is enabled at the container database (CDB) level.
-    - Changes encryption key management from customer-managed, using the L(Vault
+    - For I(action=disable_database_management), disables the Database Management service for the database.
+    - For I(action=enable_database_management), enables the Database Management service for an Oracle Database located in Oracle Cloud Infrastructure. This
+      service allows the database to access tools including Metrics and Performance hub. Database Management is enabled at the container database (CDB) level.
+    - For I(action=migrate_vault_key), changes encryption key management from customer-managed, using the L(Vault
       service,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm), to Oracle-managed.
-    - Updates one or more attributes of the Database Management service for the database.
-    - Restore a Database based on the request parameters you provide.
-    - Creates a new version of an existing L(Vault service,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm) key.
-    - Upgrades the specified Oracle Database instance.
+    - For I(action=modify_database_management), updates one or more attributes of the Database Management service for the database.
+    - For I(action=restore), restore a Database based on the request parameters you provide.
+    - For I(action=rotate_vault_key), creates a new version of an existing L(Vault
+      service,https://docs.cloud.oracle.com/iaas/Content/KeyManagement/Concepts/keyoverview.htm) key.
+    - For I(action=upgrade), upgrades the specified Oracle Database instance.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -703,6 +704,17 @@ class DatabaseActionsHelperGen(OCIActionsHelperBase):
         return oci_common_utils.call_with_backoff(
             self.client.get_database, database_id=self.module.params.get("database_id"),
         )
+
+    def get_action_fn(self, action):
+        action = action.lower()
+        if action in [
+            "precheck",
+            "upgrade",
+            "rollback",
+        ]:
+            self.module.params["action"] = action.upper()
+            return getattr(self, "upgrade", None)
+        return super(DatabaseActionsHelperGen, self).get_action_fn(action)
 
     def disable_database_management(self):
         return oci_wait_utils.call_and_wait(

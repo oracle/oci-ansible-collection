@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2020, 2022 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2023 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -236,6 +236,24 @@ options:
             - The requested number of additional storage servers for the Exadata infrastructure.
             - This parameter is updatable.
         type: int
+    additional_compute_count:
+        description:
+            - The requested number of additional compute servers for the Exadata infrastructure.
+            - This parameter is updatable.
+        type: int
+    additional_compute_system_model:
+        description:
+            - Oracle Exadata System Model specification. The system model determines the amount of compute or storage
+              server resources available for use. For more information, please see L(System and Shape Configuration
+              Options],https://docs.oracle.com/en/engineered-systems/exadata-cloud-at-customer/ecccm/ecc-system-config-
+              options.html#GUID-9E090174-5C57-4EB1-9243-B470F9F10D6B)
+            - This parameter is updatable.
+        type: str
+        choices:
+            - "X7"
+            - "X8"
+            - "X8M"
+            - "X9M"
     dns_server:
         description:
             - The list of DNS server IP addresses. Maximum of 3 allowed.
@@ -391,6 +409,8 @@ EXAMPLES = """
       hours_of_day: [ "hours_of_day_example" ]
       lead_time_in_weeks: 56
     additional_storage_count: 56
+    additional_compute_count: 56
+    additional_compute_system_model: X7
     dns_server: [ "dns_server_example" ]
     ntp_server: [ "ntp_server_example" ]
     time_zone: time_zone_example
@@ -440,6 +460,8 @@ EXAMPLES = """
       hours_of_day: [ "hours_of_day_example" ]
       lead_time_in_weeks: 56
     additional_storage_count: 56
+    additional_compute_count: 56
+    additional_compute_system_model: X7
     dns_server: [ "dns_server_example" ]
     ntp_server: [ "ntp_server_example" ]
     time_zone: time_zone_example
@@ -584,6 +606,21 @@ exadata_infrastructure:
             returned: on success
             type: int
             sample: 56
+        additional_compute_count:
+            description:
+                - The requested number of additional compute servers for the Exadata infrastructure.
+            returned: on success
+            type: int
+            sample: 56
+        additional_compute_system_model:
+            description:
+                - Oracle Exadata System Model specification. The system model determines the amount of compute or storage
+                  server resources available for use. For more information, please see L(System and Shape Configuration
+                  Options],https://docs.oracle.com/en/engineered-systems/exadata-cloud-at-customer/ecccm/ecc-system-config-
+                  options.html#GUID-9E090174-5C57-4EB1-9243-B470F9F10D6B)
+            returned: on success
+            type: str
+            sample: X7
         cloud_control_plane_server1:
             description:
                 - The IP address for the first control plane server.
@@ -865,6 +902,8 @@ exadata_infrastructure:
         "additional_storage_count": 56,
         "activated_storage_count": 56,
         "compute_count": 56,
+        "additional_compute_count": 56,
+        "additional_compute_system_model": "X7",
         "cloud_control_plane_server1": "cloud_control_plane_server1_example",
         "cloud_control_plane_server2": "cloud_control_plane_server2_example",
         "netmask": "netmask_example",
@@ -1165,6 +1204,10 @@ def main():
                 ),
             ),
             additional_storage_count=dict(type="int"),
+            additional_compute_count=dict(type="int"),
+            additional_compute_system_model=dict(
+                type="str", choices=["X7", "X8", "X8M", "X9M"]
+            ),
             dns_server=dict(type="list", elements="str"),
             ntp_server=dict(type="list", elements="str"),
             time_zone=dict(type="str"),

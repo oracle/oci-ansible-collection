@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2020, 2022 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2023 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -23,7 +23,7 @@ module: oci_database_db_node_actions
 short_description: Perform actions on a DbNode resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a DbNode resource in Oracle Cloud Infrastructure
-    - "Performs one of the following power actions on the specified DB node:
+    - "For I(action=db_node_action), performs one of the following power actions on the specified DB node:
       - start - power on
       - stop - power off
       - softreset - ACPI shutdown and power on
@@ -302,63 +302,25 @@ class DbNodeActionsHelperGen(OCIActionsHelperBase):
             self.client.get_db_node, db_node_id=self.module.params.get("db_node_id"),
         )
 
-    def stop(self):
-        return oci_wait_utils.call_and_wait(
-            call_fn=self.client.db_node_action,
-            call_fn_args=(),
-            call_fn_kwargs=dict(
-                db_node_id=self.module.params.get("db_node_id"), action="STOP",
-            ),
-            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
-            operation="{0}_{1}".format(
-                self.module.params.get("action").upper(),
-                oci_common_utils.ACTION_OPERATION_KEY,
-            ),
-            waiter_client=self.work_request_client,
-            resource_helper=self,
-            wait_for_states=oci_common_utils.get_work_request_completed_states(),
-        )
+    def get_action_fn(self, action):
+        action = action.lower()
+        if action in [
+            "stop",
+            "start",
+            "softreset",
+            "reset",
+        ]:
+            self.module.params["action"] = action.upper()
+            return getattr(self, "db_node_action", None)
+        return super(DbNodeActionsHelperGen, self).get_action_fn(action)
 
-    def start(self):
+    def db_node_action(self):
         return oci_wait_utils.call_and_wait(
             call_fn=self.client.db_node_action,
             call_fn_args=(),
             call_fn_kwargs=dict(
-                db_node_id=self.module.params.get("db_node_id"), action="START",
-            ),
-            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
-            operation="{0}_{1}".format(
-                self.module.params.get("action").upper(),
-                oci_common_utils.ACTION_OPERATION_KEY,
-            ),
-            waiter_client=self.work_request_client,
-            resource_helper=self,
-            wait_for_states=oci_common_utils.get_work_request_completed_states(),
-        )
-
-    def softreset(self):
-        return oci_wait_utils.call_and_wait(
-            call_fn=self.client.db_node_action,
-            call_fn_args=(),
-            call_fn_kwargs=dict(
-                db_node_id=self.module.params.get("db_node_id"), action="SOFTRESET",
-            ),
-            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
-            operation="{0}_{1}".format(
-                self.module.params.get("action").upper(),
-                oci_common_utils.ACTION_OPERATION_KEY,
-            ),
-            waiter_client=self.work_request_client,
-            resource_helper=self,
-            wait_for_states=oci_common_utils.get_work_request_completed_states(),
-        )
-
-    def reset(self):
-        return oci_wait_utils.call_and_wait(
-            call_fn=self.client.db_node_action,
-            call_fn_args=(),
-            call_fn_kwargs=dict(
-                db_node_id=self.module.params.get("db_node_id"), action="RESET",
+                db_node_id=self.module.params.get("db_node_id"),
+                action=self.module.params.get("action"),
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(

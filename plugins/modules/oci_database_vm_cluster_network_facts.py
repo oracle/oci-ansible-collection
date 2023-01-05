@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Copyright (c) 2020, 2022 Oracle and/or its affiliates.
+# Copyright (c) 2020, 2023 Oracle and/or its affiliates.
 # This software is made available to you under the terms of the GPL 3.0 license or the Apache 2.0 license.
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 # Apache License v2.0
@@ -74,6 +74,7 @@ options:
             - "TERMINATING"
             - "TERMINATED"
             - "FAILED"
+            - "NEEDS_ATTENTION"
     display_name:
         description:
             - A filter to return only resources that match the entire display name given. The match is not case sensitive.
@@ -254,9 +255,43 @@ vm_cluster_networks:
                             returned: on success
                             type: str
                             sample: vip_example
+                        lifecycle_state:
+                            description:
+                                - "The current state of the VM cluster network nodes.
+                                  CREATING - The resource is being created
+                                  REQUIRES_VALIDATION - The resource is created and may not be usable until it is validated.
+                                  VALIDATING - The resource is being validated and not available to use.
+                                  VALIDATED - The resource is validated and is available for consumption by VM cluster.
+                                  VALIDATION_FAILED - The resource validation has failed and might require user input to be corrected.
+                                  UPDATING - The resource is being updated and not available to use.
+                                  ALLOCATED - The resource is currently being used by VM cluster.
+                                  TERMINATING - The resource is being deleted and not available to use.
+                                  TERMINATED - The resource is deleted and unavailable.
+                                  FAILED - The resource is in a failed state due to validation or other errors."
+                            returned: on success
+                            type: str
+                            sample: CREATING
+                        db_server_id:
+                            description:
+                                - The Db server associated with the node.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.dbserver.oc1..xxxxxxEXAMPLExxxxxx"
         lifecycle_state:
             description:
-                - The current state of the VM cluster network.
+                - "The current state of the VM cluster network.
+                  CREATING - The resource is being created
+                  REQUIRES_VALIDATION - The resource is created and may not be usable until it is validated.
+                  VALIDATING - The resource is being validated and not available to use.
+                  VALIDATED - The resource is validated and is available for consumption by VM cluster.
+                  VALIDATION_FAILED - The resource validation has failed and might require user input to be corrected.
+                  UPDATING - The resource is being updated and not available to use.
+                  ALLOCATED - The resource is is currently being used by VM cluster.
+                  TERMINATING - The resource is being deleted and not available to use.
+                  TERMINATED - The resource is deleted and unavailable.
+                  FAILED - The resource is in a failed state due to validation or other errors.
+                  NEEDS_ATTENTION - The resource is in needs attention state as some of it's child nodes are not validated
+                                    and unusable by VM cluster."
             returned: on success
             type: str
             sample: CREATING
@@ -312,7 +347,9 @@ vm_cluster_networks:
                 "hostname": "hostname_example",
                 "ip": "ip_example",
                 "vip_hostname": "vip_hostname_example",
-                "vip": "vip_example"
+                "vip": "vip_example",
+                "lifecycle_state": "CREATING",
+                "db_server_id": "ocid1.dbserver.oc1..xxxxxxEXAMPLExxxxxx"
             }]
         }],
         "lifecycle_state": "CREATING",
@@ -417,6 +454,7 @@ def main():
                     "TERMINATING",
                     "TERMINATED",
                     "FAILED",
+                    "NEEDS_ATTENTION",
                 ],
             ),
             display_name=dict(aliases=["name"], type="str"),
