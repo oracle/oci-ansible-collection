@@ -2606,11 +2606,11 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class DeployStageHelperGen(OCIResourceHelperBase):
+class DevopsDeployStageHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
     def get_possible_entity_types(self):
-        return super(DeployStageHelperGen, self).get_possible_entity_types() + [
+        return super(DevopsDeployStageHelperGen, self).get_possible_entity_types() + [
             "devopsdeploystage",
             "devopsdeploystages",
             "devopsdevopsdeploystage",
@@ -2722,10 +2722,10 @@ class DeployStageHelperGen(OCIResourceHelperBase):
         )
 
 
-DeployStageHelperCustom = get_custom_class("DeployStageHelperCustom")
+DevopsDeployStageHelperCustom = get_custom_class("DevopsDeployStageHelperCustom")
 
 
-class ResourceHelper(DeployStageHelperCustom, DeployStageHelperGen):
+class ResourceHelper(DevopsDeployStageHelperCustom, DevopsDeployStageHelperGen):
     pass
 
 

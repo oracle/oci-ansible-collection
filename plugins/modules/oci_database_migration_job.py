@@ -198,6 +198,18 @@ job:
                             returned: on success
                             type: bool
                             sample: true
+                        issue:
+                            description:
+                                - The text describing the root cause of the reported issue
+                            returned: on success
+                            type: str
+                            sample: issue_example
+                        action:
+                            description:
+                                - The text describing the action required to fix the issue
+                            returned: on success
+                            type: str
+                            sample: action_example
                         extract:
                             description:
                                 - Summary of phase status results.
@@ -319,6 +331,8 @@ job:
                 "status": "PENDING",
                 "duration_in_ms": 56,
                 "is_advisor_report_available": true,
+                "issue": "issue_example",
+                "action": "action_example",
                 "extract": [{
                     "type": "ERROR",
                     "message": "message_example"

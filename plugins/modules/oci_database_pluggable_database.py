@@ -27,7 +27,8 @@ description:
       Use the L(StartPluggableDatabase,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/latest/PluggableDatabase/StartPluggableDatabase) and
       L(StopPluggableDatabase,https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/latest/PluggableDatabase/StopPluggableDatabase) APIs to start and stop
       the pluggable database.
-    - "This resource has the following action operations in the M(oracle.oci.oci_database_pluggable_database_actions) module: local_clone, remote_clone, start,
+    - "This resource has the following action operations in the M(oracle.oci.oci_database_pluggable_database_actions) module:
+      disable_pluggable_database_management, enable_pluggable_database_management, local_clone, modify_pluggable_database_management, remote_clone, start,
       stop."
 version_added: "2.9.0"
 author: Oracle (@oracle)
@@ -230,6 +231,18 @@ pluggable_database:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        pluggable_database_management_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                management_status:
+                    description:
+                        - The status of the Pluggable Database Management service.
+                    returned: on success
+                    type: str
+                    sample: ENABLING
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "container_database_id": "ocid1.containerdatabase.oc1..xxxxxxEXAMPLExxxxxx",
@@ -246,7 +259,10 @@ pluggable_database:
         "is_restricted": true,
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}}
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "pluggable_database_management_config": {
+            "management_status": "ENABLING"
+        }
     }
 """
 

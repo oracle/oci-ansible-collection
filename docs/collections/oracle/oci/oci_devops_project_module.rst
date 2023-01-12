@@ -30,7 +30,7 @@ oracle.oci.oci_devops_project -- Manage a Project resource in Oracle Cloud Infra
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.7.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.8.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -58,7 +58,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a Project resource in Oracle Cloud Infrastructure
 - For *state=present*, creates a new project.
-- This resource has the following action operations in the :ref:`oracle.oci.oci_devops_project_actions <ansible_collections.oracle.oci.oci_devops_project_actions_module>` module: change_compartment.
+- This resource has the following action operations in the :ref:`oracle.oci.oci_devops_project_actions <ansible_collections.oracle.oci.oci_devops_project_actions_module>` module: cancel_scheduled_cascading_project_deletion, change_compartment, schedule_cascading_project_deletion.
 
 
 .. Aliases

@@ -53,6 +53,38 @@ options:
                             - Required when deployment_type is 'PIPELINE_DEPLOYMENT'
                         type: str
                         required: true
+    deploy_stage_override_arguments:
+        description:
+            - ""
+            - Applicable when deployment_type is one of ['PIPELINE_DEPLOYMENT', 'SINGLE_STAGE_DEPLOYMENT']
+        type: dict
+        suboptions:
+            items:
+                description:
+                    - List of artifact override arguments at the time of deployment.
+                    - Required when deployment_type is 'PIPELINE_DEPLOYMENT'
+                type: list
+                elements: dict
+                required: true
+                suboptions:
+                    deploy_stage_id:
+                        description:
+                            - The OCID of the stage.
+                            - Required when deployment_type is 'PIPELINE_DEPLOYMENT'
+                        type: str
+                        required: true
+                    name:
+                        description:
+                            - Name of the parameter (case-sensitive).
+                            - Required when deployment_type is 'PIPELINE_DEPLOYMENT'
+                        type: str
+                        required: true
+                    value:
+                        description:
+                            - Value of the parameter.
+                            - Required when deployment_type is 'PIPELINE_DEPLOYMENT'
+                        type: str
+                        required: true
     deploy_artifact_override_arguments:
         description:
             - ""
@@ -173,6 +205,13 @@ EXAMPLES = """
       - # required
         name: name_example
         value: value_example
+    deploy_stage_override_arguments:
+      # required
+      items:
+      - # required
+        deploy_stage_id: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
+        name: name_example
+        value: value_example
     deploy_artifact_override_arguments:
       # required
       items:
@@ -196,6 +235,13 @@ EXAMPLES = """
       # required
       items:
       - # required
+        name: name_example
+        value: value_example
+    deploy_stage_override_arguments:
+      # required
+      items:
+      - # required
+        deploy_stage_id: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
         value: value_example
     deploy_artifact_override_arguments:
@@ -489,6 +535,36 @@ deployment:
                         value:
                             description:
                                 - value of the argument.
+                            returned: on success
+                            type: str
+                            sample: value_example
+        deploy_stage_override_arguments:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                items:
+                    description:
+                        - List of artifact override arguments at the time of deployment.
+                    returned: on success
+                    type: complex
+                    contains:
+                        deploy_stage_id:
+                            description:
+                                - The OCID of the stage.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
+                        name:
+                            description:
+                                - Name of the parameter (case-sensitive).
+                            returned: on success
+                            type: str
+                            sample: name_example
+                        value:
+                            description:
+                                - Value of the parameter.
                             returned: on success
                             type: str
                             sample: value_example
@@ -808,6 +884,13 @@ deployment:
                 "value": "value_example"
             }]
         },
+        "deploy_stage_override_arguments": {
+            "items": [{
+                "deploy_stage_id": "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx",
+                "name": "name_example",
+                "value": "value_example"
+            }]
+        },
         "deploy_artifact_override_arguments": {
             "items": [{
                 "deploy_artifact_id": "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx",
@@ -886,11 +969,11 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class DeploymentHelperGen(OCIResourceHelperBase):
+class DevopsDeploymentHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get and list"""
 
     def get_possible_entity_types(self):
-        return super(DeploymentHelperGen, self).get_possible_entity_types() + [
+        return super(DevopsDeploymentHelperGen, self).get_possible_entity_types() + [
             "devopsdeployment",
             "devopsdeployments",
             "devopsdevopsdeployment",
@@ -992,10 +1075,10 @@ class DeploymentHelperGen(OCIResourceHelperBase):
         )
 
 
-DeploymentHelperCustom = get_custom_class("DeploymentHelperCustom")
+DevopsDeploymentHelperCustom = get_custom_class("DevopsDeploymentHelperCustom")
 
 
-class ResourceHelper(DeploymentHelperCustom, DeploymentHelperGen):
+class ResourceHelper(DevopsDeploymentHelperCustom, DevopsDeploymentHelperGen):
     pass
 
 
@@ -1013,6 +1096,21 @@ def main():
                         elements="dict",
                         required=True,
                         options=dict(
+                            name=dict(type="str", required=True),
+                            value=dict(type="str", required=True),
+                        ),
+                    )
+                ),
+            ),
+            deploy_stage_override_arguments=dict(
+                type="dict",
+                options=dict(
+                    items=dict(
+                        type="list",
+                        elements="dict",
+                        required=True,
+                        options=dict(
+                            deploy_stage_id=dict(type="str", required=True),
                             name=dict(type="str", required=True),
                             value=dict(type="str", required=True),
                         ),

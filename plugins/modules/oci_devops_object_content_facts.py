@@ -80,7 +80,7 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class ObjectContentFactsHelperGen(OCIResourceFactsHelperBase):
+class DevopsObjectContentFactsHelperGen(OCIResourceFactsHelperBase):
     """Supported operations: get"""
 
     def get_required_params_for_get(self):
@@ -115,10 +115,14 @@ class ObjectContentFactsHelperGen(OCIResourceFactsHelperBase):
         return None
 
 
-ObjectContentFactsHelperCustom = get_custom_class("ObjectContentFactsHelperCustom")
+DevopsObjectContentFactsHelperCustom = get_custom_class(
+    "DevopsObjectContentFactsHelperCustom"
+)
 
 
-class ResourceFactsHelper(ObjectContentFactsHelperCustom, ObjectContentFactsHelperGen):
+class ResourceFactsHelper(
+    DevopsObjectContentFactsHelperCustom, DevopsObjectContentFactsHelperGen
+):
     pass
 
 

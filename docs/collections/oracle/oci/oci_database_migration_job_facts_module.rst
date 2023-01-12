@@ -30,7 +30,7 @@ oracle.oci.oci_database_migration_job_facts -- Fetches details about one or mult
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.7.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.8.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -450,7 +450,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of Job resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACCEPTED&#x27;, &#x27;migration_id&#x27;: &#x27;ocid1.migration.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;progress&#x27;: {&#x27;current_phase&#x27;: &#x27;ODMS_VALIDATE_TGT&#x27;, &#x27;current_status&#x27;: &#x27;PENDING&#x27;, &#x27;job_progress&#x27;: 56, &#x27;phases&#x27;: [{&#x27;duration_in_ms&#x27;: 56, &#x27;extract&#x27;: [{&#x27;message&#x27;: &#x27;message_example&#x27;, &#x27;type&#x27;: &#x27;ERROR&#x27;}], &#x27;is_advisor_report_available&#x27;: True, &#x27;log_location&#x27;: {&#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;object_name&#x27;: &#x27;object_name_example&#x27;}, &#x27;name&#x27;: &#x27;ODMS_VALIDATE_TGT&#x27;, &#x27;progress&#x27;: 56, &#x27;status&#x27;: &#x27;PENDING&#x27;}]}, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;EVALUATION&#x27;, &#x27;unsupported_objects&#x27;: [{&#x27;object_name&#x27;: &#x27;object_name_example&#x27;, &#x27;owner&#x27;: &#x27;owner_example&#x27;, &#x27;type&#x27;: &#x27;GOLDEN_GATE&#x27;}]}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACCEPTED&#x27;, &#x27;migration_id&#x27;: &#x27;ocid1.migration.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;progress&#x27;: {&#x27;current_phase&#x27;: &#x27;ODMS_VALIDATE_TGT&#x27;, &#x27;current_status&#x27;: &#x27;PENDING&#x27;, &#x27;job_progress&#x27;: 56, &#x27;phases&#x27;: [{&#x27;action&#x27;: &#x27;action_example&#x27;, &#x27;duration_in_ms&#x27;: 56, &#x27;extract&#x27;: [{&#x27;message&#x27;: &#x27;message_example&#x27;, &#x27;type&#x27;: &#x27;ERROR&#x27;}], &#x27;is_advisor_report_available&#x27;: True, &#x27;issue&#x27;: &#x27;issue_example&#x27;, &#x27;log_location&#x27;: {&#x27;bucket_name&#x27;: &#x27;bucket_name_example&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;object_name&#x27;: &#x27;object_name_example&#x27;}, &#x27;name&#x27;: &#x27;ODMS_VALIDATE_TGT&#x27;, &#x27;progress&#x27;: 56, &#x27;status&#x27;: &#x27;PENDING&#x27;}]}, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;type&#x27;: &#x27;EVALUATION&#x27;, &#x27;unsupported_objects&#x27;: [{&#x27;object_name&#x27;: &#x27;object_name_example&#x27;, &#x27;owner&#x27;: &#x27;owner_example&#x27;, &#x27;type&#x27;: &#x27;GOLDEN_GATE&#x27;}]}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -674,6 +674,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-jobs/progress/phases/action"></div>
+                    <b>action</b>
+                    <a class="ansibleOptionLink" href="#return-jobs/progress/phases/action" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The text describing the action required to fix the issue</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">action_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-jobs/progress/phases/duration_in_ms"></div>
                     <b>duration_in_ms</b>
                     <a class="ansibleOptionLink" href="#return-jobs/progress/phases/duration_in_ms" title="Permalink to this return value"></a>
@@ -768,6 +788,26 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-jobs/progress/phases/issue"></div>
+                    <b>issue</b>
+                    <a class="ansibleOptionLink" href="#return-jobs/progress/phases/issue" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The text describing the root cause of the reported issue</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">issue_example</div>
                                     </td>
             </tr>
                                 <tr>

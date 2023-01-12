@@ -68,6 +68,64 @@ options:
         type: list
         elements: dict
         suboptions:
+            type:
+                description:
+                    - Type of protocol.
+                type: str
+                choices:
+                    - "TLS_PASSTHROUGH"
+                    - "TCP"
+                    - "HTTP"
+                required: true
+            ingress_gateway_host:
+                description:
+                    - ""
+                type: dict
+                suboptions:
+                    name:
+                        description:
+                            - Name of the ingress gateway host that this route should apply to.
+                            - Required when type is 'TLS_PASSTHROUGH'
+                        type: str
+                        required: true
+                    port:
+                        description:
+                            - The port of the ingress gateway host listener. Leave empty to match all ports for the host.
+                            - Applicable when type is 'TLS_PASSTHROUGH'
+                        type: int
+            destinations:
+                description:
+                    - The destination of the request.
+                type: list
+                elements: dict
+                required: true
+                suboptions:
+                    type:
+                        description:
+                            - Type of the traffic target.
+                            - Required when type is 'TLS_PASSTHROUGH'
+                        type: str
+                        choices:
+                            - "VIRTUAL_DEPLOYMENT"
+                            - "VIRTUAL_SERVICE"
+                        required: true
+                    virtual_service_id:
+                        description:
+                            - The OCID of the virtual service where the request will be routed.
+                            - Required when type is 'TLS_PASSTHROUGH'
+                        type: str
+                        required: true
+                    port:
+                        description:
+                            - The port on the virtual service to target.
+                              Mandatory if the virtual deployments are listening on multiple ports.
+                            - Applicable when type is 'TLS_PASSTHROUGH'
+                        type: int
+                    weight:
+                        description:
+                            - Weight of traffic target.
+                            - Applicable when type is 'TLS_PASSTHROUGH'
+                        type: int
             path:
                 description:
                     - Route to match
@@ -96,64 +154,6 @@ options:
                     - If true, the matched path prefix will be rewritten to '/' before being directed to the target virtual deployment.
                     - Applicable when type is 'HTTP'
                 type: bool
-            type:
-                description:
-                    - Type of protocol.
-                type: str
-                choices:
-                    - "HTTP"
-                    - "TLS_PASSTHROUGH"
-                    - "TCP"
-                required: true
-            ingress_gateway_host:
-                description:
-                    - ""
-                type: dict
-                suboptions:
-                    name:
-                        description:
-                            - Name of the ingress gateway host that this route should apply to.
-                            - Required when type is 'HTTP'
-                        type: str
-                        required: true
-                    port:
-                        description:
-                            - The port of the ingress gateway host listener. Leave empty to match all ports for the host.
-                            - Applicable when type is 'HTTP'
-                        type: int
-            destinations:
-                description:
-                    - The destination of the request.
-                type: list
-                elements: dict
-                required: true
-                suboptions:
-                    type:
-                        description:
-                            - Type of the traffic target.
-                            - Required when type is 'HTTP'
-                        type: str
-                        choices:
-                            - "VIRTUAL_DEPLOYMENT"
-                            - "VIRTUAL_SERVICE"
-                        required: true
-                    virtual_service_id:
-                        description:
-                            - The OCID of the virtual service where the request will be routed.
-                            - Required when type is 'HTTP'
-                        type: str
-                        required: true
-                    port:
-                        description:
-                            - The port on the virtual service to target.
-                              Mandatory if the virtual deployments are listening on multiple ports.
-                            - Applicable when type is 'HTTP'
-                        type: int
-                    weight:
-                        description:
-                            - Weight of traffic target.
-                            - Applicable when type is 'HTTP'
-                        type: int
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -194,7 +194,7 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     route_rules:
     - # required
-      type: HTTP
+      type: TLS_PASSTHROUGH
       destinations:
       - # required
         type: VIRTUAL_DEPLOYMENT
@@ -205,11 +205,6 @@ EXAMPLES = """
         weight: 56
 
       # optional
-      path: path_example
-      path_type: PREFIX
-      is_grpc: true
-      is_host_rewrite_enabled: true
-      is_path_rewrite_enabled: true
       ingress_gateway_host:
         # required
         name: name_example
@@ -233,7 +228,7 @@ EXAMPLES = """
     priority: 56
     route_rules:
     - # required
-      type: HTTP
+      type: TLS_PASSTHROUGH
       destinations:
       - # required
         type: VIRTUAL_DEPLOYMENT
@@ -244,11 +239,6 @@ EXAMPLES = """
         weight: 56
 
       # optional
-      path: path_example
-      path_type: PREFIX
-      is_grpc: true
-      is_host_rewrite_enabled: true
-      is_path_rewrite_enabled: true
       ingress_gateway_host:
         # required
         name: name_example
@@ -269,7 +259,7 @@ EXAMPLES = """
     priority: 56
     route_rules:
     - # required
-      type: HTTP
+      type: TLS_PASSTHROUGH
       destinations:
       - # required
         type: VIRTUAL_DEPLOYMENT
@@ -280,11 +270,6 @@ EXAMPLES = """
         weight: 56
 
       # optional
-      path: path_example
-      path_type: PREFIX
-      is_grpc: true
-      is_host_rewrite_enabled: true
-      is_path_rewrite_enabled: true
       ingress_gateway_host:
         # required
         name: name_example
@@ -704,15 +689,10 @@ def main():
                 type="list",
                 elements="dict",
                 options=dict(
-                    path=dict(type="str"),
-                    path_type=dict(type="str", choices=["PREFIX"]),
-                    is_grpc=dict(type="bool"),
-                    is_host_rewrite_enabled=dict(type="bool"),
-                    is_path_rewrite_enabled=dict(type="bool"),
                     type=dict(
                         type="str",
                         required=True,
-                        choices=["HTTP", "TLS_PASSTHROUGH", "TCP"],
+                        choices=["TLS_PASSTHROUGH", "TCP", "HTTP"],
                     ),
                     ingress_gateway_host=dict(
                         type="dict",
@@ -735,6 +715,11 @@ def main():
                             weight=dict(type="int"),
                         ),
                     ),
+                    path=dict(type="str"),
+                    path_type=dict(type="str", choices=["PREFIX"]),
+                    is_grpc=dict(type="bool"),
+                    is_host_rewrite_enabled=dict(type="bool"),
+                    is_path_rewrite_enabled=dict(type="bool"),
                 ),
             ),
             freeform_tags=dict(type="dict"),

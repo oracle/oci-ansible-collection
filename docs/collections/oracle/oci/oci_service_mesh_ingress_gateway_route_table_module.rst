@@ -30,7 +30,7 @@ oracle.oci.oci_service_mesh_ingress_gateway_route_table -- Manage an IngressGate
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.7.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.8.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -463,7 +463,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The port on the virtual service to target. Mandatory if the virtual deployments are listening on multiple ports.</div>
-                                            <div>Applicable when type is &#x27;HTTP&#x27;</div>
+                                            <div>Applicable when type is &#x27;TLS_PASSTHROUGH&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -485,7 +485,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>Type of the traffic target.</div>
-                                            <div>Required when type is &#x27;HTTP&#x27;</div>
+                                            <div>Required when type is &#x27;TLS_PASSTHROUGH&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -503,7 +503,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The OCID of the virtual service where the request will be routed.</div>
-                                            <div>Required when type is &#x27;HTTP&#x27;</div>
+                                            <div>Required when type is &#x27;TLS_PASSTHROUGH&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -521,7 +521,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Weight of traffic target.</div>
-                                            <div>Applicable when type is &#x27;HTTP&#x27;</div>
+                                            <div>Applicable when type is &#x27;TLS_PASSTHROUGH&#x27;</div>
                                                         </td>
             </tr>
                     
@@ -556,7 +556,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>Name of the ingress gateway host that this route should apply to.</div>
-                                            <div>Required when type is &#x27;HTTP&#x27;</div>
+                                            <div>Required when type is &#x27;TLS_PASSTHROUGH&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -574,7 +574,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The port of the ingress gateway host listener. Leave empty to match all ports for the host.</div>
-                                            <div>Applicable when type is &#x27;HTTP&#x27;</div>
+                                            <div>Applicable when type is &#x27;TLS_PASSTHROUGH&#x27;</div>
                                                         </td>
             </tr>
                     
@@ -690,9 +690,9 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>HTTP</li>
-                                                                                                                                                                                                <li>TLS_PASSTHROUGH</li>
+                                                                                                                                                                <li>TLS_PASSTHROUGH</li>
                                                                                                                                                                                                 <li>TCP</li>
+                                                                                                                                                                                                <li>HTTP</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -803,7 +803,7 @@ Examples
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         route_rules:
         - # required
-          type: HTTP
+          type: TLS_PASSTHROUGH
           destinations:
           - # required
             type: VIRTUAL_DEPLOYMENT
@@ -814,11 +814,6 @@ Examples
             weight: 56
 
           # optional
-          path: path_example
-          path_type: PREFIX
-          is_grpc: true
-          is_host_rewrite_enabled: true
-          is_path_rewrite_enabled: true
           ingress_gateway_host:
             # required
             name: name_example
@@ -842,7 +837,7 @@ Examples
         priority: 56
         route_rules:
         - # required
-          type: HTTP
+          type: TLS_PASSTHROUGH
           destinations:
           - # required
             type: VIRTUAL_DEPLOYMENT
@@ -853,11 +848,6 @@ Examples
             weight: 56
 
           # optional
-          path: path_example
-          path_type: PREFIX
-          is_grpc: true
-          is_host_rewrite_enabled: true
-          is_path_rewrite_enabled: true
           ingress_gateway_host:
             # required
             name: name_example
@@ -878,7 +868,7 @@ Examples
         priority: 56
         route_rules:
         - # required
-          type: HTTP
+          type: TLS_PASSTHROUGH
           destinations:
           - # required
             type: VIRTUAL_DEPLOYMENT
@@ -889,11 +879,6 @@ Examples
             weight: 56
 
           # optional
-          path: path_example
-          path_type: PREFIX
-          is_grpc: true
-          is_host_rewrite_enabled: true
-          is_path_rewrite_enabled: true
           ingress_gateway_host:
             # required
             name: name_example

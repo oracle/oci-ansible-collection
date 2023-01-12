@@ -311,7 +311,7 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class DeployEnvironmentFactsHelperGen(OCIResourceFactsHelperBase):
+class DevopsDeployEnvironmentFactsHelperGen(OCIResourceFactsHelperBase):
     """Supported operations: get, list"""
 
     def get_required_params_for_get(self):
@@ -347,13 +347,13 @@ class DeployEnvironmentFactsHelperGen(OCIResourceFactsHelperBase):
         )
 
 
-DeployEnvironmentFactsHelperCustom = get_custom_class(
-    "DeployEnvironmentFactsHelperCustom"
+DevopsDeployEnvironmentFactsHelperCustom = get_custom_class(
+    "DevopsDeployEnvironmentFactsHelperCustom"
 )
 
 
 class ResourceFactsHelper(
-    DeployEnvironmentFactsHelperCustom, DeployEnvironmentFactsHelperGen
+    DevopsDeployEnvironmentFactsHelperCustom, DevopsDeployEnvironmentFactsHelperGen
 ):
     pass
 

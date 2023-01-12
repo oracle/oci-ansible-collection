@@ -543,11 +543,13 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class DeployEnvironmentHelperGen(OCIResourceHelperBase):
+class DevopsDeployEnvironmentHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
     def get_possible_entity_types(self):
-        return super(DeployEnvironmentHelperGen, self).get_possible_entity_types() + [
+        return super(
+            DevopsDeployEnvironmentHelperGen, self
+        ).get_possible_entity_types() + [
             "devopsdeployenvironment",
             "devopsdeployenvironments",
             "devopsdevopsdeployenvironment",
@@ -659,10 +661,14 @@ class DeployEnvironmentHelperGen(OCIResourceHelperBase):
         )
 
 
-DeployEnvironmentHelperCustom = get_custom_class("DeployEnvironmentHelperCustom")
+DevopsDeployEnvironmentHelperCustom = get_custom_class(
+    "DevopsDeployEnvironmentHelperCustom"
+)
 
 
-class ResourceHelper(DeployEnvironmentHelperCustom, DeployEnvironmentHelperGen):
+class ResourceHelper(
+    DevopsDeployEnvironmentHelperCustom, DevopsDeployEnvironmentHelperGen
+):
     pass
 
 

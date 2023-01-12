@@ -107,7 +107,7 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class RepositoryAuthorFactsHelperGen(OCIResourceFactsHelperBase):
+class DevopsRepositoryAuthorFactsHelperGen(OCIResourceFactsHelperBase):
     """Supported operations: list"""
 
     def get_required_params_for_list(self):
@@ -132,13 +132,13 @@ class RepositoryAuthorFactsHelperGen(OCIResourceFactsHelperBase):
         )
 
 
-RepositoryAuthorFactsHelperCustom = get_custom_class(
-    "RepositoryAuthorFactsHelperCustom"
+DevopsRepositoryAuthorFactsHelperCustom = get_custom_class(
+    "DevopsRepositoryAuthorFactsHelperCustom"
 )
 
 
 class ResourceFactsHelper(
-    RepositoryAuthorFactsHelperCustom, RepositoryAuthorFactsHelperGen
+    DevopsRepositoryAuthorFactsHelperCustom, DevopsRepositoryAuthorFactsHelperGen
 ):
     pass
 

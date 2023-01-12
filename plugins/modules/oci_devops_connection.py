@@ -493,6 +493,12 @@ connection:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        lifecycle_details:
+            description:
+                - A detailed message describing the current state. For example, can be used to provide actionable information for a resource in Failed state.
+            returned: on success
+            type: str
+            sample: lifecycle_details_example
         lifecycle_state:
             description:
                 - The current state of the connection.
@@ -548,6 +554,7 @@ connection:
         "connection_type": "GITHUB_ACCESS_TOKEN",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
+        "lifecycle_details": "lifecycle_details_example",
         "lifecycle_state": "ACTIVE",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -577,11 +584,11 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class ConnectionHelperGen(OCIResourceHelperBase):
+class DevopsConnectionHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
     def get_possible_entity_types(self):
-        return super(ConnectionHelperGen, self).get_possible_entity_types() + [
+        return super(DevopsConnectionHelperGen, self).get_possible_entity_types() + [
             "devopsconnection",
             "devopsconnections",
             "devopsdevopsconnection",
@@ -695,10 +702,10 @@ class ConnectionHelperGen(OCIResourceHelperBase):
         )
 
 
-ConnectionHelperCustom = get_custom_class("ConnectionHelperCustom")
+DevopsConnectionHelperCustom = get_custom_class("DevopsConnectionHelperCustom")
 
 
-class ResourceHelper(ConnectionHelperCustom, ConnectionHelperGen):
+class ResourceHelper(DevopsConnectionHelperCustom, DevopsConnectionHelperGen):
     pass
 
 

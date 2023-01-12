@@ -30,7 +30,7 @@ oracle.oci.oci_devops_deployment -- Manage a Deployment resource in Oracle Cloud
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.7.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.8.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -369,6 +369,95 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-deploy_stage_override_arguments"></div>
+                    <b>deploy_stage_override_arguments</b>
+                    <a class="ansibleOptionLink" href="#parameter-deploy_stage_override_arguments" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Applicable when deployment_type is one of [&#x27;PIPELINE_DEPLOYMENT&#x27;, &#x27;SINGLE_STAGE_DEPLOYMENT&#x27;]</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-deploy_stage_override_arguments/items"></div>
+                    <b>items</b>
+                    <a class="ansibleOptionLink" href="#parameter-deploy_stage_override_arguments/items" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">list</span>
+                         / <span style="color: purple">elements=dictionary</span>                         / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>List of artifact override arguments at the time of deployment.</div>
+                                            <div>Required when deployment_type is &#x27;PIPELINE_DEPLOYMENT&#x27;</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-deploy_stage_override_arguments/items/deploy_stage_id"></div>
+                    <b>deploy_stage_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-deploy_stage_override_arguments/items/deploy_stage_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The OCID of the stage.</div>
+                                            <div>Required when deployment_type is &#x27;PIPELINE_DEPLOYMENT&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-deploy_stage_override_arguments/items/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#parameter-deploy_stage_override_arguments/items/name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Name of the parameter (case-sensitive).</div>
+                                            <div>Required when deployment_type is &#x27;PIPELINE_DEPLOYMENT&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-deploy_stage_override_arguments/items/value"></div>
+                    <b>value</b>
+                    <a class="ansibleOptionLink" href="#parameter-deploy_stage_override_arguments/items/value" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Value of the parameter.</div>
+                                            <div>Required when deployment_type is &#x27;PIPELINE_DEPLOYMENT&#x27;</div>
+                                                        </td>
+            </tr>
+                    
+                    
+                                <tr>
+                                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-deployment_arguments"></div>
                     <b>deployment_arguments</b>
                     <a class="ansibleOptionLink" href="#parameter-deployment_arguments" title="Permalink to this option"></a>
@@ -694,6 +783,13 @@ Examples
           - # required
             name: name_example
             value: value_example
+        deploy_stage_override_arguments:
+          # required
+          items:
+          - # required
+            deploy_stage_id: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
+            name: name_example
+            value: value_example
         deploy_artifact_override_arguments:
           # required
           items:
@@ -717,6 +813,13 @@ Examples
           # required
           items:
           - # required
+            name: name_example
+            value: value_example
+        deploy_stage_override_arguments:
+          # required
+          items:
+          - # required
+            deploy_stage_id: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
             name: name_example
             value: value_example
         deploy_artifact_override_arguments:
@@ -858,7 +961,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Deployment resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deploy_artifact_override_arguments&#x27;: {&#x27;items&#x27;: [{&#x27;deploy_artifact_id&#x27;: &#x27;ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}, &#x27;deploy_pipeline_artifacts&#x27;: {&#x27;items&#x27;: [{&#x27;deploy_artifact_id&#x27;: &#x27;ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_pipeline_stages&#x27;: {&#x27;items&#x27;: [{&#x27;deploy_stage_id&#x27;: &#x27;ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;}]}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;}]}, &#x27;deploy_pipeline_environments&#x27;: {&#x27;items&#x27;: [{&#x27;deploy_environment_id&#x27;: &#x27;ocid1.deployenvironment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_pipeline_stages&#x27;: {&#x27;items&#x27;: [{&#x27;deploy_stage_id&#x27;: &#x27;ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;}]}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;}]}, &#x27;deploy_pipeline_id&#x27;: &#x27;ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_stage_id&#x27;: &#x27;ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deployment_arguments&#x27;: {&#x27;items&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}, &#x27;deployment_execution_progress&#x27;: {&#x27;deploy_stage_execution_progress&#x27;: {&#x27;approval_actions&#x27;: [{&#x27;action&#x27;: &#x27;APPROVE&#x27;, &#x27;reason&#x27;: &#x27;reason_example&#x27;, &#x27;subject_id&#x27;: &#x27;ocid1.subject.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;chart_url&#x27;: &#x27;chart_url_example&#x27;, &#x27;deploy_stage_display_name&#x27;: &#x27;deploy_stage_display_name_example&#x27;, &#x27;deploy_stage_execution_progress_details&#x27;: [{&#x27;rollback_steps&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;state&#x27;: &#x27;WAITING&#x27;, &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;steps&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;state&#x27;: &#x27;WAITING&#x27;, &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;target_group&#x27;: &#x27;target_group_example&#x27;, &#x27;target_id&#x27;: &#x27;ocid1.target.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;deploy_stage_id&#x27;: &#x27;ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_stage_predecessors&#x27;: {&#x27;items&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}, &#x27;deploy_stage_type&#x27;: &#x27;COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT&#x27;, &#x27;environment_id&#x27;: &#x27;ocid1.environment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;release_name&#x27;: &#x27;release_name_example&#x27;, &#x27;status&#x27;: &#x27;ACCEPTED&#x27;, &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;}, &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;deployment_type&#x27;: &#x27;PIPELINE_DEPLOYMENT&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACCEPTED&#x27;, &#x27;previous_deployment_id&#x27;: &#x27;ocid1.previousdeployment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;deploy_artifact_override_arguments&#x27;: {&#x27;items&#x27;: [{&#x27;deploy_artifact_id&#x27;: &#x27;ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}, &#x27;deploy_pipeline_artifacts&#x27;: {&#x27;items&#x27;: [{&#x27;deploy_artifact_id&#x27;: &#x27;ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_pipeline_stages&#x27;: {&#x27;items&#x27;: [{&#x27;deploy_stage_id&#x27;: &#x27;ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;}]}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;}]}, &#x27;deploy_pipeline_environments&#x27;: {&#x27;items&#x27;: [{&#x27;deploy_environment_id&#x27;: &#x27;ocid1.deployenvironment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_pipeline_stages&#x27;: {&#x27;items&#x27;: [{&#x27;deploy_stage_id&#x27;: &#x27;ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;}]}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;}]}, &#x27;deploy_pipeline_id&#x27;: &#x27;ocid1.deploypipeline.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_stage_id&#x27;: &#x27;ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_stage_override_arguments&#x27;: {&#x27;items&#x27;: [{&#x27;deploy_stage_id&#x27;: &#x27;ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}, &#x27;deployment_arguments&#x27;: {&#x27;items&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;value&#x27;: &#x27;value_example&#x27;}]}, &#x27;deployment_execution_progress&#x27;: {&#x27;deploy_stage_execution_progress&#x27;: {&#x27;approval_actions&#x27;: [{&#x27;action&#x27;: &#x27;APPROVE&#x27;, &#x27;reason&#x27;: &#x27;reason_example&#x27;, &#x27;subject_id&#x27;: &#x27;ocid1.subject.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;chart_url&#x27;: &#x27;chart_url_example&#x27;, &#x27;deploy_stage_display_name&#x27;: &#x27;deploy_stage_display_name_example&#x27;, &#x27;deploy_stage_execution_progress_details&#x27;: [{&#x27;rollback_steps&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;state&#x27;: &#x27;WAITING&#x27;, &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;steps&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;state&#x27;: &#x27;WAITING&#x27;, &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}], &#x27;target_group&#x27;: &#x27;target_group_example&#x27;, &#x27;target_id&#x27;: &#x27;ocid1.target.oc1..xxxxxxEXAMPLExxxxxx&#x27;}], &#x27;deploy_stage_id&#x27;: &#x27;ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;deploy_stage_predecessors&#x27;: {&#x27;items&#x27;: [{&#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]}, &#x27;deploy_stage_type&#x27;: &#x27;COMPUTE_INSTANCE_GROUP_BLUE_GREEN_DEPLOYMENT&#x27;, &#x27;environment_id&#x27;: &#x27;ocid1.environment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;release_name&#x27;: &#x27;release_name_example&#x27;, &#x27;status&#x27;: &#x27;ACCEPTED&#x27;, &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;}, &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_started&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;deployment_type&#x27;: &#x27;PIPELINE_DEPLOYMENT&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACCEPTED&#x27;, &#x27;previous_deployment_id&#x27;: &#x27;ocid1.previousdeployment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;project_id&#x27;: &#x27;ocid1.project.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1344,6 +1447,101 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="5">
+                    <div class="ansibleOptionAnchor" id="return-deployment/deploy_stage_override_arguments"></div>
+                    <b>deploy_stage_override_arguments</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/deploy_stage_override_arguments" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-deployment/deploy_stage_override_arguments/items"></div>
+                    <b>items</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/deploy_stage_override_arguments/items" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>List of artifact override arguments at the time of deployment.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deployment/deploy_stage_override_arguments/items/deploy_stage_id"></div>
+                    <b>deploy_stage_id</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/deploy_stage_override_arguments/items/deploy_stage_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The OCID of the stage.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deployment/deploy_stage_override_arguments/items/name"></div>
+                    <b>name</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/deploy_stage_override_arguments/items/name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Name of the parameter (case-sensitive).</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-deployment/deploy_stage_override_arguments/items/value"></div>
+                    <b>value</b>
+                    <a class="ansibleOptionLink" href="#return-deployment/deploy_stage_override_arguments/items/value" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Value of the parameter.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">value_example</div>
+                                    </td>
+            </tr>
+                    
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="5">

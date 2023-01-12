@@ -330,6 +330,12 @@ connections:
             returned: on success
             type: dict
             sample: {}
+        nsg_ids:
+            description:
+                - An array of Network Security Group OCIDs used to define network access for Connections.
+            returned: on success
+            type: list
+            sample: []
     sample: [{
         "connect_descriptor": {
             "host": "host_example",
@@ -371,7 +377,8 @@ connections:
         "lifecycle_details": "lifecycle_details_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "system_tags": {}
+        "system_tags": {},
+        "nsg_ids": []
     }]
 """
 

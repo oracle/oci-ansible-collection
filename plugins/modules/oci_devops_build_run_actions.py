@@ -1015,7 +1015,7 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class BuildRunActionsHelperGen(OCIActionsHelperBase):
+class DevopsBuildRunActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         cancel
@@ -1061,10 +1061,12 @@ class BuildRunActionsHelperGen(OCIActionsHelperBase):
         )
 
 
-BuildRunActionsHelperCustom = get_custom_class("BuildRunActionsHelperCustom")
+DevopsBuildRunActionsHelperCustom = get_custom_class(
+    "DevopsBuildRunActionsHelperCustom"
+)
 
 
-class ResourceHelper(BuildRunActionsHelperCustom, BuildRunActionsHelperGen):
+class ResourceHelper(DevopsBuildRunActionsHelperCustom, DevopsBuildRunActionsHelperGen):
     pass
 
 

@@ -26,6 +26,10 @@ description:
     - For I(action=change_compartment), move a specified Fleet into the compartment identified in the POST form. When provided, If-Match is checked against ETag
       values of the resource.
     - For I(action=generate_agent_deploy_script), generates Agent Deploy Script for Fleet using the information provided.
+    - For I(action=request_crypto_analyses), request to perform crypto analyses. The result of crypto analysis will be uploaded to the
+      object storage bucket desiginated when enable Crypto Event Analysis feature.
+    - For I(action=request_jfr_recordings), request to collect the JFR recordings on the selected target. The JFR files are uploaded
+      to the object storage bucket that you designated when you enabled the recording feature.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -40,12 +44,6 @@ options:
               overwritten.
             - Required for I(action=generate_agent_deploy_script).
         type: str
-    fleet_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Fleet.
-        type: str
-        aliases: ["id"]
-        required: true
     install_key_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the install key for which to generate the script.
@@ -66,6 +64,60 @@ options:
             - Enable/disable user name collection on agent.
             - Required for I(action=generate_agent_deploy_script).
         type: bool
+    fleet_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Fleet.
+        type: str
+        aliases: ["id"]
+        required: true
+    targets:
+        description:
+            - The attachment targets to start JFR.
+            - Applicable only for I(action=request_crypto_analyses)I(action=request_jfr_recordings).
+        type: list
+        elements: dict
+        suboptions:
+            managed_instance_id:
+                description:
+                    - OCID of the Managed Instance to collect JFR data.
+                type: str
+                required: true
+            application_key:
+                description:
+                    - Unique key that identify the application for JFR data collection.
+                type: str
+            jre_key:
+                description:
+                    - Unique key that identify the JVM for JFR data collection.
+                type: str
+    jfc_profile_name:
+        description:
+            - The profile used for JFR events selection. If the name isn't recognized, the settings from jfcV1 or jfcV2
+              will be used depending on the JVM version.
+              Both jfcV2 and jfcV1 should be provided to ensure JFR collection on different JVM versions.
+            - Required for I(action=request_jfr_recordings).
+        type: str
+    jfc_v1:
+        description:
+            - The BASE64 encoded string of JFR settings XML with schema used by JDK 8.
+            - Applicable only for I(action=request_jfr_recordings).
+        type: str
+    jfc_v2:
+        description:
+            - The BASE64 encoded string of JFR settings XML with L(schema used by JDK 9 and
+              after,https://raw.githubusercontent.com/openjdk/jdk/master/src/jdk.jfr/share/classes/jdk/jfr/internal/jfc/jfc.xsd).
+            - Applicable only for I(action=request_jfr_recordings).
+        type: str
+    recording_duration_in_minutes:
+        description:
+            - Duration of the JFR recording in minutes.
+            - Applicable only for I(action=request_crypto_analyses)I(action=request_jfr_recordings).
+        type: int
+    recording_size_in_mb:
+        description:
+            - The maximum size limit for the JFR file collected.
+            - Applicable only for I(action=request_jfr_recordings).
+        type: int
     action:
         description:
             - The action to perform on the Fleet.
@@ -74,6 +126,8 @@ options:
         choices:
             - "change_compartment"
             - "generate_agent_deploy_script"
+            - "request_crypto_analyses"
+            - "request_jfr_recordings"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
@@ -89,11 +143,47 @@ EXAMPLES = """
   oci_jms_fleet_actions:
     # required
     dest: /tmp/myfile
-    fleet_id: "ocid1.fleet.oc1..xxxxxxEXAMPLExxxxxx"
     install_key_id: "ocid1.installkey.oc1..xxxxxxEXAMPLExxxxxx"
     os_family: LINUX
     is_user_name_enabled: true
+    fleet_id: "ocid1.fleet.oc1..xxxxxxEXAMPLExxxxxx"
     action: generate_agent_deploy_script
+
+- name: Perform action request_crypto_analyses on fleet
+  oci_jms_fleet_actions:
+    # required
+    fleet_id: "ocid1.fleet.oc1..xxxxxxEXAMPLExxxxxx"
+    action: request_crypto_analyses
+
+    # optional
+    targets:
+    - # required
+      managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      application_key: application_key_example
+      jre_key: jre_key_example
+    recording_duration_in_minutes: 56
+
+- name: Perform action request_jfr_recordings on fleet
+  oci_jms_fleet_actions:
+    # required
+    fleet_id: "ocid1.fleet.oc1..xxxxxxEXAMPLExxxxxx"
+    jfc_profile_name: jfc_profile_name_example
+    action: request_jfr_recordings
+
+    # optional
+    targets:
+    - # required
+      managed_instance_id: "ocid1.managedinstance.oc1..xxxxxxEXAMPLExxxxxx"
+
+      # optional
+      application_key: application_key_example
+      jre_key: jre_key_example
+    jfc_v1: jfc_v1_example
+    jfc_v2: jfc_v2_example
+    recording_duration_in_minutes: 56
+    recording_size_in_mb: 56
 
 """
 
@@ -156,6 +246,13 @@ fleet:
             returned: on success
             type: int
             sample: 56
+        approximate_java_server_count:
+            description:
+                - The approximate count of all unique Java servers in the Fleet in the past seven days.
+                  This metric is provided on a best-effort manner, and is not taken into account when computing the resource ETag.
+            returned: on success
+            type: int
+            sample: 56
         inventory_log:
             description:
                 - ""
@@ -194,7 +291,8 @@ fleet:
                     sample: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
         is_advanced_features_enabled:
             description:
-                - Whether or not advanced features are enabled in this fleet.  By default, this is set to false.
+                - Whether or not advanced features are enabled in this fleet.
+                  Deprecated, use `/fleets/{fleetId}/advanceFeatureConfiguration` api instead.
             returned: on success
             type: bool
             sample: true
@@ -244,6 +342,7 @@ fleet:
         "approximate_installation_count": 56,
         "approximate_application_count": 56,
         "approximate_managed_instance_count": 56,
+        "approximate_java_server_count": 56,
         "inventory_log": {
             "log_group_id": "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx",
             "log_id": "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
@@ -276,6 +375,8 @@ try:
     from oci.jms import JavaManagementServiceClient
     from oci.jms.models import ChangeFleetCompartmentDetails
     from oci.jms.models import GenerateAgentDeployScriptDetails
+    from oci.jms.models import RequestCryptoAnalysesDetails
+    from oci.jms.models import RequestJfrRecordingsDetails
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -287,6 +388,8 @@ class FleetActionsHelperGen(OCIActionsHelperBase):
     Supported actions:
         change_compartment
         generate_agent_deploy_script
+        request_crypto_analyses
+        request_jfr_recordings
     """
 
     @staticmethod
@@ -354,6 +457,48 @@ class FleetActionsHelperGen(OCIActionsHelperBase):
                 dest_file.write(chunk)
         return None
 
+    def request_crypto_analyses(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, RequestCryptoAnalysesDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.request_crypto_analyses,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                fleet_id=self.module.params.get("fleet_id"),
+                request_crypto_analyses_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def request_jfr_recordings(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, RequestJfrRecordingsDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.request_jfr_recordings,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                fleet_id=self.module.params.get("fleet_id"),
+                request_jfr_recordings_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
 
 FleetActionsHelperCustom = get_custom_class("FleetActionsHelperCustom")
 
@@ -370,16 +515,35 @@ def main():
         dict(
             compartment_id=dict(type="str"),
             dest=dict(type="str"),
-            fleet_id=dict(aliases=["id"], type="str", required=True),
             install_key_id=dict(type="str"),
             os_family=dict(
                 type="str", choices=["LINUX", "WINDOWS", "MACOS", "UNKNOWN"]
             ),
             is_user_name_enabled=dict(type="bool"),
+            fleet_id=dict(aliases=["id"], type="str", required=True),
+            targets=dict(
+                type="list",
+                elements="dict",
+                options=dict(
+                    managed_instance_id=dict(type="str", required=True),
+                    application_key=dict(type="str", no_log=True),
+                    jre_key=dict(type="str", no_log=True),
+                ),
+            ),
+            jfc_profile_name=dict(type="str"),
+            jfc_v1=dict(type="str"),
+            jfc_v2=dict(type="str"),
+            recording_duration_in_minutes=dict(type="int"),
+            recording_size_in_mb=dict(type="int"),
             action=dict(
                 type="str",
                 required=True,
-                choices=["change_compartment", "generate_agent_deploy_script"],
+                choices=[
+                    "change_compartment",
+                    "generate_agent_deploy_script",
+                    "request_crypto_analyses",
+                    "request_jfr_recordings",
+                ],
             ),
         )
     )

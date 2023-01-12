@@ -30,7 +30,7 @@ oracle.oci.oci_service_mesh_access_policy -- Manage an AccessPolicy resource in 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.7.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.8.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -412,6 +412,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>List of applicable rules</div>
+                                            <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -558,9 +559,9 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>VIRTUAL_SERVICE</li>
+                                                                                                                                                                <li>EXTERNAL_SERVICE</li>
+                                                                                                                                                                                                <li>VIRTUAL_SERVICE</li>
                                                                                                                                                                                                 <li>ALL_VIRTUAL_SERVICES</li>
-                                                                                                                                                                                                <li>EXTERNAL_SERVICE</li>
                                                                                                                                                                                                 <li>INGRESS_GATEWAY</li>
                                                                                     </ul>
                                                                             </td>
@@ -711,9 +712,9 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>VIRTUAL_SERVICE</li>
+                                                                                                                                                                <li>EXTERNAL_SERVICE</li>
+                                                                                                                                                                                                <li>VIRTUAL_SERVICE</li>
                                                                                                                                                                                                 <li>ALL_VIRTUAL_SERVICES</li>
-                                                                                                                                                                                                <li>EXTERNAL_SERVICE</li>
                                                                                                                                                                                                 <li>INGRESS_GATEWAY</li>
                                                                                     </ul>
                                                                             </td>
@@ -842,20 +843,30 @@ Examples
         name: name_example
         mesh_id: "ocid1.mesh.oc1..xxxxxxEXAMPLExxxxxx"
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
-        # optional
-        description: description_example
         rules:
         - # required
           action: ALLOW
           source:
             # required
-            virtual_service_id: "ocid1.virtualservice.oc1..xxxxxxEXAMPLExxxxxx"
-            type: VIRTUAL_SERVICE
+            type: EXTERNAL_SERVICE
+
+            # optional
+            hostnames: [ "hostnames_example" ]
+            ip_addresses: [ "ip_addresses_example" ]
+            ports: [ "ports_example" ]
+            protocol: HTTP
           destination:
             # required
-            virtual_service_id: "ocid1.virtualservice.oc1..xxxxxxEXAMPLExxxxxx"
-            type: VIRTUAL_SERVICE
+            type: EXTERNAL_SERVICE
+
+            # optional
+            hostnames: [ "hostnames_example" ]
+            ip_addresses: [ "ip_addresses_example" ]
+            ports: [ "ports_example" ]
+            protocol: HTTP
+
+        # optional
+        description: description_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -871,12 +882,22 @@ Examples
           action: ALLOW
           source:
             # required
-            virtual_service_id: "ocid1.virtualservice.oc1..xxxxxxEXAMPLExxxxxx"
-            type: VIRTUAL_SERVICE
+            type: EXTERNAL_SERVICE
+
+            # optional
+            hostnames: [ "hostnames_example" ]
+            ip_addresses: [ "ip_addresses_example" ]
+            ports: [ "ports_example" ]
+            protocol: HTTP
           destination:
             # required
-            virtual_service_id: "ocid1.virtualservice.oc1..xxxxxxEXAMPLExxxxxx"
-            type: VIRTUAL_SERVICE
+            type: EXTERNAL_SERVICE
+
+            # optional
+            hostnames: [ "hostnames_example" ]
+            ip_addresses: [ "ip_addresses_example" ]
+            ports: [ "ports_example" ]
+            protocol: HTTP
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -893,12 +914,22 @@ Examples
           action: ALLOW
           source:
             # required
-            virtual_service_id: "ocid1.virtualservice.oc1..xxxxxxEXAMPLExxxxxx"
-            type: VIRTUAL_SERVICE
+            type: EXTERNAL_SERVICE
+
+            # optional
+            hostnames: [ "hostnames_example" ]
+            ip_addresses: [ "ip_addresses_example" ]
+            ports: [ "ports_example" ]
+            protocol: HTTP
           destination:
             # required
-            virtual_service_id: "ocid1.virtualservice.oc1..xxxxxxEXAMPLExxxxxx"
-            type: VIRTUAL_SERVICE
+            type: EXTERNAL_SERVICE
+
+            # optional
+            hostnames: [ "hostnames_example" ]
+            ip_addresses: [ "ip_addresses_example" ]
+            ports: [ "ports_example" ]
+            protocol: HTTP
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 

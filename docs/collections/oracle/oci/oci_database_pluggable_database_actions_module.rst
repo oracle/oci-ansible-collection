@@ -30,7 +30,7 @@ oracle.oci.oci_database_pluggable_database_actions -- Perform actions on a Plugg
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.7.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.8.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,10 @@ Synopsis
 .. Description
 
 - Perform actions on a PluggableDatabase resource in Oracle Cloud Infrastructure
+- For *action=disable_pluggable_database_management*, disables the Database Management service for the pluggable database.
+- For *action=enable_pluggable_database_management*, enables the Database Management service for an Oracle Pluggable Database located in Oracle Cloud Infrastructure. This service allows the pluggable database to access tools including Metrics and Performance hub. Database Management is enabled at the pluggable database (PDB) level.
 - For *action=local_clone*, clones and starts a pluggable database (PDB) in the same database (CDB) as the source PDB. The source PDB must be in the `READ_WRITE` openMode to perform the clone operation.
+- For *action=modify_pluggable_database_management*, updates one or more attributes of the Database Management service for the pluggable database.
 - For *action=remote_clone*, clones a pluggable database (PDB) to a different database from the source PDB. The cloned PDB will be started upon completion of the clone operation. The source PDB must be in the `READ_WRITE` openMode when performing the clone. For Exadata Cloud@Customer instances, the source pluggable database (PDB) must be on the same Exadata Infrastructure as the target container database (CDB) to create a remote clone.
 - For *action=start*, starts a stopped pluggable database. The `openMode` value of the pluggable database will be `READ_WRITE` upon completion.
 - For *action=stop*, stops a pluggable database. The `openMode` value of the pluggable database will be `MOUNTED` upon completion.
@@ -85,12 +88,12 @@ Parameters
 
     <table  border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="1">Parameter</th>
+            <th colspan="2">Parameter</th>
             <th>Choices/<font color="blue">Defaults</font></th>
                         <th width="100%">Comments</th>
         </tr>
                     <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-action"></div>
                     <b>action</b>
                     <a class="ansibleOptionLink" href="#parameter-action" title="Permalink to this option"></a>
@@ -100,7 +103,10 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>local_clone</li>
+                                                                                                                                                                <li>disable_pluggable_database_management</li>
+                                                                                                                                                                                                <li>enable_pluggable_database_management</li>
+                                                                                                                                                                                                <li>local_clone</li>
+                                                                                                                                                                                                <li>modify_pluggable_database_management</li>
                                                                                                                                                                                                 <li>remote_clone</li>
                                                                                                                                                                                                 <li>start</li>
                                                                                                                                                                                                 <li>stop</li>
@@ -111,7 +117,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user"></div>
                     <b>api_user</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user" title="Permalink to this option"></a>
@@ -126,7 +132,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_fingerprint"></div>
                     <b>api_user_fingerprint</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_fingerprint" title="Permalink to this option"></a>
@@ -141,7 +147,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_key_file"></div>
                     <b>api_user_key_file</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_key_file" title="Permalink to this option"></a>
@@ -156,7 +162,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-api_user_key_pass_phrase"></div>
                     <b>api_user_key_pass_phrase</b>
                     <a class="ansibleOptionLink" href="#parameter-api_user_key_pass_phrase" title="Permalink to this option"></a>
@@ -171,7 +177,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-auth_purpose"></div>
                     <b>auth_purpose</b>
                     <a class="ansibleOptionLink" href="#parameter-auth_purpose" title="Permalink to this option"></a>
@@ -189,7 +195,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-auth_type"></div>
                     <b>auth_type</b>
                     <a class="ansibleOptionLink" href="#parameter-auth_type" title="Permalink to this option"></a>
@@ -210,7 +216,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-cert_bundle"></div>
                     <b>cert_bundle</b>
                     <a class="ansibleOptionLink" href="#parameter-cert_bundle" title="Permalink to this option"></a>
@@ -225,7 +231,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-cloned_pdb_name"></div>
                     <b>cloned_pdb_name</b>
                     <a class="ansibleOptionLink" href="#parameter-cloned_pdb_name" title="Permalink to this option"></a>
@@ -241,7 +247,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-config_file_location"></div>
                     <b>config_file_location</b>
                     <a class="ansibleOptionLink" href="#parameter-config_file_location" title="Permalink to this option"></a>
@@ -256,7 +262,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-config_profile_name"></div>
                     <b>config_profile_name</b>
                     <a class="ansibleOptionLink" href="#parameter-config_profile_name" title="Permalink to this option"></a>
@@ -271,7 +277,56 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-credential_details"></div>
+                    <b>credential_details</b>
+                    <a class="ansibleOptionLink" href="#parameter-credential_details" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">dictionary</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div></div>
+                                            <div>Required for <em>action=enable_pluggable_database_management</em>.</div>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-credential_details/password_secret_id"></div>
+                    <b>password_secret_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-credential_details/password_secret_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Oracle Cloud Infrastructure <a href='https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts'>secret</a>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-credential_details/user_name"></div>
+                    <b>user_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-credential_details/user_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                 / <span style="color: red">required</span>                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The name of the Oracle Database user that will be used to connect to the database.</div>
+                                                        </td>
+            </tr>
+                    
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-pdb_admin_password"></div>
                     <b>pdb_admin_password</b>
                     <a class="ansibleOptionLink" href="#parameter-pdb_admin_password" title="Permalink to this option"></a>
@@ -287,7 +342,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-pluggable_database_id"></div>
                     <b>pluggable_database_id</b>
                     <a class="ansibleOptionLink" href="#parameter-pluggable_database_id" title="Permalink to this option"></a>
@@ -303,7 +358,59 @@ Parameters
                                     </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-port"></div>
+                    <b>port</b>
+                    <a class="ansibleOptionLink" href="#parameter-port" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">integer</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The port used to connect to the pluggable database.</div>
+                                            <div>Applicable only for <em>action=enable_pluggable_database_management</em><em>action=modify_pluggable_database_management</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-private_end_point_id"></div>
+                    <b>private_end_point_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-private_end_point_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the private endpoint.</div>
+                                            <div>Required for <em>action=enable_pluggable_database_management</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-protocol"></div>
+                    <b>protocol</b>
+                    <a class="ansibleOptionLink" href="#parameter-protocol" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>TCP</li>
+                                                                                                                                                                                                <li>TCPS</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>Protocol used by the database connection.</div>
+                                            <div>Applicable only for <em>action=enable_pluggable_database_management</em><em>action=modify_pluggable_database_management</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-region"></div>
                     <b>region</b>
                     <a class="ansibleOptionLink" href="#parameter-region" title="Permalink to this option"></a>
@@ -318,7 +425,43 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-role"></div>
+                    <b>role</b>
+                    <a class="ansibleOptionLink" href="#parameter-role" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>SYSDBA</li>
+                                                                                                                                                                                                <li>NORMAL</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The role of the user that will be connecting to the pluggable database.</div>
+                                            <div>Applicable only for <em>action=enable_pluggable_database_management</em><em>action=modify_pluggable_database_management</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-service_name"></div>
+                    <b>service_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-service_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The name of the Oracle Database service that will be used to connect to the database.</div>
+                                            <div>Required for <em>action=enable_pluggable_database_management</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-should_pdb_admin_account_be_locked"></div>
                     <b>should_pdb_admin_account_be_locked</b>
                     <a class="ansibleOptionLink" href="#parameter-should_pdb_admin_account_be_locked" title="Permalink to this option"></a>
@@ -338,7 +481,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-source_container_db_admin_password"></div>
                     <b>source_container_db_admin_password</b>
                     <a class="ansibleOptionLink" href="#parameter-source_container_db_admin_password" title="Permalink to this option"></a>
@@ -354,7 +497,23 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-ssl_secret_id"></div>
+                    <b>ssl_secret_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-ssl_secret_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the Oracle Cloud Infrastructure <a href='https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts'>secret</a>.</div>
+                                            <div>Applicable only for <em>action=enable_pluggable_database_management</em><em>action=modify_pluggable_database_management</em>.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-target_container_database_id"></div>
                     <b>target_container_database_id</b>
                     <a class="ansibleOptionLink" href="#parameter-target_container_database_id" title="Permalink to this option"></a>
@@ -370,7 +529,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-target_tde_wallet_password"></div>
                     <b>target_tde_wallet_password</b>
                     <a class="ansibleOptionLink" href="#parameter-target_tde_wallet_password" title="Permalink to this option"></a>
@@ -386,7 +545,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-tenancy"></div>
                     <b>tenancy</b>
                     <a class="ansibleOptionLink" href="#parameter-tenancy" title="Permalink to this option"></a>
@@ -401,7 +560,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-wait"></div>
                     <b>wait</b>
                     <a class="ansibleOptionLink" href="#parameter-wait" title="Permalink to this option"></a>
@@ -420,7 +579,7 @@ Parameters
                                                         </td>
             </tr>
                                 <tr>
-                                                                <td colspan="1">
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-wait_timeout"></div>
                     <b>wait_timeout</b>
                     <a class="ansibleOptionLink" href="#parameter-wait_timeout" title="Permalink to this option"></a>
@@ -459,6 +618,30 @@ Examples
 .. code-block:: yaml+jinja
 
     
+    - name: Perform action disable_pluggable_database_management on pluggable_database
+      oci_database_pluggable_database_actions:
+        # required
+        pluggable_database_id: "ocid1.pluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
+        action: disable_pluggable_database_management
+
+    - name: Perform action enable_pluggable_database_management on pluggable_database
+      oci_database_pluggable_database_actions:
+        # required
+        credential_details:
+          # required
+          user_name: user_name_example
+          password_secret_id: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
+        private_end_point_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+        service_name: service_name_example
+        pluggable_database_id: "ocid1.pluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
+        action: enable_pluggable_database_management
+
+        # optional
+        protocol: TCP
+        port: 56
+        ssl_secret_id: "ocid1.sslsecret.oc1..xxxxxxEXAMPLExxxxxx"
+        role: SYSDBA
+
     - name: Perform action local_clone on pluggable_database
       oci_database_pluggable_database_actions:
         # required
@@ -470,6 +653,24 @@ Examples
         pdb_admin_password: example-password
         target_tde_wallet_password: example-password
         should_pdb_admin_account_be_locked: true
+
+    - name: Perform action modify_pluggable_database_management on pluggable_database
+      oci_database_pluggable_database_actions:
+        # required
+        pluggable_database_id: "ocid1.pluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
+        action: modify_pluggable_database_management
+
+        # optional
+        credential_details:
+          # required
+          user_name: user_name_example
+          password_secret_id: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
+        private_end_point_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+        service_name: service_name_example
+        protocol: TCP
+        port: 56
+        ssl_secret_id: "ocid1.sslsecret.oc1..xxxxxxEXAMPLExxxxxx"
+        role: SYSDBA
 
     - name: Perform action remote_clone on pluggable_database
       oci_database_pluggable_database_actions:
@@ -532,7 +733,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the PluggableDatabase resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_strings&#x27;: {&#x27;all_connection_strings&#x27;: {}, &#x27;pdb_default&#x27;: &#x27;pdb_default_example&#x27;, &#x27;pdb_ip_default&#x27;: &#x27;pdb_ip_default_example&#x27;}, &#x27;container_database_id&#x27;: &#x27;ocid1.containerdatabase.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_restricted&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;open_mode&#x27;: &#x27;READ_ONLY&#x27;, &#x27;pdb_name&#x27;: &#x27;pdb_name_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_strings&#x27;: {&#x27;all_connection_strings&#x27;: {}, &#x27;pdb_default&#x27;: &#x27;pdb_default_example&#x27;, &#x27;pdb_ip_default&#x27;: &#x27;pdb_ip_default_example&#x27;}, &#x27;container_database_id&#x27;: &#x27;ocid1.containerdatabase.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_restricted&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;open_mode&#x27;: &#x27;READ_ONLY&#x27;, &#x27;pdb_name&#x27;: &#x27;pdb_name_example&#x27;, &#x27;pluggable_database_management_config&#x27;: {&#x27;management_status&#x27;: &#x27;ENABLING&#x27;}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -788,6 +989,42 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">pdb_name_example</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-pluggable_database/pluggable_database_management_config"></div>
+                    <b>pluggable_database_management_config</b>
+                    <a class="ansibleOptionLink" href="#return-pluggable_database/pluggable_database_management_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-pluggable_database/pluggable_database_management_config/management_status"></div>
+                    <b>management_status</b>
+                    <a class="ansibleOptionLink" href="#return-pluggable_database/pluggable_database_management_config/management_status" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The status of the Pluggable Database Management service.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ENABLING</div>
+                                    </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">

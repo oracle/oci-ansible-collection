@@ -162,7 +162,7 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class RepositoryMirrorRecordFactsHelperGen(OCIResourceFactsHelperBase):
+class DevopsRepositoryMirrorRecordFactsHelperGen(OCIResourceFactsHelperBase):
     """Supported operations: get, list"""
 
     def get_required_params_for_get(self):
@@ -199,13 +199,14 @@ class RepositoryMirrorRecordFactsHelperGen(OCIResourceFactsHelperBase):
         )
 
 
-RepositoryMirrorRecordFactsHelperCustom = get_custom_class(
-    "RepositoryMirrorRecordFactsHelperCustom"
+DevopsRepositoryMirrorRecordFactsHelperCustom = get_custom_class(
+    "DevopsRepositoryMirrorRecordFactsHelperCustom"
 )
 
 
 class ResourceFactsHelper(
-    RepositoryMirrorRecordFactsHelperCustom, RepositoryMirrorRecordFactsHelperGen
+    DevopsRepositoryMirrorRecordFactsHelperCustom,
+    DevopsRepositoryMirrorRecordFactsHelperGen,
 ):
     pass
 

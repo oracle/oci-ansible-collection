@@ -523,6 +523,36 @@ deployments:
                             returned: on success
                             type: str
                             sample: value_example
+        deploy_stage_override_arguments:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                items:
+                    description:
+                        - List of artifact override arguments at the time of deployment.
+                    returned: on success
+                    type: complex
+                    contains:
+                        deploy_stage_id:
+                            description:
+                                - The OCID of the stage.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx"
+                        name:
+                            description:
+                                - Name of the parameter (case-sensitive).
+                            returned: on success
+                            type: str
+                            sample: name_example
+                        value:
+                            description:
+                                - Value of the parameter.
+                            returned: on success
+                            type: str
+                            sample: value_example
         deploy_artifact_override_arguments:
             description:
                 - ""
@@ -667,6 +697,13 @@ deployments:
                 "value": "value_example"
             }]
         },
+        "deploy_stage_override_arguments": {
+            "items": [{
+                "deploy_stage_id": "ocid1.deploystage.oc1..xxxxxxEXAMPLExxxxxx",
+                "name": "name_example",
+                "value": "value_example"
+            }]
+        },
         "deploy_artifact_override_arguments": {
             "items": [{
                 "deploy_artifact_id": "ocid1.deployartifact.oc1..xxxxxxEXAMPLExxxxxx",
@@ -696,7 +733,7 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class DeploymentFactsHelperGen(OCIResourceFactsHelperBase):
+class DevopsDeploymentFactsHelperGen(OCIResourceFactsHelperBase):
     """Supported operations: get, list"""
 
     def get_required_params_for_get(self):
@@ -735,10 +772,14 @@ class DeploymentFactsHelperGen(OCIResourceFactsHelperBase):
         )
 
 
-DeploymentFactsHelperCustom = get_custom_class("DeploymentFactsHelperCustom")
+DevopsDeploymentFactsHelperCustom = get_custom_class(
+    "DevopsDeploymentFactsHelperCustom"
+)
 
 
-class ResourceFactsHelper(DeploymentFactsHelperCustom, DeploymentFactsHelperGen):
+class ResourceFactsHelper(
+    DevopsDeploymentFactsHelperCustom, DevopsDeploymentFactsHelperGen
+):
     pass
 
 

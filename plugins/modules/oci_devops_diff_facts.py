@@ -241,7 +241,7 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class DiffFactsHelperGen(OCIResourceFactsHelperBase):
+class DevopsDiffFactsHelperGen(OCIResourceFactsHelperBase):
     """Supported operations: list"""
 
     def get_required_params_for_list(self):
@@ -269,10 +269,10 @@ class DiffFactsHelperGen(OCIResourceFactsHelperBase):
         )
 
 
-DiffFactsHelperCustom = get_custom_class("DiffFactsHelperCustom")
+DevopsDiffFactsHelperCustom = get_custom_class("DevopsDiffFactsHelperCustom")
 
 
-class ResourceFactsHelper(DiffFactsHelperCustom, DiffFactsHelperGen):
+class ResourceFactsHelper(DevopsDiffFactsHelperCustom, DevopsDiffFactsHelperGen):
     pass
 
 

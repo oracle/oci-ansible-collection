@@ -178,11 +178,11 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class RepositoryRefHelperGen(OCIResourceHelperBase):
+class DevopsRepositoryRefHelperGen(OCIResourceHelperBase):
     """Supported operations: update, get, list and delete"""
 
     def get_possible_entity_types(self):
-        return super(RepositoryRefHelperGen, self).get_possible_entity_types() + [
+        return super(DevopsRepositoryRefHelperGen, self).get_possible_entity_types() + [
             "repositoryref",
             "repositoryreves",
             "devopsrepositoryref",
@@ -301,10 +301,10 @@ class RepositoryRefHelperGen(OCIResourceHelperBase):
         )
 
 
-RepositoryRefHelperCustom = get_custom_class("RepositoryRefHelperCustom")
+DevopsRepositoryRefHelperCustom = get_custom_class("DevopsRepositoryRefHelperCustom")
 
 
-class ResourceHelper(RepositoryRefHelperCustom, RepositoryRefHelperGen):
+class ResourceHelper(DevopsRepositoryRefHelperCustom, DevopsRepositoryRefHelperGen):
     pass
 
 

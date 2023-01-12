@@ -30,7 +30,7 @@ oracle.oci.oci_fusion_apps_fusion_environment_actions -- Perform actions on a Fu
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.7.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.8.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -410,7 +410,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the FusionEnvironment resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;additional_language_packs&#x27;: [], &#x27;applied_patch_bundles&#x27;: [], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;dns_prefix&#x27;: &#x27;dns_prefix_example&#x27;, &#x27;domain_id&#x27;: &#x27;ocid1.domain.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;fusion_environment_family_id&#x27;: &#x27;ocid1.fusionenvironmentfamily.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;fusion_environment_type&#x27;: &#x27;PRODUCTION&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;idcs_domain_url&#x27;: &#x27;idcs_domain_url_example&#x27;, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_info&#x27;: {}, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;maintenance_policy&#x27;: {&#x27;environment_maintenance_override&#x27;: &#x27;environment_maintenance_override_example&#x27;, &#x27;monthly_patching_override&#x27;: &#x27;monthly_patching_override_example&#x27;, &#x27;quarterly_upgrade_begin_times&#x27;: {&#x27;begin_times_value&#x27;: &#x27;begin_times_value_example&#x27;, &#x27;override_type&#x27;: &#x27;OVERRIDDEN&#x27;}}, &#x27;public_url&#x27;: &#x27;public_url_example&#x27;, &#x27;refresh&#x27;: {&#x27;source_fusion_environment_id&#x27;: &#x27;ocid1.sourcefusionenvironment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_restoration_point&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;rules&#x27;: [{&#x27;action&#x27;: &#x27;ALLOW&#x27;, &#x27;conditions&#x27;: [{&#x27;attribute_name&#x27;: &#x27;SOURCE_IP_ADDRESS&#x27;, &#x27;attribute_value&#x27;: &#x27;attribute_value_example&#x27;}], &#x27;description&#x27;: &#x27;description_example&#x27;}], &#x27;subscription_ids&#x27;: [], &#x27;system_name&#x27;: &#x27;system_name_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_upcoming_maintenance&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;additional_language_packs&#x27;: [], &#x27;applied_patch_bundles&#x27;: [], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;dns_prefix&#x27;: &#x27;dns_prefix_example&#x27;, &#x27;domain_id&#x27;: &#x27;ocid1.domain.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;fusion_environment_family_id&#x27;: &#x27;ocid1.fusionenvironmentfamily.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;fusion_environment_type&#x27;: &#x27;PRODUCTION&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;idcs_domain_url&#x27;: &#x27;idcs_domain_url_example&#x27;, &#x27;is_break_glass_enabled&#x27;: True, &#x27;kms_key_id&#x27;: &#x27;ocid1.kmskey.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;kms_key_info&#x27;: {}, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;lockbox_id&#x27;: &#x27;ocid1.lockbox.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;maintenance_policy&#x27;: {&#x27;environment_maintenance_override&#x27;: &#x27;environment_maintenance_override_example&#x27;, &#x27;monthly_patching_override&#x27;: &#x27;monthly_patching_override_example&#x27;, &#x27;quarterly_upgrade_begin_times&#x27;: {&#x27;begin_times_value&#x27;: &#x27;begin_times_value_example&#x27;, &#x27;override_type&#x27;: &#x27;OVERRIDDEN&#x27;}}, &#x27;public_url&#x27;: &#x27;public_url_example&#x27;, &#x27;refresh&#x27;: {&#x27;source_fusion_environment_id&#x27;: &#x27;ocid1.sourcefusionenvironment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_restoration_point&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}, &#x27;rules&#x27;: [{&#x27;action&#x27;: &#x27;ALLOW&#x27;, &#x27;conditions&#x27;: [{&#x27;attribute_name&#x27;: &#x27;SOURCE_IP_ADDRESS&#x27;, &#x27;attribute_value&#x27;: &#x27;attribute_value_example&#x27;}], &#x27;description&#x27;: &#x27;description_example&#x27;}], &#x27;subscription_ids&#x27;: [], &#x27;system_name&#x27;: &#x27;system_name_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_upcoming_maintenance&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;version&#x27;: &#x27;version_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -628,6 +628,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-fusion_environment/is_break_glass_enabled"></div>
+                    <b>is_break_glass_enabled</b>
+                    <a class="ansibleOptionLink" href="#return-fusion_environment/is_break_glass_enabled" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">boolean</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>If it&#x27;s true, then the Break Glass feature is enabled</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-fusion_environment/kms_key_id"></div>
                     <b>kms_key_id</b>
                     <a class="ansibleOptionLink" href="#return-fusion_environment/kms_key_id" title="Permalink to this return value"></a>
@@ -693,6 +711,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-fusion_environment/lockbox_id"></div>
+                    <b>lockbox_id</b>
+                    <a class="ansibleOptionLink" href="#return-fusion_environment/lockbox_id" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The lockbox Id of this fusion environment. If there&#x27;s no lockbox id, this field will be null</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ocid1.lockbox.oc1..xxxxxxEXAMPLExxxxxx</div>
                                     </td>
             </tr>
                                 <tr>

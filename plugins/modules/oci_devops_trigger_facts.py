@@ -48,6 +48,7 @@ options:
         type: str
         choices:
             - "ACTIVE"
+            - "DELETING"
     display_name:
         description:
             - A filter to return only resources that match the entire display name given.
@@ -348,7 +349,7 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class TriggerFactsHelperGen(OCIResourceFactsHelperBase):
+class DevopsTriggerFactsHelperGen(OCIResourceFactsHelperBase):
     """Supported operations: get, list"""
 
     def get_required_params_for_get(self):
@@ -383,10 +384,10 @@ class TriggerFactsHelperGen(OCIResourceFactsHelperBase):
         )
 
 
-TriggerFactsHelperCustom = get_custom_class("TriggerFactsHelperCustom")
+DevopsTriggerFactsHelperCustom = get_custom_class("DevopsTriggerFactsHelperCustom")
 
 
-class ResourceFactsHelper(TriggerFactsHelperCustom, TriggerFactsHelperGen):
+class ResourceFactsHelper(DevopsTriggerFactsHelperCustom, DevopsTriggerFactsHelperGen):
     pass
 
 
@@ -397,7 +398,7 @@ def main():
             trigger_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
             project_id=dict(type="str"),
-            lifecycle_state=dict(type="str", choices=["ACTIVE"]),
+            lifecycle_state=dict(type="str", choices=["ACTIVE", "DELETING"]),
             display_name=dict(aliases=["name"], type="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["timeCreated", "displayName"]),

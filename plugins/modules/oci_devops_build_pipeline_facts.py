@@ -103,14 +103,6 @@ build_pipelines:
     returned: on success
     type: complex
     contains:
-        lifecycle_details:
-            description:
-                - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
-                  state.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: lifecycle_details_example
         id:
             description:
                 - Unique identifier that is immutable on creation.
@@ -153,6 +145,13 @@ build_pipelines:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        lifecycle_details:
+            description:
+                - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
+                  state.
+            returned: on success
+            type: str
+            sample: lifecycle_details_example
         lifecycle_state:
             description:
                 - The current state of the build pipeline.
@@ -213,7 +212,6 @@ build_pipelines:
             type: dict
             sample: {}
     sample: [{
-        "lifecycle_details": "lifecycle_details_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "description": "description_example",
         "display_name": "display_name_example",
@@ -221,6 +219,7 @@ build_pipelines:
         "project_id": "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
+        "lifecycle_details": "lifecycle_details_example",
         "lifecycle_state": "CREATING",
         "build_pipeline_parameters": {
             "items": [{
@@ -250,7 +249,7 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class BuildPipelineFactsHelperGen(OCIResourceFactsHelperBase):
+class DevopsBuildPipelineFactsHelperGen(OCIResourceFactsHelperBase):
     """Supported operations: get, list"""
 
     def get_required_params_for_get(self):
@@ -286,10 +285,14 @@ class BuildPipelineFactsHelperGen(OCIResourceFactsHelperBase):
         )
 
 
-BuildPipelineFactsHelperCustom = get_custom_class("BuildPipelineFactsHelperCustom")
+DevopsBuildPipelineFactsHelperCustom = get_custom_class(
+    "DevopsBuildPipelineFactsHelperCustom"
+)
 
 
-class ResourceFactsHelper(BuildPipelineFactsHelperCustom, BuildPipelineFactsHelperGen):
+class ResourceFactsHelper(
+    DevopsBuildPipelineFactsHelperCustom, DevopsBuildPipelineFactsHelperGen
+):
     pass
 
 

@@ -23,20 +23,24 @@ module: oci_devops_project_actions
 short_description: Perform actions on a Project resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a Project resource in Oracle Cloud Infrastructure
+    - For I(action=cancel_scheduled_cascading_project_deletion), cascading operation that restores Project and child resources from a DELETING state to an
+      active state
     - For I(action=change_compartment), moves a project resource from one compartment OCID to another.
+    - For I(action=schedule_cascading_project_deletion), cascading operation that marks Project and child DevOps resources in a DELETING state for a retention
+      period
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment to which the resource must be moved.
+            - Required for I(action=change_compartment).
+        type: str
     project_id:
         description:
             - Unique project identifier.
         type: str
         aliases: ["id"]
-        required: true
-    compartment_id:
-        description:
-            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment to which the resource must be moved.
-        type: str
         required: true
     action:
         description:
@@ -44,17 +48,31 @@ options:
         type: str
         required: true
         choices:
+            - "cancel_scheduled_cascading_project_deletion"
             - "change_compartment"
+            - "schedule_cascading_project_deletion"
 extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_options ]
 """
 
 EXAMPLES = """
-- name: Perform action change_compartment on project
+- name: Perform action cancel_scheduled_cascading_project_deletion on project
   oci_devops_project_actions:
     # required
     project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+    action: cancel_scheduled_cascading_project_deletion
+
+- name: Perform action change_compartment on project
+  oci_devops_project_actions:
+    # required
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
     action: change_compartment
+
+- name: Perform action schedule_cascading_project_deletion on project
+  oci_devops_project_actions:
+    # required
+    project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+    action: schedule_cascading_project_deletion
 
 """
 
@@ -192,10 +210,12 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class ProjectActionsHelperGen(OCIActionsHelperBase):
+class DevopsProjectActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        cancel_scheduled_cascading_project_deletion
         change_compartment
+        schedule_cascading_project_deletion
     """
 
     @staticmethod
@@ -211,6 +231,21 @@ class ProjectActionsHelperGen(OCIActionsHelperBase):
     def get_resource(self):
         return oci_common_utils.call_with_backoff(
             self.client.get_project, project_id=self.module.params.get("project_id"),
+        )
+
+    def cancel_scheduled_cascading_project_deletion(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.cancel_scheduled_cascading_project_deletion,
+            call_fn_args=(),
+            call_fn_kwargs=dict(project_id=self.module.params.get("project_id"),),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
     def change_compartment(self):
@@ -234,11 +269,26 @@ class ProjectActionsHelperGen(OCIActionsHelperBase):
             wait_for_states=oci_common_utils.get_work_request_completed_states(),
         )
 
+    def schedule_cascading_project_deletion(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.schedule_cascading_project_deletion,
+            call_fn_args=(),
+            call_fn_kwargs=dict(project_id=self.module.params.get("project_id"),),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.get_waiter_client(),
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
 
-ProjectActionsHelperCustom = get_custom_class("ProjectActionsHelperCustom")
+
+DevopsProjectActionsHelperCustom = get_custom_class("DevopsProjectActionsHelperCustom")
 
 
-class ResourceHelper(ProjectActionsHelperCustom, ProjectActionsHelperGen):
+class ResourceHelper(DevopsProjectActionsHelperCustom, DevopsProjectActionsHelperGen):
     pass
 
 
@@ -248,9 +298,17 @@ def main():
     )
     module_args.update(
         dict(
+            compartment_id=dict(type="str"),
             project_id=dict(aliases=["id"], type="str", required=True),
-            compartment_id=dict(type="str", required=True),
-            action=dict(type="str", required=True, choices=["change_compartment"]),
+            action=dict(
+                type="str",
+                required=True,
+                choices=[
+                    "cancel_scheduled_cascading_project_deletion",
+                    "change_compartment",
+                    "schedule_cascading_project_deletion",
+                ],
+            ),
         )
     )
 

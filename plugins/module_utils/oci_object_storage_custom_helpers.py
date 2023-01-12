@@ -14,15 +14,21 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_wait_utils,
 )
 from ansible.module_utils._text import to_bytes
-import base64
 import os
 
 try:
     from oci.exceptions import ServiceError, MaximumWaitTimeExceeded
     from oci.util import to_dict
     from oci.object_storage.models import PutObjectLifecyclePolicyDetails
-    from oci.object_storage import ObjectStorageClient, UploadManager
+    from oci.object_storage import (
+        ObjectStorageClient,
+        UploadManager,
+        MultipartObjectAssembler,
+    )
     from oci.object_storage.models import ObjectSummary
+    from oci.object_storage.transfer.internal.multipart_object_assembler import (
+        READ_BUFFER_SIZE,
+    )
 
     HAS_OCI_PY_SDK = True
 except ImportError:
@@ -382,9 +388,7 @@ class ObjectHelperCustom:
 
             # Check if file exists with the same checksum. Get md5 hexdigest of the file content, convert it to
             # binary and then get base-64 encoded MD5 hash.
-            dest_md5 = base64.b64encode(
-                base64.b16decode(self.module.md5(dest), True)
-            ).decode("ascii")
+            dest_md5 = MultipartObjectAssembler.calculate_md5(dest, 0, READ_BUFFER_SIZE)
             if os.path.isfile(to_bytes(dest)) and (
                 dest_md5 == download_response.headers.get("Content-MD5", None)
                 or dest_md5 == download_response.headers.get("opc-multipart-md5", None)
@@ -443,9 +447,7 @@ class ObjectHelperCustom:
                 % self.module.params.get("object_name"),
             )
 
-        src_md5 = base64.b64encode(base64.b16decode(self.module.md5(src), True)).decode(
-            "ascii"
-        )
+        src_md5 = MultipartObjectAssembler.calculate_md5(src, 0, READ_BUFFER_SIZE)
         if object_exists and (
             src_md5 == response.headers.get("Content-MD5", None)
             or src_md5 == response.headers.get("opc-multipart-md5", None)

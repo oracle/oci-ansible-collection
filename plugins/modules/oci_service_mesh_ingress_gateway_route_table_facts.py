@@ -66,6 +66,13 @@ options:
         description:
             - A filter to return only resources that match the life cycle state given.
         type: str
+        choices:
+            - "CREATING"
+            - "UPDATING"
+            - "ACTIVE"
+            - "DELETING"
+            - "DELETED"
+            - "FAILED"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -85,7 +92,7 @@ EXAMPLES = """
     sort_order: ASC
     sort_by: id
     ingress_gateway_id: "ocid1.ingressgateway.oc1..xxxxxxEXAMPLExxxxxx"
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: CREATING
 
 """
 
@@ -387,7 +394,17 @@ def main():
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["id", "timeCreated", "name"]),
             ingress_gateway_id=dict(type="str"),
-            lifecycle_state=dict(type="str"),
+            lifecycle_state=dict(
+                type="str",
+                choices=[
+                    "CREATING",
+                    "UPDATING",
+                    "ACTIVE",
+                    "DELETING",
+                    "DELETED",
+                    "FAILED",
+                ],
+            ),
         )
     )
 

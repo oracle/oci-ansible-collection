@@ -50,6 +50,7 @@ options:
             - "DELETING"
             - "DELETED"
             - "FAILED"
+            - "NEEDS_ATTENTION"
     name:
         description:
             - A filter to return only resources that match the entire name given.
@@ -98,14 +99,6 @@ projects:
     returned: on success
     type: complex
     contains:
-        lifecycle_details:
-            description:
-                - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
-                  state.
-                - Returned for get operation
-            returned: on success
-            type: str
-            sample: lifecycle_details_example
         id:
             description:
                 - Unique identifier that is immutable on creation.
@@ -160,6 +153,13 @@ projects:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        lifecycle_details:
+            description:
+                - A message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed
+                  state.
+            returned: on success
+            type: str
+            sample: lifecycle_details_example
         lifecycle_state:
             description:
                 - The current state of the project.
@@ -189,7 +189,6 @@ projects:
             type: dict
             sample: {}
     sample: [{
-        "lifecycle_details": "lifecycle_details_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "name": "name_example",
         "description": "description_example",
@@ -200,6 +199,7 @@ projects:
         },
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
+        "lifecycle_details": "lifecycle_details_example",
         "lifecycle_state": "CREATING",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -222,7 +222,7 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class ProjectFactsHelperGen(OCIResourceFactsHelperBase):
+class DevopsProjectFactsHelperGen(OCIResourceFactsHelperBase):
     """Supported operations: get, list"""
 
     def get_required_params_for_get(self):
@@ -259,10 +259,10 @@ class ProjectFactsHelperGen(OCIResourceFactsHelperBase):
         )
 
 
-ProjectFactsHelperCustom = get_custom_class("ProjectFactsHelperCustom")
+DevopsProjectFactsHelperCustom = get_custom_class("DevopsProjectFactsHelperCustom")
 
 
-class ResourceFactsHelper(ProjectFactsHelperCustom, ProjectFactsHelperGen):
+class ResourceFactsHelper(DevopsProjectFactsHelperCustom, DevopsProjectFactsHelperGen):
     pass
 
 
@@ -281,6 +281,7 @@ def main():
                     "DELETING",
                     "DELETED",
                     "FAILED",
+                    "NEEDS_ATTENTION",
                 ],
             ),
             name=dict(type="str"),

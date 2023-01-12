@@ -24,7 +24,8 @@ short_description: Manage a Project resource in Oracle Cloud Infrastructure
 description:
     - This module allows the user to create, update and delete a Project resource in Oracle Cloud Infrastructure
     - For I(state=present), creates a new project.
-    - "This resource has the following action operations in the M(oracle.oci.oci_devops_project_actions) module: change_compartment."
+    - "This resource has the following action operations in the M(oracle.oci.oci_devops_project_actions) module: cancel_scheduled_cascading_project_deletion,
+      change_compartment, schedule_cascading_project_deletion."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -281,11 +282,11 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class ProjectHelperGen(OCIResourceHelperBase):
+class DevopsProjectHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
     def get_possible_entity_types(self):
-        return super(ProjectHelperGen, self).get_possible_entity_types() + [
+        return super(DevopsProjectHelperGen, self).get_possible_entity_types() + [
             "devopsproject",
             "devopsprojects",
             "devopsdevopsproject",
@@ -398,10 +399,10 @@ class ProjectHelperGen(OCIResourceHelperBase):
         )
 
 
-ProjectHelperCustom = get_custom_class("ProjectHelperCustom")
+DevopsProjectHelperCustom = get_custom_class("DevopsProjectHelperCustom")
 
 
-class ResourceHelper(ProjectHelperCustom, ProjectHelperGen):
+class ResourceHelper(DevopsProjectHelperCustom, DevopsProjectHelperGen):
     pass
 
 
