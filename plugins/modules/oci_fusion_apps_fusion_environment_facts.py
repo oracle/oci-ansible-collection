@@ -316,6 +316,18 @@ fusion_environments:
             returned: on success
             type: list
             sample: []
+        lockbox_id:
+            description:
+                - The lockbox Id of this fusion environment. If there's no lockbox id, this field will be null
+            returned: on success
+            type: str
+            sample: "ocid1.lockbox.oc1..xxxxxxEXAMPLExxxxxx"
+        is_break_glass_enabled:
+            description:
+                - If it's true, then the Break Glass feature is enabled
+            returned: on success
+            type: bool
+            sample: true
         time_created:
             description:
                 - The time the the FusionEnvironment was created. An RFC3339 formatted datetime string
@@ -394,6 +406,8 @@ fusion_environments:
         "public_url": "public_url_example",
         "dns_prefix": "dns_prefix_example",
         "additional_language_packs": [],
+        "lockbox_id": "ocid1.lockbox.oc1..xxxxxxEXAMPLExxxxxx",
+        "is_break_glass_enabled": true,
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "CREATING",

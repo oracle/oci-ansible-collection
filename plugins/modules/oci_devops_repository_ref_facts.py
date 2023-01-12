@@ -174,7 +174,7 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class RepositoryRefFactsHelperGen(OCIResourceFactsHelperBase):
+class DevopsRepositoryRefFactsHelperGen(OCIResourceFactsHelperBase):
     """Supported operations: get, list"""
 
     def get_required_params_for_get(self):
@@ -215,10 +215,14 @@ class RepositoryRefFactsHelperGen(OCIResourceFactsHelperBase):
         )
 
 
-RepositoryRefFactsHelperCustom = get_custom_class("RepositoryRefFactsHelperCustom")
+DevopsRepositoryRefFactsHelperCustom = get_custom_class(
+    "DevopsRepositoryRefFactsHelperCustom"
+)
 
 
-class ResourceFactsHelper(RepositoryRefFactsHelperCustom, RepositoryRefFactsHelperGen):
+class ResourceFactsHelper(
+    DevopsRepositoryRefFactsHelperCustom, DevopsRepositoryRefFactsHelperGen
+):
     pass
 
 

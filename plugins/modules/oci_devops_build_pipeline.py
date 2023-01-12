@@ -334,11 +334,11 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class BuildPipelineHelperGen(OCIResourceHelperBase):
+class DevopsBuildPipelineHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
     def get_possible_entity_types(self):
-        return super(BuildPipelineHelperGen, self).get_possible_entity_types() + [
+        return super(DevopsBuildPipelineHelperGen, self).get_possible_entity_types() + [
             "devopsbuildpipeline",
             "devopsbuildpipelines",
             "devopsdevopsbuildpipeline",
@@ -450,10 +450,10 @@ class BuildPipelineHelperGen(OCIResourceHelperBase):
         )
 
 
-BuildPipelineHelperCustom = get_custom_class("BuildPipelineHelperCustom")
+DevopsBuildPipelineHelperCustom = get_custom_class("DevopsBuildPipelineHelperCustom")
 
 
-class ResourceHelper(BuildPipelineHelperCustom, BuildPipelineHelperGen):
+class ResourceHelper(DevopsBuildPipelineHelperCustom, DevopsBuildPipelineHelperGen):
     pass
 
 

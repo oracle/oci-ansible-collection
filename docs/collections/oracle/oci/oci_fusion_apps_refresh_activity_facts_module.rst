@@ -30,7 +30,7 @@ oracle.oci.oci_fusion_apps_refresh_activity_facts -- Fetches details about one o
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.7.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.8.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -275,6 +275,7 @@ Parameters
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>ACCEPTED</li>
                                                                                                                                                                                                 <li>IN_PROGRESS</li>
+                                                                                                                                                                                                <li>NEEDS_ATTENTION</li>
                                                                                                                                                                                                 <li>FAILED</li>
                                                                                                                                                                                                 <li>SUCCEEDED</li>
                                                                                                                                                                                                 <li>CANCELED</li>
@@ -460,12 +461,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
 
     <table border=0 cellpadding=0 class="documentation-table">
         <tr>
-            <th colspan="2">Key</th>
+            <th colspan="3">Key</th>
             <th>Returned</th>
             <th width="100%">Description</th>
         </tr>
                     <tr>
-                                <td colspan="2">
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-refresh_activities"></div>
                     <b>refresh_activities</b>
                     <a class="ansibleOptionLink" href="#return-refresh_activities" title="Permalink to this return value"></a>
@@ -478,12 +479,12 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of RefreshActivity resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;NONE&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACCEPTED&#x27;, &#x27;service_availability&#x27;: &#x27;AVAILABLE&#x27;, &#x27;source_fusion_environment_id&#x27;: &#x27;ocid1.sourcefusionenvironment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_accepted&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_expected_finish&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_restoration_point&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_scheduled_start&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;NONE&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACCEPTED&#x27;, &#x27;refresh_issue_details_list&#x27;: [{&#x27;refresh_issues&#x27;: &#x27;refresh_issues_example&#x27;}], &#x27;service_availability&#x27;: &#x27;AVAILABLE&#x27;, &#x27;source_fusion_environment_id&#x27;: &#x27;ocid1.sourcefusionenvironment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_accepted&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_expected_finish&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_finished&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_of_restoration_point&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_scheduled_start&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-refresh_activities/display_name"></div>
                     <b>display_name</b>
                     <a class="ansibleOptionLink" href="#return-refresh_activities/display_name" title="Permalink to this return value"></a>
@@ -501,7 +502,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-refresh_activities/id"></div>
                     <b>id</b>
                     <a class="ansibleOptionLink" href="#return-refresh_activities/id" title="Permalink to this return value"></a>
@@ -519,7 +520,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-refresh_activities/lifecycle_details"></div>
                     <b>lifecycle_details</b>
                     <a class="ansibleOptionLink" href="#return-refresh_activities/lifecycle_details" title="Permalink to this return value"></a>
@@ -537,7 +538,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-refresh_activities/lifecycle_state"></div>
                     <b>lifecycle_state</b>
                     <a class="ansibleOptionLink" href="#return-refresh_activities/lifecycle_state" title="Permalink to this return value"></a>
@@ -555,7 +556,43 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-refresh_activities/refresh_issue_details_list"></div>
+                    <b>refresh_issue_details_list</b>
+                    <a class="ansibleOptionLink" href="#return-refresh_activities/refresh_issue_details_list" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Details of refresh investigation information, each item represents a different issue.</div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-refresh_activities/refresh_issue_details_list/refresh_issues"></div>
+                    <b>refresh_issues</b>
+                    <a class="ansibleOptionLink" href="#return-refresh_activities/refresh_issue_details_list/refresh_issues" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Detail reasons of refresh failure or validation failure that needs to be shown to customer.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">refresh_issues_example</div>
+                                    </td>
+            </tr>
+                    
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-refresh_activities/service_availability"></div>
                     <b>service_availability</b>
                     <a class="ansibleOptionLink" href="#return-refresh_activities/service_availability" title="Permalink to this return value"></a>
@@ -573,7 +610,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-refresh_activities/source_fusion_environment_id"></div>
                     <b>source_fusion_environment_id</b>
                     <a class="ansibleOptionLink" href="#return-refresh_activities/source_fusion_environment_id" title="Permalink to this return value"></a>
@@ -591,7 +628,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-refresh_activities/time_accepted"></div>
                     <b>time_accepted</b>
                     <a class="ansibleOptionLink" href="#return-refresh_activities/time_accepted" title="Permalink to this return value"></a>
@@ -609,7 +646,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-refresh_activities/time_expected_finish"></div>
                     <b>time_expected_finish</b>
                     <a class="ansibleOptionLink" href="#return-refresh_activities/time_expected_finish" title="Permalink to this return value"></a>
@@ -627,7 +664,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-refresh_activities/time_finished"></div>
                     <b>time_finished</b>
                     <a class="ansibleOptionLink" href="#return-refresh_activities/time_finished" title="Permalink to this return value"></a>
@@ -645,7 +682,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-refresh_activities/time_of_restoration_point"></div>
                     <b>time_of_restoration_point</b>
                     <a class="ansibleOptionLink" href="#return-refresh_activities/time_of_restoration_point" title="Permalink to this return value"></a>
@@ -663,7 +700,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-refresh_activities/time_scheduled_start"></div>
                     <b>time_scheduled_start</b>
                     <a class="ansibleOptionLink" href="#return-refresh_activities/time_scheduled_start" title="Permalink to this return value"></a>
@@ -681,7 +718,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
             </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
-                                <td colspan="1">
+                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="return-refresh_activities/time_updated"></div>
                     <b>time_updated</b>
                     <a class="ansibleOptionLink" href="#return-refresh_activities/time_updated" title="Permalink to this return value"></a>

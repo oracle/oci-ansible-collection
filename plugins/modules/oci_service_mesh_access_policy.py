@@ -58,6 +58,7 @@ options:
     rules:
         description:
             - List of applicable rules
+            - Required for create using I(state=present).
             - This parameter is updatable.
         type: list
         elements: dict
@@ -75,11 +76,6 @@ options:
                 type: dict
                 required: true
                 suboptions:
-                    virtual_service_id:
-                        description:
-                            - The OCID of the virtual service resource.
-                            - Required when type is 'VIRTUAL_SERVICE'
-                        type: str
                     hostnames:
                         description:
                             - "The hostnames of the external service. Only applicable for HTTP and HTTPS protocols.
@@ -112,14 +108,19 @@ options:
                             - "HTTP"
                             - "HTTPS"
                             - "TCP"
+                    virtual_service_id:
+                        description:
+                            - The OCID of the virtual service resource.
+                            - Required when type is 'VIRTUAL_SERVICE'
+                        type: str
                     type:
                         description:
                             - Traffic type of the target.
                         type: str
                         choices:
+                            - "EXTERNAL_SERVICE"
                             - "VIRTUAL_SERVICE"
                             - "ALL_VIRTUAL_SERVICES"
-                            - "EXTERNAL_SERVICE"
                             - "INGRESS_GATEWAY"
                         required: true
                     ingress_gateway_id:
@@ -133,11 +134,6 @@ options:
                 type: dict
                 required: true
                 suboptions:
-                    virtual_service_id:
-                        description:
-                            - The OCID of the virtual service resource.
-                            - Required when type is 'VIRTUAL_SERVICE'
-                        type: str
                     hostnames:
                         description:
                             - "The hostnames of the external service. Only applicable for HTTP and HTTPS protocols.
@@ -170,14 +166,19 @@ options:
                             - "HTTP"
                             - "HTTPS"
                             - "TCP"
+                    virtual_service_id:
+                        description:
+                            - The OCID of the virtual service resource.
+                            - Required when type is 'VIRTUAL_SERVICE'
+                        type: str
                     type:
                         description:
                             - Traffic type of the target.
                         type: str
                         choices:
+                            - "EXTERNAL_SERVICE"
                             - "VIRTUAL_SERVICE"
                             - "ALL_VIRTUAL_SERVICES"
-                            - "EXTERNAL_SERVICE"
                             - "INGRESS_GATEWAY"
                         required: true
                     ingress_gateway_id:
@@ -223,20 +224,30 @@ EXAMPLES = """
     name: name_example
     mesh_id: "ocid1.mesh.oc1..xxxxxxEXAMPLExxxxxx"
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
-
-    # optional
-    description: description_example
     rules:
     - # required
       action: ALLOW
       source:
         # required
-        virtual_service_id: "ocid1.virtualservice.oc1..xxxxxxEXAMPLExxxxxx"
-        type: VIRTUAL_SERVICE
+        type: EXTERNAL_SERVICE
+
+        # optional
+        hostnames: [ "hostnames_example" ]
+        ip_addresses: [ "ip_addresses_example" ]
+        ports: [ "ports_example" ]
+        protocol: HTTP
       destination:
         # required
-        virtual_service_id: "ocid1.virtualservice.oc1..xxxxxxEXAMPLExxxxxx"
-        type: VIRTUAL_SERVICE
+        type: EXTERNAL_SERVICE
+
+        # optional
+        hostnames: [ "hostnames_example" ]
+        ip_addresses: [ "ip_addresses_example" ]
+        ports: [ "ports_example" ]
+        protocol: HTTP
+
+    # optional
+    description: description_example
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -252,12 +263,22 @@ EXAMPLES = """
       action: ALLOW
       source:
         # required
-        virtual_service_id: "ocid1.virtualservice.oc1..xxxxxxEXAMPLExxxxxx"
-        type: VIRTUAL_SERVICE
+        type: EXTERNAL_SERVICE
+
+        # optional
+        hostnames: [ "hostnames_example" ]
+        ip_addresses: [ "ip_addresses_example" ]
+        ports: [ "ports_example" ]
+        protocol: HTTP
       destination:
         # required
-        virtual_service_id: "ocid1.virtualservice.oc1..xxxxxxEXAMPLExxxxxx"
-        type: VIRTUAL_SERVICE
+        type: EXTERNAL_SERVICE
+
+        # optional
+        hostnames: [ "hostnames_example" ]
+        ip_addresses: [ "ip_addresses_example" ]
+        ports: [ "ports_example" ]
+        protocol: HTTP
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -274,12 +295,22 @@ EXAMPLES = """
       action: ALLOW
       source:
         # required
-        virtual_service_id: "ocid1.virtualservice.oc1..xxxxxxEXAMPLExxxxxx"
-        type: VIRTUAL_SERVICE
+        type: EXTERNAL_SERVICE
+
+        # optional
+        hostnames: [ "hostnames_example" ]
+        ip_addresses: [ "ip_addresses_example" ]
+        ports: [ "ports_example" ]
+        protocol: HTTP
       destination:
         # required
-        virtual_service_id: "ocid1.virtualservice.oc1..xxxxxxEXAMPLExxxxxx"
-        type: VIRTUAL_SERVICE
+        type: EXTERNAL_SERVICE
+
+        # optional
+        hostnames: [ "hostnames_example" ]
+        ip_addresses: [ "ip_addresses_example" ]
+        ports: [ "ports_example" ]
+        protocol: HTTP
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -704,18 +735,18 @@ def main():
                         type="dict",
                         required=True,
                         options=dict(
-                            virtual_service_id=dict(type="str"),
                             hostnames=dict(type="list", elements="str"),
                             ip_addresses=dict(type="list", elements="str"),
                             ports=dict(type="list", elements="int"),
                             protocol=dict(type="str", choices=["HTTP", "HTTPS", "TCP"]),
+                            virtual_service_id=dict(type="str"),
                             type=dict(
                                 type="str",
                                 required=True,
                                 choices=[
+                                    "EXTERNAL_SERVICE",
                                     "VIRTUAL_SERVICE",
                                     "ALL_VIRTUAL_SERVICES",
-                                    "EXTERNAL_SERVICE",
                                     "INGRESS_GATEWAY",
                                 ],
                             ),
@@ -726,18 +757,18 @@ def main():
                         type="dict",
                         required=True,
                         options=dict(
-                            virtual_service_id=dict(type="str"),
                             hostnames=dict(type="list", elements="str"),
                             ip_addresses=dict(type="list", elements="str"),
                             ports=dict(type="list", elements="int"),
                             protocol=dict(type="str", choices=["HTTP", "HTTPS", "TCP"]),
+                            virtual_service_id=dict(type="str"),
                             type=dict(
                                 type="str",
                                 required=True,
                                 choices=[
+                                    "EXTERNAL_SERVICE",
                                     "VIRTUAL_SERVICE",
                                     "ALL_VIRTUAL_SERVICES",
-                                    "EXTERNAL_SERVICE",
                                     "INGRESS_GATEWAY",
                                 ],
                             ),

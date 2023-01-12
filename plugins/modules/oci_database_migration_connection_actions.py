@@ -288,6 +288,12 @@ connection:
             returned: on success
             type: dict
             sample: {}
+        nsg_ids:
+            description:
+                - An array of Network Security Group OCIDs used to define network access for Connections.
+            returned: on success
+            type: list
+            sample: []
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -329,7 +335,8 @@ connection:
         "time_updated": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "system_tags": {}
+        "system_tags": {},
+        "nsg_ids": []
     }
 """
 

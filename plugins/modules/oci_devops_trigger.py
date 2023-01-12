@@ -1260,11 +1260,11 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class TriggerHelperGen(OCIResourceHelperBase):
+class DevopsTriggerHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
     def get_possible_entity_types(self):
-        return super(TriggerHelperGen, self).get_possible_entity_types() + [
+        return super(DevopsTriggerHelperGen, self).get_possible_entity_types() + [
             "trigger",
             "triggers",
             "devopstrigger",
@@ -1367,10 +1367,10 @@ class TriggerHelperGen(OCIResourceHelperBase):
         )
 
 
-TriggerHelperCustom = get_custom_class("TriggerHelperCustom")
+DevopsTriggerHelperCustom = get_custom_class("DevopsTriggerHelperCustom")
 
 
-class ResourceHelper(TriggerHelperCustom, TriggerHelperGen):
+class ResourceHelper(DevopsTriggerHelperCustom, DevopsTriggerHelperGen):
     pass
 
 

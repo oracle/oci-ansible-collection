@@ -4,6 +4,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [4.8.0]
+
+## Added
+- Support for Intel X9 shapes when launching VM database systems in the Database service
+- Support for enabling, disabling, and editing Database Management service connections on pluggable databases in the Database service
+- Support for cryptographic roadmap impact analysis in the Java Management service
+- Support for Java Flight Recorder recordings in the Java Management service
+- Support for issue and action fields on job phases of validation and migration processes in the Database Migration service
+- Support for deployment stage level parameters in the DevOps service
+- Support for scheduling cascading deletes on a project in the DevOps service
+- Support for cancelling a scheduled cascading delete on a project in the DevOps service
+- Support for Oracle Managed Access integration in the Fusion Apps as a Service service
+- Support for egress-only services in the Service Mesh service
+- Support for optional listeners and service discovery metadata on virtual deployments in the Service Mesh service
+
+## Breaking
+- Property `rules` changed from optional to required for `oci_service_mesh_access_policy` module in Service Mesh service.
+
+## Fixed
+ - Issue while running `oci_object_storage_object` module in FIPS Mode
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.90.1
+
 ## [4.7.0]
 
 ## Added

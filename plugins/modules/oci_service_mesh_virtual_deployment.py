@@ -58,26 +58,25 @@ options:
     service_discovery:
         description:
             - ""
-            - Required for create using I(state=present).
             - This parameter is updatable.
         type: dict
         suboptions:
+            hostname:
+                description:
+                    - The hostname of the virtual deployments.
+                    - Required when type is 'DNS'
+                type: str
             type:
                 description:
                     - Type of service discovery.
                 type: str
                 choices:
                     - "DNS"
-                required: true
-            hostname:
-                description:
-                    - The hostname of the virtual deployments.
-                type: str
+                    - "DISABLED"
                 required: true
     listeners:
         description:
             - The listeners for the virtual deployment.
-            - Required for create using I(state=present).
             - This parameter is updatable.
         type: list
         elements: dict
@@ -146,17 +145,17 @@ EXAMPLES = """
     virtual_service_id: "ocid1.virtualservice.oc1..xxxxxxEXAMPLExxxxxx"
     name: name_example
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    description: description_example
     service_discovery:
       # required
-      type: DNS
       hostname: hostname_example
+      type: DNS
     listeners:
     - # required
       protocol: HTTP
       port: 56
-
-    # optional
-    description: description_example
     access_logging:
       # optional
       is_enabled: true
@@ -172,8 +171,8 @@ EXAMPLES = """
     description: description_example
     service_discovery:
       # required
-      type: DNS
       hostname: hostname_example
+      type: DNS
     listeners:
     - # required
       protocol: HTTP
@@ -194,8 +193,8 @@ EXAMPLES = """
     description: description_example
     service_discovery:
       # required
-      type: DNS
       hostname: hostname_example
+      type: DNS
     listeners:
     - # required
       protocol: HTTP
@@ -541,8 +540,8 @@ def main():
             service_discovery=dict(
                 type="dict",
                 options=dict(
-                    type=dict(type="str", required=True, choices=["DNS"]),
-                    hostname=dict(type="str", required=True),
+                    hostname=dict(type="str"),
+                    type=dict(type="str", required=True, choices=["DNS", "DISABLED"]),
                 ),
             ),
             listeners=dict(

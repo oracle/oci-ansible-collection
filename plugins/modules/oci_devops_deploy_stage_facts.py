@@ -792,7 +792,7 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class DeployStageFactsHelperGen(OCIResourceFactsHelperBase):
+class DevopsDeployStageFactsHelperGen(OCIResourceFactsHelperBase):
     """Supported operations: get, list"""
 
     def get_required_params_for_get(self):
@@ -828,10 +828,14 @@ class DeployStageFactsHelperGen(OCIResourceFactsHelperBase):
         )
 
 
-DeployStageFactsHelperCustom = get_custom_class("DeployStageFactsHelperCustom")
+DevopsDeployStageFactsHelperCustom = get_custom_class(
+    "DevopsDeployStageFactsHelperCustom"
+)
 
 
-class ResourceFactsHelper(DeployStageFactsHelperCustom, DeployStageFactsHelperGen):
+class ResourceFactsHelper(
+    DevopsDeployStageFactsHelperCustom, DevopsDeployStageFactsHelperGen
+):
     pass
 
 

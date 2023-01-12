@@ -59,6 +59,7 @@ options:
             - "ACTIVE"
             - "CREATING"
             - "DELETED"
+            - "DELETING"
     name:
         description:
             - A filter to return only resources that match the entire name given.
@@ -358,7 +359,7 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class RepositoryFactsHelperGen(OCIResourceFactsHelperBase):
+class DevopsRepositoryFactsHelperGen(OCIResourceFactsHelperBase):
     """Supported operations: get, list"""
 
     def get_required_params_for_get(self):
@@ -404,10 +405,14 @@ class RepositoryFactsHelperGen(OCIResourceFactsHelperBase):
         )
 
 
-RepositoryFactsHelperCustom = get_custom_class("RepositoryFactsHelperCustom")
+DevopsRepositoryFactsHelperCustom = get_custom_class(
+    "DevopsRepositoryFactsHelperCustom"
+)
 
 
-class ResourceFactsHelper(RepositoryFactsHelperCustom, RepositoryFactsHelperGen):
+class ResourceFactsHelper(
+    DevopsRepositoryFactsHelperCustom, DevopsRepositoryFactsHelperGen
+):
     pass
 
 
@@ -423,7 +428,9 @@ def main():
             compartment_id=dict(type="str"),
             project_id=dict(type="str"),
             repository_id=dict(aliases=["id"], type="str"),
-            lifecycle_state=dict(type="str", choices=["ACTIVE", "CREATING", "DELETED"]),
+            lifecycle_state=dict(
+                type="str", choices=["ACTIVE", "CREATING", "DELETED", "DELETING"]
+            ),
             name=dict(type="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["timeCreated", "name"]),

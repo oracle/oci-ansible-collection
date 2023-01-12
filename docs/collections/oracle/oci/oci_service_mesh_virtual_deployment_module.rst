@@ -30,7 +30,7 @@ oracle.oci.oci_service_mesh_virtual_deployment -- Manage a VirtualDeployment res
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.7.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.8.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -382,7 +382,6 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The listeners for the virtual deployment.</div>
-                                            <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -472,7 +471,6 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div></div>
-                                            <div>Required for create using <em>state=present</em>.</div>
                                             <div>This parameter is updatable.</div>
                                                         </td>
             </tr>
@@ -484,12 +482,13 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-service_discovery/hostname" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The hostname of the virtual deployments.</div>
+                                            <div>Required when type is &#x27;DNS&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -505,6 +504,7 @@ Parameters
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>DNS</li>
+                                                                                                                                                                                                <li>DISABLED</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -647,17 +647,17 @@ Examples
         virtual_service_id: "ocid1.virtualservice.oc1..xxxxxxEXAMPLExxxxxx"
         name: name_example
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+
+        # optional
+        description: description_example
         service_discovery:
           # required
-          type: DNS
           hostname: hostname_example
+          type: DNS
         listeners:
         - # required
           protocol: HTTP
           port: 56
-
-        # optional
-        description: description_example
         access_logging:
           # optional
           is_enabled: true
@@ -673,8 +673,8 @@ Examples
         description: description_example
         service_discovery:
           # required
-          type: DNS
           hostname: hostname_example
+          type: DNS
         listeners:
         - # required
           protocol: HTTP
@@ -695,8 +695,8 @@ Examples
         description: description_example
         service_discovery:
           # required
-          type: DNS
           hostname: hostname_example
+          type: DNS
         listeners:
         - # required
           protocol: HTTP

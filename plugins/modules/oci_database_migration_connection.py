@@ -211,6 +211,12 @@ options:
               Example: `{\\"foo-namespace\\": {\\"bar-key\\": \\"value\\"}}`"
             - This parameter is updatable.
         type: dict
+    nsg_ids:
+        description:
+            - An array of Network Security Group OCIDs used to define network access for Connections.
+            - This parameter is updatable.
+        type: list
+        elements: str
     connection_id:
         description:
             - The OCID of the database connection
@@ -272,6 +278,7 @@ EXAMPLES = """
       subnet_id: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    nsg_ids: [ "nsg_ids_example" ]
 
 - name: Update connection
   oci_database_migration_connection:
@@ -312,6 +319,7 @@ EXAMPLES = """
       key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    nsg_ids: [ "nsg_ids_example" ]
 
 - name: Update connection using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_database_migration_connection:
@@ -352,6 +360,7 @@ EXAMPLES = """
       key_id: "ocid1.key.oc1..xxxxxxEXAMPLExxxxxx"
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
+    nsg_ids: [ "nsg_ids_example" ]
 
 - name: Delete connection
   oci_database_migration_connection:
@@ -598,6 +607,12 @@ connection:
             returned: on success
             type: dict
             sample: {}
+        nsg_ids:
+            description:
+                - An array of Network Security Group OCIDs used to define network access for Connections.
+            returned: on success
+            type: list
+            sample: []
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -639,7 +654,8 @@ connection:
         "time_updated": "2013-10-20T19:20:30+01:00",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
-        "system_tags": {}
+        "system_tags": {},
+        "nsg_ids": []
     }
 """
 
@@ -858,6 +874,7 @@ def main():
             ),
             freeform_tags=dict(type="dict"),
             defined_tags=dict(type="dict"),
+            nsg_ids=dict(type="list", elements="str"),
             connection_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

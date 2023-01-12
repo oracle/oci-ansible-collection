@@ -48,6 +48,7 @@ options:
         type: str
         choices:
             - "ACTIVE"
+            - "DELETING"
     display_name:
         description:
             - A filter to return only resources that match the entire display name given.
@@ -204,6 +205,12 @@ connections:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        lifecycle_details:
+            description:
+                - A detailed message describing the current state. For example, can be used to provide actionable information for a resource in Failed state.
+            returned: on success
+            type: str
+            sample: lifecycle_details_example
         lifecycle_state:
             description:
                 - The current state of the connection.
@@ -249,6 +256,7 @@ connections:
         "connection_type": "GITHUB_ACCESS_TOKEN",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
+        "lifecycle_details": "lifecycle_details_example",
         "lifecycle_state": "ACTIVE",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
@@ -271,7 +279,7 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class ConnectionFactsHelperGen(OCIResourceFactsHelperBase):
+class DevopsConnectionFactsHelperGen(OCIResourceFactsHelperBase):
     """Supported operations: get, list"""
 
     def get_required_params_for_get(self):
@@ -308,10 +316,14 @@ class ConnectionFactsHelperGen(OCIResourceFactsHelperBase):
         )
 
 
-ConnectionFactsHelperCustom = get_custom_class("ConnectionFactsHelperCustom")
+DevopsConnectionFactsHelperCustom = get_custom_class(
+    "DevopsConnectionFactsHelperCustom"
+)
 
 
-class ResourceFactsHelper(ConnectionFactsHelperCustom, ConnectionFactsHelperGen):
+class ResourceFactsHelper(
+    DevopsConnectionFactsHelperCustom, DevopsConnectionFactsHelperGen
+):
     pass
 
 
@@ -322,7 +334,7 @@ def main():
             connection_id=dict(aliases=["id"], type="str"),
             project_id=dict(type="str"),
             compartment_id=dict(type="str"),
-            lifecycle_state=dict(type="str", choices=["ACTIVE"]),
+            lifecycle_state=dict(type="str", choices=["ACTIVE", "DELETING"]),
             display_name=dict(aliases=["name"], type="str"),
             connection_type=dict(
                 type="str",

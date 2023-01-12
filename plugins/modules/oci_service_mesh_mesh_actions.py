@@ -91,7 +91,8 @@ mesh:
         certificate_authorities:
             description:
                 - A list of certificate authority resources to use for creating leaf certificates for mTLS authentication.
-                  Currently we only support one certificate authority, but this may expand in future releases.
+                  Currently we only support one certificate authority, but this may expand in future releases. Request with
+                  more than one certificate authority will be rejected.
             returned: on success
             type: complex
             contains:

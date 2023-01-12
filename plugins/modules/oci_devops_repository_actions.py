@@ -295,7 +295,7 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class RepositoryActionsHelperGen(OCIActionsHelperBase):
+class DevopsRepositoryActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         mirror
@@ -333,10 +333,14 @@ class RepositoryActionsHelperGen(OCIActionsHelperBase):
         )
 
 
-RepositoryActionsHelperCustom = get_custom_class("RepositoryActionsHelperCustom")
+DevopsRepositoryActionsHelperCustom = get_custom_class(
+    "DevopsRepositoryActionsHelperCustom"
+)
 
 
-class ResourceHelper(RepositoryActionsHelperCustom, RepositoryActionsHelperGen):
+class ResourceHelper(
+    DevopsRepositoryActionsHelperCustom, DevopsRepositoryActionsHelperGen
+):
     pass
 
 

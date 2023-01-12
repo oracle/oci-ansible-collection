@@ -30,7 +30,7 @@ oracle.oci.oci_database_pluggable_database -- Manage a PluggableDatabase resourc
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.7.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.8.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -58,7 +58,7 @@ Synopsis
 
 - This module allows the user to create, update and delete a PluggableDatabase resource in Oracle Cloud Infrastructure
 - For *state=present*, creates and starts a pluggable database in the specified container database. Use the `StartPluggableDatabase <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/latest/PluggableDatabase/StartPluggableDatabase>`_ and `StopPluggableDatabase <https://docs.cloud.oracle.com/en-us/iaas/api/#/en/database/latest/PluggableDatabase/StopPluggableDatabase>`_ APIs to start and stop the pluggable database.
-- This resource has the following action operations in the :ref:`oracle.oci.oci_database_pluggable_database_actions <ansible_collections.oracle.oci.oci_database_pluggable_database_actions_module>` module: local_clone, remote_clone, start, stop.
+- This resource has the following action operations in the :ref:`oracle.oci.oci_database_pluggable_database_actions <ansible_collections.oracle.oci.oci_database_pluggable_database_actions_module>` module: disable_pluggable_database_management, enable_pluggable_database_management, local_clone, modify_pluggable_database_management, remote_clone, start, stop.
 
 
 .. Aliases
@@ -586,7 +586,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the PluggableDatabase resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_strings&#x27;: {&#x27;all_connection_strings&#x27;: {}, &#x27;pdb_default&#x27;: &#x27;pdb_default_example&#x27;, &#x27;pdb_ip_default&#x27;: &#x27;pdb_ip_default_example&#x27;}, &#x27;container_database_id&#x27;: &#x27;ocid1.containerdatabase.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_restricted&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;open_mode&#x27;: &#x27;READ_ONLY&#x27;, &#x27;pdb_name&#x27;: &#x27;pdb_name_example&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;connection_strings&#x27;: {&#x27;all_connection_strings&#x27;: {}, &#x27;pdb_default&#x27;: &#x27;pdb_default_example&#x27;, &#x27;pdb_ip_default&#x27;: &#x27;pdb_ip_default_example&#x27;}, &#x27;container_database_id&#x27;: &#x27;ocid1.containerdatabase.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;is_restricted&#x27;: True, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;PROVISIONING&#x27;, &#x27;open_mode&#x27;: &#x27;READ_ONLY&#x27;, &#x27;pdb_name&#x27;: &#x27;pdb_name_example&#x27;, &#x27;pluggable_database_management_config&#x27;: {&#x27;management_status&#x27;: &#x27;ENABLING&#x27;}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -842,6 +842,42 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">pdb_name_example</div>
                                     </td>
             </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="return-pluggable_database/pluggable_database_management_config"></div>
+                    <b>pluggable_database_management_config</b>
+                    <a class="ansibleOptionLink" href="#return-pluggable_database/pluggable_database_management_config" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">complex</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div></div>
+                                        <br/>
+                                                        </td>
+            </tr>
+                                        <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-pluggable_database/pluggable_database_management_config/management_status"></div>
+                    <b>management_status</b>
+                    <a class="ansibleOptionLink" href="#return-pluggable_database/pluggable_database_management_config/management_status" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The status of the Pluggable Database Management service.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ENABLING</div>
+                                    </td>
+            </tr>
+                    
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="2">

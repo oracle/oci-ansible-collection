@@ -52,7 +52,9 @@ options:
         type: str
     repository_type:
         description:
-            - Type of repository.
+            - "Type of repository. Allowed values:
+              `MIRRORED`
+              `HOSTED`"
             - Required for create using I(state=present).
             - This parameter is updatable.
         type: str
@@ -454,11 +456,11 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class RepositoryHelperGen(OCIResourceHelperBase):
+class DevopsRepositoryHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
     def get_possible_entity_types(self):
-        return super(RepositoryHelperGen, self).get_possible_entity_types() + [
+        return super(DevopsRepositoryHelperGen, self).get_possible_entity_types() + [
             "devopsrepository",
             "devopsrepositories",
             "devopsdevopsrepository",
@@ -563,10 +565,10 @@ class RepositoryHelperGen(OCIResourceHelperBase):
         )
 
 
-RepositoryHelperCustom = get_custom_class("RepositoryHelperCustom")
+DevopsRepositoryHelperCustom = get_custom_class("DevopsRepositoryHelperCustom")
 
 
-class ResourceHelper(RepositoryHelperCustom, RepositoryHelperGen):
+class ResourceHelper(DevopsRepositoryHelperCustom, DevopsRepositoryHelperGen):
     pass
 
 

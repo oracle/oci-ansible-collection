@@ -444,7 +444,7 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class BuildPipelineStageFactsHelperGen(OCIResourceFactsHelperBase):
+class DevopsBuildPipelineStageFactsHelperGen(OCIResourceFactsHelperBase):
     """Supported operations: get, list"""
 
     def get_required_params_for_get(self):
@@ -480,13 +480,13 @@ class BuildPipelineStageFactsHelperGen(OCIResourceFactsHelperBase):
         )
 
 
-BuildPipelineStageFactsHelperCustom = get_custom_class(
-    "BuildPipelineStageFactsHelperCustom"
+DevopsBuildPipelineStageFactsHelperCustom = get_custom_class(
+    "DevopsBuildPipelineStageFactsHelperCustom"
 )
 
 
 class ResourceFactsHelper(
-    BuildPipelineStageFactsHelperCustom, BuildPipelineStageFactsHelperGen
+    DevopsBuildPipelineStageFactsHelperCustom, DevopsBuildPipelineStageFactsHelperGen
 ):
     pass
 

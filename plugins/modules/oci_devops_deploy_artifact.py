@@ -408,11 +408,13 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class DeployArtifactHelperGen(OCIResourceHelperBase):
+class DevopsDeployArtifactHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get, list and delete"""
 
     def get_possible_entity_types(self):
-        return super(DeployArtifactHelperGen, self).get_possible_entity_types() + [
+        return super(
+            DevopsDeployArtifactHelperGen, self
+        ).get_possible_entity_types() + [
             "devopsdeployartifact",
             "devopsdeployartifacts",
             "devopsdevopsdeployartifact",
@@ -524,10 +526,10 @@ class DeployArtifactHelperGen(OCIResourceHelperBase):
         )
 
 
-DeployArtifactHelperCustom = get_custom_class("DeployArtifactHelperCustom")
+DevopsDeployArtifactHelperCustom = get_custom_class("DevopsDeployArtifactHelperCustom")
 
 
-class ResourceHelper(DeployArtifactHelperCustom, DeployArtifactHelperGen):
+class ResourceHelper(DevopsDeployArtifactHelperCustom, DevopsDeployArtifactHelperGen):
     pass
 
 

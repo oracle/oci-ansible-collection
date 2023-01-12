@@ -30,7 +30,7 @@ oracle.oci.oci_service_mesh_mesh_facts -- Fetches details about one or multiple 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.7.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.8.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -273,7 +273,15 @@ Parameters
                                                                     </div>
                                                         </td>
                                 <td>
-                                                                                                                                                            </td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>CREATING</li>
+                                                                                                                                                                                                <li>UPDATING</li>
+                                                                                                                                                                                                <li>ACTIVE</li>
+                                                                                                                                                                                                <li>DELETING</li>
+                                                                                                                                                                                                <li>DELETED</li>
+                                                                                                                                                                                                <li>FAILED</li>
+                                                                                    </ul>
+                                                                            </td>
                                                                 <td>
                                             <div>A filter to return only resources that match the life cycle state given.</div>
                                                         </td>
@@ -403,7 +411,7 @@ Examples
         display_name: display_name_example
         sort_order: ASC
         sort_by: id
-        lifecycle_state: lifecycle_state_example
+        lifecycle_state: CREATING
 
 
 
@@ -455,7 +463,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>A list of certificate authority resources to use for creating leaf certificates for mTLS authentication. Currently we only support one certificate authority, but this may expand in future releases.</div>
+                                            <div>A list of certificate authority resources to use for creating leaf certificates for mTLS authentication. Currently we only support one certificate authority, but this may expand in future releases. Request with more than one certificate authority will be rejected.</div>
                                             <div>Returned for get operation</div>
                                         <br/>
                                                         </td>

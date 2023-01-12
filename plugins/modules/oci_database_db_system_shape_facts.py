@@ -72,7 +72,8 @@ db_system_shapes:
             sample: shape_family_example
         shape_type:
             description:
-                - The shape type for the virtual machine DB system. Shape type is determined by CPU hardware. Valid values are `AMD` and `INTEL`.
+                - The shape type for the virtual machine DB system. Shape type is determined by CPU hardware. Valid values are `AMD` , `INTEL` or
+                  `INTEL_FLEX_X9`.
             returned: on success
             type: str
             sample: AMD

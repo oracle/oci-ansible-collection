@@ -59,6 +59,7 @@ options:
         choices:
             - "ACCEPTED"
             - "IN_PROGRESS"
+            - "NEEDS_ATTENTION"
             - "FAILED"
             - "SUCCEEDED"
             - "CANCELED"
@@ -182,6 +183,18 @@ refresh_activities:
             returned: on success
             type: str
             sample: NONE
+        refresh_issue_details_list:
+            description:
+                - Details of refresh investigation information, each item represents a different issue.
+            returned: on success
+            type: complex
+            contains:
+                refresh_issues:
+                    description:
+                        - Detail reasons of refresh failure or validation failure that needs to be shown to customer.
+                    returned: on success
+                    type: str
+                    sample: refresh_issues_example
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -194,7 +207,10 @@ refresh_activities:
         "service_availability": "AVAILABLE",
         "time_accepted": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
-        "lifecycle_details": "NONE"
+        "lifecycle_details": "NONE",
+        "refresh_issue_details_list": [{
+            "refresh_issues": "refresh_issues_example"
+        }]
     }]
 """
 
@@ -275,7 +291,14 @@ def main():
             time_expected_finish_less_than_or_equal_to=dict(type="str"),
             lifecycle_state=dict(
                 type="str",
-                choices=["ACCEPTED", "IN_PROGRESS", "FAILED", "SUCCEEDED", "CANCELED"],
+                choices=[
+                    "ACCEPTED",
+                    "IN_PROGRESS",
+                    "NEEDS_ATTENTION",
+                    "FAILED",
+                    "SUCCEEDED",
+                    "CANCELED",
+                ],
             ),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["TIME_CREATED", "DISPLAY_NAME"]),

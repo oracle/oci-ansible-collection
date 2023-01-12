@@ -30,7 +30,7 @@ oracle.oci.oci_devops_project_actions -- Perform actions on a Project resource i
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.7.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.8.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,9 @@ Synopsis
 .. Description
 
 - Perform actions on a Project resource in Oracle Cloud Infrastructure
+- For *action=cancel_scheduled_cascading_project_deletion*, cascading operation that restores Project and child resources from a DELETING state to an active state
 - For *action=change_compartment*, moves a project resource from one compartment OCID to another.
+- For *action=schedule_cascading_project_deletion*, cascading operation that marks Project and child DevOps resources in a DELETING state for a retention period
 
 
 .. Aliases
@@ -97,7 +99,9 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>change_compartment</li>
+                                                                                                                                                                <li>cancel_scheduled_cascading_project_deletion</li>
+                                                                                                                                                                                                <li>change_compartment</li>
+                                                                                                                                                                                                <li>schedule_cascading_project_deletion</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -225,12 +229,13 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment to which the resource must be moved.</div>
+                                            <div>Required for <em>action=change_compartment</em>.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -368,12 +373,24 @@ Examples
 .. code-block:: yaml+jinja
 
     
-    - name: Perform action change_compartment on project
+    - name: Perform action cancel_scheduled_cascading_project_deletion on project
       oci_devops_project_actions:
         # required
         project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+        action: cancel_scheduled_cascading_project_deletion
+
+    - name: Perform action change_compartment on project
+      oci_devops_project_actions:
+        # required
         compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+        project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
         action: change_compartment
+
+    - name: Perform action schedule_cascading_project_deletion on project
+      oci_devops_project_actions:
+        # required
+        project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
+        action: schedule_cascading_project_deletion
 
 
 

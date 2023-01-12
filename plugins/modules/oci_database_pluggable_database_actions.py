@@ -23,8 +23,13 @@ module: oci_database_pluggable_database_actions
 short_description: Perform actions on a PluggableDatabase resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a PluggableDatabase resource in Oracle Cloud Infrastructure
+    - For I(action=disable_pluggable_database_management), disables the Database Management service for the pluggable database.
+    - For I(action=enable_pluggable_database_management), enables the Database Management service for an Oracle Pluggable Database located in Oracle Cloud
+      Infrastructure. This service allows the pluggable database to access tools including Metrics and Performance hub. Database Management is enabled at the
+      pluggable database (PDB) level.
     - For I(action=local_clone), clones and starts a pluggable database (PDB) in the same database (CDB) as the source PDB. The source PDB must be in the
       `READ_WRITE` openMode to perform the clone operation.
+    - For I(action=modify_pluggable_database_management), updates one or more attributes of the Database Management service for the pluggable database.
     - For I(action=remote_clone), clones a pluggable database (PDB) to a different database from the source PDB. The cloned PDB will be started upon completion
       of the clone operation. The source PDB must be in the `READ_WRITE` openMode when performing the clone.
       For Exadata Cloud@Customer instances, the source pluggable database (PDB) must be on the same Exadata Infrastructure as the target container database
@@ -34,6 +39,60 @@ description:
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    credential_details:
+        description:
+            - ""
+            - Required for I(action=enable_pluggable_database_management).
+        type: dict
+        suboptions:
+            user_name:
+                description:
+                    - The name of the Oracle Database user that will be used to connect to the database.
+                type: str
+                required: true
+            password_secret_id:
+                description:
+                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
+                      L(secret,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
+                type: str
+                required: true
+    private_end_point_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the private endpoint.
+            - Required for I(action=enable_pluggable_database_management).
+        type: str
+    service_name:
+        description:
+            - The name of the Oracle Database service that will be used to connect to the database.
+            - Required for I(action=enable_pluggable_database_management).
+        type: str
+    protocol:
+        description:
+            - Protocol used by the database connection.
+            - Applicable only for I(action=enable_pluggable_database_management)I(action=modify_pluggable_database_management).
+        type: str
+        choices:
+            - "TCP"
+            - "TCPS"
+    port:
+        description:
+            - The port used to connect to the pluggable database.
+            - Applicable only for I(action=enable_pluggable_database_management)I(action=modify_pluggable_database_management).
+        type: int
+    ssl_secret_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the Oracle Cloud Infrastructure
+              L(secret,https://docs.cloud.oracle.com/Content/KeyManagement/Concepts/keyoverview.htm#concepts).
+            - Applicable only for I(action=enable_pluggable_database_management)I(action=modify_pluggable_database_management).
+        type: str
+    role:
+        description:
+            - The role of the user that will be connecting to the pluggable database.
+            - Applicable only for I(action=enable_pluggable_database_management)I(action=modify_pluggable_database_management).
+        type: str
+        choices:
+            - "SYSDBA"
+            - "NORMAL"
     target_container_database_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the target CDB
@@ -80,7 +139,10 @@ options:
         type: str
         required: true
         choices:
+            - "disable_pluggable_database_management"
+            - "enable_pluggable_database_management"
             - "local_clone"
+            - "modify_pluggable_database_management"
             - "remote_clone"
             - "start"
             - "stop"
@@ -88,6 +150,30 @@ extends_documentation_fragment: [ oracle.oci.oracle, oracle.oci.oracle_wait_opti
 """
 
 EXAMPLES = """
+- name: Perform action disable_pluggable_database_management on pluggable_database
+  oci_database_pluggable_database_actions:
+    # required
+    pluggable_database_id: "ocid1.pluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    action: disable_pluggable_database_management
+
+- name: Perform action enable_pluggable_database_management on pluggable_database
+  oci_database_pluggable_database_actions:
+    # required
+    credential_details:
+      # required
+      user_name: user_name_example
+      password_secret_id: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
+    private_end_point_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+    service_name: service_name_example
+    pluggable_database_id: "ocid1.pluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    action: enable_pluggable_database_management
+
+    # optional
+    protocol: TCP
+    port: 56
+    ssl_secret_id: "ocid1.sslsecret.oc1..xxxxxxEXAMPLExxxxxx"
+    role: SYSDBA
+
 - name: Perform action local_clone on pluggable_database
   oci_database_pluggable_database_actions:
     # required
@@ -99,6 +185,24 @@ EXAMPLES = """
     pdb_admin_password: example-password
     target_tde_wallet_password: example-password
     should_pdb_admin_account_be_locked: true
+
+- name: Perform action modify_pluggable_database_management on pluggable_database
+  oci_database_pluggable_database_actions:
+    # required
+    pluggable_database_id: "ocid1.pluggabledatabase.oc1..xxxxxxEXAMPLExxxxxx"
+    action: modify_pluggable_database_management
+
+    # optional
+    credential_details:
+      # required
+      user_name: user_name_example
+      password_secret_id: "ocid1.passwordsecret.oc1..xxxxxxEXAMPLExxxxxx"
+    private_end_point_id: "ocid1.privateendpoint.oc1..xxxxxxEXAMPLExxxxxx"
+    service_name: service_name_example
+    protocol: TCP
+    port: 56
+    ssl_secret_id: "ocid1.sslsecret.oc1..xxxxxxEXAMPLExxxxxx"
+    role: SYSDBA
 
 - name: Perform action remote_clone on pluggable_database
   oci_database_pluggable_database_actions:
@@ -232,6 +336,18 @@ pluggable_database:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        pluggable_database_management_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                management_status:
+                    description:
+                        - The status of the Pluggable Database Management service.
+                    returned: on success
+                    type: str
+                    sample: ENABLING
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "container_database_id": "ocid1.containerdatabase.oc1..xxxxxxEXAMPLExxxxxx",
@@ -248,7 +364,10 @@ pluggable_database:
         "is_restricted": true,
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}}
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "pluggable_database_management_config": {
+            "management_status": "ENABLING"
+        }
     }
 """
 
@@ -265,7 +384,9 @@ from ansible_collections.oracle.oci.plugins.module_utils.oci_resource_utils impo
 try:
     from oci.work_requests import WorkRequestClient
     from oci.database import DatabaseClient
+    from oci.database.models import EnablePluggableDatabaseManagementDetails
     from oci.database.models import LocalClonePluggableDatabaseDetails
+    from oci.database.models import ModifyPluggableDatabaseManagementDetails
     from oci.database.models import RemoteClonePluggableDatabaseDetails
 
     HAS_OCI_PY_SDK = True
@@ -276,7 +397,10 @@ except ImportError:
 class PluggableDatabaseActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
+        disable_pluggable_database_management
+        enable_pluggable_database_management
         local_clone
+        modify_pluggable_database_management
         remote_clone
         start
         stop
@@ -304,6 +428,44 @@ class PluggableDatabaseActionsHelperGen(OCIActionsHelperBase):
             pluggable_database_id=self.module.params.get("pluggable_database_id"),
         )
 
+    def disable_pluggable_database_management(self):
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.disable_pluggable_database_management,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                pluggable_database_id=self.module.params.get("pluggable_database_id"),
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def enable_pluggable_database_management(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, EnablePluggableDatabaseManagementDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.enable_pluggable_database_management,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                pluggable_database_id=self.module.params.get("pluggable_database_id"),
+                enable_pluggable_database_management_details=action_details,
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
     def local_clone(self):
         action_details = oci_common_utils.convert_input_data_to_model_class(
             self.module.params, LocalClonePluggableDatabaseDetails
@@ -314,6 +476,27 @@ class PluggableDatabaseActionsHelperGen(OCIActionsHelperBase):
             call_fn_kwargs=dict(
                 local_clone_pluggable_database_details=action_details,
                 pluggable_database_id=self.module.params.get("pluggable_database_id"),
+            ),
+            waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
+            operation="{0}_{1}".format(
+                self.module.params.get("action").upper(),
+                oci_common_utils.ACTION_OPERATION_KEY,
+            ),
+            waiter_client=self.work_request_client,
+            resource_helper=self,
+            wait_for_states=oci_common_utils.get_work_request_completed_states(),
+        )
+
+    def modify_pluggable_database_management(self):
+        action_details = oci_common_utils.convert_input_data_to_model_class(
+            self.module.params, ModifyPluggableDatabaseManagementDetails
+        )
+        return oci_wait_utils.call_and_wait(
+            call_fn=self.client.modify_pluggable_database_management,
+            call_fn_args=(),
+            call_fn_kwargs=dict(
+                pluggable_database_id=self.module.params.get("pluggable_database_id"),
+                modify_pluggable_database_management_details=action_details,
             ),
             waiter_type=oci_wait_utils.WORK_REQUEST_WAITER_KEY,
             operation="{0}_{1}".format(
@@ -398,6 +581,19 @@ def main():
     )
     module_args.update(
         dict(
+            credential_details=dict(
+                type="dict",
+                options=dict(
+                    user_name=dict(type="str", required=True),
+                    password_secret_id=dict(type="str", required=True),
+                ),
+            ),
+            private_end_point_id=dict(type="str"),
+            service_name=dict(type="str"),
+            protocol=dict(type="str", choices=["TCP", "TCPS"]),
+            port=dict(type="int"),
+            ssl_secret_id=dict(type="str"),
+            role=dict(type="str", choices=["SYSDBA", "NORMAL"]),
             target_container_database_id=dict(type="str"),
             source_container_db_admin_password=dict(type="str", no_log=True),
             cloned_pdb_name=dict(type="str"),
@@ -408,7 +604,15 @@ def main():
             action=dict(
                 type="str",
                 required=True,
-                choices=["local_clone", "remote_clone", "start", "stop"],
+                choices=[
+                    "disable_pluggable_database_management",
+                    "enable_pluggable_database_management",
+                    "local_clone",
+                    "modify_pluggable_database_management",
+                    "remote_clone",
+                    "start",
+                    "stop",
+                ],
             ),
         )
     )

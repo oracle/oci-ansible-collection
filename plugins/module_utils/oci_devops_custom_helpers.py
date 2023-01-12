@@ -9,17 +9,17 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 
-class ConnectionHelperCustom:
+class DevopsConnectionHelperCustom:
     # API throws an error when we pass connection_type value.
     def get_optional_kwargs_for_list(self):
         optional_list_method_params = super(
-            ConnectionHelperCustom, self
+            DevopsConnectionHelperCustom, self
         ).get_optional_kwargs_for_list()
         optional_list_method_params.pop("connection_type", None)
         return optional_list_method_params
 
 
-class BuildRunHelperCustom:
+class DevopsBuildRunHelperCustom:
     # Running a build is not an idempotent operation. It is perfectly valid
     # to run the build multiple times.
     def get_matching_resource(self):

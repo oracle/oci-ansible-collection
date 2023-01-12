@@ -62,6 +62,7 @@ options:
             - "SUCCEEDED"
             - "CANCELING"
             - "CANCELED"
+            - "DELETING"
     sort_order:
         description:
             - The sort order to use. Use either ascending or descending.
@@ -1078,7 +1079,7 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class BuildRunFactsHelperGen(OCIResourceFactsHelperBase):
+class DevopsBuildRunFactsHelperGen(OCIResourceFactsHelperBase):
     """Supported operations: get, list"""
 
     def get_required_params_for_get(self):
@@ -1115,10 +1116,12 @@ class BuildRunFactsHelperGen(OCIResourceFactsHelperBase):
         )
 
 
-BuildRunFactsHelperCustom = get_custom_class("BuildRunFactsHelperCustom")
+DevopsBuildRunFactsHelperCustom = get_custom_class("DevopsBuildRunFactsHelperCustom")
 
 
-class ResourceFactsHelper(BuildRunFactsHelperCustom, BuildRunFactsHelperGen):
+class ResourceFactsHelper(
+    DevopsBuildRunFactsHelperCustom, DevopsBuildRunFactsHelperGen
+):
     pass
 
 
@@ -1140,6 +1143,7 @@ def main():
                     "SUCCEEDED",
                     "CANCELING",
                     "CANCELED",
+                    "DELETING",
                 ],
             ),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),

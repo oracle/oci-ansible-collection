@@ -1113,11 +1113,11 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class BuildRunHelperGen(OCIResourceHelperBase):
+class DevopsBuildRunHelperGen(OCIResourceHelperBase):
     """Supported operations: create, update, get and list"""
 
     def get_possible_entity_types(self):
-        return super(BuildRunHelperGen, self).get_possible_entity_types() + [
+        return super(DevopsBuildRunHelperGen, self).get_possible_entity_types() + [
             "devopsbuildrun",
             "devopsbuildruns",
             "devopsdevopsbuildrun",
@@ -1219,10 +1219,10 @@ class BuildRunHelperGen(OCIResourceHelperBase):
         )
 
 
-BuildRunHelperCustom = get_custom_class("BuildRunHelperCustom")
+DevopsBuildRunHelperCustom = get_custom_class("DevopsBuildRunHelperCustom")
 
 
-class ResourceHelper(BuildRunHelperCustom, BuildRunHelperGen):
+class ResourceHelper(DevopsBuildRunHelperCustom, DevopsBuildRunHelperGen):
     pass
 
 

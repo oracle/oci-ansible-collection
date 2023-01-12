@@ -231,7 +231,7 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class FileDiffFactsHelperGen(OCIResourceFactsHelperBase):
+class DevopsFileDiffFactsHelperGen(OCIResourceFactsHelperBase):
     """Supported operations: get"""
 
     def get_required_params_for_get(self):
@@ -260,10 +260,12 @@ class FileDiffFactsHelperGen(OCIResourceFactsHelperBase):
         )
 
 
-FileDiffFactsHelperCustom = get_custom_class("FileDiffFactsHelperCustom")
+DevopsFileDiffFactsHelperCustom = get_custom_class("DevopsFileDiffFactsHelperCustom")
 
 
-class ResourceFactsHelper(FileDiffFactsHelperCustom, FileDiffFactsHelperGen):
+class ResourceFactsHelper(
+    DevopsFileDiffFactsHelperCustom, DevopsFileDiffFactsHelperGen
+):
     pass
 
 

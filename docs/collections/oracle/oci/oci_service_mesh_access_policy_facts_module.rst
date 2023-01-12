@@ -30,7 +30,7 @@ oracle.oci.oci_service_mesh_access_policy_facts -- Fetches details about one or 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.7.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.8.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -274,7 +274,15 @@ Parameters
                                                                     </div>
                                                         </td>
                                 <td>
-                                                                                                                                                            </td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>CREATING</li>
+                                                                                                                                                                                                <li>UPDATING</li>
+                                                                                                                                                                                                <li>ACTIVE</li>
+                                                                                                                                                                                                <li>DELETING</li>
+                                                                                                                                                                                                <li>DELETED</li>
+                                                                                                                                                                                                <li>FAILED</li>
+                                                                                    </ul>
+                                                                            </td>
                                                                 <td>
                                             <div>A filter to return only resources that match the life cycle state given.</div>
                                                         </td>
@@ -418,7 +426,7 @@ Examples
         sort_order: ASC
         sort_by: id
         mesh_id: "ocid1.mesh.oc1..xxxxxxEXAMPLExxxxxx"
-        lifecycle_state: lifecycle_state_example
+        lifecycle_state: CREATING
 
 
 

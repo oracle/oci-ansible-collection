@@ -159,6 +159,13 @@ fleets:
             returned: on success
             type: int
             sample: 56
+        approximate_java_server_count:
+            description:
+                - The approximate count of all unique Java servers in the Fleet in the past seven days.
+                  This metric is provided on a best-effort manner, and is not taken into account when computing the resource ETag.
+            returned: on success
+            type: int
+            sample: 56
         inventory_log:
             description:
                 - ""
@@ -197,7 +204,8 @@ fleets:
                     sample: "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"
         is_advanced_features_enabled:
             description:
-                - Whether or not advanced features are enabled in this fleet.  By default, this is set to false.
+                - Whether or not advanced features are enabled in this fleet.
+                  Deprecated, use `/fleets/{fleetId}/advanceFeatureConfiguration` api instead.
             returned: on success
             type: bool
             sample: true
@@ -247,6 +255,7 @@ fleets:
         "approximate_installation_count": 56,
         "approximate_application_count": 56,
         "approximate_managed_instance_count": 56,
+        "approximate_java_server_count": 56,
         "inventory_log": {
             "log_group_id": "ocid1.loggroup.oc1..xxxxxxEXAMPLExxxxxx",
             "log_id": "ocid1.log.oc1..xxxxxxEXAMPLExxxxxx"

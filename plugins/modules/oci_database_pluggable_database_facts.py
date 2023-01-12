@@ -198,6 +198,18 @@ pluggable_databases:
             returned: on success
             type: dict
             sample: {'Operations': {'CostCenter': 'US'}}
+        pluggable_database_management_config:
+            description:
+                - ""
+            returned: on success
+            type: complex
+            contains:
+                management_status:
+                    description:
+                        - The status of the Pluggable Database Management service.
+                    returned: on success
+                    type: str
+                    sample: ENABLING
     sample: [{
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "container_database_id": "ocid1.containerdatabase.oc1..xxxxxxEXAMPLExxxxxx",
@@ -214,7 +226,10 @@ pluggable_databases:
         "is_restricted": true,
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "freeform_tags": {'Department': 'Finance'},
-        "defined_tags": {'Operations': {'CostCenter': 'US'}}
+        "defined_tags": {'Operations': {'CostCenter': 'US'}},
+        "pluggable_database_management_config": {
+            "management_status": "ENABLING"
+        }
     }]
 """
 

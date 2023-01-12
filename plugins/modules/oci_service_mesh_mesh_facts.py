@@ -64,6 +64,13 @@ options:
         description:
             - A filter to return only resources that match the life cycle state given.
         type: str
+        choices:
+            - "CREATING"
+            - "UPDATING"
+            - "ACTIVE"
+            - "DELETING"
+            - "DELETED"
+            - "FAILED"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -82,7 +89,7 @@ EXAMPLES = """
     display_name: display_name_example
     sort_order: ASC
     sort_by: id
-    lifecycle_state: lifecycle_state_example
+    lifecycle_state: CREATING
 
 """
 
@@ -96,7 +103,8 @@ meshes:
         certificate_authorities:
             description:
                 - A list of certificate authority resources to use for creating leaf certificates for mTLS authentication.
-                  Currently we only support one certificate authority, but this may expand in future releases.
+                  Currently we only support one certificate authority, but this may expand in future releases. Request with
+                  more than one certificate authority will be rejected.
                 - Returned for get operation
             returned: on success
             type: complex
@@ -284,7 +292,17 @@ def main():
             display_name=dict(aliases=["name"], type="str"),
             sort_order=dict(type="str", choices=["ASC", "DESC"]),
             sort_by=dict(type="str", choices=["id", "timeCreated", "displayName"]),
-            lifecycle_state=dict(type="str"),
+            lifecycle_state=dict(
+                type="str",
+                choices=[
+                    "CREATING",
+                    "UPDATING",
+                    "ACTIVE",
+                    "DELETING",
+                    "DELETED",
+                    "FAILED",
+                ],
+            ),
         )
     )
 
