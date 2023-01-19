@@ -90,6 +90,7 @@ from ansible_collections.oracle.oci.plugins.module_utils import (
     oci_opensearch_custom_helpers,
     oci_tenant_manager_control_plane_custom_helpers,
     oci_cloud_bridge_custom_helpers,
+    oci_ai_document_custom_helpers,
 )  # noqa
 
 custom_helper_mapping = get_custom_class_mapping(
@@ -154,5 +155,6 @@ custom_helper_mapping = get_custom_class_mapping(
         oci_opensearch_custom_helpers,
         oci_tenant_manager_control_plane_custom_helpers,
         oci_cloud_bridge_custom_helpers,
+        oci_ai_document_custom_helpers,
     ]
 )

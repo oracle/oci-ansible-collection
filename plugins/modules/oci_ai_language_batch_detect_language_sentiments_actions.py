@@ -23,10 +23,23 @@ module: oci_ai_language_batch_detect_language_sentiments_actions
 short_description: Perform actions on a BatchDetectLanguageSentiments resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a BatchDetectLanguageSentiments resource in Oracle Cloud Infrastructure
-    - For I(action=batch_detect_language_sentiments), make a detect call to sentiment pre-deployed model.
+    - "For I(action=batch_detect_language_sentiments), the API extracts aspect-based and sentence level sentiment in text records.
+      For aspect-based sentiment analysis, a set of aspects and their respective sentiment is returned for each record. Similarly, for sentence-level sentiment
+      analysis, the sentiment is returned at the sentence level.
+      For sentiment analysis, confidence scores are provided for each of the classes (positive, negative, neutral and mixed).
+      Learn more about sentiment analysis L(here,https://docs.cloud.oracle.com/iaas/language/using/pretrain-models.htm#sentiment).
+      Limitations:
+       - A batch may have up to 100 records.
+       - A record may be up to 5000 characters long.
+       - The total of characters to process in a request can be up to 20,000 characters."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment that calls the API, inference will be served
+              from pre trained model
+        type: str
     documents:
         description:
             - List of Documents for detect sentiments.
@@ -36,17 +49,17 @@ options:
         suboptions:
             key:
                 description:
-                    - Document Unique Identifier.
+                    - Document unique identifier defined by the user.
                 type: str
                 required: true
             text:
                 description:
-                    - Document text for detect sentiments.
+                    - Document text for language service call.
                 type: str
                 required: true
             language_code:
                 description:
-                    - Language code as per L(ISO 639-1,https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) standard.
+                    - Language code per the L(ISO 639-1,https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) standard.
                 type: str
     level:
         description:
@@ -83,6 +96,7 @@ EXAMPLES = """
     action: batch_detect_language_sentiments
 
     # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
     level: [ "ASPECT" ]
 
 """
@@ -102,7 +116,7 @@ batch_detect_language_sentiments_result:
             contains:
                 key:
                     description:
-                        - Document Unique Identifier.
+                        - Document unique identifier defined by the user.
                     returned: on success
                     type: str
                     sample: key_example
@@ -195,7 +209,7 @@ batch_detect_language_sentiments_result:
                             sample: {}
                 language_code:
                     description:
-                        - Language code as per L(ISO 639-1,https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) standard.
+                        - Language code per the L(ISO 639-1,https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) standard.
                     returned: on success
                     type: str
                     sample: language_code_example
@@ -207,7 +221,7 @@ batch_detect_language_sentiments_result:
             contains:
                 key:
                     description:
-                        - Unique Document Identifier.
+                        - Document unique identifier defined by the user.
                     returned: on success
                     type: str
                     sample: key_example
@@ -279,7 +293,7 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class BatchDetectLanguageSentimentsActionsHelperGen(OCIActionsHelperBase):
+class AiLanguageBatchDetectLanguageSentimentsActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         batch_detect_language_sentiments
@@ -309,14 +323,14 @@ class BatchDetectLanguageSentimentsActionsHelperGen(OCIActionsHelperBase):
         )
 
 
-BatchDetectLanguageSentimentsActionsHelperCustom = get_custom_class(
-    "BatchDetectLanguageSentimentsActionsHelperCustom"
+AiLanguageBatchDetectLanguageSentimentsActionsHelperCustom = get_custom_class(
+    "AiLanguageBatchDetectLanguageSentimentsActionsHelperCustom"
 )
 
 
 class ResourceHelper(
-    BatchDetectLanguageSentimentsActionsHelperCustom,
-    BatchDetectLanguageSentimentsActionsHelperGen,
+    AiLanguageBatchDetectLanguageSentimentsActionsHelperCustom,
+    AiLanguageBatchDetectLanguageSentimentsActionsHelperGen,
 ):
     pass
 
@@ -327,6 +341,7 @@ def main():
     )
     module_args.update(
         dict(
+            compartment_id=dict(type="str"),
             documents=dict(
                 type="list",
                 elements="dict",

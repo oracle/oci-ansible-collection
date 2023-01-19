@@ -30,7 +30,7 @@ oracle.oci.oci_ai_language_batch_detect_language_sentiments_actions -- Perform a
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.8.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.9.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Perform actions on a BatchDetectLanguageSentiments resource in Oracle Cloud Infrastructure
-- For *action=batch_detect_language_sentiments*, make a detect call to sentiment pre-deployed model.
+- For *action=batch_detect_language_sentiments*, the API extracts aspect-based and sentence level sentiment in text records. For aspect-based sentiment analysis, a set of aspects and their respective sentiment is returned for each record. Similarly, for sentence-level sentiment analysis, the sentiment is returned at the sentence level. For sentiment analysis, confidence scores are provided for each of the classes (positive, negative, neutral and mixed). Learn more about sentiment analysis `here <https://docs.cloud.oracle.com/iaas/language/using/pretrain-models.htm#sentiment>`_. Limitations: - A batch may have up to 100 records. - A record may be up to 5000 characters long. - The total of characters to process in a request can be up to 20,000 characters.
 
 
 .. Aliases
@@ -220,6 +220,21 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-compartment_id"></div>
+                    <b>compartment_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-compartment_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The <a href='https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm'>OCID</a> of the compartment that calls the API, inference will be served from pre trained model</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
                     <div class="ansibleOptionAnchor" id="parameter-config_file_location"></div>
                     <b>config_file_location</b>
                     <a class="ansibleOptionLink" href="#parameter-config_file_location" title="Permalink to this option"></a>
@@ -276,7 +291,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Document Unique Identifier.</div>
+                                            <div>Document unique identifier defined by the user.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -292,7 +307,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Language code as per <a href='https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes'>ISO 639-1</a> standard.</div>
+                                            <div>Language code per the <a href='https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes'>ISO 639-1</a> standard.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -308,7 +323,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>Document text for detect sentiments.</div>
+                                            <div>Document text for language service call.</div>
                                                         </td>
             </tr>
                     
@@ -399,6 +414,7 @@ Examples
         action: batch_detect_language_sentiments
 
         # optional
+        compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
         level: [ "ASPECT" ]
 
 
@@ -620,7 +636,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Document Unique Identifier.</div>
+                                            <div>Document unique identifier defined by the user.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">key_example</div>
@@ -639,7 +655,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Language code as per <a href='https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes'>ISO 639-1</a> standard.</div>
+                                            <div>Language code per the <a href='https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes'>ISO 639-1</a> standard.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">language_code_example</div>
@@ -849,7 +865,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Unique Document Identifier.</div>
+                                            <div>Document unique identifier defined by the user.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">key_example</div>

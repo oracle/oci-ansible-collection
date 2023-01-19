@@ -23,10 +23,21 @@ module: oci_ai_language_batch_detect_dominant_language_actions
 short_description: Perform actions on a BatchDetectDominantLanguage resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a BatchDetectDominantLanguage resource in Oracle Cloud Infrastructure
-    - For I(action=batch_detect_dominant_language), make a detect call to language detection pre-deployed model.
+    - "For I(action=batch_detect_dominant_language), the API returns the detected language and a related confidence score (between 0 and 1).  It supports
+      passing a batch of records.
+      L(List of supported languages.,https://docs.cloud.oracle.com/iaas/language/using/pretrain-models.htm#lang-detect)
+      Limitations:
+      - A batch may have up to 100 records.
+      - A record may be up to 5000 characters long.
+      - The total of characters to process in a request can be up to 20,000 characters."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment that calls the API, inference will be served
+              from pre trained model
+        type: str
     documents:
         description:
             - List of Documents for detect language.
@@ -63,6 +74,9 @@ EXAMPLES = """
       key: key_example
       text: text_example
     action: batch_detect_dominant_language
+
+    # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
 """
 
@@ -120,7 +134,7 @@ batch_detect_dominant_language_result:
             contains:
                 key:
                     description:
-                        - Unique Document Identifier.
+                        - Document unique identifier defined by the user.
                     returned: on success
                     type: str
                     sample: key_example
@@ -180,7 +194,7 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class BatchDetectDominantLanguageActionsHelperGen(OCIActionsHelperBase):
+class AiLanguageBatchDetectDominantLanguageActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         batch_detect_dominant_language
@@ -207,14 +221,14 @@ class BatchDetectDominantLanguageActionsHelperGen(OCIActionsHelperBase):
         )
 
 
-BatchDetectDominantLanguageActionsHelperCustom = get_custom_class(
-    "BatchDetectDominantLanguageActionsHelperCustom"
+AiLanguageBatchDetectDominantLanguageActionsHelperCustom = get_custom_class(
+    "AiLanguageBatchDetectDominantLanguageActionsHelperCustom"
 )
 
 
 class ResourceHelper(
-    BatchDetectDominantLanguageActionsHelperCustom,
-    BatchDetectDominantLanguageActionsHelperGen,
+    AiLanguageBatchDetectDominantLanguageActionsHelperCustom,
+    AiLanguageBatchDetectDominantLanguageActionsHelperGen,
 ):
     pass
 
@@ -225,6 +239,7 @@ def main():
     )
     module_args.update(
         dict(
+            compartment_id=dict(type="str"),
             documents=dict(
                 type="list",
                 elements="dict",

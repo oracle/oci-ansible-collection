@@ -8,5 +8,5 @@ Index of all Inventory Plugins
 oracle.oci
 ----------
 
-* :ref:`oracle.oci.oci <ansible_collections.oracle.oci.oci_inventory>` -- Oracle Cloud Infrastructure (OCI) inventory plugin
+* :ref:`oracle.oci.oci <ansible_collections.oracle.oci.oci_inventory>` -- 
 
