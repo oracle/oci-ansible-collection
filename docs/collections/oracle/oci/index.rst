@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 4.8.0
+Collection version 4.9.0
 
 .. toctree::
     :maxdepth: 1
@@ -19,7 +19,7 @@ These are the plugins in the oracle.oci collection
 Inventory Plugins
 ~~~~~~~~~~~~~~~~~
 
-* :ref:`oci <ansible_collections.oracle.oci.oci_inventory>` -- Oracle Cloud Infrastructure (OCI) inventory plugin
+* :ref:`oci <ansible_collections.oracle.oci.oci_inventory>` -- 
 
 Modules
 ~~~~~~~
@@ -43,16 +43,30 @@ Modules
 * :ref:`oci_ai_anomaly_detection_project <ansible_collections.oracle.oci.oci_ai_anomaly_detection_project_module>` -- Manage a Project resource in Oracle Cloud Infrastructure
 * :ref:`oci_ai_anomaly_detection_project_actions <ansible_collections.oracle.oci.oci_ai_anomaly_detection_project_actions_module>` -- Perform actions on a Project resource in Oracle Cloud Infrastructure
 * :ref:`oci_ai_anomaly_detection_project_facts <ansible_collections.oracle.oci.oci_ai_anomaly_detection_project_facts_module>` -- Fetches details about one or multiple Project resources in Oracle Cloud Infrastructure
+* :ref:`oci_ai_document_processor_job <ansible_collections.oracle.oci.oci_ai_document_processor_job_module>` -- Manage a ProcessorJob resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_document_processor_job_actions <ansible_collections.oracle.oci.oci_ai_document_processor_job_actions_module>` -- Perform actions on a ProcessorJob resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_document_processor_job_facts <ansible_collections.oracle.oci.oci_ai_document_processor_job_facts_module>` -- Fetches details about a ProcessorJob resource in Oracle Cloud Infrastructure
 * :ref:`oci_ai_language_batch_detect_dominant_language_actions <ansible_collections.oracle.oci.oci_ai_language_batch_detect_dominant_language_actions_module>` -- Perform actions on a BatchDetectDominantLanguage resource in Oracle Cloud Infrastructure
 * :ref:`oci_ai_language_batch_detect_language_entities_actions <ansible_collections.oracle.oci.oci_ai_language_batch_detect_language_entities_actions_module>` -- Perform actions on a BatchDetectLanguageEntities resource in Oracle Cloud Infrastructure
 * :ref:`oci_ai_language_batch_detect_language_key_phrases_actions <ansible_collections.oracle.oci.oci_ai_language_batch_detect_language_key_phrases_actions_module>` -- Perform actions on a BatchDetectLanguageKeyPhrases resource in Oracle Cloud Infrastructure
 * :ref:`oci_ai_language_batch_detect_language_sentiments_actions <ansible_collections.oracle.oci.oci_ai_language_batch_detect_language_sentiments_actions_module>` -- Perform actions on a BatchDetectLanguageSentiments resource in Oracle Cloud Infrastructure
 * :ref:`oci_ai_language_batch_detect_language_text_classification_actions <ansible_collections.oracle.oci.oci_ai_language_batch_detect_language_text_classification_actions_module>` -- Perform actions on a BatchDetectLanguageTextClassification resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_language_batch_language_translation_actions <ansible_collections.oracle.oci.oci_ai_language_batch_language_translation_actions_module>` -- Perform actions on a BatchLanguageTranslation resource in Oracle Cloud Infrastructure
 * :ref:`oci_ai_language_detect_dominant_language_actions <ansible_collections.oracle.oci.oci_ai_language_detect_dominant_language_actions_module>` -- Perform actions on a DetectDominantLanguage resource in Oracle Cloud Infrastructure
 * :ref:`oci_ai_language_detect_language_entities_actions <ansible_collections.oracle.oci.oci_ai_language_detect_language_entities_actions_module>` -- Perform actions on a DetectLanguageEntities resource in Oracle Cloud Infrastructure
 * :ref:`oci_ai_language_detect_language_key_phrases_actions <ansible_collections.oracle.oci.oci_ai_language_detect_language_key_phrases_actions_module>` -- Perform actions on a DetectLanguageKeyPhrases resource in Oracle Cloud Infrastructure
 * :ref:`oci_ai_language_detect_language_sentiments_actions <ansible_collections.oracle.oci.oci_ai_language_detect_language_sentiments_actions_module>` -- Perform actions on a DetectLanguageSentiments resource in Oracle Cloud Infrastructure
 * :ref:`oci_ai_language_detect_language_text_classification_actions <ansible_collections.oracle.oci.oci_ai_language_detect_language_text_classification_actions_module>` -- Perform actions on a DetectLanguageTextClassification resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_language_endpoint <ansible_collections.oracle.oci.oci_ai_language_endpoint_module>` -- Manage an Endpoint resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_language_endpoint_actions <ansible_collections.oracle.oci.oci_ai_language_endpoint_actions_module>` -- Perform actions on an Endpoint resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_language_endpoint_facts <ansible_collections.oracle.oci.oci_ai_language_endpoint_facts_module>` -- Fetches details about one or multiple Endpoint resources in Oracle Cloud Infrastructure
+* :ref:`oci_ai_language_evaluation_result_facts <ansible_collections.oracle.oci.oci_ai_language_evaluation_result_facts_module>` -- Fetches details about one or multiple EvaluationResult resources in Oracle Cloud Infrastructure
+* :ref:`oci_ai_language_model <ansible_collections.oracle.oci.oci_ai_language_model_module>` -- Manage a Model resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_language_model_actions <ansible_collections.oracle.oci.oci_ai_language_model_actions_module>` -- Perform actions on a Model resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_language_model_facts <ansible_collections.oracle.oci.oci_ai_language_model_facts_module>` -- Fetches details about one or multiple Model resources in Oracle Cloud Infrastructure
+* :ref:`oci_ai_language_project <ansible_collections.oracle.oci.oci_ai_language_project_module>` -- Manage a Project resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_language_project_actions <ansible_collections.oracle.oci.oci_ai_language_project_actions_module>` -- Perform actions on a Project resource in Oracle Cloud Infrastructure
+* :ref:`oci_ai_language_project_facts <ansible_collections.oracle.oci.oci_ai_language_project_facts_module>` -- Fetches details about one or multiple Project resources in Oracle Cloud Infrastructure
 * :ref:`oci_ai_speech_transcription_job <ansible_collections.oracle.oci.oci_ai_speech_transcription_job_module>` -- Manage a TranscriptionJob resource in Oracle Cloud Infrastructure
 * :ref:`oci_ai_speech_transcription_job_actions <ansible_collections.oracle.oci.oci_ai_speech_transcription_job_actions_module>` -- Perform actions on a TranscriptionJob resource in Oracle Cloud Infrastructure
 * :ref:`oci_ai_speech_transcription_job_facts <ansible_collections.oracle.oci.oci_ai_speech_transcription_job_facts_module>` -- Fetches details about one or multiple TranscriptionJob resources in Oracle Cloud Infrastructure
@@ -1871,16 +1885,30 @@ Modules
     oci_ai_anomaly_detection_project_module
     oci_ai_anomaly_detection_project_actions_module
     oci_ai_anomaly_detection_project_facts_module
+    oci_ai_document_processor_job_module
+    oci_ai_document_processor_job_actions_module
+    oci_ai_document_processor_job_facts_module
     oci_ai_language_batch_detect_dominant_language_actions_module
     oci_ai_language_batch_detect_language_entities_actions_module
     oci_ai_language_batch_detect_language_key_phrases_actions_module
     oci_ai_language_batch_detect_language_sentiments_actions_module
     oci_ai_language_batch_detect_language_text_classification_actions_module
+    oci_ai_language_batch_language_translation_actions_module
     oci_ai_language_detect_dominant_language_actions_module
     oci_ai_language_detect_language_entities_actions_module
     oci_ai_language_detect_language_key_phrases_actions_module
     oci_ai_language_detect_language_sentiments_actions_module
     oci_ai_language_detect_language_text_classification_actions_module
+    oci_ai_language_endpoint_module
+    oci_ai_language_endpoint_actions_module
+    oci_ai_language_endpoint_facts_module
+    oci_ai_language_evaluation_result_facts_module
+    oci_ai_language_model_module
+    oci_ai_language_model_actions_module
+    oci_ai_language_model_facts_module
+    oci_ai_language_project_module
+    oci_ai_language_project_actions_module
+    oci_ai_language_project_facts_module
     oci_ai_speech_transcription_job_module
     oci_ai_speech_transcription_job_actions_module
     oci_ai_speech_transcription_job_facts_module

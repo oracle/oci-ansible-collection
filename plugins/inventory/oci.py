@@ -189,7 +189,34 @@ DOCUMENTATION = """
                           - "freeform_tags"
                           - "defined_tags"
                           if empty list is passed to this option, none of the default groups are created.
+                          default_groups and default_groups_preferences cannot be used together
+                          We recommend to use default_groups_preferences parameter as we will deprecate default_groups
+                          parameter in our next major upgrade
             type: list
+        default_groups_preferences:
+            description:  OCI Inventory plugin creates some groups by default based on these properties
+                          ["availability_domain", "compartment_name", "region", "freeform_tags", "defined_tags"].
+                          If you don't want OCI inventory plugin to create these default groups,
+                          you can use this option to configure which of these default groups should be created.
+                          This option takes a dict of properties of inventory hosts based on which the groups will be created.
+                          You can also pass a list of jinja2 expressions under include and exclude if you want to
+                          include specific groups to be included/excluded based on these criteria
+                          if empty list is passed to this option, none of the default groups are created.
+                          default_groups and default_groups_preferences cannot be used together
+            type: dict
+            suboptions:
+                region/availability_domain/compartment_name/freeform_tags/defined_tags:
+                    description: Add groups based on the property
+                    type: dict
+                    include:
+                        description: A list of jinja2 expressions. if this option is not used or empty, all regions
+                                     will be included which are not in exclude list
+                        type: list
+                    exclude:
+                        description: A list of jinja2 expressions. if this option is not used or empty, none of the
+                                     regions will be excluded. if any group is present in both include and exclude, then
+                                     that group will be excluded.
+                        type: list
 """
 
 EXAMPLES = """
@@ -242,6 +269,18 @@ keyed_groups:
 compose:
   ansible_host: display_name+'.oracle.com'
 
+# Example to use_extra_vars and pass the value of extra_vars variable with inventory command
+# This requires ansible v2.11 or higher
+use_extra_vars: true
+compose:
+  example: " 'Hello' +  extra_vars"
+# pass the value of extra_vars variable with ansible-inventory command using -e option
+# ansible-inventory -i /path/to/demo.oci.yml --list -e "extra_vars=ANSIBLE"
+
+# Environment variable can also be used to pass the value of extra_vars variable.
+# export TEMP_ENV="ANSIBLE"
+# ansible-inventory -i /path/to/demo.oci.yml --list -e "extra_vars='$TEMP_ENV'"
+
 # Example flag to turn on debug mode
 debug: true
 
@@ -268,6 +307,25 @@ exclude_compartments:
 
   - compartment_name: "test_skip_compartment"
     parent_compartment_ocid: ocid1.tenancy.oc1..xxxxxx
+
+# Create groups based on properties
+default_groups_preferences:
+  region:
+    include:
+        - region=="us-ashburn-1"
+  compartment_name:
+    exclude:
+        - name=="dev_tests"
+  availability_domain:
+  freeform_tags:
+  defined_tags:
+    include:
+        - <jinja_expression>
+        - namespace=="mynamespace" and namespace.key =="mykey"
+        - namespace=="mynamespace2" and namespace.key =="mykey2"
+    exclude:
+        - <jinja_expression>
+        - namespace=="mynamespace3" and namespace.key =="mykey3"
 
 """
 import os
@@ -354,6 +412,7 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             "auth_type": "api_key",
             "delegation_token_file": None,
             "default_groups": [],
+            "default_groups_preferences": {},
         }
 
         self.group_prefix = "oci_"
@@ -444,6 +503,10 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
             )
 
     def _validate_default_groups(self):
+        if self.get_option("default_groups_preferences") and self.get_option("default_groups"):
+            raise AnsibleError(
+                "default_groups and default_groups_preferences cannot be used together"
+            )
         for group in self.params.get("default_groups"):
             if group not in self.supported_default_groups:
                 raise AnsibleError("The default_group %s is not supported" % group)
@@ -1106,6 +1169,9 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         returns the enabled groups that are common between compute_instance and db_host.
         A group is enable when it is configured in the default_groups
         """
+        if isinstance(self.params.get("default_groups"), dict):
+            return self.get_common_groups_preferences(instance, region)
+
         common_groups = set(["all_hosts"])
 
         if "availability_domain" in self.params.get("default_groups"):
@@ -1147,6 +1213,75 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                         )
                         common_groups.add(defined_tag_group_name)
         return common_groups
+
+    def get_common_groups_preferences(self, instance, region):
+        """
+        returns the enabled groups that are common between compute_instance and db_host.
+        A group is enable when it is configured in the default_groups_preferences
+        """
+        common_groups = set(["all_hosts"])
+
+        if "availability_domain" in self.params.get("default_groups"):
+            # Group by availability domain
+            ad = self.sanitize(instance.availability_domain)
+            self.filter_common_groups(common_groups, "availability_domain", {"availability_domain": ad}, ad)
+
+        if "compartment_name" in self.params.get("default_groups"):
+            # test = self.params.get("default_groups")["compartment_name"]
+            # if hasattr(test, "include") and test.include:
+            #
+            # Group by compartments
+            compartment = self.compartments[instance.compartment_id]
+            compartment_name = self.sanitize(compartment.name)
+            compartment.inactive_status = None
+            host_vars = to_dict(instance)
+            host_vars.update(to_dict(compartment))
+            self.filter_common_groups(common_groups, "compartment_name", host_vars, compartment_name)
+
+        if "region" in self.params.get("default_groups"):
+            # Group by region
+            region_grp = self.sanitize("region_" + region)
+            host_vars = to_dict(instance)
+            host_vars.update(to_dict({"region": region}))
+            self.filter_common_groups(common_groups, "region", host_vars, region_grp)
+
+        if "freeform_tags" in self.params.get("default_groups"):
+            # Group by freeform tags tag_key=value
+            if hasattr(instance, "freeform_tags") and instance.freeform_tags:
+                for key in instance.freeform_tags:
+                    tag_group_name = self.sanitize(
+                        "tag_" + key + "=" + instance.freeform_tags[key]
+                    )
+                    self.filter_common_groups(common_groups, "freeform_tags", {key: instance.freeform_tags[key]},
+                                              tag_group_name)
+
+        if "defined_tags" in self.params.get("default_groups"):
+            # Group by defined tags
+            if hasattr(instance, "defined_tags") and instance.defined_tags:
+                for namespace in instance.defined_tags:
+                    for key in instance.defined_tags[namespace]:
+                        defined_tag_group_name = self.sanitize(
+                            namespace
+                            + "#"
+                            + key
+                            + "="
+                            + instance.defined_tags[namespace][key]
+                        )
+                        self.filter_common_groups(common_groups, "defined_tags",
+                                                  {namespace: {key: instance.defined_tags[namespace][key]}},
+                                                  defined_tag_group_name)
+        return common_groups
+
+    def filter_common_groups(self, common_groups, default_group, host_vars, group):
+        sub_groups = self.params.get("default_groups")[default_group]
+        if sub_groups and "include" in sub_groups and sub_groups["include"]:
+            if self._filter_hosts(sub_groups["include"], host_vars):
+                common_groups.add(group)
+        else:
+            common_groups.add(group)
+        if sub_groups and "exclude" in sub_groups and sub_groups["exclude"]:
+            if self._filter_hosts(sub_groups["exclude"], host_vars):
+                common_groups.remove(group)
 
     def build_inventory_for_instance(self, instance, region):
         """Build and return inventory for an instance"""
@@ -1782,6 +1917,10 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                 "type_to_be": list,
                 "value": config_data.get("default_groups", []),
             },
+            "default_groups_preferences": {
+                "type_to_be": dict,
+                "value": config_data.get("default_groups_preferences", {}),
+            },
         }
 
         # validate the options
@@ -1858,12 +1997,17 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
         hostnames = options["hostnames"]["value"]
 
         # setting the default_groups to lower case values to avoid case insensitive comparison
-        if self.get_option("default_groups") is None:
+        if self.get_option("default_groups") is None and self.get_option("default_groups_preferences") is None:
             self.params.update({"default_groups": self.supported_default_groups})
-        else:
+        elif self.get_option("default_groups_preferences") is None:
             default_groups = config_data.get("default_groups", [])
             for group in default_groups:
                 self.params.get("default_groups").append(group.lower())
+        else:
+            default_groups = config_data.get("default_groups_preferences", {})
+            for group_key, group_value in default_groups.items():
+                self.params.get("default_groups_preferences")[group_key.lower()] = group_value
+            self.params.update({"default_groups": self.params.get("default_groups_preferences")})
 
         return regions, filters, hostnames
 

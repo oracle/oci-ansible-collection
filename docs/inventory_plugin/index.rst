@@ -159,6 +159,35 @@ playbooks, plays, and roles are loaded. You can 're-execute' a plugin by
 using the ``meta: refresh_inventory`` task, which clears out the
 existing inventory and rebuilds it.
 
+Using use_extra_vars option to compose variables
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Ansible has added support for ``use_extra_vars`` option for inventory plugin to compose
+variables. ``use_extra_vars`` option can be used with ansible v2.11 or higher.
+To compose variables, set the option ``use_extra_vars`` to true in inventory file
+and pass the value of extra_vars variables with ansible-inventory command
+using -e option. For example: 
+
+.. code:: yaml
+
+   # demo.oci.yml
+   # use_extra_vars option
+   plugin: oracle.oci.oci
+   # applicable for ansible v2.11 or higher
+   use_extra_vars: true
+   compose:
+      example: " 'Hello' +  extra_vars"
+   
+   # pass the value of extra_vars variable with ansible-inventory command using -e option
+   # ansible-inventory -i /path/to/demo.oci.yml --list -e "extra_vars=ANSIBLE"
+
+   # Environment variable can also be used to pass the value of extra_vars variable.
+   # export TEMP_ENV="ANSIBLE"
+   # ansible-inventory -i /path/to/demo.oci.yml --list -e "extra_vars='$TEMP_ENV'"
+
+.. important::
+   ``use_extra_vars`` option will work with ansible v2.11 or higher.
+
 Fetching Database Hosts
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -472,6 +501,30 @@ Examples
 
 The following sections include configuration examples that cover common
 inventory scenarios.
+
+Use use_extra_vars option to compose variables
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To use use_extra_vars option to compose variables, your configuration can be
+as simple as the following example:
+
+.. code:: yaml
+
+   plugin: oracle.oci.oci
+   # Applicable for ansible v2.11 or higher
+   use_extra_vars: true
+   compose:
+      example: " 'Hello' +  extra_vars"
+
+   # pass the value of extra_vars variable with ansible-inventory command using -e option
+   # ansible-inventory -i /path/to/demo.oci.yml --list -e "extra_vars=ANSIBLE"
+
+   # Environment variable can also be used to pass the value of extra_vars variable.
+   # export TEMP_ENV="ANSIBLE"
+   # ansible-inventory -i /path/to/demo.oci.yml --list -e "extra_vars='$TEMP_ENV'"
+
+.. important::
+   ``use_extra_vars`` option will work with ansible v2.11 or higher.
 
 Fetch All Compute Hosts
 ~~~~~~~~~~~~~~~~~~~~~~~

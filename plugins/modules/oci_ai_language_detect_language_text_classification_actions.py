@@ -23,7 +23,11 @@ module: oci_ai_language_detect_language_text_classification_actions
 short_description: Perform actions on a DetectLanguageTextClassification resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a DetectLanguageTextClassification resource in Oracle Cloud Infrastructure
-    - For I(action=detect_language_text_classification), make a detect call to text classification from the pre-deployed model.
+    - "For I(action=detect_language_text_classification), the API automatically classifies text into a set of pre-determined classes and sub-classes. A single
+      class/subclass is returned for each record classified.
+      Learn more about text classification L(here,https://docs.cloud.oracle.com/iaas/language/using/pretrain-models.htm#text-class).
+      Limitations:
+      - A record may be up to 1000 characters long."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -104,7 +108,7 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class DetectLanguageTextClassificationActionsHelperGen(OCIActionsHelperBase):
+class AiLanguageDetectLanguageTextClassificationActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         detect_language_text_classification
@@ -133,14 +137,14 @@ class DetectLanguageTextClassificationActionsHelperGen(OCIActionsHelperBase):
         )
 
 
-DetectLanguageTextClassificationActionsHelperCustom = get_custom_class(
-    "DetectLanguageTextClassificationActionsHelperCustom"
+AiLanguageDetectLanguageTextClassificationActionsHelperCustom = get_custom_class(
+    "AiLanguageDetectLanguageTextClassificationActionsHelperCustom"
 )
 
 
 class ResourceHelper(
-    DetectLanguageTextClassificationActionsHelperCustom,
-    DetectLanguageTextClassificationActionsHelperGen,
+    AiLanguageDetectLanguageTextClassificationActionsHelperCustom,
+    AiLanguageDetectLanguageTextClassificationActionsHelperGen,
 ):
     pass
 

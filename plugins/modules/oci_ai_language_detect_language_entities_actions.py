@@ -23,7 +23,10 @@ module: oci_ai_language_detect_language_entities_actions
 short_description: Perform actions on a DetectLanguageEntities resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a DetectLanguageEntities resource in Oracle Cloud Infrastructure
-    - For I(action=detect_language_entities), make a detect call to enitiy pre-deployed model
+    - "For I(action=detect_language_entities), the API extracts entities in text records. For each entity, its type and confidence score (between 0 and 1) is
+      returned.
+      Limitations:
+      - A text may be up to 1000 characters long."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -37,8 +40,8 @@ options:
             - Named Entity Recognition model versions. By default user will get output from V2.1 implementation.
         type: str
         choices:
-            - "V2.1"
-            - "V1.1"
+            - "V2_1"
+            - "V1_1"
     is_pii:
         description:
             - If this parameter is set to true, you only get PII (Personally identifiable information) entities
@@ -62,7 +65,7 @@ EXAMPLES = """
     action: detect_language_entities
 
     # optional
-    model_version: V2.1
+    model_version: V2_1
     is_pii: true
 
 """
@@ -148,7 +151,7 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class DetectLanguageEntitiesActionsHelperGen(OCIActionsHelperBase):
+class AiLanguageDetectLanguageEntitiesActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         detect_language_entities
@@ -179,13 +182,14 @@ class DetectLanguageEntitiesActionsHelperGen(OCIActionsHelperBase):
         )
 
 
-DetectLanguageEntitiesActionsHelperCustom = get_custom_class(
-    "DetectLanguageEntitiesActionsHelperCustom"
+AiLanguageDetectLanguageEntitiesActionsHelperCustom = get_custom_class(
+    "AiLanguageDetectLanguageEntitiesActionsHelperCustom"
 )
 
 
 class ResourceHelper(
-    DetectLanguageEntitiesActionsHelperCustom, DetectLanguageEntitiesActionsHelperGen
+    AiLanguageDetectLanguageEntitiesActionsHelperCustom,
+    AiLanguageDetectLanguageEntitiesActionsHelperGen,
 ):
     pass
 
@@ -197,7 +201,7 @@ def main():
     module_args.update(
         dict(
             text=dict(type="str", required=True),
-            model_version=dict(type="str", choices=["V2.1", "V1.1"]),
+            model_version=dict(type="str", choices=["V2_1", "V1_1"]),
             is_pii=dict(type="bool"),
             action=dict(
                 type="str", required=True, choices=["detect_language_entities"]

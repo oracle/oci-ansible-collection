@@ -23,7 +23,10 @@ module: oci_ai_language_detect_language_key_phrases_actions
 short_description: Perform actions on a DetectLanguageKeyPhrases resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a DetectLanguageKeyPhrases resource in Oracle Cloud Infrastructure
-    - For I(action=detect_language_key_phrases), make a detect call to the keyPhrase pre-deployed model.
+    - "For I(action=detect_language_key_phrases), the API extracts key-phrases in text records. For each key-phrase, a score (between 0 and 1) is returned that
+      highlights the importance of the key-phrase in the context of the text.
+      Limitations:
+      - A record may be up to 1000 characters long."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -104,7 +107,7 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class DetectLanguageKeyPhrasesActionsHelperGen(OCIActionsHelperBase):
+class AiLanguageDetectLanguageKeyPhrasesActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         detect_language_key_phrases
@@ -131,14 +134,14 @@ class DetectLanguageKeyPhrasesActionsHelperGen(OCIActionsHelperBase):
         )
 
 
-DetectLanguageKeyPhrasesActionsHelperCustom = get_custom_class(
-    "DetectLanguageKeyPhrasesActionsHelperCustom"
+AiLanguageDetectLanguageKeyPhrasesActionsHelperCustom = get_custom_class(
+    "AiLanguageDetectLanguageKeyPhrasesActionsHelperCustom"
 )
 
 
 class ResourceHelper(
-    DetectLanguageKeyPhrasesActionsHelperCustom,
-    DetectLanguageKeyPhrasesActionsHelperGen,
+    AiLanguageDetectLanguageKeyPhrasesActionsHelperCustom,
+    AiLanguageDetectLanguageKeyPhrasesActionsHelperGen,
 ):
     pass
 

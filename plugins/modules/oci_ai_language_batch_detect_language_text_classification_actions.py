@@ -23,10 +23,27 @@ module: oci_ai_language_batch_detect_language_text_classification_actions
 short_description: Perform actions on a BatchDetectLanguageTextClassification resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a BatchDetectLanguageTextClassification resource in Oracle Cloud Infrastructure
-    - For I(action=batch_detect_language_text_classification), make a detect call to text classification from the pre-deployed model.
+    - "For I(action=batch_detect_language_text_classification), the API automatically classifies text into a set of pre-determined classes and sub-classes. A
+      single class/subclass is returned for each record classified.
+      It supports passing a batch of records.
+      Learn more about text classification L(here,https://docs.cloud.oracle.com/iaas/language/using/pretrain-models.htm#text-class).
+      Limitations:
+      - A batch may have up to 100 records.
+      - A record may be up to 5000 characters long.
+      - The total of characters to process in a request can be up to 20,000 characters."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
+    compartment_id:
+        description:
+            - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the compartment that calls the API, inference will be served
+              from pre trained model
+        type: str
+    endpoint_id:
+        description:
+            - The endpoint which have to be used for inferencing. If endpointId and compartmentId is provided, then inference will be served from custom model
+              which is mapped to this Endpoint.
+        type: str
     documents:
         description:
             - List of Documents for detect text classification.
@@ -36,17 +53,17 @@ options:
         suboptions:
             key:
                 description:
-                    - Document Unique Identifier.
+                    - Document unique identifier defined by the user.
                 type: str
                 required: true
             text:
                 description:
-                    - Document text for detect text classification.
+                    - Document text for language service call.
                 type: str
                 required: true
             language_code:
                 description:
-                    - Language code as per L(ISO 639-1,https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) standard.
+                    - Language code per the L(ISO 639-1,https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) standard.
                 type: str
     action:
         description:
@@ -71,6 +88,10 @@ EXAMPLES = """
       language_code: language_code_example
     action: batch_detect_language_text_classification
 
+    # optional
+    compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+    endpoint_id: "ocid1.endpoint.oc1..xxxxxxEXAMPLExxxxxx"
+
 """
 
 RETURN = """
@@ -88,7 +109,7 @@ batch_detect_language_text_classification_result:
             contains:
                 key:
                     description:
-                        - Document Unique Identifier.
+                        - Document unique identifier defined by the user.
                     returned: on success
                     type: str
                     sample: key_example
@@ -113,7 +134,7 @@ batch_detect_language_text_classification_result:
                             sample: 1.2
                 language_code:
                     description:
-                        - Language code as per L(ISO 639-1,https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) standard.
+                        - Language code per the L(ISO 639-1,https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) standard.
                     returned: on success
                     type: str
                     sample: language_code_example
@@ -125,7 +146,7 @@ batch_detect_language_text_classification_result:
             contains:
                 key:
                     description:
-                        - Unique Document Identifier.
+                        - Document unique identifier defined by the user.
                     returned: on success
                     type: str
                     sample: key_example
@@ -185,7 +206,9 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class BatchDetectLanguageTextClassificationActionsHelperGen(OCIActionsHelperBase):
+class AiLanguageBatchDetectLanguageTextClassificationActionsHelperGen(
+    OCIActionsHelperBase
+):
     """
     Supported actions:
         batch_detect_language_text_classification
@@ -214,14 +237,14 @@ class BatchDetectLanguageTextClassificationActionsHelperGen(OCIActionsHelperBase
         )
 
 
-BatchDetectLanguageTextClassificationActionsHelperCustom = get_custom_class(
-    "BatchDetectLanguageTextClassificationActionsHelperCustom"
+AiLanguageBatchDetectLanguageTextClassificationActionsHelperCustom = get_custom_class(
+    "AiLanguageBatchDetectLanguageTextClassificationActionsHelperCustom"
 )
 
 
 class ResourceHelper(
-    BatchDetectLanguageTextClassificationActionsHelperCustom,
-    BatchDetectLanguageTextClassificationActionsHelperGen,
+    AiLanguageBatchDetectLanguageTextClassificationActionsHelperCustom,
+    AiLanguageBatchDetectLanguageTextClassificationActionsHelperGen,
 ):
     pass
 
@@ -232,6 +255,8 @@ def main():
     )
     module_args.update(
         dict(
+            compartment_id=dict(type="str"),
+            endpoint_id=dict(type="str"),
             documents=dict(
                 type="list",
                 elements="dict",

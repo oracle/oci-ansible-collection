@@ -30,7 +30,7 @@ oracle.oci.oci_ai_language_detect_language_sentiments_actions -- Perform actions
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.8.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.9.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Perform actions on a DetectLanguageSentiments resource in Oracle Cloud Infrastructure
-- For *action=detect_language_sentiments*, make a detect call to sentiment pre-deployed model.
+- For *action=detect_language_sentiments*, the API extracts aspect-based in text records. For aspect-based sentiment analysis, a set of aspects and their respective sentiment is returned. For sentiment analysis, confidence scores are provided for each of the classes (positive, negative, neutral). Learn more about sentiment analysis `here <https://docs.cloud.oracle.com/iaas/language/using/pretrain-models.htm#sentiment>`_. Limitations: - A record may be up to 1000 characters long.
 
 
 .. Aliases

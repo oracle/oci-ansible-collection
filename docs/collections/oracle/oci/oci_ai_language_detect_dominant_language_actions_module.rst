@@ -30,7 +30,7 @@ oracle.oci.oci_ai_language_detect_dominant_language_actions -- Perform actions o
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.8.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.9.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Perform actions on a DetectDominantLanguage resource in Oracle Cloud Infrastructure
-- For *action=detect_dominant_language*, make a detect call to language detection pre-deployed model.
+- For *action=detect_dominant_language*, the API returns the detected language and a related confidence score (between 0 and 1). `List of supported languages. <https://docs.cloud.oracle.com/iaas/language/using/pretrain-models.htm#lang-detect>`_ Limitations: - A record may be up to 1000 characters long.
 
 
 .. Aliases

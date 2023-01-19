@@ -23,7 +23,10 @@ module: oci_ai_language_detect_dominant_language_actions
 short_description: Perform actions on a DetectDominantLanguage resource in Oracle Cloud Infrastructure
 description:
     - Perform actions on a DetectDominantLanguage resource in Oracle Cloud Infrastructure
-    - For I(action=detect_dominant_language), make a detect call to language detection pre-deployed model.
+    - "For I(action=detect_dominant_language), the API returns the detected language and a related confidence score (between 0 and 1).
+      L(List of supported languages.,https://docs.cloud.oracle.com/iaas/language/using/pretrain-models.htm#lang-detect)
+      Limitations:
+      - A record may be up to 1000 characters long."
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -113,7 +116,7 @@ except ImportError:
     HAS_OCI_PY_SDK = False
 
 
-class DetectDominantLanguageActionsHelperGen(OCIActionsHelperBase):
+class AiLanguageDetectDominantLanguageActionsHelperGen(OCIActionsHelperBase):
     """
     Supported actions:
         detect_dominant_language
@@ -140,13 +143,14 @@ class DetectDominantLanguageActionsHelperGen(OCIActionsHelperBase):
         )
 
 
-DetectDominantLanguageActionsHelperCustom = get_custom_class(
-    "DetectDominantLanguageActionsHelperCustom"
+AiLanguageDetectDominantLanguageActionsHelperCustom = get_custom_class(
+    "AiLanguageDetectDominantLanguageActionsHelperCustom"
 )
 
 
 class ResourceHelper(
-    DetectDominantLanguageActionsHelperCustom, DetectDominantLanguageActionsHelperGen
+    AiLanguageDetectDominantLanguageActionsHelperCustom,
+    AiLanguageDetectDominantLanguageActionsHelperGen,
 ):
     pass
 

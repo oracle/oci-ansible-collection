@@ -30,7 +30,7 @@ oracle.oci.oci_ai_language_detect_language_entities_actions -- Perform actions o
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.8.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.9.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Perform actions on a DetectLanguageEntities resource in Oracle Cloud Infrastructure
-- For *action=detect_language_entities*, make a detect call to enitiy pre-deployed model
+- For *action=detect_language_entities*, the API extracts entities in text records. For each entity, its type and confidence score (between 0 and 1) is returned. Limitations: - A text may be up to 1000 characters long.
 
 
 .. Aliases
@@ -278,8 +278,8 @@ Parameters
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
-                                                                                                                                                                <li>V2.1</li>
-                                                                                                                                                                                                <li>V1.1</li>
+                                                                                                                                                                <li>V2_1</li>
+                                                                                                                                                                                                <li>V1_1</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
@@ -363,7 +363,7 @@ Examples
         action: detect_language_entities
 
         # optional
-        model_version: V2.1
+        model_version: V2_1
         is_pii: true
 
 
