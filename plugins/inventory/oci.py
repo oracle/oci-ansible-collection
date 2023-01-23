@@ -205,18 +205,71 @@ DOCUMENTATION = """
                           default_groups and default_groups_preferences cannot be used together
             type: dict
             suboptions:
-                region/availability_domain/compartment_name/freeform_tags/defined_tags:
-                    description: Add groups based on the property
+                region:
+                    description: Add groups based on the region
                     type: dict
-                    include:
-                        description: A list of jinja2 expressions. if this option is not used or empty, all regions
-                                     will be included which are not in exclude list
-                        type: list
-                    exclude:
-                        description: A list of jinja2 expressions. if this option is not used or empty, none of the
-                                     regions will be excluded. if any group is present in both include and exclude, then
-                                     that group will be excluded.
-                        type: list
+                    suboptions:
+                        include:
+                            description: A list of jinja2 expressions. if this option is not used or empty, all regions
+                                        will be included which are not in exclude list
+                            type: list
+                        exclude:
+                            description: A list of jinja2 expressions. if this option is not used or empty, none of the
+                                        regions will be excluded. if any group is present in both include and exclude, then
+                                        that group will be excluded.
+                            type: list
+                availability_domain:
+                    description: Add groups based on the availability_domain
+                    type: dict
+                    suboptions:
+                        include:
+                            description: A list of jinja2 expressions. if this option is not used or empty, all availability_domain
+                                        will be included which are not in exclude list
+                            type: list
+                        exclude:
+                            description: A list of jinja2 expressions. if this option is not used or empty, none of the
+                                        availability_domain will be excluded. if any group is present in both include and exclude, then
+                                        that group will be excluded.
+                            type: list
+                compartment_name:
+                    description: Add groups based on the compartment_name
+                    type: dict
+                    suboptions:
+                        include:
+                            description: A list of jinja2 expressions. if this option is not used or empty, all compartment_name
+                                        will be included which are not in exclude list
+                            type: list
+                        exclude:
+                            description: A list of jinja2 expressions. if this option is not used or empty, none of the
+                                        compartment_name will be excluded. if any group is present in both include and exclude, then
+                                        that group will be excluded.
+                            type: list
+                freeform_tags:
+                    description: Add groups based on the freeform_tags
+                    type: dict
+                    suboptions:
+                        include:
+                            description: A list of jinja2 expressions. if this option is not used or empty, all freeform_tags
+                                        will be included which are not in exclude list
+                            type: list
+                        exclude:
+                            description: A list of jinja2 expressions. if this option is not used or empty, none of the
+                                        freeform_tags will be excluded. if any group is present in both include and exclude, then
+                                        that group will be excluded.
+                            type: list
+                defined_tags:
+                    description: Add groups based on the defined_tags
+                    type: dict
+                    suboptions:
+                        include:
+                            description: A list of jinja2 expressions. if this option is not used or empty, all defined_tags
+                                        will be included which are not in exclude list
+                            type: list
+                        exclude:
+                            description: A list of jinja2 expressions. if this option is not used or empty, none of the
+                                        defined_tags will be excluded. if any group is present in both include and exclude, then
+                                        that group will be excluded.
+                            type: list
 """
 
 EXAMPLES = """

@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 4.9.0
+Collection version 4.9.1
 
 .. toctree::
     :maxdepth: 1
@@ -19,7 +19,7 @@ These are the plugins in the oracle.oci collection
 Inventory Plugins
 ~~~~~~~~~~~~~~~~~
 
-* :ref:`oci <ansible_collections.oracle.oci.oci_inventory>` -- 
+* :ref:`oci <ansible_collections.oracle.oci.oci_inventory>` -- Oracle Cloud Infrastructure (OCI) inventory plugin
 
 Modules
 ~~~~~~~
