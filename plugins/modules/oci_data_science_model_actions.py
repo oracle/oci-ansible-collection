@@ -340,6 +340,30 @@ model:
             returned: on success
             type: str
             sample: output_schema_example
+        model_version_set_id:
+            description:
+                - The OCID of the model version set that the model is associated to.
+            returned: on success
+            type: str
+            sample: "ocid1.modelversionset.oc1..xxxxxxEXAMPLExxxxxx"
+        model_version_set_name:
+            description:
+                - The name of the model version set that the model is associated to.
+            returned: on success
+            type: str
+            sample: model_version_set_name_example
+        version_id:
+            description:
+                - Unique identifier assigned to each version of the model.
+            returned: on success
+            type: int
+            sample: 56
+        version_label:
+            description:
+                - The version label can add an additional description of the lifecycle state of the model or the application using and training the model.
+            returned: on success
+            type: str
+            sample: version_label_example
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -364,7 +388,11 @@ model:
             "category": "category_example"
         }],
         "input_schema": "input_schema_example",
-        "output_schema": "output_schema_example"
+        "output_schema": "output_schema_example",
+        "model_version_set_id": "ocid1.modelversionset.oc1..xxxxxxEXAMPLExxxxxx",
+        "model_version_set_name": "model_version_set_name_example",
+        "version_id": 56,
+        "version_label": "version_label_example"
     }
 """
 

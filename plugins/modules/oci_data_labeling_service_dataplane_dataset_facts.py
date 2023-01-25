@@ -113,6 +113,12 @@ dataset:
             returned: on success
             type: str
             sample: annotation_format_example
+        lifetime_logical_clock:
+            description:
+                - An integer value used in achieving concurrency control, this field will be used to generate eTags.
+            returned: on success
+            type: int
+            sample: 56
         dataset_source_details:
             description:
                 - ""
@@ -266,6 +272,7 @@ dataset:
         "lifecycle_state": "CREATING",
         "lifecycle_details": "lifecycle_details_example",
         "annotation_format": "annotation_format_example",
+        "lifetime_logical_clock": 56,
         "dataset_source_details": {
             "source_type": "OBJECT_STORAGE",
             "namespace": "namespace_example",

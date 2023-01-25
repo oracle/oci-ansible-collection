@@ -30,7 +30,7 @@ oracle.oci.oci_data_labeling_service_dataplane_annotation -- Manage an Annotatio
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.9.1).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.10.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -327,7 +327,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div></div>
-                                            <div>Required when entity_type is &#x27;IMAGEOBJECTSELECTION&#x27;</div>
+                                            <div>Required when entity_type is one of [&#x27;KEYVALUESELECTION&#x27;, &#x27;IMAGEOBJECTSELECTION&#x27;]</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -391,6 +391,23 @@ Parameters
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-entities/confidence"></div>
+                    <b>confidence</b>
+                    <a class="ansibleOptionLink" href="#parameter-entities/confidence" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">float</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>float value, score from OCR.</div>
+                                            <div>Required when entity_type is &#x27;KEYVALUESELECTION&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="parameter-entities/entity_type"></div>
                     <b>entity_type</b>
                     <a class="ansibleOptionLink" href="#parameter-entities/entity_type" title="Permalink to this option"></a>
@@ -402,11 +419,12 @@ Parameters
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
                                                                                                                                                                 <li>IMAGEOBJECTSELECTION</li>
                                                                                                                                                                                                 <li>GENERIC</li>
+                                                                                                                                                                                                <li>KEYVALUESELECTION</li>
                                                                                                                                                                                                 <li>TEXTSELECTION</li>
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>The entity type described in the annotation. GENERIC  - An extensible entity type that is the base entity type for some annotation formats. IMAGEOBJECTSELECTION- - This allows the labeler to use specify a bounding polygon on the image to represent an object and apply labels to it. TEXTSELECTION - This allows the labeler to highlight text, by specifying an offset and a length, and apply labels to it.</div>
+                                            <div>The entity type described in the annotation. GENERIC  - An extensible entity type that is the base entity type for some annotation formats. IMAGEOBJECTSELECTION- - This allows the labeler to use specify a bounding polygon on the image to represent an object and apply labels to it. TEXTSELECTION - This allows the labeler to highlight text, by specifying an offset and a length, and apply labels to it. KEYVALUESELECTION - This allows the labeler to apply label the highlighted text from OCR.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -423,6 +441,7 @@ Parameters
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A simple key-value pair that is applied without any predefined name, type, or scope. It exists for cross-compatibility only. For example: `{&quot;bar-key&quot;: &quot;value&quot;}`</div>
+                                            <div>Applicable when entity_type is one of [&#x27;GENERIC&#x27;, &#x27;IMAGEOBJECTSELECTION&#x27;, &#x27;TEXTSELECTION&#x27;]</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -433,12 +452,13 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-entities/labels" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">list</span>
-                         / <span style="color: purple">elements=dictionary</span>                         / <span style="color: red">required</span>                    </div>
+                         / <span style="color: purple">elements=dictionary</span>                                            </div>
                                                         </td>
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
                                             <div>A collection of label entities.</div>
+                                            <div>Required when entity_type is one of [&#x27;GENERIC&#x27;, &#x27;IMAGEOBJECTSELECTION&#x27;, &#x27;TEXTSELECTION&#x27;]</div>
                                                         </td>
             </tr>
                                         <tr>
@@ -460,6 +480,40 @@ Parameters
                                                         </td>
             </tr>
                     
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-entities/rotation"></div>
+                    <b>rotation</b>
+                    <a class="ansibleOptionLink" href="#parameter-entities/rotation" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">float</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Integer value.</div>
+                                            <div>Applicable when entity_type is &#x27;KEYVALUESELECTION&#x27;</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                    <td class="elbow-placeholder"></td>
+                                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="parameter-entities/text"></div>
+                    <b>text</b>
+                    <a class="ansibleOptionLink" href="#parameter-entities/text" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>Entity Name.</div>
+                                            <div>Required when entity_type is &#x27;KEYVALUESELECTION&#x27;</div>
+                                                        </td>
+            </tr>
                                 <tr>
                                                     <td class="elbow-placeholder"></td>
                                                 <td colspan="3">
@@ -781,7 +835,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the Annotation resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by&#x27;: &#x27;created_by_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;entities&#x27;: [{&#x27;bounding_polygon&#x27;: {&#x27;normalized_vertices&#x27;: [{&#x27;x&#x27;: 3.4, &#x27;y&#x27;: 3.4}]}, &#x27;entity_type&#x27;: &#x27;GENERIC&#x27;, &#x27;extended_metadata&#x27;: {}, &#x27;labels&#x27;: [{&#x27;label&#x27;: &#x27;label_example&#x27;}], &#x27;text_span&#x27;: {&#x27;length&#x27;: 10, &#x27;offset&#x27;: 10}}], &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;record_id&#x27;: &#x27;ocid1.record.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;updated_by&#x27;: &#x27;updated_by_example&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;created_by&#x27;: &#x27;created_by_example&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;entities&#x27;: [{&#x27;bounding_polygon&#x27;: {&#x27;normalized_vertices&#x27;: [{&#x27;x&#x27;: 3.4, &#x27;y&#x27;: 3.4}]}, &#x27;confidence&#x27;: 3.4, &#x27;entity_type&#x27;: &#x27;GENERIC&#x27;, &#x27;extended_metadata&#x27;: {}, &#x27;labels&#x27;: [{&#x27;label&#x27;: &#x27;label_example&#x27;}], &#x27;rotation&#x27;: 10, &#x27;text&#x27;: &#x27;text_example&#x27;, &#x27;text_span&#x27;: {&#x27;length&#x27;: 10, &#x27;offset&#x27;: 10}}], &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;lifetime_logical_clock&#x27;: 56, &#x27;record_id&#x27;: &#x27;ocid1.record.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;updated_by&#x27;: &#x27;updated_by_example&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -937,6 +991,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-annotation/entities/confidence"></div>
+                    <b>confidence</b>
+                    <a class="ansibleOptionLink" href="#return-annotation/entities/confidence" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>float value, score from OCR.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">3.4</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
                     <div class="ansibleOptionAnchor" id="return-annotation/entities/entity_type"></div>
                     <b>entity_type</b>
                     <a class="ansibleOptionLink" href="#return-annotation/entities/entity_type" title="Permalink to this return value"></a>
@@ -946,7 +1019,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The entity type described in the annotation. GENERIC  - An extensible entity type that is the base entity type for some annotation formats. IMAGEOBJECTSELECTION- - This allows the labeler to use specify a bounding polygon on the image to represent an object and apply labels to it. TEXTSELECTION - This allows the labeler to highlight text, by specifying an offset and a length, and apply labels to it.</div>
+                                            <div>The entity type described in the annotation. GENERIC  - An extensible entity type that is the base entity type for some annotation formats. IMAGEOBJECTSELECTION- - This allows the labeler to use specify a bounding polygon on the image to represent an object and apply labels to it. TEXTSELECTION - This allows the labeler to highlight text, by specifying an offset and a length, and apply labels to it. KEYVALUESELECTION - This allows the labeler to apply label the highlighted text from OCR.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">GENERIC</div>
@@ -1007,6 +1080,44 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
             </tr>
                     
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-annotation/entities/rotation"></div>
+                    <b>rotation</b>
+                    <a class="ansibleOptionLink" href="#return-annotation/entities/rotation" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">float</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Integer value.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">10</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-annotation/entities/text"></div>
+                    <b>text</b>
+                    <a class="ansibleOptionLink" href="#return-annotation/entities/text" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>Entity Name.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">text_example</div>
+                                    </td>
+            </tr>
                                 <tr>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
@@ -1118,6 +1229,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">ACTIVE</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="4">
+                    <div class="ansibleOptionAnchor" id="return-annotation/lifetime_logical_clock"></div>
+                    <b>lifetime_logical_clock</b>
+                    <a class="ansibleOptionLink" href="#return-annotation/lifetime_logical_clock" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>An integer value used in achieving concurrency control, this field will be used to generate eTags.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                                 <tr>

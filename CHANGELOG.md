@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [4.10.0]
+
+## Added
+- Support for creating model version sets in the model catalog in the Data Science service
+- Support for associating a model with a model version set in the Data Science service
+- Support for custom key/value annotations on documents in the Data Labeling service
+- Support for configurable timeouts in the Service Mesh service
+
+## Breaking
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.90.3
+
 ## [4.9.1]
 
 ## Fixed

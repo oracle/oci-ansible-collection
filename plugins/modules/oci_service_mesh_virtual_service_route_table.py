@@ -129,6 +129,15 @@ options:
                       or one of the various application/grpc+ values.
                     - Applicable when type is 'HTTP'
                 type: bool
+            request_timeout_in_ms:
+                description:
+                    - The maximum duration in milliseconds for the target service to respond to a request.
+                      If provided, the timeout value overrides the default timeout of 15 seconds for the HTTP based route rules, and disabled (no timeout) when
+                      'isGrpc' is true.
+                      The value 0 (zero) indicates that the timeout is disabled.
+                      For streaming responses from the target service, consider either keeping the timeout disabled or set a sufficiently high value.
+                    - Applicable when type is 'HTTP'
+                type: int
     freeform_tags:
         description:
             - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -317,6 +326,16 @@ virtual_service_route_table:
                     returned: on success
                     type: bool
                     sample: true
+                request_timeout_in_ms:
+                    description:
+                        - The maximum duration in milliseconds for the target service to respond to a request.
+                          If provided, the timeout value overrides the default timeout of 15 seconds for the HTTP based route rules, and disabled (no timeout)
+                          when 'isGrpc' is true.
+                          The value 0 (zero) indicates that the timeout is disabled.
+                          For streaming responses from the target service, consider either keeping the timeout disabled or set a sufficiently high value.
+                    returned: on success
+                    type: int
+                    sample: 56
                 type:
                     description:
                         - Type of protocol.
@@ -411,6 +430,7 @@ virtual_service_route_table:
             "path": "path_example",
             "path_type": "PREFIX",
             "is_grpc": true,
+            "request_timeout_in_ms": 56,
             "type": "HTTP",
             "destinations": [{
                 "type": "VIRTUAL_DEPLOYMENT",
@@ -627,6 +647,7 @@ def main():
                     path=dict(type="str"),
                     path_type=dict(type="str", choices=["PREFIX"]),
                     is_grpc=dict(type="bool"),
+                    request_timeout_in_ms=dict(type="int"),
                 ),
             ),
             freeform_tags=dict(type="dict"),

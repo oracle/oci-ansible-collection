@@ -30,7 +30,7 @@ oracle.oci.oci_data_labeling_service_dataplane_dataset_facts -- Fetches details 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.9.1).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.10.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -356,7 +356,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Dataset resource</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;annotation_format&#x27;: &#x27;annotation_format_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;dataset_format_details&#x27;: {&#x27;format_type&#x27;: &#x27;DOCUMENT&#x27;, &#x27;text_file_type_metadata&#x27;: {&#x27;column_delimiter&#x27;: &#x27;column_delimiter_example&#x27;, &#x27;column_index&#x27;: 56, &#x27;column_name&#x27;: &#x27;column_name_example&#x27;, &#x27;escape_character&#x27;: &#x27;escape_character_example&#x27;, &#x27;format_type&#x27;: &#x27;DELIMITED&#x27;, &#x27;line_delimiter&#x27;: &#x27;line_delimiter_example&#x27;}}, &#x27;dataset_source_details&#x27;: {&#x27;bucket&#x27;: &#x27;bucket_example&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;prefix&#x27;: &#x27;prefix_example&#x27;, &#x27;source_type&#x27;: &#x27;OBJECT_STORAGE&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;initial_record_generation_configuration&#x27;: {&#x27;limit&#x27;: 10}, &#x27;label_set&#x27;: {&#x27;items&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;}]}, &#x27;labeling_instructions&#x27;: &#x27;labeling_instructions_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;annotation_format&#x27;: &#x27;annotation_format_example&#x27;, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;dataset_format_details&#x27;: {&#x27;format_type&#x27;: &#x27;DOCUMENT&#x27;, &#x27;text_file_type_metadata&#x27;: {&#x27;column_delimiter&#x27;: &#x27;column_delimiter_example&#x27;, &#x27;column_index&#x27;: 56, &#x27;column_name&#x27;: &#x27;column_name_example&#x27;, &#x27;escape_character&#x27;: &#x27;escape_character_example&#x27;, &#x27;format_type&#x27;: &#x27;DELIMITED&#x27;, &#x27;line_delimiter&#x27;: &#x27;line_delimiter_example&#x27;}}, &#x27;dataset_source_details&#x27;: {&#x27;bucket&#x27;: &#x27;bucket_example&#x27;, &#x27;namespace&#x27;: &#x27;namespace_example&#x27;, &#x27;prefix&#x27;: &#x27;prefix_example&#x27;, &#x27;source_type&#x27;: &#x27;OBJECT_STORAGE&#x27;}, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;initial_record_generation_configuration&#x27;: {&#x27;limit&#x27;: 10}, &#x27;label_set&#x27;: {&#x27;items&#x27;: [{&#x27;name&#x27;: &#x27;name_example&#x27;}]}, &#x27;labeling_instructions&#x27;: &#x27;labeling_instructions_example&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;lifetime_logical_clock&#x27;: 56, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -895,6 +895,24 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">CREATING</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="3">
+                    <div class="ansibleOptionAnchor" id="return-dataset/lifetime_logical_clock"></div>
+                    <b>lifetime_logical_clock</b>
+                    <a class="ansibleOptionLink" href="#return-dataset/lifetime_logical_clock" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>An integer value used in achieving concurrency control, this field will be used to generate eTags.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                                 <tr>

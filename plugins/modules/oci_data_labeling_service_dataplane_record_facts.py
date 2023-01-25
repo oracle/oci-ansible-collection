@@ -150,6 +150,13 @@ records:
                     returned: on success
                     type: float
                     sample: 10
+        lifetime_logical_clock:
+            description:
+                - An integer value used in achieving concurrency control, this field will be used to generate eTags.
+                - Returned for get operation
+            returned: on success
+            type: int
+            sample: 56
         record_metadata:
             description:
                 - ""
@@ -257,6 +264,7 @@ records:
             "offset": 10,
             "length": 10
         },
+        "lifetime_logical_clock": 56,
         "record_metadata": {
             "height": 56,
             "width": 56,

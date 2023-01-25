@@ -4,7 +4,7 @@
 Oracle.Oci
 ==========
 
-Collection version 4.9.1
+Collection version 4.10.0
 
 .. toctree::
     :maxdepth: 1
@@ -549,6 +549,9 @@ Modules
 * :ref:`oci_data_science_model_facts <ansible_collections.oracle.oci.oci_data_science_model_facts_module>` -- Fetches details about one or multiple Model resources in Oracle Cloud Infrastructure
 * :ref:`oci_data_science_model_provenance <ansible_collections.oracle.oci.oci_data_science_model_provenance_module>` -- Manage a ModelProvenance resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_science_model_provenance_facts <ansible_collections.oracle.oci.oci_data_science_model_provenance_facts_module>` -- Fetches details about a ModelProvenance resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_science_model_version_set <ansible_collections.oracle.oci.oci_data_science_model_version_set_module>` -- Manage a ModelVersionSet resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_science_model_version_set_actions <ansible_collections.oracle.oci.oci_data_science_model_version_set_actions_module>` -- Perform actions on a ModelVersionSet resource in Oracle Cloud Infrastructure
+* :ref:`oci_data_science_model_version_set_facts <ansible_collections.oracle.oci.oci_data_science_model_version_set_facts_module>` -- Fetches details about one or multiple ModelVersionSet resources in Oracle Cloud Infrastructure
 * :ref:`oci_data_science_notebook_session <ansible_collections.oracle.oci.oci_data_science_notebook_session_module>` -- Manage a NotebookSession resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_science_notebook_session_actions <ansible_collections.oracle.oci.oci_data_science_notebook_session_actions_module>` -- Perform actions on a NotebookSession resource in Oracle Cloud Infrastructure
 * :ref:`oci_data_science_notebook_session_facts <ansible_collections.oracle.oci.oci_data_science_notebook_session_facts_module>` -- Fetches details about one or multiple NotebookSession resources in Oracle Cloud Infrastructure
@@ -2391,6 +2394,9 @@ Modules
     oci_data_science_model_facts_module
     oci_data_science_model_provenance_module
     oci_data_science_model_provenance_facts_module
+    oci_data_science_model_version_set_module
+    oci_data_science_model_version_set_actions_module
+    oci_data_science_model_version_set_facts_module
     oci_data_science_notebook_session_module
     oci_data_science_notebook_session_actions_module
     oci_data_science_notebook_session_facts_module

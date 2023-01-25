@@ -137,6 +137,12 @@ annotations:
             returned: on success
             type: complex
             contains:
+                text:
+                    description:
+                        - Entity Name.
+                    returned: on success
+                    type: str
+                    sample: text_example
                 bounding_polygon:
                     description:
                         - ""
@@ -161,13 +167,26 @@ annotations:
                                     returned: on success
                                     type: float
                                     sample: 3.4
+                rotation:
+                    description:
+                        - Integer value.
+                    returned: on success
+                    type: float
+                    sample: 10
+                confidence:
+                    description:
+                        - float value, score from OCR.
+                    returned: on success
+                    type: float
+                    sample: 3.4
                 entity_type:
                     description:
                         - "The entity type described in the annotation.
                           GENERIC  - An extensible entity type that is the base entity type for some annotation formats.
                           IMAGEOBJECTSELECTION- - This allows the labeler to use specify a bounding polygon on the image to represent an object and apply labels
                           to it.
-                          TEXTSELECTION - This allows the labeler to highlight text, by specifying an offset and a length, and apply labels to it."
+                          TEXTSELECTION - This allows the labeler to highlight text, by specifying an offset and a length, and apply labels to it.
+                          KEYVALUESELECTION - This allows the labeler to apply label the highlighted text from OCR."
                     returned: on success
                     type: str
                     sample: GENERIC
@@ -208,6 +227,13 @@ annotations:
                     returned: on success
                     type: dict
                     sample: {}
+        lifetime_logical_clock:
+            description:
+                - An integer value used in achieving concurrency control, this field will be used to generate eTags.
+                - Returned for get operation
+            returned: on success
+            type: int
+            sample: 56
         id:
             description:
                 - The OCID of the annotation.
@@ -265,12 +291,15 @@ annotations:
         "created_by": "created_by_example",
         "updated_by": "updated_by_example",
         "entities": [{
+            "text": "text_example",
             "bounding_polygon": {
                 "normalized_vertices": [{
                     "x": 3.4,
                     "y": 3.4
                 }]
             },
+            "rotation": 10,
+            "confidence": 3.4,
             "entity_type": "GENERIC",
             "labels": [{
                 "label": "label_example"
@@ -281,6 +310,7 @@ annotations:
             },
             "extended_metadata": {}
         }],
+        "lifetime_logical_clock": 56,
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
