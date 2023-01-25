@@ -152,6 +152,16 @@ options:
                     - "Category of model metadata which should be null for defined metadata.For custom metadata is should be one of the following values
                       \\"Performance,Training Profile,Training and Validation Datasets,Training Environment,other\\"."
                 type: str
+    model_version_set_id:
+        description:
+            - The OCID of the model version set that the model is associated to.
+            - This parameter is updatable.
+        type: str
+    version_label:
+        description:
+            - The version label can add an additional description of the lifecycle state of the model or the application using/training the model.
+            - This parameter is updatable.
+        type: str
     model_id:
         description:
             - The L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the model.
@@ -197,6 +207,8 @@ EXAMPLES = """
       value: value_example
       description: description_example
       category: category_example
+    model_version_set_id: "ocid1.modelversionset.oc1..xxxxxxEXAMPLExxxxxx"
+    version_label: version_label_example
 
 - name: Update model
   oci_data_science_model:
@@ -220,6 +232,8 @@ EXAMPLES = """
       value: value_example
       description: description_example
       category: category_example
+    model_version_set_id: "ocid1.modelversionset.oc1..xxxxxxEXAMPLExxxxxx"
+    version_label: version_label_example
 
 - name: Update model using name (when environment variable OCI_USE_NAME_AS_IDENTIFIER is set)
   oci_data_science_model:
@@ -243,6 +257,8 @@ EXAMPLES = """
       value: value_example
       description: description_example
       category: category_example
+    model_version_set_id: "ocid1.modelversionset.oc1..xxxxxxEXAMPLExxxxxx"
+    version_label: version_label_example
 
 - name: Delete model
   oci_data_science_model:
@@ -433,6 +449,30 @@ model:
             returned: on success
             type: str
             sample: output_schema_example
+        model_version_set_id:
+            description:
+                - The OCID of the model version set that the model is associated to.
+            returned: on success
+            type: str
+            sample: "ocid1.modelversionset.oc1..xxxxxxEXAMPLExxxxxx"
+        model_version_set_name:
+            description:
+                - The name of the model version set that the model is associated to.
+            returned: on success
+            type: str
+            sample: model_version_set_name_example
+        version_id:
+            description:
+                - Unique identifier assigned to each version of the model.
+            returned: on success
+            type: int
+            sample: 56
+        version_label:
+            description:
+                - The version label can add an additional description of the lifecycle state of the model or the application using and training the model.
+            returned: on success
+            type: str
+            sample: version_label_example
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -457,7 +497,11 @@ model:
             "category": "category_example"
         }],
         "input_schema": "input_schema_example",
-        "output_schema": "output_schema_example"
+        "output_schema": "output_schema_example",
+        "model_version_set_id": "ocid1.modelversionset.oc1..xxxxxxEXAMPLExxxxxx",
+        "model_version_set_name": "model_version_set_name_example",
+        "version_id": 56,
+        "version_label": "version_label_example"
     }
 """
 
@@ -524,7 +568,11 @@ class DataScienceModelHelperGen(OCIResourceHelperBase):
         )
 
     def get_optional_kwargs_for_list(self):
-        optional_list_method_params = ["project_id", "display_name"]
+        optional_list_method_params = (
+            ["project_id", "display_name"]
+            if self._use_name_as_identifier()
+            else ["version_label", "project_id", "display_name"]
+        )
 
         return dict(
             (param, self.module.params[param])
@@ -641,6 +689,8 @@ def main():
                     category=dict(type="str"),
                 ),
             ),
+            model_version_set_id=dict(type="str"),
+            version_label=dict(type="str"),
             model_id=dict(aliases=["id"], type="str"),
             state=dict(type="str", default="present", choices=["present", "absent"]),
         )

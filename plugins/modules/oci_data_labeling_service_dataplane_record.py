@@ -298,6 +298,12 @@ record:
             returned: on success
             type: str
             sample: ACTIVE
+        lifetime_logical_clock:
+            description:
+                - An integer value used in achieving concurrency control, this field will be used to generate eTags.
+            returned: on success
+            type: int
+            sample: 56
         record_metadata:
             description:
                 - ""
@@ -361,6 +367,7 @@ record:
         },
         "is_labeled": true,
         "lifecycle_state": "ACTIVE",
+        "lifetime_logical_clock": 56,
         "record_metadata": {
             "height": 56,
             "width": 56,

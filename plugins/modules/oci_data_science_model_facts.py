@@ -39,6 +39,14 @@ options:
             - <b>Filter</b> results by the L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
             - Required to list multiple models.
         type: str
+    model_version_set_name:
+        description:
+            - <b>Filter</b> results by the name of the model version set.
+        type: str
+    version_label:
+        description:
+            - <b>Filter</b> results by version label.
+        type: str
     project_id:
         description:
             - <b>Filter</b> results by the L(OCID,https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the project.
@@ -95,6 +103,8 @@ EXAMPLES = """
     compartment_id: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
 
     # optional
+    model_version_set_name: model_version_set_name_example
+    version_label: version_label_example
     project_id: "ocid1.project.oc1..xxxxxxEXAMPLExxxxxx"
     display_name: display_name_example
     lifecycle_state: ACTIVE
@@ -267,6 +277,30 @@ models:
             returned: on success
             type: str
             sample: ACTIVE
+        model_version_set_id:
+            description:
+                - The OCID of the model version set that the model is associated to.
+            returned: on success
+            type: str
+            sample: "ocid1.modelversionset.oc1..xxxxxxEXAMPLExxxxxx"
+        model_version_set_name:
+            description:
+                - The name of the model version set that the model is associated to.
+            returned: on success
+            type: str
+            sample: model_version_set_name_example
+        version_id:
+            description:
+                - Unique identifier assigned to each version of the model.
+            returned: on success
+            type: int
+            sample: 56
+        version_label:
+            description:
+                - The version label can add an additional description of the lifecycle state of the model or the application using and training the model.
+            returned: on success
+            type: str
+            sample: version_label_example
         freeform_tags:
             description:
                 - "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. See L(Resource
@@ -306,6 +340,10 @@ models:
         "created_by": "created_by_example",
         "time_created": "2013-10-20T19:20:30+01:00",
         "lifecycle_state": "ACTIVE",
+        "model_version_set_id": "ocid1.modelversionset.oc1..xxxxxxEXAMPLExxxxxx",
+        "model_version_set_name": "model_version_set_name_example",
+        "version_id": 56,
+        "version_label": "version_label_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]
@@ -346,6 +384,8 @@ class DataScienceModelFactsHelperGen(OCIResourceFactsHelperBase):
 
     def list_resources(self):
         optional_list_method_params = [
+            "model_version_set_name",
+            "version_label",
             "project_id",
             "display_name",
             "lifecycle_state",
@@ -382,6 +422,8 @@ def main():
         dict(
             model_id=dict(aliases=["id"], type="str"),
             compartment_id=dict(type="str"),
+            model_version_set_name=dict(type="str"),
+            version_label=dict(type="str"),
             project_id=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             lifecycle_state=dict(

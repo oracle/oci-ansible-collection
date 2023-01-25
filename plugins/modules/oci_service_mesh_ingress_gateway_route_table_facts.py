@@ -141,6 +141,16 @@ ingress_gateway_route_tables:
                     returned: on success
                     type: bool
                     sample: true
+                request_timeout_in_ms:
+                    description:
+                        - The maximum duration in milliseconds for the upstream service to respond to a request.
+                          If provided, the timeout value overrides the default timeout of 15 seconds for the HTTP based route rules, and disabled (no timeout)
+                          when 'isGrpc' is true.
+                          The value 0 (zero) indicates that the timeout is disabled.
+                          For streaming responses from the upstream service, consider either keeping the timeout disabled or set a sufficiently high value.
+                    returned: on success
+                    type: int
+                    sample: 56
                 type:
                     description:
                         - Type of protocol.
@@ -289,6 +299,7 @@ ingress_gateway_route_tables:
             "is_grpc": true,
             "is_host_rewrite_enabled": true,
             "is_path_rewrite_enabled": true,
+            "request_timeout_in_ms": 56,
             "type": "HTTP",
             "ingress_gateway_host": {
                 "name": "name_example",

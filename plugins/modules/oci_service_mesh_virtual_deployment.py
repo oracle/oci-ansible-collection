@@ -97,6 +97,19 @@ options:
                     - Port in which virtual deployment is running.
                 type: int
                 required: true
+            request_timeout_in_ms:
+                description:
+                    - The maximum duration in milliseconds for the deployed service to respond to an incoming request through the listener.
+                      If provided, the timeout value overrides the default timeout of 15 seconds for the HTTP/HTTP2 listeners, and disabled (no timeout) for the
+                      GRPC listeners. The value 0 (zero) indicates that the timeout is disabled.
+                      The timeout cannot be configured for the TCP and TLS_PASSTHROUGH listeners.
+                      For streaming responses from the deployed service, consider either keeping the timeout disabled or set a sufficiently high value.
+                type: int
+            idle_timeout_in_ms:
+                description:
+                    - The maximum duration in milliseconds for which the request's stream may be idle. The value 0 (zero) indicates that the timeout is
+                      disabled.
+                type: int
     access_logging:
         description:
             - ""
@@ -156,6 +169,10 @@ EXAMPLES = """
     - # required
       protocol: HTTP
       port: 56
+
+      # optional
+      request_timeout_in_ms: 56
+      idle_timeout_in_ms: 56
     access_logging:
       # optional
       is_enabled: true
@@ -177,6 +194,10 @@ EXAMPLES = """
     - # required
       protocol: HTTP
       port: 56
+
+      # optional
+      request_timeout_in_ms: 56
+      idle_timeout_in_ms: 56
     access_logging:
       # optional
       is_enabled: true
@@ -199,6 +220,10 @@ EXAMPLES = """
     - # required
       protocol: HTTP
       port: 56
+
+      # optional
+      request_timeout_in_ms: 56
+      idle_timeout_in_ms: 56
     access_logging:
       # optional
       is_enabled: true
@@ -297,6 +322,23 @@ virtual_deployment:
                     returned: on success
                     type: int
                     sample: 56
+                request_timeout_in_ms:
+                    description:
+                        - The maximum duration in milliseconds for the deployed service to respond to an incoming request through the listener.
+                          If provided, the timeout value overrides the default timeout of 15 seconds for the HTTP/HTTP2 listeners, and disabled (no timeout) for
+                          the GRPC listeners. The value 0 (zero) indicates that the timeout is disabled.
+                          The timeout cannot be configured for the TCP and TLS_PASSTHROUGH listeners.
+                          For streaming responses from the deployed service, consider either keeping the timeout disabled or set a sufficiently high value.
+                    returned: on success
+                    type: int
+                    sample: 56
+                idle_timeout_in_ms:
+                    description:
+                        - The maximum duration in milliseconds for which the request's stream may be idle. The value 0 (zero) indicates that the timeout is
+                          disabled.
+                    returned: on success
+                    type: int
+                    sample: 56
         access_logging:
             description:
                 - ""
@@ -367,7 +409,9 @@ virtual_deployment:
         },
         "listeners": [{
             "protocol": "HTTP",
-            "port": 56
+            "port": 56,
+            "request_timeout_in_ms": 56,
+            "idle_timeout_in_ms": 56
         }],
         "access_logging": {
             "is_enabled": true
@@ -554,6 +598,8 @@ def main():
                         choices=["HTTP", "TLS_PASSTHROUGH", "TCP", "HTTP2", "GRPC"],
                     ),
                     port=dict(type="int", required=True),
+                    request_timeout_in_ms=dict(type="int"),
+                    idle_timeout_in_ms=dict(type="int"),
                 ),
             ),
             access_logging=dict(

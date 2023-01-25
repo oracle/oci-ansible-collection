@@ -45,10 +45,15 @@ options:
         type: list
         elements: dict
         suboptions:
+            text:
+                description:
+                    - Entity Name.
+                    - Required when entity_type is 'KEYVALUESELECTION'
+                type: str
             bounding_polygon:
                 description:
                     - ""
-                    - Required when entity_type is 'IMAGEOBJECTSELECTION'
+                    - Required when entity_type is one of ['KEYVALUESELECTION', 'IMAGEOBJECTSELECTION']
                 type: dict
                 suboptions:
                     normalized_vertices:
@@ -71,25 +76,37 @@ options:
                                     - Required when entity_type is 'IMAGEOBJECTSELECTION'
                                 type: float
                                 required: true
+            rotation:
+                description:
+                    - Integer value.
+                    - Applicable when entity_type is 'KEYVALUESELECTION'
+                type: float
+            confidence:
+                description:
+                    - float value, score from OCR.
+                    - Required when entity_type is 'KEYVALUESELECTION'
+                type: float
             entity_type:
                 description:
                     - "The entity type described in the annotation.
                       GENERIC  - An extensible entity type that is the base entity type for some annotation formats.
                       IMAGEOBJECTSELECTION- - This allows the labeler to use specify a bounding polygon on the image to represent an object and apply labels to
                       it.
-                      TEXTSELECTION - This allows the labeler to highlight text, by specifying an offset and a length, and apply labels to it."
+                      TEXTSELECTION - This allows the labeler to highlight text, by specifying an offset and a length, and apply labels to it.
+                      KEYVALUESELECTION - This allows the labeler to apply label the highlighted text from OCR."
                 type: str
                 choices:
                     - "IMAGEOBJECTSELECTION"
                     - "GENERIC"
+                    - "KEYVALUESELECTION"
                     - "TEXTSELECTION"
                 required: true
             labels:
                 description:
                     - A collection of label entities.
+                    - Required when entity_type is one of ['GENERIC', 'IMAGEOBJECTSELECTION', 'TEXTSELECTION']
                 type: list
                 elements: dict
-                required: true
                 suboptions:
                     label:
                         description:
@@ -117,6 +134,7 @@ options:
                 description:
                     - "A simple key-value pair that is applied without any predefined name, type, or scope. It exists for cross-compatibility only.
                       For example: `{\\"bar-key\\": \\"value\\"}`"
+                    - Applicable when entity_type is one of ['GENERIC', 'IMAGEOBJECTSELECTION', 'TEXTSELECTION']
                 type: dict
     freeform_tags:
         description:
@@ -261,6 +279,12 @@ annotation:
             returned: on success
             type: complex
             contains:
+                text:
+                    description:
+                        - Entity Name.
+                    returned: on success
+                    type: str
+                    sample: text_example
                 bounding_polygon:
                     description:
                         - ""
@@ -285,13 +309,26 @@ annotation:
                                     returned: on success
                                     type: float
                                     sample: 3.4
+                rotation:
+                    description:
+                        - Integer value.
+                    returned: on success
+                    type: float
+                    sample: 10
+                confidence:
+                    description:
+                        - float value, score from OCR.
+                    returned: on success
+                    type: float
+                    sample: 3.4
                 entity_type:
                     description:
                         - "The entity type described in the annotation.
                           GENERIC  - An extensible entity type that is the base entity type for some annotation formats.
                           IMAGEOBJECTSELECTION- - This allows the labeler to use specify a bounding polygon on the image to represent an object and apply labels
                           to it.
-                          TEXTSELECTION - This allows the labeler to highlight text, by specifying an offset and a length, and apply labels to it."
+                          TEXTSELECTION - This allows the labeler to highlight text, by specifying an offset and a length, and apply labels to it.
+                          KEYVALUESELECTION - This allows the labeler to apply label the highlighted text from OCR."
                     returned: on success
                     type: str
                     sample: GENERIC
@@ -347,6 +384,12 @@ annotation:
             returned: on success
             type: str
             sample: ACTIVE
+        lifetime_logical_clock:
+            description:
+                - An integer value used in achieving concurrency control, this field will be used to generate eTags.
+            returned: on success
+            type: int
+            sample: 56
         freeform_tags:
             description:
                 - "A simple key-value pair that is applied without any predefined name, type, or scope. It exists for cross-compatibility only.
@@ -369,12 +412,15 @@ annotation:
         "updated_by": "updated_by_example",
         "record_id": "ocid1.record.oc1..xxxxxxEXAMPLExxxxxx",
         "entities": [{
+            "text": "text_example",
             "bounding_polygon": {
                 "normalized_vertices": [{
                     "x": 3.4,
                     "y": 3.4
                 }]
             },
+            "rotation": 10,
+            "confidence": 3.4,
             "entity_type": "GENERIC",
             "labels": [{
                 "label": "label_example"
@@ -387,6 +433,7 @@ annotation:
         }],
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
         "lifecycle_state": "ACTIVE",
+        "lifetime_logical_clock": 56,
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }
@@ -560,6 +607,7 @@ def main():
                 type="list",
                 elements="dict",
                 options=dict(
+                    text=dict(type="str"),
                     bounding_polygon=dict(
                         type="dict",
                         options=dict(
@@ -574,15 +622,21 @@ def main():
                             )
                         ),
                     ),
+                    rotation=dict(type="float"),
+                    confidence=dict(type="float"),
                     entity_type=dict(
                         type="str",
                         required=True,
-                        choices=["IMAGEOBJECTSELECTION", "GENERIC", "TEXTSELECTION"],
+                        choices=[
+                            "IMAGEOBJECTSELECTION",
+                            "GENERIC",
+                            "KEYVALUESELECTION",
+                            "TEXTSELECTION",
+                        ],
                     ),
                     labels=dict(
                         type="list",
                         elements="dict",
-                        required=True,
                         options=dict(label=dict(type="str", required=True)),
                     ),
                     text_span=dict(

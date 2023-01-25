@@ -30,7 +30,7 @@ oracle.oci.oci_service_mesh_virtual_deployment_facts -- Fetches details about on
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.9.1).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.10.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -463,7 +463,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>List of VirtualDeployment resources</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;access_logging&#x27;: {&#x27;is_enabled&#x27;: True}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;listeners&#x27;: [{&#x27;port&#x27;: 56, &#x27;protocol&#x27;: &#x27;HTTP&#x27;}], &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;service_discovery&#x27;: {&#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;type&#x27;: &#x27;DNS&#x27;}, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;virtual_service_id&#x27;: &#x27;ocid1.virtualservice.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">[{&#x27;access_logging&#x27;: {&#x27;is_enabled&#x27;: True}, &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;description&#x27;: &#x27;description_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;CREATING&#x27;, &#x27;listeners&#x27;: [{&#x27;idle_timeout_in_ms&#x27;: 56, &#x27;port&#x27;: 56, &#x27;protocol&#x27;: &#x27;HTTP&#x27;, &#x27;request_timeout_in_ms&#x27;: 56}], &#x27;name&#x27;: &#x27;name_example&#x27;, &#x27;service_discovery&#x27;: {&#x27;hostname&#x27;: &#x27;hostname_example&#x27;, &#x27;type&#x27;: &#x27;DNS&#x27;}, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;virtual_service_id&#x27;: &#x27;ocid1.virtualservice.oc1..xxxxxxEXAMPLExxxxxx&#x27;}]</div>
                                     </td>
             </tr>
                                         <tr>
@@ -651,6 +651,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     <td class="elbow-placeholder">&nbsp;</td>
                                     <td class="elbow-placeholder">&nbsp;</td>
                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-virtual_deployments/listeners/idle_timeout_in_ms"></div>
+                    <b>idle_timeout_in_ms</b>
+                    <a class="ansibleOptionLink" href="#return-virtual_deployments/listeners/idle_timeout_in_ms" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The maximum duration in milliseconds for which the request&#x27;s stream may be idle. The value 0 (zero) indicates that the timeout is disabled.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="return-virtual_deployments/listeners/port"></div>
                     <b>port</b>
                     <a class="ansibleOptionLink" href="#return-virtual_deployments/listeners/port" title="Permalink to this return value"></a>
@@ -683,6 +702,25 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">HTTP</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-virtual_deployments/listeners/request_timeout_in_ms"></div>
+                    <b>request_timeout_in_ms</b>
+                    <a class="ansibleOptionLink" href="#return-virtual_deployments/listeners/request_timeout_in_ms" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">integer</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The maximum duration in milliseconds for the deployed service to respond to an incoming request through the listener. If provided, the timeout value overrides the default timeout of 15 seconds for the HTTP/HTTP2 listeners, and disabled (no timeout) for the GRPC listeners. The value 0 (zero) indicates that the timeout is disabled. The timeout cannot be configured for the TCP and TLS_PASSTHROUGH listeners. For streaming responses from the deployed service, consider either keeping the timeout disabled or set a sufficiently high value.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
                                     </td>
             </tr>
                     
