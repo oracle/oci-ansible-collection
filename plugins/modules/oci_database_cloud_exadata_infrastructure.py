@@ -68,7 +68,6 @@ options:
                 choices:
                     - "NO_PREFERENCE"
                     - "CUSTOM_PREFERENCE"
-                required: true
             patching_mode:
                 description:
                     - "Cloud Exadata infrastructure node patching method, either \\"ROLLING\\" or \\"NONROLLING\\". Default value is ROLLING."
@@ -224,10 +223,8 @@ EXAMPLES = """
 
     # optional
     maintenance_window:
-      # required
-      preference: NO_PREFERENCE
-
       # optional
+      preference: NO_PREFERENCE
       patching_mode: ROLLING
       is_custom_action_timeout_enabled: true
       custom_action_timeout_in_mins: 56
@@ -257,10 +254,8 @@ EXAMPLES = """
     # optional
     display_name: display_name_example
     maintenance_window:
-      # required
-      preference: NO_PREFERENCE
-
       # optional
+      preference: NO_PREFERENCE
       patching_mode: ROLLING
       is_custom_action_timeout_enabled: true
       custom_action_timeout_in_mins: 56
@@ -290,10 +285,8 @@ EXAMPLES = """
 
     # optional
     maintenance_window:
-      # required
-      preference: NO_PREFERENCE
-
       # optional
+      preference: NO_PREFERENCE
       patching_mode: ROLLING
       is_custom_action_timeout_enabled: true
       custom_action_timeout_in_mins: 56
@@ -604,6 +597,34 @@ cloud_exadata_infrastructure:
                     returned: on success
                     type: str
                     sample: email_example
+        storage_server_version:
+            description:
+                - "The software version of the storage servers (cells) in the cloud Exadata infrastructure.
+                  Example: 20.1.15"
+            returned: on success
+            type: str
+            sample: storage_server_version_example
+        db_server_version:
+            description:
+                - "The software version of the database servers (dom0) in the cloud Exadata infrastructure.
+                  Example: 20.1.15"
+            returned: on success
+            type: str
+            sample: db_server_version_example
+        monthly_storage_server_version:
+            description:
+                - "The monthly software version of the storage servers (cells) in the cloud Exadata infrastructure.
+                  Example: 20.1.15"
+            returned: on success
+            type: str
+            sample: monthly_storage_server_version_example
+        monthly_db_server_version:
+            description:
+                - "The monthly software version of the database servers (dom0) in the cloud Exadata infrastructure.
+                  Example: 20.1.15"
+            returned: on success
+            type: str
+            sample: monthly_db_server_version_example
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -649,7 +670,11 @@ cloud_exadata_infrastructure:
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "customer_contacts": [{
             "email": "email_example"
-        }]
+        }],
+        "storage_server_version": "storage_server_version_example",
+        "db_server_version": "db_server_version_example",
+        "monthly_storage_server_version": "monthly_storage_server_version_example",
+        "monthly_db_server_version": "monthly_db_server_version_example"
     }
 """
 
@@ -835,9 +860,7 @@ def main():
                 type="dict",
                 options=dict(
                     preference=dict(
-                        type="str",
-                        required=True,
-                        choices=["NO_PREFERENCE", "CUSTOM_PREFERENCE"],
+                        type="str", choices=["NO_PREFERENCE", "CUSTOM_PREFERENCE"]
                     ),
                     patching_mode=dict(type="str", choices=["ROLLING", "NONROLLING"]),
                     is_custom_action_timeout_enabled=dict(type="bool"),

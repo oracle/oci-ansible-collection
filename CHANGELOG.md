@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [4.11.0]
+
+## Added
+- Support for exadata db systems in inventory plugin
+- Support for target versions during infrastructure patching on Cloud Exadata infrastructure in the Database service
+- Support for setting up private DNS on ExaCS systems during provisioning in the Database service
+- Support for elastic storage expansion on infrastructure resources for Exadata Cloud at Customer in the Database service
+
+## Changed
+- Minimum required [OCI Python SDK](https://github.com/oracle/oci-python-sdk) changed to 2.90.4
+
 ## [4.10.0]
 
 ## Added

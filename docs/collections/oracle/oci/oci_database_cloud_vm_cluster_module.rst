@@ -30,7 +30,7 @@ oracle.oci.oci_database_cloud_vm_cluster -- Manage a CloudVmCluster resource in 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.10.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.11.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -500,7 +500,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The list of Db servers.</div>
+                                            <div>The list of DB servers.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -742,6 +742,21 @@ Parameters
                                                                 <td>
                                             <div>The number of OCPU cores to enable for a cloud VM cluster. Only 1 decimal place is allowed for the fractional part.</div>
                                             <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="2">
+                    <div class="ansibleOptionAnchor" id="parameter-private_zone_id"></div>
+                    <b>private_zone_id</b>
+                    <a class="ansibleOptionLink" href="#parameter-private_zone_id" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The private zone id in which DNS records need to be created.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -1028,6 +1043,7 @@ Examples
         time_zone: time_zone_example
         scan_listener_port_tcp: 56
         scan_listener_port_tcp_ssl: 56
+        private_zone_id: "ocid1.privatezone.oc1..xxxxxxEXAMPLExxxxxx"
         ocpu_count: 3.4
         memory_size_in_gbs: 56
         db_node_storage_size_in_gbs: 56
@@ -1419,7 +1435,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The list of Db servers.</div>
+                                            <div>The list of DB servers.</div>
                                         <br/>
                                                         </td>
             </tr>

@@ -30,7 +30,7 @@ oracle.oci.oci_database_autonomous_vm_cluster -- Manage an AutonomousVmCluster r
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.10.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.11.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -418,7 +418,7 @@ Parameters
                                                                                     </ul>
                                                                             </td>
                                                                 <td>
-                                            <div>Enable mutual TLS(mTLS) authentication for database at time of provisioning a VMCluster.Default is TLS.</div>
+                                            <div>Enable mutual TLS(mTLS) authentication for database while provisioning a VMCluster. Default is TLS.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -680,7 +680,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-maintenance_window_details/preference" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
@@ -929,10 +929,8 @@ Examples
         scan_listener_port_non_tls: 56
         is_mtls_enabled: true
         maintenance_window_details:
-          # required
-          preference: NO_PREFERENCE
-
           # optional
+          preference: NO_PREFERENCE
           patching_mode: ROLLING
           is_custom_action_timeout_enabled: true
           custom_action_timeout_in_mins: 56
@@ -957,10 +955,8 @@ Examples
 
         # optional
         maintenance_window_details:
-          # required
-          preference: NO_PREFERENCE
-
           # optional
+          preference: NO_PREFERENCE
           patching_mode: ROLLING
           is_custom_action_timeout_enabled: true
           custom_action_timeout_in_mins: 56
@@ -986,10 +982,8 @@ Examples
 
         # optional
         maintenance_window_details:
-          # required
-          preference: NO_PREFERENCE
-
           # optional
+          preference: NO_PREFERENCE
           patching_mode: ROLLING
           is_custom_action_timeout_enabled: true
           custom_action_timeout_in_mins: 56
@@ -1377,7 +1371,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Enable mutual TLS(mTLS) authentication for database at time of provisioning a VMCluster. Default is TLS.</div>
+                                            <div>Enable mutual TLS(mTLS) authentication for database while provisioning a VMCluster. Default is TLS.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">True</div>

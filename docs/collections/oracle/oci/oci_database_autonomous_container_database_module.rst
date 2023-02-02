@@ -30,7 +30,7 @@ oracle.oci.oci_database_autonomous_container_database -- Manage an AutonomousCon
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.10.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.11.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -842,7 +842,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-maintenance_window_details/preference" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
@@ -1339,10 +1339,8 @@ Examples
         vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
         key_store_id: "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx"
         maintenance_window_details:
-          # required
-          preference: NO_PREFERENCE
-
           # optional
+          preference: NO_PREFERENCE
           patching_mode: ROLLING
           is_custom_action_timeout_enabled: true
           custom_action_timeout_in_mins: 56
@@ -1381,10 +1379,8 @@ Examples
         display_name: display_name_example
         patch_model: RELEASE_UPDATES
         maintenance_window_details:
-          # required
-          preference: NO_PREFERENCE
-
           # optional
+          preference: NO_PREFERENCE
           patching_mode: ROLLING
           is_custom_action_timeout_enabled: true
           custom_action_timeout_in_mins: 56
@@ -1423,10 +1419,8 @@ Examples
         # optional
         patch_model: RELEASE_UPDATES
         maintenance_window_details:
-          # required
-          preference: NO_PREFERENCE
-
           # optional
+          preference: NO_PREFERENCE
           patching_mode: ROLLING
           is_custom_action_timeout_enabled: true
           custom_action_timeout_in_mins: 56

@@ -103,37 +103,41 @@ Solution:
 
 -  Verify whether ``OCI Python SDK`` is installed using the following commands:
 
-    .. code:: bash
+   .. code:: bash
 
-       python3 -c "import oci;print(oci.__version__)"
-    -  If installed using yum please try the below command
-    .. code:: bash
+      python3 -c "import oci;print(oci.__version__)"
 
-        yum info oci
+-  If installed using yum please try the below command
 
-    -  If ``OCI Python SDK`` is not installed, please refer
-       to the `SDK Installation
-       Guide <https://docs.oracle.com/en-us/iaas/tools/python/latest/installation.html#>`__
-    -  If ``OCI Python SDK`` is already installed,
+   .. code:: bash
 
-        -  First of all, it should be installed in the same execution environment where oci-ansible-collections is installed.
-        -  It could be because you are using an older version. Please upgrade to the latest version. You can upgrade
-           using the command: ``pip install -U oci``
-        -  It can be because there can be multiple oci-python-sdk installed and it is not able
-           to pick correct path. So you can set python interpreter as follows:
-            -  To set python interpreter for individual hosts and groups, use the ``ansible_python_interpreter`` inventory variable
-               and set the correct python-sdk path
-            -  To set python interpreter globally, use the ``interpreter_python`` key in the ``[defaults]`` section of ``ansible.cfg``
-            -  For a complete list of possible values for the two options above, please refer:
-               https://docs.ansible.com/ansible/latest/reference_appendices/interpreter_discovery.html.
-            -  To see the example of usage of ``ansible_python_interpreter`` variable please refer:
-               https://docs.ansible.com/ansible/latest/reference_appendices/python_3_support.html
+      yum info oci
+
+-  If ``OCI Python SDK`` is not installed, please refer
+   to the `SDK Installation
+   Guide <https://docs.oracle.com/en-us/iaas/tools/python/latest/installation.html#>`__
+
+-  If ``OCI Python SDK`` is already installed,
+
+   -  First of all, it should be installed in the same execution environment where oci-ansible-collections is installed.
+   -  It could be because you are using an older version. Please upgrade to the latest version. You can upgrade
+      using the command: ``pip install -U oci``
+   -  It can be because there can be multiple oci-python-sdk installed and it is not able
+      to pick correct path. So you can set python interpreter as follows:
+
+      -  To set python interpreter for individual hosts and groups, use the ``ansible_python_interpreter`` inventory variable
+         and set the correct python-sdk path
+      -  To set python interpreter globally, use the ``interpreter_python`` key in the ``[defaults]`` section of ``ansible.cfg``
+      -  For a complete list of possible values for the two options above, please refer:
+         https://docs.ansible.com/ansible/latest/reference_appendices/interpreter_discovery.html.
+      -  To see the example of usage of ``ansible_python_interpreter`` variable please refer:
+         https://docs.ansible.com/ansible/latest/reference_appendices/python_3_support.html
 
 Configuration file or profile errors
 ------------------------------------
 
 Could not find config file at ``~/.oci/config``: please follow the `instructions <https://docs. cloud.oracle.com/en-us/iaas/Content/API/Concepts/sdkconfig.htm>`__ to setup the config file
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 -  If you are using API Key authentication
@@ -227,7 +231,7 @@ Profile ``DEFAULT`` not found in config file ``~/.oci/config``: The OCI Ansible 
       environment variable
 
 In a Mac OSX controller node, Error: “ImportError: No module named yaml” when executing a playbook
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 First make sure that ansible and its requirements including PyYAML are
 installed. If you are running on macOS, and you have python installed by
@@ -497,7 +501,7 @@ Solution:
    ``exclude_compartments`` option.
 
 Error: ansible_collections.oracle.oci.plugins.inventory.oci declined parsing <inventory_config> as it did not pass its verify_file() method
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Solution:
 ^^^^^^^^^

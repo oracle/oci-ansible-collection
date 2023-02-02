@@ -160,7 +160,7 @@ using the ``meta: refresh_inventory`` task, which clears out the
 existing inventory and rebuilds it.
 
 Using use_extra_vars option to compose variables
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Ansible has added support for ``use_extra_vars`` option for inventory plugin to compose
 variables. ``use_extra_vars`` option can be used with ansible v2.11 or higher.
@@ -503,7 +503,7 @@ The following sections include configuration examples that cover common
 inventory scenarios.
 
 Use use_extra_vars option to compose variables
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To use use_extra_vars option to compose variables, your configuration can be
 as simple as the following example:

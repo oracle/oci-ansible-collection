@@ -44,7 +44,7 @@ options:
         suboptions:
             db_server_id:
                 description:
-                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of ExaCS Db server.
+                    - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of ExaDB-D DB server.
                 type: str
                 required: true
     cloud_vm_cluster_id:
@@ -313,7 +313,7 @@ cloud_vm_cluster:
             sample: 1.2
         db_servers:
             description:
-                - The list of Db servers.
+                - The list of DB servers.
             returned: on success
             type: list
             sample: []

@@ -397,7 +397,7 @@ autonomous_vm_clusters:
             sample: 56
         is_mtls_enabled:
             description:
-                - Enable mutual TLS(mTLS) authentication for database at time of provisioning a VMCluster. Default is TLS.
+                - Enable mutual TLS(mTLS) authentication for database while provisioning a VMCluster. Default is TLS.
             returned: on success
             type: bool
             sample: true
