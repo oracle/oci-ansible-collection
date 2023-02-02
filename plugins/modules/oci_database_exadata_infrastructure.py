@@ -144,7 +144,6 @@ options:
                 choices:
                     - "NO_PREFERENCE"
                     - "CUSTOM_PREFERENCE"
-                required: true
             patching_mode:
                 description:
                     - "Cloud Exadata infrastructure node patching method, either \\"ROLLING\\" or \\"NONROLLING\\". Default value is ROLLING."
@@ -236,6 +235,16 @@ options:
             - The requested number of additional storage servers for the Exadata infrastructure.
             - This parameter is updatable.
         type: int
+    is_multi_rack_deployment:
+        description:
+            - Indicates if deployment is Multi-Rack or not.
+            - This parameter is updatable.
+        type: bool
+    multi_rack_configuration_file:
+        description:
+            - The base64 encoded Multi-Rack configuration json file.
+            - This parameter is updatable.
+        type: str
     additional_compute_count:
         description:
             - The requested number of additional compute servers for the Exadata infrastructure.
@@ -347,10 +356,8 @@ EXAMPLES = """
       phone_number: phone_number_example
       is_contact_mos_validated: true
     maintenance_window:
-      # required
-      preference: NO_PREFERENCE
-
       # optional
+      preference: NO_PREFERENCE
       patching_mode: ROLLING
       is_custom_action_timeout_enabled: true
       custom_action_timeout_in_mins: 56
@@ -364,6 +371,8 @@ EXAMPLES = """
         name: MONDAY
       hours_of_day: [ "hours_of_day_example" ]
       lead_time_in_weeks: 56
+    is_multi_rack_deployment: true
+    multi_rack_configuration_file: multi_rack_configuration_file_example
     is_cps_offline_report_enabled: true
     freeform_tags: {'Department': 'Finance'}
     defined_tags: {'Operations': {'CostCenter': 'US'}}
@@ -391,10 +400,8 @@ EXAMPLES = """
       phone_number: phone_number_example
       is_contact_mos_validated: true
     maintenance_window:
-      # required
-      preference: NO_PREFERENCE
-
       # optional
+      preference: NO_PREFERENCE
       patching_mode: ROLLING
       is_custom_action_timeout_enabled: true
       custom_action_timeout_in_mins: 56
@@ -409,6 +416,8 @@ EXAMPLES = """
       hours_of_day: [ "hours_of_day_example" ]
       lead_time_in_weeks: 56
     additional_storage_count: 56
+    is_multi_rack_deployment: true
+    multi_rack_configuration_file: multi_rack_configuration_file_example
     additional_compute_count: 56
     additional_compute_system_model: X7
     dns_server: [ "dns_server_example" ]
@@ -442,10 +451,8 @@ EXAMPLES = """
       phone_number: phone_number_example
       is_contact_mos_validated: true
     maintenance_window:
-      # required
-      preference: NO_PREFERENCE
-
       # optional
+      preference: NO_PREFERENCE
       patching_mode: ROLLING
       is_custom_action_timeout_enabled: true
       custom_action_timeout_in_mins: 56
@@ -460,6 +467,8 @@ EXAMPLES = """
       hours_of_day: [ "hours_of_day_example" ]
       lead_time_in_weeks: 56
     additional_storage_count: 56
+    is_multi_rack_deployment: true
+    multi_rack_configuration_file: multi_rack_configuration_file_example
     additional_compute_count: 56
     additional_compute_system_model: X7
     dns_server: [ "dns_server_example" ]
@@ -606,6 +615,19 @@ exadata_infrastructure:
             returned: on success
             type: int
             sample: 56
+        is_multi_rack_deployment:
+            description:
+                - Indicates if deployment is Multi-Rack or not.
+            returned: on success
+            type: bool
+            sample: true
+        multi_rack_configuration_file:
+            description:
+                - The base64 encoded Multi-Rack configuration json file.
+            returned: on success
+            type: str
+            sample: "null"
+
         additional_compute_count:
             description:
                 - The requested number of additional compute servers for the Exadata infrastructure.
@@ -902,6 +924,8 @@ exadata_infrastructure:
         "additional_storage_count": 56,
         "activated_storage_count": 56,
         "compute_count": 56,
+        "is_multi_rack_deployment": true,
+        "multi_rack_configuration_file": null,
         "additional_compute_count": 56,
         "additional_compute_system_model": "X7",
         "cloud_control_plane_server1": "cloud_control_plane_server1_example",
@@ -1002,12 +1026,6 @@ class ExadataInfrastructureHelperGen(OCIResourceHelperBase):
 
     def get_get_fn(self):
         return self.client.get_exadata_infrastructure
-
-    def get_get_model_from_summary_model(self, summary_model):
-        return oci_common_utils.call_with_backoff(
-            self.client.get_exadata_infrastructure,
-            exadata_infrastructure_id=summary_model.id,
-        ).data
 
     def get_resource(self):
         return oci_common_utils.call_with_backoff(
@@ -1147,9 +1165,7 @@ def main():
                 type="dict",
                 options=dict(
                     preference=dict(
-                        type="str",
-                        required=True,
-                        choices=["NO_PREFERENCE", "CUSTOM_PREFERENCE"],
+                        type="str", choices=["NO_PREFERENCE", "CUSTOM_PREFERENCE"]
                     ),
                     patching_mode=dict(type="str", choices=["ROLLING", "NONROLLING"]),
                     is_custom_action_timeout_enabled=dict(type="bool"),
@@ -1204,6 +1220,8 @@ def main():
                 ),
             ),
             additional_storage_count=dict(type="int"),
+            is_multi_rack_deployment=dict(type="bool"),
+            multi_rack_configuration_file=dict(type="str"),
             additional_compute_count=dict(type="int"),
             additional_compute_system_model=dict(
                 type="str", choices=["X7", "X8", "X8M", "X9M"]

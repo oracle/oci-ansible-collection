@@ -30,7 +30,7 @@ oracle.oci.oci_database_autonomous_exadata_infrastructure -- Manage an Autonomou
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.10.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.11.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -626,7 +626,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-maintenance_window_details/preference" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
@@ -828,10 +828,8 @@ Examples
         license_model: LICENSE_INCLUDED
         display_name: display_name_example
         maintenance_window_details:
-          # required
-          preference: NO_PREFERENCE
-
           # optional
+          preference: NO_PREFERENCE
           patching_mode: ROLLING
           is_custom_action_timeout_enabled: true
           custom_action_timeout_in_mins: 56
@@ -857,10 +855,8 @@ Examples
         # optional
         display_name: display_name_example
         maintenance_window_details:
-          # required
-          preference: NO_PREFERENCE
-
           # optional
+          preference: NO_PREFERENCE
           patching_mode: ROLLING
           is_custom_action_timeout_enabled: true
           custom_action_timeout_in_mins: 56
@@ -886,10 +882,8 @@ Examples
 
         # optional
         maintenance_window_details:
-          # required
-          preference: NO_PREFERENCE
-
           # optional
+          preference: NO_PREFERENCE
           patching_mode: ROLLING
           is_custom_action_timeout_enabled: true
           custom_action_timeout_in_mins: 56

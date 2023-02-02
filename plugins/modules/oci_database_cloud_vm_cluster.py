@@ -49,7 +49,7 @@ options:
         type: str
     db_servers:
         description:
-            - The list of Db servers.
+            - The list of DB servers.
         type: list
         elements: str
     cluster_name:
@@ -109,6 +109,10 @@ options:
         description:
             - The TCPS Single Client Access Name (SCAN) port. The default port is 2484.
         type: int
+    private_zone_id:
+        description:
+            - The private zone id in which DNS records need to be created.
+        type: str
     gi_version:
         description:
             - A valid Oracle Grid Infrastructure (GI) software version.
@@ -306,6 +310,7 @@ EXAMPLES = """
     time_zone: time_zone_example
     scan_listener_port_tcp: 56
     scan_listener_port_tcp_ssl: 56
+    private_zone_id: "ocid1.privatezone.oc1..xxxxxxEXAMPLExxxxxx"
     ocpu_count: 3.4
     memory_size_in_gbs: 56
     db_node_storage_size_in_gbs: 56
@@ -616,7 +621,7 @@ cloud_vm_cluster:
             sample: 1.2
         db_servers:
             description:
-                - The list of Db servers.
+                - The list of DB servers.
             returned: on success
             type: list
             sample: []
@@ -953,6 +958,9 @@ class CloudVmClusterHelperGen(OCIResourceHelperBase):
     def get_create_model_class(self):
         return CreateCloudVmClusterDetails
 
+    def get_exclude_attributes(self):
+        return ["private_zone_id"]
+
     def create_resource(self):
         create_details = self.get_create_model()
         return oci_wait_utils.call_and_wait(
@@ -1027,6 +1035,7 @@ def main():
             time_zone=dict(type="str"),
             scan_listener_port_tcp=dict(type="int"),
             scan_listener_port_tcp_ssl=dict(type="int"),
+            private_zone_id=dict(type="str"),
             gi_version=dict(type="str"),
             display_name=dict(aliases=["name"], type="str"),
             cpu_core_count=dict(type="int"),

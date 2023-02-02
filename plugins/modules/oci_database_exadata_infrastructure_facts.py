@@ -77,6 +77,13 @@ options:
             - A filter to return only resources that match the entire display name given. The match is not case sensitive.
         type: str
         aliases: ["name"]
+    excluded_fields:
+        description:
+            - If provided, the specified fields will be excluded in the response.
+        type: list
+        elements: str
+        choices:
+            - "multiRackConfigurationFile"
 extends_documentation_fragment: [ oracle.oci.oracle ]
 """
 
@@ -85,6 +92,9 @@ EXAMPLES = """
   oci_database_exadata_infrastructure_facts:
     # required
     exadata_infrastructure_id: "ocid1.exadatainfrastructure.oc1..xxxxxxEXAMPLExxxxxx"
+
+    # optional
+    excluded_fields: [ "multiRackConfigurationFile" ]
 
 - name: List exadata_infrastructures
   oci_database_exadata_infrastructure_facts:
@@ -96,6 +106,7 @@ EXAMPLES = """
     sort_order: ASC
     lifecycle_state: CREATING
     display_name: display_name_example
+    excluded_fields: [ "multiRackConfigurationFile" ]
 
 """
 
@@ -221,6 +232,19 @@ exadata_infrastructures:
             returned: on success
             type: int
             sample: 56
+        is_multi_rack_deployment:
+            description:
+                - Indicates if deployment is Multi-Rack or not.
+            returned: on success
+            type: bool
+            sample: true
+        multi_rack_configuration_file:
+            description:
+                - The base64 encoded Multi-Rack configuration json file.
+            returned: on success
+            type: str
+            sample: "null"
+
         additional_compute_count:
             description:
                 - The requested number of additional compute servers for the Exadata infrastructure.
@@ -517,6 +541,8 @@ exadata_infrastructures:
         "additional_storage_count": 56,
         "activated_storage_count": 56,
         "compute_count": 56,
+        "is_multi_rack_deployment": true,
+        "multi_rack_configuration_file": null,
         "additional_compute_count": 56,
         "additional_compute_system_model": "X7",
         "cloud_control_plane_server1": "cloud_control_plane_server1_example",
@@ -595,11 +621,20 @@ class ExadataInfrastructureFactsHelperGen(OCIResourceFactsHelperBase):
         ]
 
     def get_resource(self):
+        optional_get_method_params = [
+            "excluded_fields",
+        ]
+        optional_kwargs = dict(
+            (param, self.module.params[param])
+            for param in optional_get_method_params
+            if self.module.params.get(param) is not None
+        )
         return oci_common_utils.call_with_backoff(
             self.client.get_exadata_infrastructure,
             exadata_infrastructure_id=self.module.params.get(
                 "exadata_infrastructure_id"
             ),
+            **optional_kwargs
         )
 
     def list_resources(self):
@@ -608,6 +643,7 @@ class ExadataInfrastructureFactsHelperGen(OCIResourceFactsHelperBase):
             "sort_order",
             "lifecycle_state",
             "display_name",
+            "excluded_fields",
         ]
         optional_kwargs = dict(
             (param, self.module.params[param])
@@ -657,6 +693,9 @@ def main():
                 ],
             ),
             display_name=dict(aliases=["name"], type="str"),
+            excluded_fields=dict(
+                type="list", elements="str", choices=["multiRackConfigurationFile"]
+            ),
         )
     )
 

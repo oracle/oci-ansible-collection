@@ -320,7 +320,7 @@ cloud_vm_clusters:
             sample: 1.2
         db_servers:
             description:
-                - The list of Db servers.
+                - The list of DB servers.
             returned: on success
             type: list
             sample: []

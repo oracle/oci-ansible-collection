@@ -30,7 +30,7 @@ oracle.oci.oci_database_db_system -- Manage a DbSystem resource in Oracle Cloud 
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.10.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.11.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -1670,7 +1670,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-maintenance_window_details/preference" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
@@ -1680,7 +1680,7 @@ Parameters
                                                                             </td>
                                                                 <td>
                                             <div>The maintenance window scheduling preference.</div>
-                                            <div>Required when source is &#x27;NONE&#x27;</div>
+                                            <div>Applicable when source is &#x27;NONE&#x27;</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -2173,10 +2173,8 @@ Examples
         backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
         license_model: LICENSE_INCLUDED
         maintenance_window_details:
-          # required
-          preference: NO_PREFERENCE
-
           # optional
+          preference: NO_PREFERENCE
           patching_mode: ROLLING
           is_custom_action_timeout_enabled: true
           custom_action_timeout_in_mins: 56
@@ -2487,10 +2485,8 @@ Examples
         backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
         license_model: LICENSE_INCLUDED
         maintenance_window_details:
-          # required
-          preference: NO_PREFERENCE
-
           # optional
+          preference: NO_PREFERENCE
           patching_mode: ROLLING
           is_custom_action_timeout_enabled: true
           custom_action_timeout_in_mins: 56
@@ -2533,10 +2529,8 @@ Examples
         backup_network_nsg_ids: [ "backup_network_nsg_ids_example" ]
         license_model: LICENSE_INCLUDED
         maintenance_window_details:
-          # required
-          preference: NO_PREFERENCE
-
           # optional
+          preference: NO_PREFERENCE
           patching_mode: ROLLING
           is_custom_action_timeout_enabled: true
           custom_action_timeout_in_mins: 56

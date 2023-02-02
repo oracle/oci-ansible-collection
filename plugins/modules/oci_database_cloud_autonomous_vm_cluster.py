@@ -54,7 +54,7 @@ options:
         type: int
     cpu_core_count_per_node:
         description:
-            - The number of OCPU cores to enable per VM cluster node.
+            - The number of OCPU cores to be enabled per VM cluster node.
         type: int
     memory_per_oracle_compute_unit_in_gbs:
         description:
@@ -71,7 +71,7 @@ options:
         type: str
     db_servers:
         description:
-            - The list of Db server.
+            - The list of database servers.
         type: list
         elements: str
     description:
@@ -100,7 +100,6 @@ options:
                 choices:
                     - "NO_PREFERENCE"
                     - "CUSTOM_PREFERENCE"
-                required: true
             patching_mode:
                 description:
                     - "Cloud Exadata infrastructure node patching method, either \\"ROLLING\\" or \\"NONROLLING\\". Default value is ROLLING."
@@ -261,10 +260,8 @@ EXAMPLES = """
     db_servers: [ "db_servers_example" ]
     description: description_example
     maintenance_window_details:
-      # required
-      preference: NO_PREFERENCE
-
       # optional
+      preference: NO_PREFERENCE
       patching_mode: ROLLING
       is_custom_action_timeout_enabled: true
       custom_action_timeout_in_mins: 56
@@ -292,10 +289,8 @@ EXAMPLES = """
     description: description_example
     display_name: display_name_example
     maintenance_window_details:
-      # required
-      preference: NO_PREFERENCE
-
       # optional
+      preference: NO_PREFERENCE
       patching_mode: ROLLING
       is_custom_action_timeout_enabled: true
       custom_action_timeout_in_mins: 56
@@ -323,10 +318,8 @@ EXAMPLES = """
     # optional
     description: description_example
     maintenance_window_details:
-      # required
-      preference: NO_PREFERENCE
-
       # optional
+      preference: NO_PREFERENCE
       patching_mode: ROLLING
       is_custom_action_timeout_enabled: true
       custom_action_timeout_in_mins: 56
@@ -952,9 +945,7 @@ def main():
                 type="dict",
                 options=dict(
                     preference=dict(
-                        type="str",
-                        required=True,
-                        choices=["NO_PREFERENCE", "CUSTOM_PREFERENCE"],
+                        type="str", choices=["NO_PREFERENCE", "CUSTOM_PREFERENCE"]
                     ),
                     patching_mode=dict(type="str", choices=["ROLLING", "NONROLLING"]),
                     is_custom_action_timeout_enabled=dict(type="bool"),

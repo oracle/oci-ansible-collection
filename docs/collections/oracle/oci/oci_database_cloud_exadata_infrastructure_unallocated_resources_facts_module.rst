@@ -30,7 +30,7 @@ oracle.oci.oci_database_cloud_exadata_infrastructure_unallocated_resources_facts
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.10.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.11.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Fetches details about a CloudExadataInfrastructureUnallocatedResources resource in Oracle Cloud Infrastructure
-- Gets un allocated resources information for the specified Cloud Exadata infrastructure.
+- Gets unallocated resources information for the specified Cloud Exadata infrastructure.
 
 
 .. Aliases
@@ -356,7 +356,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The list of Cloud Autonomous VM Clusters on the Infra and their associated unallocated resources details</div>
+                                            <div>The list of Cloud Autonomous VM Clusters on the Infrastructure and their associated unallocated resources details.</div>
                                         <br/>
                                                         </td>
             </tr>
@@ -392,7 +392,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>Total unallocated autonomous data storage in the CAVM in TBs.</div>
+                                            <div>Total unallocated autonomous data storage in the Cloud Autonomous VM Cluster in TBs.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">1.2</div>
@@ -465,7 +465,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The minimum amount of un allocated storage that is available across all nodes in the infrastructure.</div>
+                                            <div>The minimum amount of unallocated storage available across all nodes in the infrastructure.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -483,7 +483,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The minimum amount of un allocated memory that is available across all nodes in the infrastructure.</div>
+                                            <div>The minimum amount of unallocated memory available across all nodes in the infrastructure.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>
@@ -501,7 +501,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                     </td>
                 <td>on success</td>
                 <td>
-                                            <div>The minimum amount of un allocated ocpus that is available across all nodes in the infrastructure.</div>
+                                            <div>The minimum amount of unallocated ocpus available across all nodes in the infrastructure.</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">56</div>

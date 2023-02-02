@@ -197,7 +197,6 @@ options:
                 choices:
                     - "NO_PREFERENCE"
                     - "CUSTOM_PREFERENCE"
-                required: true
             patching_mode:
                 description:
                     - "Cloud Exadata infrastructure node patching method, either \\"ROLLING\\" or \\"NONROLLING\\". Default value is ROLLING."
@@ -406,10 +405,8 @@ EXAMPLES = """
     vault_id: "ocid1.vault.oc1..xxxxxxEXAMPLExxxxxx"
     key_store_id: "ocid1.keystore.oc1..xxxxxxEXAMPLExxxxxx"
     maintenance_window_details:
-      # required
-      preference: NO_PREFERENCE
-
       # optional
+      preference: NO_PREFERENCE
       patching_mode: ROLLING
       is_custom_action_timeout_enabled: true
       custom_action_timeout_in_mins: 56
@@ -448,10 +445,8 @@ EXAMPLES = """
     display_name: display_name_example
     patch_model: RELEASE_UPDATES
     maintenance_window_details:
-      # required
-      preference: NO_PREFERENCE
-
       # optional
+      preference: NO_PREFERENCE
       patching_mode: ROLLING
       is_custom_action_timeout_enabled: true
       custom_action_timeout_in_mins: 56
@@ -490,10 +485,8 @@ EXAMPLES = """
     # optional
     patch_model: RELEASE_UPDATES
     maintenance_window_details:
-      # required
-      preference: NO_PREFERENCE
-
       # optional
+      preference: NO_PREFERENCE
       patching_mode: ROLLING
       is_custom_action_timeout_enabled: true
       custom_action_timeout_in_mins: 56
@@ -1239,9 +1232,7 @@ def main():
                 type="dict",
                 options=dict(
                     preference=dict(
-                        type="str",
-                        required=True,
-                        choices=["NO_PREFERENCE", "CUSTOM_PREFERENCE"],
+                        type="str", choices=["NO_PREFERENCE", "CUSTOM_PREFERENCE"]
                     ),
                     patching_mode=dict(type="str", choices=["ROLLING", "NONROLLING"]),
                     is_custom_action_timeout_enabled=dict(type="bool"),

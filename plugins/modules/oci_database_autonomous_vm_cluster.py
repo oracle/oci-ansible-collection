@@ -90,7 +90,7 @@ options:
         type: int
     is_mtls_enabled:
         description:
-            - Enable mutual TLS(mTLS) authentication for database at time of provisioning a VMCluster.Default is TLS.
+            - Enable mutual TLS(mTLS) authentication for database while provisioning a VMCluster. Default is TLS.
         type: bool
     maintenance_window_details:
         description:
@@ -105,7 +105,6 @@ options:
                 choices:
                     - "NO_PREFERENCE"
                     - "CUSTOM_PREFERENCE"
-                required: true
             patching_mode:
                 description:
                     - "Cloud Exadata infrastructure node patching method, either \\"ROLLING\\" or \\"NONROLLING\\". Default value is ROLLING."
@@ -252,10 +251,8 @@ EXAMPLES = """
     scan_listener_port_non_tls: 56
     is_mtls_enabled: true
     maintenance_window_details:
-      # required
-      preference: NO_PREFERENCE
-
       # optional
+      preference: NO_PREFERENCE
       patching_mode: ROLLING
       is_custom_action_timeout_enabled: true
       custom_action_timeout_in_mins: 56
@@ -280,10 +277,8 @@ EXAMPLES = """
 
     # optional
     maintenance_window_details:
-      # required
-      preference: NO_PREFERENCE
-
       # optional
+      preference: NO_PREFERENCE
       patching_mode: ROLLING
       is_custom_action_timeout_enabled: true
       custom_action_timeout_in_mins: 56
@@ -309,10 +304,8 @@ EXAMPLES = """
 
     # optional
     maintenance_window_details:
-      # required
-      preference: NO_PREFERENCE
-
       # optional
+      preference: NO_PREFERENCE
       patching_mode: ROLLING
       is_custom_action_timeout_enabled: true
       custom_action_timeout_in_mins: 56
@@ -643,7 +636,7 @@ autonomous_vm_cluster:
             sample: 56
         is_mtls_enabled:
             description:
-                - Enable mutual TLS(mTLS) authentication for database at time of provisioning a VMCluster. Default is TLS.
+                - Enable mutual TLS(mTLS) authentication for database while provisioning a VMCluster. Default is TLS.
             returned: on success
             type: bool
             sample: true
@@ -883,9 +876,7 @@ def main():
                 type="dict",
                 options=dict(
                     preference=dict(
-                        type="str",
-                        required=True,
-                        choices=["NO_PREFERENCE", "CUSTOM_PREFERENCE"],
+                        type="str", choices=["NO_PREFERENCE", "CUSTOM_PREFERENCE"]
                     ),
                     patching_mode=dict(type="str", choices=["ROLLING", "NONROLLING"]),
                     is_custom_action_timeout_enabled=dict(type="bool"),

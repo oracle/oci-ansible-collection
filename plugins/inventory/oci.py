@@ -1755,6 +1755,28 @@ class InventoryModule(BaseInventoryPlugin, Constructable, Cacheable):
                 ],
                 compartment_ocid,
             )
+            db_hosts = db_hosts + self.get_filtered_resources(
+                [
+                    self.get_resource_with_attributes(
+                        db_node,
+                        availability_domain=vm_cluster.availability_domain,
+                        compartment_id=vm_cluster.compartment_id,
+                        db_system_display_name=vm_cluster.display_name,
+                        region=region,
+                    )
+                    for vm_cluster in oci_common_utils.list_all_resources(
+                        target_fn=database_client.list_cloud_vm_clusters,
+                        compartment_id=compartment_ocid,
+                    )
+                    for db_node in oci_common_utils.list_all_resources(
+                        database_client.list_db_nodes,
+                        compartment_id=compartment_ocid,
+                        vm_cluster_id=vm_cluster.id,
+                    )
+                    if db_node.lifecycle_state == "AVAILABLE"
+                ],
+                compartment_ocid,
+            )
             return db_hosts
 
         except ServiceError as ex:

@@ -224,6 +224,19 @@ exadata_infrastructure:
             returned: on success
             type: int
             sample: 56
+        is_multi_rack_deployment:
+            description:
+                - Indicates if deployment is Multi-Rack or not.
+            returned: on success
+            type: bool
+            sample: true
+        multi_rack_configuration_file:
+            description:
+                - The base64 encoded Multi-Rack configuration json file.
+            returned: on success
+            type: str
+            sample: "null"
+
         additional_compute_count:
             description:
                 - The requested number of additional compute servers for the Exadata infrastructure.
@@ -520,6 +533,8 @@ exadata_infrastructure:
         "additional_storage_count": 56,
         "activated_storage_count": 56,
         "compute_count": 56,
+        "is_multi_rack_deployment": true,
+        "multi_rack_configuration_file": null,
         "additional_compute_count": 56,
         "additional_compute_system_model": "X7",
         "cloud_control_plane_server1": "cloud_control_plane_server1_example",

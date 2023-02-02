@@ -23,7 +23,7 @@ module: oci_database_cloud_exadata_infrastructure_unallocated_resources_facts
 short_description: Fetches details about a CloudExadataInfrastructureUnallocatedResources resource in Oracle Cloud Infrastructure
 description:
     - Fetches details about a CloudExadataInfrastructureUnallocatedResources resource in Oracle Cloud Infrastructure
-    - Gets un allocated resources information for the specified Cloud Exadata infrastructure.
+    - Gets unallocated resources information for the specified Cloud Exadata infrastructure.
 version_added: "2.9.0"
 author: Oracle (@oracle)
 options:
@@ -65,19 +65,19 @@ cloud_exadata_infrastructure_unallocated_resources:
             sample: cloud_exadata_infrastructure_display_name_example
         local_storage_in_gbs:
             description:
-                - The minimum amount of un allocated storage that is available across all nodes in the infrastructure.
+                - The minimum amount of unallocated storage available across all nodes in the infrastructure.
             returned: on success
             type: int
             sample: 56
         ocpus:
             description:
-                - The minimum amount of un allocated ocpus that is available across all nodes in the infrastructure.
+                - The minimum amount of unallocated ocpus available across all nodes in the infrastructure.
             returned: on success
             type: int
             sample: 56
         memory_in_gbs:
             description:
-                - The minimum amount of un allocated memory that is available across all nodes in the infrastructure.
+                - The minimum amount of unallocated memory available across all nodes in the infrastructure.
             returned: on success
             type: int
             sample: 56
@@ -89,7 +89,7 @@ cloud_exadata_infrastructure_unallocated_resources:
             sample: 1.2
         cloud_autonomous_vm_clusters:
             description:
-                - The list of Cloud Autonomous VM Clusters on the Infra and their associated unallocated resources details
+                - The list of Cloud Autonomous VM Clusters on the Infrastructure and their associated unallocated resources details.
             returned: on success
             type: complex
             contains:
@@ -101,7 +101,7 @@ cloud_exadata_infrastructure_unallocated_resources:
                     sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
                 un_allocated_adb_storage_in_tbs:
                     description:
-                        - Total unallocated autonomous data storage in the CAVM in TBs.
+                        - Total unallocated autonomous data storage in the Cloud Autonomous VM Cluster in TBs.
                     returned: on success
                     type: float
                     sample: 1.2

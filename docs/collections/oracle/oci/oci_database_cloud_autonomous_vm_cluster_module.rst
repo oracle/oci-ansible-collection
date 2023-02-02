@@ -30,7 +30,7 @@ oracle.oci.oci_database_cloud_autonomous_vm_cluster -- Manage a CloudAutonomousV
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.10.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.11.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -325,7 +325,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The number of OCPU cores to enable per VM cluster node.</div>
+                                            <div>The number of OCPU cores to be enabled per VM cluster node.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -340,7 +340,7 @@ Parameters
                                 <td>
                                                                                                                                                             </td>
                                                                 <td>
-                                            <div>The list of Db server.</div>
+                                            <div>The list of database servers.</div>
                                                         </td>
             </tr>
                                 <tr>
@@ -689,7 +689,7 @@ Parameters
                     <a class="ansibleOptionLink" href="#parameter-maintenance_window_details/preference" title="Permalink to this option"></a>
                     <div style="font-size: small">
                         <span style="color: purple">string</span>
-                                                 / <span style="color: red">required</span>                    </div>
+                                                                    </div>
                                                         </td>
                                 <td>
                                                                                                                             <ul style="margin: 0; padding: 0"><b>Choices:</b>
@@ -907,10 +907,8 @@ Examples
         db_servers: [ "db_servers_example" ]
         description: description_example
         maintenance_window_details:
-          # required
-          preference: NO_PREFERENCE
-
           # optional
+          preference: NO_PREFERENCE
           patching_mode: ROLLING
           is_custom_action_timeout_enabled: true
           custom_action_timeout_in_mins: 56
@@ -938,10 +936,8 @@ Examples
         description: description_example
         display_name: display_name_example
         maintenance_window_details:
-          # required
-          preference: NO_PREFERENCE
-
           # optional
+          preference: NO_PREFERENCE
           patching_mode: ROLLING
           is_custom_action_timeout_enabled: true
           custom_action_timeout_in_mins: 56
@@ -969,10 +965,8 @@ Examples
         # optional
         description: description_example
         maintenance_window_details:
-          # required
-          preference: NO_PREFERENCE
-
           # optional
+          preference: NO_PREFERENCE
           patching_mode: ROLLING
           is_custom_action_timeout_enabled: true
           custom_action_timeout_in_mins: 56

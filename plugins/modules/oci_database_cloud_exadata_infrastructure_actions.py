@@ -341,6 +341,34 @@ cloud_exadata_infrastructure:
                     returned: on success
                     type: str
                     sample: email_example
+        storage_server_version:
+            description:
+                - "The software version of the storage servers (cells) in the cloud Exadata infrastructure.
+                  Example: 20.1.15"
+            returned: on success
+            type: str
+            sample: storage_server_version_example
+        db_server_version:
+            description:
+                - "The software version of the database servers (dom0) in the cloud Exadata infrastructure.
+                  Example: 20.1.15"
+            returned: on success
+            type: str
+            sample: db_server_version_example
+        monthly_storage_server_version:
+            description:
+                - "The monthly software version of the storage servers (cells) in the cloud Exadata infrastructure.
+                  Example: 20.1.15"
+            returned: on success
+            type: str
+            sample: monthly_storage_server_version_example
+        monthly_db_server_version:
+            description:
+                - "The monthly software version of the database servers (dom0) in the cloud Exadata infrastructure.
+                  Example: 20.1.15"
+            returned: on success
+            type: str
+            sample: monthly_db_server_version_example
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -386,7 +414,11 @@ cloud_exadata_infrastructure:
         "defined_tags": {'Operations': {'CostCenter': 'US'}},
         "customer_contacts": [{
             "email": "email_example"
-        }]
+        }],
+        "storage_server_version": "storage_server_version_example",
+        "db_server_version": "db_server_version_example",
+        "monthly_storage_server_version": "monthly_storage_server_version_example",
+        "monthly_db_server_version": "monthly_db_server_version_example"
     }
 """
 
