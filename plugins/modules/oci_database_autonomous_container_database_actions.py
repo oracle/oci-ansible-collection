@@ -431,27 +431,27 @@ autonomous_container_database:
             sample: key_store_wallet_name_example
         memory_per_oracle_compute_unit_in_gbs:
             description:
-                - The amount of memory (in GBs) enabled per each OCPU core in Autonomous VM Cluster.
+                - The amount of memory (in GBs) enabled per each CPU in the Autonomous VM Cluster.
             returned: on success
             type: int
             sample: 56
         available_cpus:
             description:
-                - Sum of OCPUs available on the Autonomous VM Cluster + Sum of reclaimable OCPUs available in the Autonomous Container Database.
+                - Sum of CPUs available on the Autonomous VM Cluster + Sum of reclaimable CPUs available in the Autonomous Container Database.
             returned: on success
             type: float
             sample: 3.4
         total_cpus:
             description:
-                - The number of CPU cores allocated to the Autonomous VM cluster.
+                - The number of CPUs allocated to the Autonomous VM cluster.
             returned: on success
             type: int
             sample: 56
         reclaimable_cpus:
             description:
-                - CPU cores that continue to be included in the count of OCPUs available to the Autonomous Container Database even after one of its Autonomous
-                  Database is terminated or scaled down. You can release them to the available OCPUs at its parent AVMC level by restarting the Autonomous
-                  Container Database.
+                - CPUs that continue to be included in the count of CPUs available to the Autonomous Container Database even after one of its Autonomous
+                  Database is terminated or scaled down. You can release them to the available CPUs at its parent Autonomous VM Cluster level by restarting the
+                  Autonomous Container Database.
             returned: on success
             type: float
             sample: 3.4
@@ -461,6 +461,12 @@ autonomous_container_database:
             returned: on success
             type: list
             sample: []
+        compute_model:
+            description:
+                - The compute model of the Autonomous VM Cluster.
+            returned: on success
+            type: str
+            sample: ECPU
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -525,7 +531,8 @@ autonomous_container_database:
         "available_cpus": 3.4,
         "total_cpus": 56,
         "reclaimable_cpus": 3.4,
-        "provisionable_cpus": []
+        "provisionable_cpus": [],
+        "compute_model": "ECPU"
     }
 """
 

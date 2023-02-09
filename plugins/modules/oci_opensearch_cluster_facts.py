@@ -267,6 +267,20 @@ opensearch_clusters:
             returned: on success
             type: str
             sample: fqdn_example
+        security_master_user_name:
+            description:
+                - The name of the master user that are used to manage security config
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: security_master_user_name_example
+        security_master_user_password_hash:
+            description:
+                - The password hash of the master user that are used to manage security config
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: security_master_user_password_hash_example
         id:
             description:
                 - The OCID of the cluster.
@@ -348,6 +362,12 @@ opensearch_clusters:
             returned: on success
             type: list
             sample: []
+        security_mode:
+            description:
+                - The security mode of the cluster.
+            returned: on success
+            type: str
+            sample: DISABLED
     sample: [{
         "time_deleted": "2013-10-20T19:20:30+01:00",
         "opensearch_fqdn": "opensearch_fqdn_example",
@@ -373,6 +393,8 @@ opensearch_clusters:
         "vcn_compartment_id": "ocid1.vcncompartment.oc1..xxxxxxEXAMPLExxxxxx",
         "subnet_compartment_id": "ocid1.subnetcompartment.oc1..xxxxxxEXAMPLExxxxxx",
         "fqdn": "fqdn_example",
+        "security_master_user_name": "security_master_user_name_example",
+        "security_master_user_password_hash": "security_master_user_password_hash_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -385,7 +407,8 @@ opensearch_clusters:
         "software_version": "software_version_example",
         "total_storage_gb": 56,
         "lifecycle_state": "ACTIVE",
-        "availability_domains": []
+        "availability_domains": [],
+        "security_mode": "DISABLED"
     }]
 """
 

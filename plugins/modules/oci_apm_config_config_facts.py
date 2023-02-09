@@ -288,6 +288,38 @@ configs:
             returned: on success
             type: str
             sample: filter_text_example
+        in_use_by:
+            description:
+                - The list of configuration items that reference the span filter.
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                id:
+                    description:
+                        - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of the configuration item. An OCID is generated
+                          when the item is created.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx"
+                config_type:
+                    description:
+                        - The type of configuration item.
+                    returned: on success
+                    type: str
+                    sample: SPAN_FILTER
+                options_group:
+                    description:
+                        - A string that specifies the group that an OPTIONS item belongs to.
+                    returned: on success
+                    type: str
+                    sample: options_group_example
+                display_name:
+                    description:
+                        - The name by which a configuration entity is displayed to the end user.
+                    returned: on success
+                    type: str
+                    sample: display_name_example
         description:
             description:
                 - An optional string that describes what the options are intended or used for.
@@ -324,6 +356,24 @@ configs:
             returned: on success
             type: str
             sample: "2013-10-20T19:20:30+01:00"
+        created_by:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a user.
+            returned: on success
+            type: str
+            sample: created_by_example
+        updated_by:
+            description:
+                - The L(OCID,https://docs.cloud.oracle.com/Content/General/Concepts/identifiers.htm) of a user.
+            returned: on success
+            type: str
+            sample: updated_by_example
+        etag:
+            description:
+                - For optimistic concurrency control. See `if-match`.
+            returned: on success
+            type: str
+            sample: etag_example
         freeform_tags:
             description:
                 - "Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only.
@@ -364,11 +414,20 @@ configs:
         "group": "group_example",
         "display_name": "display_name_example",
         "filter_text": "filter_text_example",
+        "in_use_by": [{
+            "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
+            "config_type": "SPAN_FILTER",
+            "options_group": "options_group_example",
+            "display_name": "display_name_example"
+        }],
         "description": "description_example",
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "config_type": "SPAN_FILTER",
         "time_created": "2013-10-20T19:20:30+01:00",
         "time_updated": "2013-10-20T19:20:30+01:00",
+        "created_by": "created_by_example",
+        "updated_by": "updated_by_example",
+        "etag": "etag_example",
         "freeform_tags": {'Department': 'Finance'},
         "defined_tags": {'Operations': {'CostCenter': 'US'}}
     }]

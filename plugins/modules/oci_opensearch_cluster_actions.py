@@ -416,6 +416,24 @@ opensearch_cluster:
             returned: on success
             type: list
             sample: []
+        security_mode:
+            description:
+                - The security mode of the cluster.
+            returned: on success
+            type: str
+            sample: DISABLED
+        security_master_user_name:
+            description:
+                - The name of the master user that are used to manage security config
+            returned: on success
+            type: str
+            sample: security_master_user_name_example
+        security_master_user_password_hash:
+            description:
+                - The password hash of the master user that are used to manage security config
+            returned: on success
+            type: str
+            sample: security_master_user_password_hash_example
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "display_name": "display_name_example",
@@ -453,7 +471,10 @@ opensearch_cluster:
         "vcn_compartment_id": "ocid1.vcncompartment.oc1..xxxxxxEXAMPLExxxxxx",
         "subnet_compartment_id": "ocid1.subnetcompartment.oc1..xxxxxxEXAMPLExxxxxx",
         "fqdn": "fqdn_example",
-        "availability_domains": []
+        "availability_domains": [],
+        "security_mode": "DISABLED",
+        "security_master_user_name": "security_master_user_name_example",
+        "security_master_user_password_hash": "security_master_user_password_hash_example"
     }
 """
 

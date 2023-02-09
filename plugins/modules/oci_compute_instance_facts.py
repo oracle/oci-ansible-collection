@@ -704,6 +704,13 @@ instances:
                     returned: on success
                     type: bool
                     sample: true
+                is_memory_encryption_enabled:
+                    description:
+                        - Whether the instance is a confidential instance. If this value is `true`, the instance is a confidential instance. The default value
+                          is `false`.
+                    returned: on success
+                    type: bool
+                    sample: true
         primary_private_ip:
             description:
                 - The private IP of the primary VNIC attached to this instance
@@ -798,7 +805,8 @@ instances:
             "type": "AMD_MILAN_BM",
             "is_secure_boot_enabled": true,
             "is_trusted_platform_module_enabled": true,
-            "is_measured_boot_enabled": true
+            "is_measured_boot_enabled": true,
+            "is_memory_encryption_enabled": true
         },
         "primary_private_ip": "10.0.0.10",
         "primary_public_ip": "140.34.93.209"

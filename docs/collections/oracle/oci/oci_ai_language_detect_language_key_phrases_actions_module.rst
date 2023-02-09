@@ -30,7 +30,7 @@ oracle.oci.oci_ai_language_detect_language_key_phrases_actions -- Perform action
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.11.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.12.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -57,7 +57,7 @@ Synopsis
 .. Description
 
 - Perform actions on a DetectLanguageKeyPhrases resource in Oracle Cloud Infrastructure
-- For *action=detect_language_key_phrases*, the API extracts key-phrases in text records. For each key-phrase, a score (between 0 and 1) is returned that highlights the importance of the key-phrase in the context of the text. Limitations: - A record may be up to 1000 characters long.
+- For *action=detect_language_key_phrases*, **Deprecated**: This API will be retired Tuesday, 10 Oct 2023 00:00:00 GMT. We recommend you replace this API with the batch API, `BatchDetectLanguageKeyPhrases <https://docs.cloud.oracle.com/iaas/api/#/en/language/20221001/BatchD etectLanguageKeyPhrases/BatchDetectLanguageKeyPhrases>`_. The DetectLanguageKeyPhrases API extracts key-phrases in text records. For each key-phrase, a score (between 0 and 1) is returned that highlights the importance of the key-phrase in the context of the text. Limitations: - A record may be up to 1000 characters long.
 
 
 .. Aliases

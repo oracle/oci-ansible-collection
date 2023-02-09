@@ -506,6 +506,11 @@ options:
                         description:
                             - Whether the Measured Boot feature is enabled on the instance.
                         type: bool
+                    is_memory_encryption_enabled:
+                        description:
+                            - Whether the instance is a confidential instance. If this value is `true`, the instance is a confidential instance. The default
+                              value is `false`.
+                        type: bool
             source_details:
                 description:
                     - ""
@@ -976,6 +981,7 @@ EXAMPLES = """
         is_secure_boot_enabled: true
         is_trusted_platform_module_enabled: true
         is_measured_boot_enabled: true
+        is_memory_encryption_enabled: true
       source_details:
         # required
         source_type: image
@@ -1628,6 +1634,13 @@ instance:
                     returned: on success
                     type: bool
                     sample: true
+                is_memory_encryption_enabled:
+                    description:
+                        - Whether the instance is a confidential instance. If this value is `true`, the instance is a confidential instance. The default value
+                          is `false`.
+                    returned: on success
+                    type: bool
+                    sample: true
     sample: {
         "availability_domain": "Uocm:PHX-AD-1",
         "capacity_reservation_id": "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx",
@@ -1710,7 +1723,8 @@ instance:
             "type": "AMD_MILAN_BM",
             "is_secure_boot_enabled": true,
             "is_trusted_platform_module_enabled": true,
-            "is_measured_boot_enabled": true
+            "is_measured_boot_enabled": true,
+            "is_memory_encryption_enabled": true
         }
     }
 
@@ -2286,6 +2300,13 @@ instance_configuration:
                                     returned: on success
                                     type: bool
                                     sample: true
+                                is_memory_encryption_enabled:
+                                    description:
+                                        - Whether the instance is a confidential instance. If this value is `true`, the instance is a confidential instance. The
+                                          default value is `false`.
+                                    returned: on success
+                                    type: bool
+                                    sample: true
                         source_details:
                             description:
                                 - ""
@@ -2781,7 +2802,8 @@ instance_configuration:
                     "type": "AMD_MILAN_BM",
                     "is_secure_boot_enabled": true,
                     "is_trusted_platform_module_enabled": true,
-                    "is_measured_boot_enabled": true
+                    "is_measured_boot_enabled": true,
+                    "is_memory_encryption_enabled": true
                 },
                 "source_details": {
                     "boot_volume_id": "ocid1.bootvolume.oc1..xxxxxxEXAMPLExxxxxx",
@@ -3110,6 +3132,7 @@ def main():
                             is_secure_boot_enabled=dict(type="bool"),
                             is_trusted_platform_module_enabled=dict(type="bool"),
                             is_measured_boot_enabled=dict(type="bool"),
+                            is_memory_encryption_enabled=dict(type="bool"),
                         ),
                     ),
                     source_details=dict(

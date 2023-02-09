@@ -254,6 +254,12 @@ cloud_autonomous_vm_clusters:
             returned: on success
             type: float
             sample: 3.4
+        compute_model:
+            description:
+                - The compute model of the Cloud Autonomous VM Cluster.
+            returned: on success
+            type: str
+            sample: ECPU
         cpu_core_count_per_node:
             description:
                 - The number of OCPU cores enabled per VM cluster node.
@@ -468,6 +474,7 @@ cloud_autonomous_vm_clusters:
         "data_storage_size_in_gbs": 1.2,
         "cpu_core_count": 56,
         "ocpu_count": 3.4,
+        "compute_model": "ECPU",
         "cpu_core_count_per_node": 56,
         "memory_size_in_gbs": 56,
         "license_model": "LICENSE_INCLUDED",

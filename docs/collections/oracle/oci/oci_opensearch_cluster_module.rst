@@ -30,7 +30,7 @@ oracle.oci.oci_opensearch_cluster -- Manage an OpensearchCluster resource in Ora
 .. Collection note
 
 .. note::
-    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.11.0).
+    This plugin is part of the `oracle.oci collection <https://galaxy.ansible.com/oracle/oci>`_ (version 4.12.0).
 
     You might already have this collection installed if you are using the ``ansible`` package.
     It is not included in ``ansible-core``.
@@ -598,6 +598,59 @@ Parameters
             </tr>
                                 <tr>
                                                                 <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-security_master_user_name"></div>
+                    <b>security_master_user_name</b>
+                    <a class="ansibleOptionLink" href="#parameter-security_master_user_name" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The name of the master user that are used to manage security config</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-security_master_user_password_hash"></div>
+                    <b>security_master_user_password_hash</b>
+                    <a class="ansibleOptionLink" href="#parameter-security_master_user_password_hash" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                                                            </td>
+                                                                <td>
+                                            <div>The password hash of the master user that are used to manage security config</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="parameter-security_mode"></div>
+                    <b>security_mode</b>
+                    <a class="ansibleOptionLink" href="#parameter-security_mode" title="Permalink to this option"></a>
+                    <div style="font-size: small">
+                        <span style="color: purple">string</span>
+                                                                    </div>
+                                                        </td>
+                                <td>
+                                                                                                                            <ul style="margin: 0; padding: 0"><b>Choices:</b>
+                                                                                                                                                                <li>DISABLED</li>
+                                                                                                                                                                                                <li>PERMISSIVE</li>
+                                                                                                                                                                                                <li>ENFORCING</li>
+                                                                                    </ul>
+                                                                            </td>
+                                                                <td>
+                                            <div>The security mode of the cluster.</div>
+                                            <div>This parameter is updatable.</div>
+                                                        </td>
+            </tr>
+                                <tr>
+                                                                <td colspan="1">
                     <div class="ansibleOptionAnchor" id="parameter-software_version"></div>
                     <b>software_version</b>
                     <a class="ansibleOptionLink" href="#parameter-software_version" title="Permalink to this option"></a>
@@ -814,6 +867,9 @@ Examples
         master_node_host_bare_metal_shape: master_node_host_bare_metal_shape_example
         data_node_host_bare_metal_shape: data_node_host_bare_metal_shape_example
         system_tags: null
+        security_mode: DISABLED
+        security_master_user_name: security_master_user_name_example
+        security_master_user_password_hash: security_master_user_password_hash_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -825,6 +881,9 @@ Examples
 
         # optional
         software_version: software_version_example
+        security_mode: DISABLED
+        security_master_user_name: security_master_user_name_example
+        security_master_user_password_hash: security_master_user_password_hash_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -836,6 +895,9 @@ Examples
 
         # optional
         software_version: software_version_example
+        security_mode: DISABLED
+        security_master_user_name: security_master_user_name_example
+        security_master_user_password_hash: security_master_user_password_hash_example
         freeform_tags: {'Department': 'Finance'}
         defined_tags: {'Operations': {'CostCenter': 'US'}}
 
@@ -887,7 +949,7 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                             <div>Details of the OpensearchCluster resource acted upon by the current operation</div>
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
-                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;availability_domains&#x27;: [], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;data_node_count&#x27;: 56, &#x27;data_node_host_bare_metal_shape&#x27;: &#x27;data_node_host_bare_metal_shape_example&#x27;, &#x27;data_node_host_memory_gb&#x27;: 56, &#x27;data_node_host_ocpu_count&#x27;: 56, &#x27;data_node_host_type&#x27;: &#x27;FLEX&#x27;, &#x27;data_node_storage_gb&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;fqdn&#x27;: &#x27;fqdn_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;master_node_count&#x27;: 56, &#x27;master_node_host_bare_metal_shape&#x27;: &#x27;master_node_host_bare_metal_shape_example&#x27;, &#x27;master_node_host_memory_gb&#x27;: 56, &#x27;master_node_host_ocpu_count&#x27;: 56, &#x27;master_node_host_type&#x27;: &#x27;FLEX&#x27;, &#x27;opendashboard_fqdn&#x27;: &#x27;opendashboard_fqdn_example&#x27;, &#x27;opendashboard_node_count&#x27;: 56, &#x27;opendashboard_node_host_memory_gb&#x27;: 56, &#x27;opendashboard_node_host_ocpu_count&#x27;: 56, &#x27;opendashboard_private_ip&#x27;: &#x27;opendashboard_private_ip_example&#x27;, &#x27;opensearch_fqdn&#x27;: &#x27;opensearch_fqdn_example&#x27;, &#x27;opensearch_private_ip&#x27;: &#x27;opensearch_private_ip_example&#x27;, &#x27;software_version&#x27;: &#x27;software_version_example&#x27;, &#x27;subnet_compartment_id&#x27;: &#x27;ocid1.subnetcompartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_deleted&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;total_storage_gb&#x27;: 56, &#x27;vcn_compartment_id&#x27;: &#x27;ocid1.vcncompartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vcn_id&#x27;: &#x27;ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">{&#x27;availability_domains&#x27;: [], &#x27;compartment_id&#x27;: &#x27;ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;data_node_count&#x27;: 56, &#x27;data_node_host_bare_metal_shape&#x27;: &#x27;data_node_host_bare_metal_shape_example&#x27;, &#x27;data_node_host_memory_gb&#x27;: 56, &#x27;data_node_host_ocpu_count&#x27;: 56, &#x27;data_node_host_type&#x27;: &#x27;FLEX&#x27;, &#x27;data_node_storage_gb&#x27;: 56, &#x27;defined_tags&#x27;: {&#x27;Operations&#x27;: {&#x27;CostCenter&#x27;: &#x27;US&#x27;}}, &#x27;display_name&#x27;: &#x27;display_name_example&#x27;, &#x27;fqdn&#x27;: &#x27;fqdn_example&#x27;, &#x27;freeform_tags&#x27;: {&#x27;Department&#x27;: &#x27;Finance&#x27;}, &#x27;id&#x27;: &#x27;ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;lifecycle_details&#x27;: &#x27;lifecycle_details_example&#x27;, &#x27;lifecycle_state&#x27;: &#x27;ACTIVE&#x27;, &#x27;master_node_count&#x27;: 56, &#x27;master_node_host_bare_metal_shape&#x27;: &#x27;master_node_host_bare_metal_shape_example&#x27;, &#x27;master_node_host_memory_gb&#x27;: 56, &#x27;master_node_host_ocpu_count&#x27;: 56, &#x27;master_node_host_type&#x27;: &#x27;FLEX&#x27;, &#x27;opendashboard_fqdn&#x27;: &#x27;opendashboard_fqdn_example&#x27;, &#x27;opendashboard_node_count&#x27;: 56, &#x27;opendashboard_node_host_memory_gb&#x27;: 56, &#x27;opendashboard_node_host_ocpu_count&#x27;: 56, &#x27;opendashboard_private_ip&#x27;: &#x27;opendashboard_private_ip_example&#x27;, &#x27;opensearch_fqdn&#x27;: &#x27;opensearch_fqdn_example&#x27;, &#x27;opensearch_private_ip&#x27;: &#x27;opensearch_private_ip_example&#x27;, &#x27;security_master_user_name&#x27;: &#x27;security_master_user_name_example&#x27;, &#x27;security_master_user_password_hash&#x27;: &#x27;security_master_user_password_hash_example&#x27;, &#x27;security_mode&#x27;: &#x27;DISABLED&#x27;, &#x27;software_version&#x27;: &#x27;software_version_example&#x27;, &#x27;subnet_compartment_id&#x27;: &#x27;ocid1.subnetcompartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;subnet_id&#x27;: &#x27;ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;system_tags&#x27;: {}, &#x27;time_created&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_deleted&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;time_updated&#x27;: &#x27;2013-10-20T19:20:30+01:00&#x27;, &#x27;total_storage_gb&#x27;: 56, &#x27;vcn_compartment_id&#x27;: &#x27;ocid1.vcncompartment.oc1..xxxxxxEXAMPLExxxxxx&#x27;, &#x27;vcn_id&#x27;: &#x27;ocid1.vcn.oc1..xxxxxxEXAMPLExxxxxx&#x27;}</div>
                                     </td>
             </tr>
                                         <tr>
@@ -1372,6 +1434,60 @@ Common return values are documented :ref:`here <common_return_values>`, the foll
                                         <br/>
                                                                 <div style="font-size: smaller"><b>Sample:</b></div>
                                                 <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">opensearch_private_ip_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-opensearch_cluster/security_master_user_name"></div>
+                    <b>security_master_user_name</b>
+                    <a class="ansibleOptionLink" href="#return-opensearch_cluster/security_master_user_name" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The name of the master user that are used to manage security config</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">security_master_user_name_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-opensearch_cluster/security_master_user_password_hash"></div>
+                    <b>security_master_user_password_hash</b>
+                    <a class="ansibleOptionLink" href="#return-opensearch_cluster/security_master_user_password_hash" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The password hash of the master user that are used to manage security config</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">security_master_user_password_hash_example</div>
+                                    </td>
+            </tr>
+                                <tr>
+                                    <td class="elbow-placeholder">&nbsp;</td>
+                                <td colspan="1">
+                    <div class="ansibleOptionAnchor" id="return-opensearch_cluster/security_mode"></div>
+                    <b>security_mode</b>
+                    <a class="ansibleOptionLink" href="#return-opensearch_cluster/security_mode" title="Permalink to this return value"></a>
+                    <div style="font-size: small">
+                      <span style="color: purple">string</span>
+                                          </div>
+                                    </td>
+                <td>on success</td>
+                <td>
+                                            <div>The security mode of the cluster.</div>
+                                        <br/>
+                                                                <div style="font-size: smaller"><b>Sample:</b></div>
+                                                <div style="font-size: smaller; color: blue; word-wrap: break-word; word-break: break-all;">DISABLED</div>
                                     </td>
             </tr>
                                 <tr>

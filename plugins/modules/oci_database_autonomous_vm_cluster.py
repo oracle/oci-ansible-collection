@@ -72,6 +72,13 @@ options:
         description:
             - The number of CPU cores to enable per VM cluster node.
         type: int
+    compute_model:
+        description:
+            - The compute model of the Autonomous VM Cluster.
+        type: str
+        choices:
+            - "ECPU"
+            - "OCPU"
     memory_per_oracle_compute_unit_in_gbs:
         description:
             - The amount of memory (in GBs) to be enabled per each OCPU core.
@@ -245,6 +252,7 @@ EXAMPLES = """
     is_local_backup_enabled: true
     total_container_databases: 56
     cpu_core_count_per_node: 56
+    compute_model: ECPU
     memory_per_oracle_compute_unit_in_gbs: 56
     autonomous_data_storage_size_in_tbs: 3.4
     scan_listener_port_tls: 56
@@ -413,6 +421,12 @@ autonomous_vm_cluster:
             returned: on success
             type: int
             sample: 56
+        compute_model:
+            description:
+                - The compute model of the Autonomous VM Cluster.
+            returned: on success
+            type: str
+            sample: ECPU
         ocpus_enabled:
             description:
                 - The number of enabled OCPU cores.
@@ -652,6 +666,7 @@ autonomous_vm_cluster:
         "vm_cluster_network_id": "ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx",
         "is_local_backup_enabled": true,
         "cpus_enabled": 56,
+        "compute_model": "ECPU",
         "ocpus_enabled": 3.4,
         "available_cpus": 56,
         "total_container_databases": 56,
@@ -867,6 +882,7 @@ def main():
             is_local_backup_enabled=dict(type="bool"),
             total_container_databases=dict(type="int"),
             cpu_core_count_per_node=dict(type="int"),
+            compute_model=dict(type="str", choices=["ECPU", "OCPU"]),
             memory_per_oracle_compute_unit_in_gbs=dict(type="int"),
             autonomous_data_storage_size_in_tbs=dict(type="float"),
             scan_listener_port_tls=dict(type="int"),

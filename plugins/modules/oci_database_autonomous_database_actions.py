@@ -488,6 +488,22 @@ autonomous_database:
             returned: on success
             type: int
             sample: 56
+        compute_model:
+            description:
+                - The compute model of the Autonomous Database. This is required if using the `computeCount` parameter. If using `cpuCoreCount` then it is an
+                  error to specify `computeModel` to a non-null value.
+            returned: on success
+            type: str
+            sample: ECPU
+        compute_count:
+            description:
+                - The compute amount available to the database. Minimum and maximum values depend on the compute model and whether the database is on Shared or
+                  Dedicated infrastructure. For an Autonomous Database on Shared infrastructure, the 'ECPU' compute model requires values in multiples of two.
+                  Required when using the `computeModel` parameter. When using `cpuCoreCount` parameter, it is an error to specify computeCount to a non-null
+                  value.
+            returned: on success
+            type: float
+            sample: 3.4
         ocpu_count:
             description:
                 - The number of OCPU cores to be made available to the database.
@@ -697,6 +713,24 @@ autonomous_database:
                     returned: on success
                     type: str
                     sample: graph_studio_url_example
+                mongo_db_url:
+                    description:
+                        - The URL of the MongoDB API for the Autonomous Database.
+                    returned: on success
+                    type: str
+                    sample: mongo_db_url_example
+                ords_url:
+                    description:
+                        - The Oracle REST Data Services (ORDS) URL of the Web Access for the Autonomous Database.
+                    returned: on success
+                    type: str
+                    sample: ords_url_example
+                database_transforms_url:
+                    description:
+                        - The URL of the Database Transforms for the Autonomous Database.
+                    returned: on success
+                    type: str
+                    sample: database_transforms_url_example
         license_model:
             description:
                 - The Oracle license model that applies to the Oracle Autonomous Database. Bring your own license (BYOL) allows you to apply your current on-
@@ -1227,6 +1261,24 @@ autonomous_database:
             returned: on success
             type: str
             sample: STANDARD_EDITION
+        db_tools_details:
+            description:
+                - List of database tools details.
+            returned: on success
+            type: complex
+            contains:
+                name:
+                    description:
+                        - Name of database tool.
+                    returned: on success
+                    type: str
+                    sample: APEX
+                is_enabled:
+                    description:
+                        - Indicates whether tool is enabled.
+                    returned: on success
+                    type: bool
+                    sample: true
     sample: {
         "id": "ocid1.resource.oc1..xxxxxxEXAMPLExxxxxx",
         "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
@@ -1254,6 +1306,8 @@ autonomous_database:
             "time_activated": "2013-10-20T19:20:30+01:00"
         }],
         "cpu_core_count": 56,
+        "compute_model": "ECPU",
+        "compute_count": 3.4,
         "ocpu_count": 3.4,
         "provisionable_cpus": [],
         "data_storage_size_in_tbs": 56,
@@ -1286,7 +1340,10 @@ autonomous_database:
             "sql_dev_web_url": "sql_dev_web_url_example",
             "apex_url": "apex_url_example",
             "machine_learning_user_management_url": "machine_learning_user_management_url_example",
-            "graph_studio_url": "graph_studio_url_example"
+            "graph_studio_url": "graph_studio_url_example",
+            "mongo_db_url": "mongo_db_url_example",
+            "ords_url": "ords_url_example",
+            "database_transforms_url": "database_transforms_url_example"
         },
         "license_model": "LICENSE_INCLUDED",
         "used_data_storage_size_in_tbs": 56,
@@ -1368,7 +1425,11 @@ autonomous_database:
         "allocated_storage_size_in_tbs": 1.2,
         "actual_used_data_storage_size_in_tbs": 1.2,
         "max_cpu_core_count": 56,
-        "database_edition": "STANDARD_EDITION"
+        "database_edition": "STANDARD_EDITION",
+        "db_tools_details": [{
+            "name": "APEX",
+            "is_enabled": true
+        }]
     }
 """
 

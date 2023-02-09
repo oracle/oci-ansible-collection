@@ -174,6 +174,12 @@ autonomous_vm_clusters:
             returned: on success
             type: int
             sample: 56
+        compute_model:
+            description:
+                - The compute model of the Autonomous VM Cluster.
+            returned: on success
+            type: str
+            sample: ECPU
         ocpus_enabled:
             description:
                 - The number of enabled OCPU cores.
@@ -413,6 +419,7 @@ autonomous_vm_clusters:
         "vm_cluster_network_id": "ocid1.vmclusternetwork.oc1..xxxxxxEXAMPLExxxxxx",
         "is_local_backup_enabled": true,
         "cpus_enabled": 56,
+        "compute_model": "ECPU",
         "ocpus_enabled": 3.4,
         "available_cpus": 56,
         "total_container_databases": 56,

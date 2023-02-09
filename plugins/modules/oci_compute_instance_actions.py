@@ -925,6 +925,13 @@ instance:
                     returned: on success
                     type: bool
                     sample: true
+                is_memory_encryption_enabled:
+                    description:
+                        - Whether the instance is a confidential instance. If this value is `true`, the instance is a confidential instance. The default value
+                          is `false`.
+                    returned: on success
+                    type: bool
+                    sample: true
     sample: {
         "availability_domain": "Uocm:PHX-AD-1",
         "capacity_reservation_id": "ocid1.capacityreservation.oc1..xxxxxxEXAMPLExxxxxx",
@@ -1007,7 +1014,8 @@ instance:
             "type": "AMD_MILAN_BM",
             "is_secure_boot_enabled": true,
             "is_trusted_platform_module_enabled": true,
-            "is_measured_boot_enabled": true
+            "is_measured_boot_enabled": true,
+            "is_memory_encryption_enabled": true
         }
     }
 """

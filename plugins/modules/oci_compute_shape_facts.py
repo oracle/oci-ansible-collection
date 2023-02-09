@@ -360,6 +360,24 @@ shapes:
                             returned: on success
                             type: str
                             sample: default_value_example
+                memory_encryption_options:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        allowed_values:
+                            description:
+                                - Whether memory encryption can be enabled.
+                            returned: on success
+                            type: list
+                            sample: []
+                        is_default_enabled:
+                            description:
+                                - Whether memory encryption is enabled by default.
+                            returned: on success
+                            type: bool
+                            sample: true
                 symmetric_multi_threading_options:
                     description:
                         - ""
@@ -567,6 +585,10 @@ shapes:
             "numa_nodes_per_socket_platform_options": {
                 "service_allowed_values": [],
                 "default_value": "default_value_example"
+            },
+            "memory_encryption_options": {
+                "allowed_values": [],
+                "is_default_enabled": true
             },
             "symmetric_multi_threading_options": {
                 "allowed_values": [],

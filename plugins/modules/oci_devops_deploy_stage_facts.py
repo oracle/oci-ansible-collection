@@ -320,7 +320,9 @@ deploy_stages:
                     sample: []
         traffic_shift_target:
             description:
-                - Specifies the target or destination backend set.
+                - "Specifies the target or destination backend set. Example: BLUE - Traffic from the existing backends of managed Load Balance Listener to blue
+                  Backend IPs, as per rolloutPolicy. GREEN - Traffic from the existing backends of managed Load Balance Listener to green Backend IPs as per
+                  rolloutPolicy."
                 - Returned for get operation
             returned: on success
             type: str
@@ -365,13 +367,13 @@ deploy_stages:
                     sample: NGINX_BLUE_GREEN_STRATEGY
                 namespace_a:
                     description:
-                        - Namespace A for deployment.
+                        - "Namespace A for deployment. Example: namespaceA - first Namespace name."
                     returned: on success
                     type: str
                     sample: namespace_a_example
                 namespace_b:
                     description:
-                        - Namespace B for deployment.
+                        - "Namespace B for deployment. Example: namespaceB - second Namespace name."
                     returned: on success
                     type: str
                     sample: namespace_b_example
@@ -429,7 +431,7 @@ deploy_stages:
                     sample: NGINX_CANARY_STRATEGY
                 namespace:
                     description:
-                        - Canary namespace to be used for Kubernetes canary deployment.
+                        - "Canary namespace to be used for Kubernetes canary deployment. Example: canary - Name of the Canary namespace."
                     returned: on success
                     type: str
                     sample: namespace_example
@@ -525,13 +527,6 @@ deploy_stages:
             returned: on success
             type: str
             sample: namespace_example
-        timeout_in_seconds:
-            description:
-                - Time to wait for execution of a helm stage. Defaults to 300 seconds.
-                - Returned for get operation
-            returned: on success
-            type: int
-            sample: 56
         rollback_policy:
             description:
                 - ""
@@ -545,6 +540,93 @@ deploy_stages:
                     returned: on success
                     type: str
                     sample: AUTOMATED_STAGE_ROLLBACK_POLICY
+        container_config:
+            description:
+                - ""
+                - Returned for get operation
+            returned: on success
+            type: complex
+            contains:
+                container_config_type:
+                    description:
+                        - Container configuration type.
+                    returned: on success
+                    type: str
+                    sample: CONTAINER_INSTANCE_CONFIG
+                compartment_id:
+                    description:
+                        - The OCID of the compartment where the ContainerInstance will be created.
+                    returned: on success
+                    type: str
+                    sample: "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx"
+                availability_domain:
+                    description:
+                        - Availability domain where the ContainerInstance will be created.
+                    returned: on success
+                    type: str
+                    sample: Uocm:PHX-AD-1
+                shape_name:
+                    description:
+                        - The shape of the ContainerInstance. The shape determines the resources available to the ContainerInstance.
+                    returned: on success
+                    type: str
+                    sample: shape_name_example
+                shape_config:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        ocpus:
+                            description:
+                                - The total number of OCPUs available to the instance.
+                            returned: on success
+                            type: float
+                            sample: 3.4
+                        memory_in_gbs:
+                            description:
+                                - The total amount of memory available to the instance, in gigabytes.
+                            returned: on success
+                            type: float
+                            sample: 3.4
+                network_channel:
+                    description:
+                        - ""
+                    returned: on success
+                    type: complex
+                    contains:
+                        network_channel_type:
+                            description:
+                                - Network channel type.
+                            returned: on success
+                            type: str
+                            sample: PRIVATE_ENDPOINT_CHANNEL
+                        subnet_id:
+                            description:
+                                - The OCID of the subnet where VNIC resources will be created for private endpoint.
+                            returned: on success
+                            type: str
+                            sample: "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx"
+                        nsg_ids:
+                            description:
+                                - An array of network security group OCIDs.
+                            returned: on success
+                            type: list
+                            sample: []
+        command_spec_deploy_artifact_id:
+            description:
+                - The OCID of the artifact that contains the command specification.
+                - Returned for get operation
+            returned: on success
+            type: str
+            sample: "ocid1.commandspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx"
+        timeout_in_seconds:
+            description:
+                - Time to wait for execution of a helm stage. Defaults to 300 seconds.
+                - Returned for get operation
+            returned: on success
+            type: int
+            sample: 56
         wait_criteria:
             description:
                 - ""
@@ -747,10 +829,26 @@ deploy_stages:
         "values_artifact_ids": [],
         "release_name": "release_name_example",
         "namespace": "namespace_example",
-        "timeout_in_seconds": 56,
         "rollback_policy": {
             "policy_type": "AUTOMATED_STAGE_ROLLBACK_POLICY"
         },
+        "container_config": {
+            "container_config_type": "CONTAINER_INSTANCE_CONFIG",
+            "compartment_id": "ocid1.compartment.oc1..xxxxxxEXAMPLExxxxxx",
+            "availability_domain": "Uocm:PHX-AD-1",
+            "shape_name": "shape_name_example",
+            "shape_config": {
+                "ocpus": 3.4,
+                "memory_in_gbs": 3.4
+            },
+            "network_channel": {
+                "network_channel_type": "PRIVATE_ENDPOINT_CHANNEL",
+                "subnet_id": "ocid1.subnet.oc1..xxxxxxEXAMPLExxxxxx",
+                "nsg_ids": []
+            }
+        },
+        "command_spec_deploy_artifact_id": "ocid1.commandspecdeployartifact.oc1..xxxxxxEXAMPLExxxxxx",
+        "timeout_in_seconds": 56,
         "wait_criteria": {
             "wait_type": "ABSOLUTE_WAIT",
             "wait_duration": "wait_duration_example"
